@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="Product.xsd"/>
+	<xs:include schemaLocation="Location.xsd"/>
+	<xs:include schemaLocation="Distribution.xsd"/>
+	<xs:include schemaLocation="Inventory.xsd"/>
+	<xs:include schemaLocation="Order.xsd"/>
+	<xs:include schemaLocation="OrderFulfillment.xsd"/>
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:element name="products">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload of a product feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="product" type="ProductType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used by the merchant to provide product information for a single-variation listing. The product details provided in this container include the SKU value, the action code (full update, partial update, or delete), and the productInformation container, where detailed information on the product is provided.
+
+							The merchant can create multiple products in one call, and each product requires its own product container. For listings that will feature multiple variations of a product, the productVariationGroup container should be used instead of the product container. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="productVariationGroup" type="ProductVariationGroupType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used by the merchant to provide product information for multiple product variations in a multi-variation listing. The product details provided in this container include the Group ID value, the action code (full update, partial update, or delete), the groupInformation container, where common settings/characteristics for all product variations in the group are provided, and the variant container, where settings/characteristics for each product variation in the group are provided.
+							
+							The merchant can create multiple product variation groups in one call, and each product variation group requires its own productVariationGroup container. For single-variation listings, the product container should be used instead. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="productStatus" type="ProductStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of a productStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container that is returned for each product and/or product variation group, and which gives an indication if these product(s)/product variation group(s) were created successfully.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="distributions">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload of a distribution feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="distribution" type="DistributionType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used to make one or multiple updates to the product identified by the SKU value. The merchant can apply changes across all enabled sales channels, or the merchant can only apply the changes to specific sales channel by using one or more channelID fields. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="distributionStatus" type="DistributionStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of a distributionStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container that is returned for each product, and which gives an indication if these product(s) were updated successfully.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="inventories">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload of a inventory feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="inventory" type="InventoryType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used for an inventory update. An inventory container is required for each product SKU being added/updated. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="inventoryStatus" type="InventoryStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of an inventoryStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a summary container which gives an indication of how many product inventory updates were successful.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="locations">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload of a location feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="location" type="LocationType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used to provide details of a location. A location container is required for each inventory location for the merchant that is being added/modified. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="locationStatus" type="LocationStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of an locationStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container which gives an indication of how many locations were successfully created.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pendingOrderFulfillments">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of an order feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pendingOrderFulfillment" type="PendingOrderFulfillmentType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							This container holds an array of orders that must be fulfilled by the merchant. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderFulfillments">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload of an orderFulfillment feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderFulfillment" type="OrderFulfillmentType">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used to pass in order fulfillment data for one order, an order which is identified in the orderID field. An orderFulfillment container is required for each order being updated. The merchant uses the orderFulfillment.fulfillmentInfo container to make updates at the order level, or uses one or more orderFulfillment.lineItem containers to make updates at the order line item level. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderFulfillmentStatus" type="OrderFulfillmentStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the output payload of an orderFulfillmentStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container which gives an indication of how many orders were successfully updated.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ProductStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the productStatus container. The productStatus container is the root container for the output payload of an productStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container which gives an indication of how many locations were successfully added/updated.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the productStatus call. If there are no errors or warnings at the call level, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="responseMessage" type="ProductResponseMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container indicates the success or failure of one product or one product variation group. A responseMessage container will be returned for each product and/or product variation group that the merchant attempts to create/update in a product call. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ResponseStatusType">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value indicates whether the productStatus call was fully successful, partially successful, or if it failed completely. If the call was only partially successful, or if it failed, the possible issue(s) may be found in any productStatus.error containers that are returned.
+						</xs:documentation>
+					</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocationStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the productStatus container. The productStatus container is the root container for the output payload of an productStatus call. This output payload includes the status of the call, call-level error messages/warnings (if any), and a responseMessage container which gives an indication of how many locations were successfully added/updated.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ResponseStatusType">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value indicates whether the locationStatus call was fully successful, partially successful, or if it failed completely. If the call was only partially successful, or if it failed, the possible issue(s) may be found in any locationStatus.error containers that are returned.
+						</xs:documentation>
+					</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the locationStatus call. If there are no errors or warnings at the call level, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="responseMessage" type="LocationResponseMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container indicates the success or failure of one inventory location. A responseMessage container will be returned for each inventory location that the merchant attempts to create/update in a location call. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InventoryStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the inventoryStatus container, which is the root container of the output payload for an inventoryStatus call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ResponseStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the inventoryStatus call was successful, or whether it failed. If it failed, the possible issue(s) may be found in any error containers that are returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the inventory feed. If there are no errors or warnings, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="summary" type="InventoryResponseSummaryType">
+				<xs:annotation>
+					<xs:documentation>
+						This container provides a summary of how many products were sucessfully created/updated with the inventory feed and how many were not successful. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="DistributionStatusType">
+    	<xs:annotation>
+				<xs:documentation>
+					Type defining the distributionStatus container, which is the root container of the output payload for an distributionStatus call.
+				</xs:documentation>
+			</xs:annotation>
+        <xs:sequence>
+            <xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									An error container is returned for each error or warning that occurred with the distribution feed. If there are no errors or warnings, this container is not returned at all. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+            <xs:element name="responseMessage" type="DistributionResponseMessageType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									This is the root container for the distributionStatus response. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+            <xs:element name="status" type="ResponseStatusType">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates whether the distributionStatus call was successful, or whether it failed. If it failed, the possible issue(s) may be found in any error containers that are returned.
+								</xs:documentation>
+							</xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="OrderFulfillmentStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the orderFulfillmentStatus container, which is the root container of the output payload for an orderFulfillmentStatus call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ResponseStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the orderFulfillmentStatus call was fully successful, partially successful, or if it failed completely. If the call was only partially successful, or if it failed, the possible issue(s) may be found in any orderFulfillmentStatus.error containers that are returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the orderFulfillmentStatus call. If there are no errors or warnings at the call level, this container is not returned at all.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="responseMessage" type="OrderFulfillmentResponseMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container shows the results of one order in an order fulfillment feed. A responseMessage container will be returned for each order in the order fulfillment feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

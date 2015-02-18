@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="ConditionInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the conditionInfo container, which is used to specify the condition of the product, and optionally, a description of the condition and any pictures that demonstrate the condition of the product. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="condition" type="ConditionEnum">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value describes the condition of the product. Examples include 'NEW', 'MANUFACTURER_REFURBISHED', and 'USED_VERY_GOOD'. Although not required, it is recommended that merchants use the conditionDescription field in addition to the condition field to provide more details on used and refurbished products. See the ConditionEnum type for a complete list of supported condition values. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conditionDescription" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the merchant to clearly describe the condition of a used product. This field is applicable for all product conditions except 'NEW', 'NEW_OTHER', and 'NEW_WITH_DEFECTS'. If conditionDescription is used with these condition values, eBay will simply ignore this field if included, and eBay will return a warning message to the user.
+						
+						This field should only be used to further clarify the condition of the used item. For example, "The right leg of the chair has a small scratch, and on the seat back there is a light blue stain about the shape and size of a coin." It should not be used for branding, promotions, shipping, returns, payment or other information unrelated to the condition of the item. Make sure that the condition and conditionDescription fields don't contradict with the product description in the description.productDesription field or with the product's pictures. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pictureURL" type="PictureURLType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field is not currently supported. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescriptionType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the description container, which is used to provide a description of the product, and optionally, specify a Listing Designer template. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="template" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the merchants who wish to list their product using a Listing Designer template. The value provided in this field is the Listing Designer template ID or name, which can be retrieved using the Trading API's GetDescriptionTemplates call. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the merchant to provide a description of the product. This description will appear in the Description field on the View Item page for all listings that feature this product. This field is conditionally required when a single variation product is defined through the product container. CDATA may be used in this field if the merchant wants to use HTML or XML-reserved characters in the description. This field will be populated automatically if a product.productID value is provided.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="additionalInfo" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This optional string field allows the merchant to provide additional information about the product. This field is especially useful if the productDescription field was populated automatically by the use of a productID, but the merchant would like to provide additional information about the product that is not defined in the product catalog. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customField" type="CustomFieldType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field is not currently supported. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariationVectorType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the variationVectory container, which holds an array of attributes by which each product variation varies from one another, such as 'Size' and 'Color' in relation to clothing items. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field holds the name of an variation attribute. Each product variation will have a different value for each variation attribute. The same variationVector.name values that are passed in this field should also be passed in through the name attribute in a separate variantInformation.attribute fields for each product variation (each variant container). Variation attribute names may vary based on the category, but 'Size' and 'Color' are two variation attributes that are generally required to distinguish product variations in clothing listings.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="displayOrder" type="xs:integer" use="optional">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute controls the display order of the corresponding variation attribute on the View Item page.  
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="selectedValueOnPageDisplay" type="xs:string" use="optional">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute controls the text that is actually displayed on the View Item page to describe the corresponding variation attribute. This may be the same as the actual variationVector.name value.  
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductVariationGroupType">
+		<xs:annotation>
+			<xs:documentation>
+				 	Type defining the productVariationGroup container, which is used by the merchant to provide product information for multiple product variations in a multi-variation listing. The merchant can create multiple product variation groups in one call, and each product variation group requires its own productVariationGroup container. For single-variation listings, the product container should be used instead.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="groupID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to define the product variation group. This field is conditionally required if the productVariationGroup container is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="groupInformation" type="GroupInformationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to provide the listing category of the multi-variation listing and to provide any and all information/settings that are shared among all product variations. Any information that is passed in through the groupInformation container is inherited by all product variations defined through each variant container in the product variation group. Information/settings that are only applicable to a specific product variation should be specified through the corresponding variant container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="variationVector" type="VariationVectorType">
+							<xs:annotation>
+								<xs:documentation>
+									This container holds an array of attributes by which each product variation varies from one another, such as 'Size' and 'Color' in relation to clothing items. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="category" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									This is the unique identifier of the multi-variation listing's eBay or store category (which one is distinguished with the name attribute). An eBay listing category must be specified, but an eBay store category is optional. A separate category field is used to specify each category. Product feeds do not support eBay secondary listing categories. 
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="categoryType" type="CategoryTypeEnum">
+											<xs:annotation>
+												<xs:documentation>
+													This enumeration value indicates what type of category is being used.
+												</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="sharedProductInformation" type="SharedProductInformationType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									This container is used by the merchant to provide product information that is shared by all product variations in the listing. The product details provided in this container include the listing title, general product description (a product description can also be provided at the variation level), general product pictures (product pictures can also be provided at the variation level). Optionally, and when applicable, the merchant will also provide parts compatibility information and shipping package type, weight, and dimensions. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="localizedFor" type="LocaleType">
+							<xs:annotation>
+								<xs:documentation>
+									This attribute is used to set the language. If not specified, the default language of the eBay site is used. For a full list of locale values, see the LocaleType list. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					<xs:attribute name="sourceLocale" type="LocaleType" use="optional">
+						<xs:annotation>
+							<xs:documentation>
+								This attribute is reserved for future use. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="actionCode" type="ActionCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates what type of action is being performed with the product feed. See ActionCodeType for the list of supported values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CategoriesType">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="ProductType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the product container, which is used by the merchant to provide product information for a single-variation listing. The merchant can create multiple products in one call, and each product requires its own product container. For listings that will feature multiple variations of a product, the productVariationGroup container should be used instead of the product container. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SKU" type="SKUType">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to specify the seller-defined "Stock-Keeping Unit" (SKU) of the product. This field is conditionally required when a single variation product is defined through the product container. Each product defined in the merchant's inventory should have a unique SKU value. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productInformation" type="ProductInformationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to provide product information for a single-variation listing. The product details provided in this container include the listing title, listing category, product condition, product description, and product pictures. Optionally, and when applicable, the merchant will also provide parts compatibility information and shipping package type, weight, and dimensions. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionCode" type="ActionCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates what type of action is being performed with the product feed. See ActionCodeType for the list of supported values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SharedProductInformationType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the sharedProductInformation container, which is used by the merchant to provide product information that is shared by all product variations in the listing. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to specify the title of the listing. If a productID is specified, this field is populated automatically with the product's standard title. This field is conditionally required when a multi-variation product is defined through the productVariationGroup container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subtitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to create a subtitle for the listing. Subtitles are not supported on all sites and categories and do incur a fee if used. Subtitles are displayed in search results and the View Item page. However, an eBay user must do an advanced eBay search to search on a subtitle. eBay's standard search does not support searching by subtitles. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="DescriptionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to provide a description of the product, and optionally, specify a Listing Designer template. A description.productDescription value is conditionally required when a multi-variation product is defined through the productVariationGroup container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field holds the value of the product specific name in the corresponding name attribute. Numerous product specifics can be passed in through multiple attribute fields. Product specific name-value pairs are populated automatically when a product ID value is passed in through the productVariationGroup.productID field. If a product ID is not passed in, the merchant must manually pass in mandated, optional, and customized product specifics name-value pairs. Only product specifics applicable to all product variations in the listing are passed in through this field. Variation specifics (unique to exactly one product variation in the listing) are passed in through one or more variant.variantInformation.attribute fields.  
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute's value is the name of the product specific. Product specific name-value pairs are populated automatically when a product ID value is passed in through the productVariationGroup.productID field. If a product ID is not passed in, the merchant must manually pass in mandated, optional, and customized product specifics name-value pairs. 
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shippingDetails" type="ShippingDetailsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of details related to the shipping package type, weight, and dimensions for products that are shipped to the buyer. This information is necessary to estimate/calculate shipping costs if calculated shipping is used. This container should only be used if the shipping package, weight, and dimensions is expected to be the same for all product variations. If it is expected that the shipping details will be different for each product variations, shipping details should be specified at the variation level through the variantInformation.shippingDetails container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pictureURL" type="PictureURLType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field shows the URL of one picture for the product listing. This picture may be hosted by the eBay picture server or externally hosted by the seller. If the merchant inputs a productID, the URL to one or more catalog product pictures are populated automatically in this field. On the US site, listings can have up to 12 pictures, or up to 24 pictures for motor vehicle listings. Every listing must have at least one picture. To add pictures that are specific to a particular variation, use the variantInformation.pictureURL field instead. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productID" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used if the merchant wishes to create a multi-variation product group based on an existing eBay Catalog product or an external product. The value passed in here should be the actual ID of the product type passed in through the productIdType attribute. Many fields in a Product feed will be auto-populated if a productID is supplied. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute ref="productIDType">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute sets the type of product ID that is being supplied in the productID field. eBay Catalog Product IDs (EPIDs), UPCs, ISBNs, EANs, and other product ID types are supported. For a description of each product ID type that can be passed in through this attribute field, see the ProductIdType enumeration list. 
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="compatibility" type="CompatibilityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Each compatibility container holds an array of name-value pairs that identifies a vehicle (through values like Year, Make, and Model) that is compatible with a motor vehicle part or accessory. A compatibility container is required for each vehicle that is compatible with the part or accessory. This container is only applicable for a multi-variation listing that features a motor vehicle part or accessory. Parts compatibility name-value pairs are populated automatically when a product ID value is passed in through the productVariationGroup.productID field. If a product ID is not passed in, the merchant must manually pass in compatibility name-value pairs. Only parts compatibility information that is applicable to all product variations in the listing is passed in through this field. Parts compatibility information that is unique to a specific product variation in the listing are passed in through one or more variant.variantInformation.compatibility containers. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:attribute name="productIDType">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that defines the supportd product ID values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="UPC">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value should be specified to use a Universal Product Code (UPC) as the product type. A UPC is a unique, 12-character identifier that many industries use to identify products. The listing will be created based on the settings/values defined for the specific product identified by its UPC value. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="ISBN">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value should be specified to use an International Standard Book Number (ISBN) as the product type. An ISBN is a unique 10 or 13-character identifer for books. The listing will be created based on the settings/values defined for the specific book identified by its ISBN value.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="EAN">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value should be specified to use an European Article Number (EAN) as the product type. An EAN is a unique 8 or 13 digit identifier that many industries (such as book publishers) use to identify products. The listing will be created based on the settings/values defined for the specific product identified by its EAN value.	 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="GTIN">
+					<xs:annotation>
+						<xs:documentation>
+							 This enumeration value should be specified to use an Global Trade Item Number as the product type. The listing will be created based on the settings/values defined for the specific product identified by its GTIN value.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="BRAND">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value, along with the 'MPN' value, must be specified to identify a eBay catalog product by Manufacturer Part Number. The 'BRAND' value identifies the brand of the product and eBay searches for this brand name within eBay product catalogs. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="MPN">
+					<xs:annotation>
+						<xs:documentation>
+						 	This enumeration value, along with the 'BRAND' value, must be specified to identify a eBay catalog product by Manufacturer Part Number. The 'MPN' value identifies the Manufacturer Part Number and eBay searches for the brand name/MPN combination within eBay product catalogs.	 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="EPID">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value should be specified to use an eBay Catalog Product ID (EPID) as the product type. The listing will be created based on the settings/values defined for that EPID. 	 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="ASIN">
+					<xs:annotation>
+						<xs:documentation>
+						 	This enumeration value should be specified to use an Amazon Product ID (ASIN) as the product type. The ASIN value will be mapped to an eBay Catalog Product ID (EPID), and the listing will be created based on the settings/values defined for that EPID. 	 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:simpleType name="MeasurementSystemType">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type	that defines the measurement system used to measure package dimensions and weight.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENGLISH">
+					<xs:annotation>
+						<xs:documentation>
+						 	This enumeration value indicates that the English system of measurement will be used to express the weight and dimensions of shipping packages. If 'ENGLISH' is specified, package weight will be measured in pounds and ounces, and package dimensions will be measures in inches. The 'ENGLISH' system is commonly used in the US. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			<xs:enumeration value="METRIC">
+					<xs:annotation>
+						<xs:documentation>
+						 	This enumeration value indicates that the metric system of measurement will be used to express the weight and dimensions of shipping packages. If 'METRIC' is specified, package weight will be measured in kilograms and grams, and package dimensions will be measures in centimeters. The 'METRIC' system is commonly used in most eBay sites outside of the US.	 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ShippingDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the shippingDetails container, which consists of details related to the shipping package type, weight, and dimensions for products that are shipped to the buyer.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="weightMajor" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The weightMajor and weightMinor fields indicate the weight of the shipping package. Sellers should specify package weight if calculated shipping is used. If the 'METRIC' system is being used, the value in the weightMajor field is the weight of the package in kilograms. If the package weighs less than 1 kilogram, this value should be passed in as '0'. If the 'ENGLISH' system is being used, the value in the weightMajor field is the weight of the package in pounds. If the package weighs less than 1 pound, this value should be passed in as '0'.  
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:int"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="weightMinor" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The weightMajor and weightMinor fields indicate the weight of the shipping package. Sellers should specify package weight if calculated shipping is used. If the 'METRIC' system is being used, the value in the weightMinor field is the weight of the package in grams. If the package weighs exactly 1.5 kilograms, the value passed in the weightMajor field would be '1' (kilogram), and the value passed in the weightMinor field would be as '500' (grams). If the 'ENGLISH' system is being used, the value in the weightMinor field is the weight of the package in ounces. If the package weighs exactly 1.5 pounds, the value passed in the weightMajor field would be '1' (pound), and the value passed in the weightMinor field would be as '8' (ounces). 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:int"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="length" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This double value indicates the length of the shipping package. Sellers should specify package dimensions (height, length, and width) if calculated shipping is used. If the 'METRIC' system is being used, the value in this field is the length of the package in centimeters. If the 'ENGLISH' system is being used, the value in this field is the length of the package in inches. 	 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="width" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This double value indicates the width of the shipping package. Sellers should specify package dimensions (height, length, and width) if calculated shipping is used. If the 'METRIC' system is being used, the value in this field is the width of the package in centimeters. If the 'ENGLISH' system is being used, the value in this field is the width of the package in inches.  	 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="height" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This double value indicates the height of the shipping package. Sellers should specify package dimensions (height, length, and width) if calculated shipping is used. If the 'METRIC' system is being used, the value in this field is the height of the package in centimeters. If the 'ENGLISH' system is being used, the value in this field is the height of the package in inches.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="packageType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This string value indicates the type of shipping package used to ship the product. Sellers should specify the package type if calculated shipping is used. Package types vary by eBay site, so it is recommended that the seller make a call to the Trading API's GeteBayDetails call to retrieve supported package type values. To retrieve shipping package types in the GeteBayDetails call, the seller sets the value of the DetailName input field to 'ShippingPackageDetails'. Examples of package types on the US site include 'Letter' and 'LargeEnvelope'.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="measurementSystem" type="MeasurementSystemType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute specifies whether the metric (value will be 'METRIC') or English (value will be 'ENGLISH') system of measurement will be used to express the weight and dimensions of shipping packages. If 'METRIC' is specified, package weight will be measured in kilograms and grams, and package dimensions will be measures in centimeters. If 'ENGLISH' is specified, package weight will be measured in pounds and ounces, and package dimensions will be measures in inches. If this attribute is not specified, the measurement system defaults to the system commonly used in the sales channel's country. The 'ENGLISH' system is commonly used in the US, and the 'METRIC' system is used in most other eBay sites. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ProductInformationType">
+		<xs:annotation>
+			<xs:documentation>
+				Type used by the productInformation and variantInformation containers, which are used by the merchant to provide product information for a single-variation listing or to product information for a single variation within a product variation group, respectively.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to specify the title of the listing. If a productID is specified, this field is populated automatically with the product's standard title. This field is conditionally required when a single-variation product is defined through the product container.   
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subtitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to create a subtitle for the listing. Subtitles are not supported on all sites and categories and do incur a fee if used. Subtitles are displayed in search results and the View Item page. However, an eBay user must do an advanced eBay search to search on a subtitle. eBay's standard search does not support searching by subtitles.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="DescriptionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to provide a description of the product, and optionally, specify a Listing Designer template. A description.productDescription value is conditionally required when a single-variation product is defined through the product container.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field holds the value of the product specific name in the corresponding name attribute. Product specific name-value pairs are populated automatically when a product ID value is passed in through the product.productID field. If a product ID is not passed in, the merchant must manually pass in mandated, optional, and customized product specifics name-value pairs. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute's value is the name of the product variation specific. Product variation specific name-value pairs are populated automatically when a product ID value is passed in through the variantInformation.productID field. If a product ID is not passed in, the merchant must manually pass in mandated, optional, and customized product variation specifics name-value pairs. 
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shippingDetails" type="ShippingDetailsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of details related to the shipping package type, weight, and dimensions for products that are shipped to the buyer. This information is necessary to estimate/calculate shipping costs if calculated shipping is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pictureURL" type="PictureURLType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field shows the URL of one picture for the product. This picture may be hosted by the eBay picture server or externally hosted by the seller. If the merchant inputs a productID, the URL to one or more catalog product pictures are populated automatically in this field. On the US site, listings can have up to 12 pictures, or up to 24 pictures for motor vehicle listings. Every listing must have at least one picture. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productID" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used if the merchant wishes to create a single-variation product based on an existing eBay Catalog product or an external product. The value passed in here should be the actual ID of the product type passed in through the productIdType attribute. Many fields in a Product feed will be auto-populated if a productID is supplied. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute ref="productIDType">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute sets the type of product ID that is being supplied in the productID field. eBay Catalog Product IDs (EPIDs), UPCs, ISBNs, EANs, and other product ID types are supported. For a description of each product ID type that can be passed in through this attribute field, see the ProductIdType enumeration list.  
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="category" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This is the unique identifier of the product's eBay or store category (which one is distinguished with the name attribute). An eBay listing category must be specified, but an eBay store category is optional. A separate category field is used to specify each category. Product feeds do not support eBay secondary listing categories. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="categoryType" type="CategoryTypeEnum">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute is an enumeration value that indicates whether the category is an eBay listing category or a seller-defined eBay Store category. See the CategoryTypeEnum list for supported enumeration values. 
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="conditionInfo" type="ConditionInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to specify the condition of the product, and optionally, a description of the condition and any pictures that demonstrate the condition of the product. The conditionInfo container is conditionally required when a single variation product is defined through the product container.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="compatibility" type="CompatibilityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Each compatibility container holds an array of name-value pairs that identifies a vehicle (through values like 'Year', 'Make', and 'Model') that is compatible with a motor vehicle part or accessory. A compatibility container is required for each vehicle that is compatible with the part or accessory. This container is only applicable for motor vehicle part or accessory listings. Parts compatibility name-value pairs are populated automatically when a product ID value is passed in through the product.productID field. If a product ID is not passed in, the merchant must manually pass in compatibility name-value pairs.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="localizedFor" type="LocaleType" use="optional" default="en_US">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute is used to set the language. If not specified, the default language of the eBay site is used. For a full list of locale values, see the LocaleType list. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sourceLocale" type="LocaleType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute is reserved for future use.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ProductResponseMessageType">
+		<xs:annotation>
+			<xs:documentation>
+				 Type defining the responseMessage container, which indicates the success or failure of one product or one product variation group.
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="SKU" type="SKUType">
+				<xs:annotation>
+					<xs:documentation>
+						This field is a unique identifer of a product. This field will only be returned if the responseMessage container is showing the results of a (single) product feed. This field will not appear if the responseMessage container is showing the results of a product variation group feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="groupID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is a unique identifer of a product variation group. This field will only be returned if the responseMessage container is showing the results of a product variation group feed. This field will not appear if the responseMessage container is showing the results of a (single) product feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			</xs:choice>
+			<xs:element name="actionCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates the type of action (delete, full update, or partial update) being performed on the product or product variation group. See ActionCodeType for more information on these action types. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the passing in of product or product variation group data in a product call. If there are no errors or warnings associated with the product (identified in the SKU field) or with the product variation group (identified in the groupID field), this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="response" type="LocaleResponseType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A response container is returned for each eBay listing affected by an update to a product or product variation group. The fields in this container identify the eBay listing, indicate that the type of action performed, and the status of the operation. If none of the products in the product call are associated with any live eBay listings, no response containers will be returned.
+						
+						The localizedFor attribute indicates the sales channel/eBay marketplace on which the listing appears. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompatibilityType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the compatibility container. Each compatibility container holds an array of name-value pairs that identifies a vehicle (through values like 'Year', 'Make', and 'Model') that is compatible with a motor vehicle part or accessory.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notes" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This optional field allows the merchant to input any notes pertaining to the parts compatibility being specified. This field can be used to specify the placement of the part on a vehicle or the type of vehicle a part fits. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A value field is required for each vehicle aspect that is required/applicable to identify a vehicle that is compatible with the part or accessory. Vehicle aspects include Year, Make, Model, Trim, and Engine. The name of the vehicle aspect is actually expressed in the corresponding name attribute, and the value of the attribute is expressed in this field.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name" type="xs:string" use="required">
+								<xs:annotation>
+									<xs:documentation>
+										This attribute holds the name of the vehicle aspect, such as 'Year', 'Make', 'Model', 'Trim', or 'Engine'. The value of this vehicle aspect is shown in the value field. 
+									</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CategoryTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that lists the possible values for the name attribute of the category field.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EBAY_LEAF_CATEGORY">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is listed in a eBay leaf category. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_META">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is listed in a eBay meta category.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SELLER_CATEGORY">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is listed in an eBay store category. Products can be listed in one or two eBay store categories. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GOOGLE_CATEGORY">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is listed in an Google category. This value is for future use. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConditionEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that lists the possible values that can be used to specify item condition.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NEW">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is new. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NEW_OTHER">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is new. If 'NEW_OTHER' is used as the condition, an explanation of what this means should be provided by the merchant in the product.description container.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NEW_WITH_DEFECTS">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is new, but with defects. If 'NEW_WITH_DEFECTS' is used as the condition, an explanation of what this means should be provided by the merchant in the product.description container.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MANUFACTURER_REFURBISHED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product was refurbished by the manufacturer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SELLER_REFURBISHED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product was refurbished by the seller.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="USED_EXCELLENT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is a used item in excellent condition. The conditionInfo.conditionDescription field can be used to provide more information about the condition of the item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="USED_VERY_GOOD">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is a used item in very good condition. The conditionInfo.conditionDescription field can be used to provide more information about the condition of the item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="USED_GOOD">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is a used item in good condition. The conditionInfo.conditionDescription field can be used to provide more information about the condition of the item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="USED_ACCEPTABLE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is a used item in acceptable condition. The conditionInfo.conditionDescription field can be used to provide more information about the condition of the item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FOR_PARTS_OR_NOT_WORKING">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is not working and/or will only be beneficial for its parts. The conditionInfo.conditionDescription field can be used to provide more information about the condition of the item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PictureURLType">
+		<xs:annotation>
+			<xs:documentation>
+				This type is used by the pictureURL field to provide a link to an image and to specify the order in which the image appears on a View Listing page.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="displayOrder" type="xs:integer" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							This attribute value controls the order in which the corresponding picture will appear on the View Item page. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SKUType">
+		<xs:annotation>
+			<xs:documentation>
+				This type is used by the pictureURL field to provide a link to an image and to specify the order in which the image appears on a View Listing page.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="variantOf" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							The groupID value of the product variation group to which the product variation belongs. This attribute is not applicable for single variation listings.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CustomFieldType">
+		xs:annotation>
+			<xs:documentation>
+				This type is used to express a name-value pair for a custom field.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							This attribute value is the name of the custom field.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LocaleResponseType">
+		<xs:annotation>
+			<xs:documentation>
+				Type used by the response container in a productStatus call. A response container is returned for each eBay listing affected by an update to a product or product variation group.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="EntityStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the productStatus call was fully successful, partially successful, or if it failed completely. If the call was only partially successful, or if it failed, the possible issue(s) may be found in any productStatus.error containers that are returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates the type of action (delete, full update, or partial update) being performed on the listing identified by the itemID value. See ActionCodeType for more information on these action types. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="itemID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Unique identifier of the eBay listing affected by the action the merchant is attempting to perform, or has performed through a product feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the attempted update to listing identified by the itemID value. If there are no errors or warnings associated with the update to the listing, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="locale" type="LocaleType">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute specifies the language used.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
+

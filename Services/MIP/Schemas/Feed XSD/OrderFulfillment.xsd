@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="OrderFulfillmentType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the orderFulfillment container, which is the root container used to pass in order fulfillment data for one order. An orderFulfillment container is required for each order being updated.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="orderID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the eBay order. This field is required to identify the order that is being fully or partially fulfilled through the call. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="channelID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the sales channel, such as "eBay_US", "eBay_UK", "eBay_DE". For a full list of channel IDs, see the ChannelIDType list. This field is needed to identify the sales channel on which the order occurred. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="merchantOrderID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This string value is the merchant's unique identifier for the order. This order identifier is created by the merchant, unlike the orderID value, which is automatically created by eBay's system. This field is completely optional. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fulfillmentInfo" type="FulfillmentInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to update the status of an order (identified through the orderID field). With this container, the merchant can provide the buyer with shipment tracking information for an order that is in transit, mark an order as "shipped", inform eBay and the buyer that an "In-Store Pickup" order is ready for pickup, or inform eBay that the buyer has picked up an "In-Store Pickup" order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineItem" type="LineItemFulfillmentType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to identify, update, and/or provide more information on one order line item. A lineItem container is required to update the status of each unique order line item. The lineItem container should only be used for multiple line item orders. For single line item orders, the merchant should use the fulfillmentInfo container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemFulfillmentType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItem container, which is used to identify, update, and/or provide more information on one order line item. A lineItem container is required to update the status of each unique order line item. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lineItemID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the unique identifier of the order line item. A lineItemID value is automatically created by eBay once the buyer commits to buy. In the case of an orderFulfillment call, this value identifies the order line item that will be updated. This field is required if an individual line item within an order is being updated via the lineItem container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="listing" type="OrderListingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container allows the merchant to provide details about the order line item's parent listing. Although this container is not required, it is very helpful to all parties (merchant, buyer, and eBay) so they can understand and recognize exactly what item is being shipped, updated, etc. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineItemFulfillmentInfo" type="LineItemFulfillmentInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to update the status of an order line item (identified through the lineItemID field). With this container, the merchant can provide the buyer with shipment tracking information for an order line item that is in transit, mark an order line item as "shipped", inform eBay and the buyer that an "In-Store Pickup" order line item is ready for pickup, or inform eBay that the buyer has picked up an "In-Store Pickup" order line item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FulfillmentInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				Type that defines the fulfillmentInfo container, that is used to update the status of an order.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="logisticsStatus" type="LogisticsStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to update the status of the order. See LogisticsStatusType for a list of supported values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is a timestamp for when the order was updated. Although this field is optional, it is good idea for the merchant to provide the date so all parties (merchant, buyer, eBay) know exactly when an order was shipped, picked up, etc. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="shipping" type="FulfillmentShippingType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Shipment tracking information for one or more packages in the order can be provided through one or more shipmentTracking containers. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="pickup" type="FulfillmentPickupType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by merchants to provide a merchant-defined pickup code and/or to provide In-Store Pickup instructions intended for the buyer. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemFulfillmentInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItemFulfillmentInfo container, which is used to update the status of one line item in one order.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="logisticsStatus" type="LogisticsStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to update the status of the order line item. See LogisticsStatusType for a list of supported values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is a timestamp for when the order line item was updated. Although this field is optional, it is good idea for the merchant to provide the date so all parties (merchant, buyer, eBay) know exactly when an order line item was shipped, picked up, etc. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="shipping" type="LineItemFulfillmentShippingType">
+					<xs:annotation>
+						<xs:documentation>
+							Shipment tracking information for the order line item can be provided through one or more shipmentTracking containers. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="pickup" type="FulfillmentPickupType">
+					<xs:annotation>
+						<xs:documentation>
+							This container is used by merchants to provide a merchant-defined pickup code and/or to provide In-Store Pickup instructions intended for the buyer. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FulfillmentPickupType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the pickup container, which is used to provide a merchant-defined pickup code and/or to provide In-Store Pickup instructions intended for the buyer. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pickupCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The unique reference number defined by the merchant to track "In-Store Pickup" orders. If provided by the merchant, this pickupCode value is picked up by eBay. Either the pickupCode or the pickupNote fields or both are required if the pickup container is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pickupNote" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The merchant uses this field to provide pickup instructions to the buyer for "In-Store Pickup" orders. Either the pickupCode or the pickupNote fields or both are required if the pickup container is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderFulfillmentResponseMessageType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the responseMessage container, which shows the results of one order in an order fulfillment feed. A responseMessage container will be returned for each order in the order fulfillment feed. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="orderID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of an order that the merchant attempted to update in an order fulfillment feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ResponseStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the update to the order (identified by the orderID value) was fully successful, partially successful, or if it failed completely. If the update to the order was only partially successful, or if it failed, the possible issue(s) may be found in any responseMessage.error containers that are returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the order-level data and/or fields that were passed into the orderFulfillment call input payload. If there are no errors or warnings at the order level, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineItem" type="OrderLineItemStatusType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container indicates the success or failure of updating one line item in the order specified by the responseMessage.orderID field. A lineItem container will be returned for each order line item that the merchant was attempting to update in the order fulfillment feed. At least one lineItem container will always be returned with the responseMessage container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	<xs:complexType name="OrderLineItemStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItem container, which indicates the success or failure of updating one line item in the order specified by the responseMessage.orderID field. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lineItemID">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of an order line item that the merchant attempted to update in an order fulfillment feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="EntityStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the update to the order line item was a success or a failure. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with this specific order line item (identified by lineItemID value) in an orderFulfillment call. If there are no errors or warnings at the line item level, this container is not returned at all. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:complexType>
+	<xs:complexType name="FulfillmentShippingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the fulfillmentInfo.shipping container, which is used to pass in shipment tracking information for packages being shipped in an order.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shipmentTracking" type="FulfillmentShipmentTrackingType">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to provide shipment tracking information to the buyer for an order. Typically, if shipment tracking information is being provided, the logisticsStatus value will be 'SHIPPED' or 'IN_TRANSIT'. Multiple shipmentTracking containers may be required if the order requires multiple packages to be shipped, which may be the case if the buyer purchased multiple quantity of the order line item, or if the product is large. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FulfillmentShipmentTrackingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the shipmentTracking container, which is used by the merchant to provide shipment tracking information to the buyer for one package of an order. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shippingCarrier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The field allows the merchant to specify the shipping carrier. Examples of the shippingCarrier values that can be passed in are found in the Trading API's ShippingCarrierCodeType. If the value supplied in this field is not recognized by eBay, the feed may fail because eBay verifies the format of the provided trackingNumber against the shipping carrier. This field is conditionally required if the shipmentTracking container is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="trackingNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is the tracking number for the shipment, provided to the merchant by the shipping carrier, and used by the buyer to track the package. This field is conditionally required if the shipmentTracking container is used. eBay verifies the format of the provided trackingNumber against the shipping carrier, and if the supplied format does not match the actual format used by the specified shipping carrier, the feed may fail. The accuracy of the shipment tracking number cannot be verified by eBay, so this is the responsibility of the merchant. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemFulfillmentShippingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItemFulfillmentInfo.shipping container, which is used to pass in shipment tracking information for packages being shipped in one order line item.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shipmentTracking" type="LineItemFulfillmentShipmentTrackingType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to provide shipment tracking information to the buyer for an order line item. Typically, if shipment tracking information is being provided, the logisticsStatus value will be 'SHIPPED' or 'IN_TRANSIT'. Multiple shipmentTracking containers may be required if the order line item requires multiple packages to be shipped, which may be the case if the buyer purchased multiple quantity of the order line item, or if the product is large. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemFulfillmentShipmentTrackingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the shipmentTracking container, which is used by the merchant to provide shipment tracking information to the buyer for one package of an order line item. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shippingCarrier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The field allows the merchant to specify the shipping carrier. Examples of the shippingCarrier values that can be passed in are found in the Trading API's ShippingCarrierCodeType. If the value supplied in this field is not recognized by eBay, the feed may fail because eBay verifies the format of the provided trackingNumber against the shipping carrier. This field is conditionally required if the shipmentTracking container is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="trackingNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is the tracking number for the shipment, provided to the merchant by the shipping carrier, and used by the buyer to track the package. This field is conditionally required if the shipmentTracking container is used. eBay verifies the format of the provided trackingNumber against the shipping carrier, and if the supplied format does not match the actual format used by the specified shipping carrier, the feed may fail. The accuracy of the shipment tracking number cannot be verified by eBay, so this is the responsibility of the merchant. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quantity" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field shows the quantity of the order line item that is being shipped in the package.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

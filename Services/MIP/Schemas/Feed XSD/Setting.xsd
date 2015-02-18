@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:element name="setting" type="SettingType">
+		<xs:annotation>
+			<xs:documentation>
+				This container is used to update MIP account settings, such as location, currency, or sales tax table.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="settingStatus">
+		<xs:annotation>
+			<xs:documentation>
+				This container is the root response of an account update call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="ResponseStatusType">
+					<xs:annotation>
+						<xs:documentation>
+							This enumeration value indicates whether the update to the account was fully successful, partially successful, or if it failed completely. If the update to the account was only partially successful, or if it failed, the possible issue(s) may be found in any error containers that are returned. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							An error container is returned for each error or warning that occurred with the call.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="setting" type="SettingType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+						 If the call is succcessful, this container will show the same data that was passed in to the input payload, such as location, currency, or sales tax table.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="PendingOrderFulfillmentType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the pendingOrderFulfillment container, which holds an array of orders that must be fulfilled by the merchant.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="order" type="OrderType">
+				<xs:annotation>
+					<xs:documentation>
+						The parent container of a pending order that must be fulfilled. An order container is returned for each of the merchant's pending orders and contains detailed information on an order such as buyer information, logistics information, information on each order line item (if more than one), item and shipping costs, payment status, and more. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					This is the unique identifier of the order. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OrderType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the order container. An order container is returned for each of the merchant's pending orders and contains detailed information on an order. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="orderID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the unique identifier of the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="channelID" type="ChannelIDType">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the sales channel, such as "eBay_US", "eBay_UK", "eBay_DE". For a full list of channel IDs, see the ChannelIDType list. This field is always returned to identify the sales channel on which the order occurred. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="merchantOrderID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This string value is the merchant's unique identifier for the order. This order identifier is created by the merchant, unlike the orderID value, which is automatically created by eBay's system. This field is only returned if set by the merchant through an OrderFulfillment Feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="createdDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>
+						Timestamp that indicates the date and time that the order was created. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="buyer" type="BuyerType">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of the buyer's information, including shipping address, user ID, name, and email address. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="seller" type="SellerType">
+				<xs:annotation>
+					<xs:documentation>
+						This container currently only contains the eBay user ID of the seller, but may return more relevant information in the future. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logisticsPlan" type="LogisticsPlanType">
+				<xs:annotation>
+					<xs:documentation>
+						Based on the fulfillment type that will be used (see the fulfillmentType attribute for this field) to fulfill the order, this container will either be returned with order pickup information (pickup container) or a shipping container with one or more shipping service options. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineItem" type="OrderLineItemType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of detailed information on one line item within the order. A lineItem container will be returned for each line item in the order, which is identified by the orderID value. If it is a single line item order, only one lineItem container will be returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payment" type="OrderPaymentType">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of information related to the buyer's payment for the order. It is not returned until the order has been paid for by the buyer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="total" type="ItemizedCostType">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of all costs and discounts (if applicable) associated with a single line item order. For multiple line item orders, costs and discounts are captured in the lineItem.subtotal container. The data in this container is subject to change until checkout is complete. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="OrderStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This container displays the status of buyer payment and order fulfillment. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="note" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field displays a note about the order. This field is only returned if set/applicable. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemizedCostType">
+		<xs:annotation>
+			<xs:documentation>
+				Type used by the total container (order level) and subTotal container (line item level) to express all costs associated with an order or order line item.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="priceline" type="PriceLineType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of the amount and description of one cost component or discount (if applicable) of an order or order line item. This cost component may be item cost, shipping cost, sales tax, recycling fee, or a price discount. The cost type is displayed in this field's type attribute. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sumtotal" type="AmountType">
+				<xs:annotation>
+					<xs:documentation>
+						This field holds the current cost for the order or order line item based on one or more costs/discounts shown in one or more priceLine containers. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Order Status -->
+	<xs:complexType name="OrderStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the order.status container, which displays the status of buyer payment and order fulfillment. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="paymentStatus" type="PaymentStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This field provides the current payment status of the order. See PaymentStatusType for a list of possible values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logisticsStatus" type="LogisticsStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This field provides the current logistics status of the order. See LogisticsStatusType for a list of possible values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="history" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItem container, which consists of detailed information on one line item within the order. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lineItemID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the unique identifier of the order line item that is created by eBay as soon as the buyer commits to buy the line item. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="listing" type="OrderListingType">
+				<xs:annotation>
+					<xs:documentation>
+						This container provides identifying information about the order line item's parent listing. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quantity" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>
+						This integer value indicates the quantity of the line item purchased by the buyer. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitPrice" type="AmountType">
+				<xs:annotation>
+					<xs:documentation>
+						This value is the unit price of the line item. Unit prices are used in the European Union countries to inform prospective buyers how much they are paying for the item by the weight, volume or unit. The European Union requires listings for certain types of products to include the price per unit so buyers can accurately compare prices. The per-unit price is displayed on eBay EU sites. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subtotal" type="ItemizedCostType">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of all costs and discounts (if applicable) associated with the order line item. The data in this container is subject to change until checkout is complete. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="LineItemStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container indicates the current fulfillment status of line item. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gift" type="GiftDetailsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container contains any gift services that are made available by the merchant and selected by the buyer. This information is used by the merchant to make sure that any requested gift services are handled at fulfillment time. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="note" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field provides a note about the order line item. This field is only returned if provided by the merchant. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GiftDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the gift container, which contains any gift services that are made available by the merchant and selected by the buyer. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="message" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						If a gift message was available to and provided by the buyer, this field will contain the text that comprises the message. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="wrap" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						If gift wrapping services were available to and purchased by the buyer, this field will be returned as 'true'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BuyerType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the buyer container, which consists of the buyer's information, including shipping address, user ID, name, and email address. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="buyerID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This container identifies the buyer through eBay User ID, first name, last name, or all three. This container is always returned with the buyer container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="firstName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The first name of the buyer. This field is only returned with the buyerID container if available. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lastName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The last name of the buyer. This field is only returned with the buyerID container if available. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							 The eBay User ID of the buyer. This field is always returned with the buyerID container. 
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="email" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The email address of the buyer. This field is only returned with the buyer container if available. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="address" type="AddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						 This container consists of the buyer's shipping address. This container is only applicable if the seller is shipping the order to the buyer's address. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the lineItem.status container, which indicates the current fulfillment status of a line item. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="logisticsStatus" type="LogisticsStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates the status of an order line item. See LogisticsStatusType for a list of possible values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="history" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SellerType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the seller container, which currently only contains the eBay user ID of the seller, but may return more relevant information in the future.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SellerID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						 	This string value is the merchant's eBay user ID. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderPaymentType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the payment container, which consists of information related to the buyer's payment for the order. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="processedBy" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This string value indicates the name of the payment processor, like 'PayPal' if PayPal is the payment method. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="paymentID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the unique identifier for the payment, which is auto-generated by eBay at time of payment. This field is always returned with the payment container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="paidToAccount" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This string value indicates the name of the account that the payment was applied to. This field is only returned if the account name is known. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="total" type="AmountType">
+				<xs:annotation>
+					<xs:documentation>
+						This dollar value is the total amount paid for the order. This amount includes the sale price of each line item, shipping and handling charges, shipping insurance (if offered and selected by the buyer), additional services, and any applied sales tax. This value is returned after the buyer has completed checkout (the status.paymentStatus output field reads 'PAID'). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="clearedDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This timestamp marks the time of buyer payment for the order. This field is always returned with the payment container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PriceLineType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the priceLine container, which consists of the amount and description of one cost component or discount (if applicable) of an order or an order line item. This cost component may be item cost, shipping cost, sales tax, recycling fee, or a price discount. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field holds the description of the cost or discount. This field is only returned if available/applicable. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="AmountType">
+				<xs:annotation>
+					<xs:documentation>
+						This dollar amount specifies the cost of the price line type specified in the type attribute of the priceLine field. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type" type="PriceLineTypeEnum" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute's value identifies the type of order cost being shown. See PriceLineTypeEnum for a list of possible values.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LogisticsPlanType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the logisticsPlan container, which, based on the fulfillment type, will either be returned with order pickup information (pickup container) or a shipping container with one or more shipping service options. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="shipping" type="OrderShippingDetailsType">
+				<xs:annotation>
+					<xs:documentation>
+						This container is returned if the buyer is shipping the order to the buyer, or if the merchant is shipping the order to a store for pickup. It contains shipping address information, available or selected shipping service (only selected shipping service is shown once buyer makes the selection), and expected delivery date (based on handling time and estimated shipping time). This container is only returned if shipping is the fulfillment method that is being used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pickup" type="OrderPickupDetailsType">
+				<xs:annotation>
+					<xs:documentation>
+						This container is returned if the buyer is picking up the order through In-Store Pickup, or if an eBay Now courier is picking up the order at a store for local delivery to the buyer. It contains information on Pickup store location and expected pickup time. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="fulfillmentType" type="FulfillmentTypeType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute indicates the type of fulfillment method that will be used to fulfill the order (either 'PICKUP' for In-Store Pickup, or 'SHIP' for shipping). 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="programType" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute indicates the sales channel-specific program that will be used to fulfill the order. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OrderShippingDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the shipping container, which is returned if the buyer is shipping the order to the buyer, or if the merchant is shipping the order to a store for pickup. It contains shipping address information, available or selected shipping service (only selected shipping service is shown once buyer makes the selection), and expected delivery date (based on handling time and estimated shipping time). 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shippingService" type="ShippingServiceType">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of identifying information on an available or selected shipping service. Before a buyer selects a shipping service, all available shipping services (set up in the shipping policy) are returned. Once a buyer selects a shipping service or if the order is already in transit, only the selected shipping service will be returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shipToAddress" type="AddressType">
+				<xs:annotation>
+					<xs:documentation>
+						This is the address where the order will be shipped. This address will either be the buyer's shipping address or a store address if the merchant is shipping the order to a store to be picked up. This address will be the same as the finalDestinationAddress if it is 'DIRECT' shipping, as opposed to 'MULTILEG' shipping. This container is always returned with the shipping container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expectedDeliveryDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This timestamp indicates the estimated delivery date to the buyer. This time is actually calculated by adding the merchant's handling time (set up in the merchant's shipping policy) and expected shipping time of the selected shipping service to the order creation time. This field is always returned with the shipping container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="finalDestinationAddress" type="AddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is the address of the order's final destination. This address will either be the buyer's shipping address or a store address if the merchant is shipping the order to a store to be picked up. This container is always returned with the shipping container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="shippingType" type="ShippingTypeEnum">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute indicate whether or not the order will require more than one shipping legs, like an international order that is being fulfilled through the Global Shipping Program (GSP). If the order is being shipped directly to the buyer's address, this attribute's value will be 'DIRECT'. If the order is being shipped through GSP, this attribute's value will be 'MULTILEG', as the first shipping leg will be to the international shipping provider, and the second shipping leg will be to the buyer's address in another country. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OrderPickupDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the pickup container, which is returned if the buyer is picking up the order through In-Store Pickup, or if an eBay Now courier is picking up the order at a store for local delivery to the buyer. It contains information on Pickup store location and expected pickup time. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locationID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						A merchant-defined unique identifier for an inventory location that is set up with the Inventory Feed. Once established, the locationID value cannot be changed. This field is always returned with the pickup container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pickupAddress" type="AddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is the address of the merchant's store where an order will be picked up by a buyer or an eBay Now courier. This container is always returned with the pickup container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expectedPickupTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This timestamp indicates the estimated time that the order is expected to be ready for the buyer or an eBay Now courier to pick up the order. This time is actually calculated by adding the fulfillment time (set in the Inventory Feed, or defaulting to the default value set up for the merchant's eBay account) to the order creation time. This field is always returned with the pickup container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="pickupType" type="PickupTypeEnum">
+			<xs:annotation>
+				<xs:documentation>
+					This attribute indicates whether the the order is an eBay Now order or an In-Store Pickup order. This attribute's value will be 'RECIPIENT' for an In-Store Pickup order, meaning that the buyer will be coming to the Pickup store location to get the order, or the value will be 'COURIER', meaning that an eBay Now courier will pick up the order at the store for local delivery to the buyer. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="PriceLineTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that defines the possible values that can be returned for the type attribute of the priceLine field.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ITEM">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the cost of the single line item in the order. This value is similar to 'LINE_ITEM_SUBTOTAL', but 'ITEM' is returned for single line item orders, and 'LINE_ITEM_SUBTOTAL' is returned for multiple line item orders.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ITEM_TAX">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the cost of the single line item in the order, including tax.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIPPING">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the shipping cost of the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIPPING_TAX">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the shipping cost of the order, including tax.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DISCOUNT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the discount being applied to the order. This will be a negative value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RECYCLING">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the recycling fee associated with the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LINE_ITEM_SUBTOTAL">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the dollar value in the amount field is the cost of the line item. This value is similar to 'ITEM', but 'LINE_ITEM_SUBTOTAL' is returned for multiple line item orders, and 'ITEM' is returned for single line item orders.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ShippingServiceType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defing the shippingService container, which consists of identifying information on an available or selected shipping service. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is the numerical ID of the shipping service. Shipping service information can be obtained by making a GeteBayDetails call, passing in 'ShippingServiceDetails' as a DetailName value in the call request. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="service" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the name of the shipping service. Shipping service information can be obtained by making a GeteBayDetails call, passing in 'ShippingServiceDetails' as a DetailName value in the call request. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="method" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the enumeration of the shipping service. Shipping service information can be obtained by making a GeteBayDetails call, passing in 'ShippingServiceDetails' as a DetailName value in the call request. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ShippingTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that defines the possible values that can be returned for the shippingType attribute of the shipping field.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DIRECT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order is being shipped directly to the buyer's address.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MULTILEG">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order is being shipped through the Global Shipping Program (GSP).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PickupTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that defines the possible values that can be returned for the pickupType attribute of the pickup field.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RECIPIENT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order is an In-Store Pickup order, meaning that the buyer will be coming to the Pickup store location to get the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="COURIER">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order is an eBay Now order, meaning that an eBay Now courier will pick up the order at the store for local delivery to the buyer. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

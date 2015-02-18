@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="InventoryType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the inventory container, which is used to update a seller's inventory.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SKU" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field's value is the merchant-defined "Stock-Keeping Unit" (SKU) for the product whose inventory and availability are being updated for one or more locations (specified through each location container). Each SKU value should be unique to the merchant and should match the SKU value in the eBay listing. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalShipToHomeQuantity" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to express the total quantity of the product that is available for the "Ship-to-Home' fulfillment method across all locations. This field is conditionally required if the product is available through "Ship-to-Home" for one or more locations, and that quantity is expressed through the fulfillmentMethod.quantity field. The value in the inventory.totalShipToHomeQuantity field should equal the sum of all fulfillmentMethod.quantity values (where the corresponding fulfillmentType value is "SHIP"). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location" type="InventoryLocationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A location container is used when the merchant wants to add inventory to a specific location, and is required for each location where the merchant is adding inventory for the product identified by the inventory.SKU value. If a location is not given, the merchant's default location is used.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InventoryResponseSummaryType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the summary container returned in the output of an inventoryStatus call. This container provides a summary of how many products were sucessfully created/updated with the inventory feed and how many were not successful.  
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="requestsTotal" type="xs:int" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how many total products that the merchant was attempting to create/update with the inventory feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestsSuccessful" type="xs:int" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how many products were successfully created/updated with the inventory feed.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestsWithFailures" type="xs:int" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how many products failed to be created/updated with the inventory feed. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="AvailableEnum">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the possible inventory availability states.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IN_STOCK">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the product is in stock at the corresponding location. If the value passed in through the fulfillmentMethod.available field, the fulfillmentMethod.quantity should be set to an integer value greater than zero (0).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OUT_OF_STOCK">
+				<xs:annotation>
+					<xs:documentation>
+						 	This enumeration value indicates that the product is out of stock at the corresponding location. If the value passed in through the fulfillmentMethod.available field, the fulfillmentMethod.quantity should be set to zero (0).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIP_TO_STORE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value generally indicates that the location (usually a warehouse) has inventory, but the inventory will not be shipped directly to a buyer or available for buyer pickup, but instead, inventory will be shipped to another store for buyer or eBay Now courier pickup. If this value passed in through the fulfillmentMethod.available field, the fulfillmentMethod.quantity should be set to an integer value greater than zero (0). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="InventoryLocationType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the location container used in an inventory feed. The location container consists of the location ID, the product quantity at the location, and the fulfillment methods used to complete the order.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locationID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						A merchant-defined unique identifier for an inventory location. Once established, the locationID value cannot be changed. In an inventory call, the locationID value is required in order to identify the location where inventory will be added/modified. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalQuantityAtLocation" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to express the total quantity of the product available at the location for all fulfillment methods. This field is conditionally required if quantity is expressed at the fulfillment method level (the fulfillmentMethod.quantity field is used). The value in the location.totalQuantityAtLocation field should equal the sum of all fulfillmentMethod.quantity values. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fulfillmentMethod" type="FulfillmentMethodType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to add/modify the inventory and availability of the product for each fulfillment type. A fulfillmentMethod container is required for each fulfillment type for which the product will be available to buyers. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FulfillmentMethodType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the fulfillmentMethod container, which is used by the merchant to add/modify the inventory and availability of a product for each fulfillment type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fulfillmentType" type="FulfillmentTypeType">
+				<xs:annotation>
+					<xs:documentation>
+						This field must be included for each logistics plan supported by the inventory location. The two supported values are: 'PICKUP', which is specified if the inventory location supports "In-Store Pickup" for the product or pickup by a valet for eBay Now delivery; and 'SHIP', which is specified if the inventory location supports "Ship-to-Home" or "Ship-to-Store" capabilities for the product.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="quantity" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the quantity of the specified product available for the corresponding fulfillment method. If the product is available through more than one fulfillment method, the sum of all fulfillmentMethod.quantity values should equal the value in the location.totalQuantityAtLocation field. If this optional field is not used, then eBay only uses the fulfillmentMethod.available enumeration value to determine if the product is in stock. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+				<xs:element name="available" type="AvailableEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This token value indicates the availability status of the product (identified by inventory.SKU value) for the specific location (identified by Location.LocationID value).
+						
+						The allowed values are 'IN_STOCK', 'OUT_OF_STOCK', and 'SHIP_TO_STORE'. 'SHIP_TO_STORE' is only applicable for "In-Store Pickup" products. Whichever value is passed in the request, it should reflect reality. In other words, one wouldn't pass in 'OUT_OF_STOCK' and then pass in a quantity value of '10', or your wouldn't pass in 'IN_STOCK, and then pass in a quantity value of '0'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			</xs:choice>
+			<xs:element name="fulfillmentTime" type="xs:duration" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how long after order creation that a retail location will need to prepare the product for "In-Store Pickup". This field is only applicable for "In-Store Pickup" and "eBay Now" orders. If this field is not set, the default fulfillment time from the merchant's eBay profile is used. A merchant's profile is created at the time of on-boarding.
+						
+						The duration type is used to specify fulfillment time, which is the time interval between a buyer purchasing an item, and that item being ready for In-Store Pickup. To specify a specific time interval, the seller uses special notation in the fulfillmentTime field, where letters and numbers are used to represent different units of time. See the duration type for more information about how this type is used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,3026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:simpleType name="ChannelIDType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type list the valid sales channels on which listings can be created.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EBAY_US">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay US site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_Motors">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay US Motors site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_CA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Canada (English language) site as the sales channel. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_CA_FR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Canada (French language) site as the sales channel. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_UK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay UK site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_AU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Australia site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_AT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Austria site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_BE_FR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Belgium (French language) site as the sales channel. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_FR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay France site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_DE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Germany site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_IT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Italy site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_JP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Japan site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_BE_NL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Belgium (Dutch language) site as the sales channel. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_NL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Netherlands site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_ES">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Spain site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_CH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Switzerland site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_TW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Taiwan site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_CZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Czech Republic site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_DK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Denmark site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_FI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Finland site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_GR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Greece site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_HK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Hong Kong site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_HU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Hungary site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_IN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay India site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_ID">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Indonesia site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_IE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Ireland site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_IL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Israel site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_MY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Malaysia site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_NZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay New Zealand site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_NO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Norway site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_PH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Philippines site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_PL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Poland site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_PT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Portugal site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_PR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Puerto Rico site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_RU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Russia site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_SG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Singapore site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_ZA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay South Africa site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_SE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Sweden site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_TH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Thailand site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_VN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Vietnam site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_CN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay China site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EBAY_PE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value used to identify the eBay Peru site as the sales channel.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocaleType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type list the valid languages that can be set for listings.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="en_US">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the US version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_CA">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Canadian version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fr_CA">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Canadian version of French.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_GB">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the UK version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_AU">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Australian version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="de_AT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Austrian version of German.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fr_BE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Belgian version of French.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fr_FR">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is standard French (France site).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="de_DE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is standard German (Germany site).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="it_IT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Italian.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="jp_JP">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Japanese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nl_BE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Belgian version of Dutch.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nl_NL">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is standard Dutch (Netherlands site).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="es_ES">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is standard Spanish (Spain site).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="de_CH">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Swiss version of German.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="zh_TW">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Taiwanese version of Chinese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cs_CZ">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Czech.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="da_DK">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Danish.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fi_FI">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Finnish.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gl_GR">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Greek.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="zh_HK">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Hong Kong version of Chinese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hu_HU">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Hungarian.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="id_ID">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Indonesian.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_IE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Irish version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="he_IL">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Hebrew.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ms_MY">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Malay.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_NZ">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is New Zealand version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="no_NO">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Norwegian.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_PH">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Filipino version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pl_PL">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Polish.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pt_PT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Portuguese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_PR">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Puerto Rican version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ru_RU">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Russian.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="en_SG">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Singaporean version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sf_ZA">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is South African version of English.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sv_SE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Swedish.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="th_TH">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Thai.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vi_VN">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is Vietnamese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="zh_CN">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the China mainland version of Chinese.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="es_PE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the language used in the call is the Peruvian version of Spanish.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="actionCodeType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the type of updates that can be made to feeds.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FULL_UPDATE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the merchant is attempting to, or has completed a full update operation on one or more entities, values, or settings. This mode is used when the merchant wants to clear/reset existing values/settings and replace with new values/settings. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PARTIAL_UPDATE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the merchant is attempting to, or has completed a partial update operation on one or more entities, values, or settings. This mode is used when the merchant wants to add new or modify existing values/settings. Current values/settings for SKU and corresponding listings are preserved. This is the default value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DELETE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the merchant is attempting to, or has completed a delete operation on one or more entities (location, products), values, or settings.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ErrorType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the error container, which is returned for each error or warning that occurred with a Merchant Feed API call. If there are no errors or warnings, this container is not returned at all. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="errorID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						A unique code that identifies the particular error condition that occurred. Your application can use error codes as identifiers in your customized error-handling algorithms. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="severity">
+				<xs:annotation>
+					<xs:documentation>
+						Indicates whether the reported problem is fatal ('ERROR' is returned in this field) or is less severe ('WARNING' is returned in this field). 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="WARNING">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates that the request was processed successfully, but something occurred that may affect your application or the user. 
+									When a warning occurs, error data is returned in addition to the business data. Depending on the cause or nature of the warning, one might need to fix any issues before making similar calls.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="ERROR">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates that the request that triggered the error was not processed successfully. When a serious application-level error occurs, the error data is returned instead of the business data. If the source of the problem is within the application (such as a missing required element), change the application before you retry the request. If the source of the problem is on eBay's side, an application can retry the request.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="category">
+				<xs:annotation>
+					<xs:documentation>
+						Indicates the error category. There are three categories of errors: request errors, application errors, and system errors. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="REQUEST">
+							<xs:annotation>
+								<xs:documentation>
+									This value indicates that an error occurred due to a problem with the request, with the most likely source being missing or invalid data in the request. The problem must be corrected before the request can be retried. Inspect the error message to find the cause of the problem. If the problem is a result of end-user data, alert the end-user to the problem and provide the means for them to correct the problem. Once the problem is resolved, resend the request to eBay. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="APPLICATION">
+							<xs:annotation>
+								<xs:documentation>
+									This value indicates that an error occurred due to a problem with the request, with the most likely source being the application sending the request. For example, the request is missing a required data element or it contains an invalid field. The problem must be corrected before the request can be resent. Inspect the error message to find the cause of the problem. If the problem is due to an application error, modify the application and resend the request. If the error is due to invalid data, the source of the data must be corrected before you resend the resend request to eBay. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SYSTEM">
+							<xs:annotation>
+								<xs:documentation>
+									This value indicates that an error has occurred on the eBay system side. For example, a database or server could be down. Inspect the error message to find the cause of the problem. If the problem is on the eBay side, an application can retry the request as-is a reasonable number of times (eBay recommends twice). If the error persists, contact Developer Technical Support. Once the problem has been resolved, the request may be resent in its original form. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="message" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field contains an explanation of the error. This field is returned if applicable/available. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parameter" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the call parameter that caused and/or contributed to the call error or warning. This field is only returned if it is known that a specific parameter contributed to the call error or warning. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name">
+							<xs:annotation>
+								<xs:documentation>
+									 The unique identifier of the parameter.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ResponseStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				 This enumerated type lists the possible values that can be returned to indicates the status of an API call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SUCCESS">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the Merchant Feed API call was fully successful. This value generally indicates that all entities in the feed were successfully created/updated. Even if this value is returned, it is possible that the call may have triggered one or warnings or (non-fatal) errors, and information on these error or warnings can be found in one or more error containers.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAILURE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the Merchant Feed API call failed. If this value is returned, one or more error containers will be returned that will further information about what caused the error.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PARTIAL_SUCCESS">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the Merchant Feed API call was partially successful. This value generally indicates that only some (and not all) entities in the feed were successfully created/updated. The call may have triggered one or warnings or (non-fatal) errors, and information on these error or warnings can be found in one or more error containers.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EntityStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the possible outcomes for an API call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SUCCESS">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the Merchant Feed API call was fully or partially successful. Even if this value is returned, it is possible that the call may have triggered one or warnings or (non-fatal) errors, and information on these error or warnings can be found in one or more error containers.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAILURE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the Merchant Feed API call failed. If this value is returned, one or more error containers will be returned that will further information about what caused the error.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FulfillmentTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the possible logistic plan types that are used for order fulfillment.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PICKUP_IN_STORE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the inventory location supports "In-Store Pickup" for the product or pick up by a valet for eBay Now delivery. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIP_TO_HOME">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the inventory location supports "Ship-to-Home" or "Ship-to-Store" capabilities for the product. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AddressType">
+		<xs:annotation>
+			<xs:documentation>
+				Type used to define an address in Merchant Feed API calls.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="addressID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Unique identifier for an address in the eBay database. This value can help prevent the need to store an address multiple times in multiple. The ID changes if a user changes their address. This field is always returned with the address container.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The name associated with the address. This field is only returned with the address container if set.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phone" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The phone number associated with the address. This field is only returned with the address container if set. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addressLine1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field contains the first line of the street address. This field is always returned with the address container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="addressLine2" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field contains the second line of the street address. This field is sometimes used to hold an apartment number or a suite number. This field is only returned with the address container if set. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="city" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The city in which the address is located. This field is always returned with the address container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="county" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The county in which the address is located. This field is only returned with the address container if set. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stateOrProvince" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The state or province in which the address is located. This field is always returned with the address container.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="postalCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The postal (or zip) code of the address. This field is always returned with the address container. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="country" type="CountryCodeType">
+				<xs:annotation>
+					<xs:documentation>
+						The country in which the address is located. This field is always returned with the address container. See the CountryCodeType list for a complete list of two-digit abbreviations that represent each country.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LogisticsStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the possible states of an order line item.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOT_SHIPPED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the merchant is still processing the order line item and has yet to ship the order line item to the buyer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIPPED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order line item has been shipped. This is typically the value that is used when the seller is providing the buyer with shipment tracking information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IN_TRANSIT">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the order line item is in transit to the buyer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RECEIVED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer has received an order line item either through a "ship-to-home" service or through eBay Now. This is typically a status update that the merchant sends for eBay's records.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_READY_FOR_PICKUP">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that an "In-Store Pickup" order line item is not ready to be picked up at the buyer's local store.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="READY_FOR_PICKUP">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the "In-Store Pickup" order line item is ready to be picked up by the buyer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PICKED_UP">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer has picked up an "In-Store Pickup" order line item. This is typically a status update that the merchant sends for eBay's records.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PaymentStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the possible payment states of an order.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UNPAID">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer has yet to pay for the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PENDING">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value iindicates that payment has been initiated by the buyer, but the payment has not yet cleared.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PARTIALLY_PAID">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer has paid for a portion of the order, but there is still an unpaid balance.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PAID">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer has paid the entire balance for the order.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAILED">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the buyer attempted to pay for the order but payment was not processed successfully.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SettingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the setting container, which is used by the Update Setting and Get Setting calls to update/display the current settings for a MIP account. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schema" type="SchemaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the Update Setting and Get Setting calls to update/display the platform and file format used for MIP feeds. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location" type="SettingLocationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the Update Setting and Get Setting calls to update/display the location used for the MIP account. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="currencyCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the currency used to pay for orders. See the currencyCodeType list for a full list of enumeration values used for currencies. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useTaxTable" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used by the Update Setting and Get Setting calls to update/display the sales tax table preference used for the MIP account. This boolean value indicates whether or not a tax table is used to determine the sales tax added to the order total. A sales tax table must be set up for the merchant for this flag to have an effect. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultInStorePickupFulfillmentTime" type="xs:duration">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how long after order creation that the store will need to prepare the product for pickup. If this field is not set, the default fulfillment time from the merchant's profile is used. A merchant's profile is created at the time of In-Store Pickup on-boarding.
+						
+						The duration type is used to specify fulfillment time. To specify a specific time interval, the seller uses special notation where leters and numbers are used to represent different units of time. See the duration type doc for more details.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultShipToStoreFulfillmentTime" type="xs:duration">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates how long after order creation that an inventory location will  need to ship the product to the store where it will be picked up by the buyer for an In-Store Pickup order. 
+												
+						The duration type is used to specify fulfillment time. To specify a specific time interval, the seller uses special notation where leters and numbers are used to represent different units of time. See the duration type doc for more details.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultPickupInstructions" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The purpose of this field is to provide detailed pickup instructions to buyers for In-Store Pickup orders. Although this field is optional, it is recommended that merchants provide this field to create a pleasant and easy pickup experience. If this field is not used, eBay will use the default pickup instructions contained in the merchant's profile. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderListingType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the listing container, which is used to provide identifying information about an order line item's parent listing. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="channelID" type="ChannelIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the sales channel, such as "eBay_US", "eBay_UK", "eBay_DE". For a full list of channel IDs, see the ChannelIDType list. This optional information is helpful as all parties will immediately recognize on which sales channel the the order line item was sold. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="itemID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the eBay listing that spawned the order line item. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SKU">
+				<xs:annotation>
+					<xs:documentation>
+						The merchant-defined "Stock-Keeping Unit" (SKU) of the product, which is unique to the merchant's inventory. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="title" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The title of the eBay listing. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CountryCodeType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the two-digit codes that represent countries. These values are based on the ISO 3166-1 alpha-2 standard.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Andorra. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in United Arab Emirates.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Afghanistan.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Antigua and Barbuda. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Anguilla. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Albania. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Armenia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Netherlands Antilles.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Angola. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AQ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Antarctica. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Argentina. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in American Samoa. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Austria. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Aruba. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Azerbaijan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bosnia and Herzegovina. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BB">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Barbados. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bangladesh. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Belgium. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Burkina Faso. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bulgaria. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bahrain. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Burundi. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BJ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Benin. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bermuda. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Brunei Darussalam. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bolivia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Brazil. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bahamas. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bhutan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Bouvet Island. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Botswana. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Belarus. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Belize . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Canada. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cocos (Keeling) Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Democratic Republic of the Congo. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Central African Republic. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Congo. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Switzerland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cote d'Ivoire (Ivory Coast).  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cook Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Chile. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cameroon. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in China. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Colombia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Costa Rica. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cuba. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cape Verde. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CX">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Christmas Island. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cyprus. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Czech Republic. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Germany. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DJ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Djibouti. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Denmark. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Dominica. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Dominican Repupblic. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Algeria. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Ecuador. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Estonia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Egypt. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Western Sahara. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ER">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Eritrea. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ES">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Spain. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ET">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Ethiopia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Finland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FJ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Fiji. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Falkland Islands (Malvinas). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Federated States of Micronesia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Faroe Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in France. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Gabon. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GB">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in United Kingdom. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Grenada. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the country of Georgia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in French Guiana. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guernsey. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Ghana. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Gibraltar. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Greenland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Gambia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guinea. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guadeloupe. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GQ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Equatorial Guinea. . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Greece. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in South Georgia and the South Sandwich Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guatemala. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guam. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guinea-Bissau. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Guyana. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Hong Kong. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Heard Island and Mcdonald Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Honduras. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Croatia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Haiti. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Hungary. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ID">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Indonesia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Ireland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Israel. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in India. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in British Indian Ocean Territory.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IQ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Iraq. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Islamic Republic of Iran.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Iceland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Italy. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Jersey. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Jamaica. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Jordan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Japan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Kenya. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Kyrgyzstan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cambodia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Kiribati. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Comoros. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saint Kitts and Nevis. . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Democratic People's Republic of Korea. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Republic of Korea. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Kuwait. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Cayman Islands.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Kazakhstan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Lao People's Democratic Republic.  
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LB">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Lebanon. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saint Lucia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Liechtenstein. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Sri Lanka. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Liberia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Lesotho. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Lithuania. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Luxembourg. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Latvia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Libyan Arab Jamahiriya. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Morocco. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Monaco. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Republic of Moldova. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ME">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Montenegro. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Madagascar. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Marshall Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Former Yugoslav Republic of Macedonia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ML">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mali. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Myanmar. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mongolia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Macao. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Northern Mariana Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MQ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Martinique. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mauritania. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Montserrat. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Malta. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mauritius. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Maldives. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Malawi. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MX">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mexico. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Malaysia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mozambique. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Namibia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in New Caledonia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Niger. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Norfolk Island. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Nigeria. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Nicaragua. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Netherlands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Norway. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Nepal. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Nauru. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Niue. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in New Zealand. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Oman. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Panama. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Peru. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in French Polynesia (including Tahiti). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Papua New Guinea. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the Philippines. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Pakistan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Poland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saint Pierre and Miquelon. . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Pitcairn. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Puerto Rico. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Palestinian territory, Occupied. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Portugal. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Palau. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Paraguay. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="QA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Qatar. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Reunion (island). 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Romania. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Serbia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Russian Federation. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Rwanda. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saudi Arabia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SB">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Solomon Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Seychelles. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Sudan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Sweden. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Singapore. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saint Helena. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Slovenia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SJ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Svalbard and Jan Mayen. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Slovakia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SL">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Sierra Leone. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in San Marino. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Senegal. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Somalia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Suriname. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ST">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Sao Tome and Principe. . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in El Salvador. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Syrian Arab Republic. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Swaziland. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Turks and Caicos Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Chad. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in French Southern Territories. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Togo. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TH">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Thailand. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TJ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Tajikistan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Tokelau. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Turkmenistan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Tunisia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TO">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Tonga. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TP">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value is no longer valid. It formerly represented East Timor, but East Timor is now known as Timor-Leste, and its abbreviation is 'TL'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Turkey. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Trinidad and Tobago. . 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TV">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Tuvalu. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Taiwan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the United Republic of Tanzania. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Ukraine. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Uganda. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="US">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the United States. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Uruguay. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Uzbekistan. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Vatican City. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VC">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Saint Vincent and the Grenadines. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Venezuela. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VG">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in the British Virgin Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VI">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in US Virgin Islands. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Vietnam. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VU">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Vanuatu. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Wallis and Futuna. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WS">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Samoa. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="YE">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Yemen. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="YT">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Mayotte. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZA">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in South Africa. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZM">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Zambia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZW">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in Zimbabwe. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ZZ">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the address is in an unknown country. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyCodeType">
+		<xs:annotation>
+			<xs:documentation>
+				This enumerated type lists the three-digit codes that represent currencies. These values are based on the ISO 4217 standard.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="USD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the US dollar, which is the official currency of the United States.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CAD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Canadian dollar, which is the official currency of Canada.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GBP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the British Pound, which is the official currency of the United Kingdom.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AUD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Australian dollar, which is the official currency of Australia.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EUR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Euro, which is the official currency of the European Union countries.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CHF">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Swiss franc, which is the official currency of Switzerland.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CNY">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Chinese Yuan Renminbi, which is the official currency of China.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HKD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Hong Kong dollar, which is the official currency of Hong Kong.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PHP">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Philippine peso, which is the official currency of the Philippines.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PLN">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Polish zloty, which is the official currency of Poland.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SEK">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Swedish krona, which is the official currency of Sweden.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SGD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Singapore dollar, which is the official currency of Singapore.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TWD">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Taiwan new dollar, which is the official currency of Taiwan.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Indian rupee, which is the official currency of India.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MYR">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration value that indicates that the currency is the Malaysian ringgit, which is the official currency of Malaysia.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AmountType">
+		<xs:annotation>
+			<xs:documentation>
+				This type is used to express dollar values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:double">
+				<xs:attribute name="currencyCode" type="CurrencyCodeType" use="required">
+					<xs:annotation>
+						<xs:documentation>
+							This the currency type that the dollar value is expressed in.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="SchemaTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that lists the supported platforms from which feeds can originate. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EBAY">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the MIP feed is being originated from the eBay platform.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> 
+			<xs:enumeration value="AMAZON">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the MIP feed is being originated from the Amazon platform.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> 
+			<xs:enumeration value="GOOGLE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the MIP feed is being originated from the Google platform.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration> 
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SchemaType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the schema container, which is used by the Update Setting and Get Setting calls to update/display the platform and file format used for MIP feeds.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="SchemaTypeEnum">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the platform from which the feeds originated. The three supported platforms are eBay, Amazon, and Google.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="format">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display  the file format used for MIP feeds. The only supported values are 'XML' (for XML-based files) and 'CSV' (for files using comma-separated values). Only 'XML' can be used with HTTP-based feeds, but the SFTP-based feeds can be in XML or CSV format.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="XML">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates that the file format used for MIP feeds is XML. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration> 
+						<xs:enumeration value="CSV">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates that the file format used for MIP feeds is CSV. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration> 
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="version" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the version of MIP, and can be either 'V1' or 'V2'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SettingLocationType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the location container, which is used by the Update Setting and Get Setting calls to update/display the current location for the account. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="city" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the city of the location.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="stateOrProvince" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the state or province of the location.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="country" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the country of the location.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="zip" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the Update Setting and Get Setting calls to update/display the zip code (or postal code) of the location.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

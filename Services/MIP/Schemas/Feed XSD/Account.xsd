@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:element name="account">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the input payload used in a "Create account" call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="version" type="versionEnum">
+         <xs:annotation>
+						<xs:documentation>
+							This enumeration value is used to specify the account as MIP Version 1.0 or MIP Version 2.0. 
+						</xs:documentation>
+				 </xs:annotation>
+      	</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="accountStatus" type="AccountStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				The root container for the response of the "Create Account", "Get Account", "Delete Account", and "Generate SFTP Token calls.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="versionEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that lists the possible values for MIP version.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MIPv1">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value is used to specify the account as MIP Version 1.0.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+			<xs:enumeration value="MIPv2">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value is used to specify the account as MIP Version 2.0.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AccountStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the accountStatus container, which is the root container for the response of a "Create account" call.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ResponseStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the update to the account was fully successful, partially successful, or if it failed completely. If the update to the account was only partially successful, or if it failed, the possible issue(s) may be found in any error containers that are returned. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						An error container is returned for each error or warning that occurred with the call.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container consists of detailed information on the user and the MIP account, as well as an SFTPToken.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="userName" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									The name of the user.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="state" type="AccountStateType">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value gives the status of the account.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SFTPToken" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									An SFTP token is returned in this field. The user can use this token to process MIP feeds using SFTP.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SFTPTokenExpiration" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									This is the expiration date of the SFTP token.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="version" type="versionEnum" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									This enumeration value indicates whether the user has a MIP Version 1.0 account or a MIP Version 2.0 account.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="AccountStateType">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that lists the possible states of a MIP account.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SUBSCRIBED">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the user is subscribed to MIP.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+			<xs:enumeration value="ACTIVE">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the user is an active MIP user.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+			<xs:enumeration value="UNSUBSCRIBED">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the user has been unsubsribed from MIP.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+			<xs:enumeration value="DEACTIVATED">
+			 <xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the user has been deactivated from using MIP.
+					</xs:documentation>
+			 </xs:annotation>
+      </xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

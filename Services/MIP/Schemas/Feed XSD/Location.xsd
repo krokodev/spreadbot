@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="LocationType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the location container, which is used in location feeds to define one location, and details on this location include its address, its fulfillment capabilities, phone number, and business hours.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locationID" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						A merchant-defined unique identifier for an inventory location. Once established, the locationID value cannot be changed. The locationID value is used to identify an inventory location to perform an action upon when using the Merchant Feed calls. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the merchant-defined name of the inventory location. This name is actually surfaced to prospective buyers on eBay, so merchants should keep this in mind and be as descriptive as possible when creating the name value. Typically, merchants will identify their business name and the description of the specific location in the name field. This field is required if the fulfillmentCapability value is set to 'PICKUP'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="address1" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field contains the first line of the inventory location's street address. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="address2" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This optional field contains the second line of the inventory location's street address. This field is sometimes used to hold the location's suite number. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="city" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the city in which the inventory location is located. The full name of the city should be used in this field. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="region" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This is a free-form field that is used to indicate the region of the inventory location. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="postalCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates the postal code (also known as zip code in US) of the inventory location. The postal code is used by eBay to surface "In-Store Pickup" and eBay Now products to buyers within the vicinity of their location. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="country" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the country in which the inventory location is located. The two-letter abbreviation for the country, as defined in the ISO 3166-1 Alpha-2 Standard, should be used in this field. For example, 'US' is used for the United States, 'GB' is used for the United Kingdom, 'DE' is used for Germany, and 'AU' is used for Australia. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="latitude" type="xs:float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This float value indicates the latitude of the inventory location. The latitude and longitude coordinates are used by eBay to surface In-Store Pickup or eBay Now listings to buyers within the vicinity of their location. This field is conditionally required if the fulfillmentCapability value is set to 'PICKUP'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="longitude" type="xs:float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This float value indicates the longitude of the inventory location. The latitude and longitude coordinates are used by eBay to surface In-Store Pickup or eBay Now listings to buyers within the vicinity of their location. This field is conditionally required if the fulfillmentCapability value is set to 'PICKUP'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hours" type="HoursType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to express the standard business hours of a retail location. A separate day container should be used to provide the business hours for each business day of the week. This container is not required if the inventory location's only fulfillmentCapability value is 'SHIP'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="specialHours" type="SpecialHoursType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This container is used to express the special business hours of a retail location. A merchant would use this container to specify shorter or longer business hours for a specific date. For example, "Black Friday" (the day after Thanksgiving in the US) might have longer hours than a standard business day, but Christmas Eve might have shorter hours than a standard business day. A separate day container should be used for each date that has special business hours. This container is not required if the inventory location's only fulfillmentCapability value is 'SHIP', or if the retail location has no special hours scheduled in the foreseeable future. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="utcOffset" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The UTC offset is the difference in hours and minutes from Coordinated Universal Time (UTC) to the local time. If the time at the location is five hours behind UTC, the UTCOffset value would be set to '-05:00'. Or, if the time at the location is three hours ahead of UTC, the UTCOffset value would be set to '+03:00'. The following time format should be used:
+						
+						[+/-]HH:MM
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phone" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field indicates the phone number of the inventory location. This number could be the main number to the warehouse or store, or it can be a direct line to the store department that handles eBay "In-Store Pickup" or eBay Now products. This is a free-form field, so merchants are not restricted to using a specific notation for the number. However, the merchant should make sure they include the area code, as well as the phone extension (if applicable). This field is required if the fulfillmentCapability value is set to 'PICKUP'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="url" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used by the merchant to provide the URL of the store's Web site to the buyer. It is only applicable for "In-Store Pickup" or "eBay Now" use cases. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pickupInstructions" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The purpose of this field is to provide detailed pickup instructions to buyers for "In-Store Pickup" products, and is intended to create a pleasant and easy pickup experience in retail locations. If this field is not included in the call payload, eBay will use the default pickup instructions (if available) contained in the merchant's eBay profile. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fulfillmentCapability" type="FulfillmentTypeType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field must be included for each logistics plan supported by the inventory location. The two supported values are: 'PICKUP', which is specified if the inventory location supports "In-Store Pickup" for the product or pickup by a valet for eBay Now delivery; and 'SHIP', which is specified if the inventory location supports "Ship-to-Home" or "Ship-to-Store" capabilities for the product.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="LocationStatusEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is used to enable or disable an inventory location. By default, once an inventory location is set up for a merchant's account, it is enabled. However, merchants may find it necessary to disable an inventory location (set this field's value to 'DISABLE') when they have run out of inventory, or if they just want to make updates to inventory location. A disabled inventory location can be enabled by passing in a value of 'ENABLE' to this field.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocationResponseMessageType">
+		<xs:annotation>
+			<xs:documentation>
+				This type is reserved for future use.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locationID" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="EntityStatusType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						This field is reserved for future use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DayType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the hours.day container in an location feed. This container is used to express the standard business hours for each business day.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dayOfWeek" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>
+						This token value indicates the day of the week. It is a required field under each day container to identify the business day for which open hours are being provided. The corresponding values to use for each day are: 1 = Monday; 2 = Tuesday; 3 = Wednesday; 4 = Thursday; 5 = Friday; 6 = Saturday; 7 = Sunday.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="interval" type="IntervalType">
+				<xs:annotation>
+					<xs:documentation>
+						This container provides the business hours for the business day specified in the day.dayOfWeek field. At least one interval container is required under each day container. A second interval container might be necessary if the retail location closed for lunch. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpecialHoursDayType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the specialHours.day container in an location feed. This container is used to express the standard business hours for each business day.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="date" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>
+						This date value indicates a specific date that has special business hours. It is a required field under each specialHours.day container to identify the specific date for which special business hours are being provided. The following date format should be used:
+						
+						YYYY-MM-DD
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="interval" type="IntervalType">
+				<xs:annotation>
+					<xs:documentation>
+						This container provides the business hours for the business day specified in the day.dayOfWeek field. At least one interval container is required under each day container. A second interval container might be necessary if the retail location closed for lunch. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IntervalType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the interval container, which is used by the hours.day and specialHours.day containers to specify the business hours for a retail location during a normal week, or extended/shortened hours for a specific date, such as a holiday.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="open" type="xs:time" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates the local opening time (using 24-hour notation) of the retail location. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="close" type="xs:time" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This value indicates the local closing time (using 24-hour notation) of the retail location. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HoursType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the hours container, which is used to express the standard weekly business hours of a retail location. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="day" type="DayType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A separate day container is required to express the standard business hours for each business day (specified through the dayOfWeek field) of the week. For days that are not covered through a day container, it will be assumed that the location is closed on that day. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpecialHoursType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the specialHours container, which is used to express the special business hours of a retail location. A merchant would use this container to specify shorter or longer business hours for a specific date. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="day" type="SpecialHoursDayType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A separate day container is used to express the business hours for each specific date with special business hours. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LocationStatusEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that contains values that are passed into the location.status field to enable or disable an inventory location.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENABLE">
+				<xs:annotation>
+					<xs:documentation>
+						This value is used to enable a previously disabled or inactive inventory location. This is the default value for the location.status field. The merchant can add or update inventory for all enabled locations. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DISABLE">
+				<xs:annotation>
+					<xs:documentation>
+						This value is used to disable a previously enabled or active inventory location. The merchant cannot add or update inventory for disabled locations. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

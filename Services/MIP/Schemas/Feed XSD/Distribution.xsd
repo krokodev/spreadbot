@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:include schemaLocation="eBay_base.xsd"/>
+	<xs:complexType name="ListingDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the listingDetails container in a distribution feed. The listingDetails container is used to add, modify, or delete settings/values for the listing(s) containing the product identified by the SKU value and applied across all enabled sales channels or just the one(s) specified in the channelID field(s). 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shippingPolicyName" type="xs:string" minOccurs="0">
+         <xs:annotation>
+						<xs:documentation>The unique identifier of a shipping business policy. If this field is used, the values/settings in the referenced shipping business policy will only be used for the specified product and will not affect the default shipping business policy used for other products (if any) in listings. Business Policies IDs can be obtained in My eBay or by using GetSellerList (and other "Get" calls) in the Trading API. The default shipping profile for the site/category/account will be used if this field isn't included in the feed. </xs:documentation>
+				 </xs:annotation>
+      </xs:element>
+			<xs:element name="shippingCostOverrides" type="ShippingCostOverridesType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+					<xs:documentation>This container is used when the merchant wants to override the flat-rate shipping costs for all domestic and/or all international shipping services currently defined for the product through a shipping business policy either defined at the listing level or referenced through the shippingPolicyName field. Shipping costs include the cost to ship one item, the cost to ship each additional identical item, and any shipping surcharges applicable to domestic shipping services.
+  
+  				A shippingCostOverrides container is required for each domestic and/or international shipping service that is defined in the shipping business policy.
+   				
+  				Shipping service cost overrides are a listing-level concept, and the shipping costs specified through each shippingCostOverrides container will not change the shipping costs defined for the same shipping services in the shipping business policy. If the merchant does not override all domestic or all international shipping services, whatever the case may be, an error occurs.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxQuantityPerBuyer" type="xs:int" minOccurs="0"/>
+				<xs:annotation>
+					<xs:documentation>
+						The value of this field specifies the maximum quantity of a product that one eBay buyer can purchase from the merchant during a 10-day period. A buyer will be blocked from buying additional quantities of the product once this maximum threshold value is reached. This value can be set at '1' or higher. If this field is used, its value will override any maximum threshold value set up at the listing or account level (Buyer Requirements preferences).
+					</xs:documentation>
+				</xs:annotation>
+			<xs:element name="paymentPolicyName" type="xs:string" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						The unique identifier of a payment business policy. If this field is used, the values/settings in the referenced payment business policy will only be used for the specified product and will not affect the default payment business policy used for other products (if any) in listings. Business Policies IDs can be obtained in My eBay or by using GetSellerList (and other "Get" calls) in the Trading API. The default payment policy for the site/category/account will be used if this field isn't included in the feed.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="returnPolicyName" type="xs:string" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						The unique identifier of a return business policy. If this field is used, the values/settings in the referenced return business policy will only be used for the specified product and will not affect the default return business policy used for other products (if any) in listings. Business Policies IDs can be obtained in My eBay or by using GetSellerList(and other "Get" calls) in the Trading API. The default return policy for the site/category/account will be used if this field isn't included in the feed.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="pricingDetails" type="PricingDetailsType" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This container is used by the merchant to set/update a product's list price, or if a merchant wants to add/modify Minimum Advertised Price (MAP) and/or Strikethrough Price (STP) settings for the product across listings. MAP is only available on the US site, and STP is only available on the US, UK, and DE sites.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="storeCategory1Name" type="xs:string" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This field is used to add/modify the primary eBay store category in which to list the product(s). The merchant can create custom categories in their eBay Store, and the value in this field will be the full path to the store category used by the merchant. 
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="storeCategory2Name" type="xs:string" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This field is used to add/modify the secondary eBay store category in which to list the product(s). The merchant can create custom categories in their eBay Store, and the value in this field will be the full path to the store category used by the merchant. 
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="eBayNowEligible" type="xs:boolean" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This field is used to enable the product across listings to be available for eBay Now delivery. To enable the product for eBay Now delivery, the merchant includes this boolean field and sets its value to 'true'. A merchant must be eligible for the eBay Now delivery feature to list a product that is eligible for eBay Now delivery. This field will be ignored if the seller is not eligible to list eBay Now products, or if the merchant has no inventory at any store locations in eBay Now areas like the Bay Area, New York city, Chicago, or Dallas.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="pickupInStoreEligible" type="xs:boolean" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This field is used to enable the product across listings to be available for In-Store Pickup. To enable the product for In-Store Pickup, the merchant includes this boolean field and sets its value to 'true'. A merchant must be eligible for the In-Store Pickup feature to list a product that is eligible for In-Store Pickup. This field will be ignored if the seller is not eligible for In-Store Pickup, or if the merchant has no inventory for the product at a store location that is enabled for In-Store Pickup.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+			<xs:element name="applyTax" type="xs:boolean" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						Sales tax is applied by default if sales tax rates are set up in the merchant's My eBay preferences. The merchant can override default sales tax settings for the product by including this boolean field and setting its value to 'false'.
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+      <xs:element name="taxCategory" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Tax exception category code. This is to be used only by sellers who have opted into sales tax being calculated by a sales tax calculation vendor like Vertex. 
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+      <xs:element name="VATPercent" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The Value-Added Tax (VAT) rate that the seller will charge to the buyer. VAT is only applicable to Business Sellers who reside in, have a permanent address in, or are established in a European Union country. 
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DistributionType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the distribution container, which is used to make one or multiple updates to the product identified by the SKU value. The merchant can apply changes across all enabled sales channels, or the merchant can only apply the changes to specific sales channel by using one or more channelID fields. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="channelID" type="ChannelIDType">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier of the sales channel, such as "eBay_US", "eBay_UK", "eBay_DE". For a full list of channel IDs, see the ChannelIDType list. The merchant will include a channelID for each sales channel on which they want to update the listings containing the product identified by the SKU field. If no channelID is specified, the product identified by the SKU field is updated across listings on all enabled sales channels. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SKU" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This seller-defined "Stock-Keeping Unit", or "SKU", identifies the product for which any addition, modification, or deletion, made through the distribution container, will be applied towards.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actionCode" type="DistributionActionCodeEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+					 	Currently, the actionCode field only supports one value - 'PRICE_UPDATE'. So, the actionCode field should only be used if pricing data (data in the pricingDetails container) is the only data that the seller is modifying; otherwise, this field is not necessary to include in the payload.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="listingDetails" type="ListingDetailsType" minOccurs="0">
+      	<xs:annotation>
+					<xs:documentation>
+						This container is used to add, modify, or delete settings/values for the listing(s) containing the product identified by the SKU value and applied across all enabled sales channels or just the one(s) specified in the channelID field(s). 
+					</xs:documentation>
+				</xs:annotation>
+      </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DistributionResponseMessageType">
+		<xs:annotation>
+			<xs:documentation>
+				This is the root container for the distributionStatus response. 
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+					<xs:element name="SKU" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The seller-defined "Stock-Keeping Unit" (SKU) for the product. Each product in a merchant's inventory must have a unique SKU value
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+					<xs:element name="channelID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>
+								The unique identifier of the sales channel, such as "eBay_US", "eBay_UK", "eBay_DE". For a full list of channel IDs, see the ChannelIDType list. 
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+					<xs:element name="actionCode" type="DistributionActionCodeEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								This enumeration value indicates what action was taken with the distribution feed. Currently, the only supported value is 'PRICE_UPDATE', so this field is only returned if the distribution feed was used to make price updates. 
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+					<xs:element name="status" type="EntityStatusType">
+						<xs:annotation>
+							<xs:documentation>
+								 This enumeration value indicates whether or not the listing details and distribution details for the product were successfully updated. 
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+					<xs:element name="itemID" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								The unique identifier of the eBay listing. 
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+					<xs:element name="error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								An error container is returned for each error or warning that occurred with the distribution feed. If there are no errors or warnings, this container is not returned at all. 
+							</xs:documentation>
+						</xs:annotation>
+      		</xs:element>
+        </xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ShippingServiceTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that is used to specify whether a shipping service whose shipping costs are being overridden is a domestic or international shipping service
+			</xs:documentation>
+		</xs:annotation>
+			<xs:restriction base="xs:string">
+					<xs:enumeration value="DOMESTIC">
+						<xs:annotation>
+							<xs:documentation>
+								This enumeration value indicates that the corresponding shipping service is a domestic shipping service.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="INTERNATIONAL">
+						<xs:annotation>
+							<xs:documentation>
+								This enumeration value indicates that the corresponding shipping service is an international shipping service. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+			</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DistributionActionCodeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that is used to specify what type of update is being made in a distribution feed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PRICE_UPDATE">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates that the distribution feed was used to make price updates on an existing product. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MinimumAdvertisedPriceHandlingEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Enumerated type that is used to specify when a discounted MAP price is shown to the buyer.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DURING_CHECKOUT">
+				<xs:annotation>
+					<xs:documentation>
+						If this enumeration value is used, the discounted MAP price is shown as soon as the buyer commits to buy the product, but is not available before.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NONE">
+				<xs:annotation>
+					<xs:documentation>
+						If this enumeration value is used, the discounted MAP price is not shown to the buyer during the checkout flow. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PRE_CHECKOUT">
+				<xs:annotation>
+					<xs:documentation>
+						If this enumeration value is used, the discounted MAP price is shown if the buyer clicks a link (or a button) on the View Item page to display the discounted MAP price in a pop-up window. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ShippingCostOverridesType">
+		<xs:annotation>
+			<xs:documentation>
+				Type defining the shippingCostOverrides container in a distribution feed. This container is used to override the flat-rate shipping costs for all domestic and/or all international shipping services currently defined for the product through a shipping business policy either defined at the listing level or referenced through the shippingPolicyName field. 
+			</xs:documentation>
+		</xs:annotation>
+		 <xs:sequence>
+			<xs:element name="shippingCost" type="AmountType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						 This dollar value indicates the cost to ship one product to the buyer using the specified domestic or international shipping service. Shipping cost, additional shipping cost, and surcharge are tied to a specific shipping service through the shippingServiceType ('DOMESTIC' or 'INTERNATIONAL') and the priority (order in which a domestic or international shipping service appears on the View Item page) fields. If the shipping service costs override operation is successful, the dollar value in this field will override the shipping cost currently set for the shipping service. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="additionalCost" type="AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+							This dollar value indicates the cost to ship each additional quantity of product to the buyer using the specified domestic or international shipping service. Shipping cost, additional shipping cost, and surcharge are tied to a specific shipping service through the shippingServiceType ('DOMESTIC' or 'INTERNATIONAL') and the priority (order in which a domestic or international shipping service appears on the View Item page) fields. If the shipping service costs override operation is successful, the dollar value in this field will override the additional shipping cost currently set for the shipping service.
+						 
+							This field is not applicable to single-quantity listings. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surcharge" type="AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						 This dollar value indicates the shipping surcharge applicable to the domestic shipping service. If the shipping service costs override operation is successful, this value will override the corresponding shipping surcharge value set for the shipping service as defined in the listing and shipping business policy.
+						 
+						 This field can only be used for domestic shipping services, and only if shipping surcharges are applicable for the corresponding shipping service. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priority" type="xs:int" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This integer value maps the particular instance of the shippingCostOverrides container to the domestic or international shipping services defined in the shipping business policy. The priority value should match the order in which the shipping service appears in the shipping business policy and View Item page. If overriding the shipping costs for domestic shipping services, the shippingServiceType field should be set to 'DOMESTIC', and to override the shipping costs for international shipping services, the shippingServiceType field should be set to 'INTERNATIONAL'. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shippingServiceType" type="ShippingServiceTypeEnum" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						This enumeration value indicates whether the corresponding shippingCostOverrides container will be applied to a domestic (value would be set to 'DOMESTIC') or an international shipping service (value would be set to 'INTERNATIONAL'). Whether overriding domestic or international shipping costs, the shipping cost/additional cost/surcharge values must be passed in for each shipping service defined in the listing and shipping business policy. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		 </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PricingDetailsType">
+    	<xs:annotation>
+				<xs:documentation>
+					Type defining the pricingDetails container, which is used by the merchant to set/update a product's list price, or if a merchant wants to add/modify Minimum Advertised Price (MAP) and/or Strikethrough Price (STP) settings for the product across listings. 
+				</xs:documentation>
+			</xs:annotation>
+				<xs:sequence>
+					<xs:element name="listPrice" type="AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								A merchant uses this field to add/update the list price for the specified product across listings. The value specified in this field will not affect other product variations in multi-variation listings. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="strikeThroughPrice" type="AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								The price specified in this field is the original price of the product before the product is discounted and offered at the price shown in listPrice field. In the View Item page, the strikeThroughPrice value will actually have a line through it to help emphasize the amount of the discount to prospective buyers. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minimumAdvertisedPriceHandling" type="MinimumAdvertisedPriceHandlingEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								This enumeration value should be set if the merchant is using the Minimum Advertised Price feature, and it controls the display of the discounted MAP price (listPrice value) during the checkout flow. See the MinimumAdvertisedPriceHandlingEnum type to see a list of supported values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minimumAdvertisedPrice" type="AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								The Minimum Advertised Price (MAP) is an agreement between suppliers (or OEMs) and retailers stipulating the lowest price a product is allowed to be advertised at. Merchants can offer prices below the MAP through other discounts. The value specified in this field will not affect other products in multi-variation listings. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="soldOnEbay" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								This field is used to indicate that the merchant offered the same (or similar) product for the same sale price (listPrice value) on an eBay site in the previous 30 days. This field is only applicable for products selling on the eBay UK and eBay Germany (DE) sites. If this field is included and set to 'true', eBay displays 'Was*' in the UK and 'Ursprunglich*' in Germany, next to the discounted price of the item. In the event that the soldOffeBay and soldOneBay fields are both set, soldOneBay takes precedence. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="soldOffEbay" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								This field is used to indicate that the merchant offered the same (or similar) product for the same sale price (listPrice value) on a Web site or offline store other than eBay in the previous 30 days. This field is only applicable for products selling on the eBay UK and eBay Germany (DE) sites. If this field is included and set to 'true', eBay displays 'Was*' in the UK and 'Ursprunglich*' in Germany, next to the discounted price of the item. In the event that the soldOffeBay and soldOneBay fields are both set, soldOneBay takes precedence. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+
