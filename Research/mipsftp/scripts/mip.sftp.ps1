@@ -1,5 +1,4 @@
 $RemotePath      = "/store/"
-$Session         = New-Object WinSCP.Session
 $SessionOptions  = New-Object WinSCP.SessionOptions
 $TransferOptions = New-Object WinSCP.TransferOptions
 
@@ -20,11 +19,13 @@ Function InitConnectionOptions()
 
 Function UploadFeed([string]$feed)
 {
-    Log "Upload [$feed]..."
+    #Log "Upload [$feed]..."
+    
+    $session = New-Object WinSCP.Session
 
     try
     {
-        $Session.Open($SessionOptions)
+        $session.Open($SessionOptions)
  
         $sourceFiles    = "$LocalZipPath\$feed.zip"
         $destination    = "$RemotePath$feed/"
@@ -34,11 +35,11 @@ Function UploadFeed([string]$feed)
  
         foreach ($transfer in $transferResult.Transfers)
         {
-            Log "Upload of $($transfer.FileName) succeeded"
+            #Log "Upload of $($transfer.FileName) succeeded"
         }
     }
     finally
     {
-        $Session.Dispose()
+        $session.Dispose()
     }
 }
