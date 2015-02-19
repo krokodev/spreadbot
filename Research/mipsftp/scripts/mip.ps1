@@ -6,6 +6,7 @@
 Function Main()
 {
     Log "MIP scripts"
+
     ZipUploadFeed("product")
     ZipUploadFeed("distribution")
     ZipUploadFeed("availability")
