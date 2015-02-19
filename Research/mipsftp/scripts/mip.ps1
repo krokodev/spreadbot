@@ -26,12 +26,16 @@ Function InitConnectionOptions()
     $SessionOptions.HostName = "mip.ebay.com"
     $SessionOptions.PortNumber = 22
     $SessionOptions.UserName = "cyfir"
-    $SessionOptions.Password = . .\password-secret-file.ps1
+    $SessionOptions.Password = gc .\password.txt
     $SessionOptions.GiveUpSecurityAndAcceptAnySshHostKey = $true
   
     $TransferOptions.TransferMode = [WinSCP.TransferMode]::Binary
 }
 
+
+Function Zip([string]$feed)
+{
+}
 
 Function Upload([string]$feed)
 {
