@@ -1,65 +1,20 @@
-$LocalPath       = ".\..\data\store\"
-$RemotePath      = "/store/"
-$Session         = New-Object WinSCP.Session
-$SessionOptions  = New-Object WinSCP.SessionOptions
-$TransferOptions = New-Object WinSCP.TransferOptions
+. .\mip.globals.ps1
+. .\mip.sftp.ps1
+. .\mip.zip.ps1
+. .\mip.utils.ps1
 
 Function Main()
 {
     Log "MIP scripts"
-    
-    Add-Type -Path "WinSCPnet.dll"
-
-    InitConnectionOptions
-  
-    Upload "product"
-}
-
-Function Log([string]$rec)
-{
-    Write-Host $rec
-}
-
-Function InitConnectionOptions()
-{
-    $SessionOptions.Protocol = [WinSCP.Protocol]::Sftp
-    $SessionOptions.HostName = "mip.ebay.com"
-    $SessionOptions.PortNumber = 22
-    $SessionOptions.UserName = "cyfir"
-    $SessionOptions.Password = gc .\password.txt
-    $SessionOptions.GiveUpSecurityAndAcceptAnySshHostKey = $true
-  
-    $TransferOptions.TransferMode = [WinSCP.TransferMode]::Binary
+    ZipUploadFeed("product")
 }
 
 
-Function Zip([string]$feed)
+Function ZipUploadFeed([string] $feed)
 {
-}
 
-Function Upload([string]$feed)
-{
-    Log "Upload [$feed]..."
-
-    try
-    {
-        $Session.Open($SessionOptions)
- 
-        $sourceFiles    = "$LocalPath$feed\*.zip"
-        $destination    = "$RemotePath$feed/"
-        $transferResult = $session.PutFiles($sourceFiles, $destination, $false, $TransferOptions)
- 
-        $transferResult.Check()
- 
-        foreach ($transfer in $transferResult.Transfers)
-        {
-            Log "Upload of $($transfer.FileName) succeeded"
-        }
-    }
-    finally
-    {
-        $Session.Dispose()
-    }
+    ZipFeed    $feed
+    UploadFeed $feed
 }
 
 try
