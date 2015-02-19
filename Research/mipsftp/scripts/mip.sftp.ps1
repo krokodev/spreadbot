@@ -1,9 +1,7 @@
-$RemotePath      = "/store/"
+Add-Type -Path "WinSCPnet.dll"
 $SessionOptions  = New-Object WinSCP.SessionOptions
 $TransferOptions = New-Object WinSCP.TransferOptions
-
-Add-Type -Path "WinSCPnet.dll"
-InitConnectionOptions
+$RemotePath      = "/store/"
 
 Function InitConnectionOptions()
 {
@@ -41,3 +39,5 @@ Function UploadFeed([string]$feed)
         $session.Dispose()
     }
 }
+
+InitConnectionOptions

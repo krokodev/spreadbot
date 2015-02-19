@@ -1,7 +1,7 @@
 . .\mip.globals.ps1
-. .\mip.sftp.ps1
-. .\mip.zip.ps1
 . .\mip.utils.ps1
+. .\mip.zip.ps1
+. .\mip.sftp.ps1
 
 Function Main()
 {
