@@ -19,8 +19,6 @@ Function InitConnectionOptions()
 
 Function UploadFeed([string]$feed)
 {
-    #Log "Upload [$feed]..."
-    
     $session = New-Object WinSCP.Session
 
     try
@@ -33,9 +31,9 @@ Function UploadFeed([string]$feed)
  
         $transferResult.Check()
  
-        foreach ($transfer in $transferResult.Transfers)
+        if($transferResult.Transfers.Count -lt 1)
         {
-            #Log "Upload of $($transfer.FileName) succeeded"
+            throw [string]::Format("No files were upload for feed [{0}]", $feed)
         }
     }
     finally
