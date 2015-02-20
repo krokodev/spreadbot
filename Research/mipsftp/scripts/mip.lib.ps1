@@ -4,5 +4,4 @@
 . .\mip.lib.sftp.ps1
 . .\mip.lib.paths.ps1
 
-Log ""
-Log "MIP scripts"
+#Header "MIP scripts"

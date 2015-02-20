@@ -6,8 +6,10 @@ param (
 
 Function Main()
 {
+    Log "Uploading feed [$feed]"
     $requestId = ZipUploadFeed $feed
-    log "Feed $feed uploaded with RequestId = $requestId"
+    Log "Feed [$feed] uploaded"
+    Value "RequestId" $requestId
 }
 
 

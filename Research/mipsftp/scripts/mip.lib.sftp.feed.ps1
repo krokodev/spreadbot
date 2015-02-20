@@ -27,7 +27,7 @@ Function UploadFeed([string]$feed, [string]$requestId)
 Function ZipUploadFeed([string]$feed)
 {
     $requestId = MakeRequestId
-    Log "ZipUpload [$feed.$requestId]..."
+    Debug "ZipUpload [$feed.$requestId]"
 
     ZipFeed    $feed $requestId
     UploadFeed $feed $requestId
