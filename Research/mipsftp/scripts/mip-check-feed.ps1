@@ -1,5 +1,6 @@
 param (
-    [Parameter(Mandatory=$True)] [string] $feed
+    [Parameter(Mandatory=$True)] [string] $feed,
+    [Parameter(Mandatory=$True)] [string] $requestId
 )
 
 . .\mip.lib.ps1
@@ -13,7 +14,7 @@ Function Main()
 
 try
 {
-    Main
+    #Main
     exit 0
 }
 catch [Exception]
