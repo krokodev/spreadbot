@@ -8,3 +8,11 @@ function ZipFiles([string]$sourcedir, [string]$zipfilename)
    [System.IO.File]::Delete($zipfilename)
    [System.IO.Compression.ZipFile]::CreateFromDirectory($sourcedir, $zipfilename, $compressionLevel, $false)
 }
+
+Function ZipFeed([string]$feed, [string]$requestId)
+{
+    $feedFolder = "$LocalSrcPath\$feed"
+    $feedFile   = "$LocalZipPath\$feed.$requestId.zip"
+
+    ZipFiles $feedFolder $feedFile
+}
