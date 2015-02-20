@@ -16,7 +16,7 @@ Function Header([string]$str)
 # ============================================================================================== []
 Function Value([string]$name, [string]$value)
 {
-    Write-host -ForegroundColor Cyan "$name = [$value]"
+    Write-host -ForegroundColor Cyan "$name = [$value]" 
 }
 
 # ============================================================================================== []
