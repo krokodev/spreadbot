@@ -9,7 +9,14 @@ Function MakeRequestId()
 # ============================================================================================== []
 Function MakeDataDirName()
 {
-    "Feb-20-2015"
+    $offset = -7 
+    $utcNow = [DateTime]::UtcNow;
+    $mipNow = $utcNow.AddHours($offset)
+
+    Value "UtcNow  " $utcNow
+    Value "MIP time" $mipNow
+
+    $mipNow.Date.ToString("MMM-dd-yyy", [CultureInfo]::CreateSpecificCulture("en-US"))
 }
 
 # ============================================================================================== []
