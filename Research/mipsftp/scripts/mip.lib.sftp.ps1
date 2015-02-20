@@ -6,7 +6,7 @@
 # ============================================================================================== []
 function GetRemoteFileContent([string]$remoteDir, [string]$fileName)
 {
-    Debug "Downoading [$localPath\$fileName]"
+    Debug "Downloading [$localPath\$fileName]"
 
     $localPath = $LocalInboxPath
     DownloadFile $remoteDir $fileName $localPath ([WinSCP.TransferMode]::Ascii)
