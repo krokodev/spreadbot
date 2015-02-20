@@ -1,6 +1,8 @@
+# ============================================================================================== []
 Add-Type -Assembly System.IO.Compression.FileSystem
 Add-Type -Assembly System.IO
 
+# ============================================================================================== []
 function ZipFiles([string]$sourcedir, [string]$zipfilename)
 {
    $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
@@ -9,6 +11,7 @@ function ZipFiles([string]$sourcedir, [string]$zipfilename)
    [System.IO.Compression.ZipFile]::CreateFromDirectory($sourcedir, $zipfilename, $compressionLevel, $false)
 }
 
+# ============================================================================================== []
 Function ZipFeed([string]$feed, [string]$requestId)
 {
     $feedFolder = "$LocalSrcPath\$feed"
@@ -16,3 +19,6 @@ Function ZipFeed([string]$feed, [string]$requestId)
 
     ZipFiles $feedFolder $feedFile
 }
+
+# ============================================================================================== []
+# EOF

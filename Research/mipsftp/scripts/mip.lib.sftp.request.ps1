@@ -1,14 +1,14 @@
 # ============================================================================================== []
 Function GetRequestDoneContent([string]$feed, [string]$requestId)
-{
+{    
     ($done, $remoteDir, $contentFileName) = IsRequestDone $feed $requestId
     if ($done)
     {
-        $content = GetRemoteFileContent "$remoteDir/$contentFileName"
+        $content = GetRemoteFileContent $remoteDir $contentFileName
         ($true, $content)
         return 
     }
-    ($false, "Request [$feed.$requestId] is in [$remoteDir]")
+    ($false, "Request [$feed.$requestId] in [$remoteDir]")
 }
 
 # ============================================================================================== []
