@@ -18,6 +18,6 @@ try
 }
 catch [Exception]
 {
-    Log $_.Exception.Message
+    Error $_.Exception
     exit 1
 }

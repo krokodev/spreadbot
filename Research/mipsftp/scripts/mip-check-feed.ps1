@@ -7,18 +7,17 @@ param (
 
 Function Main()
 {
-    $requestId = ZipUploadFeed $feed
-    log "Feed $feed uploaded with RequestId = $requestId"
+    CheckStatus $feed $requestId
 }
 
 
 try
 {
-    #Main
+    Main
     exit 0
 }
 catch [Exception]
 {
-    Log $_.Exception.Message
+    Error $_.Exception
     exit 1
 }
