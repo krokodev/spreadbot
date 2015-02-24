@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Spreadbot.App.Web.Controllers
+namespace Spreadbot.App.Web
 {
     public class HomeController : Controller
     {

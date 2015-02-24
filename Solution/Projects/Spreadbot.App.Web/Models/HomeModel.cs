@@ -1,4 +1,4 @@
-﻿namespace Spreadbot.App.Web.Controllers
+﻿namespace Spreadbot.App.Web
 {
     public class HomeModel
     {
