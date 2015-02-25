@@ -1,0 +1,26 @@
+﻿@using System.Web.Mvc
+@functions{
+    public static MvcHtmlString BuildLink(string linkText, string linkClass, string linkUrl)
+    {
+        return new MvcHtmlString(string.Format("<a class='{0}' href='{1}'>{2}</a>", linkClass, linkUrl, linkText));
+    }
+
+}
+
+@helper Link(string linkText, string linkClass, string linkUrl)
+{
+    @BuildLink(
+        linkText,
+        linkClass,
+        linkUrl)
+}
+
+@helper Format(string text, params object[] args)
+{
+    @Text(string.Format(
+        text,
+        args))
+}
+
+@helper Text(string text)
+{ @text }

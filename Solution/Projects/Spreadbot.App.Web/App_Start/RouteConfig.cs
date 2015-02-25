@@ -13,7 +13,6 @@ namespace Spreadbot.App.Web
                 "Default",
                 "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                // Todo: Change Namespace value: 
                 new[] { "Spreadbot.App.Web" }
                 );
         }

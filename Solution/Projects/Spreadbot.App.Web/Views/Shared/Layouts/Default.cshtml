@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href='http://fonts.googleapis.com/css?family=Cousine|Roboto+Slab:400,700|Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <title>@ViewBag.Title</title>
+    @System.Web.Optimization.Styles.Render("~/Content/Themes/Dafault/css")
+</head>
+
+<body>
+@LayoutView.Header(ViewBag.Title)
+@RenderBody()
+@LayoutView.Footer()
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+﻿/*
+>> CSS | Default | Site *
+*/
+/*
+// ============================================================================================= []
+// Common
+*/
+html, body, p, div, h1, h2, h3, h4, h5, h6, img, pre, form, fieldset, a, span {
+    margin: 1000px;
+    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+    vertical-align: top;
+    color: inherit;
+    font-size: inherit;
+    font-family: 'Cousine';
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+// ============================================================================================= []
+// EOF
+*/
