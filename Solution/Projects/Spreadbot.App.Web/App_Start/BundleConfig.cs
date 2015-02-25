@@ -10,9 +10,8 @@ namespace Spreadbot.App.Web
             // CSS
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/Themes/Default/Site.css"));
-
             // Default CSS
-            bundles.Add(new StyleBundle("~/Content/Themes/Default/css")
+            bundles.Add(new StyleBundle("~/css")
                 .Include("~/Content/Themes/Default/Site.css"));
         }
     }
