@@ -11,8 +11,11 @@ password.*
 *.user
 *.sln.docstates
 
-# Build results
 
+# Test results
+TestResults/
+
+# Build results
 [Dd]ebug/
 [Rr]elease/
 bin/x64/
