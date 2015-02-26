@@ -3,6 +3,8 @@
     public enum MipStatusCode
     {
         Unknown,
-        CommandOk,
+        ConnectionOk,
+        Error,
+        FeedUploaded
     }
 }

@@ -5,7 +5,6 @@ using Crocodev.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    // Now: MipConfiguration
     public class MipSecurityConfiguration : SmartConfigurationSection
     {
         private static Lazy<MipSecurityConfiguration> _instance = new Lazy<MipSecurityConfiguration>(CreateInstance,

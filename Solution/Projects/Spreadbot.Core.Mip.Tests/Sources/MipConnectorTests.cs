@@ -13,11 +13,31 @@ namespace Spreadbot.Core.Mip.Tests
         public void Upload_Feed_On_MIP()
         {
             var feed = new MipFeed(MipFeedType.Product);
-            var settings = new MipSettings();
-            var mip = new MipConnector(settings);
-            var response = mip.UploadFeed(feed);
+            var mip = new MipConnector();
+            var response = mip.UploadZippedFeed(feed);
 
-            Assert.AreEqual(MipStatusCode.CommandOk, response.StatusCode);
+            Trace.TraceInformation(response.StatusDescription);
+            Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Test_Good_Connection()
+        {
+            var feed = new MipFeed(MipFeedType.Product);
+            var mip = new MipConnector();
+            var response = mip.TestConnection();
+
+            Assert.AreEqual(MipStatusCode.ConnectionOk, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Test_Bad_Connection()
+        {
+            var feed = new MipFeed(MipFeedType.Product);
+            var mip = new MipConnector();
+            var response = mip.TestConnection("wrong password");
+
+            Assert.AreEqual(MipStatusCode.Error, response.StatusCode);
         }
 
         [TestMethod]
