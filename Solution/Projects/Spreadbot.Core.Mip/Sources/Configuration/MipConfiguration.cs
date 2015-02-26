@@ -26,12 +26,6 @@ namespace Spreadbot.Core.Mip
         {
             get { return (MipConnection)this[GetPropertyName()]; }
         }
-
-        [ConfigurationProperty("Security", IsRequired = true)]
-        public SecurityConfiguration Security
-        {
-            get { return (SecurityConfiguration)this[GetPropertyName()]; }
-        }
     }
 
     public class MipConnection : SmartConfigurationElement
@@ -47,23 +41,6 @@ namespace Spreadbot.Core.Mip
         public int PortNumber
         {
             get { return (int)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
-        }
-    }
-
-    public class SecurityConfiguration : SmartConfigurationElement
-    {
-        [ConfigurationProperty("UserName", IsRequired = true)]
-        public string UserName
-        {
-            get { return (string)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
-        }
-
-        [ConfigurationProperty("Password", IsRequired = true)]
-        public string Password
-        {
-            get { return (string)this[GetPropertyName()]; }
             set { this[GetPropertyName()] = value; }
         }
     }

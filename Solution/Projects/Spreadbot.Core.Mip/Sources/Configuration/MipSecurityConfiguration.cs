@@ -6,52 +6,29 @@ using Crocodev.Common;
 namespace Spreadbot.Core.Mip
 {
     // Now: MipConfiguration
-    public class MiSecuritypConfiguration : SmartConfigurationSection
+    public class MipSecurityConfiguration : SmartConfigurationSection
     {
-        private static Lazy<MipConfiguration> _instance = new Lazy<MipConfiguration>(CreateInstance,
+        private static Lazy<MipSecurityConfiguration> _instance = new Lazy<MipSecurityConfiguration>(CreateInstance,
             LazyThreadSafetyMode.ExecutionAndPublication);
 
-        public static MipConfiguration Instance
+        public static MipSecurityConfiguration Instance
         {
             get { return _instance.Value; }
         }
 
-        private static MipConfiguration CreateInstance()
+        private static MipSecurityConfiguration CreateInstance()
         {
-            return (MipConfiguration)ConfigurationManager.GetSection("Spreadbot/MipSecurity");
+            return (MipSecurityConfiguration)ConfigurationManager.GetSection("Spreadbot/MipSecurity");
         }
 
-        [ConfigurationProperty("Connection", IsRequired = true)]
-        public MipConnection Connection
+        [ConfigurationProperty("SecretData", IsRequired = true)]
+        public MipSecretData SecretData
         {
-            get { return (MipConnection)this[GetPropertyName()]; }
-        }
-
-        [ConfigurationProperty("Security", IsRequired = true)]
-        public SecurityConfiguration Security
-        {
-            get { return (SecurityConfiguration)this[GetPropertyName()]; }
+            get { return (MipSecretData)this[GetPropertyName()]; }
         }
     }
 
-    public class MipConnection : SmartConfigurationElement
-    {
-        [ConfigurationProperty("HostName", IsRequired = true)]
-        public string HostName
-        {
-            get { return (string)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
-        }
-
-        [ConfigurationProperty("PortNumber", IsRequired = true)]
-        public int PortNumber
-        {
-            get { return (int)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
-        }
-    }
-
-    public class SecurityConfiguration : SmartConfigurationElement
+    public class MipSecretData : SmartConfigurationElement
     {
         [ConfigurationProperty("UserName", IsRequired = true)]
         public string UserName

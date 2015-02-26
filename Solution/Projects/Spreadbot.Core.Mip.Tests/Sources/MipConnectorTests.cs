@@ -8,7 +8,7 @@ namespace Spreadbot.Core.Mip.Tests
     // >> Now: Mip.Tests
 
     [TestClass]
-    public class MipConnector
+    public class MipConnectorTests
     {
         [TestMethod]
         public void Upload_Feed_On_MIP()
@@ -54,11 +54,16 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Read_Mip_Config()
         {
-            var mipConfig = MipConfiguration.Instance;
-            Assert.AreEqual("mip.ebay.com", mipConfig.Connection.HostName);
-            Assert.AreEqual(22, mipConfig.Connection.PortNumber);
-            Assert.AreEqual("cyfir", mipConfig.Security.UserName);
-            Assert.AreEqual("password", mipConfig.Security.Password);
+            var configuration = MipConfiguration.Instance;
+            Assert.AreEqual("mip.ebay.com", configuration.Connection.HostName);
+            Assert.AreEqual(22, configuration.Connection.PortNumber);
+        }
+
+        [TestMethod]
+        public void Read_Mip_Security_Config()
+        {
+            var configuration = MipSecurityConfiguration.Instance;
+            Assert.AreEqual("cyfir", configuration.SecretData.UserName);
         }
     }
 }

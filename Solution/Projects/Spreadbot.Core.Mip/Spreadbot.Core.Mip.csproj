@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Configuration\MipSecurityConfiguration.cs" />
     <Compile Include="Sources\Configuration\MipConfiguration.cs" />
     <Compile Include="Sources\Crocodev.Common\SmartConfigurationElement.cs" />
     <Compile Include="Sources\Crocodev.Common\SmartConfigurationSection.cs" />
