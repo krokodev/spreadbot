@@ -6,7 +6,7 @@ using Crocodev.Common;
 namespace Spreadbot.Core.Mip
 {
     // Now: MipConfiguration
-    public class MipConfiguration : SmartConfigurationSection
+    public class MiSecuritypConfiguration : SmartConfigurationSection
     {
         private static Lazy<MipConfiguration> _instance = new Lazy<MipConfiguration>(CreateInstance,
             LazyThreadSafetyMode.ExecutionAndPublication);
@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Mip
 
         private static MipConfiguration CreateInstance()
         {
-            return (MipConfiguration) ConfigurationManager.GetSection("Spreadbot/Mip");
+            return (MipConfiguration)ConfigurationManager.GetSection("Spreadbot/MipSecurity");
         }
 
         [ConfigurationProperty("Connection", IsRequired = true)]

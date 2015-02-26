@@ -5,3 +5,4 @@
 login.*
 password.*
 *-secret-file*.*
+*.[Ss]ecurity.config

@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Configuration\MipConfiguration.cs" />
+    <Compile Include="Sources\Crocodev.Common\SmartConfigurationElement.cs" />
+    <Compile Include="Sources\Crocodev.Common\SmartConfigurationSection.cs" />
     <Compile Include="Sources\Connector\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
     <Compile Include="Sources\Connector\MipResponse.cs" />

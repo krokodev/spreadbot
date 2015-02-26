@@ -5,6 +5,7 @@
 login.*
 password.*
 *-secret-file*.*
+*.[Ss]ecurity.config
 
 # User-specific files
 *.suo
