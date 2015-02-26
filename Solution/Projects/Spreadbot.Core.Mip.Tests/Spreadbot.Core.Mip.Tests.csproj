@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="WinSCPnet">
       <HintPath>..\..\packages\WinSCP.5.7\lib\WinSCPnet.dll</HintPath>
     </Reference>
@@ -53,7 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MipConnector.cs" />
+    <Compile Include="Sources\MipConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +64,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WinSCP.exe">
+    <Content Include="Tools\WinSCP\WinSCP.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="App_Data\Spreadbot\Configuration\Mip.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

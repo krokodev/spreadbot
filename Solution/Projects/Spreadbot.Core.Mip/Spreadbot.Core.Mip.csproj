@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Configuration\MipConfiguration.cs" />
     <Compile Include="Sources\Connector\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
     <Compile Include="Sources\Connector\MipResponse.cs" />

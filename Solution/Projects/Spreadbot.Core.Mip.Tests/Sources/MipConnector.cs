@@ -1,9 +1,12 @@
-﻿using System;
+﻿using System.Configuration;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WinSCP;
 
 namespace Spreadbot.Core.Mip.Tests
 {
+    // >> Now: Mip.Tests
+
     [TestClass]
     public class MipConnector
     {
@@ -23,21 +26,21 @@ namespace Spreadbot.Core.Mip.Tests
         {
             try
             {
-                var sessionOptions = new WinSCP.SessionOptions
+                var sessionOptions = new SessionOptions
                 {
-                    Protocol = WinSCP.Protocol.Sftp,
+                    Protocol = Protocol.Sftp,
                     HostName = "mip.ebay.com",
                     PortNumber = 22,
                     UserName = "admin",
                     GiveUpSecurityAndAcceptAnySshHostKey = true
                 };
 
-                using (var session = new WinSCP.Session())
+                using (var session = new Session())
                 {
                     session.Open(sessionOptions);
                 }
             }
-            catch (WinSCP.SessionRemoteException e)
+            catch (SessionRemoteException e)
             {
                 Trace.TraceInformation(e.InnerException.Message);
 
@@ -46,6 +49,16 @@ namespace Spreadbot.Core.Mip.Tests
                     e.InnerException.Message.Contains("Authentication failed"),
                     "WinSCP.SessionRemoteException must contain: [Authentication failed]");
             }
+        }
+
+        [TestMethod]
+        public void Read_Mip_Config()
+        {
+            var mipConfig = MipConfiguration.Instance;
+            Assert.AreEqual("mip.ebay.com", mipConfig.Connection.HostName);
+            Assert.AreEqual(22, mipConfig.Connection.PortNumber);
+            Assert.AreEqual("cyfir", mipConfig.Security.UserName);
+            Assert.AreEqual("password", mipConfig.Security.Password);
         }
     }
 }
