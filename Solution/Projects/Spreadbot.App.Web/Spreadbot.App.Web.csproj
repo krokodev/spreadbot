@@ -217,6 +217,12 @@
     <Content Include="Content\Themes\Default\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\Spreadbot\Configuration\Mip.config" />
+    <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.Sample.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

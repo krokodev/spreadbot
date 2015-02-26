@@ -1,4 +1,5 @@
-﻿@model Spreadbot.App.Web.HomeModel
+﻿@using Spreadbot.Core.Mip
+@model Spreadbot.App.Web.HomeModel
 
 @{
     ViewBag.Title = "Spreadbot";
@@ -25,6 +26,7 @@
         <ul>
             <li class="sb-red">
                 Public 1 Item on eBay via MIP:SFTP
+                [@MipSecurityConfiguration.Instance.SecretData.UserName]
             </li>
             <li>
                 Public Items from VC sample files on eBay via MIP:SFTP

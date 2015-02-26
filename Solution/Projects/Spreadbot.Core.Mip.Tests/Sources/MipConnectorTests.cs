@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WinSCP;
 
@@ -15,7 +14,7 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Product);
             var settings = new MipSettings();
-            var mip = new Mip.MipConnector(settings);
+            var mip = new MipConnector(settings);
             var response = mip.UploadFeed(feed);
 
             Assert.AreEqual(MipStatusCode.CommandOk, response.StatusCode);
