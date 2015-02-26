@@ -37,29 +37,39 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinSCPnet">
+      <HintPath>..\..\packages\WinSCP.5.7\lib\WinSCPnet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\MipStatusCode.cs" />
-    <Compile Include="Sources\MipConnector.cs" />
-    <Compile Include="Sources\MipResponse.cs" />
-    <Compile Include="Sources\MipSettings.cs" />
-    <Compile Include="Sources\MipFeed.cs" />
-    <Compile Include="Sources\MipFeedType.cs" />
+    <Compile Include="Sources\Connector\MipStatusCode.cs" />
+    <Compile Include="Sources\Connector\MipConnector.cs" />
+    <Compile Include="Sources\Connector\MipResponse.cs" />
+    <Compile Include="Sources\Connector\MipSettings.cs" />
+    <Compile Include="Sources\Connector\MipFeed.cs" />
+    <Compile Include="Sources\Connector\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sources\PowershellExample\mip-check-request.ps1" />
-    <None Include="Sources\PowershellExample\mip-upload-feed.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.paths.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.sftp.feed.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.sftp.init.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.sftp.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.sftp.request.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.trace.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.utils.ps1" />
-    <None Include="Sources\PowershellExample\mip.lib.zip.ps1" />
+    <None Include="packages.config" />
+    <None Include="Tools\PowershellExample\mip-check-request.ps1" />
+    <None Include="Tools\PowershellExample\mip-upload-feed.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.paths.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.sftp.feed.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.sftp.init.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.sftp.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.sftp.request.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.trace.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.utils.ps1" />
+    <None Include="Tools\PowershellExample\mip.lib.zip.ps1" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tools\WinSCP\WinSCP.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
