@@ -3,8 +3,8 @@ using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Configuration
 {
-    [SectionName("Spreadbot/Mip")]
-    public class Mip : SmartConfigurationSection<Mip>
+    [SectionName("Spreadbot/MipPublic")]
+    public class MipPublic : SmartConfigurationSection<MipPublic>
     {
         [ConfigurationProperty("Connection", IsRequired = true)]
         public Connection Connection

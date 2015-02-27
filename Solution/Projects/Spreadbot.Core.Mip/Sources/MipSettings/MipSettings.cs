@@ -1,35 +1,37 @@
-﻿namespace Spreadbot.Core.Mip
+﻿using Spreadbot.Core.Configuration;
+
+namespace Spreadbot.Core.Mip
 {
     public static class MipSettings
     {
         public static string HostName
         {
-            get { return Configuration.Mip.Instance.Connection.HostName; }
+            get { return MipPublic.Instance.Connection.HostName; }
         }
         public static int PortNumber
         {
-            get { return Configuration.Mip.Instance.Connection.PortNumber; }
+            get { return MipPublic.Instance.Connection.PortNumber; }
         }
         public static string UserName
         {
-            get { return Configuration.MipSecurity.Instance.SecretData.UserName; }
+            get { return MipSecurity.Instance.SecretData.UserName; }
         }
         public static string Password
         {
-            get { return Configuration.MipSecurity.Instance.SecretData.Password; }
+            get { return MipSecurity.Instance.SecretData.Password; }
         }
         public static string ZippedFeedsPath
         {
             get
             {
-                return Configuration.Mip.Instance.Paths.ZippedFeedsPath; 
+                return MipPublic.Instance.Paths.ZippedFeedsPath; 
             }
         }
         public static string RemoteBasePath
         {
             get
             {
-                return Configuration.Mip.Instance.Paths.RemoteBasePath; 
+                return MipPublic.Instance.Paths.RemoteBasePath; 
             }
         }
     }

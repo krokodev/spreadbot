@@ -216,7 +216,7 @@
     <Content Include="Content\Themes\base\tooltip.css" />
     <Content Include="Content\Themes\Default\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.config" />
+    <Content Include="App_Data\Spreadbot\Configuration\Mip.Public.config" />
     <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

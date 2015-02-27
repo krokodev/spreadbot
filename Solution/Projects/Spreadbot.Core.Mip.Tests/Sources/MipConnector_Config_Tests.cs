@@ -8,7 +8,7 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Read_Mip_Config()
         {
-            var configuration = Configuration.Mip.Instance;
+            var configuration = Configuration.MipPublic.Instance;
             Assert.AreEqual("mip.ebay.com", configuration.Connection.HostName);
             Assert.AreEqual(22, configuration.Connection.PortNumber);
         }

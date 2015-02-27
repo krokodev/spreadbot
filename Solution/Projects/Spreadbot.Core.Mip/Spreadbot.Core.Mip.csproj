@@ -47,7 +47,7 @@
     <Compile Include="Sources\Config\Elements\Paths.cs" />
     <Compile Include="Sources\Config\Elements\SecretData.cs" />
     <Compile Include="Sources\Config\Sections\MipSecurity.cs" />
-    <Compile Include="Sources\Config\Sections\Mip.cs" />
+    <Compile Include="Sources\Config\Sections\MipPublic.cs" />
     <Compile Include="Sources\Connector\MipConnector.pvt.cs" />
     <Compile Include="Sources\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
     <Compile Include="Sources\Connector\MipConnector.SftpHelper.cs" />
