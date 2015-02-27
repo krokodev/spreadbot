@@ -1,5 +1,7 @@
 ﻿// ReSharper disable RedundantUsingDirective
+
 using System;
+using System.Diagnostics;
 using Crocodev.Common.Identifier;
 using WinSCP;
 
@@ -24,14 +26,11 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new Response(StatusCode.Error)
-                    {
-                        StatusDescription = e.Message
-                    };
+                    return new Response(false, StatusCode.TestConnectionError, e.Message);
                 }
-                return new Response(StatusCode.ConnectionOk);
+                return new Response(true, StatusCode.TestConnectionOk);
             }
-            
+
             // ===================================================================================== []
             // UploadFeed
             public static Response SendZippedFeed(string feed, string reqId)
@@ -45,12 +44,14 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new Response(StatusCode.Error, e.Message);
+                    return new Response(false, StatusCode.SendZippedFeedError, e.Message);
                 }
-                return new Response(
-                    StatusCode.FeedSent,
-                    string.Format("Feed:[{0}.{1}]",feed,reqId)
-                    );
+                return new Response(false, StatusCode.SendZippedFeedOk);
+            }
+
+            public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
+            {
+                return SendZippedFeed(feed.Name, reqId.Value.ToString());
             }
         }
     }

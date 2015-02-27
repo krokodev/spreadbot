@@ -3,8 +3,11 @@
     public enum StatusCode
     {
         Unknown,
-        ConnectionOk,
-        Error,
-        FeedSent
+        TestConnectionOk,
+        TestConnectionError,
+        SendFeedOk,
+        SendFeedError,
+        SendZippedFeedOk,
+        SendZippedFeedError,
     }
 }

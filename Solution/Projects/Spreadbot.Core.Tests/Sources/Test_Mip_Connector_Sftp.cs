@@ -14,7 +14,7 @@ namespace Spreadbot.Core.Mip.Tests
             var response = Connector.SftpHelper.SendZippedFeed(feed.Name, 0.ToString());
 
             Trace.TraceInformation(response.StatusDescription);
-            Assert.AreEqual(StatusCode.FeedSent, response.StatusCode);
+            Assert.AreEqual(StatusCode.SendZippedFeedOk, response.StatusCode);
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var response = Connector.SftpHelper.TestConnection();
 
-            Assert.AreEqual(StatusCode.ConnectionOk, response.StatusCode);
+            Assert.AreEqual(StatusCode.TestConnectionOk, response.StatusCode);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var response = Connector.SftpHelper.TestConnection("wrong password");
 
-            Assert.AreEqual(StatusCode.Error, response.StatusCode);
+            Assert.AreEqual(StatusCode.TestConnectionError, response.StatusCode);
         }
 
         [TestMethod]

@@ -10,7 +10,26 @@ namespace Spreadbot.Core.Mip
         // Now: MipConnector
         public static Response SendFeed(Feed feed)
         {
-            throw new NotImplementedException();
+            var reqId = Request.GenerateRequestId();
+            try
+            {
+                //ZipHelper.CreateArchive(feed, reqId);
+                SftpHelper.SendZippedFeed(feed, reqId).Check();
+            }
+            catch (Exception e)
+            {
+                return new Response(
+                    false,
+                    StatusCode.SendFeedError,
+                    string.Format("Feed:[{0}.{1}]", feed, reqId)
+                    );
+
+            }
+            return new Response(
+                true,
+                StatusCode.SendFeedOk,
+                string.Format("Feed:[{0}.{1}] zipped and sent", feed, reqId)
+                );
         }
     }
 }

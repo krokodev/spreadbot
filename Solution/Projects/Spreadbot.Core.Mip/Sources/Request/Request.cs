@@ -6,7 +6,7 @@ namespace Spreadbot.Core.Mip
 {
     public class Request : Identifiable<Request, Guid>
     {
-        public static Identifier GenerateRequestId(Identifier requestId)
+        public static Identifier GenerateRequestId()
         {
             return (Identifier)new Guid();
         }
