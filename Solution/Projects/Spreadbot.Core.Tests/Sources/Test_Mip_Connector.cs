@@ -17,5 +17,15 @@ namespace Spreadbot.Core.Mip.Tests
             Assert.AreEqual(StatusCode.SendFeedSuccess, response.StatusCode);
             Assert.IsTrue(Request.VerifyRequestId(response.RequestId));
         }
+
+        [TestMethod]
+        public void Check_Request_Status_Inproc()
+        {
+            // Now: Check_Request_Status_Inproc
+/*
+            var feed = new Feed(FeedType.Product);
+            var response = Connector.CheckRequest();
+*/
+        }
     }
 }

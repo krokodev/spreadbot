@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spreadbot.Core.Mip.Tests
@@ -10,10 +11,14 @@ namespace Spreadbot.Core.Mip.Tests
         public void Zip_Feed()
         {
             var feed = new Feed(FeedType.Product);
-            var response = Connector.ZipHelper.ZipFeed(feed.Name, 0.ToString());
+            var reqId = 0.ToString();
+            var response = Connector.ZipHelper.ZipFeed(feed.Name, reqId);
 
             Trace.TraceInformation(response.StatusDescription);
-            
+
+            Assert.AreEqual(StatusCode.ZipFeedSuccess, response.StatusCode);
+
+            Assert.IsTrue(File.Exists(Connector.ZipHelper.ZippedFeedFileName(feed.Name, reqId)));
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.StatusCode);
         }
     }

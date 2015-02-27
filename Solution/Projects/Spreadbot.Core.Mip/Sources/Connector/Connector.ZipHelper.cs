@@ -25,12 +25,22 @@ namespace Spreadbot.Core.Mip
                 {
                     return new Response(false, StatusCode.ZipFeedFail, e.Message);
                 }
-                return new Response(true, StatusCode.ZipFeedSuccess);
+                return new Response(true, StatusCode.ZipFeedSuccess)
+                {
+                    StatusDescription = string.Format("Zip file=[{0}]", MakeLocalZippedFeedPath(feed, reqId))
+                };
             }
 
             public static Response ZipFeed(Feed feed, Request.Identifier reqId)
             {
                 return ZipFeed(feed.Name, reqId.Value.ToString());
+            }
+
+            // ===================================================================================== []
+            // ZipFeed
+            public static string ZippedFeedFileName(string feed, string reqId)
+            {
+                return MakeLocalZippedFeedPath(feed, reqId);
             }
 
             // ===================================================================================== []
