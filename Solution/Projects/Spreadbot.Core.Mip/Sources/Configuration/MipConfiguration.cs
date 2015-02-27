@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading;
-using Crocodev.Common;
+using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Mip
 {
-    public class MipConfiguration : SmartConfigurationSection
+    [SectionName("Spreadbot/Mip")]
+    public class MipConfiguration : SmartConfigurationSection<MipConfiguration>
     {
-        private static Lazy<MipConfiguration> _instance = new Lazy<MipConfiguration>(CreateInstance,
+/*        private static readonly Lazy<MipConfiguration> InstanceValue = new Lazy<MipConfiguration>(CreateInstance,
             LazyThreadSafetyMode.ExecutionAndPublication);
 
         public static MipConfiguration Instance
         {
-            get { return _instance.Value; }
+            get { return InstanceValue.Value; }
         }
 
         private static MipConfiguration CreateInstance()
         {
             return (MipConfiguration) ConfigurationManager.GetSection("Spreadbot/Mip");
-        }
+        }*/
 
         [ConfigurationProperty("Connection", IsRequired = true)]
         public MipConnection Connection

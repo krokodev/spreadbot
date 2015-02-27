@@ -1,7 +1,7 @@
 using System.Configuration;
 using System.Runtime.CompilerServices;
 
-namespace Crocodev.Common
+namespace Crocodev.Common.SmartConfiguration
 {
     public class SmartConfigurationElement : ConfigurationElement
     {

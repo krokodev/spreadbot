@@ -45,8 +45,13 @@
   <ItemGroup>
     <Compile Include="Sources\Configuration\MipSecurityConfiguration.cs" />
     <Compile Include="Sources\Configuration\MipConfiguration.cs" />
-    <Compile Include="Sources\Crocodev.Common\SmartConfigurationElement.cs" />
-    <Compile Include="Sources\Crocodev.Common\SmartConfigurationSection.cs" />
+    <Compile Include="Sources\Connector\MipRequest.cs" />
+    <Compile Include="Sources\Crocodev.Common\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SectionNameAttribute.cs" />
+    <Compile Include="Sources\Crocodev.Common\Identifier\Identifiable.cs" />
+    <Compile Include="Sources\Crocodev.Common\Identifier\Identifier.cs" />
+    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SmartConfigurationElement.cs" />
+    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SmartConfigurationSection.cs" />
     <Compile Include="Sources\Connector\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
     <Compile Include="Sources\Connector\MipResponse.cs" />

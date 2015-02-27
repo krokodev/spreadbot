@@ -10,11 +10,11 @@ namespace Spreadbot.Core.Mip.Tests
     public class MipConnectorTests
     {
         [TestMethod]
-        public void Upload_Feed_On_MIP()
+        public void Upload_Zipped_Feed_To_MIP()
         {
             var feed = new MipFeed(MipFeedType.Product);
             var mip = new MipConnector();
-            var response = mip.UploadZippedFeed(feed);
+            var response = mip.SendZippedFeed(feed, (MipRequest.Identifier)1234);
 
             Trace.TraceInformation(response.StatusDescription);
             Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);

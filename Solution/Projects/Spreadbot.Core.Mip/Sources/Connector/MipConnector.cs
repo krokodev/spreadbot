@@ -1,4 +1,5 @@
 ﻿using System;
+using Crocodev.Common.Identifier;
 using WinSCP;
 
 namespace Spreadbot.Core.Mip
@@ -30,43 +31,59 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // UploadFeed
-        public MipResponse UploadZippedFeed(MipFeed feed)
+        public MipResponse SendZippedFeed(MipFeed feed, MipRequest.Identifier reqId)
         {
             try
             {
-                var sessionOptions = CreateSessionOptions();
-
-                var transferOptions = new TransferOptions
-                {
-                    TransferMode = TransferMode.Binary
-                };
-
-                using (var session = new Session())
-                {
-                    session.Open(sessionOptions);
-                    // Now: MipConnector.UploadZippedFeed
-                    // Todo: Use config for paths
-                    var transferResult = session.PutFiles(
-                        @"p:\Projects\spreadbot\Research\mipsftp\data\store\zip\product.1324.zip",
-                        "store/product/product.1324.zip",
-                        false,
-                        transferOptions
-                        );
-                    transferResult.Check();
-                }
+                PutFiles(
+                    MakeLocalZippedFeedPath(feed, reqId),
+                    MakeRemoteFeedPath(feed, reqId)
+                    );
             }
             catch (Exception e)
             {
-                return new MipResponse(MipStatusCode.Error)
-                {
-                    StatusDescription = e.Message
-                };
+                return new MipResponse(MipStatusCode.Error, e.Message);
             }
             return new MipResponse(MipStatusCode.FeedUploaded);
         }
 
         // ===================================================================================== []
-        // CreateSessionOptions
+        // Session
+        private static void PutFiles(string localPath, string remotePath)
+        {
+            using (var session = new Session())
+            {
+                var sessionOptions = CreateSessionOptions();
+                var transferOptions = CreateTransferOptions();
+
+                session.Open(sessionOptions);
+
+                var transferResult = session.PutFiles(
+                    localPath,
+                    remotePath,
+                    false,
+                    transferOptions
+                    );
+
+                transferResult.Check();
+            }
+        }
+
+        // ===================================================================================== []
+        // Paths
+        private string MakeLocalZippedFeedPath(MipFeed feed, MipRequest.Identifier reqId)
+        {
+            return @"p:\Projects\spreadbot\Research\mipsftp\data\store\zip\product.1324.zip";
+        }
+
+        private string MakeRemoteFeedPath(MipFeed feed, Identifiable<MipRequest, int>.Identifier reqId)
+        {
+            return @"store/product/product.1324.zip";
+        }
+
+
+        // ===================================================================================== []
+        // Options
         private static SessionOptions CreateSessionOptions(string password = null)
         {
             return new SessionOptions
@@ -77,6 +94,14 @@ namespace Spreadbot.Core.Mip
                 PortNumber = MipSettings.PortNumber,
                 UserName = MipSettings.UserName,
                 Password = password ?? MipSettings.Password
+            };
+        }
+
+        private static TransferOptions CreateTransferOptions()
+        {
+            return new TransferOptions
+            {
+                TransferMode = TransferMode.Binary
             };
         }
     }

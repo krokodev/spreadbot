@@ -1,25 +1,11 @@
-﻿using System;
-using System.Configuration;
-using System.Threading;
-using Crocodev.Common;
+﻿using System.Configuration;
+using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Mip
 {
-    public class MipSecurityConfiguration : SmartConfigurationSection
+    [SectionName("Spreadbot/MipSecurity")]
+    public class MipSecurityConfiguration : SmartConfigurationSection<MipSecurityConfiguration>
     {
-        private static Lazy<MipSecurityConfiguration> _instance = new Lazy<MipSecurityConfiguration>(CreateInstance,
-            LazyThreadSafetyMode.ExecutionAndPublication);
-
-        public static MipSecurityConfiguration Instance
-        {
-            get { return _instance.Value; }
-        }
-
-        private static MipSecurityConfiguration CreateInstance()
-        {
-            return (MipSecurityConfiguration)ConfigurationManager.GetSection("Spreadbot/MipSecurity");
-        }
-
         [ConfigurationProperty("SecretData", IsRequired = true)]
         public MipSecretData SecretData
         {
