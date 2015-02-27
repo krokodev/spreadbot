@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Threading;
+﻿using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Mip

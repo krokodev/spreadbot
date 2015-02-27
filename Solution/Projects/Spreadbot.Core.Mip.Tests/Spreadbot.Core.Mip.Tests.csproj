@@ -54,7 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Sources\MipConnectorTests.cs" />
+    <Compile Include="Sources\MipConnector_Config_Tests.cs" />
+    <Compile Include="Sources\MipConnector_Sftp_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

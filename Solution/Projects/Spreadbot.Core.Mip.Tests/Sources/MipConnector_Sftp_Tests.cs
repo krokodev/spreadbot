@@ -4,28 +4,37 @@ using WinSCP;
 
 namespace Spreadbot.Core.Mip.Tests
 {
-    // >> Now: Mip.Tests
-
     [TestClass]
-    public class MipConnectorTests
+    public class MipConnector_Sftp_Tests
     {
         [TestMethod]
-        public void Upload_Zipped_Feed_To_MIP()
+        public void Send_Zipped_Feed_To_MIP()
         {
             var feed = new MipFeed(MipFeedType.Product);
-            var mip = new MipConnector();
-            var response = mip.SendZippedFeed(feed, (MipRequest.Identifier)1000);
+            var response = MipConnector.SftpHelper.SendZippedFeed(feed, (MipRequest.Identifier)1000);
 
             Trace.TraceInformation(response.StatusDescription);
             Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);
         }
 
+/*
+        [TestMethod]
+        public void Zip_And_Send_Feed_To_MIP()
+        {
+            var feed = new MipFeed(MipFeedType.Product);
+            var response = MipConnector.SendFeed(feed);
+
+            Trace.TraceInformation("response.RequestId={0}", response.RequestId);
+            
+            Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);
+            Assert.IsTrue(true, MipRequest.VerifyRequestId(response.RequestId));
+        }
+ */
+
         [TestMethod]
         public void Test_Good_Connection()
         {
-            var feed = new MipFeed(MipFeedType.Product);
-            var mip = new MipConnector();
-            var response = mip.TestConnection();
+            var response = MipConnector.SftpHelper.TestConnection();
 
             Assert.AreEqual(MipStatusCode.ConnectionOk, response.StatusCode);
         }
@@ -33,9 +42,7 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Test_Bad_Connection()
         {
-            var feed = new MipFeed(MipFeedType.Product);
-            var mip = new MipConnector();
-            var response = mip.TestConnection("wrong password");
+            var response = MipConnector.SftpHelper.TestConnection("wrong password");
 
             Assert.AreEqual(MipStatusCode.Error, response.StatusCode);
         }
@@ -63,26 +70,10 @@ namespace Spreadbot.Core.Mip.Tests
             {
                 Trace.TraceInformation(e.InnerException.Message);
 
-                Assert.AreEqual(
-                    true,
+                Assert.IsTrue(
                     e.InnerException.Message.Contains("Authentication failed"),
                     "WinSCP.SessionRemoteException must contain: [Authentication failed]");
             }
-        }
-
-        [TestMethod]
-        public void Read_Mip_Config()
-        {
-            var configuration = MipConfiguration.Instance;
-            Assert.AreEqual("mip.ebay.com", configuration.Connection.HostName);
-            Assert.AreEqual(22, configuration.Connection.PortNumber);
-        }
-
-        [TestMethod]
-        public void Read_Mip_Security_Config()
-        {
-            var configuration = MipSecurityConfiguration.Instance;
-            Assert.AreEqual("cyfir", configuration.SecretData.UserName);
         }
     }
 }

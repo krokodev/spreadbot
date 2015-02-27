@@ -45,13 +45,15 @@
   <ItemGroup>
     <Compile Include="Sources\Config\MipSecurityConfiguration\MipSecurityConfiguration.cs" />
     <Compile Include="Sources\Config\MipConfiguration\MipConfiguration.cs" />
-    <Compile Include="Sources\Connector\MipRequest.cs" />
-    <Compile Include="Sources\Connector\MipStatusCode.cs" />
+    <Compile Include="Sources\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
+    <Compile Include="Sources\Connector\MipConnector.SftpHelper.cs" />
+    <Compile Include="Sources\Request\MipRequest.cs" />
+    <Compile Include="Sources\Response\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
-    <Compile Include="Sources\Connector\MipResponse.cs" />
-    <Compile Include="Sources\Connector\MipSettings.cs" />
-    <Compile Include="Sources\Connector\MipFeed.cs" />
-    <Compile Include="Sources\Connector\MipFeedType.cs" />
+    <Compile Include="Sources\Response\MipResponse.cs" />
+    <Compile Include="Sources\Config\MipSettings\MipSettings.cs" />
+    <Compile Include="Sources\Feed\MipFeed.cs" />
+    <Compile Include="Sources\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
