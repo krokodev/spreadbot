@@ -46,12 +46,6 @@
     <Compile Include="Sources\Configuration\MipSecurityConfiguration.cs" />
     <Compile Include="Sources\Configuration\MipConfiguration.cs" />
     <Compile Include="Sources\Connector\MipRequest.cs" />
-    <Compile Include="Sources\Crocodev.Common\Extensions\ReflectionExtensions.cs" />
-    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SectionNameAttribute.cs" />
-    <Compile Include="Sources\Crocodev.Common\Identifier\Identifiable.cs" />
-    <Compile Include="Sources\Crocodev.Common\Identifier\Identifier.cs" />
-    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SmartConfigurationElement.cs" />
-    <Compile Include="Sources\Crocodev.Common\SmartConfiguration\SmartConfigurationSection.cs" />
     <Compile Include="Sources\Connector\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
     <Compile Include="Sources\Connector\MipResponse.cs" />
@@ -79,7 +73,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
+      <Project>{b8d6f968-fc6e-4e3c-999a-f44d93f6ada4}</Project>
+      <Name>Crocodev.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
