@@ -12,7 +12,7 @@ namespace Spreadbot.Core.Mip
         // Paths
         private static string MakeLocalZippedFeedPath(string feed, string reqId)
         {
-            return string.Format("{0}{1}.{2}.zip",
+            return string.Format(@"{0}\{1}.{2}.zip",
                 Settings.ZippedFeedsPath,
                 feed,
                 reqId
