@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-// Todo: Move to Nuget Package
-
 namespace Crocodev.Common.SmartConfiguration
 {
     public class SmartConfigurationSection<T> : ConfigurationSection
@@ -29,7 +27,7 @@ namespace Crocodev.Common.SmartConfiguration
             return (T) ConfigurationManager.GetSection(attr.Name);
         }
 
-        protected static string GetPropertyName([CallerMemberName] string name = "")
+        protected static string GetMethodName([CallerMemberName] string name = "")
         {
             return name;
         }

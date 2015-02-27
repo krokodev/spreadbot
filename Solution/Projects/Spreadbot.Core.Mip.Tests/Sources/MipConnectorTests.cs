@@ -14,7 +14,7 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Product);
             var mip = new MipConnector();
-            var response = mip.SendZippedFeed(feed, (MipRequest.Identifier)1234);
+            var response = mip.SendZippedFeed(feed, (MipRequest.Identifier)1000);
 
             Trace.TraceInformation(response.StatusDescription);
             Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);

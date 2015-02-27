@@ -43,8 +43,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Configuration\MipSecurityConfiguration.cs" />
-    <Compile Include="Sources\Configuration\MipConfiguration.cs" />
+    <Compile Include="Sources\Config\MipSecurityConfiguration\MipSecurityConfiguration.cs" />
+    <Compile Include="Sources\Config\MipConfiguration\MipConfiguration.cs" />
     <Compile Include="Sources\Connector\MipRequest.cs" />
     <Compile Include="Sources\Connector\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />

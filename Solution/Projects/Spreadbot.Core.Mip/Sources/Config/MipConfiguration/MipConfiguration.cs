@@ -8,23 +8,15 @@ namespace Spreadbot.Core.Mip
     [SectionName("Spreadbot/Mip")]
     public class MipConfiguration : SmartConfigurationSection<MipConfiguration>
     {
-/*        private static readonly Lazy<MipConfiguration> InstanceValue = new Lazy<MipConfiguration>(CreateInstance,
-            LazyThreadSafetyMode.ExecutionAndPublication);
-
-        public static MipConfiguration Instance
-        {
-            get { return InstanceValue.Value; }
-        }
-
-        private static MipConfiguration CreateInstance()
-        {
-            return (MipConfiguration) ConfigurationManager.GetSection("Spreadbot/Mip");
-        }*/
-
         [ConfigurationProperty("Connection", IsRequired = true)]
         public MipConnection Connection
         {
-            get { return (MipConnection)this[GetPropertyName()]; }
+            get { return (MipConnection)this[GetMethodName()]; }
+        }
+        [ConfigurationProperty("Paths", IsRequired = true)]
+        public MipPaths Paths
+        {
+            get { return (MipPaths)this[GetMethodName()]; }
         }
     }
 
@@ -34,14 +26,28 @@ namespace Spreadbot.Core.Mip
         public string HostName
         {
             get { return (string)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
         }
 
         [ConfigurationProperty("PortNumber", IsRequired = true)]
         public int PortNumber
         {
             get { return (int)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
+        }
+    }
+
+
+    public class MipPaths: SmartConfigurationElement
+    {
+        [ConfigurationProperty("ZippedFeedsPath", IsRequired = true)]
+        public string ZippedFeedsPath
+        {
+            get { return (string)this[GetPropertyName()]; }
+        }
+
+        [ConfigurationProperty("RemoteBasePath", IsRequired = true)]
+        public string RemoteBasePath
+        {
+            get { return (string)this[GetPropertyName()]; }
         }
     }
 }

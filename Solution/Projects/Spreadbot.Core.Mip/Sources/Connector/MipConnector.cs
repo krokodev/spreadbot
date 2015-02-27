@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Mip
         // >> Now: MipConnector
         // ===================================================================================== []
         // TestConnection
-        public MipResponse TestConnection(string password = null)
+        public static MipResponse TestConnection(string password = null)
         {
             try
             {
@@ -31,13 +31,13 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // UploadFeed
-        public MipResponse SendZippedFeed(MipFeed feed, MipRequest.Identifier reqId)
+        public static MipResponse SendZippedFeed(MipFeed feed, MipRequest.Identifier reqId)
         {
             try
             {
                 PutFiles(
                     MakeLocalZippedFeedPath(feed, reqId),
-                    MakeRemoteFeedPath(feed, reqId)
+                    MakeRemoteFeedInboxPath(feed, reqId)
                     );
             }
             catch (Exception e)
@@ -71,14 +71,22 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // Paths
-        private string MakeLocalZippedFeedPath(MipFeed feed, MipRequest.Identifier reqId)
+        private static string MakeLocalZippedFeedPath(MipFeed feed, MipRequest.Identifier reqId)
         {
-            return @"p:\Projects\spreadbot\Research\mipsftp\data\store\zip\product.1324.zip";
+            return string.Format("{0}{1}.{2}.zip",
+                MipSettings.ZippedFeedsPath,
+                feed.Name,
+                reqId
+                );
         }
 
-        private string MakeRemoteFeedPath(MipFeed feed, Identifiable<MipRequest, int>.Identifier reqId)
+        private static string MakeRemoteFeedInboxPath(MipFeed feed, MipRequest.Identifier reqId)
         {
-            return @"store/product/product.1324.zip";
+            return string.Format("{0}{1}/{1}.{2}.zip",
+                MipSettings.RemoteBasePath,
+                feed.Name,
+                reqId
+                );
         }
 
 

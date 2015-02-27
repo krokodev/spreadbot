@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Mip
         [ConfigurationProperty("SecretData", IsRequired = true)]
         public MipSecretData SecretData
         {
-            get { return (MipSecretData)this[GetPropertyName()]; }
+            get { return (MipSecretData)this[GetMethodName()]; }
         }
     }
 
@@ -19,14 +19,12 @@ namespace Spreadbot.Core.Mip
         public string UserName
         {
             get { return (string)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
         }
 
         [ConfigurationProperty("Password", IsRequired = true)]
         public string Password
         {
             get { return (string)this[GetPropertyName()]; }
-            set { this[GetPropertyName()] = value; }
         }
     }
 }

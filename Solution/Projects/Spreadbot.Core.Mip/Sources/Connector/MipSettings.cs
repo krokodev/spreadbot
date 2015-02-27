@@ -2,19 +2,37 @@
 
 namespace Spreadbot.Core.Mip
 {
-    static public class MipSettings
+    public static class MipSettings
     {
-        static MipSettings()
+        public static string HostName
         {
-            HostName = MipConfiguration.Instance.Connection.HostName;
-            PortNumber = MipConfiguration.Instance.Connection.PortNumber;
-            UserName = MipSecurityConfiguration.Instance.SecretData.UserName;
-            Password = MipSecurityConfiguration.Instance.SecretData.Password;
+            get { return MipConfiguration.Instance.Connection.HostName; }
         }
-
-        public static string HostName { get; private set; }
-        public static int PortNumber { get; private set; }
-        public static string UserName { get; private set; }
-        public static string Password { get; private set; }
+        public static int PortNumber
+        {
+            get { return MipConfiguration.Instance.Connection.PortNumber; }
+        }
+        public static string UserName
+        {
+            get { return MipSecurityConfiguration.Instance.SecretData.UserName; }
+        }
+        public static string Password
+        {
+            get { return MipSecurityConfiguration.Instance.SecretData.Password; }
+        }
+        public static string ZippedFeedsPath
+        {
+            get
+            {
+                return MipConfiguration.Instance.Paths.ZippedFeedsPath; 
+            }
+        }
+        public static string RemoteBasePath
+        {
+            get
+            {
+                return MipConfiguration.Instance.Paths.RemoteBasePath; 
+            }
+        }
     }
 }

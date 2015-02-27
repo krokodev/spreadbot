@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
+      <Project>{B8D6F968-FC6E-4E3C-999A-F44D93F6ADA4}</Project>
+      <Name>Crocodev.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Mip\Spreadbot.Core.Mip.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
       <Name>Spreadbot.Core.Mip</Name>
