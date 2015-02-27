@@ -8,7 +8,7 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Read_Mip_Config()
         {
-            var configuration = MipConfiguration.Instance;
+            var configuration = Configuration.Mip.Instance;
             Assert.AreEqual("mip.ebay.com", configuration.Connection.HostName);
             Assert.AreEqual(22, configuration.Connection.PortNumber);
         }
@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Read_Mip_Security_Config()
         {
-            var configuration = MipSecurityConfiguration.Instance;
+            var configuration = Configuration.MipSecurity.Instance;
             Assert.AreEqual("cyfir", configuration.SecretData.UserName);
         }
     }

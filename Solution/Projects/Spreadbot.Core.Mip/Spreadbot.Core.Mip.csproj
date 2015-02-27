@@ -43,15 +43,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Config\MipSecurityConfiguration\MipSecurityConfiguration.cs" />
-    <Compile Include="Sources\Config\MipConfiguration\MipConfiguration.cs" />
+    <Compile Include="Sources\Config\Elements\Connection.cs" />
+    <Compile Include="Sources\Config\Elements\Paths.cs" />
+    <Compile Include="Sources\Config\Elements\SecretData.cs" />
+    <Compile Include="Sources\Config\Sections\MipSecurity.cs" />
+    <Compile Include="Sources\Config\Sections\Mip.cs" />
+    <Compile Include="Sources\Connector\MipConnector.pvt.cs" />
     <Compile Include="Sources\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
     <Compile Include="Sources\Connector\MipConnector.SftpHelper.cs" />
     <Compile Include="Sources\Request\MipRequest.cs" />
     <Compile Include="Sources\Response\MipStatusCode.cs" />
     <Compile Include="Sources\Connector\MipConnector.cs" />
     <Compile Include="Sources\Response\MipResponse.cs" />
-    <Compile Include="Sources\Config\MipSettings\MipSettings.cs" />
+    <Compile Include="Sources\MipSettings\MipSettings.cs" />
     <Compile Include="Sources\Feed\MipFeed.cs" />
     <Compile Include="Sources\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
