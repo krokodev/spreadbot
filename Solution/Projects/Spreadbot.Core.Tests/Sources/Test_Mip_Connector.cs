@@ -9,14 +9,12 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void Zip_And_Send_Feed_To_MIP()
         {
-            // Todo: Zip_And_Send_Feed_To_MIP
-/*            var feed = new Feed(FeedType.Product);
+            var feed = new Feed(FeedType.Product);
             var response = Connector.SendFeed(feed);
             Trace.TraceInformation("response.RequestId={0}", response.RequestId);
 
-            Assert.AreEqual(StatusCode.FeedUploaded, response.StatusCode);
-            Assert.IsTrue(true, Request.VerifyRequestId(response.RequestId));
- */
+            Assert.AreEqual(StatusCode.FeedSent, response.StatusCode);
+            Assert.IsTrue(Request.VerifyRequestId(response.RequestId));
         }
     }
 }

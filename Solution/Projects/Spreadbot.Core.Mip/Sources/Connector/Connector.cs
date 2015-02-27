@@ -8,5 +8,9 @@ namespace Spreadbot.Core.Mip
     public partial class Connector
     {
         // Now: MipConnector
+        public static Response SendFeed(Feed feed)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

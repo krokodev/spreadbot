@@ -34,7 +34,7 @@ namespace Spreadbot.Core.Mip
             
             // ===================================================================================== []
             // UploadFeed
-            public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static Response SendZippedFeed(string feed, string reqId)
             {
                 try
                 {
@@ -47,7 +47,10 @@ namespace Spreadbot.Core.Mip
                 {
                     return new Response(StatusCode.Error, e.Message);
                 }
-                return new Response(StatusCode.FeedUploaded);
+                return new Response(
+                    StatusCode.FeedSent,
+                    string.Format("Feed:[{0}.{1}]",feed,reqId)
+                    );
             }
         }
     }

@@ -5,6 +5,6 @@
         Unknown,
         ConnectionOk,
         Error,
-        FeedUploaded
+        FeedSent
     }
 }

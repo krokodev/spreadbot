@@ -9,5 +9,6 @@ namespace Spreadbot.Core.Mip
         }
         public StatusCode StatusCode { get; set; }
         public string StatusDescription { get; set; }
+        public Request.Identifier RequestId { get; set; }
     }
 }

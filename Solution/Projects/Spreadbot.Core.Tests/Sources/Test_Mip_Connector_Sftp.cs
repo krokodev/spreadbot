@@ -11,10 +11,10 @@ namespace Spreadbot.Core.Mip.Tests
         public void Send_Zipped_Feed_To_MIP()
         {
             var feed = new Feed(FeedType.Product);
-            var response = Connector.SftpHelper.SendZippedFeed(feed, (Request.Identifier)1000);
+            var response = Connector.SftpHelper.SendZippedFeed(feed.Name, 0.ToString());
 
             Trace.TraceInformation(response.StatusDescription);
-            Assert.AreEqual(StatusCode.FeedUploaded, response.StatusCode);
+            Assert.AreEqual(StatusCode.FeedSent, response.StatusCode);
         }
 
         [TestMethod]
