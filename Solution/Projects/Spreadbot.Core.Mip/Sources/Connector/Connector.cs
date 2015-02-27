@@ -5,7 +5,7 @@ using WinSCP;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class MipConnector
+    public partial class Connector
     {
         // Now: MipConnector
     }

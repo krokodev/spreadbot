@@ -5,46 +5,32 @@ using WinSCP;
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class MipConnector_Sftp_Tests
+    public class Test_Mip_Connector_Sftp
     {
         [TestMethod]
         public void Send_Zipped_Feed_To_MIP()
         {
-            var feed = new MipFeed(MipFeedType.Product);
-            var response = MipConnector.SftpHelper.SendZippedFeed(feed, (MipRequest.Identifier)1000);
+            var feed = new Feed(FeedType.Product);
+            var response = Connector.SftpHelper.SendZippedFeed(feed, (Request.Identifier)1000);
 
             Trace.TraceInformation(response.StatusDescription);
-            Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);
+            Assert.AreEqual(StatusCode.FeedUploaded, response.StatusCode);
         }
-
-/*
-        [TestMethod]
-        public void Zip_And_Send_Feed_To_MIP()
-        {
-            var feed = new MipFeed(MipFeedType.Product);
-            var response = MipConnector.SendFeed(feed);
-
-            Trace.TraceInformation("response.RequestId={0}", response.RequestId);
-            
-            Assert.AreEqual(MipStatusCode.FeedUploaded, response.StatusCode);
-            Assert.IsTrue(true, MipRequest.VerifyRequestId(response.RequestId));
-        }
- */
 
         [TestMethod]
         public void Test_Good_Connection()
         {
-            var response = MipConnector.SftpHelper.TestConnection();
+            var response = Connector.SftpHelper.TestConnection();
 
-            Assert.AreEqual(MipStatusCode.ConnectionOk, response.StatusCode);
+            Assert.AreEqual(StatusCode.ConnectionOk, response.StatusCode);
         }
 
         [TestMethod]
         public void Test_Bad_Connection()
         {
-            var response = MipConnector.SftpHelper.TestConnection("wrong password");
+            var response = Connector.SftpHelper.TestConnection("wrong password");
 
-            Assert.AreEqual(MipStatusCode.Error, response.StatusCode);
+            Assert.AreEqual(StatusCode.Error, response.StatusCode);
         }
 
         [TestMethod]

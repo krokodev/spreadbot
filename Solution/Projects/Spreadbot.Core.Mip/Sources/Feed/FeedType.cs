@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.Mip
 {
-    public enum MipFeedType
+    public enum FeedType
     {
         Product,
         Availability,

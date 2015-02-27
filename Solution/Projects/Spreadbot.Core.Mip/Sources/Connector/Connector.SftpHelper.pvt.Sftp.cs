@@ -5,7 +5,7 @@ using WinSCP;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class MipConnector
+    public partial class Connector
     {
         // >> Now: MipConnector.Sftp
         public partial class SftpHelper
@@ -36,10 +36,10 @@ namespace Spreadbot.Core.Mip
                 {
                     Protocol = Protocol.Sftp,
                     GiveUpSecurityAndAcceptAnySshHostKey = true,
-                    HostName = MipSettings.HostName,
-                    PortNumber = MipSettings.PortNumber,
-                    UserName = MipSettings.UserName,
-                    Password = password ?? MipSettings.Password
+                    HostName = Settings.HostName,
+                    PortNumber = Settings.PortNumber,
+                    UserName = Settings.UserName,
+                    Password = password ?? Settings.Password
                 };
             }
 

@@ -2,7 +2,7 @@
 
 namespace Spreadbot.Core.Mip
 {
-    public class MipRequest : Identifiable<MipRequest, int>
+    public class Request : Identifiable<Request, int>
     {
     }
 }

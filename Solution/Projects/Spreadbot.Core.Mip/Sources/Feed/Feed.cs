@@ -2,14 +2,14 @@
 
 namespace Spreadbot.Core.Mip
 {
-    public class MipFeed
+    public class Feed
     {
-        public MipFeed(MipFeedType feedType)
+        public Feed(FeedType feedType)
         {
             _type = feedType;
         }
 
-        private readonly MipFeedType _type;
+        private readonly FeedType _type;
 
         public string Name
         {

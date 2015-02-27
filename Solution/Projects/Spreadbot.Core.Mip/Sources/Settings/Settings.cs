@@ -2,7 +2,7 @@
 
 namespace Spreadbot.Core.Mip
 {
-    public static class MipSettings
+    public static class Settings
     {
         public static string HostName
         {

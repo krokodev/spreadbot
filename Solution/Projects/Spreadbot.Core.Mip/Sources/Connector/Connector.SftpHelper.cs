@@ -5,14 +5,14 @@ using WinSCP;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class MipConnector
+    public partial class Connector
     {
         // >> Now: MipConnector.SftpHelper
         public partial class SftpHelper
         {
             // ===================================================================================== []
             // TestConnection
-            public static MipResponse TestConnection(string password = null)
+            public static Response TestConnection(string password = null)
             {
                 try
                 {
@@ -24,17 +24,17 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new MipResponse(MipStatusCode.Error)
+                    return new Response(StatusCode.Error)
                     {
                         StatusDescription = e.Message
                     };
                 }
-                return new MipResponse(MipStatusCode.ConnectionOk);
+                return new Response(StatusCode.ConnectionOk);
             }
             
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse SendZippedFeed(MipFeed feed, MipRequest.Identifier reqId)
+            public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 try
                 {
@@ -45,9 +45,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new MipResponse(MipStatusCode.Error, e.Message);
+                    return new Response(StatusCode.Error, e.Message);
                 }
-                return new MipResponse(MipStatusCode.FeedUploaded);
+                return new Response(StatusCode.FeedUploaded);
             }
         }
     }

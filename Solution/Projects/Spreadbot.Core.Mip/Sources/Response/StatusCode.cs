@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.Mip
 {
-    public enum MipStatusCode
+    public enum StatusCode
     {
         Unknown,
         ConnectionOk,
