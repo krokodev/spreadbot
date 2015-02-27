@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Connector\Connector.pvt.cs" />
+    <Compile Include="Sources\Connector\Connector.ZipHelper.cs" />
     <Compile Include="Sources\Connector\Connector.SftpHelper.pvt.Sftp.cs" />
     <Compile Include="Sources\Connector\Connector.SftpHelper.cs" />
     <Compile Include="Sources\Request\Request.cs" />

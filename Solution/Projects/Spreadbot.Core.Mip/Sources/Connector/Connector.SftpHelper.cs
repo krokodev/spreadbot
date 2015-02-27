@@ -9,7 +9,6 @@ namespace Spreadbot.Core.Mip
 {
     public partial class Connector
     {
-        // >> Now: MipConnector.SftpHelper
         public partial class SftpHelper
         {
             // ===================================================================================== []
@@ -26,9 +25,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new Response(false, StatusCode.TestConnectionError, e.Message);
+                    return new Response(false, StatusCode.TestConnectionFail, e.Message);
                 }
-                return new Response(true, StatusCode.TestConnectionOk);
+                return new Response(true, StatusCode.TestConnectionSuccess);
             }
 
             // ===================================================================================== []
@@ -44,9 +43,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new Response(false, StatusCode.SendZippedFeedError, e.Message);
+                    return new Response(false, StatusCode.SendZippedFeedFail, e.Message);
                 }
-                return new Response(false, StatusCode.SendZippedFeedOk);
+                return new Response(true, StatusCode.SendZippedFeedSuccess);
             }
 
             public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)

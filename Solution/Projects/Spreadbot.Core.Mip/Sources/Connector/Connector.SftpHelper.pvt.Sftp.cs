@@ -7,9 +7,10 @@ namespace Spreadbot.Core.Mip
 {
     public partial class Connector
     {
-        // >> Now: MipConnector.Sftp
         public partial class SftpHelper
         {
+            // ===================================================================================== []
+            // PutFiles
             private static void PutFiles(string localPath, string remotePath)
             {
                 using (var session = new Session())
@@ -30,6 +31,8 @@ namespace Spreadbot.Core.Mip
                 }
             }
 
+            // ===================================================================================== []
+            // CreateSessionOptions
             private static SessionOptions CreateSessionOptions(string password = null)
             {
                 return new SessionOptions
@@ -43,6 +46,8 @@ namespace Spreadbot.Core.Mip
                 };
             }
 
+            // ===================================================================================== []
+            // CreateTransferOptions
             private static TransferOptions CreateTransferOptions()
             {
                 return new TransferOptions

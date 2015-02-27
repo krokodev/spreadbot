@@ -11,9 +11,10 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
             var response = Connector.SendFeed(feed);
-            Trace.TraceInformation("response.RequestId=[{0}]", response.RequestId);
 
-            Assert.AreEqual(StatusCode.SendFeedOk, response.StatusCode);
+            Trace.TraceInformation("StatusDescription=[{0}]", response.StatusDescription);
+
+            Assert.AreEqual(StatusCode.SendFeedSuccess, response.StatusCode);
             Assert.IsTrue(Request.VerifyRequestId(response.RequestId));
         }
     }

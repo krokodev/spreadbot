@@ -1,35 +1,28 @@
-﻿// ReSharper disable RedundantUsingDirective
-using System;
-using Crocodev.Common.Identifier;
-using WinSCP;
+﻿using System;
 
 namespace Spreadbot.Core.Mip
 {
     public partial class Connector
     {
-        // Now: MipConnector
+        // ===================================================================================== []
+        // SendFeed
         public static Response SendFeed(Feed feed)
         {
             var reqId = Request.GenerateRequestId();
             try
             {
-                //ZipHelper.CreateArchive(feed, reqId);
+                ZipHelper.ZipFeed(feed, reqId).Check();
                 SftpHelper.SendZippedFeed(feed, reqId).Check();
             }
             catch (Exception e)
             {
-                return new Response(
-                    false,
-                    StatusCode.SendFeedError,
-                    string.Format("Feed:[{0}.{1}]", feed, reqId)
-                    );
-
+                return new Response(false, StatusCode.SendFeedFail, e.Message);
             }
-            return new Response(
-                true,
-                StatusCode.SendFeedOk,
-                string.Format("Feed:[{0}.{1}] zipped and sent", feed, reqId)
-                );
+            return new Response(true, StatusCode.SendFeedSuccess)
+            {
+                RequestId = reqId,
+                StatusDescription = string.Format("StatusCode=[{0}] RequestId=[{1}]", StatusCode.SendFeedSuccess, reqId)
+            };
         }
     }
 }

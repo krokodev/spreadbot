@@ -1,4 +1,5 @@
 ﻿// ReSharper disable RedundantUsingDirective
+
 using System;
 using Crocodev.Common.Identifier;
 using WinSCP;
@@ -24,6 +25,14 @@ namespace Spreadbot.Core.Mip
                 Settings.RemoteBasePath,
                 feed,
                 reqId
+                );
+        }
+
+        private static string MakeLocalFeedPath(string feed)
+        {
+            return string.Format("{0}{1}",
+                Settings.FeedsPath,
+                feed
                 );
         }
     }

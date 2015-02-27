@@ -11,10 +11,23 @@ namespace Spreadbot.Core.Configuration
             get { return (string)this[GetPropertyName()]; }
         }
 
+        [ConfigurationProperty("FeedsPath", IsRequired = true)]
+        public string FeedsPath
+        {
+            get { return (string)this[GetPropertyName()]; }
+        }
+
         [ConfigurationProperty("RemoteBasePath", IsRequired = true)]
         public string RemoteBasePath
         {
             get { return (string)this[GetPropertyName()]; }
         }
+
+        [ConfigurationProperty("InboxPath", IsRequired = true)]
+        public string InboxPath
+        {
+            get { return (string)this[GetPropertyName()]; }
+        }
+
     }
 }

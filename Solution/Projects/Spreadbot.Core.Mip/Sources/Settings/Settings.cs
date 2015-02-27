@@ -34,5 +34,13 @@ namespace Spreadbot.Core.Mip
                 return MipPublic.Instance.Paths.RemoteBasePath; 
             }
         }
+
+        public static string FeedsPath
+        {
+            get
+            {
+                return MipPublic.Instance.Paths.FeedsPath;
+            }
+        }
     }
 }

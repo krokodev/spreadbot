@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Core.Mip
@@ -8,8 +7,9 @@ namespace Spreadbot.Core.Mip
     {
         public static Identifier GenerateRequestId()
         {
-            return (Identifier)new Guid();
+            return (Identifier) Guid.NewGuid();
         }
+
         public static bool VerifyRequestId(Identifier requestId)
         {
             Guid guid;
