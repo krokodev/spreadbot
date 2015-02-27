@@ -6,8 +6,8 @@
     <ProjectGuid>{9F9E37D0-9359-4CCB-B585-319F369D3BDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Core.Mip.Tests</RootNamespace>
-    <AssemblyName>Spreadbot.Core.Mip.Tests</AssemblyName>
+    <RootNamespace>Spreadbot.Core.Tests</RootNamespace>
+    <AssemblyName>Spreadbot.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -62,6 +62,10 @@
     <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
       <Project>{B8D6F968-FC6E-4E3C-999A-F44D93F6ADA4}</Project>
       <Name>Crocodev.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
+      <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
+      <Name>Spreadbot.Core.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Mip\Spreadbot.Core.Mip.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>

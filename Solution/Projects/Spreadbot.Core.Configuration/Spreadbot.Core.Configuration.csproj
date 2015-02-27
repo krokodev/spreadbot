@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</ProjectGuid>
+    <ProjectGuid>{BC745F18-F75D-49B8-8C3A-012A262EC939}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Core.Mip</RootNamespace>
-    <AssemblyName>Spreadbot.Core.Mip</AssemblyName>
+    <RootNamespace>Spreadbot.Core.Configuration</RootNamespace>
+    <AssemblyName>Spreadbot.Core.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,50 +38,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WinSCPnet">
-      <HintPath>..\..\packages\WinSCP.5.7\lib\WinSCPnet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Connector\MipConnector.pvt.cs" />
-    <Compile Include="Sources\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
-    <Compile Include="Sources\Connector\MipConnector.SftpHelper.cs" />
-    <Compile Include="Sources\Request\MipRequest.cs" />
-    <Compile Include="Sources\Response\MipStatusCode.cs" />
-    <Compile Include="Sources\Connector\MipConnector.cs" />
-    <Compile Include="Sources\Response\MipResponse.cs" />
-    <Compile Include="Sources\MipSettings\MipSettings.cs" />
-    <Compile Include="Sources\Feed\MipFeed.cs" />
-    <Compile Include="Sources\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Tools\PowershellExample\mip-check-request.ps1" />
-    <None Include="Tools\PowershellExample\mip-upload-feed.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.paths.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.sftp.feed.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.sftp.init.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.sftp.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.sftp.request.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.trace.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.utils.ps1" />
-    <None Include="Tools\PowershellExample\mip.lib.zip.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Tools\WinSCP\WinSCP.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Include="Sources\Mip\Elements\Connection.cs" />
+    <Compile Include="Sources\Mip\Elements\Paths.cs" />
+    <Compile Include="Sources\Mip\Elements\SecretData.cs" />
+    <Compile Include="Sources\Mip\Sections\MipPublic.cs" />
+    <Compile Include="Sources\Mip\Sections\MipSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
       <Project>{b8d6f968-fc6e-4e3c-999a-f44d93f6ada4}</Project>
       <Name>Crocodev.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
-      <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
-      <Name>Spreadbot.Core.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
