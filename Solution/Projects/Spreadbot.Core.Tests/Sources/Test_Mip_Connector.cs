@@ -5,17 +5,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class Test_Mip_Connector
+    public class Test_Connector
     {
         // ===================================================================================== []
         // Zip_And_Send_Feed
         [TestMethod]
-        public void Zip_And_Send_Feed()
+        public void SendFeed()
         {
             var feed = new Feed(FeedType.Product);
             var response = Connector.SendFeed(feed);
 
-            Trace.TraceInformation("StatusDescription=[{0}]", response.StatusDescription);
+            Trace.TraceInformation(response.StatusDescription);
 
             Assert.AreEqual(StatusCode.SendFeedSuccess, response.StatusCode);
             Assert.IsTrue(Request.VerifyRequestId((Request.Identifier)response.Result));
@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Mip.Tests
         // ===================================================================================== []
         // Find_Unknown_Request
         [TestMethod]
-        public void Find_Unknown_Request()
+        public void FindRequest_Inprocess_Unknown()
         {
             var feed = new Feed(FeedType.Product);
             var request = new Request(feed, Request.GenerateId());
@@ -41,7 +41,7 @@ namespace Spreadbot.Core.Mip.Tests
         // ===================================================================================== []
         // Find_Wrong_Request
         [TestMethod]
-        public void Find_Wrong_Request()
+        public void FindRequest_Inprocess_Wrong()
         {
             var feed = new Feed(FeedType.None);
             var request = new Request(feed, Request.GenerateId());
@@ -58,7 +58,7 @@ namespace Spreadbot.Core.Mip.Tests
         // ===================================================================================== []
         // Find_Newly_Generated_Request
         [TestMethod]
-        public void Find_Newly_Generated_Request()
+        public void FindRequest_Inprocess_Newly_Generated()
         {
             // Now: Find_Newly_Generated_Request
 
@@ -78,7 +78,7 @@ namespace Spreadbot.Core.Mip.Tests
         // ===================================================================================== []
         // Check_Request_Status_Output
         [TestMethod]
-        public void Check_Request_Status_Output()
+        public void FindRequest_Output()
         {
             throw new NotImplementedException();
             // Now: Check_Request_Status_Output

@@ -5,12 +5,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class Test_Mip_Connector_Zip
+    public class Test_Connector_ZipHelper
     {
         // ===================================================================================== []
         // Zip_Feed
         [TestMethod]
-        public void Zip_Feed()
+        public void ZipFeed()
         {
             var feed = new Feed(FeedType.Product);
             var reqId = 0.ToString();
