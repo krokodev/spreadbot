@@ -7,7 +7,6 @@ namespace Spreadbot.Core.Mip.Tests
     public class Test_Connector_Sftp
     {
         // ===================================================================================== []
-        // Send_Zipped_Feed_To_MIP
         [TestMethod]
         public void SendZippedFeed()
         {
@@ -20,7 +19,6 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Test_Good_Connection
         [TestMethod]
         public void TestConnection_Good()
         {
@@ -32,7 +30,6 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Test_Bad_Connection
         [TestMethod]
         public void TestConnection_Bad()
         {

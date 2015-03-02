@@ -7,7 +7,6 @@ namespace Spreadbot.Core.Mip.Tests
     public class Test_Connector
     {
         // ===================================================================================== []
-        // Zip_And_Send_Feed
         [TestMethod]
         public void SendFeed()
         {
@@ -21,7 +20,6 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Find_Unknown_Request
         [TestMethod]
         public void FindRequest_Inprocess_Unknown()
         {
@@ -38,7 +36,6 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Find_Wrong_Request
         [TestMethod]
         public void FindRequest_Inprocess_Wrong()
         {
@@ -55,9 +52,8 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Find_Newly_Generated_Request
         [TestMethod]
-        public void FindRequest_Inprocess_Newly_Generated()
+        public void FindRequest_Inprocess()
         {
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendFeed(feed);
@@ -73,7 +69,6 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         // ===================================================================================== []
-        // Check_Request_Status_Output
         [TestMethod]
         public void FindRequest_Output()
         {
@@ -88,6 +83,21 @@ namespace Spreadbot.Core.Mip.Tests
             Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
             Assert.IsNotNull(remoteFileName);
             Assert.IsTrue(remoteFileName.Length > 1);
+        }
+
+        // ===================================================================================== []
+        [TestMethod]
+        public void FindRequest_Output_Unknown()
+        {
+            var feed = new Feed(FeedType.Product);
+            var request = new Request(feed, Request.GenerateId());
+            var findResponce = Connector.FindRequest(request, RequestProcessingStage.Output);
+            var remoteFileName = (string)findResponce.Result;
+
+            Trace.TraceInformation(findResponce.StatusDescription);
+
+            Assert.AreEqual(StatusCode.FindRequestFail, findResponce.StatusCode);
+            Assert.IsNull(remoteFileName);
         }
     }
 }

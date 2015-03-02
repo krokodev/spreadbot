@@ -8,7 +8,6 @@ namespace Spreadbot.Core.Mip.Tests
     public class Test_Connector_ZipHelper
     {
         // ===================================================================================== []
-        // Zip_Feed
         [TestMethod]
         public void ZipFeed()
         {
