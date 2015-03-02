@@ -1,10 +1,5 @@
-﻿// ReSharper disable RedundantUsingDirective
-
-using System;
+﻿using System;
 using System.Diagnostics;
-using Crocodev.Common;
-using Crocodev.Common.Identifier;
-using WinSCP;
 
 namespace Spreadbot.Core.Mip
 {
@@ -14,7 +9,7 @@ namespace Spreadbot.Core.Mip
         // Failed Responses
         private static Response ResponseFail(StatusCode statusCode, string statusDescription)
         {
-            return new Response(false, statusCode, statusDescription);
+            return new Response(false, statusCode, FailedStatusDescription(statusCode, statusDescription));
         }
 
         private static Response ResponseFail(StatusCode statusCode, Exception e)

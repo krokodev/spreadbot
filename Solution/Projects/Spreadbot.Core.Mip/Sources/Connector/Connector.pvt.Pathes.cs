@@ -1,4 +1,9 @@
-﻿namespace Spreadbot.Core.Mip
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+
+namespace Spreadbot.Core.Mip
 {
     public partial class Connector
     {
@@ -38,6 +43,40 @@
                 Settings.RemoteBasePath,
                 feed
                 );
+        }
+
+        // ===================================================================================== []
+        private static IList<string> RemoteFeedOutputFolderPathes(string feed)
+        {
+            return new List<string>
+            {
+                RemoteFeedOutputFolderPath(feed, 0),
+                RemoteFeedOutputFolderPath(feed, -1),
+                RemoteFeedOutputFolderPath(feed, 1),
+                RemoteFeedOutputFolderPath(feed, -2)
+            };
+        }
+
+        // ===================================================================================== []
+        private static string RemoteFeedOutputFolderPath(string feed, int dayShift)
+        {
+            return string.Format("{0}{1}/output/{2}",
+                Settings.RemoteBasePath,
+                feed,
+                DataBasedFolderName(dayShift)
+                );
+        }
+
+        // ===================================================================================== []
+        private static string DataBasedFolderName(int dayShift)
+        {
+            int hourOffset = Settings.OutputFolderNameUtcHourOffset
+                -7;
+
+            var utcNow = DateTime.UtcNow;
+            var mipNow = utcNow.AddHours(hourOffset + 24 * dayShift);
+
+            return mipNow.Date.ToString("MMM-dd-yyy", CultureInfo.CreateSpecificCulture("en-US"));
         }
     }
 }

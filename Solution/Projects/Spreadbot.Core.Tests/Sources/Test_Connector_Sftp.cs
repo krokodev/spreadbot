@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WinSCP;
 
 namespace Spreadbot.Core.Mip.Tests
 {

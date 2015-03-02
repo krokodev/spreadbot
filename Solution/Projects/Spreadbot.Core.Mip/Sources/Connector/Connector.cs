@@ -6,9 +6,9 @@ namespace Spreadbot.Core.Mip
     {
         // ===================================================================================== []
         // SendFeed
-        public static Response SendFeed(Feed feed)
+        public static Response SendFeed(Feed feed, Request.Identifier reqId=null)
         {
-            var reqId = Request.GenerateId();
+            reqId = reqId?? Request.GenerateId();
             try
             {
                 ZipHelper.ZipFeed(feed, reqId).Check();
@@ -19,6 +19,10 @@ namespace Spreadbot.Core.Mip
                 return ResponseFail(StatusCode.SendFeedFail, e);
             }
             return ResponseSuccess(StatusCode.SendFeedSuccess, reqId);
+        }
+        public static Response SendTestFeed(Feed feed)
+        {
+            return SendFeed(feed, Request.GenerateTestId());
         }
         
         // ===================================================================================== []

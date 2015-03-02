@@ -18,6 +18,10 @@ namespace Spreadbot.Core.Mip
         {
             return (Identifier) Guid.NewGuid();
         }
+        public static Identifier GenerateTestId()
+        {
+            return (Identifier)new Guid();
+        }
 
         public static bool VerifyRequestId(Identifier requestId)
         {

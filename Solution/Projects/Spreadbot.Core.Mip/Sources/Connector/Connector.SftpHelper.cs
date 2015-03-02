@@ -1,9 +1,5 @@
-﻿// ReSharper disable RedundantUsingDirective
-
-using System;
-using System.Diagnostics;
+﻿using System;
 using Crocodev.Common;
-using Crocodev.Common.Identifier;
 using WinSCP;
 
 namespace Spreadbot.Core.Mip
@@ -16,39 +12,14 @@ namespace Spreadbot.Core.Mip
             // TestConnection
             public static Response TestConnection(string password = null)
             {
-                try
-                {
-                    var sessionOptions = SessionOptions(password);
-                    using (var session = new Session())
-                    {
-                        session.Open(sessionOptions);
-                    }
-                }
-                catch (Exception e)
-                {
-                    return ResponseFail(StatusCode.TestConnectionFail, e);
-                }
-                return ResponseSuccess(StatusCode.TestConnectionSuccess);
+                return DoTestConnection(password);
             }
 
             // ===================================================================================== []
             // UploadFeed
             public static Response SendZippedFeed(string feed, string reqId)
             {
-                string remoteFileName;
-                try
-                {
-                    remoteFileName = RemoteFeedOutgoingZipFilePath(feed, reqId);
-                    PutFiles(
-                        LocalZippedFeedFilePath(feed, reqId),
-                        remoteFileName
-                        );
-                }
-                catch (Exception e)
-                {
-                    return ResponseFail(StatusCode.SendZippedFeedFail, e);
-                }
-                return ResponseSuccess(StatusCode.SendZippedFeedSuccess, remoteFileName);
+                return DoSendZippedFeed(feed, reqId);
             }
 
             public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
@@ -57,7 +28,7 @@ namespace Spreadbot.Core.Mip
             }
 
             // ===================================================================================== []
-            // Find remote files
+            // Find remote files Inproc
             public static Response FindRequestRemoteFileNameInInprocess(Request request)
             {
                 var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
@@ -66,9 +37,24 @@ namespace Spreadbot.Core.Mip
                 return FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
             }
 
+            // ===================================================================================== []
+            // Find remote files Output
             public static Response FindRequestRemoteFileNameInOutput(Request request)
             {
-                throw new NotImplementedException();
+                var remoteDirs = RemoteFeedOutputFolderPathes(request.Feed.Name);
+                var prefix = request.FileNamePrefix();
+
+                foreach (var remoteDir in remoteDirs)
+                {
+                    var response = FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
+                    if (response.StatusCode == StatusCode.FindRemoteFileSuccess)
+                    {
+                        return response;
+                    }
+                }
+                return ResponseFail(
+                    StatusCode.FindRemoteFileFail,
+                    "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));
             }
 
             public static Response FindRequestRemoteFileNameAnywhere(Request request)

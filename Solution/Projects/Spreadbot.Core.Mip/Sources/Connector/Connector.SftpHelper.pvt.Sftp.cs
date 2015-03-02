@@ -9,25 +9,42 @@ namespace Spreadbot.Core.Mip
         public partial class SftpHelper
         {
             // ===================================================================================== []
-            // PutFiles
-            private static void PutFiles(string localPath, string remotePath)
+            // DoTestConnection
+            private static Response DoTestConnection(string password)
             {
-                using (var session = new Session())
+                try
                 {
-                    var sessionOptions = SessionOptions();
-                    var transferOptions = TransferOptions();
-
-                    session.Open(sessionOptions);
-
-                    var transferResult = session.PutFiles(
-                        localPath,
-                        remotePath,
-                        false,
-                        transferOptions
-                        );
-
-                    transferResult.Check();
+                    var sessionOptions = SessionOptions(password);
+                    using (var session = new Session())
+                    {
+                        session.Open(sessionOptions);
+                    }
                 }
+                catch (Exception e)
+                {
+                    return ResponseFail(StatusCode.TestConnectionFail, e);
+                }
+                return ResponseSuccess(StatusCode.TestConnectionSuccess);
+            }
+
+            // ===================================================================================== []
+            // DoSendZippedFeed
+            private static Response DoSendZippedFeed(string feed, string reqId)
+            {
+                string remoteFileName;
+                try
+                {
+                    remoteFileName = RemoteFeedOutgoingZipFilePath(feed, reqId);
+                    PutFiles(
+                        LocalZippedFeedFilePath(feed, reqId),
+                        remoteFileName
+                        );
+                }
+                catch (Exception e)
+                {
+                    return ResponseFail(StatusCode.SendZippedFeedFail, e);
+                }
+                return ResponseSuccess(StatusCode.SendZippedFeedSuccess, remoteFileName);
             }
 
             // ===================================================================================== []
@@ -69,6 +86,27 @@ namespace Spreadbot.Core.Mip
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir));
             }
 
+            // ===================================================================================== []
+            // PutFiles
+            private static void PutFiles(string localPath, string remotePath)
+            {
+                using (var session = new Session())
+                {
+                    var sessionOptions = SessionOptions();
+                    var transferOptions = TransferOptions();
+
+                    session.Open(sessionOptions);
+
+                    var transferResult = session.PutFiles(
+                        localPath,
+                        remotePath,
+                        false,
+                        transferOptions
+                        );
+
+                    transferResult.Check();
+                }
+            }
 
             // ===================================================================================== []
             // SessionOptions

@@ -29,5 +29,11 @@ namespace Spreadbot.Core.Configuration
             get { return (string)this[GetPropertyName()]; }
         }
 
+        [ConfigurationProperty("OutputFolderNameUtcHourOffset", IsRequired = true)]
+        public int OutputFolderNameUtcHourOffset
+        {
+            get { return (int)this[GetPropertyName()]; }
+        }
+
     }
 }

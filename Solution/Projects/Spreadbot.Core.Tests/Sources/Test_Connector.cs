@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spreadbot.Core.Mip.Tests
@@ -60,8 +59,6 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void FindRequest_Inprocess_Newly_Generated()
         {
-            // Now: Find_Newly_Generated_Request
-
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendFeed(feed);
             var request = new Request(feed, (Request.Identifier)sendResponse.Result);
@@ -80,12 +77,17 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void FindRequest_Output()
         {
-            throw new NotImplementedException();
-            // Now: Check_Request_Status_Output
-            /*
-                        var feed = new Feed(FeedType.Product);
-                        var response = Connector.CheckRequest();
-            */
+            var feed = new Feed(FeedType.Product);
+            var sendResponse = Connector.SendTestFeed(feed);
+            var request = new Request(feed, (Request.Identifier)sendResponse.Result);
+            var findResponce = Connector.FindRequest(request, RequestProcessingStage.Output);
+            var remoteFileName = (string)findResponce.Result;
+
+            Trace.TraceInformation(findResponce.StatusDescription);
+
+            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
+            Assert.IsNotNull(remoteFileName);
+            Assert.IsTrue(remoteFileName.Length > 1);
         }
     }
 }
