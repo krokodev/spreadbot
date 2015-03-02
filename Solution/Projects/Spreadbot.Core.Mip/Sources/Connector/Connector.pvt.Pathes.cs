@@ -3,8 +3,7 @@
     public partial class Connector
     {
         // ===================================================================================== []
-        // MakeLocalZippedFeedPath
-        private static string MakeLocalZippedFeedPath(string feed, string reqId)
+        private static string LocalZippedFeedFilePath(string feed, string reqId)
         {
             return string.Format(@"{0}\{1}.{2}.zip",
                 Settings.ZippedFeedsPath,
@@ -14,8 +13,7 @@
         }
 
         // ===================================================================================== []
-        // MakeRemoteFeedInboxPath
-        private static string MakeRemoteFeedOutboxPath(string feed, string reqId)
+        private static string RemoteFeedOutgoingZipFilePath(string feed, string reqId)
         {
             return string.Format("{0}{1}/{1}.{2}.zip",
                 Settings.RemoteBasePath,
@@ -25,11 +23,19 @@
         }
 
         // ===================================================================================== []
-        // MakeLocalFeedPath
-        private static string MakeLocalFeedPath(string feed)
+        private static string LocalFeedFolderPath(string feed)
         {
             return string.Format("{0}{1}",
                 Settings.FeedsPath,
+                feed
+                );
+        }
+
+        // ===================================================================================== []
+        private static string RemoteFeedInprocessFolderPath(string feed)
+        {
+            return string.Format("{0}{1}/inprocess",
+                Settings.RemoteBasePath,
                 feed
                 );
         }

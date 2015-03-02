@@ -17,17 +17,17 @@ namespace Spreadbot.Core.Mip
                 string zipFileName;
                 try
                 {
-                    zipFileName = MakeLocalZippedFeedPath(feed, reqId);
+                    zipFileName = LocalZippedFeedFilePath(feed, reqId);
                     ZipFiles(
-                        MakeLocalFeedPath(feed),
+                        LocalFeedFolderPath(feed),
                         zipFileName
                         );
                 }
                 catch (Exception e)
                 {
-                    return FailedResponse(StatusCode.ZipFeedFail, e);
+                    return ResponseFail(StatusCode.ZipFeedFail, e);
                 }
-                return SuccessfulResponse(StatusCode.ZipFeedSuccess, zipFileName);
+                return ResponseSuccess(StatusCode.ZipFeedSuccess, zipFileName);
             }
 
             public static Response ZipFeed(Feed feed, Request.Identifier reqId)
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Mip
             // ZipFeed
             public static string ZippedFeedFileName(string feed, string reqId)
             {
-                return MakeLocalZippedFeedPath(feed, reqId);
+                return LocalZippedFeedFilePath(feed, reqId);
             }
 
             // ===================================================================================== []

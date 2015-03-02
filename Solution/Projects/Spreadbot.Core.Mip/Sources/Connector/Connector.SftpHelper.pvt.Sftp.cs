@@ -1,6 +1,5 @@
-﻿// ReSharper disable RedundantUsingDirective
-using System;
-using Crocodev.Common.Identifier;
+﻿using System;
+using Crocodev.Common;
 using WinSCP;
 
 namespace Spreadbot.Core.Mip
@@ -15,8 +14,8 @@ namespace Spreadbot.Core.Mip
             {
                 using (var session = new Session())
                 {
-                    var sessionOptions = CreateSessionOptions();
-                    var transferOptions = CreateTransferOptions();
+                    var sessionOptions = SessionOptions();
+                    var transferOptions = TransferOptions();
 
                     session.Open(sessionOptions);
 
@@ -32,8 +31,48 @@ namespace Spreadbot.Core.Mip
             }
 
             // ===================================================================================== []
-            // CreateSessionOptions
-            private static SessionOptions CreateSessionOptions(string password = null)
+            // GetRemoteDirFiles
+            private static RemoteFileInfoCollection GetRemoteDirFiles(string remoteDir)
+            {
+                try
+                {
+                    using (var session = new Session())
+                    {
+                        var sessionOptions = SessionOptions();
+                        session.Open(sessionOptions);
+                        return session.ListDirectory(remoteDir).Files;
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (!e.Message.Contains("Error listing directory"))
+                    {
+                        throw;
+                    }
+                }
+                return new RemoteFileInfoCollection();
+            }
+
+            // ===================================================================================== []
+            // FindFileNamePrefixInRemoteDir
+            private static Response FindRemoteFileNamePrefixInRemoteDir(string prefix, string remoteDir)
+            {
+                var files = GetRemoteDirFiles(remoteDir);
+                foreach (RemoteFileInfo fileInfo in files)
+                {
+                    if (fileInfo.Name.Contains(prefix))
+                    {
+                        return ResponseSuccess(StatusCode.FindRemoteFileSuccess, fileInfo.Name);
+                    }
+                }
+                return ResponseFail(StatusCode.FindRemoteFileFail,
+                    "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir));
+            }
+
+
+            // ===================================================================================== []
+            // SessionOptions
+            private static SessionOptions SessionOptions(string password = null)
             {
                 return new SessionOptions
                 {
@@ -47,8 +86,8 @@ namespace Spreadbot.Core.Mip
             }
 
             // ===================================================================================== []
-            // CreateTransferOptions
-            private static TransferOptions CreateTransferOptions()
+            // TransferOptions
+            private static TransferOptions TransferOptions()
             {
                 return new TransferOptions
                 {

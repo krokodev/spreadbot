@@ -16,9 +16,9 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return FailedResponse(StatusCode.SendFeedFail, e);
+                return ResponseFail(StatusCode.SendFeedFail, e);
             }
-            return SuccessfulResponse(StatusCode.SendFeedSuccess, reqId);
+            return ResponseSuccess(StatusCode.SendFeedSuccess, reqId);
         }
         
         // ===================================================================================== []
@@ -48,9 +48,9 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return FailedResponse(StatusCode.FindRequestFail, e);
+                return ResponseFail(StatusCode.FindRequestFail, e);
             }
-            return SuccessfulResponse(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
+            return ResponseSuccess(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
         }
     }
 }

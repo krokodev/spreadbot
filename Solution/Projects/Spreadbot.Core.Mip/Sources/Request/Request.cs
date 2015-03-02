@@ -24,5 +24,10 @@ namespace Spreadbot.Core.Mip
             Guid guid;
             return Guid.TryParse(requestId.ToString(), out guid);
         }
+
+        public string FileNamePrefix()
+        {
+            return string.Format("{0}.{1}", Feed.Name, Id);
+        }
     }
 }

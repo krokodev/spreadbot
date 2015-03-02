@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using Crocodev.Common;
 using Crocodev.Common.Identifier;
 using WinSCP;
 
@@ -17,7 +18,7 @@ namespace Spreadbot.Core.Mip
             {
                 try
                 {
-                    var sessionOptions = CreateSessionOptions(password);
+                    var sessionOptions = SessionOptions(password);
                     using (var session = new Session())
                     {
                         session.Open(sessionOptions);
@@ -25,9 +26,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return FailedResponse(StatusCode.TestConnectionFail, e);
+                    return ResponseFail(StatusCode.TestConnectionFail, e);
                 }
-                return SuccessfulResponse(StatusCode.TestConnectionSuccess);
+                return ResponseSuccess(StatusCode.TestConnectionSuccess);
             }
 
             // ===================================================================================== []
@@ -37,17 +38,17 @@ namespace Spreadbot.Core.Mip
                 string remoteFileName;
                 try
                 {
-                    remoteFileName = MakeRemoteFeedOutboxPath(feed, reqId);
+                    remoteFileName = RemoteFeedOutgoingZipFilePath(feed, reqId);
                     PutFiles(
-                        MakeLocalZippedFeedPath(feed, reqId),
+                        LocalZippedFeedFilePath(feed, reqId),
                         remoteFileName
                         );
                 }
                 catch (Exception e)
                 {
-                    return FailedResponse(StatusCode.SendZippedFeedFail, e);
+                    return ResponseFail(StatusCode.SendZippedFeedFail, e);
                 }
-                return SuccessfulResponse(StatusCode.SendZippedFeedSuccess, remoteFileName);
+                return ResponseSuccess(StatusCode.SendZippedFeedSuccess, remoteFileName);
             }
 
             public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
@@ -59,7 +60,10 @@ namespace Spreadbot.Core.Mip
             // Find remote files
             public static Response FindRequestRemoteFileNameInInprocess(Request request)
             {
-                throw new NotImplementedException();
+                var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
+                var prefix = request.FileNamePrefix();
+
+                return FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
             }
 
             public static Response FindRequestRemoteFileNameInOutput(Request request)

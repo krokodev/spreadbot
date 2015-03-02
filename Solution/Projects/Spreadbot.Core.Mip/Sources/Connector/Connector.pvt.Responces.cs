@@ -11,25 +11,27 @@ namespace Spreadbot.Core.Mip
     public partial class Connector
     {
         // ===================================================================================== []
-        // NewFailedResponse
-        private static Response FailedResponse(StatusCode statusCode, Exception e)
+        // Failed Responses
+        private static Response ResponseFail(StatusCode statusCode, string statusDescription)
+        {
+            return new Response(false, statusCode, statusDescription);
+        }
+
+        private static Response ResponseFail(StatusCode statusCode, Exception e)
         {
             return new Response(false, statusCode, FailedStatusDescription(statusCode, e));
         }
 
         // ===================================================================================== []
-        // NewSuccessfulResponse
-        private static Response SuccessfulResponse(StatusCode statusCode)
+        // Successful Responses
+        private static Response ResponseSuccess(StatusCode statusCode)
         {
             return new Response(true, statusCode)
             {
                 StatusDescription = SuccessfulStatusDescription(statusCode)
             };
         }
-
-        // ===================================================================================== []
-        // NewSuccessfulResponse
-        private static Response SuccessfulResponse(StatusCode statusCode, object result)
+        private static Response ResponseSuccess(StatusCode statusCode, object result)
         {
             return new Response(true, statusCode)
             {
@@ -37,10 +39,7 @@ namespace Spreadbot.Core.Mip
                 Result = result
             };
         }
-
-        // ===================================================================================== []
-        // NewSuccessfulResponse
-        private static Response SuccessfulResponse(StatusCode statusCode, object result, Response innerResponse)
+        private static Response ResponseSuccess(StatusCode statusCode, object result, Response innerResponse)
         {
             Trace.Assert(innerResponse.IsSuccess);
             return new Response(true, statusCode)

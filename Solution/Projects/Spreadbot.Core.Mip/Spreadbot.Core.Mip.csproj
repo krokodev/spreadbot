@@ -53,7 +53,6 @@
     <Compile Include="Sources\Connector\Connector.ZipHelper.cs" />
     <Compile Include="Sources\Connector\Connector.SftpHelper.pvt.Sftp.cs" />
     <Compile Include="Sources\Connector\Connector.SftpHelper.cs" />
-    <Compile Include="Sources\Request\XXXX_FindRequestResult.cs" />
     <Compile Include="Sources\Request\RequestProcessingStage.cs" />
     <Compile Include="Sources\Request\Request.cs" />
     <Compile Include="Sources\Response\StatusCode.cs" />

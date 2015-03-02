@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Mip
         // FailedStatusDescription
         private static string FailedStatusDescription(StatusCode statusCode, Exception e)
         {
-            return "StatusCode=[{0}] Exception: [{1}]".SafeFormat(statusCode, e.Message);
+            return "StatusCode=[{0}]\nException: [{1}]".SafeFormat(statusCode, e.Message);
         }        
         
         // ===================================================================================== []
@@ -23,14 +23,14 @@ namespace Spreadbot.Core.Mip
         // SuccessfulStatusDescription
         private static string SuccessfulStatusDescription(StatusCode statusCode, string result)
         {
-            return "StatusCode=[{0}] Result=[{1}]".SafeFormat(statusCode, result);
+            return "StatusCode=[{0}]\nResult=[{1}]".SafeFormat(statusCode, result);
         }
 
         // ===================================================================================== []
         // SuccessfulStatusDescription
         private static string SuccessfulStatusDescription(StatusCode statusCode,object result,string innerDescription)
         {
-            return "StatusCode=[{0}] Result=[{1}] Inner=[{2}]".SafeFormat(statusCode, result, innerDescription);
+            return "StatusCode=[{0}]\nResult=[{1}]\nInner=[{2}]".SafeFormat(statusCode, result, innerDescription);
         }
     }
 }
