@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Crocodev.Common">
+      <HintPath>..\..\packages\crocodev.common.1.0.1.31190\lib\net451\Crocodev.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -77,10 +80,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
-      <Project>{b8d6f968-fc6e-4e3c-999a-f44d93f6ada4}</Project>
-      <Name>Crocodev.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
       <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
       <Name>Spreadbot.Core.Configuration</Name>

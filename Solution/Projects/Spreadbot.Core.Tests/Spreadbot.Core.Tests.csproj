@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Crocodev.Common">
+      <HintPath>..\..\packages\crocodev.common.1.0.1.31190\lib\net451\Crocodev.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="WinSCPnet">
@@ -61,10 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Crocodev.Common\Crocodev.Common.csproj">
-      <Project>{B8D6F968-FC6E-4E3C-999A-F44D93F6ADA4}</Project>
-      <Name>Crocodev.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
       <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
       <Name>Spreadbot.Core.Configuration</Name>
@@ -87,6 +86,7 @@
     <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
