@@ -8,7 +8,7 @@ namespace Spreadbot.Core.Mip
         // SendFeed
         public static Response SendFeed(Feed feed)
         {
-            var reqId = Request.GenerateRequestId();
+            var reqId = Request.GenerateId();
             try
             {
                 ZipHelper.ZipFeed(feed, reqId).Check();
@@ -23,6 +23,20 @@ namespace Spreadbot.Core.Mip
                 RequestId = reqId,
                 StatusDescription = string.Format("StatusCode=[{0}] RequestId=[{1}]", StatusCode.SendFeedSuccess, reqId)
             };
+        }
+
+        // ===================================================================================== []
+        // FindRequest
+        public static Response FindRequest(Request request, RequestProcessingStage stage)
+        {
+            // Now: Connector.FindRequest
+            switch (stage)
+            {
+                case RequestProcessingStage.Inprocess:
+                    return new Response(false, StatusCode.FindRequestFail);
+
+            }
+            return new Response(false, StatusCode.FindRequestFail, "Wrong");
         }
     }
 }

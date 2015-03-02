@@ -10,6 +10,8 @@
         SendZippedFeedSuccess,
         SendZippedFeedFail,
         ZipFeedSuccess,
-        ZipFeedFail
+        ZipFeedFail,
+        FindRequestSuccess,
+        FindRequestFail
     }
 }

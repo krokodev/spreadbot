@@ -19,13 +19,52 @@ namespace Spreadbot.Core.Mip.Tests
         }
 
         [TestMethod]
-        public void Check_Request_Status_Inproc()
+        public void Find_Unknown_Request()
         {
-            // Now: Check_Request_Status_Inproc
-/*
             var feed = new Feed(FeedType.Product);
-            var response = Connector.CheckRequest();
-*/
+            var request = new Request(feed, Request.GenerateId());
+            Response findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
+
+            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
+            Assert.AreEqual(FindRequestResult.NotFound, (FindRequestResult)findResponce.Result);
+        }
+
+
+        [TestMethod]
+        public void Find_Wrong_Request()
+        {
+            var feed = new Feed(FeedType.None);
+            var request = new Request(feed, Request.GenerateId());
+            Response findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
+
+            Assert.AreEqual(StatusCode.FindRequestFail, findResponce.StatusCode);
+            Assert.AreEqual(FindRequestResult.Error, (FindRequestResult)findResponce.Result);
+        }
+
+
+        [TestMethod]
+        public void Find_Newly_Generated_Request()
+        {
+            // Now: Find_Newly_Generated_Request
+
+            var feed = new Feed(FeedType.Product);
+            var sendResponse = Connector.SendFeed(feed);
+            var request = new Request(feed, sendResponse.RequestId);
+            Response findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
+
+            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
+            Assert.AreEqual(FindRequestResult.Found, (FindRequestResult)findResponce.Result);
+        }
+
+        [TestMethod]
+        public void Check_Request_Status_Output()
+        {
+            throw new AssertFailedException("Not implemented");
+            // Now: Check_Request_Status_Output
+            /*
+                        var feed = new Feed(FeedType.Product);
+                        var response = Connector.CheckRequest();
+            */
         }
     }
 }

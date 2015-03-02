@@ -5,7 +5,16 @@ namespace Spreadbot.Core.Mip
 {
     public class Request : Identifiable<Request, Guid>
     {
-        public static Identifier GenerateRequestId()
+        public Request(Feed feed, Identifier requestId)
+        {
+            Feed = feed;
+            Id = requestId;
+        }
+
+        public Identifier Id { get; set; }
+        public Feed Feed { get; set; }
+
+        public static Identifier GenerateId()
         {
             return (Identifier) Guid.NewGuid();
         }

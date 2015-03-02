@@ -2,6 +2,7 @@
 {
     public enum FeedType
     {
+        None,
         Product,
         Availability,
         Distribution
