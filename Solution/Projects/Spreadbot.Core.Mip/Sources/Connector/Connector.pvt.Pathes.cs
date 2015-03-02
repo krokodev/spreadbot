@@ -1,15 +1,9 @@
-﻿// ReSharper disable RedundantUsingDirective
-
-using System;
-using Crocodev.Common.Identifier;
-using WinSCP;
-
-namespace Spreadbot.Core.Mip
+﻿namespace Spreadbot.Core.Mip
 {
     public partial class Connector
     {
         // ===================================================================================== []
-        // Paths
+        // MakeLocalZippedFeedPath
         private static string MakeLocalZippedFeedPath(string feed, string reqId)
         {
             return string.Format(@"{0}\{1}.{2}.zip",
@@ -19,7 +13,9 @@ namespace Spreadbot.Core.Mip
                 );
         }
 
-        private static string MakeRemoteFeedInboxPath(string feed, string reqId)
+        // ===================================================================================== []
+        // MakeRemoteFeedInboxPath
+        private static string MakeRemoteFeedOutboxPath(string feed, string reqId)
         {
             return string.Format("{0}{1}/{1}.{2}.zip",
                 Settings.RemoteBasePath,
@@ -28,6 +24,8 @@ namespace Spreadbot.Core.Mip
                 );
         }
 
+        // ===================================================================================== []
+        // MakeLocalFeedPath
         private static string MakeLocalFeedPath(string feed)
         {
             return string.Format("{0}{1}",

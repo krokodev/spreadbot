@@ -19,7 +19,6 @@ namespace Spreadbot.Core.Mip.Tests
             Trace.TraceInformation(response.StatusDescription);
 
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.StatusCode);
-
             Assert.IsTrue(File.Exists(Connector.ZipHelper.ZippedFeedFileName(feed.Name, reqId)));
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.StatusCode);
         }

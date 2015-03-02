@@ -4,6 +4,7 @@
     {
         None,
         Output,
-        Inprocess
+        Inprocess,
+        All
     }
 }

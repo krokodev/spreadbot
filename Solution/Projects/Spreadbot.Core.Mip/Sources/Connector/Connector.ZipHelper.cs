@@ -14,21 +14,20 @@ namespace Spreadbot.Core.Mip
             // ZipFeed
             public static Response ZipFeed(string feed, string reqId)
             {
+                string zipFileName;
                 try
                 {
+                    zipFileName = MakeLocalZippedFeedPath(feed, reqId);
                     ZipFiles(
                         MakeLocalFeedPath(feed),
-                        MakeLocalZippedFeedPath(feed, reqId)
+                        zipFileName
                         );
                 }
                 catch (Exception e)
                 {
-                    return new Response(false, StatusCode.ZipFeedFail, e.Message);
+                    return FailedResponse(StatusCode.ZipFeedFail, e);
                 }
-                return new Response(true, StatusCode.ZipFeedSuccess)
-                {
-                    StatusDescription = string.Format("Zip file=[{0}]", MakeLocalZippedFeedPath(feed, reqId))
-                };
+                return SuccessfulResponse(StatusCode.ZipFeedSuccess, zipFileName);
             }
 
             public static Response ZipFeed(Feed feed, Request.Identifier reqId)

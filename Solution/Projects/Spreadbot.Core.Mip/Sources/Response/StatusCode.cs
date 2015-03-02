@@ -12,6 +12,8 @@
         ZipFeedSuccess,
         ZipFeedFail,
         FindRequestSuccess,
-        FindRequestFail
+        FindRequestFail,
+        FindRemoteFileSuccess,
+        FindRemoteFileFail
     }
 }

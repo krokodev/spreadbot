@@ -12,12 +12,11 @@ namespace Spreadbot.Core.Mip
         {
             IsSuccess = isSucces;
             StatusCode = statusCode;
-            StatusDescription = statusDescription.TryFormat(args);
+            StatusDescription = statusDescription.SafeFormat(args);
         }
 
         public StatusCode StatusCode { get; set; }
         public string StatusDescription { get; set; }
-        public Request.Identifier RequestId { get; set; }
         public object Result { get; set; }
 
         public void Check()
@@ -30,8 +29,6 @@ namespace Spreadbot.Core.Mip
                     );
         }
 
-        // ===================================================================================== []
-        // Privarte
-        private bool IsSuccess { get; set; }
+        public bool IsSuccess { get; private set; }
     }
 }

@@ -16,27 +16,41 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return new Response(false, StatusCode.SendFeedFail, e.Message);
+                return FailedResponse(StatusCode.SendFeedFail, e);
             }
-            return new Response(true, StatusCode.SendFeedSuccess)
-            {
-                RequestId = reqId,
-                StatusDescription = string.Format("StatusCode=[{0}] RequestId=[{1}]", StatusCode.SendFeedSuccess, reqId)
-            };
+            return SuccessfulResponse(StatusCode.SendFeedSuccess, reqId);
         }
-
+        
         // ===================================================================================== []
         // FindRequest
         public static Response FindRequest(Request request, RequestProcessingStage stage)
         {
             // Now: Connector.FindRequest
-            switch (stage)
+            Response ftpResponce;
+            try
             {
-                case RequestProcessingStage.Inprocess:
-                    return new Response(false, StatusCode.FindRequestFail);
-
+                switch (stage)
+                {
+                    case RequestProcessingStage.Inprocess:
+                        ftpResponce = SftpHelper.FindRequestRemoteFileNameInInprocess(request);
+                        break;
+                    case RequestProcessingStage.Output:
+                        ftpResponce = SftpHelper.FindRequestRemoteFileNameInOutput(request);
+                        break;
+                    case RequestProcessingStage.All:
+                        ftpResponce = SftpHelper.FindRequestRemoteFileNameAnywhere(request);
+                        break;
+                    default:
+                        ftpResponce = new Response(false, StatusCode.FindRequestFail, "Wrong stage {0}", stage);
+                        break;
+                }
+                ftpResponce.Check();
             }
-            return new Response(false, StatusCode.FindRequestFail, "Wrong");
+            catch (Exception e)
+            {
+                return FailedResponse(StatusCode.FindRequestFail, e);
+            }
+            return SuccessfulResponse(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
         }
     }
 }

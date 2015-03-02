@@ -25,32 +25,51 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return new Response(false, StatusCode.TestConnectionFail, e.Message);
+                    return FailedResponse(StatusCode.TestConnectionFail, e);
                 }
-                return new Response(true, StatusCode.TestConnectionSuccess);
+                return SuccessfulResponse(StatusCode.TestConnectionSuccess);
             }
 
             // ===================================================================================== []
             // UploadFeed
             public static Response SendZippedFeed(string feed, string reqId)
             {
+                string remoteFileName;
                 try
                 {
+                    remoteFileName = MakeRemoteFeedOutboxPath(feed, reqId);
                     PutFiles(
                         MakeLocalZippedFeedPath(feed, reqId),
-                        MakeRemoteFeedInboxPath(feed, reqId)
+                        remoteFileName
                         );
                 }
                 catch (Exception e)
                 {
-                    return new Response(false, StatusCode.SendZippedFeedFail, e.Message);
+                    return FailedResponse(StatusCode.SendZippedFeedFail, e);
                 }
-                return new Response(true, StatusCode.SendZippedFeedSuccess);
+                return SuccessfulResponse(StatusCode.SendZippedFeedSuccess, remoteFileName);
             }
 
             public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId.Value.ToString());
+            }
+
+            // ===================================================================================== []
+            // Find remote files
+            public static Response FindRequestRemoteFileNameInInprocess(Request request)
+            {
+                throw new NotImplementedException();
+            }
+
+            public static Response FindRequestRemoteFileNameInOutput(Request request)
+            {
+                throw new NotImplementedException();
+            }
+
+            public static Response FindRequestRemoteFileNameAnywhere(Request request)
+            {
+                throw new NotImplementedException();
             }
         }
     }

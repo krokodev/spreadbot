@@ -2,7 +2,7 @@
 {
     public static class StringExtensions
     {
-        public static string TryFormat(this string template, params object[] args)
+        public static string SafeFormat(this string template, params object[] args)
         {
             try
             {
