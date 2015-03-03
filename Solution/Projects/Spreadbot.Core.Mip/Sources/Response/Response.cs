@@ -21,13 +21,8 @@ namespace Spreadbot.Core.Mip
 
         public void Check()
         {
-            // Todo: USe FailedStatusDescription
             if (!IsSuccess)
-                throw new Exception(
-                    string.Format("StatusCode=[{0}] StatusDescription=[{1}]",
-                        StatusCode,
-                        StatusDescription)
-                    );
+                throw new Exception(FailedStatusDescription(StatusCode,StatusDescription));
         }
 
         public bool IsSuccess { get; private set; }
