@@ -26,11 +26,6 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // Successful Responses
-        public static Response<T> NewSuccess(StatusCode statusCode)
-        {
-            return new Response<T>(true, statusCode);
-        }
-        // --------------------------------------------------------[]
         public static Response<T> NewSuccess(StatusCode statusCode, T result)
         {
             return new Response<T>(true, statusCode)

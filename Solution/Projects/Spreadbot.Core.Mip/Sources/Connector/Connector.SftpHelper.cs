@@ -9,21 +9,21 @@ namespace Spreadbot.Core.Mip
         {
             // ===================================================================================== []
             // TestConnection
-            public static Response<TestingConnectionResult> TestConnection(string password = null)
+            public static Response<BoolResult> TestConnection(string password = null)
             {
                 return DoTestConnection(password);
             }
 
             // ===================================================================================== []
             // UploadFeed
-            public static Response<SendingFeedResult> SendZippedFeed(string feed, string reqId)
+            public static Response<SendingFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
             public static Response<SendingFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
-                return SendZippedFeed(feed.Name, reqId.Value.ToString());
+                return SendZippedFeed(feed.Name, reqId);
             }
 
             // ===================================================================================== []

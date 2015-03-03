@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Mip
         {
             // ===================================================================================== []
             // DoTestConnection
-            private static Response<TestingConnectionResult> DoTestConnection(string password)
+            private static Response<BoolResult> DoTestConnection(string password)
             {
                 try
                 {
@@ -22,27 +22,27 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return Response<TestingConnectionResult>.NewFail(StatusCode.TestConnectionFail, e);
+                    return Response<BoolResult>.NewFail(StatusCode.TestConnectionFail, e);
                 }
-                return Response<TestingConnectionResult>.NewSuccess(StatusCode.TestConnectionSuccess);
+                return Response<BoolResult>.NewSuccess(StatusCode.TestConnectionSuccess, new BoolResult(true));
             }
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static Response<SendingFeedResult> DoSendZippedFeed(string feed, string reqId)
+            private static Response<SendingFeedResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
             {
                 try
                 {
                     PutFiles(
-                        LocalZippedFeedFile(feed, reqId),
-                        RemoteFeedOutgoingZipFilePath(feed, reqId)
+                        LocalZippedFeedFile(feed, reqId.ToString()),
+                        RemoteFeedOutgoingZipFilePath(feed, reqId.ToString())
                         );
                 }
                 catch (Exception e)
                 {
                     return Response<SendingFeedResult>.NewFail(StatusCode.SendZippedFeedFail, e);
                 }
-                return Response<SendingFeedResult>.NewSuccess(StatusCode.SendZippedFeedSuccess);
+                return Response<SendingFeedResult>.NewSuccess(StatusCode.SendZippedFeedSuccess, new SendingFeedResult(reqId));
             }
 
             // ===================================================================================== []

@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Mip.Tests
         public void SendZippedFeed()
         {
             var feed = new Feed(FeedType.Product);
-            var response = Connector.SftpHelper.SendZippedFeed(feed.Name, 0.ToString());
+            var response = Connector.SftpHelper.SendZippedFeed(feed.Name, Request.GenerateTestId());
 
             Trace.TraceInformation(response.Description);
             
