@@ -50,7 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Response\Responce.pvt.Descriptions.cs" />
+    <Compile Include="Sources\Response\Response.pvt.Descriptions.cs" />
     <Compile Include="Sources\Connector\Connector.pvt.Pathes.cs" />
     <Compile Include="Sources\Connector\Connector.ZipHelper.cs" />
     <Compile Include="Sources\Connector\Connector.SftpHelper.pvt.Sftp.cs" />

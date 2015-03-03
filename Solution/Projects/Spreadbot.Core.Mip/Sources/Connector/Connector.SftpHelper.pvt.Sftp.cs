@@ -22,9 +22,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return Response.ResponseFail(StatusCode.TestConnectionFail, e);
+                    return Response.NewFail(StatusCode.TestConnectionFail, e);
                 }
-                return Response.ResponseSuccess(StatusCode.TestConnectionSuccess);
+                return Response.NewSuccess(StatusCode.TestConnectionSuccess);
             }
 
             // ===================================================================================== []
@@ -42,9 +42,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return Response.ResponseFail(StatusCode.SendZippedFeedFail, e);
+                    return Response.NewFail(StatusCode.SendZippedFeedFail, e);
                 }
-                return Response.ResponseSuccess(StatusCode.SendZippedFeedSuccess, remoteFileName);
+                return Response.NewSuccess(StatusCode.SendZippedFeedSuccess, remoteFileName);
             }
 
             // ===================================================================================== []
@@ -79,10 +79,10 @@ namespace Spreadbot.Core.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return Response.ResponseSuccess(StatusCode.FindRemoteFileSuccess, new FindRemoteFileResult(remoteDir, fileInfo.Name));
+                        return Response.NewSuccess(StatusCode.FindRemoteFileSuccess, new FindRemoteFileResult(remoteDir, fileInfo.Name));
                     }
                 }
-                return Response.ResponseFail(StatusCode.FindRemoteFileFail,
+                return Response.NewFail(StatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir));
             }
 
