@@ -3,30 +3,49 @@ using Crocodev.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response
+    public partial class Response<T> : IResponse where T:IResponseResult
     {
         // ===================================================================================== []
         // Public
-        public Response(bool isSucces = false, StatusCode statusCode = StatusCode.Unknown, string statusDescription = "",
-            params object[] args)
+        public Response(bool isSucces = false, StatusCode code = StatusCode.Unknown)
         {
             IsSuccess = isSucces;
-            StatusCode = statusCode;
-            StatusDescription = statusDescription.SafeFormat(args);
+            Code = code;
         }
 
-        public StatusCode StatusCode { get; set; }
-        public string StatusDescription { get; set; }
-        public object Result { get; set; }
+        public StatusCode Code { get; set; }
+        public virtual T Result { get; set; }
+        public string Details { get; set; }
+        public Exception Exception { get; set; }
+        public IResponse InnerResponse { get; set; }
+
+
+        public virtual string Description
+        {
+            get { return GetDescription(0); }
+        }
+        public string GetDescription(int level)
+        {
+            return IsSuccess
+                ? GetSuccessDescription(level)
+                : GetFailedDescription(level);
+        }
 
         public void Check()
         {
             if (!IsSuccess)
             {
-                throw new Exception(FailedStatusDescription(StatusCode, StatusDescription));
+                throw new ResponseException(this);
             }
         }
 
         public bool IsSuccess { get; private set; }
+    }
+
+    public interface IResponse
+    {
+        string Description { get; }
+        bool IsSuccess { get; }
+        string GetDescription(int level);
     }
 }

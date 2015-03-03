@@ -16,10 +16,10 @@ namespace Spreadbot.Core.Mip.Tests
 
             var response = Connector.SendFeed(feed);
 
-            Trace.TraceInformation(response.StatusDescription);
+            Trace.TraceInformation(response.Description);
 
-            Assert.AreEqual(StatusCode.SendFeedSuccess, response.StatusCode);
-            Assert.IsTrue(Request.VerifyRequestId((Request.Identifier) response.Result));
+            Assert.AreEqual(StatusCode.SendFeedSuccess, response.Code);
+            Assert.IsTrue(Request.VerifyRequestId(response.Result.RequestId));
         }
 
         // ===================================================================================== []
@@ -29,17 +29,15 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendFeed(feed);
-            var request = new Request(feed, (Request.Identifier) sendResponse.Result);
+            var request = new Request(feed, sendResponse.Result.RequestId);
 
             var findResponse = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRemoteFileResult)findResponse.Result;
+            Trace.TraceInformation(findResponse.Description);
 
-            Trace.TraceInformation(findResponse.StatusDescription);
-
-            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponse.StatusCode);
-            Assert.IsNotNull(findResult.FileName);
-            Assert.IsNotNull(findResult.FolderPath);
-            Assert.IsTrue(findResult.FileName.Length > 1);
+            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponse.Code);
+            Assert.IsNotNull(findResponse.Result.FileName);
+            Assert.IsNotNull(findResponse.Result.FolderPath);
+            Assert.IsTrue(findResponse.Result.FileName.Length > 1);
         }
 
         // --------------------------------------------------------[]
@@ -50,13 +48,13 @@ namespace Spreadbot.Core.Mip.Tests
             var request = new Request(feed, Request.GenerateId());
 
             var findResponse = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRemoteFileResult)findResponse.Result;
+            var findResult = (FindingRemoteFileResult)findResponse.Result;
 
-            Trace.TraceInformation(findResponse.StatusDescription);
+            Trace.TraceInformation(findResponse.Description);
 
-            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.StatusCode);
+            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.Code);
             Assert.IsNull(findResult);
-            Assert.IsTrue(findResponse.StatusDescription.Contains(StatusCode.FindRemoteFileFail.ToString()));
+            Assert.IsTrue(findResponse.Description.Contains(StatusCode.FindRemoteFileFail.ToString()));
         }
 
         // --------------------------------------------------------[]
@@ -67,13 +65,13 @@ namespace Spreadbot.Core.Mip.Tests
             var request = new Request(feed, Request.GenerateId());
 
             var findResponse = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRemoteFileResult)findResponse.Result;
+            var findResult = (FindingRemoteFileResult)findResponse.Result;
 
-            Trace.TraceInformation(findResponse.StatusDescription);
+            Trace.TraceInformation(findResponse.Description);
 
-            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.StatusCode);
+            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.Code);
             Assert.IsNull(findResult);
-            Assert.IsTrue(findResponse.StatusDescription.Contains("Exception"));
+            Assert.IsTrue(findResponse.Description.Contains("Exception"));
         }
 
         // --------------------------------------------------------[]
@@ -82,20 +80,19 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendTestFeed(feed);
-            var request = new Request(feed, (Request.Identifier) sendResponse.Result);
+            var request = new Request(feed, sendResponse.Result.RequestId);
 
             var findResponse = Connector.FindRequest(request, RequestProcessingStage.Output);
-            var findResult = (FindRemoteFileResult)findResponse.Result;
 
-            Trace.TraceInformation(findResult.FileName);
-            Trace.TraceInformation(findResult.FolderPath);
-            Trace.TraceInformation(findResponse.StatusDescription);
+            Trace.TraceInformation(findResponse.Result.FileName);
+            Trace.TraceInformation(findResponse.Result.FolderPath);
+            Trace.TraceInformation(findResponse.Description);
 
-            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponse.StatusCode);
-            Assert.IsNotNull(findResult.FileName);
-            Assert.IsNotNull(findResult.FolderPath);
-            Assert.IsTrue(findResult.FileName.Length > 1);
-            Assert.IsTrue(findResult.FolderPath.Length > 1);
+            Assert.AreEqual(StatusCode.FindRequestSuccess, findResponse.Code);
+            Assert.IsNotNull(findResponse.Result.FileName);
+            Assert.IsNotNull(findResponse.Result.FolderPath);
+            Assert.IsTrue(findResponse.Result.FileName.Length > 1);
+            Assert.IsTrue(findResponse.Result.FolderPath.Length > 1);
         }
 
         // --------------------------------------------------------[]
@@ -106,11 +103,11 @@ namespace Spreadbot.Core.Mip.Tests
             var request = new Request(feed, Request.GenerateId());
 
             var findResponse = Connector.FindRequest(request, RequestProcessingStage.Output);
-            var remoteFileName = (string) findResponse.Result;
+            var remoteFileName = findResponse.Result;
 
-            Trace.TraceInformation(findResponse.StatusDescription);
+            Trace.TraceInformation(findResponse.Description);
 
-            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.StatusCode);
+            Assert.AreEqual(StatusCode.FindRequestFail, findResponse.Code);
             Assert.IsNull(remoteFileName);
         }
 
@@ -121,14 +118,14 @@ namespace Spreadbot.Core.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendTestFeed(feed);
-            var request = new Request(feed, (Request.Identifier)sendResponse.Result);
+            var request = new Request(feed, sendResponse.Result.RequestId);
 
             var requestResponse = Connector.GetRequestStatus(request);
-            var requestResult = (GetRequetStatusResult)requestResponse.Result;
+            var requestResult = (GettingRequestStatusResult)requestResponse.Result;
 
-            Trace.TraceInformation(requestResponse.StatusDescription);
+            Trace.TraceInformation(requestResponse.Description);
 
-            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
+            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.Code);
             Assert.AreEqual(RequetStatus.Inprocess, requestResult.Status);
         }
         // --------------------------------------------------------[]
@@ -148,11 +145,11 @@ namespace Spreadbot.Core.Mip.Tests
             var request = new Request(feed, Request.GenerateId());
 
             var requestResponse = Connector.GetRequestStatus(request);
-            var requestResult = (GetRequetStatusResult)requestResponse.Result;
+            var requestResult = (GettingRequestStatusResult)requestResponse.Result;
 
-            Trace.TraceInformation(requestResponse.StatusDescription);
+            Trace.TraceInformation(requestResponse.Description);
 
-            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
+            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.Code);
             Assert.AreEqual(RequetStatus.Unknown, requestResult.Status);
         }
 

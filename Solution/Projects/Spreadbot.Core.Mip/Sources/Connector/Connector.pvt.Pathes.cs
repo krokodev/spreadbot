@@ -54,9 +54,9 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static IList<string> RemoteFeedOutputFolderPathes(string feed)
+        private static string[] RemoteFeedOutputFolderPathes(string feed)
         {
-            return new List<string>
+            return new []
             {
                 RemoteFeedOutputFolderPath(feed, 0),
                 RemoteFeedOutputFolderPath(feed, -1),

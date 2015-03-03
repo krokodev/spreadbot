@@ -4,85 +4,77 @@ using MoreLinq;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response
+    public partial class Response<T>
     {
         // ===================================================================================== []
-        // Failed Status Description
-        private static string FailedStatusDescription(StatusCode code, int indent = 0)
+        // Get Description
+        private string GetSuccessDescription(int level)
         {
-            return DescriptionFail(indent,
-                DescriptionField("Code", code, indent)
+            return DescriptionSuccess(level++,
+                DescriptionField("Code", Code, level),
+                DescriptionField("Result", Result, level),
+                DescriptionField("Details", Details, level),
+                DescriptionInnerResponse(InnerResponse, level)
                 );
         }
 
         // --------------------------------------------------------[]
-        private static string FailedStatusDescription(StatusCode code, string details, int indent = 0)
+        private string GetFailedDescription(int level)
         {
-            return DescriptionFail(indent,
-                DescriptionField("Code", code, indent),
-                DescriptionField("Details", details, indent)
+            return DescriptionFail(level++,
+                DescriptionField("Code", Code, level),
+                DescriptionException(Exception, level),
+                DescriptionField("Details", Details, level),
+                DescriptionInnerResponse(InnerResponse, level)
                 );
-        }
-
-        // --------------------------------------------------------[]
-        private static string FailedStatusDescription(StatusCode code, Exception e, int indent = 0)
-        {
-            return DescriptionFail(indent,
-                DescriptionField("Code", code, indent),
-                DescriptionException(e, indent)
-                );
-        }
-
-        // ===================================================================================== []
-        // Successful Status Description
-        private static string SuccessfulStatusDescription(StatusCode code, int indent = 0)
-        {
-            return DescriptionSuccess(indent,
-               DescriptionField("Code", code, indent)
-               );
-        }
-
-        // --------------------------------------------------------[]
-        private static string SuccessfulStatusDescription(StatusCode code, object result, int indent = 0)
-        {
-            return DescriptionSuccess(indent,
-               DescriptionField("Code", code, indent),
-               DescriptionField("Result", result, indent)
-               );
-        }
-
-        // --------------------------------------------------------[]
-        private static string SuccessfulStatusDescription(StatusCode code, object result, string details, int indent = 0)
-        {
-            return DescriptionSuccess(indent,
-               DescriptionField("Code", code, indent),
-               DescriptionField("Result", result, indent),
-               DescriptionField("Details", details, indent)
-               );
         }
 
         // ===================================================================================== []
         // Elements
-        private static string DescriptionField(string name, object value, int indent = 0)
+        private static string DescriptionField(string name, object value, int level)
         {
-            return "{0}{1}: [{2}]".SafeFormat(DescriptionIndent(indent + 1), name, value);
+            if (value == null)
+                return "";
+
+            return "{0}{1}: [{2}]".SafeFormat(NewLine(level), name, value);
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionException(Exception e, int indent = 0)
+        private static string DescriptionException(Exception e, int level)
         {
-            indent += 1;
-            return e == null
-                ? ""
-                : DescriptionSection("Exception", indent,
-                    DescriptionField("Type", e.GetType(), indent),
-                    DescriptionField("Message", e.Message, indent),
-                    DescriptionField("Inner", DescriptionException(e.InnerException, indent + 1), indent)
-                    );
+            if (e == null)
+                return "";
+
+            return DescriptionSection("Exception", level++,
+                DescriptionField("Type", e.GetType(), level),
+                DescriptionField("Message", ExceptionMessage(e, level), level),
+                DescriptionField("InnerException", DescriptionException(e.InnerException, level), level)
+                );
+        }
+
+        private static string ExceptionMessage(Exception e, int level)
+        {
+            var responseException = e as ResponseException;
+            if (responseException != null)
+            {
+                return responseException.Response.GetDescription(level);
+            }
+            return e.Message;
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionSection(string sectionName, int indent = 0, params string[] args)
+        private static string DescriptionInnerResponse(IResponse response, int level)
+        {
+            if (response == null)
+                return "";
+
+            return DescriptionSection("InnerResponse", level++,
+                response.GetDescription(level)
+                );
+        }
+
+        // --------------------------------------------------------[]
+        private static string DescriptionSection(string sectionName, int level = 0, params string[] args)
         {
             var sectionContent = "";
             args.ForEach(arg =>
@@ -94,26 +86,28 @@ namespace Spreadbot.Core.Mip
             });
 
             return "{0}{1}:{0}[{2}{0}]".SafeFormat(
-                DescriptionIndent(indent),
+                NewLine(level),
                 sectionName,
                 sectionContent
                 );
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionFail(int indent = 0, params string[] args)
+        private static string DescriptionFail(int level = 0, params string[] args)
         {
-            return DescriptionSection("Response.Fail", indent, args);
+            return DescriptionSection("Response.Fail", level, args);
         }
+
         // --------------------------------------------------------[]
-        private static string DescriptionSuccess(int indent = 0, params string[] args)
+        private static string DescriptionSuccess(int level = 0, params string[] args)
         {
-            return DescriptionSection("Response.Success", indent, args);
+            return DescriptionSection("Response.Success", level, args);
         }
+
         // --------------------------------------------------------[]
-        private static string DescriptionIndent(int indent)
+        private static string NewLine(int level)
         {
-            return "\n" + (indent == 0 ? "" : new string(' ', 2*indent));
+            return "\n" + (level == 0 ? "" : new string(' ', 2*level));
         }
     }
 }

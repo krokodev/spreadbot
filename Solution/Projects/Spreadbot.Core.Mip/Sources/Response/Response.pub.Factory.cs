@@ -3,55 +3,57 @@ using System.Diagnostics;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response
+    public partial class Response<T>
     {
         // ===================================================================================== []
         // Failed Responses
-        public static Response NewFail(StatusCode statusCode, string statusDescription)
+        public static Response<T> NewFail(StatusCode statusCode, string details)
         {
-            return new Response(false, statusCode, FailedStatusDescription(statusCode, statusDescription));
+            return new Response<T>(false, statusCode)
+            {
+                Details = details
+            };
         }
 
         // --------------------------------------------------------[]
-        public static Response NewFail(StatusCode statusCode, Exception e)
+        public static Response<T> NewFail(StatusCode statusCode, Exception e)
         {
-            return new Response(false, statusCode, FailedStatusDescription(statusCode, e));
+            return new Response<T>(false, statusCode)
+            {
+                Exception =  e
+            };
         }
 
         // ===================================================================================== []
         // Successful Responses
-        public static Response NewSuccess(StatusCode statusCode)
+        public static Response<T> NewSuccess(StatusCode statusCode)
         {
-            return new Response(true, statusCode)
-            {
-                StatusDescription = SuccessfulStatusDescription(statusCode)
-            };
+            return new Response<T>(true, statusCode);
         }
         // --------------------------------------------------------[]
-        public static Response NewSuccess(StatusCode statusCode, object result)
+        public static Response<T> NewSuccess(StatusCode statusCode, T result)
         {
-            return new Response(true, statusCode)
+            return new Response<T>(true, statusCode)
             {
-                StatusDescription = SuccessfulStatusDescription(statusCode, result.ToString()),
                 Result = result
             };
         }
         // --------------------------------------------------------[]
-        public static Response NewSuccess(StatusCode statusCode, object result, Response innerResponse)
+        public static Response<T> NewSuccess(StatusCode statusCode, T result, IResponse innerResponse)
         {
             Trace.Assert(innerResponse.IsSuccess);
-            return new Response(true, statusCode)
+            return new Response<T>(true, statusCode)
             {
-                StatusDescription = SuccessfulStatusDescription(statusCode, result, innerResponse.StatusDescription),
-                Result = result
+                Result = result,
+                InnerResponse = innerResponse
             };
         }
         // --------------------------------------------------------[]
-        public static Response NewSuccess(StatusCode statusCode, object result, string description)
+        public static Response<T> NewSuccess(StatusCode statusCode, T result, string details)
         {
-            return new Response(true, statusCode)
+            return new Response<T>(true, statusCode)
             {
-                StatusDescription = SuccessfulStatusDescription(statusCode, result, description),
+                Details = details,
                 Result = result
             };
         }

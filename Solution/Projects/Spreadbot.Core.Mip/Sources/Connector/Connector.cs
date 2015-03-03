@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Mip
     {
         // ===================================================================================== []
         // SendFeed
-        public static Response SendFeed(Feed feed, Request.Identifier reqId = null)
+        public static Response<SendingFeedResult> SendFeed(Feed feed, Request.Identifier reqId = null)
         {
             reqId = reqId ?? Request.GenerateId();
             try
@@ -20,83 +20,86 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return Response.NewFail(StatusCode.SendFeedFail, e);
+                return Response<SendingFeedResult>.NewFail(StatusCode.SendFeedFail, e);
             }
-            return Response.NewSuccess(StatusCode.SendFeedSuccess, reqId);
+            return Response<SendingFeedResult>.NewSuccess(StatusCode.SendFeedSuccess, new SendingFeedResult(reqId));
         }
 
-        public static Response SendTestFeed(Feed feed)
+        public static Response<SendingFeedResult> SendTestFeed(Feed feed)
         {
             return SendFeed(feed, Request.GenerateTestId());
         }
 
         // ===================================================================================== []
         // FindRequest
-        public static Response FindRequest(Request request, RequestProcessingStage stage)
+        public static Response<FindingRemoteFileResult> FindRequest(Request request, RequestProcessingStage stage)
         {
-            Response ftpResponce;
+            Response<FindingRemoteFileResult> findResponse;
             try
             {
                 switch (stage)
                 {
                     case RequestProcessingStage.Inprocess:
-                        ftpResponce = SftpHelper.FindRequestRemoteFileNameInInprocess(request);
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess(request);
                         break;
                     case RequestProcessingStage.Output:
-                        ftpResponce = SftpHelper.FindRequestRemoteFileNameInOutput(request);
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput(request);
                         break;
                     default:
                         throw new Exception("Wrong stage {0}".SafeFormat(stage));
                 }
-                ftpResponce.Check();
+                findResponse.Check();
             }
             catch (Exception e)
             {
-                return Response.NewFail(StatusCode.FindRequestFail, e);
+                return Response<FindingRemoteFileResult>.NewFail(StatusCode.FindRequestFail, e);
             }
-            return Response.NewSuccess(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
+            return Response<FindingRemoteFileResult>.NewSuccess(StatusCode.FindRequestSuccess, findResponse.Result, findResponse);
         }
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static Response GetRequestStatus(Request request)
+        public static Response<GettingRequestStatusResult> GetRequestStatus(Request request)
         {
             // Now: GetRequestStatus
             try
             {
                 var response = FindRequest(request, RequestProcessingStage.Inprocess);
-                if (response.StatusCode == StatusCode.FindRequestSuccess)
+                if (response.Code == StatusCode.FindRequestSuccess)
                 {
-                    return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, new GetRequetStatusResult(RequetStatus.Inprocess));
+                    return Response<GettingRequestStatusResult>.NewSuccess(
+                        StatusCode.GetRequestStatusSuccess,
+                        new GettingRequestStatusResult(RequetStatus.Inprocess)
+                        );
                 }
 
                 response = FindRequest(request, RequestProcessingStage.Output);
-                if (response.StatusCode == StatusCode.FindRequestSuccess)
+                if (response.Code == StatusCode.FindRequestSuccess)
                 {
                     return GetRequestOutputStatus(response);
                 }
 
-                return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, RequetStatus.Unknown,
-                    response.StatusDescription);
+                return Response<GettingRequestStatusResult>.NewSuccess(
+                    StatusCode.GetRequestStatusSuccess,
+                    new GettingRequestStatusResult(RequetStatus.Unknown),
+                    response.Description
+                    );
             }
             catch (Exception e)
             {
-                return Response.NewFail(StatusCode.GetRequestStatusFail, e);
+                return Response<GettingRequestStatusResult>.NewFail(StatusCode.GetRequestStatusFail, e);
             }
         }
 
         // --------------------------------------------------------[]
-        private static Response GetRequestOutputStatus(Response response)
+        private static Response<GettingRequestStatusResult> GetRequestOutputStatus(Response<FindingRemoteFileResult> response)
         {
-            GetRequetStatusResult statusResult;
-            string description;
-            ReadRequestOutputStatus(response, out statusResult, out description);
-            return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, statusResult, description);
+            var statusResult = ReadRequestOutputStatus(response);
+            return Response<GettingRequestStatusResult>.NewSuccess(StatusCode.GetRequestStatusSuccess, statusResult);
         }
 
         // --------------------------------------------------------[]
-        private static void ReadRequestOutputStatus(Response response, out GetRequetStatusResult statusResult,
-            out string description)
+        private static GettingRequestStatusResult ReadRequestOutputStatus(Response<FindingRemoteFileResult> response)
         {
             throw new NotImplementedException();
 /*            var fileName = (string) response.Result;
@@ -115,10 +118,10 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static GetRequetStatusResult ParseRequestContent(string content)
+        private static GettingRequestStatusResult ParseRequestContent(string content)
         {
             // Todo: Parse XML
-            return new GetRequetStatusResult(
+            return new GettingRequestStatusResult(
                 content.Contains("<status>SUCCESS</status>")
                     ? RequetStatus.Success
                     : RequetStatus.Fail,

@@ -9,26 +9,26 @@ namespace Spreadbot.Core.Mip
         {
             // ===================================================================================== []
             // TestConnection
-            public static Response TestConnection(string password = null)
+            public static Response<TestingConnectionResult> TestConnection(string password = null)
             {
                 return DoTestConnection(password);
             }
 
             // ===================================================================================== []
             // UploadFeed
-            public static Response SendZippedFeed(string feed, string reqId)
+            public static Response<SendingFeedResult> SendZippedFeed(string feed, string reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static Response SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static Response<SendingFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId.Value.ToString());
             }
 
             // ===================================================================================== []
             // Find remote files Inproc
-            public static Response FindRequestRemoteFileNameInInprocess(Request request)
+            public static Response<FindingRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
             {
                 var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // Find remote files Output
-            public static Response FindRequestRemoteFileNameInOutput(Request request)
+            public static Response<FindingRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
             {
                 var remoteDirs = RemoteFeedOutputFolderPathes(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -46,12 +46,12 @@ namespace Spreadbot.Core.Mip
                 foreach (var remoteDir in remoteDirs)
                 {
                     var response = FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
-                    if (response.StatusCode == StatusCode.FindRemoteFileSuccess)
+                    if (response.Code == StatusCode.FindRemoteFileSuccess)
                     {
                         return response;
                     }
                 }
-                return Response.NewFail(
+                return Response<FindingRemoteFileResult>.NewFail(
                     StatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));
             }

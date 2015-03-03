@@ -1,8 +1,6 @@
-﻿// ReSharper disable RedundantUsingDirective
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
-using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Core.Mip
 {
@@ -12,7 +10,7 @@ namespace Spreadbot.Core.Mip
         {
             // ===================================================================================== []
             // ZipFeed
-            public static Response ZipFeed(string feed, string reqId)
+            public static Response<ZippingFeedResult> ZipFeed(string feed, string reqId)
             {
                 string zipFileName;
                 try
@@ -25,12 +23,12 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return Response.NewFail(StatusCode.ZipFeedFail, e);
+                    return Response<ZippingFeedResult>.NewFail(StatusCode.ZipFeedFail, e);
                 }
-                return Response.NewSuccess(StatusCode.ZipFeedSuccess, zipFileName);
+                return Response<ZippingFeedResult>.NewSuccess(StatusCode.ZipFeedSuccess, new ZippingFeedResult(zipFileName));
             }
 
-            public static Response ZipFeed(Feed feed, Request.Identifier reqId)
+            public static Response<ZippingFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
             {
                 return ZipFeed(feed.Name, reqId.Value.ToString());
             }
