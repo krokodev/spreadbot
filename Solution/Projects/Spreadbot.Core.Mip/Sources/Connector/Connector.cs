@@ -73,10 +73,7 @@ namespace Spreadbot.Core.Mip
                 response = FindRequest(request, RequestProcessingStage.Output);
                 if (response.StatusCode == StatusCode.FindRequestSuccess)
                 {
-                    GetRequetStatusResult statusResult;
-                    string description;
-                    ReadRequestOutputStatus(response, out statusResult, out description);
-                    return ResponseSuccess(StatusCode.GetRequestStatusSuccess, statusResult, description);
+                    return GetRequestOutputStatus(response);
                 }
 
                 return ResponseSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Unknown, response);
@@ -85,6 +82,15 @@ namespace Spreadbot.Core.Mip
             {
                 return ResponseFail(StatusCode.GetRequestStatusFail, e);
             }
+        }
+
+        // --------------------------------------------------------[]
+        private static Response GetRequestOutputStatus(Response response)
+        {
+            GetRequetStatusResult statusResult;
+            string description;
+            ReadRequestOutputStatus(response, out statusResult, out description);
+            return ResponseSuccess(StatusCode.GetRequestStatusSuccess, statusResult, description);
         }
 
         // --------------------------------------------------------[]
