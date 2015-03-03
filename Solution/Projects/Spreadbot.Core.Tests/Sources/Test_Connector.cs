@@ -129,7 +129,7 @@ namespace Spreadbot.Core.Mip.Tests
             Trace.TraceInformation(requestResponse.StatusDescription);
 
             Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
-            Assert.AreEqual(GetRequetStatusResult.Inprocess, requestResult);
+            Assert.AreEqual(RequetStatus.Inprocess, requestResult.Status);
         }
         // --------------------------------------------------------[]
         [TestMethod]
@@ -153,7 +153,7 @@ namespace Spreadbot.Core.Mip.Tests
             Trace.TraceInformation(requestResponse.StatusDescription);
 
             Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
-            Assert.AreEqual(GetRequetStatusResult.Unknown, requestResult);
+            Assert.AreEqual(RequetStatus.Unknown, requestResult.Status);
         }
 
 

@@ -23,7 +23,6 @@ namespace Spreadbot.Core.Mip
         {
             if (!IsSuccess)
             {
-                // Todo: if (!IsSuccess) throw new Exception
                 throw new Exception(FailedStatusDescription(StatusCode, StatusDescription));
             }
         }

@@ -67,7 +67,7 @@ namespace Spreadbot.Core.Mip
                 var response = FindRequest(request, RequestProcessingStage.Inprocess);
                 if (response.StatusCode == StatusCode.FindRequestSuccess)
                 {
-                    return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Inprocess);
+                    return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, new GetRequetStatusResult(RequetStatus.Inprocess));
                 }
 
                 response = FindRequest(request, RequestProcessingStage.Output);
@@ -76,7 +76,8 @@ namespace Spreadbot.Core.Mip
                     return GetRequestOutputStatus(response);
                 }
 
-                return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Unknown, response.StatusDescription);
+                return Response.NewSuccess(StatusCode.GetRequestStatusSuccess, RequetStatus.Unknown,
+                    response.StatusDescription);
             }
             catch (Exception e)
             {
@@ -94,7 +95,8 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static void ReadRequestOutputStatus(Response response, out GetRequetStatusResult statusResult, out string description)
+        private static void ReadRequestOutputStatus(Response response, out GetRequetStatusResult statusResult,
+            out string description)
         {
             throw new NotImplementedException();
 /*            var fileName = (string) response.Result;
@@ -113,13 +115,14 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static void ParseRequestContent(string content, out GetRequetStatusResult statusResult, out string description)
+        private static GetRequetStatusResult ParseRequestContent(string content)
         {
             // Todo: Parse XML
-            statusResult = content.Contains("<status>SUCCESS</status>")
-                ? GetRequetStatusResult.Success
-                : GetRequetStatusResult.Fail;
-            description = content;
+            return new GetRequetStatusResult(
+                content.Contains("<status>SUCCESS</status>")
+                    ? RequetStatus.Success
+                    : RequetStatus.Fail,
+                content);
         }
     }
 }

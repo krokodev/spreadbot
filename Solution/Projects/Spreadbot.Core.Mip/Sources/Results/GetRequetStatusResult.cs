@@ -1,10 +1,14 @@
 ﻿namespace Spreadbot.Core.Mip
 {
-    public enum GetRequetStatusResult
+    public class GetRequetStatusResult
     {
-        Success,
-        Inprocess,
-        Unknown,
-        Fail
+        public readonly RequetStatus Status;
+        public readonly string Description;
+
+        public GetRequetStatusResult(RequetStatus status, string description="")
+        {
+            Status = status;
+            Description = description;
+        }
     }
 }
