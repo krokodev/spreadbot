@@ -10,58 +10,62 @@ namespace Spreadbot.Core.Mip
         // Failed Status Description
         private static string FailedStatusDescription(StatusCode code, int indent = 0)
         {
-            return DescriptionHeader("Response fail", indent)
-                + DescriptionField("Code", code, indent);
+            return DescriptionFail(indent,
+                DescriptionField("Code", code, indent)
+                );
         }
 
         // --------------------------------------------------------[]
         private static string FailedStatusDescription(StatusCode code, string details, int indent = 0)
         {
-            return FailedStatusDescription(code, indent)
-                   + DescriptionField("Details", details, indent);
+            return DescriptionFail(indent,
+                DescriptionField("Code", code, indent),
+                DescriptionField("Details", details, indent)
+                );
         }
 
         // --------------------------------------------------------[]
         private static string FailedStatusDescription(StatusCode code, Exception e, int indent = 0)
         {
-            return FailedStatusDescription(code, indent)
-                   + DescriptionException(e, indent);
+            return DescriptionFail(indent,
+                DescriptionField("Code", code, indent),
+                DescriptionException(e, indent)
+                );
         }
 
         // ===================================================================================== []
         // Successful Status Description
         private static string SuccessfulStatusDescription(StatusCode code, int indent = 0)
         {
-            return DescriptionHeader("Response success", indent)
-                + DescriptionField("Code", code, indent);
+            return DescriptionSuccess(indent,
+               DescriptionField("Code", code, indent)
+               );
         }
-
 
         // --------------------------------------------------------[]
         private static string SuccessfulStatusDescription(StatusCode code, object result, int indent = 0)
         {
-            return SuccessfulStatusDescription(code, indent)
-                   + DescriptionField("Result", result, indent);
+            return DescriptionSuccess(indent,
+               DescriptionField("Code", code, indent),
+               DescriptionField("Result", result, indent)
+               );
         }
 
         // --------------------------------------------------------[]
-        private static string SuccessfulStatusDescription(StatusCode code, object result, string details, int indent=0)
+        private static string SuccessfulStatusDescription(StatusCode code, object result, string details, int indent = 0)
         {
-            return SuccessfulStatusDescription(code, result, indent)
-                   + DescriptionField("Details", details, indent);
+            return DescriptionSuccess(indent,
+               DescriptionField("Code", code, indent),
+               DescriptionField("Result", result, indent),
+               DescriptionField("Details", details, indent)
+               );
         }
 
         // ===================================================================================== []
         // Elements
         private static string DescriptionField(string name, object value, int indent = 0)
         {
-            return "\n{0}{1}:[{2}]".SafeFormat(DescriptionIndent(indent + 1), name, value);
-        }
-
-        // --------------------------------------------------------[]
-        private static string DescriptionHeader(string header, int indent)
-        {
-            return "\n{0}".SafeFormat(header, indent);
+            return "{0}{1}: [{2}]".SafeFormat(DescriptionIndent(indent + 1), name, value);
         }
 
         // --------------------------------------------------------[]
@@ -71,34 +75,45 @@ namespace Spreadbot.Core.Mip
             return e == null
                 ? ""
                 : DescriptionSection("Exception", indent,
-                    DescriptionField("Message", e.Message),
-                    DescriptionField("Inner", DescriptionException(e.InnerException, indent + 1))
+                    DescriptionField("Type", e.GetType(), indent),
+                    DescriptionField("Message", e.Message, indent),
+                    DescriptionField("Inner", DescriptionException(e.InnerException, indent + 1), indent)
                     );
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionSection(string name, int indent = 0, params string[] args)
+        private static string DescriptionSection(string sectionName, int indent = 0, params string[] args)
         {
-            var res = "\n{0}{1}".SafeFormat(
-                DescriptionIndent(indent),
-                name
-                );
-
-            args.ForEach(s =>
+            var sectionContent = "";
+            args.ForEach(arg =>
             {
-                res = "{0}\n{1}{2}".SafeFormat(
-                    res,
-                    DescriptionIndent(indent + 1),
-                    s
+                sectionContent = "{0}{1}".SafeFormat(
+                    sectionContent,
+                    arg
                     );
             });
-            return res;
+
+            return "{0}{1}:{0}[{2}{0}]".SafeFormat(
+                DescriptionIndent(indent),
+                sectionName,
+                sectionContent
+                );
         }
 
+        // --------------------------------------------------------[]
+        private static string DescriptionFail(int indent = 0, params string[] args)
+        {
+            return DescriptionSection("Response.Fail", indent, args);
+        }
+        // --------------------------------------------------------[]
+        private static string DescriptionSuccess(int indent = 0, params string[] args)
+        {
+            return DescriptionSection("Response.Success", indent, args);
+        }
         // --------------------------------------------------------[]
         private static string DescriptionIndent(int indent)
         {
-            return indent == 0 ? "" : new string(' ', 2*indent);
+            return "\n" + (indent == 0 ? "" : new string(' ', 2*indent));
         }
     }
 }

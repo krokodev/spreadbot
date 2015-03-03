@@ -22,7 +22,10 @@ namespace Spreadbot.Core.Mip
         public void Check()
         {
             if (!IsSuccess)
-                throw new Exception(FailedStatusDescription(StatusCode,StatusDescription));
+            {
+                // Todo: if (!IsSuccess) throw new Exception
+                throw new Exception(FailedStatusDescription(StatusCode, StatusDescription));
+            }
         }
 
         public bool IsSuccess { get; private set; }
