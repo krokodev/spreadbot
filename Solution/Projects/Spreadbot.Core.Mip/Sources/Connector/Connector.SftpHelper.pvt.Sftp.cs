@@ -79,7 +79,7 @@ namespace Spreadbot.Core.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return ResponseSuccess(StatusCode.FindRemoteFileSuccess, new FindRequestResult(remoteDir, fileInfo.Name));
+                        return ResponseSuccess(StatusCode.FindRemoteFileSuccess, new FindRemoteFileResult(remoteDir, fileInfo.Name));
                     }
                 }
                 return ResponseFail(StatusCode.FindRemoteFileFail,

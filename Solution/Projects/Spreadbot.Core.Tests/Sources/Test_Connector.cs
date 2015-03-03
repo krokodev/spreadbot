@@ -30,14 +30,14 @@ namespace Spreadbot.Core.Mip.Tests
             var sendResponse = Connector.SendFeed(feed);
             var request = new Request(feed, (Request.Identifier) sendResponse.Result);
             var findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRequestResult)findResponce.Result;
+            var findResult = (FindRemoteFileResult)findResponce.Result;
 
             Trace.TraceInformation(findResponce.StatusDescription);
 
             Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
-            Assert.IsNotNull(findResult.RemoteFileName);
-            Assert.IsNotNull(findResult.RemoteFileFolder);
-            Assert.IsTrue(findResult.RemoteFileName.Length > 1);
+            Assert.IsNotNull(findResult.FileName);
+            Assert.IsNotNull(findResult.FolderPath);
+            Assert.IsTrue(findResult.FileName.Length > 1);
         }
 
         // --------------------------------------------------------[]
@@ -47,13 +47,12 @@ namespace Spreadbot.Core.Mip.Tests
             var feed = new Feed(FeedType.Product);
             var request = new Request(feed, Request.GenerateId());
             var findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRequestResult)findResponce.Result;
+            var findResult = (FindRemoteFileResult)findResponce.Result;
 
             Trace.TraceInformation(findResponce.StatusDescription);
 
             Assert.AreEqual(StatusCode.FindRequestFail, findResponce.StatusCode);
-            Assert.IsNull(findResult.RemoteFileName);
-            Assert.IsNull(findResult.RemoteFileFolder);
+            Assert.IsNull(findResult);
             Assert.IsTrue(findResponce.StatusDescription.Contains(StatusCode.FindRemoteFileFail.ToString()));
         }
 
@@ -64,13 +63,12 @@ namespace Spreadbot.Core.Mip.Tests
             var feed = new Feed(FeedType.None);
             var request = new Request(feed, Request.GenerateId());
             var findResponce = Connector.FindRequest(request, RequestProcessingStage.Inprocess);
-            var findResult = (FindRequestResult)findResponce.Result;
+            var findResult = (FindRemoteFileResult)findResponce.Result;
 
             Trace.TraceInformation(findResponce.StatusDescription);
 
             Assert.AreEqual(StatusCode.FindRequestFail, findResponce.StatusCode);
-            Assert.IsNull(findResult.RemoteFileName);
-            Assert.IsNull(findResult.RemoteFileFolder);
+            Assert.IsNull(findResult);
             Assert.IsTrue(findResponce.StatusDescription.Contains("Exception"));
         }
 
@@ -82,17 +80,17 @@ namespace Spreadbot.Core.Mip.Tests
             var sendResponse = Connector.SendTestFeed(feed);
             var request = new Request(feed, (Request.Identifier) sendResponse.Result);
             var findResponce = Connector.FindRequest(request, RequestProcessingStage.Output);
-            var findResult = (FindRequestResult)findResponce.Result;
+            var findResult = (FindRemoteFileResult)findResponce.Result;
 
-            Trace.TraceInformation(findResult.RemoteFileName);
-            Trace.TraceInformation(findResult.RemoteFileFolder);
+            Trace.TraceInformation(findResult.FileName);
+            Trace.TraceInformation(findResult.FolderPath);
             Trace.TraceInformation(findResponce.StatusDescription);
 
             Assert.AreEqual(StatusCode.FindRequestSuccess, findResponce.StatusCode);
-            Assert.IsNotNull(findResult.RemoteFileName);
-            Assert.IsNotNull(findResult.RemoteFileFolder);
-            Assert.IsTrue(findResult.RemoteFileName.Length > 1);
-            Assert.IsTrue(findResult.RemoteFileFolder.Length > 1);
+            Assert.IsNotNull(findResult.FileName);
+            Assert.IsNotNull(findResult.FolderPath);
+            Assert.IsTrue(findResult.FileName.Length > 1);
+            Assert.IsTrue(findResult.FolderPath.Length > 1);
         }
 
         // --------------------------------------------------------[]
@@ -129,8 +127,6 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void GetRequestStatus_Inproc()
         {
-            Assert.Inconclusive();
-
             // Now: GetRequestStatus_Inproc
             var feed = new Feed(FeedType.Product);
             var sendResponse = Connector.SendTestFeed(feed);
