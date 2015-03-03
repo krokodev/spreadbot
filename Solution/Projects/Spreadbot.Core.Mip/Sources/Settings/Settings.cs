@@ -39,6 +39,11 @@ namespace Spreadbot.Core.Mip
             get { return MipPublic.Instance.Paths.FeedsPath; }
         }
 
+        public static string InboxPath
+        {
+            get { return MipPublic.Instance.Paths.InboxPath; }
+        }
+
         public static int OutputFolderNameUtcHourOffset
         {
             get { return MipPublic.Instance.Paths.OutputFolderNameUtcHourOffset; }

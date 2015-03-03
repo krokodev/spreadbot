@@ -8,7 +8,8 @@ namespace Spreadbot.Core.Mip
     public partial class Connector
     {
         // ===================================================================================== []
-        private static string LocalZippedFeedFilePath(string feed, string reqId)
+        // Local
+        private static string LocalZippedFeedFile(string feed, string reqId)
         {
             return string.Format(@"{0}\{1}.{2}.zip",
                 Settings.ZippedFeedsPath,
@@ -17,7 +18,23 @@ namespace Spreadbot.Core.Mip
                 );
         }
 
+        // --------------------------------------------------------[]
+        private static string LocalFeedFolder(string feed)
+        {
+            return string.Format("{0}{1}",
+                Settings.FeedsPath,
+                feed
+                );
+        }
+
+        // --------------------------------------------------------[]
+        private static string LocalRequestResultsFolder()
+        {
+            return Settings.InboxPath;
+        }
+
         // ===================================================================================== []
+        // Remote
         private static string RemoteFeedOutgoingZipFilePath(string feed, string reqId)
         {
             return string.Format("{0}{1}/{1}.{2}.zip",
@@ -27,16 +44,7 @@ namespace Spreadbot.Core.Mip
                 );
         }
 
-        // ===================================================================================== []
-        private static string LocalFeedFolderPath(string feed)
-        {
-            return string.Format("{0}{1}",
-                Settings.FeedsPath,
-                feed
-                );
-        }
-
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         private static string RemoteFeedInprocessFolderPath(string feed)
         {
             return string.Format("{0}{1}/inprocess",
@@ -45,7 +53,7 @@ namespace Spreadbot.Core.Mip
                 );
         }
 
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         private static IList<string> RemoteFeedOutputFolderPathes(string feed)
         {
             return new List<string>
@@ -57,7 +65,9 @@ namespace Spreadbot.Core.Mip
             };
         }
 
+
         // ===================================================================================== []
+        // Remote Data Based Names
         private static string RemoteFeedOutputFolderPath(string feed, int dayShift)
         {
             return string.Format("{0}{1}/output/{2}",
@@ -70,11 +80,9 @@ namespace Spreadbot.Core.Mip
         // ===================================================================================== []
         private static string DataBasedFolderName(int dayShift)
         {
-            int hourOffset = Settings.OutputFolderNameUtcHourOffset
-                -7;
-
+            var hourOffset = Settings.OutputFolderNameUtcHourOffset;
             var utcNow = DateTime.UtcNow;
-            var mipNow = utcNow.AddHours(hourOffset + 24 * dayShift);
+            var mipNow = utcNow.AddHours(hourOffset + 24*dayShift);
 
             return mipNow.Date.ToString("MMM-dd-yyy", CultureInfo.CreateSpecificCulture("en-US"));
         }

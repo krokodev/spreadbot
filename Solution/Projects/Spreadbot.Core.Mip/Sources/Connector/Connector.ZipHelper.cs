@@ -17,9 +17,9 @@ namespace Spreadbot.Core.Mip
                 string zipFileName;
                 try
                 {
-                    zipFileName = LocalZippedFeedFilePath(feed, reqId);
+                    zipFileName = LocalZippedFeedFile(feed, reqId);
                     ZipFiles(
-                        LocalFeedFolderPath(feed),
+                        LocalFeedFolder(feed),
                         zipFileName
                         );
                 }
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Mip
             // ZipFeed
             public static string ZippedFeedFileName(string feed, string reqId)
             {
-                return LocalZippedFeedFilePath(feed, reqId);
+                return LocalZippedFeedFile(feed, reqId);
             }
 
             // ===================================================================================== []

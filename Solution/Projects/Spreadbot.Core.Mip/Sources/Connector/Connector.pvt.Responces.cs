@@ -12,6 +12,7 @@ namespace Spreadbot.Core.Mip
             return new Response(false, statusCode, FailedStatusDescription(statusCode, statusDescription));
         }
 
+        // --------------------------------------------------------[]
         private static Response ResponseFail(StatusCode statusCode, Exception e)
         {
             return new Response(false, statusCode, FailedStatusDescription(statusCode, e));
@@ -26,6 +27,7 @@ namespace Spreadbot.Core.Mip
                 StatusDescription = SuccessfulStatusDescription(statusCode)
             };
         }
+        // --------------------------------------------------------[]
         private static Response ResponseSuccess(StatusCode statusCode, object result)
         {
             return new Response(true, statusCode)
@@ -34,12 +36,22 @@ namespace Spreadbot.Core.Mip
                 Result = result
             };
         }
+        // --------------------------------------------------------[]
         private static Response ResponseSuccess(StatusCode statusCode, object result, Response innerResponse)
         {
             Trace.Assert(innerResponse.IsSuccess);
             return new Response(true, statusCode)
             {
                 StatusDescription = SuccessfulStatusDescription(statusCode, result, innerResponse.StatusDescription),
+                Result = result
+            };
+        }
+        // --------------------------------------------------------[]
+        private static Response ResponseSuccess(StatusCode statusCode, object result, string description)
+        {
+            return new Response(true, statusCode)
+            {
+                StatusDescription = SuccessfulStatusDescription(statusCode, result, description),
                 Result = result
             };
         }

@@ -36,7 +36,7 @@ namespace Spreadbot.Core.Mip
                 {
                     remoteFileName = RemoteFeedOutgoingZipFilePath(feed, reqId);
                     PutFiles(
-                        LocalZippedFeedFilePath(feed, reqId),
+                        LocalZippedFeedFile(feed, reqId),
                         remoteFileName
                         );
                 }
@@ -79,7 +79,7 @@ namespace Spreadbot.Core.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return ResponseSuccess(StatusCode.FindRemoteFileSuccess, fileInfo.Name);
+                        return ResponseSuccess(StatusCode.FindRemoteFileSuccess, new FindRequestResult(remoteDir, fileInfo.Name));
                     }
                 }
                 return ResponseFail(StatusCode.FindRemoteFileFail,

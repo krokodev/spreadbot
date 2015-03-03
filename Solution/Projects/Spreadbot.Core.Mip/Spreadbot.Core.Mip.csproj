@@ -61,6 +61,8 @@
     <Compile Include="Sources\Response\StatusCode.cs" />
     <Compile Include="Sources\Connector\Connector.cs" />
     <Compile Include="Sources\Response\Response.cs" />
+    <Compile Include="Sources\Results\FindRequestResult.cs" />
+    <Compile Include="Sources\Results\GetRequetStatusResult.cs" />
     <Compile Include="Sources\Settings\Settings.cs" />
     <Compile Include="Sources\Feed\Feed.cs" />
     <Compile Include="Sources\Feed\FeedType.cs" />

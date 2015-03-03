@@ -14,6 +14,8 @@
         FindRequestSuccess,
         FindRequestFail,
         FindRemoteFileSuccess,
-        FindRemoteFileFail
+        FindRemoteFileFail,
+        GetRequestStatusSuccess,
+        GetRequestStatusFail
     }
 }

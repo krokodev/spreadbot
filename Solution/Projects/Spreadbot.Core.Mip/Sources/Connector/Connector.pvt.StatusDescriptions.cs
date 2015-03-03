@@ -11,26 +11,30 @@ namespace Spreadbot.Core.Mip
         {
             return "Code=[{0}]\nDescription=[{1}]".SafeFormat(statusCode, description);
         }
+
+        // --------------------------------------------------------[]
         private static string FailedStatusDescription(StatusCode statusCode, Exception e)
         {
             return "Code=[{0}]\nDescription=[Exception:{1}]".SafeFormat(statusCode, e.Message);
-        }        
-        
+        }
+
         // ===================================================================================== []
         // Successful Status Description
         private static string SuccessfulStatusDescription(StatusCode statusCode)
         {
             return "Code=[{0}]".SafeFormat(statusCode);
         }
-        
+
+        // --------------------------------------------------------[]
         private static string SuccessfulStatusDescription(StatusCode statusCode, string result)
         {
             return "Code=[{0}]\nResult=[{1}]".SafeFormat(statusCode, result);
         }
 
-        private static string SuccessfulStatusDescription(StatusCode statusCode,object result,string innerDescription)
+        // --------------------------------------------------------[]
+        private static string SuccessfulStatusDescription(StatusCode statusCode, object result, string description)
         {
-            return "Code=[{0}]\nResult=[{1}]\nInner=[\n{2}\n]".SafeFormat(statusCode, result, innerDescription);
+            return "Code=[{0}]\nResult=[{1}]\nDescription=[\n{2}\n]".SafeFormat(statusCode, result, description);
         }
     }
 }
