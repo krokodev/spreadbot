@@ -3,24 +3,24 @@ using System.Diagnostics;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Connector
+    public partial class Response
     {
         // ===================================================================================== []
         // Failed Responses
-        private static Response ResponseFail(StatusCode statusCode, string statusDescription)
+        public static Response ResponseFail(StatusCode statusCode, string statusDescription)
         {
             return new Response(false, statusCode, FailedStatusDescription(statusCode, statusDescription));
         }
 
         // --------------------------------------------------------[]
-        private static Response ResponseFail(StatusCode statusCode, Exception e)
+        public static Response ResponseFail(StatusCode statusCode, Exception e)
         {
             return new Response(false, statusCode, FailedStatusDescription(statusCode, e));
         }
 
         // ===================================================================================== []
         // Successful Responses
-        private static Response ResponseSuccess(StatusCode statusCode)
+        public static Response ResponseSuccess(StatusCode statusCode)
         {
             return new Response(true, statusCode)
             {
@@ -28,7 +28,7 @@ namespace Spreadbot.Core.Mip
             };
         }
         // --------------------------------------------------------[]
-        private static Response ResponseSuccess(StatusCode statusCode, object result)
+        public static Response ResponseSuccess(StatusCode statusCode, object result)
         {
             return new Response(true, statusCode)
             {
@@ -37,7 +37,7 @@ namespace Spreadbot.Core.Mip
             };
         }
         // --------------------------------------------------------[]
-        private static Response ResponseSuccess(StatusCode statusCode, object result, Response innerResponse)
+        public static Response ResponseSuccess(StatusCode statusCode, object result, Response innerResponse)
         {
             Trace.Assert(innerResponse.IsSuccess);
             return new Response(true, statusCode)
@@ -47,7 +47,7 @@ namespace Spreadbot.Core.Mip
             };
         }
         // --------------------------------------------------------[]
-        private static Response ResponseSuccess(StatusCode statusCode, object result, string description)
+        public static Response ResponseSuccess(StatusCode statusCode, object result, string description)
         {
             return new Response(true, statusCode)
             {

@@ -25,9 +25,9 @@ namespace Spreadbot.Core.Mip
                 }
                 catch (Exception e)
                 {
-                    return ResponseFail(StatusCode.ZipFeedFail, e);
+                    return Response.ResponseFail(StatusCode.ZipFeedFail, e);
                 }
-                return ResponseSuccess(StatusCode.ZipFeedSuccess, zipFileName);
+                return Response.ResponseSuccess(StatusCode.ZipFeedSuccess, zipFileName);
             }
 
             public static Response ZipFeed(Feed feed, Request.Identifier reqId)

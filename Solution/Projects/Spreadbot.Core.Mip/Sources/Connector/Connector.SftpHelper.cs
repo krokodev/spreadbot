@@ -51,7 +51,7 @@ namespace Spreadbot.Core.Mip
                         return response;
                     }
                 }
-                return ResponseFail(
+                return Response.ResponseFail(
                     StatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));
             }

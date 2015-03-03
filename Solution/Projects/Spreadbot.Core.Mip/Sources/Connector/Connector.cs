@@ -20,9 +20,9 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return ResponseFail(StatusCode.SendFeedFail, e);
+                return Response.ResponseFail(StatusCode.SendFeedFail, e);
             }
-            return ResponseSuccess(StatusCode.SendFeedSuccess, reqId);
+            return Response.ResponseSuccess(StatusCode.SendFeedSuccess, reqId);
         }
 
         public static Response SendTestFeed(Feed feed)
@@ -52,9 +52,9 @@ namespace Spreadbot.Core.Mip
             }
             catch (Exception e)
             {
-                return ResponseFail(StatusCode.FindRequestFail, e);
+                return Response.ResponseFail(StatusCode.FindRequestFail, e);
             }
-            return ResponseSuccess(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
+            return Response.ResponseSuccess(StatusCode.FindRequestSuccess, ftpResponce.Result, ftpResponce);
         }
 
         // ===================================================================================== []
@@ -67,7 +67,7 @@ namespace Spreadbot.Core.Mip
                 var response = FindRequest(request, RequestProcessingStage.Inprocess);
                 if (response.StatusCode == StatusCode.FindRequestSuccess)
                 {
-                    return ResponseSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Inprocess);
+                    return Response.ResponseSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Inprocess);
                 }
 
                 response = FindRequest(request, RequestProcessingStage.Output);
@@ -76,11 +76,11 @@ namespace Spreadbot.Core.Mip
                     return GetRequestOutputStatus(response);
                 }
 
-                return ResponseSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Unknown, response);
+                return Response.ResponseSuccess(StatusCode.GetRequestStatusSuccess, GetRequetStatusResult.Unknown, response.StatusDescription);
             }
             catch (Exception e)
             {
-                return ResponseFail(StatusCode.GetRequestStatusFail, e);
+                return Response.ResponseFail(StatusCode.GetRequestStatusFail, e);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Spreadbot.Core.Mip
             GetRequetStatusResult statusResult;
             string description;
             ReadRequestOutputStatus(response, out statusResult, out description);
-            return ResponseSuccess(StatusCode.GetRequestStatusSuccess, statusResult, description);
+            return Response.ResponseSuccess(StatusCode.GetRequestStatusSuccess, statusResult, description);
         }
 
         // --------------------------------------------------------[]

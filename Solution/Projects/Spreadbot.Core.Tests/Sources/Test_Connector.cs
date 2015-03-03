@@ -117,6 +117,22 @@ namespace Spreadbot.Core.Mip.Tests
         // ===================================================================================== [] 
         // GetRequestStatus
         [TestMethod]
+        public void GetRequestStatus_Inproc()
+        {
+            var feed = new Feed(FeedType.Product);
+            var sendResponse = Connector.SendTestFeed(feed);
+            var request = new Request(feed, (Request.Identifier)sendResponse.Result);
+
+            var requestResponse = Connector.GetRequestStatus(request);
+            var requestResult = (GetRequetStatusResult)requestResponse.Result;
+
+            Trace.TraceInformation(requestResponse.StatusDescription);
+
+            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
+            Assert.AreEqual(GetRequetStatusResult.Inprocess, requestResult);
+        }
+        // --------------------------------------------------------[]
+        [TestMethod]
         public void GetRequestStatus_Success()
         {
             // Now: GetRequestStatus_Success
@@ -128,25 +144,18 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void GetRequestStatus_Unknown()
         {
-            Assert.Inconclusive();
-        }
-
-        // --------------------------------------------------------[]
-        [TestMethod]
-        public void GetRequestStatus_Inproc()
-        {
             var feed = new Feed(FeedType.Product);
-            var sendResponse = Connector.SendTestFeed(feed);
-            var request = new Request(feed, (Request.Identifier)sendResponse.Result);
-            
-            var requestResponce = Connector.GetRequestStatus(request);
-            var requestResult = (GetRequetStatusResult)requestResponce.Result;
+            var request = new Request(feed, Request.GenerateId());
 
-            Trace.TraceInformation(requestResponce.StatusDescription);
+            var requestResponse = Connector.GetRequestStatus(request);
+            var requestResult = (GetRequetStatusResult)requestResponse.Result;
 
-            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponce.StatusCode);
-            Assert.AreEqual(GetRequetStatusResult.Inprocess, requestResult);
+            Trace.TraceInformation(requestResponse.StatusDescription);
+
+            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.StatusCode);
+            Assert.AreEqual(GetRequetStatusResult.Unknown, requestResult);
         }
+
 
         // --------------------------------------------------------[]
         [TestMethod]
