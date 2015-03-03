@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spreadbot.Core.Mip.Tests
@@ -98,6 +99,31 @@ namespace Spreadbot.Core.Mip.Tests
 
             Assert.AreEqual(StatusCode.FindRequestFail, findResponce.StatusCode);
             Assert.IsNull(remoteFileName);
+        }
+
+        // ===================================================================================== []
+        [TestMethod]
+        public void GetRequestResult_Unknown()
+        {
+            throw new NotImplementedException();
+        }
+        // ===================================================================================== []
+        [TestMethod]
+        public void GetRequestResult_Inproc()
+        {
+            throw new NotImplementedException();
+        }
+        // ===================================================================================== []
+        [TestMethod]
+        public void GetRequestResult_Success()
+        {
+            throw new NotImplementedException();
+        }
+        // ===================================================================================== []
+        [TestMethod]
+        public void GetRequestResult_Fail()
+        {
+            throw new NotImplementedException();
         }
     }
 }
