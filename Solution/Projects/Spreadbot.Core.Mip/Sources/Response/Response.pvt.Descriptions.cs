@@ -12,7 +12,7 @@ namespace Spreadbot.Core.Mip
         {
             return DescriptionSuccess(level++,
                 DescriptionField("Code", Code, level),
-                DescriptionField("Result", Result, level),
+                DescriptionField("Result", Result.GetDescription("{0}=[{1}]"), level),
                 DescriptionField("Details", Details, level),
                 DescriptionInnerResponse(InnerResponse, level)
                 );
@@ -43,11 +43,11 @@ namespace Spreadbot.Core.Mip
         private static string DescriptionException(Exception e, int level)
         {
             if (e == null)
-                return "";
+                return null;
 
             return DescriptionSection("Exception", level++,
                 DescriptionField("Type", e.GetType(), level),
-                DescriptionField("Message", ExceptionMessage(e, level), level),
+                DescriptionField("Message", ExceptionMessage(e, level+1), level),
                 DescriptionField("InnerException", DescriptionException(e.InnerException, level), level)
                 );
         }
@@ -66,7 +66,7 @@ namespace Spreadbot.Core.Mip
         private static string DescriptionInnerResponse(IResponse response, int level)
         {
             if (response == null)
-                return "";
+                return null;
 
             return DescriptionSection("InnerResponse", level++,
                 response.GetDescription(level)

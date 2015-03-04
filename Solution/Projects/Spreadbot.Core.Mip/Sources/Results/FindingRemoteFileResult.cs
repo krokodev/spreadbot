@@ -2,7 +2,7 @@
 
 namespace Spreadbot.Core.Mip
 {
-    public class FindingRemoteFileResult: IResponseResult
+    public class FindingRemoteFileResult : IResponseResult
     {
         public readonly string FileName;
         public readonly string FolderPath;
@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Mip
 
         public string GetDescription(string format)
         {
-            return format.SafeFormat("FolderPath", FolderPath) + format.SafeFormat("FileName", FileName);
+            return format.SafeFormat("FolderPath", FolderPath) + " " + format.SafeFormat("FileName", FileName);
         }
     }
 }

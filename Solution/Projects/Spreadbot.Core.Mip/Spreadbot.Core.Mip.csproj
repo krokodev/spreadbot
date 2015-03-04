@@ -50,7 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Results\TestingConnectionResult.cs" />
+    <Compile Include="Sources\Results\BoolResult.cs" />
     <Compile Include="Sources\Results\ZippingFeedResult.cs" />
     <Compile Include="Sources\Results\SendingFeedResult.cs" />
     <Compile Include="Sources\Response\ResponseException.cs" />
