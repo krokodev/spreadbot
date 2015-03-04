@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Crocodev.Common;
 
 // >> Connector
@@ -59,13 +58,12 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static Response<GettingRequestStatusResult> GetRequestStatus(Request request)
+        public static Response<GettingRequestStatusResult> GetRequestStatus(Request request, bool ignoreInprocess=false)
         {
-            // Now: GetRequestStatus
             try
             {
                 var response = FindRequest(request, RequestProcessingStage.Inprocess);
-                if (response.Code == StatusCode.FindRequestSuccess)
+                if (response.Code == StatusCode.FindRequestSuccess && !ignoreInprocess)
                 {
                     return Response<GettingRequestStatusResult>.NewSuccess(
                         StatusCode.GetRequestStatusSuccess,
@@ -101,20 +99,11 @@ namespace Spreadbot.Core.Mip
         // --------------------------------------------------------[]
         private static GettingRequestStatusResult ReadRequestOutputStatus(Response<FindingRemoteFileResult> response)
         {
-            throw new NotImplementedException();
-/*            var fileName = (string) response.Result;
-            var remotePath = RemoteFeedOutputFolderPath();
+            var fileName = response.Result.FileName;
+            var remotePath = response.Result.FolderPath;
             var localPath = LocalRequestResultsFolder();
-            var content = SftpHelper.GetRemoteFileContent(
-                , 
-                
-                );
-            ParseRequestContent(content, out status, out description);
-
-            Trace.Assert(
-                status == RequetStatus.Fail || status == RequetStatus.Success,
-                "Unknown status=[{0}]".SafeArgs(status)
-                );*/
+            var content = SftpHelper.GetRemoteFileContent(remotePath, fileName, localPath);
+            return ParseRequestContent(content);
         }
 
         // --------------------------------------------------------[]

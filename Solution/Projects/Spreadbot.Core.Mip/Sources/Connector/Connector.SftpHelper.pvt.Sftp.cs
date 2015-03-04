@@ -33,7 +33,7 @@ namespace Spreadbot.Core.Mip
             {
                 try
                 {
-                    PutFiles(
+                    UploadFiles(
                         LocalZippedFeedFile(feed, reqId.ToString()),
                         RemoteFeedOutgoingZipFilePath(feed, reqId.ToString())
                         );
@@ -42,7 +42,8 @@ namespace Spreadbot.Core.Mip
                 {
                     return Response<SendingFeedResult>.NewFail(StatusCode.SendZippedFeedFail, e);
                 }
-                return Response<SendingFeedResult>.NewSuccess(StatusCode.SendZippedFeedSuccess, new SendingFeedResult(reqId));
+                return Response<SendingFeedResult>.NewSuccess(StatusCode.SendZippedFeedSuccess,
+                    new SendingFeedResult(reqId));
             }
 
             // ===================================================================================== []
@@ -70,8 +71,8 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // FindFileNamePrefixInRemoteDir
-            private static Response<FindingRemoteFileResult>
-                FindRemoteFileNamePrefixInRemoteDir(string prefix, string remoteDir)
+            private static Response<FindingRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
+                string remoteDir)
             {
                 var files = GetRemoteDirFiles(remoteDir);
                 foreach (RemoteFileInfo fileInfo in files)
@@ -91,8 +92,8 @@ namespace Spreadbot.Core.Mip
             }
 
             // ===================================================================================== []
-            // PutFiles
-            private static void PutFiles(string localPath, string remotePath)
+            // UploadFiles
+            private static void UploadFiles(string localPath, string remotePath)
             {
                 using (var session = new Session())
                 {
@@ -104,6 +105,28 @@ namespace Spreadbot.Core.Mip
                     var transferResult = session.PutFiles(
                         localPath,
                         remotePath,
+                        false,
+                        transferOptions
+                        );
+
+                    transferResult.Check();
+                }
+            }
+
+            // ===================================================================================== []
+            // UploadFiles
+            private static void DownloadFiles(string remotePath, string localPath)
+            {
+                using (var session = new Session())
+                {
+                    var sessionOptions = SessionOptions();
+                    var transferOptions = TransferOptions();
+
+                    session.Open(sessionOptions);
+
+                    var transferResult = session.GetFiles(
+                        remotePath,
+                        localPath,
                         false,
                         transferOptions
                         );

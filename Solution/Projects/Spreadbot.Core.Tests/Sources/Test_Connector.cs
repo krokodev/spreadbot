@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spreadbot.Core.Mip.Tests
@@ -106,7 +105,7 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void GetRequestStatus_Inproc()
         {
-            var feed = new Feed(FeedType.Product);
+            var feed = new Feed(FeedType.Availability);
             var sendResponse = Connector.SendTestFeed(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
@@ -120,9 +119,15 @@ namespace Spreadbot.Core.Mip.Tests
         [TestMethod]
         public void GetRequestStatus_Success()
         {
-            // Now: GetRequestStatus_Success
+            var feed = new Feed(FeedType.Distribution);
+            var sendResponse = Connector.SendTestFeed(feed);
+            var request = new Request(feed, sendResponse.Result.RequestId);
 
-            Assert.Inconclusive();
+            var requestResponse = Connector.GetRequestStatus(request, ignoreInprocess: true);
+            Trace.TraceInformation(requestResponse.Description);
+
+            Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.Code);
+            Assert.AreEqual(RequetStatus.Success, requestResponse.Result.Status);
         }
 
         // --------------------------------------------------------[]
@@ -137,14 +142,6 @@ namespace Spreadbot.Core.Mip.Tests
 
             Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.Code);
             Assert.AreEqual(RequetStatus.Unknown, requestResponse.Result.Status);
-        }
-
-
-        // --------------------------------------------------------[]
-        [TestMethod]
-        public void GetRequestStatus_Fail()
-        {
-            Assert.Inconclusive();
         }
     }
 }

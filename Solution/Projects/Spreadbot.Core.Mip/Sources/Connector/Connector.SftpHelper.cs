@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using Crocodev.Common;
 
 namespace Spreadbot.Core.Mip
@@ -58,42 +58,15 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // GetRemoteFileContent
-            public static string GetRemoteFileContent(string remoteFileName, string localFileName)
+            public static string GetRemoteFileContent(string remoteFolder, string fileName, string localFolder)
             {
-                throw new NotImplementedException();
+                var remotePath = @"{0}/{1}".SafeFormat(remoteFolder, fileName);
+                var localPath = @"{0}\{1}".SafeFormat(localFolder, fileName);
+
+                DownloadFiles(remotePath, localPath);
+
+                return File.ReadAllText(@"{0}\{1}".SafeFormat(localFolder, fileName));
             }
-
-
-
-            /*
-
-            # ============================================================================================== []
-            function GetRemoteFileContent([string]$remoteDir, [string]$fileName)
-            {
-                Debug "Downloading [$localPath\$fileName]"
-
-                $localPath = $LocalInboxPath
-                DownloadFile $remoteDir $fileName $localPath ([WinSCP.TransferMode]::Ascii)
-                gc "$localPath\$fileName"
-            }
-
-            # ============================================================================================== []
-            function DownloadFile ([string]$remoteDir, [string]$fileName, [string]$localPath, [WinSCP.TransferMode]$transferMode=[WinSCP.TransferMode]::Binary)
-            {
-                $session         = New-Object WinSCP.Session
-                $transferOptions = New-Object WinSCP.TransferOptions
-                $transferOptions.TransferMode = $transferMode
-                try
-                {
-                    $session.Open($SessionOptions) 
-                    $Session.GetFiles("$remoteDir/$fileName", "$localPath\$fileName", $false, $transferOptions).Check()
-                }
-                finally
-                {
-                    $session.Dispose()
-                }
-            }
-             */
         }
     }
 }
