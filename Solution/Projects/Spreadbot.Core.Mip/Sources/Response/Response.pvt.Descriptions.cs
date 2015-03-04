@@ -10,8 +10,7 @@ namespace Spreadbot.Core.Mip
         // Get Description
         private string GetSuccessDescription(int level)
         {
-            return DescriptionSuccess(level++,
-                DescriptionField("Code", Code, level),
+            return DescriptionResponse(level++,
                 DescriptionField("Result", Result.GetDescription("{0}=[{1}]"), level),
                 DescriptionField("Details", Details, level),
                 DescriptionInnerResponse(InnerResponse, level)
@@ -21,8 +20,7 @@ namespace Spreadbot.Core.Mip
         // --------------------------------------------------------[]
         private string GetFailedDescription(int level)
         {
-            return DescriptionFail(level++,
-                DescriptionField("Code", Code, level),
+            return DescriptionResponse(level++,
                 DescriptionException(Exception, level),
                 DescriptionField("Details", Details, level),
                 DescriptionInnerResponse(InnerResponse, level)
@@ -93,15 +91,9 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionFail(int level = 0, params string[] args)
+        private string DescriptionResponse(int level = 0, params string[] args)
         {
-            return DescriptionSection("Response.Fail", level, args);
-        }
-
-        // --------------------------------------------------------[]
-        private static string DescriptionSuccess(int level = 0, params string[] args)
-        {
-            return DescriptionSection("Response.Success", level, args);
+            return DescriptionSection(Code.ToString(), level, args);
         }
 
         // --------------------------------------------------------[]

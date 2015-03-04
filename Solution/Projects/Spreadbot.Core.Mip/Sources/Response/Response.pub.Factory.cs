@@ -36,7 +36,6 @@ namespace Spreadbot.Core.Mip
         // --------------------------------------------------------[]
         public static Response<T> NewSuccess(StatusCode statusCode, T result, IResponse innerResponse)
         {
-            Trace.Assert(innerResponse.IsSuccess);
             return new Response<T>(true, statusCode)
             {
                 Result = result,

@@ -82,7 +82,7 @@ namespace Spreadbot.Core.Mip
                 return Response<GettingRequestStatusResult>.NewSuccess(
                     StatusCode.GetRequestStatusSuccess,
                     new GettingRequestStatusResult(RequetStatus.Unknown),
-                    response.Description
+                    response
                     );
             }
             catch (Exception e)

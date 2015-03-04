@@ -12,13 +12,13 @@ namespace Spreadbot.Core.Mip.Tests
         public void ZipFeed()
         {
             var feed = new Feed(FeedType.Product);
-            var reqId = 0.ToString();
-            var response = Connector.ZipHelper.ZipFeed(feed.Name, reqId);
+            var reqId = Request.GenerateTestId().ToString();
 
+            var response = Connector.ZipHelper.ZipFeed(feed.Name, reqId);
             Trace.TraceInformation(response.Description);
 
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.Code);
-            Assert.IsTrue(File.Exists(Connector.ZipHelper.ZippedFeedFileName(feed.Name, reqId)));
+            Assert.IsTrue(File.Exists(response.Result.ZipFileName));
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.Code);
         }
     }

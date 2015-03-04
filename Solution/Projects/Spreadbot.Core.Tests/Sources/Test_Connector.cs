@@ -98,7 +98,7 @@ namespace Spreadbot.Core.Mip.Tests
             Trace.TraceInformation(findResponse.Description);
 
             Assert.AreEqual(StatusCode.FindRequestFail, findResponse.Code);
-            Assert.IsNull(findResponse.Result.FileName);
+            Assert.IsNull(findResponse.Result);
         }
 
         // ===================================================================================== [] 
@@ -133,12 +133,10 @@ namespace Spreadbot.Core.Mip.Tests
             var request = new Request(feed, Request.GenerateId());
 
             var requestResponse = Connector.GetRequestStatus(request);
-            var requestResult = (GettingRequestStatusResult)requestResponse.Result;
-
             Trace.TraceInformation(requestResponse.Description);
 
             Assert.AreEqual(StatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(RequetStatus.Unknown, requestResult.Status);
+            Assert.AreEqual(RequetStatus.Unknown, requestResponse.Result.Status);
         }
 
 

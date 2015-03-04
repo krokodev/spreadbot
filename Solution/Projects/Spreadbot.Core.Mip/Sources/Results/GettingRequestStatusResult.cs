@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Mip
 
         public string GetDescription(string format)
         {
-            return format.SafeFormat("Status", Status) + format.SafeFormat("Description", Description);
+            return format.SafeFormat("Status", Status) + " " + format.SafeFormat("Description", Description);
         }
     }
 }
