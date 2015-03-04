@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 @{
-    // >> | View | Shared | Layout
+    // >> | Shared | Layout *
 }
 <html>
 
@@ -15,7 +15,12 @@
 
 <body>
 @LayoutView.Header()
-@RenderBody()
+
+<div class="sb-page-content">
+    <h1>@ViewBag.Title</h1>
+    @RenderBody()
+</div>
+
 @LayoutView.Footer()
 </body>
 

@@ -1,12 +1,19 @@
-﻿namespace Spreadbot.App.Web
+﻿using System.Linq;
+
+namespace Spreadbot.App.Web
 {
     // >> | Model | HomeModel
     public class HomeModel
     {
-        public readonly MipDemoModel[] MipDemoModels =
+        public static readonly MipDemoModel[] MipDemoModels =
         {
-            new MipDemoModel((MipDemoModel.Identifier)1, "MipDemoModels #1"),
-            new MipDemoModel((MipDemoModel.Identifier)2, "MipDemoModels #2"),
+            new MipDemoModel((MipDemoModel.Identifier)1, "Mip Demo #1"),
+            new MipDemoModel((MipDemoModel.Identifier)2, "Mip Demo #2"),
         };
+
+        public static MipDemoModel FindMipDemo(MipDemoModel.Identifier id)
+        {
+            return MipDemoModels.First(m => m.Id == id);
+        }
     }
 }

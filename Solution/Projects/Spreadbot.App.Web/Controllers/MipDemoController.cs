@@ -9,9 +9,10 @@ namespace Spreadbot.App.Web
         {
             return View(new HomeModel());
         }
-        public ActionResult Start()
+        public ActionResult Start(int id)
         {
-            return View(new HomeModel());
+            MipDemoModel.Identifier identifier = (MipDemoModel.Identifier)id;
+            return View(HomeModel.FindMipDemo(identifier));
         }
     }
 }
