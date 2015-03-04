@@ -8,11 +8,8 @@ namespace Spreadbot.App.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             // CSS
-            bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/Content/Themes/Default/Site.css"));
-            // Default CSS
             bundles.Add(new StyleBundle("~/css")
-                .Include("~/Content/Themes/Default/Site.css"));
+                .Include("~/Content/Themes/Default/Common.css"));
         }
     }
 }

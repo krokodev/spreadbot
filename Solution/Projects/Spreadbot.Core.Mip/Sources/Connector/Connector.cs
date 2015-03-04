@@ -1,7 +1,7 @@
 ﻿using System;
 using Crocodev.Common;
 
-// >> Connector
+// >> | Core | Connector
 
 namespace Spreadbot.Core.Mip
 {
@@ -109,7 +109,7 @@ namespace Spreadbot.Core.Mip
         // --------------------------------------------------------[]
         private static GettingRequestStatusResult ParseRequestContent(string content)
         {
-            // Todo: Parse XML
+            // Todo: Later : Parse XML
             return new GettingRequestStatusResult(
                 content.Contains("<status>SUCCESS</status>")
                     ? RequetStatus.Success
