@@ -9,12 +9,16 @@ namespace Spreadbot.App.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "Default",
-                "{controller}/{action}/{id}",
-                new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                new[] { "Spreadbot.App.Web" }
-                );
+            var route = new Route("{controller}/{action}/{id}", new MvcRouteHandler())
+            {
+                Defaults = new RouteValueDictionary(new
+                {
+                    controller = "Home",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                })
+            };
+            routes.Add("Default", route);
         }
     }
 }

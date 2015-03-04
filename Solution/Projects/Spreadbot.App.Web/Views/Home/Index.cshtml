@@ -1,13 +1,13 @@
 ﻿@model Spreadbot.App.Web.HomeModel
-@using Spreadbot.Core.Configuration
 
 @{
-    // >> | View | Index
+    // >> | View | Home| Index
     ViewBag.Title = "Spreadbot";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 
-<div style="width: 600px; margin: 50px;">
+<div class="sb-page-content">
+
     <h1>Spreadbot</h1>
 
     <div>
@@ -27,7 +27,6 @@
         <ul>
             <li class="sb-red">
                 Public 1 Item on eBay via MIP:SFTP
-                [@MipSecurity.Instance.SecretData.UserName@("@"+MipPublic.Instance.Connection.HostName)]
             </li>
             <li>
                 Public Items from VC sample files on eBay via MIP:SFTP

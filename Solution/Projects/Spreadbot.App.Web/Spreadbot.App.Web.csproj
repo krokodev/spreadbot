@@ -173,11 +173,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MipDemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MipDemoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +225,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Views\MipDemo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,22 @@
+﻿@using Spreadbot.App.Web
+@model HomeModel
+
+@{
+    // >> | View | MipDemo | Index
+    ViewBag.Title = "Spreadbot";
+    Layout = "~/Views/Shared/Layouts/Default.cshtml";
+}
+
+<div class="sb-page-content">
+    <h1>MIP Demo</h1>
+
+
+    @foreach (var m in Model.MipDemoModels)
+    {
+        
+        <ul>
+            <li>@Shared.ActionLink(m.Name, "MipDemo", "Start", m.Id)</li>
+        </ul>
+    }
+
+</div >

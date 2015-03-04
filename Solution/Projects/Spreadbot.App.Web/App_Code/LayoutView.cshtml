@@ -2,7 +2,7 @@
 @using System.Web.Mvc.Html
 @functions{
 
-// >> | View | LayoutView
+// >> | App_Code | LayoutView
 private new static HtmlHelper<object> Html
     {
         get { return ((WebViewPage) WebPageContext.Current.Page).Html; }
@@ -14,7 +14,7 @@ private new static HtmlHelper<object> Html
 {
     <div>
         @MenuActionLink("Home", "Home")
-        | @MenuActionLink("Demo", "Demo")
+        | @MenuActionLink("MIP Demo", "MipDemo")
     </div>
     <hr />
 }
