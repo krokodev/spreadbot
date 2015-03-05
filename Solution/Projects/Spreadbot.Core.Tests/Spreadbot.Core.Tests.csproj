@@ -61,7 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Sources\Test_Configuration.cs" />
-    <Compile Include="Sources\Test_Connector.cs" />
+    <Compile Include="Sources\MipConnector_Tests.cs" />
     <Compile Include="Sources\Test_Connector_Zip.cs" />
     <Compile Include="Sources\Test_Connector_Sftp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

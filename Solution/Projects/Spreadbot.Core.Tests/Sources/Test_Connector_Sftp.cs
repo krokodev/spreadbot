@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class Test_Connector_Sftp
+    public class Test_Connector_SftpHelper
     {
         // ===================================================================================== []
         [TestMethod]

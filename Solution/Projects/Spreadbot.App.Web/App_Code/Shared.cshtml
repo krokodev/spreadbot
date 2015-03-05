@@ -24,7 +24,7 @@
         args))
 }
 
-@helper ActionLink(string text, string controller, string action, string cssClass)
+@helper ActionLink(string text, string controller, string action="Index", string cssClass="")
 {
     @Html.ActionLink(
         text,
