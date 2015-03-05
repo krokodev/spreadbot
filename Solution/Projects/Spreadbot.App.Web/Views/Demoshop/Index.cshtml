@@ -22,7 +22,6 @@
     }
 }
 
-}
 @helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
 {
     var label = Html.LabelFor(expression);
@@ -32,7 +31,7 @@
 }
 
 
-@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px  sb-align-right")
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
 {
     var label = Html.LabelFor(expression);
     var textBox = Html.TextBoxFor(expression, new { @class });
