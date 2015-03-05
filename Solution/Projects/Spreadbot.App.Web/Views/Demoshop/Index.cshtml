@@ -1,5 +1,7 @@
-﻿@using Spreadbot.App.Web
+﻿@using System.Linq.Expressions
+@using Spreadbot.App.Web
 @model DemoshopModel
+
 
 @{
     // Now: >> | View | Demoshop | Index
@@ -7,16 +9,66 @@
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 
+@helper ItemEditForm()
+{
+    using (Html.BeginForm())
+    {
+        <fieldset class="sb-table">
+            @FormEditor(m => m.Item.Sku)
+            @FormEditor(m => m.Item.Title, "sb-width-500px")
+            @FormEditor(m => m.Item.Price)
+            @FormEditor(m => m.Item.Quantity)
+        </fieldset>
+    }
+}
+
+}
+@helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
+{
+    var label = Html.LabelFor(expression);
+    var textBox = Html.TextBoxFor(expression, new { @class });
+
+    @FormView.Editor(label, textBox)
+}
+
+
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px  sb-align-right")
+{
+    var label = Html.LabelFor(expression);
+    var textBox = Html.TextBoxFor(expression, new { @class });
+
+    @FormView.Editor(label, textBox)
+}
+
+@*
+// ===================================================================================== []
+*@
+
+
+<style>
+
+
+
+</style>
+
 <style>
     #ShopContent { padding-left: 0; }
-    
+
     #Store { padding-left: 0; }
 
     #Item { padding-left: 30px; }
 
     #ItemContent { padding-left: 30px; }
-    
+
     #PublisherContent { padding-left: 30px; }
+
+    #Item-sku { width: 200px }
+
+    #Item-title { width: 500px }
+
+    #Item-price { width: 50px }
+
+    #Item-quantity { width: 50px }
 </style>
 
 <div id="ShopContent">
@@ -31,10 +83,7 @@
         <div id="Item">
             <h3>Item</h3>
             <div id="ItemContent">
-                <p>SKU</p>
-                <p>Title</p>
-                <p>Price</p>
-                <p>Quantity</p>
+                @ItemEditForm()
             </div>
         </div>
     </div>

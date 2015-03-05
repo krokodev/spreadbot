@@ -4,12 +4,14 @@ namespace Spreadbot.App.Web
 {
     public static class BundleConfig
     {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
+        // >> | App_Atart | BundleConfig
         public static void RegisterBundles(BundleCollection bundles)
         {
             // CSS
             bundles.Add(new StyleBundle("~/css")
-                .Include("~/Content/Themes/Default/Common.css"));
+                .Include("~/Content/Themes/Default/Common.css")
+                .Include("~/Content/Themes/Default/Form.css")
+                );
         }
     }
 }
