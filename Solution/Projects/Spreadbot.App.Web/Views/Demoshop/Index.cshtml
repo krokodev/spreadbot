@@ -11,6 +11,12 @@
 
 @helper ItemEditForm()
 {
+@*
+
+    http://stackoverflow.com/questions/9888066/mvc-razor-how-to-submit-form-to-itself
+
+*@
+
     using (Html.BeginForm())
     {
         <fieldset class="sb-table">
@@ -19,9 +25,13 @@
             @FormEditor(m => m.Item.Price)
             @FormEditor(m => m.Item.Quantity)
         </fieldset>
+        <input type="submit" value="UpdateItem" />
     }
 }
 
+@*
+// Todo: Move to FormView
+*@
 @helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
 {
     var label = Html.LabelFor(expression);

@@ -9,5 +9,10 @@ namespace Spreadbot.App.Web
         {
             return View(new DemoshopModel());
         }
+
+        public ActionResult UpdateItem()
+        {
+            return View(new DemoshopModel());
+        }
     }
 }
