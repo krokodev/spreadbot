@@ -56,12 +56,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Proejcts\Spreadbot.Utils\Spreadbot.Utils.csproj">
-      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

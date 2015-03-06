@@ -12,7 +12,7 @@ namespace Spreadbot.App.Web
 
         public ActionResult UpdateItem()
         {
-            return View(new DemoshopModel());
+            return RedirectToAction("Index");
         }
     }
 }

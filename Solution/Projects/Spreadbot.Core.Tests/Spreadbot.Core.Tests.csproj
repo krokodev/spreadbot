@@ -67,10 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Proejcts\Spreadbot.Utils\Spreadbot.Utils.csproj">
-      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Utils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
       <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
       <Name>Spreadbot.Core.Configuration</Name>

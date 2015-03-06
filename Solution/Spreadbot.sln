@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.App.Web", "Projects\Spreadbot.App.Web\Spreadbot.App.Web.csproj", "{565F782F-1787-4B57-A95B-4598DC51B357}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F92D32FB-8984-4925-B2A7-DF14ABC2889F}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -24,7 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Configuratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Tests", "projects\Spreadbot.Core.Tests\Spreadbot.Core.Tests.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Utils", "Proejcts\Spreadbot.Utils\Spreadbot.Utils.csproj", "{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Utils", "projects\Spreadbot.Utils\Spreadbot.Utils.csproj", "{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.App.Web", "projects\Spreadbot.App.Web\Spreadbot.App.Web.csproj", "{FA55CC33-16A1-4AF9-B818-27BDAFA35489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,15 +48,19 @@ Global
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{565F782F-1787-4B57-A95B-4598DC51B357} = {1C1D29A3-85F4-4207-BD2C-3943DC1D9568}
 		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 		{BC745F18-F75D-49B8-8C3A-012A262EC939} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA} = {EF6CE066-22CC-44BB-8768-FF001637E704}
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5} = {68589BEE-1DFD-4F5A-889D-AE199CFD91AE}
+		{FA55CC33-16A1-4AF9-B818-27BDAFA35489} = {1C1D29A3-85F4-4207-BD2C-3943DC1D9568}
 	EndGlobalSection
 EndGlobal

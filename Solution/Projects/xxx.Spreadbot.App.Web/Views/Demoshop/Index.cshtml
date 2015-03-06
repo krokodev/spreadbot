@@ -17,15 +17,16 @@
 
 *@
 
-    using (Html.BeginForm())
+    using (Html.BeginForm("UpdateItem", "Demoshop", FormMethod.Post))
     {
         <fieldset class="sb-table">
             @FormEditor(m => m.Item.Sku)
             @FormEditor(m => m.Item.Title, "sb-width-500px")
             @FormEditor(m => m.Item.Price)
             @FormEditor(m => m.Item.Quantity)
+            <br>
+            <input type="submit" value="Update" />
         </fieldset>
-        <input type="submit" value="UpdateItem" />
     }
 }
 
@@ -41,7 +42,7 @@
 }
 
 
-@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px sb-align-right")
 {
     var label = Html.LabelFor(expression);
     var textBox = Html.TextBoxFor(expression, new { @class });
