@@ -1,10 +1,11 @@
 using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public class SendingFeedResult : IResponseResult
+    public class SendFeedResult : IResponseResult
     {
-        public SendingFeedResult(Request.Identifier requestId)
+        public SendFeedResult(Request.Identifier requestId)
         {
             RequestId = requestId;
         }

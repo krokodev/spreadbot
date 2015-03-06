@@ -2,9 +2,9 @@
 using Crocodev.Common;
 using MoreLinq;
 
-namespace Spreadbot.Core.Mip
+namespace Spreadbot.Core.Common
 {
-    public sealed partial class Response<T>
+    public partial class GenericResponse<TR,TC>
     {
         // ===================================================================================== []
         // Get Description

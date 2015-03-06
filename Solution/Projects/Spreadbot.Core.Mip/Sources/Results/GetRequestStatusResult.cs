@@ -1,13 +1,14 @@
 ﻿using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public class GettingRequestStatusResult: IResponseResult
+    public class GetRequestStatusResult: IResponseResult
     {
         public readonly RequetStatus Status;
         public readonly string Description;
 
-        public GettingRequestStatusResult(RequetStatus status, string description="")
+        public GetRequestStatusResult(RequetStatus status, string description="")
         {
             Status = status;
             Description = description;

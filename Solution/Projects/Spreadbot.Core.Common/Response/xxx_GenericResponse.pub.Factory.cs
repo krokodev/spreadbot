@@ -1,24 +1,23 @@
-﻿using System;
-using System.Diagnostics;
+﻿/*using System;
 
-namespace Spreadbot.Core.Mip
+namespace Spreadbot.Core.Common
 {
-    public sealed partial class Response<T>
+    public partial class GenericResponse<TR,TC>
     {
         // ===================================================================================== []
         // Failed Responses
-        public static Response<T> NewFail(StatusCode statusCode, string details)
+        public static GenericResponse<TR,TC> NewFail(TC statusCode, string details)
         {
-            return new Response<T>(false, statusCode)
+            return new GenericResponse<TR,TC>(false, statusCode)
             {
                 Details = details
             };
         }
 
         // --------------------------------------------------------[]
-        public static Response<T> NewFail(StatusCode statusCode, Exception e)
+        public static GenericResponse<TR,TC> NewFail(TC statusCode, Exception e)
         {
-            return new Response<T>(false, statusCode)
+            return new GenericResponse<TR,TC>(false, statusCode)
             {
                 Exception =  e
             };
@@ -26,30 +25,30 @@ namespace Spreadbot.Core.Mip
 
         // ===================================================================================== []
         // Successful Responses
-        public static Response<T> NewSuccess(StatusCode statusCode, T result)
+        public static GenericResponse<TR, TC> NewSuccess(TC statusCode, TR result)
         {
-            return new Response<T>(true, statusCode)
+            return new GenericResponse<TR, TC>(true, statusCode)
             {
                 Result = result
             };
         }
         // --------------------------------------------------------[]
-        public static Response<T> NewSuccess(StatusCode statusCode, T result, IResponse innerResponse)
+        public static GenericResponse<TR, TC> NewSuccess(TC statusCode, TR result, IResponse innerResponse)
         {
-            return new Response<T>(true, statusCode)
+            return new GenericResponse<TR, TC>(true, statusCode)
             {
                 Result = result,
                 InnerResponse = innerResponse
             };
         }
         // --------------------------------------------------------[]
-        public static Response<T> NewSuccess(StatusCode statusCode, T result, string details)
+        public static GenericResponse<TR, TC> NewSuccess(TC statusCode, TR result, string details)
         {
-            return new Response<T>(true, statusCode)
+            return new GenericResponse<TR, TC>(true, statusCode)
             {
                 Details = details,
                 Result = result
             };
         }
     }
-}
+}*/

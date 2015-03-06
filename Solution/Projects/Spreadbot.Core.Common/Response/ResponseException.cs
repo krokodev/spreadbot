@@ -1,6 +1,6 @@
 using System;
 
-namespace Spreadbot.Core.Mip
+namespace Spreadbot.Core.Common
 {
     public class ResponseException: Exception
     {

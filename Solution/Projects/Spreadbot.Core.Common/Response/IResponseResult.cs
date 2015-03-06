@@ -1,4 +1,4 @@
-﻿namespace Spreadbot.Core.Mip
+﻿namespace Spreadbot.Core.Common
 {
     public interface IResponseResult
     {

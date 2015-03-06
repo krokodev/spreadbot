@@ -1,5 +1,6 @@
 ﻿using System;
 using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 // >> | Core | Connector
 
@@ -9,7 +10,7 @@ namespace Spreadbot.Core.Mip
     {
         // ===================================================================================== []
         // SendFeed
-        public static Response<SendingFeedResult> SendFeed(Feed feed, Request.Identifier reqId = null)
+        public static Response<SendFeedResult> SendFeed(Feed feed, Request.Identifier reqId = null)
         {
             reqId = reqId ?? Request.GenerateId();
             try
@@ -17,23 +18,23 @@ namespace Spreadbot.Core.Mip
                 ZipHelper.ZipFeed(feed, reqId).Check();
                 SftpHelper.SendZippedFeed(feed, reqId).Check();
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                return Response<SendingFeedResult>.NewFail(StatusCode.SendFeedFail, e);
+                return new Response<SendFeedResult>(false, StatusCode.SendFeedFail, exception);
             }
-            return Response<SendingFeedResult>.NewSuccess(StatusCode.SendFeedSuccess, new SendingFeedResult(reqId));
+            return new Response<SendFeedResult>(true, StatusCode.SendFeedSuccess, new SendFeedResult(reqId));
         }
 
-        public static Response<SendingFeedResult> SendTestFeed(Feed feed)
+        public static Response<SendFeedResult> SendTestFeed(Feed feed)
         {
             return SendFeed(feed, Request.GenerateTestId());
         }
 
         // ===================================================================================== []
         // FindRequest
-        public static Response<FindingRemoteFileResult> FindRequest(Request request, RequestProcessingStage stage)
+        public static Response<FindRemoteFileResult> FindRequest(Request request, RequestProcessingStage stage)
         {
-            Response<FindingRemoteFileResult> findResponse;
+            Response<FindRemoteFileResult> findResponse;
             try
             {
                 switch (stage)
@@ -49,25 +50,25 @@ namespace Spreadbot.Core.Mip
                 }
                 findResponse.Check();
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                return Response<FindingRemoteFileResult>.NewFail(StatusCode.FindRequestFail, e);
+                return new Response<FindRemoteFileResult>(false, StatusCode.FindRequestFail, exception);
             }
-            return Response<FindingRemoteFileResult>.NewSuccess(StatusCode.FindRequestSuccess, findResponse.Result, findResponse);
+            return new Response<FindRemoteFileResult>(true, StatusCode.FindRequestSuccess, findResponse.Result, findResponse);
         }
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static Response<GettingRequestStatusResult> GetRequestStatus(Request request, bool ignoreInprocess=false)
+        public static Response<GetRequestStatusResult> GetRequestStatus(Request request, bool ignoreInprocess = false)
         {
             try
             {
                 var response = FindRequest(request, RequestProcessingStage.Inprocess);
                 if (response.Code == StatusCode.FindRequestSuccess && !ignoreInprocess)
                 {
-                    return Response<GettingRequestStatusResult>.NewSuccess(
+                    return new Response<GetRequestStatusResult>(true,
                         StatusCode.GetRequestStatusSuccess,
-                        new GettingRequestStatusResult(RequetStatus.Inprocess)
+                        new GetRequestStatusResult(RequetStatus.Inprocess)
                         );
                 }
 
@@ -77,27 +78,27 @@ namespace Spreadbot.Core.Mip
                     return GetRequestOutputStatus(response);
                 }
 
-                return Response<GettingRequestStatusResult>.NewSuccess(
+                return new Response<GetRequestStatusResult>(true,
                     StatusCode.GetRequestStatusSuccess,
-                    new GettingRequestStatusResult(RequetStatus.Unknown),
+                    new GetRequestStatusResult(RequetStatus.Unknown),
                     response
                     );
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                return Response<GettingRequestStatusResult>.NewFail(StatusCode.GetRequestStatusFail, e);
+                return new Response<GetRequestStatusResult>(false, StatusCode.GetRequestStatusFail, exception);
             }
         }
 
         // --------------------------------------------------------[]
-        private static Response<GettingRequestStatusResult> GetRequestOutputStatus(Response<FindingRemoteFileResult> response)
+        private static Response<GetRequestStatusResult> GetRequestOutputStatus(Response<FindRemoteFileResult> response)
         {
             var statusResult = ReadRequestOutputStatus(response);
-            return Response<GettingRequestStatusResult>.NewSuccess(StatusCode.GetRequestStatusSuccess, statusResult);
+            return new Response<GetRequestStatusResult>(true, StatusCode.GetRequestStatusSuccess, statusResult);
         }
 
         // --------------------------------------------------------[]
-        private static GettingRequestStatusResult ReadRequestOutputStatus(Response<FindingRemoteFileResult> response)
+        private static GetRequestStatusResult ReadRequestOutputStatus(Response<FindRemoteFileResult> response)
         {
             var fileName = response.Result.FileName;
             var remotePath = response.Result.FolderPath;
@@ -107,10 +108,10 @@ namespace Spreadbot.Core.Mip
         }
 
         // --------------------------------------------------------[]
-        private static GettingRequestStatusResult ParseRequestContent(string content)
+        private static GetRequestStatusResult ParseRequestContent(string content)
         {
             // Todo: Later : Parse XML
-            return new GettingRequestStatusResult(
+            return new GetRequestStatusResult(
                 content.Contains("<status>SUCCESS</status>")
                     ? RequetStatus.Success
                     : RequetStatus.Fail,

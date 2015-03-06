@@ -16,19 +16,19 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // UploadFeed
-            public static Response<SendingFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
+            public static Response<SendFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static Response<SendingFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static Response<SendFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId);
             }
 
             // ===================================================================================== []
             // Find remote files Inproc
-            public static Response<FindingRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
+            public static Response<FindRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
             {
                 var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // Find remote files Output
-            public static Response<FindingRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
+            public static Response<FindRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
             {
                 var remoteDirs = RemoteFeedOutputFolderPathes(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -51,7 +51,8 @@ namespace Spreadbot.Core.Mip
                         return response;
                     }
                 }
-                return Response<FindingRemoteFileResult>.NewFail(
+                return new Response<FindRemoteFileResult>(
+                    false,
                     StatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));
             }

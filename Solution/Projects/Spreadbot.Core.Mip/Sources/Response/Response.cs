@@ -1,50 +1,33 @@
 using System;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public sealed partial class Response<T> : IResponse where T:IResponseResult
+    public class Response<TR> : GenericResponse<TR, StatusCode> where TR : IResponseResult
     {
-        // ===================================================================================== []
-        // Public
-        public Response(bool isSucces = false, StatusCode code = StatusCode.Unknown)
+        public Response(bool isSucces, StatusCode code)
+            : base(isSucces, code)
         {
-            IsSuccess = isSucces;
-            Code = code;
         }
 
-        public StatusCode Code { get; set; }
-        public T Result { get; set; }
-        public string Details { get; set; }
-        public Exception Exception { get; set; }
-        public IResponse InnerResponse { get; set; }
-
-
-        public string Description
+        public Response(bool isSucces, StatusCode code, Exception exception)
+            : base(isSucces, code, exception)
         {
-            get { return GetDescription(0); }
-        }
-        public string GetDescription(int level)
-        {
-            return IsSuccess
-                ? GetSuccessDescription(level)
-                : GetFailedDescription(level);
         }
 
-        public void Check()
+        public Response(bool isSucces, StatusCode code, TR result)
+            : base(isSucces, code, result)
         {
-            if (!IsSuccess)
-            {
-                throw new ResponseException(this);
-            }
         }
 
-        public bool IsSuccess { get; private set; }
-    }
+        public Response(bool isSucces, StatusCode code, TR result, IResponse innerResponse)
+            : base(isSucces, code, result, innerResponse)
+        {
+        }
 
-    public interface IResponse
-    {
-        string Description { get; }
-        bool IsSuccess { get; }
-        string GetDescription(int level);
+        public Response(bool isSucces, StatusCode code, string details)
+            : base(isSucces, code, details)
+        {
+        }
     }
 }

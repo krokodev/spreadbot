@@ -1,10 +1,11 @@
 using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public class ZippingFeedResult : IResponseResult
+    public class ZipFeedResult : IResponseResult
     {
-        public ZippingFeedResult(string zipFileName)
+        public ZipFeedResult(string zipFileName)
         {
             ZipFileName = zipFileName;
         }

@@ -20,16 +20,16 @@ namespace Spreadbot.Core.Mip
                         session.Open(sessionOptions);
                     }
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    return Response<BoolResult>.NewFail(StatusCode.TestConnectionFail, e);
+                    return new Response<BoolResult>(false, StatusCode.TestConnectionFail, exception);
                 }
-                return Response<BoolResult>.NewSuccess(StatusCode.TestConnectionSuccess, new BoolResult(true));
+                return new Response<BoolResult>(true, StatusCode.TestConnectionSuccess, new BoolResult(true));
             }
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static Response<SendingFeedResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
+            private static Response<SendFeedResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
             {
                 try
                 {
@@ -38,12 +38,11 @@ namespace Spreadbot.Core.Mip
                         RemoteFeedOutgoingZipFilePath(feed, reqId.ToString())
                         );
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    return Response<SendingFeedResult>.NewFail(StatusCode.SendZippedFeedFail, e);
+                    return new Response<SendFeedResult> (false, StatusCode.SendZippedFeedFail, exception);
                 }
-                return Response<SendingFeedResult>.NewSuccess(StatusCode.SendZippedFeedSuccess,
-                    new SendingFeedResult(reqId));
+                return new Response<SendFeedResult>(true, StatusCode.SendZippedFeedSuccess, new SendFeedResult(reqId));
             }
 
             // ===================================================================================== []
@@ -59,9 +58,9 @@ namespace Spreadbot.Core.Mip
                         return session.ListDirectory(remoteDir).Files;
                     }
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    if (!e.Message.Contains("Error listing directory"))
+                    if (!exception.Message.Contains("Error listing directory"))
                     {
                         throw;
                     }
@@ -71,7 +70,7 @@ namespace Spreadbot.Core.Mip
 
             // ===================================================================================== []
             // FindFileNamePrefixInRemoteDir
-            private static Response<FindingRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
+            private static Response<FindRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
                 string remoteDir)
             {
                 var files = GetRemoteDirFiles(remoteDir);
@@ -79,13 +78,15 @@ namespace Spreadbot.Core.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return Response<FindingRemoteFileResult>.NewSuccess(
+                        return new Response<FindRemoteFileResult>(
+                            true,
                             StatusCode.FindRemoteFileSuccess,
-                            new FindingRemoteFileResult(remoteDir, fileInfo.Name)
+                            new FindRemoteFileResult(remoteDir, fileInfo.Name)
                             );
                     }
                 }
-                return Response<FindingRemoteFileResult>.NewFail(
+                return new Response<FindRemoteFileResult>(
+                    false,
                     StatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir)
                     );

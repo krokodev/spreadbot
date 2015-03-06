@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Mip
         {
             // ===================================================================================== []
             // ZipFeed
-            public static Response<ZippingFeedResult> ZipFeed(string feed, string reqId)
+            public static Response<ZipFeedResult> ZipFeed(string feed, string reqId)
             {
                 string zipFileName;
                 try
@@ -21,14 +21,14 @@ namespace Spreadbot.Core.Mip
                         zipFileName
                         );
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    return Response<ZippingFeedResult>.NewFail(StatusCode.ZipFeedFail, e);
+                    return new Response<ZipFeedResult>(false, StatusCode.ZipFeedFail, exception);
                 }
-                return Response<ZippingFeedResult>.NewSuccess(StatusCode.ZipFeedSuccess, new ZippingFeedResult(zipFileName));
+                return new Response<ZipFeedResult>(true, StatusCode.ZipFeedSuccess, new ZipFeedResult(zipFileName));
             }
 
-            public static Response<ZippingFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
+            public static Response<ZipFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
             {
                 return ZipFeed(feed.Name, reqId.Value.ToString());
             }

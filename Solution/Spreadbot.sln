@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A37183A3-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EF6CE066-22CC-44BB-8768-FF001637E704}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{68589BEE-1DFD-4F5A-889D-AE199CFD91AE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{68589BEE-1DFD-4F5A-889D-AE199CFD91AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Configuration", "projects\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj", "{BC745F18-F75D-49B8-8C3A-012A262EC939}"
 EndProject

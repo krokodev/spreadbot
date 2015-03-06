@@ -1,13 +1,14 @@
 ﻿using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public class FindingRemoteFileResult : IResponseResult
+    public class FindRemoteFileResult : IResponseResult
     {
         public readonly string FileName;
         public readonly string FolderPath;
 
-        public FindingRemoteFileResult(string folderPath, string fileName)
+        public FindRemoteFileResult(string folderPath, string fileName)
         {
             FolderPath = folderPath;
             FileName = fileName;
