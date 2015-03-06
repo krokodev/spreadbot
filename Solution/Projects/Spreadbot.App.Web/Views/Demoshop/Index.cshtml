@@ -12,12 +12,6 @@
 
 @helper ItemEditForm()
 {
-@*
-
-    http://stackoverflow.com/questions/9888066/mvc-razor-how-to-submit-form-to-itself
-
-*@
-
     using (Html.BeginForm("UpdateItem", "Demoshop", FormMethod.Post))
     {
         <fieldset class="sb-table">
@@ -43,7 +37,7 @@
 }
 
 
-@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px sb-align-right")
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
 {
     var label = Html.LabelFor(expression);
     var textBox = Html.TextBoxFor(expression, new { @class });

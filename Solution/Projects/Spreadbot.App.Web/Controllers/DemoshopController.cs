@@ -10,8 +10,11 @@ namespace Spreadbot.App.Web
             return View(new DemoshopModel());
         }
 
-        public ActionResult UpdateItem()
+        [HttpPost]
+        /*[ValidateAntiForgeryToken]*/
+        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItem item)
         {
+            DemoshopModel.SaveItem(item);
             return RedirectToAction("Index");
         }
     }

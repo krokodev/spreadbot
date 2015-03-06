@@ -5,9 +5,11 @@ namespace Spreadbot.App.Web
     // >> | Model | DemoshopModel
     public class DemoshopModel
     {
-        public DemoshopModel()
+        public static DemoshopItem StoredItem;
+
+        static DemoshopModel()
         {
-            Item = new Item()
+            StoredItem = new DemoshopItem()
             {
                 Sku = "DS-001",
                 Title = "Demoshop Single Item",
@@ -16,14 +18,22 @@ namespace Spreadbot.App.Web
             };
         }
 
-        public Item Item { get; set; }
+        public DemoshopItem Item
+        {
+            get { return StoredItem; }
+        }
+
+        public static void SaveItem(DemoshopItem item)
+        {
+            StoredItem = item;
+        }
     }
 
-    public class Item
+    public class DemoshopItem
     {
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         public string Sku { get; set; }
-        
+
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         public string Title { get; set; }
 
