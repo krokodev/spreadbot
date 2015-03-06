@@ -1,0 +1,110 @@
+﻿@using System.Linq.Expressions
+@using Spreadbot.App.Web
+@model DemoshopModel
+
+
+@{
+    // Now: >> | View | Demoshop | Index
+    ViewBag.Title = "Demo Shop";
+    Layout = "~/Views/Shared/Layouts/Default.cshtml";
+}
+
+@helper ItemEditForm()
+{
+@*
+
+    http://stackoverflow.com/questions/9888066/mvc-razor-how-to-submit-form-to-itself
+
+*@
+
+    using (Html.BeginForm("UpdateItem", "Demoshop", FormMethod.Post))
+    {
+        <fieldset class="sb-table">
+            @FormEditor(m => m.Item.Sku)
+            @FormEditor(m => m.Item.Title, "sb-width-500px")
+            @FormEditor(m => m.Item.Price)
+            @FormEditor(m => m.Item.Quantity)
+            <br>
+            <input type="submit" value="Update" />
+        </fieldset>
+    }
+}
+
+@*
+// Todo: Move to FormView
+*@
+@helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
+{
+    var label = Html.LabelFor(expression);
+    var textBox = Html.TextBoxFor(expression, new { @class });
+
+    @FormView.Editor(label, textBox)
+}
+
+
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px sb-align-right")
+{
+    var label = Html.LabelFor(expression);
+    var textBox = Html.TextBoxFor(expression, new { @class });
+
+    @FormView.Editor(label, textBox)
+}
+
+@*
+// ===================================================================================== []
+*@
+
+
+<style>
+
+
+
+</style>
+
+<style>
+    #ShopContent { padding-left: 0; }
+
+    #Store { padding-left: 0; }
+
+    #Item { padding-left: 30px; }
+
+    #ItemContent { padding-left: 30px; }
+
+    #PublisherContent { padding-left: 30px; }
+
+    #Item-sku { width: 200px }
+
+    #Item-title { width: 500px }
+
+    #Item-price { width: 50px }
+
+    #Item-quantity { width: 50px }
+</style>
+
+<div id="ShopContent">
+
+    <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
+
+    <div id="Store">
+
+        <h2>
+            One-Item Store
+        </h2>
+        <div id="Item">
+            <h3>Item</h3>
+            <div id="ItemContent">
+                @ItemEditForm()
+            </div>
+        </div>
+    </div>
+
+    <div id="Publisher">
+        <h2>
+            Publisher
+        </h2>
+
+        <div id="PublisherContent">
+            <p>eBay</p>
+        </div>
+    </div>
+</div>
