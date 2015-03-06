@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class Test_Connector_ZipHelper
+    public class MipConnector_ZipHelper_Tests
     {
         // ===================================================================================== []
         [TestMethod]

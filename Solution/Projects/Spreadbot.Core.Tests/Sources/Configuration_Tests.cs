@@ -3,7 +3,7 @@
 namespace Spreadbot.Core.Mip.Tests
 {
     [TestClass]
-    public class Test_Configuration
+    public class Configuration_Tests
     {
         [TestMethod]
         public void Read_Mip_Config()
