@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response<T>
+    public sealed partial class Response<T>
     {
         // ===================================================================================== []
         // Failed Responses

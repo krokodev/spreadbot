@@ -12,10 +12,15 @@ namespace Spreadbot.App.Web
 
         [HttpPost]
         /*[ValidateAntiForgeryToken]*/
-        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItem item)
+        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItemModel item)
         {
             DemoshopModel.SaveItem(item);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Publish()
+        {
+            return View(new PublisherModel());
         }
     }
 }

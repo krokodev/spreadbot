@@ -1,15 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Spreadbot.App.Web
+﻿namespace Spreadbot.App.Web
 {
     // >> | Model | DemoshopModel
     public class DemoshopModel
     {
-        public static DemoshopItem StoredItem;
+        public static DemoshopItemModel StoredItem;
 
         static DemoshopModel()
         {
-            StoredItem = new DemoshopItem()
+            StoredItem = new DemoshopItemModel()
             {
                 Sku = "DS-001",
                 Title = "Demoshop Single Item",
@@ -18,29 +16,14 @@ namespace Spreadbot.App.Web
             };
         }
 
-        public DemoshopItem Item
+        public DemoshopItemModel Item
         {
             get { return StoredItem; }
         }
 
-        public static void SaveItem(DemoshopItem item)
+        public static void SaveItem(DemoshopItemModel item)
         {
             StoredItem = item;
         }
-    }
-
-    public class DemoshopItem
-    {
-        [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
-        public string Sku { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
-        public string Title { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
-        public decimal Price { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:n0}", ApplyFormatInEditMode = true)]
-        public decimal Quantity { get; set; }
     }
 }

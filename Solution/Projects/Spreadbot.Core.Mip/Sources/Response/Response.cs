@@ -1,9 +1,8 @@
 using System;
-using Crocodev.Common;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response<T> : IResponse where T:IResponseResult
+    public sealed partial class Response<T> : IResponse where T:IResponseResult
     {
         // ===================================================================================== []
         // Public
@@ -14,13 +13,13 @@ namespace Spreadbot.Core.Mip
         }
 
         public StatusCode Code { get; set; }
-        public virtual T Result { get; set; }
+        public T Result { get; set; }
         public string Details { get; set; }
         public Exception Exception { get; set; }
         public IResponse InnerResponse { get; set; }
 
 
-        public virtual string Description
+        public string Description
         {
             get { return GetDescription(0); }
         }

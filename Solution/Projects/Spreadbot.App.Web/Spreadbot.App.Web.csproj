@@ -130,9 +130,11 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Models\PublisherModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DemoshopItemModel.cs" />
     <Compile Include="Models\DemoshopModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
+    <None Include="Views\Demoshop\Publish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -191,6 +194,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Common\Spreadbot.Common.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
       <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
       <Name>Spreadbot.Core.Configuration</Name>

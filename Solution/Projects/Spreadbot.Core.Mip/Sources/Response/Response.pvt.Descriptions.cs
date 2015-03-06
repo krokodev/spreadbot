@@ -4,7 +4,7 @@ using MoreLinq;
 
 namespace Spreadbot.Core.Mip
 {
-    public partial class Response<T>
+    public sealed partial class Response<T>
     {
         // ===================================================================================== []
         // Get Description

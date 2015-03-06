@@ -94,13 +94,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Common\Spreadbot.Common.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
+      <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
+      <Name>Spreadbot.Core.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
       <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
       <Name>Spreadbot.Core.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Utils\Spreadbot.Utils.csproj">
-      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
