@@ -26,8 +26,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Utils", "projects
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.App.Web", "projects\Spreadbot.App.Web\Spreadbot.App.Web.csproj", "{FA55CC33-16A1-4AF9-B818-27BDAFA35489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xxx.Spreadbot.App.Web", "projects\xxx.Spreadbot.App.Web\xxx.Spreadbot.App.Web.csproj", "{565F782F-1787-4B57-A95B-4598DC51B357}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,10 +52,6 @@ Global
 		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA55CC33-16A1-4AF9-B818-27BDAFA35489}.Release|Any CPU.Build.0 = Release|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{565F782F-1787-4B57-A95B-4598DC51B357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
