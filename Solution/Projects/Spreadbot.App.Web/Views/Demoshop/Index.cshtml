@@ -1,5 +1,6 @@
 ﻿@using System.Linq.Expressions
 @using Spreadbot.App.Web
+@using Spreadbot.Core.Configuration
 @model DemoshopModel
 
 
@@ -105,6 +106,7 @@
 
         <div id="PublisherContent">
             <p>eBay</p>
+            <p>[@MipSecurity.Instance.SecretData.UserName@("@" + MipPublic.Instance.Connection.HostName)]</p>
         </div>
     </div>
 </div>
