@@ -11,7 +11,6 @@ namespace Spreadbot.App.Web
         }
 
         [HttpPost]
-        /*[ValidateAntiForgeryToken]*/
         public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItemModel item)
         {
             DemoshopModel.SaveItem(item);
