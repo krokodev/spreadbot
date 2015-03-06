@@ -1,0 +1,99 @@
+﻿/*
+// ============================================================================================= []
+// >> | CSS | Common
+*/
+
+
+/*
+// ============================================================================================= []
+// Global elements
+*/
+
+
+p, div, h1, h2, h3, h4, h5, h6, img, pre, form, fieldset, a, span {
+    color: inherit;
+    font-family: inherit;
+}
+
+body {
+    color: #373737;
+    font-family: 'Cantarell'
+}
+
+p, div, a, span {
+    font-size: inherit;
+}
+
+a{
+    color: #0004bf;
+}
+
+a:hover {
+    color: red;
+}
+
+h1 {
+    font-size: 50px;    
+}
+
+h2 {
+    font-size: 30px;    
+}
+
+h3 {
+    font-size: 25px;
+}
+
+/*
+// ============================================================================================= []
+// Display
+*/
+
+    .sb-table { display: table }
+
+    .sb-raw { display: table-row }
+    .sb-cell { display: table-cell}
+    .sb-column { display: table-column}
+
+
+/*
+// ============================================================================================= []
+// Highlifth
+*/
+
+.sb-red {
+    color: red;
+}
+
+
+/*
+// ============================================================================================= []
+// Width
+*/
+    .sb-width-10px { width: 30px }
+    .sb-width-30px { width: 30px }
+
+    .sb-width-50px { width: 50px }
+
+    .sb-width-100px { width: 100px }
+
+    .sb-width-200px { width: 200px }
+
+    .sb-width-500px { width: 500px }
+
+    .sb-align-right { text-align: right }
+
+/*
+// ============================================================================================= []
+// Page
+*/
+
+.sb-page-content {
+    width: 600px; 
+    margin: 50px;
+}
+
+/*
+// ============================================================================================= []
+// EOF
+*/
