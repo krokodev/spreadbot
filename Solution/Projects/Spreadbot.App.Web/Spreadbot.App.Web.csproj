@@ -157,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
-    <None Include="Views\Demoshop\Publish.cshtml" />
+    <Content Include="Views\Demoshop\Publish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
