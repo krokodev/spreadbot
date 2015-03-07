@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Crocodev.Common">
+      <HintPath>..\..\packages\crocodev.common.1.0.1.31190\lib\net451\Crocodev.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,12 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Pub\IChannel.cs" />
+    <Compile Include="Sources\Pub\IStoreTask.cs" />
     <Compile Include="Sources\Pub\IStore.cs" />
     <Compile Include="Sources\Imp\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sources\Sys\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
+      <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
+      <Name>Spreadbot.Core.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

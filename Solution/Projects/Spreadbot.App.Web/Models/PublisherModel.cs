@@ -1,7 +1,9 @@
+using Spreadbot.Core.Common;
+
 namespace Spreadbot.App.Web
 {
     public class PublisherModel
     {
-        public object Response { get; set; }
+        public static IResponse Response { get; set; }
     }
 }

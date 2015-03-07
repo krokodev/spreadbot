@@ -1,6 +1,10 @@
-﻿namespace Spreadbot.Core.System
+﻿using System;
+using Crocodev.Common.Identifier;
+
+namespace Spreadbot.Core.System
 {
     public interface IChannel
     {
+        Guid Id { get;}
     }
 }

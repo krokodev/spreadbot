@@ -1,4 +1,7 @@
 ﻿using System.Web.Mvc;
+using Spreadbot.Core.Channel.Ebay;
+using Spreadbot.Core.Common;
+using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
 {
@@ -7,27 +10,28 @@ namespace Spreadbot.App.Web
     {
         public ActionResult Index()
         {
-            return View(new DemoshopModel());
+            return View(DemoshopModel.Instance);
         }
 
         [HttpPost]
         public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItemModel item)
         {
-            DemoshopModel.SaveItem(item);
+            DemoshopModel.Instance.SaveItem(item);
             return RedirectToAction("Index");
         }
 
         public ActionResult Publish()
         {
-/*            IStore store = DemoshopModel.Store;
-            IChannel channel = Dispatcher.Channel(ChannelType.eBay);
-            Task task = store.GetTaskForChannel(channel);
-            IResponse response = Dispatcher.Run(task);
+            DemoshopModel.Instance.PublishItemOnEbay();
 
-            PublisherModel.KeepResponse(response);*/
+            var ebayChannel = new EbayChannel();
+
+            var task = DemoshopModel.AsStore.GetTaskForChannel(ebayChannel);
+            PublisherModel.Response = Dispatcher.Run(task);
 
             return View(new PublisherModel());
         }
     }
+
 
 }
