@@ -1,9 +1,9 @@
-﻿using Spreadbot.Core.Common;
+﻿using System.Collections.Generic;
 
 namespace Spreadbot.Core.System
 {
     public interface IStore
     {
-        IStoreTask GetTaskForChannel(IChannel channel);
+        IEnumerable<IChannelTask> Tasks { get; }
     }
 }

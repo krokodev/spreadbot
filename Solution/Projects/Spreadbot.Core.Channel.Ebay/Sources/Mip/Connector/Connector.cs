@@ -1,5 +1,6 @@
 ﻿using System;
 using Crocodev.Common;
+using Crocodev.Common.Identifier;
 
 // >> | Core | Connector
 
@@ -9,9 +10,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
     {
         // ===================================================================================== []
         // SendFeed
-        public static Response<SendFeedResult> SendFeed(Feed feed, Request.Identifier reqId = null)
+        public static Response<SendFeedResult> SendFeed(Feed feed)
         {
-            reqId = reqId ?? Request.GenerateId();
+            var reqId = Request.GenerateId();
             try
             {
                 ZipHelper.ZipFeed(feed, reqId).Check();
@@ -24,9 +25,26 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             return new Response<SendFeedResult>(true, StatusCode.SendFeedSuccess, new SendFeedResult(reqId));
         }
 
+        // --------------------------------------------------------[]
         public static Response<SendFeedResult> SendTestFeed(Feed feed)
         {
-            return SendFeed(feed, Request.GenerateTestId());
+            var reqId = Request.GenerateTestId();
+            return DoSendFeed(feed, reqId);
+        }
+
+        // --------------------------------------------------------[]
+        private static Response<SendFeedResult> DoSendFeed(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
+        {
+            try
+            {
+                ZipHelper.ZipFeed(feed, reqId).Check();
+                SftpHelper.SendZippedFeed(feed, reqId).Check();
+            }
+            catch (Exception exception)
+            {
+                return new Response<SendFeedResult>(false, StatusCode.SendFeedFail, exception);
+            }
+            return new Response<SendFeedResult>(true, StatusCode.SendFeedSuccess, new SendFeedResult(reqId));
         }
 
         // ===================================================================================== []
@@ -53,7 +71,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             {
                 return new Response<FindRemoteFileResult>(false, StatusCode.FindRequestFail, exception);
             }
-            return new Response<FindRemoteFileResult>(true, StatusCode.FindRequestSuccess, findResponse.Result, findResponse);
+            return new Response<FindRemoteFileResult>(true, StatusCode.FindRequestSuccess, findResponse.Result,
+                findResponse);
         }
 
         // ===================================================================================== []

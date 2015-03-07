@@ -50,7 +50,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Channel\EbayChannel.cs" />
+    <Compile Include="Sources\Ebay\Channel\EbayChannel.cs" />
+    <Compile Include="Sources\Ebay\Tasks\EbayPublishTaskArgs.cs" />
+    <Compile Include="Sources\Ebay\Tasks\EbayPublishTask.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\Connection.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\Paths.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\SecretData.cs" />
@@ -80,7 +82,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\WinSCP\WinSCP.exe">
+    <Content Include="Tools\WinSCP\WinSCP.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

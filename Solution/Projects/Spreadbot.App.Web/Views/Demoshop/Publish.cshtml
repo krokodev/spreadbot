@@ -1,6 +1,8 @@
-﻿@{
+﻿@using Spreadbot.App.Web
+@model PublisherModel
+@{
     // ===================================================================================== []
-    // Now: >> | View | Demoshop | Publish
+    // >> | View | Demoshop | Publish *
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
@@ -9,4 +11,4 @@
     Publishing
 </h2>
 
-Result: Model.Response
+Result: PublisherModel.Response

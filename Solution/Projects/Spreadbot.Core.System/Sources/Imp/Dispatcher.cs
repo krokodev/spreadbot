@@ -1,15 +1,22 @@
-﻿using System;
-using Spreadbot.Core.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Spreadbot.Core.System
 {
-    // Now: >> | Core | Dispatcher
+    // >> | Core | Dispatcher *
     public class Dispatcher
     {
-        public static IResponse Run(IStoreTask task)
+        public static void Run(IChannelTask task)
         {
-            throw new NotImplementedException();
+            task.Response =  task.Channel.Publish(task.Args);
+        }
+
+        public static void Run(IEnumerable<IChannelTask> tasks)
+        {
+            foreach (var task in tasks.Where(t=>t.Response==null))
+            {
+                Run(task);
+            }
         }
     }
-
-}
+ }

@@ -1,10 +1,11 @@
 ﻿using System;
-using Crocodev.Common.Identifier;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.System
 {
     public interface IChannel
     {
         Guid Id { get;}
+        IResponse Publish(IChannelTaskArgs args);
     }
 }

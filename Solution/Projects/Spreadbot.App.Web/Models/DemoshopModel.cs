@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using Crocodev.Common.Identifier;
 using Spreadbot.Core.Channel.Ebay;
+using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
@@ -56,34 +55,24 @@ namespace Spreadbot.App.Web
         }
 
         // ===================================================================================== []
-        // IStore 
-        public static IStore AsStore
-        {
-            get { return Instance; }
-        }
-
-        private readonly IList<IStoreTask> _tasks = new List<IStoreTask>();
-
-        public IStoreTask GetTaskForChannel(IChannel channel)
-        {
-            return _tasks.FirstOrDefault(t => t.ChannelId == channel.Id);
-        }
-
+        // Tasks
+        private readonly IList<IChannelTask> _tasks = new List<IChannelTask>();
+        // --------------------------------------------------------[]
+        // Code: DemoshopModel.PublishItemOnEbay
         public void PublishItemOnEbay()
         {
-            _tasks.Add(new DemoshopTask(new EbayChannel()));
-        }
-    }
+            // Todo: Create Feed XML
 
-    public class DemoshopTask : IStoreTask
-    {
-        public DemoshopTask(IChannel channel)
+            var ebayPublishTask = new EbayPublishTask(FeedType.Product);
+
+            _tasks.Add(ebayPublishTask);
+        }
+
+        // ===================================================================================== []
+        // IStore
+        public IEnumerable<IChannelTask> Tasks
         {
-            Channel = channel;
+            get { return _tasks; }
         }
-
-        public IChannel Channel { get; set; }
-
-        public Guid ChannelId { get { return Channel.Id; } }
     }
 }
