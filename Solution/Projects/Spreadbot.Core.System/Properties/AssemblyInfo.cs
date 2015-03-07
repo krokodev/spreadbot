@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Spreadbot.Common")]
+[assembly: AssemblyTitle("Spreadbot.Core.System")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Spreadbot.Common")]
+[assembly: AssemblyProduct("Spreadbot.Core.System")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8be388a7-0914-40a8-ab2d-2f1f8bbb7752")]
+[assembly: Guid("f61d9385-638a-4911-8955-916c68ce1503")]
 
 // Version information for an assembly consists of the following four values:
 //

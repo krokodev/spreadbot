@@ -42,17 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Response\IResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Response\IResponseResult.cs" />
-    <Compile Include="Response\GenericResponse.cs" />
-    <Compile Include="Response\GenericResponse.pvt.Descriptions.cs" />
-    <Compile Include="Response\ResponseException.cs" />
+    <Compile Include="Sources\Pub\Response\GenericResponse.cs" />
+    <Compile Include="Sources\Pub\Response\GenericResponse.pvt.Descriptions.cs" />
+    <Compile Include="Sources\Pub\Response\IResponse.cs" />
+    <Compile Include="Sources\Pub\Response\IResponseResult.cs" />
+    <Compile Include="Sources\Pub\Response\ResponseException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Common\Spreadbot.Common.csproj">
-      <Project>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</Project>
-      <Name>Spreadbot.Common</Name>
+    <ProjectReference Include="..\Spreadbot.Sdk\Spreadbot.Sdk.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

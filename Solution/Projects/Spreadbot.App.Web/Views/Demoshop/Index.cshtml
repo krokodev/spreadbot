@@ -3,6 +3,7 @@
 @using Spreadbot.App.Web
 @using Spreadbot.Core.Channel.Ebay.Mip.Configuration
 @model DemoshopModel
+
 @{
     // ===================================================================================== []
     // Now: >> | View | Demoshop | Index
@@ -63,7 +64,7 @@
 
         <ul>
             <li>
-                @Html.ActionLink("Publish [{0}] on eBay".SafeFormat(Model.Item), "Publish");
+                @Html.ActionLink("Publish [{0}] on eBay".SafeFormat(Model.Item), "Publish")
             </li>
             <li>
                 Check publishing process for request [xxx]

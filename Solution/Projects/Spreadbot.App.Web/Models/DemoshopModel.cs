@@ -1,4 +1,6 @@
-﻿namespace Spreadbot.App.Web
+﻿using Spreadbot.Core.System;
+
+namespace Spreadbot.App.Web
 {
     // >> | Model | DemoshopModel
     public class DemoshopModel
@@ -21,9 +23,16 @@
             get { return StoredItem; }
         }
 
+        public static DemoshopStore Store { get; set; }
+
         public static void SaveItem(DemoshopItemModel item)
         {
             StoredItem = item;
         }
+    }
+
+    public class DemoshopStore: IStore
+    {
+
     }
 }

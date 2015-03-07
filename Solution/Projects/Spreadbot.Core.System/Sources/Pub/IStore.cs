@@ -1,4 +1,4 @@
-﻿namespace Spreadbot.Core.Api
+﻿namespace Spreadbot.Core.System
 {
     public interface IStore
     {

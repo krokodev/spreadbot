@@ -3,7 +3,7 @@
 namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
 {
     [TestClass]
-    public class Configuration_Tests
+    public class MipConfiguration_Tests
     {
         [TestMethod]
         public void Read_Mip_Config()

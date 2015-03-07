@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</ProjectGuid>
+    <ProjectGuid>{F9B60020-90E6-4B41-B29B-62958242CE58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Common</RootNamespace>
-    <AssemblyName>Spreadbot.Common</AssemblyName>
+    <RootNamespace>Spreadbot.Core.System</RootNamespace>
+    <AssemblyName>Spreadbot.Core.System</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common">
-      <HintPath>..\..\packages\crocodev.common.1.0.1.31190\lib\net451\Crocodev.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="MoreLinq">
-      <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crocodev.Common\StringExtensions\StringExtensions.cs" />
+    <Compile Include="Sources\Pub\IChannel.cs" />
+    <Compile Include="Sources\Pub\IStore.cs" />
+    <Compile Include="Sources\Imp\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Sources\Sys\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

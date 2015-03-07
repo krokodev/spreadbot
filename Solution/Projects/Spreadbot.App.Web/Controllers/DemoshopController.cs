@@ -19,16 +19,15 @@ namespace Spreadbot.App.Web
 
         public ActionResult Publish()
         {
-/*
-            IStore store = DemoshopModel.Store;
-            IChannel channel = new Channel(ChannelType.eBay);
+/*            IStore store = DemoshopModel.Store;
+            IChannel channel = Dispatcher.Channel(ChannelType.eBay);
             Task task = store.GetTaskForChannel(channel);
             IResponse response = Dispatcher.Run(task);
 
-            PublisherModel.KeepResponse(response);
-*/
+            PublisherModel.KeepResponse(response);*/
 
             return View(new PublisherModel());
         }
     }
+
 }

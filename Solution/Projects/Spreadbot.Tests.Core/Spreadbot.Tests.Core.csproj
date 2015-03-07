@@ -6,8 +6,8 @@
     <ProjectGuid>{9F9E37D0-9359-4CCB-B585-319F369D3BDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Core.Tests</RootNamespace>
-    <AssemblyName>Spreadbot.Core.Tests</AssemblyName>
+    <RootNamespace>Spreadbot.Tests.Core</RootNamespace>
+    <AssemblyName>Spreadbot.Tests.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,17 +60,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Sources\Configuration_Tests.cs" />
-    <Compile Include="Sources\MipConnector_Tests.cs" />
-    <Compile Include="Sources\MipConnector_ZipHelper_Tests.cs" />
-    <Compile Include="Sources\MipConnector_SftpHelper_Tests.cs" />
+    <Compile Include="Sources\Channel.Ebay.Mip\MipConfiguration_Tests.cs" />
+    <Compile Include="Sources\Channel.Ebay.Mip\MipConnector_Tests.cs" />
+    <Compile Include="Sources\Channel.Ebay.Mip\MipConnector_ZipHelper_Tests.cs" />
+    <Compile Include="Sources\Channel.Ebay.Mip\MipConnector_SftpHelper_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Core.Api\Spreadbot.Core.Api.csproj">
-      <Project>{bf0a8d68-7e2c-4ee1-9df4-e1dc1ffad3b9}</Project>
-      <Name>Spreadbot.Core.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
       <Name>Spreadbot.Core.Channel.Ebay</Name>
@@ -78,10 +74,6 @@
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Dispatcher\Spreadbot.Core.Dispatcher.csproj">
-      <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
-      <Name>Spreadbot.Core.Dispatcher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

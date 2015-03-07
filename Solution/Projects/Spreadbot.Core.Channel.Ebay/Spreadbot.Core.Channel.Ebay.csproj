@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Channel\EbayChannel.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\Connection.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\Paths.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\SecretData.cs" />
@@ -79,18 +80,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tools\WinSCP\WinSCP.exe">
+    <Content Include="Resources\WinSCP\WinSCP.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Common\Spreadbot.Common.csproj">
-      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
       <Name>Spreadbot.Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
+      <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
+      <Name>Spreadbot.Core.System</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk\Spreadbot.Sdk.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
