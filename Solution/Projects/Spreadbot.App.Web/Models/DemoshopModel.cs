@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Crocodev.Common.Identifier;
+using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
@@ -11,18 +13,21 @@ namespace Spreadbot.App.Web
     {
         // ===================================================================================== []
         // Instance
-        private static readonly Lazy<DemoshopModel> LazyInstance = new Lazy<DemoshopModel>(CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy<DemoshopModel> LazyInstance = new Lazy<DemoshopModel>(CreateInstance,
+            LazyThreadSafetyMode.ExecutionAndPublication);
 
         public DemoshopModel()
         {
-            LoadItem();            
+            LoadItem();
         }
+
         // --------------------------------------------------------[]
 
         private static DemoshopModel CreateInstance()
         {
             return new DemoshopModel();
         }
+
         // --------------------------------------------------------[]
         public static DemoshopModel Instance
         {
@@ -52,7 +57,10 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // IStore 
-        public static IStore AsStore { get { return Instance; } }
+        public static IStore AsStore
+        {
+            get { return Instance; }
+        }
 
         private readonly IList<IStoreTask> _tasks = new List<IStoreTask>();
 
@@ -63,7 +71,19 @@ namespace Spreadbot.App.Web
 
         public void PublishItemOnEbay()
         {
-            throw new NotImplementedException();
+            _tasks.Add(new DemoshopTask(new EbayChannel()));
         }
+    }
+
+    public class DemoshopTask : IStoreTask
+    {
+        public DemoshopTask(IChannel channel)
+        {
+            Channel = channel;
+        }
+
+        public IChannel Channel { get; set; }
+
+        public Guid ChannelId { get { return Channel.Id; } }
     }
 }
