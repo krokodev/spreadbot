@@ -1,7 +1,7 @@
 using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
 
-namespace Spreadbot.Core.Configuration
+namespace Spreadbot.Core.Mip.Configuration
 {
     public class Connection : SmartConfigurationElement
     {

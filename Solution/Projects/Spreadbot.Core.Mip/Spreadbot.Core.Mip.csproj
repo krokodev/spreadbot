@@ -50,6 +50,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Configuration\Elements\Connection.cs" />
+    <Compile Include="Sources\Configuration\Elements\Paths.cs" />
+    <Compile Include="Sources\Configuration\Elements\SecretData.cs" />
+    <Compile Include="Sources\Configuration\Sections\MipPublic.cs" />
+    <Compile Include="Sources\Configuration\Sections\MipSecurity.cs" />
     <Compile Include="Sources\Response\Response.cs" />
     <Compile Include="Sources\Results\BoolResult.cs" />
     <Compile Include="Sources\Results\ZipFeedResult.cs" />
@@ -97,10 +102,6 @@
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
       <Name>Spreadbot.Core.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Configuration\Spreadbot.Core.Configuration.csproj">
-      <Project>{bc745f18-f75d-49b8-8c3a-012a262ec939}</Project>
-      <Name>Spreadbot.Core.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

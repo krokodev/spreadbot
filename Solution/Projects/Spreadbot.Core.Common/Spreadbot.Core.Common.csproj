@@ -46,7 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\IResponseResult.cs" />
     <Compile Include="Response\GenericResponse.cs" />
-    <Compile Include="Response\xxx_GenericResponse.pub.Factory.cs" />
     <Compile Include="Response\GenericResponse.pvt.Descriptions.cs" />
     <Compile Include="Response\ResponseException.cs" />
   </ItemGroup>

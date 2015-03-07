@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
 
-namespace Spreadbot.Core.Configuration
+namespace Spreadbot.Core.Mip.Configuration
 {
     [SectionName("Spreadbot/MipSecurity")]
     public class MipSecurity : SmartConfigurationSection<MipSecurity>

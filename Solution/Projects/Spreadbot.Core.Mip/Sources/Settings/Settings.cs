@@ -1,4 +1,4 @@
-﻿using Spreadbot.Core.Configuration;
+﻿using Spreadbot.Core.Mip.Configuration;
 
 namespace Spreadbot.Core.Mip
 {
