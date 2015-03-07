@@ -65,6 +65,7 @@
     <Compile Include="Sources\Channel.Ebay.Mip\MipConnector_ZipHelper_Tests.cs" />
     <Compile Include="Sources\Channel.Ebay.Mip\MipConnector_SftpHelper_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\References\References.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj">
@@ -75,9 +76,17 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Tools\Spreadbot.Tools.csproj">
+    <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
+      <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
+      <Name>Spreadbot.Core.System</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Sdk.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk.Tools\Spreadbot.Sdk.Tools.csproj">
       <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
-      <Name>Spreadbot.Tools</Name>
+      <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

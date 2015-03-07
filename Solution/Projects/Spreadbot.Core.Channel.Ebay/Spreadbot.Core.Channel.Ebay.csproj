@@ -90,13 +90,13 @@
       <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
       <Name>Spreadbot.Core.System</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Sdk\Spreadbot.Sdk.csproj">
+    <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
       <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Sdk</Name>
+      <Name>Spreadbot.Sdk.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Tools\Spreadbot.Tools.csproj">
+    <ProjectReference Include="..\Spreadbot.Sdk.Tools\Spreadbot.Sdk.Tools.csproj">
       <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
-      <Name>Spreadbot.Tools</Name>
+      <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

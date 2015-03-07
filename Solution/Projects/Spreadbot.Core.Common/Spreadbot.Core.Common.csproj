@@ -50,9 +50,9 @@
     <Compile Include="Sources\Pub\Response\ResponseException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Sdk\Spreadbot.Sdk.csproj">
+    <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
       <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
-      <Name>Spreadbot.Sdk</Name>
+      <Name>Spreadbot.Sdk.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
