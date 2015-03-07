@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Spreadbot.Core.Mip.Tests
+namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
 {
     [TestClass]
     public class MipConnector_ZipHelper_Tests

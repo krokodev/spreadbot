@@ -67,13 +67,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Core.Api\Spreadbot.Core.Api.csproj">
+      <Project>{bf0a8d68-7e2c-4ee1-9df4-e1dc1ffad3b9}</Project>
+      <Name>Spreadbot.Core.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj">
+      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
+      <Name>Spreadbot.Core.Channel.Ebay</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Mip\Spreadbot.Core.Mip.csproj">
-      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Mip</Name>
+    <ProjectReference Include="..\Spreadbot.Core.Dispatcher\Spreadbot.Core.Dispatcher.csproj">
+      <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
+      <Name>Spreadbot.Core.Dispatcher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

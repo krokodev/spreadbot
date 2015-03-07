@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Spreadbot.Core.Mip.Tests
+namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
 {
     [TestClass]
     public class MipConnector_SftpHelper_Tests

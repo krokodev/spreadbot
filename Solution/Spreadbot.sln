@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F92D32
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Mip", "Projects\Spreadbot.Core.Mip\Spreadbot.Core.Mip.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{1C1D29A3-85F4-4207-BD2C-3943DC1D9568}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A37183A3-DF5D-4EE7-8CCB-24D3A619A969}"
@@ -28,16 +26,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Common", "project
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Dispatcher", "Projects\Spreadbot.Core.Dispatcher\Spreadbot.Core.Dispatcher.csproj", "{F9B60020-90E6-4B41-B29B-62958242CE58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Api", "Projects\Spreadbot.Core.Api\Spreadbot.Core.Api.csproj", "{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channel.Ebay", "projects\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,16 +56,25 @@ Global
 		{F9B60020-90E6-4B41-B29B-62958242CE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B60020-90E6-4B41-B29B-62958242CE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B60020-90E6-4B41-B29B-62958242CE58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA} = {EF6CE066-22CC-44BB-8768-FF001637E704}
 		{FA55CC33-16A1-4AF9-B818-27BDAFA35489} = {1C1D29A3-85F4-4207-BD2C-3943DC1D9568}
 		{5599EFE5-4D66-464D-91EE-3F76153BF8FF} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5} = {68589BEE-1DFD-4F5A-889D-AE199CFD91AE}
 		{F9B60020-90E6-4B41-B29B-62958242CE58} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
+		{BF0A8D68-7E2C-4EE1-9DF4-E1DC1FFAD3B9} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 	EndGlobalSection
 EndGlobal
