@@ -82,11 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tools\WinSCP\WinSCP.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
       <Name>Spreadbot.Core.Common</Name>
@@ -98,6 +93,10 @@
     <ProjectReference Include="..\Spreadbot.Sdk\Spreadbot.Sdk.csproj">
       <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
       <Name>Spreadbot.Sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Tools\Spreadbot.Tools.csproj">
+      <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
+      <Name>Spreadbot.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

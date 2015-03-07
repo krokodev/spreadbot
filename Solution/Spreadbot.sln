@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Tests.Core", "pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Sdk", "projects\Spreadbot.Sdk\Spreadbot.Sdk.csproj", "{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{F5319B55-54F5-4930-B55A-1AA1784E79AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Tools", "Projects\Spreadbot.Tools\Spreadbot.Tools.csproj", "{1ED946C5-318D-461F-9DDD-DF3C321144BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,10 @@ Global
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED946C5-318D-461F-9DDD-DF3C321144BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED946C5-318D-461F-9DDD-DF3C321144BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED946C5-318D-461F-9DDD-DF3C321144BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED946C5-318D-461F-9DDD-DF3C321144BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +77,6 @@ Global
 		{F9B60020-90E6-4B41-B29B-62958242CE58} = {A37183A3-DF5D-4EE7-8CCB-24D3A619A969}
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA} = {EF6CE066-22CC-44BB-8768-FF001637E704}
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5} = {D47486A1-A2FE-49C7-9151-C75C1FAB2841}
+		{1ED946C5-318D-461F-9DDD-DF3C321144BA} = {F5319B55-54F5-4930-B55A-1AA1784E79AE}
 	EndGlobalSection
 EndGlobal

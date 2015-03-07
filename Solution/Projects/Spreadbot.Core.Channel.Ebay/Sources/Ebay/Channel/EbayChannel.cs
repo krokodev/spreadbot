@@ -18,10 +18,11 @@ namespace Spreadbot.Core.Channel.Ebay
 
         public IResponse Publish(IChannelTaskArgs args)
         {
+            // Code: EbayChannel.Publish
             var publishArgs = args as EbayPublishTaskArgs;
 
             if (publishArgs == null) 
-                throw new ArgumentException("args as EbayPublishArgs");
+                throw new ArgumentException();
 
             return Connector.SendFeed(publishArgs.Feed);
         }
