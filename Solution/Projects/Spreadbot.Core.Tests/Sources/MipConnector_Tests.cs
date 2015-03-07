@@ -106,7 +106,7 @@ namespace Spreadbot.Core.Mip.Tests
         public void GetRequestStatus_Inproc()
         {
             var feed = new Feed(FeedType.Availability);
-            var sendResponse = Connector.SendTestFeed(feed);
+            var sendResponse = Connector.SendFeed(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var requestResponse = Connector.GetRequestStatus(request);
