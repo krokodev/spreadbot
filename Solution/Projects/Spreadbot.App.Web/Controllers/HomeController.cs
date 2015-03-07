@@ -6,7 +6,7 @@ namespace Spreadbot.App.Web
     {
         public ActionResult Index()
         {
-            return View(new HomeModel());
+            return View();
         }
     }
 }

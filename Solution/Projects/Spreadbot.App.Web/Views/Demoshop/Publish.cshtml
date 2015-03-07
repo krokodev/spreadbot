@@ -1,8 +1,9 @@
 ﻿@using Spreadbot.App.Web
-@model PublisherModel
+@model DemoshopModel
 @{
     // ===================================================================================== []
     // >> | View | Demoshop | Publish *
+    // Code: View.Demoshop.Publish 
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
@@ -11,4 +12,9 @@
     Publishing
 </h2>
 
-Result: PublisherModel.Response
+<pre>
+@foreach (var t in Model.Tasks.Where(t => t.Response != null))
+{
+    @t.Response.Description
+}
+</pre>

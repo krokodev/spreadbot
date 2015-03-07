@@ -26,13 +26,12 @@ namespace Spreadbot.App.Web
         // Publish
         public ActionResult Publish()
         {
-            // Now: Controller.Publish
             // Code: Controller.Publish
             DemoshopModel.Instance.PublishItemOnEbay();
 
             Dispatcher.Run(DemoshopModel.Instance.Tasks);
-            
-            return View(new PublisherModel());
+
+            return View(DemoshopModel.Instance);
         }
     }
 }
