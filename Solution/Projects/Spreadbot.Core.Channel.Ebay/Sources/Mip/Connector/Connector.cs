@@ -2,7 +2,7 @@
 using Crocodev.Common;
 using Crocodev.Common.Identifier;
 
-// >> | Core | Connector
+// >> Core | Connector
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {

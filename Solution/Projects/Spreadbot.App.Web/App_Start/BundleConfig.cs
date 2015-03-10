@@ -4,7 +4,7 @@ namespace Spreadbot.App.Web
 {
     public static class BundleConfig
     {
-        // >> | App_Atart | BundleConfig
+        // >> App_Atart | BundleConfig
         public static void RegisterBundles(BundleCollection bundles)
         {
             // CSS

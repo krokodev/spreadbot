@@ -7,7 +7,7 @@ using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
 {
-    // >> | Model | DemoshopModel
+    // >> Model | DemoshopModel
     public class DemoshopModel : IStore
     {
         // ===================================================================================== []

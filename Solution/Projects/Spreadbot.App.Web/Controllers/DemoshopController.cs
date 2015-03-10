@@ -3,7 +3,7 @@ using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
 {
-    // >> | Controller | DemoshopController
+    // >> Controller | DemoshopController
     public class DemoshopController : Controller
     {
         // ===================================================================================== []

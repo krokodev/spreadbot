@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Spreadbot.Core.System
 {
-    // >> | Core | Dispatcher *
+    // >> Core | Dispatcher
     public class Dispatcher
     {
         public static void Run(IChannelTask task)
