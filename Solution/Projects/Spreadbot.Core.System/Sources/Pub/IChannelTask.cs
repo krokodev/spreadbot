@@ -4,7 +4,7 @@ namespace Spreadbot.Core.System
 {
     public interface IChannelTask
     {
-        string Description { get; }
+        string Autoinfo { get; }
         IChannel Channel { get; }
         IChannelTaskArgs Args { get; }
         IResponse Response { get; set; }

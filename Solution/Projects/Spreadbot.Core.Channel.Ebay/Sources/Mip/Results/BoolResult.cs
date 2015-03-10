@@ -12,7 +12,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public bool Value { get; set; }
 
-        public string GetDescription(string format)
+        public string GetAutoinfo(string format)
         {
             return format.SafeFormat("Value", Value);
         }

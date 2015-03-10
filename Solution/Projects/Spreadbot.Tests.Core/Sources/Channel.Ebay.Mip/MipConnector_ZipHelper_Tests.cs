@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             var reqId = Request.GenerateTestId().ToString();
 
             var response = Connector.ZipHelper.ZipFeed(feed.Name, reqId);
-            Trace.TraceInformation(response.Description);
+            Trace.TraceInformation(response.Autoinfo);
 
             Assert.AreEqual(StatusCode.ZipFeedSuccess, response.Code);
             Assert.IsTrue(File.Exists(response.Result.ZipFileName));

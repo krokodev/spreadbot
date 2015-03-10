@@ -6,17 +6,17 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
     public class GetRequestStatusResult: IResponseResult
     {
         public readonly RequetStatus Status;
-        public readonly string Description;
+        public readonly string Autoinfo;
 
-        public GetRequestStatusResult(RequetStatus status, string description="")
+        public GetRequestStatusResult(RequetStatus status, string autoinfo = "")
         {
             Status = status;
-            Description = description;
+            Autoinfo = autoinfo;
         }
 
-        public string GetDescription(string format)
+        public string GetAutoinfo(string format)
         {
-            return format.SafeFormat("Status", Status) + " " + format.SafeFormat("Description", Description);
+            return format.SafeFormat("Status", Status) + " " + format.SafeFormat("Autoinfo", Autoinfo);
         }
     }
 }

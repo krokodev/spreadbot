@@ -7,29 +7,29 @@ namespace Spreadbot.Core.Common
     public partial class GenericResponse<TR,TC>
     {
         // ===================================================================================== []
-        // Get Description
-        private string GetSuccessDescription(int level)
+        // Get Autoinfo
+        private string GetSuccessAutoinfo(int level)
         {
-            return DescriptionResponse(level++,
-                DescriptionField("Result", Result.GetDescription("{0}=[{1}]"), level),
-                DescriptionField("Details", Details, level),
-                DescriptionInnerResponse(InnerResponse, level)
+            return AutoinfoResponse(level++,
+                AutoinfoField("Result", Result.GetAutoinfo("{0}=[{1}]"), level),
+                AutoinfoField("Details", Details, level),
+                AutoinfoInnerResponse(InnerResponse, level)
                 );
         }
 
         // --------------------------------------------------------[]
-        private string GetFailedDescription(int level)
+        private string GetFailedAutoinfo(int level)
         {
-            return DescriptionResponse(level++,
-                DescriptionException(Exception, level),
-                DescriptionField("Details", Details, level),
-                DescriptionInnerResponse(InnerResponse, level)
+            return AutoinfoResponse(level++,
+                AutoinfoException(Exception, level),
+                AutoinfoField("Details", Details, level),
+                AutoinfoInnerResponse(InnerResponse, level)
                 );
         }
 
         // ===================================================================================== []
         // Elements
-        private static string DescriptionField(string name, object value, int level)
+        private static string AutoinfoField(string name, object value, int level)
         {
             if (value == null)
                 return "";
@@ -38,15 +38,15 @@ namespace Spreadbot.Core.Common
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionException(Exception e, int level)
+        private static string AutoinfoException(Exception e, int level)
         {
             if (e == null)
                 return null;
 
-            return DescriptionSection("Exception", level++,
-                DescriptionField("Type", e.GetType(), level),
-                DescriptionField("Message", ExceptionMessage(e, level+1), level),
-                DescriptionField("InnerException", DescriptionException(e.InnerException, level), level)
+            return AutoinfoSection("Exception", level++,
+                AutoinfoField("Type", e.GetType(), level),
+                AutoinfoField("Message", ExceptionMessage(e, level+1), level),
+                AutoinfoField("InnerException", AutoinfoException(e.InnerException, level), level)
                 );
         }
 
@@ -55,24 +55,24 @@ namespace Spreadbot.Core.Common
             var responseException = e as ResponseException;
             if (responseException != null)
             {
-                return responseException.Response.GetDescription(level);
+                return responseException.Response.GetAutoinfo(level);
             }
             return e.Message;
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionInnerResponse(IResponse response, int level)
+        private static string AutoinfoInnerResponse(IResponse response, int level)
         {
             if (response == null)
                 return null;
 
-            return DescriptionSection("InnerResponse", level++,
-                response.GetDescription(level)
+            return AutoinfoSection("InnerResponse", level++,
+                response.GetAutoinfo(level)
                 );
         }
 
         // --------------------------------------------------------[]
-        private static string DescriptionSection(string sectionName, int level = 0, params string[] args)
+        private static string AutoinfoSection(string sectionName, int level = 0, params string[] args)
         {
             var sectionContent = "";
             args.ForEach(arg =>
@@ -91,9 +91,9 @@ namespace Spreadbot.Core.Common
         }
 
         // --------------------------------------------------------[]
-        private string DescriptionResponse(int level = 0, params string[] args)
+        private string AutoinfoResponse(int level = 0, params string[] args)
         {
-            return DescriptionSection(Code.ToString(), level, args);
+            return AutoinfoSection(Code.ToString(), level, args);
         }
 
         // --------------------------------------------------------[]

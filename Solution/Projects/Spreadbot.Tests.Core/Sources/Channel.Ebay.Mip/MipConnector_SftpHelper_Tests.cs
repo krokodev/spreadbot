@@ -13,7 +13,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             var feed = new Feed(FeedType.Product);
             var response = Connector.SftpHelper.SendZippedFeed(feed.Name, Request.GenerateTestId());
 
-            Trace.TraceInformation(response.Description);
+            Trace.TraceInformation(response.Autoinfo);
             
             Assert.AreEqual(StatusCode.SendZippedFeedSuccess, response.Code);
         }
@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var response = Connector.SftpHelper.TestConnection();
             
-            Trace.TraceInformation(response.Description);
+            Trace.TraceInformation(response.Autoinfo);
             
             Assert.AreEqual(StatusCode.TestConnectionSuccess, response.Code);
         }
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var response = Connector.SftpHelper.TestConnection("wrong password");
 
-            Trace.TraceInformation(response.Description);
+            Trace.TraceInformation(response.Autoinfo);
             
             Assert.AreEqual(StatusCode.TestConnectionFail, response.Code);
         }

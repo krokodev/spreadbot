@@ -14,7 +14,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             FileName = fileName;
         }
 
-        public string GetDescription(string format)
+        public string GetAutoinfo(string format)
         {
             return format.SafeFormat("FolderPath", FolderPath) + " " + format.SafeFormat("FileName", FileName);
         }

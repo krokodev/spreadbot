@@ -10,19 +10,19 @@ namespace Spreadbot.Core.System
         {
         }
 
-        public virtual string Description
+        public virtual string Autoinfo
         {
-            get { return "Channel:[{0}] Args:[{1}] Response:[{2}]".SafeFormat(Channel.Name, Args, Response==null?"no":Response.Description); }
+            get { return "Channel:[{0}] Args:[{1}] Response:[{2}]".SafeFormat(Channel.Name, Args, Response==null?"no":Response.Autoinfo); }
         }
 
         public override string ToString()
         {
-            return Description;
+            return Autoinfo;
         }
 
         public IChannel Channel { get; set; }
 
-        public IChannelTaskArgs Args { get; set; }
+        public IChannelTaskArgs Args { get; protected set; }
 
         public IResponse Response  { get; set; }
     }

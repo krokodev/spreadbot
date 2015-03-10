@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Channel.Ebay
     {
         public Feed Feed { get; set; }
 
-        public override string Description
+        public override string Autoinfo
         {
             get { return "Feed:[{0}]".SafeFormat(Feed); }
         }

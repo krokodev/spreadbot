@@ -2,6 +2,6 @@
 {
     public interface IChannelTaskArgs
     {
-            string Description { get; }
+            string Autoinfo { get; }
     }
 }

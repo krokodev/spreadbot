@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Common
 
         public override string Message
         {
-            get { return Response.Description; }
+            get { return Response.Autoinfo; }
         }
 
         public IResponse Response { get; set; }

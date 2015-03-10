@@ -4,8 +4,8 @@
     {
         public override string ToString()
         {
-            return Description;
+            return Autoinfo;
         }
-        public abstract string Description { get; }
+        public abstract string Autoinfo { get; }
     }
 }

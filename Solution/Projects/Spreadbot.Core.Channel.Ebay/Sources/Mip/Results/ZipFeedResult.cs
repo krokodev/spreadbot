@@ -12,7 +12,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public string ZipFileName { get; set; }
 
-        public string GetDescription(string format)
+        public string GetAutoinfo(string format)
         {
             return format.SafeFormat("ZipFileName", ZipFileName);
         }

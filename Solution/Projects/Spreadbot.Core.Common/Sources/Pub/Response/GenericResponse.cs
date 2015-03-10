@@ -46,15 +46,15 @@ namespace Spreadbot.Core.Common
         public IResponse InnerResponse { get; set; }
 
 
-        public string Description
+        public string Autoinfo
         {
-            get { return GetDescription(0); }
+            get { return GetAutoinfo(0); }
         }
-        public string GetDescription(int level)
+        public string GetAutoinfo(int level)
         {
             return IsSuccess
-                ? GetSuccessDescription(level)
-                : GetFailedDescription(level);
+                ? GetSuccessAutoinfo(level)
+                : GetFailedAutoinfo(level);
         }
 
         public void Check()
