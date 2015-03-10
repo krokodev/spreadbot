@@ -3,7 +3,6 @@ using Spreadbot.Core.System;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
-    // Code: EbayPublishTask
     public sealed class EbayPublishTask : ChannelTask
     {
         public EbayPublishTask(FeedType feedType)

@@ -109,7 +109,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<GetRequestStatusResult> GetRequestOutputStatus(MipResponse<FindRemoteFileResult> response)
+        private static MipResponse<GetRequestStatusResult> GetRequestOutputStatus(
+            MipResponse<FindRemoteFileResult> response)
         {
             var statusResult = ReadRequestOutputStatus(response);
             return new MipResponse<GetRequestStatusResult>(true, MipStatusCode.GetRequestStatusSuccess, statusResult);
@@ -134,6 +135,14 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                     ? RequetStatus.Success
                     : RequetStatus.Fail,
                 content);
+        }
+
+        public static string NewFeedXmlFilePath(Feed feed)
+        {
+            return string.Format(@"{0}\{1}.xml",
+                LocalFeedFolder(feed.Name),
+                (Guid) feed.Id
+                );
         }
     }
 }

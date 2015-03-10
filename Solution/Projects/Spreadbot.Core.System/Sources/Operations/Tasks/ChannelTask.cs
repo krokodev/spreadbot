@@ -3,7 +3,6 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.System
 {
-    // Code: ChannelTask
     public class ChannelTask : Task, IChannelTask
     {
         // ===================================================================================== []

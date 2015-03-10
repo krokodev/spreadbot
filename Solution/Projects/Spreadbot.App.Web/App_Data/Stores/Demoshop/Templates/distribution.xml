@@ -1,0 +1,29 @@
+<!--
+Code: XML : Distribution
+-->
+<?xml version="1.0" encoding="UTF-8"?> 
+<distributionRequest>
+	<distribution>
+		<channelID>EBAY_US</channelID> 
+		<SKU>MIP_SKU_11</SKU>
+		<listingDetails>
+			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<shippingCostOverrides>
+				<shippingCost>1.00</shippingCost>
+				<additionalCost>1.00</additionalCost>
+				<surcharge></surcharge>
+				<priority>1</priority>
+				<shippingServiceType>Domestic</shippingServiceType>
+			</shippingCostOverrides>
+			<maxQuantityPerBuyer>5</maxQuantityPerBuyer>
+			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<pricingDetails>
+				<listPrice>118.00</listPrice>
+			</pricingDetails>
+			<eBayNowEligible>false</eBayNowEligible>
+			<pickupInStoreEligible>false</pickupInStoreEligible>
+			<applyTax>false</applyTax>
+		</listingDetails>
+	</distribution>
+</distributionRequest>

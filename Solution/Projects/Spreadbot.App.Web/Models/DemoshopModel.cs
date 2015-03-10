@@ -59,11 +59,12 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Tasks
-        // Code: Demostore : PublishItemOnEbay
+        // Code: * Demostore : PublishItemOnEbay
         public void PublishItemOnEbay()
         {
             // Todo: Create Feed XML
 
+            // Use feed.Content + App_Data\Stores\Demoshop\Templates
 
             var storeTask = new StoreTask("Publish [{0}] on eBay".SafeFormat(Item));
 

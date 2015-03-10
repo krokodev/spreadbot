@@ -44,8 +44,7 @@ namespace Spreadbot.Core.Common
         public string Details { get; set; }
         public Exception Exception { get; set; }
         public IResponse InnerResponse { get; set; }
-
-
+        
         public string Autoinfo
         {
             get { return GetAutoinfo(0); }
