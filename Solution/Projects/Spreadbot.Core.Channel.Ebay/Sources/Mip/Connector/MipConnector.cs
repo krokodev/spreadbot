@@ -139,8 +139,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public static string NewFeedXmlFilePath(Feed feed)
         {
-            return string.Format(@"{0}\{1}.xml",
+            return string.Format(@"{0}\{1}.{2}.xml",
                 LocalFeedFolder(feed.Name),
+                feed.Name,
                 (Guid) feed.Id
                 );
         }
