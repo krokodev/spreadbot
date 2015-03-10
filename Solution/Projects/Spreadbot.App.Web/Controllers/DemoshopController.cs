@@ -34,9 +34,9 @@ namespace Spreadbot.App.Web
         // Publish
         public ActionResult Publish()
         {
-            // Code: Controller.Publish
+            // Code: Controller : Publish
 
-           Dispatcher.Run(DemoshopModel.Instance.Tasks);
+           Dispatcher.Run(DemoshopModel.Instance.ChannelTasks);
 
             return View(DemoshopModel.Instance);
         }

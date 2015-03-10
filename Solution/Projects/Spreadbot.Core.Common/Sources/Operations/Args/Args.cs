@@ -1,6 +1,6 @@
-﻿namespace Spreadbot.Core.System
+﻿namespace Spreadbot.Core.Common
 {
-    public abstract class ChannelTaskArgs : IChannelTaskArgs
+    public abstract class Args : IArgs
     {
         public override string ToString()
         {

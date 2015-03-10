@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using Crocodev.Common;
 using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.Channel.Ebay.Mip;
+using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
 
 namespace Spreadbot.App.Web
 {
     // >> Model | DemoshopModel
-    public class DemoshopModel : IStore
+    public class DemoshopModel : Store
     {
         // ===================================================================================== []
         // Instance
@@ -56,23 +59,19 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Tasks
-        private readonly IList<IChannelTask> _tasks = new List<IChannelTask>();
-        // --------------------------------------------------------[]
-        // Code: DemoshopModel.PublishItemOnEbay
+        // Code: Demostore : PublishItemOnEbay
         public void PublishItemOnEbay()
         {
             // Todo: Create Feed XML
 
-            var ebayPublishTask = new EbayPublishTask(FeedType.Product);
 
-            _tasks.Add(ebayPublishTask);
-        }
+            var storeTask = new StoreTask("Publish [{0}] on eBay".SafeFormat(Item));
 
-        // ===================================================================================== []
-        // IStore
-        public IEnumerable<IChannelTask> Tasks
-        {
-            get { return _tasks; }
+            storeTask.AddSubTask(new EbayPublishTask(FeedType.Product));
+            storeTask.AddSubTask(new EbayPublishTask(FeedType.Availability));
+            storeTask.AddSubTask(new EbayPublishTask(FeedType.Distribution));
+
+            AddTask(storeTask, true);
         }
     }
 }

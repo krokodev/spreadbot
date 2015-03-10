@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Channel.Ebay
         public EbayPublishTask(FeedType feedType)
         {
             Channel = new EbayChannel();
-            Args = new EbayPublishTaskArgs
+            Args = new EbayPublishArgs
             {
                 Feed = new Feed(feedType)
             };

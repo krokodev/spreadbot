@@ -2,6 +2,7 @@
 @using Crocodev.Common
 @using Spreadbot.App.Web
 @using Spreadbot.Core.Channel.Ebay.Mip.Configuration
+@using Spreadbot.Core.Common
 @model Spreadbot.App.Web.DemoshopModel
 
 @{
@@ -42,15 +43,20 @@
     @FormView.Editor(label, textBox)
 }
 
-@helper ShowTasks()
+@helper ShowTasks(IEnumerable<ITask> tasks)
 {
     // Code: StoreView : ShowTasks
-    <ul>
-        @foreach (var task in Model.Tasks)
-        {
-            <li>@task.ToString()</li>
-        }
-    </ul>
+    var enumerable = tasks as ITask[] ?? tasks.ToArray();
+    if (enumerable.Count() != 0)
+    {
+        <ul>
+            @foreach (var task in enumerable)
+            {
+                <li>@task.ToString()</li>
+                @ShowTasks(task.SubTasks)
+            }
+        </ul>
+    }
 }
 
 
@@ -71,10 +77,10 @@
 
     <div>
         <h2>
-            Channel Tasks
+            Store and Channel Tasks
         </h2>
-        @ShowTasks()
-        @Html.ActionLink("New task:", "AddTask") @string.Format("Publish [{0}] on eBay", Model.Item)
+        @ShowTasks(Model.StoreTasks)
+        @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", Model.Item)
     </div>
 
     <div>

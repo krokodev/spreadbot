@@ -23,10 +23,10 @@ namespace Spreadbot.Core.Channel.Ebay
             get { return ChannelName; }
         }
 
-        public IResponse Publish(IChannelTaskArgs args)
+        public IResponse Publish(IArgs args)
         {
-            // Code: EbayChannel.Publish
-            var publishArgs = args as EbayPublishTaskArgs;
+            // Code: EbayChannel : Publish
+            var publishArgs = args as EbayPublishArgs;
 
             if (publishArgs == null) 
                 throw new ArgumentException();

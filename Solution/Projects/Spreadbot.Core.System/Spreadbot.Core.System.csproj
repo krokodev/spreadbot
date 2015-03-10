@@ -46,18 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Pub\ChannelTask.cs" />
-    <Compile Include="Sources\Pub\ChannelTaskArgs.cs" />
-    <Compile Include="Sources\Pub\IChannel.cs" />
-    <Compile Include="Sources\Pub\IChannelTaskArgs.cs" />
-    <Compile Include="Sources\Pub\IChannelTask.cs" />
-    <Compile Include="Sources\Pub\IStore.cs" />
-    <Compile Include="Sources\Imp\Dispatcher.cs" />
+    <Compile Include="Sources\Operations\ChannelTask.cs" />
+    <Compile Include="Sources\Channels\IChannel.cs" />
+    <Compile Include="Sources\Operations\IChannelTask.cs" />
+    <Compile Include="Sources\Operations\IStoreTask.cs" />
+    <Compile Include="Sources\Operations\StoreTask.cs" />
+    <Compile Include="Sources\Stores\IStore.cs" />
+    <Compile Include="Sources\Dispatcher\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\Stores\Store.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sources\Sys\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>

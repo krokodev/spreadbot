@@ -7,6 +7,6 @@ namespace Spreadbot.Core.System
     {
         Guid Id { get;}
         string Name { get; }
-        IResponse Publish(IChannelTaskArgs args);
+        IResponse Publish(IArgs args);
     }
 }
