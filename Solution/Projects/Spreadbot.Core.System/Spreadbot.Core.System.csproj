@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Pub\ChannelTask.cs" />
+    <Compile Include="Sources\Pub\ChannelTaskArgs.cs" />
     <Compile Include="Sources\Pub\IChannel.cs" />
     <Compile Include="Sources\Pub\IChannelTaskArgs.cs" />
     <Compile Include="Sources\Pub\IChannelTask.cs" />

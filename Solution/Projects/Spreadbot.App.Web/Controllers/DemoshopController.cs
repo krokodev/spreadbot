@@ -23,15 +23,23 @@ namespace Spreadbot.App.Web
         }
 
         // ===================================================================================== []
+        // Add Task
+        public ActionResult AddTask()
+        {
+            DemoshopModel.Instance.PublishItemOnEbay();
+            return RedirectToAction("Index");
+        }
+
+        // ===================================================================================== []
         // Publish
         public ActionResult Publish()
         {
             // Code: Controller.Publish
-            DemoshopModel.Instance.PublishItemOnEbay();
 
-            Dispatcher.Run(DemoshopModel.Instance.Tasks);
+           Dispatcher.Run(DemoshopModel.Instance.Tasks);
 
             return View(DemoshopModel.Instance);
         }
+
     }
 }

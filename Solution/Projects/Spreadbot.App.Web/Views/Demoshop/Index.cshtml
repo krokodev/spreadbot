@@ -21,14 +21,14 @@
             @FormEditor(m => m.Item.Price)
             @FormEditor(m => m.Item.Quantity)
         </fieldset>
-        <input type="submit" value="Update"/>
+        <input type="submit" value="Update" />
     }
 }
 
 @helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
 {
     var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new {@class});
+    var textBox = Html.TextBoxFor(expression, new { @class });
 
     @FormView.Editor(label, textBox)
 }
@@ -37,10 +37,22 @@
 @helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
 {
     var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new {@class});
+    var textBox = Html.TextBoxFor(expression, new { @class });
 
     @FormView.Editor(label, textBox)
 }
+
+@helper ShowTasks()
+{
+    // Code: StoreView : ShowTasks
+    <ul>
+        @foreach (var task in Model.Tasks)
+        {
+            <li>@task.ToString();</li>
+        }
+    </ul>
+}
+
 
 @*
     // ===================================================================================== []
@@ -55,6 +67,14 @@
             One-item Store
         </h2>
         @ItemEditForm()
+    </div>
+
+    <div>
+        <h2>
+            Channel Tasks
+        </h2>
+        @ShowTasks()
+        @Html.ActionLink("New task:", "AddTask") @string.Format("Publish [{0}] on eBay", Model.Item)
     </div>
 
     <div>

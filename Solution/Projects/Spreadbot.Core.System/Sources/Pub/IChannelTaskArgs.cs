@@ -2,5 +2,6 @@
 {
     public interface IChannelTaskArgs
     {
+            string Description { get; }
     }
 }

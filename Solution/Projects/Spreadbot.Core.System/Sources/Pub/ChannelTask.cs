@@ -1,17 +1,23 @@
-﻿using Spreadbot.Core.Common;
+﻿using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.System
 {
+    // Code: ChannelTask
     public class ChannelTask : IChannelTask
     {
-        public ChannelTask()
+        protected ChannelTask()
         {
         }
-        
-        public ChannelTask(IChannel channel, IChannelTaskArgs args)
+
+        public virtual string Description
         {
-            Channel = channel;
-            Args = args;
+            get { return "Channel:[{0}] Args:[{1}] Response:[{2}]".SafeFormat(Channel.Name, Args, Response==null?"no":Response.Description); }
+        }
+
+        public override string ToString()
+        {
+            return Description;
         }
 
         public IChannel Channel { get; set; }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spreadbot.Core.Channel.Ebay.Mip
+﻿namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class Feed
     {
@@ -14,6 +12,11 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         public string Name
         {
             get { return _type.ToString().ToLower(); }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
