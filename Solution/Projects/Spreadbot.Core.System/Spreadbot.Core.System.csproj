@@ -46,12 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Operations\ChannelOperation.cs" />
-    <Compile Include="Sources\Operations\ChannelTask.cs" />
+    <Compile Include="Sources\Operations\Responses\ChannelResponse.cs" />
+    <Compile Include="Sources\Operations\ChannelStatusCode.cs" />
+    <Compile Include="Sources\Operations\Methods\ChannelMethod.cs" />
+    <Compile Include="Sources\Operations\Tasks\ChannelTask.cs" />
     <Compile Include="Sources\Channels\IChannel.cs" />
-    <Compile Include="Sources\Operations\IChannelTask.cs" />
-    <Compile Include="Sources\Operations\IStoreTask.cs" />
-    <Compile Include="Sources\Operations\StoreTask.cs" />
+    <Compile Include="Sources\Operations\Tasks\IChannelTask.cs" />
+    <Compile Include="Sources\Operations\Tasks\IStoreTask.cs" />
+    <Compile Include="Sources\Operations\Tasks\StoreTask.cs" />
     <Compile Include="Sources\Stores\IStore.cs" />
     <Compile Include="Sources\Dispatcher\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

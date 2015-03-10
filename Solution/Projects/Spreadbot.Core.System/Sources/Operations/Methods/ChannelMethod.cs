@@ -1,6 +1,6 @@
 namespace Spreadbot.Core.System
 {
-    public enum ChannelOperation
+    public enum ChannelMethod
     {
         Unknown,
         Publish

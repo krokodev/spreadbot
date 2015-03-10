@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public enum StatusCode
+    public enum MipStatusCode
     {
         Unknown,
         TestConnectionSuccess,

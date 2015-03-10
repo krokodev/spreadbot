@@ -3,32 +3,32 @@ using Crocodev.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public partial class Connector
+    public partial class MipConnector
     {
         public partial class SftpHelper
         {
             // ===================================================================================== []
             // TestConnection
-            public static Response<BoolResult> TestConnection(string password = null)
+            public static MipResponse<BoolResult> TestConnection(string password = null)
             {
                 return DoTestConnection(password);
             }
 
             // ===================================================================================== []
             // UploadFeed
-            public static Response<SendFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
+            public static MipResponse<SendFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static Response<SendFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<SendFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId);
             }
 
             // ===================================================================================== []
             // Find remote files Inproc
-            public static Response<FindRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
+            public static MipResponse<FindRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
             {
                 var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // Find remote files Output
-            public static Response<FindRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
+            public static MipResponse<FindRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
             {
                 var remoteDirs = RemoteFeedOutputFolderPathes(request.Feed.Name);
                 var prefix = request.FileNamePrefix();
@@ -46,14 +46,14 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 foreach (var remoteDir in remoteDirs)
                 {
                     var response = FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
-                    if (response.Code == StatusCode.FindRemoteFileSuccess)
+                    if (response.Code == MipStatusCode.FindRemoteFileSuccess)
                     {
                         return response;
                     }
                 }
-                return new Response<FindRemoteFileResult>(
+                return new MipResponse<FindRemoteFileResult>(
                     false,
-                    StatusCode.FindRemoteFileFail,
+                    MipStatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));
             }
 

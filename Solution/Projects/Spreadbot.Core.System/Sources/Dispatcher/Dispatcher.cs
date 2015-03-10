@@ -9,6 +9,8 @@ namespace Spreadbot.Core.System
 {
     public class Dispatcher
     {
+        // ===================================================================================== []
+        // RunChannelTask
         // Code: Dispatcher : RunChannelTask
         public static void RunChannelTask(IChannelTask task)
         {
@@ -17,16 +19,17 @@ namespace Spreadbot.Core.System
                 throw new SpreadbotException("Task is already done [{0}]", task);
             }
 
-            switch (task.Operation)
+            switch (task.Method)
             {
-                case ChannelOperation.Publish:
+                case ChannelMethod.Publish:
                     task.Response = task.Channel.Publish(task.Args);
                     break;
                 default:
-                    throw new SpreadbotException("Unexpected task operation [{0}]", task.Operation);
+                    throw new SpreadbotException("Unexpected task operation [{0}]", task.Method);
             }
         }
 
+        // --------------------------------------------------------[]
         public static void RunChannelTasks(IEnumerable<IChannelTask> tasks)
         {
             tasks.Where(t => t.Response == null).ForEach(RunChannelTask);

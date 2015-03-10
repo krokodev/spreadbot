@@ -59,17 +59,17 @@
     <Compile Include="Sources\Mip\Configuration\Elements\SecretData.cs" />
     <Compile Include="Sources\Mip\Configuration\Sections\MipPublic.cs" />
     <Compile Include="Sources\Mip\Configuration\Sections\MipSecurity.cs" />
-    <Compile Include="Sources\Mip\Operations\Response\Response.cs" />
+    <Compile Include="Sources\Mip\Operations\Response\MipResponse.cs" />
     <Compile Include="Sources\Mip\Operations\Results\BoolResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\ZipFeedResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\SendFeedResult.cs" />
-    <Compile Include="Sources\Mip\Connector\Connector.pvt.Pathes.cs" />
-    <Compile Include="Sources\Mip\Connector\Connector.ZipHelper.cs" />
-    <Compile Include="Sources\Mip\Connector\Connector.SftpHelper.pvt.Sftp.cs" />
-    <Compile Include="Sources\Mip\Connector\Connector.SftpHelper.cs" />
+    <Compile Include="Sources\Mip\Connector\MipConnector.pvt.Pathes.cs" />
+    <Compile Include="Sources\Mip\Connector\MipConnector.ZipHelper.cs" />
+    <Compile Include="Sources\Mip\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
+    <Compile Include="Sources\Mip\Connector\MipConnector.SftpHelper.cs" />
     <Compile Include="Sources\Mip\Operations\Request\RequestProcessingStage.cs" />
     <Compile Include="Sources\Mip\Operations\Request\Request.cs" />
-    <Compile Include="Sources\Mip\Connector\Connector.cs" />
+    <Compile Include="Sources\Mip\Connector\MipConnector.cs" />
     <Compile Include="Sources\Mip\Operations\Results\FindRemoteFileResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\GetRequestStatusResult.cs" />
     <Compile Include="Sources\Mip\Operations\Request\RequetStatus.cs" />
@@ -77,7 +77,7 @@
     <Compile Include="Sources\Mip\Feed\Feed.cs" />
     <Compile Include="Sources\Mip\Feed\FeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\Mip\Operations\StatusCode\StatusCode.cs" />
+    <Compile Include="Sources\Mip\Operations\StatusCode\MipStatusCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

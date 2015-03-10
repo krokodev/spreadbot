@@ -4,13 +4,13 @@ using WinSCP;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public partial class Connector
+    public partial class MipConnector
     {
         public partial class SftpHelper
         {
             // ===================================================================================== []
             // DoTestConnection
-            private static Response<BoolResult> DoTestConnection(string password)
+            private static MipResponse<BoolResult> DoTestConnection(string password)
             {
                 try
                 {
@@ -22,14 +22,14 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new Response<BoolResult>(false, StatusCode.TestConnectionFail, exception);
+                    return new MipResponse<BoolResult>(false, MipStatusCode.TestConnectionFail, exception);
                 }
-                return new Response<BoolResult>(true, StatusCode.TestConnectionSuccess, new BoolResult(true));
+                return new MipResponse<BoolResult>(true, MipStatusCode.TestConnectionSuccess, new BoolResult(true));
             }
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static Response<SendFeedResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
+            private static MipResponse<SendFeedResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
             {
                 try
                 {
@@ -40,9 +40,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new Response<SendFeedResult> (false, StatusCode.SendZippedFeedFail, exception);
+                    return new MipResponse<SendFeedResult> (false, MipStatusCode.SendZippedFeedFail, exception);
                 }
-                return new Response<SendFeedResult>(true, StatusCode.SendZippedFeedSuccess, new SendFeedResult(reqId));
+                return new MipResponse<SendFeedResult>(true, MipStatusCode.SendZippedFeedSuccess, new SendFeedResult(reqId));
             }
 
             // ===================================================================================== []
@@ -70,7 +70,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // FindFileNamePrefixInRemoteDir
-            private static Response<FindRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
+            private static MipResponse<FindRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
                 string remoteDir)
             {
                 var files = GetRemoteDirFiles(remoteDir);
@@ -78,16 +78,16 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return new Response<FindRemoteFileResult>(
+                        return new MipResponse<FindRemoteFileResult>(
                             true,
-                            StatusCode.FindRemoteFileSuccess,
+                            MipStatusCode.FindRemoteFileSuccess,
                             new FindRemoteFileResult(remoteDir, fileInfo.Name)
                             );
                     }
                 }
-                return new Response<FindRemoteFileResult>(
+                return new MipResponse<FindRemoteFileResult>(
                     false,
-                    StatusCode.FindRemoteFileFail,
+                    MipStatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir)
                     );
             }

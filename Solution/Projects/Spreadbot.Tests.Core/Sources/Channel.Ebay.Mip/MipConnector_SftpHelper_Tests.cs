@@ -11,33 +11,33 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void SendZippedFeed()
         {
             var feed = new Feed(FeedType.Product);
-            var response = Connector.SftpHelper.SendZippedFeed(feed.Name, Request.GenerateTestId());
+            var response = MipConnector.SftpHelper.SendZippedFeed(feed.Name, Request.GenerateTestId());
 
             Trace.TraceInformation(response.Autoinfo);
             
-            Assert.AreEqual(StatusCode.SendZippedFeedSuccess, response.Code);
+            Assert.AreEqual(MipStatusCode.SendZippedFeedSuccess, response.Code);
         }
 
         // ===================================================================================== []
         [TestMethod]
         public void TestConnection_Good()
         {
-            var response = Connector.SftpHelper.TestConnection();
+            var response = MipConnector.SftpHelper.TestConnection();
             
             Trace.TraceInformation(response.Autoinfo);
             
-            Assert.AreEqual(StatusCode.TestConnectionSuccess, response.Code);
+            Assert.AreEqual(MipStatusCode.TestConnectionSuccess, response.Code);
         }
 
         // ===================================================================================== []
         [TestMethod]
         public void TestConnection_Bad()
         {
-            var response = Connector.SftpHelper.TestConnection("wrong password");
+            var response = MipConnector.SftpHelper.TestConnection("wrong password");
 
             Trace.TraceInformation(response.Autoinfo);
             
-            Assert.AreEqual(StatusCode.TestConnectionFail, response.Code);
+            Assert.AreEqual(MipStatusCode.TestConnectionFail, response.Code);
         }
     }
 }

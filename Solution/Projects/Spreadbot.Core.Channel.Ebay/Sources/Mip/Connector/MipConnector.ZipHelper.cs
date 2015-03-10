@@ -4,13 +4,13 @@ using System.IO.Compression;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public partial class Connector
+    public partial class MipConnector
     {
         public class ZipHelper
         {
             // ===================================================================================== []
             // ZipFeed
-            public static Response<ZipFeedResult> ZipFeed(string feed, string reqId)
+            public static MipResponse<ZipFeedResult> ZipFeed(string feed, string reqId)
             {
                 string zipFileName;
                 try
@@ -23,12 +23,12 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new Response<ZipFeedResult>(false, StatusCode.ZipFeedFail, exception);
+                    return new MipResponse<ZipFeedResult>(false, MipStatusCode.ZipFeedFail, exception);
                 }
-                return new Response<ZipFeedResult>(true, StatusCode.ZipFeedSuccess, new ZipFeedResult(zipFileName));
+                return new MipResponse<ZipFeedResult>(true, MipStatusCode.ZipFeedSuccess, new ZipFeedResult(zipFileName));
             }
 
-            public static Response<ZipFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<ZipFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
             {
                 return ZipFeed(feed.Name, reqId.Value.ToString());
             }

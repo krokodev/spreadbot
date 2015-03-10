@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public partial class Connector
+    public partial class MipConnector
     {
         // ===================================================================================== []
         // Local

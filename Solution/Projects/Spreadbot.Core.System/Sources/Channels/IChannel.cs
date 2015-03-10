@@ -1,5 +1,4 @@
-﻿using System;
-using Spreadbot.Core.Common;
+﻿using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.System
 {

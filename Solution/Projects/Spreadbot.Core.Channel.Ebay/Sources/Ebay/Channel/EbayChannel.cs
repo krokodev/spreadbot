@@ -14,17 +14,32 @@ namespace Spreadbot.Core.Channel.Ebay
             get { return ConstName; }
         }
 
+        // Code: EbayChannel : Publish
+
         public IResponse Publish(IArgs args)
         {
-            // Code: EbayChannel : Publish
-            var publishArgs = args as EbayPublishArgs;
-
-            if (publishArgs == null)
-                throw new ArgumentException();
-
             // Todo: Use Args.FeedContent
+            IResponse mipResponse;
+            try
+            {
+                var publishArgs = args as EbayPublishArgs;
+                if (publishArgs == null)
+                    throw new ArgumentException();
 
-            return Connector.SendFeed(publishArgs.Feed);
+                //SaveFeed(Args.FeedContent);
+
+                mipResponse = MipConnector.SendFeed(publishArgs.Feed);
+                mipResponse.Check();
+            }
+            catch (Exception exception)
+            {
+                return new ChannelResponse<BoolResult>(false, ChannelStatusCode.PublishFail, exception);
+            }
+
+            return new ChannelResponse<BoolResult>(true,
+                ChannelStatusCode.PublishSuccess,
+                new BoolResult(true),
+                mipResponse);
         }
     }
 }

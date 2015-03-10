@@ -4,5 +4,6 @@ namespace Spreadbot.Core.Common
     {
         string Autoinfo { get; }
         string GetAutoinfo(int level);
+        void Check();
     }
 }

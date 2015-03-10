@@ -8,9 +8,9 @@ namespace Spreadbot.Core.System
     {
         // ===================================================================================== []
         // Constructor
-        protected ChannelTask(ChannelOperation operation)
+        protected ChannelTask(ChannelMethod method)
         {
-            Operation = operation;
+            Method = method;
         }
 
         // ===================================================================================== []
@@ -19,7 +19,7 @@ namespace Spreadbot.Core.System
         {
             get
             {
-                return "Channel:[{0}] Args:[{1}] Response:[{2}]"
+                return "Channel: [{0}] Args: [{1}] Response: [{2}]"
                     .SafeFormat(
                         Channel.Name,
                         Args,
@@ -32,6 +32,6 @@ namespace Spreadbot.Core.System
         // IChannelTask
         public IChannel Channel { get; protected set; }
         // --------------------------------------------------------[]
-        public ChannelOperation Operation { get; set; }
+        public ChannelMethod Method { get; set; }
     }
 }
