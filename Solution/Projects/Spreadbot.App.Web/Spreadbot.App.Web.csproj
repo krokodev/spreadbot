@@ -235,7 +235,7 @@
     <Content Include="App_Data\Mip\store\zip\product.zip" />
     <Content Include="App_Data\Mip\store\zip\productt.6696.zip" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
-    <Content Include="Views\Demoshop\Publish.cshtml" />
+    <Content Include="Views\Demoshop\RunChannelTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

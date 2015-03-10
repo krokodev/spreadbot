@@ -1,22 +1,35 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
+using Spreadbot.Core.Common;
+
+// >> Core | Dispatcher
 
 namespace Spreadbot.Core.System
 {
-    // >> Core | Dispatcher
     public class Dispatcher
     {
-        public static void Run(IChannelTask task)
+        // Code: Dispatcher : RunChannelTask
+        public static void RunChannelTask(IChannelTask task)
         {
-            task.Response =  task.Channel.Publish(task.Args);
-        }
-
-        public static void Run(IEnumerable<IChannelTask> tasks)
-        {
-            foreach (var task in tasks.Where(t=>t.Response==null))
+            if (task.Response != null)
             {
-                Run(task);
+                throw new SpreadbotException("Task is already done [{0}]", task);
+            }
+
+            switch (task.Operation)
+            {
+                case ChannelOperation.Publish:
+                    task.Response = task.Channel.Publish(task.Args);
+                    break;
+                default:
+                    throw new SpreadbotException("Unexpected task operation [{0}]", task.Operation);
             }
         }
+
+        public static void RunChannelTasks(IEnumerable<IChannelTask> tasks)
+        {
+            tasks.Where(t => t.Response == null).ForEach(RunChannelTask);
+        }
     }
- }
+}

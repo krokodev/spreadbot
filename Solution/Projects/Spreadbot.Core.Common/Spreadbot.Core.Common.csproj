@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\Exceptions\SpreadbotException.cs" />
     <Compile Include="Sources\Operations\Args\Args.cs" />
     <Compile Include="Sources\Operations\Args\IArgs.cs" />
     <Compile Include="Sources\Operations\Task\ITask.cs" />

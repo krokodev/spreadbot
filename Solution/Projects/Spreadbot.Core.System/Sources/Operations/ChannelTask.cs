@@ -7,6 +7,13 @@ namespace Spreadbot.Core.System
     public class ChannelTask : Task, IChannelTask
     {
         // ===================================================================================== []
+        // Constructor
+        protected ChannelTask(ChannelOperation operation)
+        {
+            Operation = operation;
+        }
+
+        // ===================================================================================== []
         // ITask
         public override string Autoinfo
         {
@@ -24,5 +31,7 @@ namespace Spreadbot.Core.System
         // ===================================================================================== []
         // IChannelTask
         public IChannel Channel { get; protected set; }
+        // --------------------------------------------------------[]
+        public ChannelOperation Operation { get; set; }
     }
 }

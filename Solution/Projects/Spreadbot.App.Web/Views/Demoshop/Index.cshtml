@@ -90,7 +90,7 @@
 
         <ul>
             <li>
-                @Html.ActionLink("Publish [{0}] on eBay".SafeFormat(Model.Item), "Publish")
+                @Html.ActionLink("Run Channel Tasks ({0})".SafeFormat(Model.ChannelTasks.Count(t=>t.Response==null)), "RunChannelTasks")
             </li>
             <li>
                 Check publishing process for request [xxx]

@@ -16,7 +16,7 @@ namespace Spreadbot.App.Web
         // ===================================================================================== []
         // UpdateItem
         [HttpPost]
-        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")]DemoshopItemModel item)
+        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")] DemoshopItemModel item)
         {
             DemoshopModel.Instance.SaveItem(item);
             return RedirectToAction("Index");
@@ -32,14 +32,13 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Publish
-        public ActionResult Publish()
+        public ActionResult RunChannelTasks()
         {
-            // Code: Controller : Publish
+            // Code: Controller : RunChannelTasks
 
-           Dispatcher.Run(DemoshopModel.Instance.ChannelTasks);
+            Dispatcher.RunChannelTasks(DemoshopModel.Instance.ChannelTasks);
 
             return View(DemoshopModel.Instance);
         }
-
     }
 }

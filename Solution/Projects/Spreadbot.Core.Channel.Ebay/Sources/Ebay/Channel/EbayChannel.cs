@@ -7,20 +7,11 @@ namespace Spreadbot.Core.Channel.Ebay
 {
     public class EbayChannel : IChannel
     {
-        private static readonly Guid Guid = new Guid("F754E71E-652A-47B0-A1BC-8D74922D25DC");
-        private const string ChannelName = "eBay";
-
-        public Guid Id
-        {
-            get
-            {
-                return Guid;
-            }
-        }
+        private const string ConstName = "eBay";
 
         public string Name
         {
-            get { return ChannelName; }
+            get { return ConstName; }
         }
 
         public IResponse Publish(IArgs args)
@@ -28,8 +19,10 @@ namespace Spreadbot.Core.Channel.Ebay
             // Code: EbayChannel : Publish
             var publishArgs = args as EbayPublishArgs;
 
-            if (publishArgs == null) 
+            if (publishArgs == null)
                 throw new ArgumentException();
+
+            // Todo: Use Args.FeedContent
 
             return Connector.SendFeed(publishArgs.Feed);
         }

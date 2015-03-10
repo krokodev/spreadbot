@@ -1,18 +1,18 @@
 ﻿@model Spreadbot.App.Web.DemoshopModel
 @{
     // ===================================================================================== []
-    // !>> View | Demoshop | Publish
+    // !>> View | Demoshop | RunChannelTasks
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 
 <h2>
-    Publishing
+    Channel Tasks Running Result
 </h2>
 
-<pre>
-@foreach (var t in Model.Tasks.Where(t => t.Response != null))
+@foreach (var task in Model.ChannelTasks)
 {
-    @t.Response.Autoinfo
+    <pre>
+        @task
+    </pre>
 }
-</pre>

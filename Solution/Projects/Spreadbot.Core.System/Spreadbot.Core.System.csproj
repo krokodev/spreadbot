@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sources\Operations\ChannelOperation.cs" />
     <Compile Include="Sources\Operations\ChannelTask.cs" />
     <Compile Include="Sources\Channels\IChannel.cs" />
     <Compile Include="Sources\Operations\IChannelTask.cs" />
