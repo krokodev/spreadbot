@@ -3,9 +3,9 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class SendFeedResult : IResponseResult
+    public class SendFeedFolderResult : IResponseResult
     {
-        public SendFeedResult(Request.Identifier requestId)
+        public SendFeedFolderResult(Request.Identifier requestId)
         {
             RequestId = requestId;
         }

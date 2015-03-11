@@ -62,7 +62,7 @@
     <Compile Include="Sources\Mip\Operations\Response\MipResponse.cs" />
     <Compile Include="Sources\Mip\Operations\Results\BoolResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\ZipFeedResult.cs" />
-    <Compile Include="Sources\Mip\Operations\Results\SendFeedResult.cs" />
+    <Compile Include="Sources\Mip\Operations\Results\SendFeedFolderResult.cs" />
     <Compile Include="Sources\Mip\Connector\MipConnector.pvt.Pathes.cs" />
     <Compile Include="Sources\Mip\Connector\MipConnector.ZipHelper.cs" />
     <Compile Include="Sources\Mip\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />

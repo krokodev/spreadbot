@@ -146,9 +146,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\.gitignore" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\.gitignore" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
     <Content Include="App_Data\Configs\Mip.Public.config" />
     <Content Include="App_Data\Configs\Mip.Security.config" />

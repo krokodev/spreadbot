@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Crocodev.Common;
 using Crocodev.Common.Identifier;
 
@@ -9,31 +10,22 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
     public partial class MipConnector
     {
         // ===================================================================================== []
-        // SendFeed
-        public static MipResponse<SendFeedResult> SendFeed(Feed feed)
+        // SendFeedFolder
+        public static MipResponse<SendFeedFolderResult> SendFeedFolder(Feed feed)
         {
             var reqId = Request.GenerateId();
-            try
-            {
-                ZipHelper.ZipFeed(feed, reqId).Check();
-                SftpHelper.SendZippedFeed(feed, reqId).Check();
-            }
-            catch (Exception exception)
-            {
-                return new MipResponse<SendFeedResult>(false, MipStatusCode.SendFeedFail, exception);
-            }
-            return new MipResponse<SendFeedResult>(true, MipStatusCode.SendFeedSuccess, new SendFeedResult(reqId));
+            return DoSendFeedFolder(feed, reqId);
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse<SendFeedResult> SendTestFeed(Feed feed)
+        public static MipResponse<SendFeedFolderResult> SendTestFeedFolder(Feed feed)
         {
             var reqId = Request.GenerateTestId();
-            return DoSendFeed(feed, reqId);
+            return DoSendFeedFolder(feed, reqId);
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<SendFeedResult> DoSendFeed(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
+        private static MipResponse<SendFeedFolderResult> DoSendFeedFolder(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
         {
             try
             {
@@ -42,9 +34,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             }
             catch (Exception exception)
             {
-                return new MipResponse<SendFeedResult>(false, MipStatusCode.SendFeedFail, exception);
+                return new MipResponse<SendFeedFolderResult>(false, MipStatusCode.SendFeedFolderFail, exception);
             }
-            return new MipResponse<SendFeedResult>(true, MipStatusCode.SendFeedSuccess, new SendFeedResult(reqId));
+            return new MipResponse<SendFeedFolderResult>(true, MipStatusCode.SendFeedFolderSuccess, new SendFeedFolderResult(reqId));
         }
 
         // ===================================================================================== []
@@ -137,13 +129,16 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 content);
         }
 
-        public static string NewFeedXmlFilePath(Feed feed)
+        // --------------------------------------------------------[]
+        public static string LocalFeedXmlFilePath(Feed feed)
         {
-            return string.Format(@"{0}\{1}.{2}.xml",
-                LocalFeedFolder(feed.Name),
-                feed.Name,
-                (Guid) feed.Id
-                );
+            return DoLocalFeedXmlFilePath(feed);
+        }
+
+        // --------------------------------------------------------[]
+        public static string LocalFeedFolder(Feed feed)
+        {
+            return DoLocalFeedFolder(feed.Name);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        private static string LocalFeedFolder(string feed)
+        private static string DoLocalFeedFolder(string feed)
         {
             return string.Format("{0}{1}",
                 Settings.FeedsPath,
@@ -30,6 +30,17 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         {
             return Settings.InboxPath;
         }
+
+        // --------------------------------------------------------[]
+        private static string DoLocalFeedXmlFilePath(Feed feed)
+        {
+            return string.Format(@"{0}\{1}.{2}.xml",
+                DoLocalFeedFolder(feed.Name),
+                feed.Name,
+                (Guid)feed.Id
+                );
+        }
+
 
         // ===================================================================================== []
         // Remote

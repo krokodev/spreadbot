@@ -16,12 +16,12 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse<SendFeedResult> SendZippedFeed(string feed, Request.Identifier reqId)
+            public static MipResponse<SendFeedFolderResult> SendZippedFeed(string feed, Request.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static MipResponse<SendFeedResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<SendFeedFolderResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId);
             }

@@ -16,8 +16,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 try
                 {
                     zipFileName = LocalZippedFeedFile(feed, reqId);
-                    ZipFiles(
-                        LocalFeedFolder(feed),
+                    ZipFolderFiles(
+                        DoLocalFeedFolder(feed),
                         zipFileName
                         );
                 }
@@ -28,21 +28,15 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 return new MipResponse<ZipFeedResult>(true, MipStatusCode.ZipFeedSuccess, new ZipFeedResult(zipFileName));
             }
 
+            // --------------------------------------------------------[]
             public static MipResponse<ZipFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
             {
                 return ZipFeed(feed.Name, reqId.Value.ToString());
             }
 
             // ===================================================================================== []
-            // ZipFeed
-            public static string ZippedFeedFileName(string feed, string reqId)
-            {
-                return LocalZippedFeedFile(feed, reqId);
-            }
-
-            // ===================================================================================== []
-            // ZipFiles
-            private static void ZipFiles(string sourceDir, string zipFileName)
+            // ZipFolderFiles
+            private static void ZipFolderFiles(string sourceDir, string zipFileName)
             {
                 File.Delete(zipFileName);
                 ZipFile.CreateFromDirectory(sourceDir, zipFileName, CompressionLevel.Optimal, false);

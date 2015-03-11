@@ -13,10 +13,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
 
-            var response = MipConnector.SendFeed(feed);
+            var response = MipConnector.SendFeedFolder(feed);
             Trace.TraceInformation(response.Autoinfo);
 
-            Assert.AreEqual(MipStatusCode.SendFeedSuccess, response.Code);
+            Assert.AreEqual(MipStatusCode.SendFeedFolderSuccess, response.Code);
             Assert.IsTrue(Request.VerifyRequestId(response.Result.RequestId));
         }
 
@@ -26,7 +26,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void FindRequest_Inprocess()
         {
             var feed = new Feed(FeedType.Product);
-            var sendResponse = MipConnector.SendFeed(feed);
+            var sendResponse = MipConnector.SendFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Inprocess);
@@ -73,7 +73,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void FindRequest_Output()
         {
             var feed = new Feed(FeedType.Product);
-            var sendResponse = MipConnector.SendTestFeed(feed);
+            var sendResponse = MipConnector.SendTestFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Output);
@@ -106,7 +106,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void GetRequestStatus_Inproc()
         {
             var feed = new Feed(FeedType.Availability);
-            var sendResponse = MipConnector.SendFeed(feed);
+            var sendResponse = MipConnector.SendFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request);
@@ -120,7 +120,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void GetRequestStatus_Success()
         {
             var feed = new Feed(FeedType.Distribution);
-            var sendResponse = MipConnector.SendTestFeed(feed);
+            var sendResponse = MipConnector.SendTestFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request, ignoreInprocess: true);
