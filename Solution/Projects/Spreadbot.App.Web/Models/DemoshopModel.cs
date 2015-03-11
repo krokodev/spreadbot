@@ -47,9 +47,9 @@ namespace Spreadbot.App.Web
         {
             Item = new DemoshopItemModel()
             {
-                Sku = "DS-001",
+                Sku = "DS-1001",
                 Title = "Demoshop Single Item",
-                Price = 115.00m,
+                Price = 7.00m,
                 Quantity = 3
             };
         }

@@ -1,7 +1,3 @@
-<!--
-Code: XML : Availability
--->
-<?xml version="1.0"?>
 <inventoryRequest>
     <inventory>
         <SKU>{item.sku}</SKU>
