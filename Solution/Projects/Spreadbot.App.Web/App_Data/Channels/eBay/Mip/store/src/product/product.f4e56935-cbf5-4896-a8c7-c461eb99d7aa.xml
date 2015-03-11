@@ -1,10 +1,13 @@
+<!--
+Code: XML : Product
+-->
 <productRequest>	
 	<product>
-	   <SKU>MIP_SKU_11</SKU>
+	   <SKU>DS-001</SKU>
 		<productInformation localizedFor="en_US">
-		    <title>Harry Potter and the Sorcerer's Stone SKU : mip_sku_1</title>
+		    <title>Test Item: Demoshop Single Item</title>
 			<description>
-				<productDescription>Test Item 18-02: Harry Potter and the Sorcerer's Stone book 1 with SKU MIP_SKU_11</productDescription>
+				<productDescription>Test Item DS-001: Demoshop Single Item with sku: DS-001</productDescription>
 			</description>
 			<attribute name="Binding">Hard</attribute>
 			<attribute name="Language">English</attribute>

@@ -10,9 +10,10 @@ namespace Spreadbot.Core.Common
         private readonly IList<ITask> _subTasks = new List<ITask>();
 
         // --------------------------------------------------------[]
-        public void AddSubTask(ITask task)
+        public Task AddSubTask(ITask task)
         {
             _subTasks.Add(task);
+            return this;
         }
 
         // ===================================================================================== []

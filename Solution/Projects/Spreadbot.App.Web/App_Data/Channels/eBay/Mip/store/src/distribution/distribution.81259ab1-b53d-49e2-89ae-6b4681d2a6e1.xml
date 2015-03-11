@@ -5,7 +5,7 @@ Code: XML : Distribution
 <distributionRequest>
 	<distribution>
 		<channelID>EBAY_US</channelID> 
-		<SKU>{item.sku}</SKU>
+		<SKU>DS-001</SKU>
 		<listingDetails>
 			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
 			<shippingCostOverrides>
@@ -19,7 +19,7 @@ Code: XML : Distribution
 			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
 			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
 			<pricingDetails>
-				<listPrice>{item.price}</listPrice>
+				<listPrice>11588.00</listPrice>
 			</pricingDetails>
 			<eBayNowEligible>false</eBayNowEligible>
 			<pickupInStoreEligible>false</pickupInStoreEligible>

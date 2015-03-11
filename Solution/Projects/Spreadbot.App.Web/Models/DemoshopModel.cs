@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Crocodev.Common;
+using Spreadbot.App.Web.Configuration;
 using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
@@ -59,20 +62,53 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Tasks
-        // Code: * Demostore : PublishItemOnEbay
         public void PublishItemOnEbay()
         {
-            // Todo: Create Feed XML
-
-            // Use feed.Content + App_Data\Stores\Demoshop\Templates
-
             var storeTask = new StoreTask("Publish [{0}] on eBay".SafeFormat(Item));
 
-            storeTask.AddSubTask(new EbayPublishTask(FeedType.Product));
-            storeTask.AddSubTask(new EbayPublishTask(FeedType.Availability));
-            storeTask.AddSubTask(new EbayPublishTask(FeedType.Distribution));
+            AddTask(
+                storeTask
+                    .AddSubTask(new EbayPublishTask(FeedType.Product, FeedContent(FeedType.Product)))
+                    .AddSubTask(new EbayPublishTask(FeedType.Availability, FeedContent(FeedType.Availability)))
+                    .AddSubTask(new EbayPublishTask(FeedType.Distribution, FeedContent(FeedType.Distribution))),
+                true);
+        }
 
-            AddTask(storeTask, true);
+        // --------------------------------------------------------[]
+        // Code: * Demoshop : FeedContent
+        private static string FeedContent(FeedType feedType)
+        {
+            var template = FeedTemplate(feedType);
+            var item = Instance.Item;
+
+            switch (feedType)
+            {
+                case FeedType.Product:
+                    return template
+                        .Replace("{item.sku}",item.Sku)
+                        .Replace("{item.title}",item.Title)
+                        ;
+                case FeedType.Availability:
+                    return template
+                        .Replace("{item.sku}", item.Sku)
+                        .Replace("{item.quantity}", item.Quantity.ToString(CultureInfo.CreateSpecificCulture("en-US")))
+                        ;
+                case FeedType.Distribution:
+                    return template
+                        .Replace("{item.sku}", item.Sku)
+                        .Replace("{item.price}", item.Price.ToString(CultureInfo.CreateSpecificCulture("en-US")))
+                        ;
+            }
+
+            throw new SpreadbotException("Wrong FeedType=[{0}]", feedType);
+        }
+
+        // --------------------------------------------------------[]
+        private static string FeedTemplate(FeedType feedType)
+        {
+            var templateFolder = DemoshopConfig.Instance.Paths.XmlTemplatesPath.MapPathToDataDirectory();
+            var xmlTemplateFilePath = string.Format(@"{0}{1}.xml", templateFolder, feedType);
+            return File.ReadAllText(xmlTemplateFilePath);
         }
     }
 }

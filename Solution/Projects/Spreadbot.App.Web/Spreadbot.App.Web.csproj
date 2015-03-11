@@ -138,6 +138,8 @@
     <Compile Include="Models\DemoshopModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\References.cs" />
+    <Compile Include="Sources\Configuration\Elements\Paths.cs" />
+    <Compile Include="Sources\Configuration\Sections\DemoshopConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -147,30 +149,26 @@
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\product.4000.zip-Feb-20-2015-05-28-49-0700.xml" />
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\product.5904.zip-Feb-20-2015-07-49-53-0700.xml" />
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\product.6918.zip-Feb-20-2015-09-34-35-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\3012f038-5c78-4885-abba-fb1e64ed62d5.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\7106c7f2-0e27-48c9-90c2-7ab33c1886aa.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\availability-21f19a44-2c38-45c2-bfbc-6520b7b76efd.xml" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\Availability_Single_SKU_One_Locale.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\availability\e3a818dd-c600-4541-a7fe-9e1f51d0c239.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\28a150ef-a886-4bb2-b8e7-aa2634c37e5c.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\930a32bf-0ad9-4058-a19d-98aeeed24e54.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\ab35545b-3543-43ea-9ebb-296f2b863c1e.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\distribution-d1ab218b-8aeb-4ac6-9816-64b9871a1883.xml" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\distribution\Distribution_Single_SKU_One_Locale.xml" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\src\lookup\template\description.html" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\Product_Single_SKU_One_Locale.xml" />
-    <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml" />
-    <Content Include="Content\Themes\Default\Common.css" />
-    <Content Include="Content\Themes\Default\Form.css" />
-    <Content Include="Global.asax" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_Data\Channels\eBay\Mip\store\src\lookup\common\CategoryMapping.csv" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\lookup\common\ItemSpecificsMapping.csv" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\lookup\common\Location.csv" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\lookup\template\description.html" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\33d3cea4-32ca-4026-9011-071ac9279adc.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\38292f28-4861-416c-b0d3-04ec4319e773.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\dd409f3c-1a49-4c19-ac31-97f333e997a8.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\product-61469d80-5745-4d29-97ac-699b70500c41.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\product\Product_Single_SKU_One_Locale.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.zip" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.zip" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.0.zip" />
@@ -237,6 +235,69 @@
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.f007c927-44c1-4005-a8ce-a6b4de62d90f.zip" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.zip" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\productt.6696.zip" />
+    <Content Include="App_Data\Configs\Mip.Public.config" />
+    <Content Include="App_Data\Configs\Mip.Security.config" />
+    <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml" />
+    <Content Include="Content\Themes\Default\Common.css" />
+    <Content Include="Content\Themes\Default\Form.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.0ab6eb7e-f877-459a-b177-b934bd28af13.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.138e707a-f5fe-40fd-b11d-ccd19d746185.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.713bda7b-a75d-4b1b-b234-c405e99c5ce0.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.72dd9395-4e0d-44e2-9d1c-3545f4fd0bd4.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.a3954b61-85f6-4524-8813-62f68ebe9e65.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.da746526-cd8b-4001-a167-7412a3b7c589.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.e28c1ba2-bc5b-43a6-bd54-14222483c4d8.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.e327ed15-2d0f-4e28-8d58-48733690b303.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.f341b773-1cfc-4664-8c33-1bdc7fe59e9d.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\availability.f7d3b2ae-a40a-4e8a-ad69-8cd730e50466.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.0504090d-0200-4799-aec0-0bfd6a965d30.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.15490794-7271-4c14-a2b5-65ab309fdf29.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.22a47c95-4310-41c5-b8cf-a6f295724da7.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.349ee3d8-ef63-4c69-8657-dafbdd6e81d8.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.43c25209-a0d7-44c3-8628-bab0fbca7c7e.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.5c538b3c-dbb1-4f97-b5e4-85b30843db81.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.90a427fe-0a20-49b3-8529-5250e44e9dcc.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.9e6f5a72-ea0d-4670-abe1-79cfe1850a9f.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.9e857561-3064-4d70-8a9f-8c06e5f7c99d.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\distribution.a15109d3-d8a0-44e4-b9be-f18e271fba09.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.01a4255a-eef7-409a-85e0-303d6e137b67.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.064d8008-643d-40e8-af90-3406e5b7ecc9.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.1a893a11-c301-49da-88f0-17680abed53a.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.1cf9c25c-d77b-4e2a-8eb2-a4e4206c0017.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.24e95c3d-3928-4964-bc2c-2461b383eb40.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.281abafa-ddcc-4deb-8150-f8ed9fdfc1d2.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.51bcf72d-5203-4289-bdb4-45c15bdbaf2e.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.51e00794-6858-462b-90f6-3ba0021b216c.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.59933c64-91b6-4e0b-b5e4-a59138dc5470.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.6ce2cfb9-52ac-45a3-80d9-eaabca2d6f9f.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.95145956-6529-4939-967a-86d940e1228f.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.959b0607-f974-407e-a416-8faee750eb00.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.a8057df4-2c46-462c-8d97-b582681c6d4e.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.aa0aa5f5-e1ad-4f74-b670-28626bfae9d9.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.b4db7948-9b86-4c8b-8654-aa1751f4ca0c.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.bcdfb60d-ce48-4f2d-ac31-de739a4606fb.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.d0794a24-6caf-4ef5-ac66-79d4c3467398.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.df22984c-ec87-4615-b744-7aa23c1adc05.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.e70ae4dd-4430-4f0d-8ed7-38e7fd0d673b.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.ee4c6b14-6421-4a4c-bcc2-f5dd8566c59f.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.f5f799c6-d285-49f7-b0d0-ce854f612cd4.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.fa898541-462f-4cd2-bcea-1f33a7f452fc.zip" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\product.faf15e53-58c1-4797-a02a-279b2255ac2b.zip" />
+    <Content Include="App_Data\Configs\Demoshop.config" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
     <Content Include="Views\Demoshop\RunChannelTasks.cshtml" />
   </ItemGroup>
@@ -260,19 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Demoshop\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.Public.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.Sample.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj">

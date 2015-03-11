@@ -5,13 +5,16 @@ namespace Spreadbot.Core.Channel.Ebay
 {
     public sealed class EbayPublishTask : ChannelTask
     {
-        public EbayPublishTask(FeedType feedType)
+        public EbayPublishTask(FeedType feedType, string feedContent)
             :base(ChannelMethod.Publish)
         {
             Channel = new EbayChannel();
             Args = new EbayPublishArgs
             {
                 Feed = new Feed(feedType)
+                {
+                    Content = feedContent
+                }
             };
         }
     }

@@ -4,7 +4,7 @@ Code: XML : Availability
 <?xml version="1.0"?>
 <inventoryRequest>
     <inventory>
-        <SKU>{item.sku}</SKU>
-        <totalShipToHomeQuantity>{item.quantity}</totalShipToHomeQuantity>
+        <SKU>DS-001</SKU>
+        <totalShipToHomeQuantity>3000</totalShipToHomeQuantity>
     </inventory>
 </inventoryRequest>

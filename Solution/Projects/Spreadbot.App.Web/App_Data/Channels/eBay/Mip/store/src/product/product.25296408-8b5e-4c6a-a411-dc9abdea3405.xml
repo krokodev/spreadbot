@@ -3,11 +3,11 @@ Code: XML : Product
 -->
 <productRequest>	
 	<product>
-	   <SKU>{item.sku}</SKU>
+	   <SKU>DS-001</SKU>
 		<productInformation localizedFor="en_US">
-		    <title>Test Item: {item.title}</title>
+		    <title>Test Item: Demoshop Single Item</title>
 			<description>
-				<productDescription>Test Item {item.sku}: {item.title} with sku: {item.sku}</productDescription>
+				<productDescription>Test Item DS-001: Demoshop Single Item with DS-001</productDescription>
 			</description>
 			<attribute name="Binding">Hard</attribute>
 			<attribute name="Language">English</attribute>

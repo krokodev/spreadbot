@@ -34,17 +34,17 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         // Local pathes
         public static string ZippedFeedsPath
         {
-            get { return Map(MipPublic.Instance.Paths.ZippedFeedsPath); }
+            get { return MapToDataDirectory(MipPublic.Instance.Paths.ZippedFeedsPath); }
         }
 
         public static string FeedsPath
         {
-            get { return Map(MipPublic.Instance.Paths.FeedsPath); }
+            get { return MapToDataDirectory(MipPublic.Instance.Paths.FeedsPath); }
         }
 
         public static string InboxPath
         {
-            get { return Map(MipPublic.Instance.Paths.InboxPath); }
+            get { return MapToDataDirectory(MipPublic.Instance.Paths.InboxPath); }
         }
 
         // ===================================================================================== []
@@ -62,7 +62,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         // ===================================================================================== []
         // Map
-        private static string Map(string path)
+        private static string MapToDataDirectory(string path)
         {
             return AppDomain.CurrentDomain.GetData("DataDirectory") + path;
         }

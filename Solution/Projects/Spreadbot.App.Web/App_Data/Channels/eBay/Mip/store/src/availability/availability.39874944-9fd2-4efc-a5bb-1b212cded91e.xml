@@ -1,7 +1,10 @@
+<!--
+Code: XML : Availability
+-->
 <?xml version="1.0"?>
 <inventoryRequest>
     <inventory>
-        <SKU>MIP_SKU_11</SKU>
+        <SKU>DS-001</SKU>
         <totalShipToHomeQuantity>3</totalShipToHomeQuantity>
     </inventory>
 </inventoryRequest>
