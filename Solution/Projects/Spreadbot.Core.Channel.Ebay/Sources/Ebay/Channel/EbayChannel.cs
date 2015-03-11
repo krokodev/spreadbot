@@ -73,11 +73,9 @@ namespace Spreadbot.Core.Channel.Ebay
         // --------------------------------------------------------[]
         private static void EraseFeedFolder(Feed feed)
         {
-            var feedFolder = MipConnector.LocalFeedFolder(feed);
-            Directory.GetFiles(feedFolder).ForEach(fname =>
-            {
-                File.Delete(fname);
-            });
+            Directory
+                .GetFiles(MipConnector.LocalFeedFolder(feed))
+                .ForEach(File.Delete);
         }
     }
 }
