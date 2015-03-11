@@ -2,7 +2,7 @@
 	<product>
 	   <SKU>{item.sku}</SKU>
 		<productInformation localizedFor="en_US">
-		    <title>Test Item: {item.title}</title>
+		    <title>Test Item: {item.title} with sku: {item.sku}</title>
 			<description>
 				<productDescription>Spreadbot test Item {item.sku}: {item.title} with sku: {item.sku}</productDescription>
 			</description>
