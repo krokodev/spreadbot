@@ -13,10 +13,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new Feed(FeedType.Product);
 
-            var response = MipConnector.SendFeedFolder(feed);
+            var response = MipConnector.SendZippedFeedFolder(feed);
             Trace.TraceInformation(response.Autoinfo);
 
-            Assert.AreEqual(MipStatusCode.SendFeedFolderSuccess, response.Code);
+            Assert.AreEqual(MipStatusCode.SendZippedFeedFolderSuccess, response.Code);
             Assert.IsTrue(Request.VerifyRequestId(response.Result.RequestId));
         }
 
@@ -26,7 +26,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void FindRequest_Inprocess()
         {
             var feed = new Feed(FeedType.Product);
-            var sendResponse = MipConnector.SendFeedFolder(feed);
+            var sendResponse = MipConnector.SendZippedFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Inprocess);
@@ -106,7 +106,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         public void GetRequestStatus_Inproc()
         {
             var feed = new Feed(FeedType.Availability);
-            var sendResponse = MipConnector.SendFeedFolder(feed);
+            var sendResponse = MipConnector.SendZippedFeedFolder(feed);
             var request = new Request(feed, sendResponse.Result.RequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request);

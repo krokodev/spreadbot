@@ -3,7 +3,7 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.System
 {
-    public class ChannelTask : Task, IChannelTask
+    public abstract class ChannelTask : Task, IChannelTask
     {
         // ===================================================================================== []
         // Constructor
@@ -18,7 +18,7 @@ namespace Spreadbot.Core.System
         {
             get
             {
-                return "Channel: [{0}] Args: [{1}] Response: [{2}]"
+                return base.Autoinfo+" Channel: [{0}] Args: [{1}] Response: [{2}]"
                     .SafeFormat(
                         Channel.Name,
                         Args,

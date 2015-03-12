@@ -45,14 +45,14 @@
 
 @helper ShowTasks(IEnumerable<ITask> tasks)
 {
-    // Code: StoreView : ShowTasks
+    // Code: * StoreView : ShowTasks
     var enumerable = tasks as ITask[] ?? tasks.ToArray();
     if (enumerable.Count() != 0)
     {
         <ul>
             @foreach (var task in enumerable)
             {
-                <li>@task.ToString()</li>
+                <li>@task</li>
                 @ShowTasks(task.SubTasks)
             }
         </ul>

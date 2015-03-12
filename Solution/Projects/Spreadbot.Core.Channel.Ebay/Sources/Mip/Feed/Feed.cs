@@ -20,6 +20,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public string Content { get; set; }
         public Identifier Id { get; set; }
+        public string ItemInfo { get; set; }
 
         public override string ToString()
         {

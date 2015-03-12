@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Common
         private string GetSuccessAutoinfo(int level)
         {
             return AutoinfoResponse(level++,
-                AutoinfoField("Result", Result.GetAutoinfo("{0}=[{1}]"), level),
+                AutoinfoField("Result", Result, level),
                 AutoinfoField("Details", Details, level),
                 AutoinfoInnerResponse(InnerResponse, level)
                 );
@@ -26,6 +26,7 @@ namespace Spreadbot.Core.Common
                 AutoinfoInnerResponse(InnerResponse, level)
                 );
         }
+
 
         // ===================================================================================== []
         // Elements
@@ -101,5 +102,13 @@ namespace Spreadbot.Core.Common
         {
             return "\n" + (level == 0 ? "" : new string(' ', 2*level));
         }
+
+        // ===================================================================================== []
+        // Object
+        public override string ToString()
+        {
+            return Autoinfo;
+        }
+
     }
 }

@@ -3,7 +3,7 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class GetRequestStatusResult: IResponseResult
+    public class GetRequestStatusResult: ResponseResult
     {
         public readonly RequetStatus Status;
         public readonly string Autoinfo;
@@ -14,9 +14,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             Autoinfo = autoinfo;
         }
 
-        public string GetAutoinfo(string format)
+        public override string GetAutoinfo()
         {
-            return format.SafeFormat("Status", Status) + " " + format.SafeFormat("Autoinfo", Autoinfo);
+            return Template.SafeFormat("Status", Status) + " " + Template.SafeFormat("Autoinfo", Autoinfo);
         }
     }
 }

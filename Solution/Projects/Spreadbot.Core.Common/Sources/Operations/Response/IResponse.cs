@@ -1,3 +1,5 @@
+using System;
+
 namespace Spreadbot.Core.Common
 {
     public interface IResponse

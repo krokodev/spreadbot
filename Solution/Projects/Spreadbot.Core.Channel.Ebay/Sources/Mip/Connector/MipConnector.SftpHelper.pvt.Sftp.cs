@@ -1,5 +1,6 @@
 ﻿using System;
 using Crocodev.Common;
+using Spreadbot.Core.Common;
 using WinSCP;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
@@ -29,7 +30,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static MipResponse<SendFeedFolderResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
+            private static MipResponse<SendZippedFeedFolderResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
             {
                 try
                 {
@@ -40,9 +41,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new MipResponse<SendFeedFolderResult> (false, MipStatusCode.SendZippedFeedFail, exception);
+                    return new MipResponse<SendZippedFeedFolderResult> (false, MipStatusCode.SendZippedFeedFail, exception);
                 }
-                return new MipResponse<SendFeedFolderResult>(true, MipStatusCode.SendZippedFeedSuccess, new SendFeedFolderResult(reqId));
+                return new MipResponse<SendZippedFeedFolderResult>(true, MipStatusCode.SendZippedFeedSuccess, new SendZippedFeedFolderResult(reqId));
             }
 
             // ===================================================================================== []

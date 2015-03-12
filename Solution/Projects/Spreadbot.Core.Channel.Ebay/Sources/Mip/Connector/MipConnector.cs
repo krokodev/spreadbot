@@ -11,21 +11,22 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
     {
         // ===================================================================================== []
         // SendFeedFolder
-        public static MipResponse<SendFeedFolderResult> SendFeedFolder(Feed feed)
+        public static MipResponse<SendZippedFeedFolderResult> SendZippedFeedFolder(Feed feed)
         {
             var reqId = Request.GenerateId();
-            return DoSendFeedFolder(feed, reqId);
+            return DoSendZippedFeedFolder(feed, reqId);
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse<SendFeedFolderResult> SendTestFeedFolder(Feed feed)
+        public static MipResponse<SendZippedFeedFolderResult> SendTestFeedFolder(Feed feed)
         {
             var reqId = Request.GenerateTestId();
-            return DoSendFeedFolder(feed, reqId);
+            return DoSendZippedFeedFolder(feed, reqId);
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<SendFeedFolderResult> DoSendFeedFolder(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
+        private static MipResponse<SendZippedFeedFolderResult>
+            DoSendZippedFeedFolder(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
         {
             try
             {
@@ -34,9 +35,15 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             }
             catch (Exception exception)
             {
-                return new MipResponse<SendFeedFolderResult>(false, MipStatusCode.SendFeedFolderFail, exception);
+                return new MipResponse<SendZippedFeedFolderResult>(false,
+                    MipStatusCode.SendZippedFeedFolderFail,
+                    exception
+                    );
             }
-            return new MipResponse<SendFeedFolderResult>(true, MipStatusCode.SendFeedFolderSuccess, new SendFeedFolderResult(reqId));
+            return new MipResponse<SendZippedFeedFolderResult>(true,
+                MipStatusCode.SendZippedFeedFolderSuccess,
+                new SendZippedFeedFolderResult(reqId)
+                );
         }
 
         // ===================================================================================== []

@@ -68,14 +68,14 @@ namespace Spreadbot.App.Web
 
             AddTask(
                 storeTask
-                    .AddSubTask(new EbayPublishTask(FeedType.Product, FeedContent(FeedType.Product)))
-                    .AddSubTask(new EbayPublishTask(FeedType.Availability, FeedContent(FeedType.Availability)))
-                    .AddSubTask(new EbayPublishTask(FeedType.Distribution, FeedContent(FeedType.Distribution))),
+                    .AddSubTask(new EbayPublishTask(FeedType.Product, FeedContent(FeedType.Product), Item.Sku))
+                    .AddSubTask(new EbayPublishTask(FeedType.Availability, FeedContent(FeedType.Availability), Item.Sku))
+                    .AddSubTask(new EbayPublishTask(FeedType.Distribution, FeedContent(FeedType.Distribution), Item.Sku)),
                 true);
         }
 
         // --------------------------------------------------------[]
-        // Code: * Demoshop : FeedContent
+        // Code: Demoshop : FeedContent
         private static string FeedContent(FeedType feedType)
         {
             var template = FeedTemplate(feedType);

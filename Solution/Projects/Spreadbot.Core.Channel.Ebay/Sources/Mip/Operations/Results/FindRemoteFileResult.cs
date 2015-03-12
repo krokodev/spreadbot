@@ -3,7 +3,7 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class FindRemoteFileResult : IResponseResult
+    public class FindRemoteFileResult : ResponseResult
     {
         public readonly string FileName;
         public readonly string FolderPath;
@@ -14,9 +14,13 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             FileName = fileName;
         }
 
-        public string GetAutoinfo(string format)
+        public override string GetAutoinfo()
         {
-            return format.SafeFormat("FolderPath", FolderPath) + " " + format.SafeFormat("FileName", FileName);
+            return 
+                Template.SafeFormat(
+                    "FolderPath", FolderPath)
+                   + " " +
+                   Template.SafeFormat("FileName", FileName);
         }
     }
 }

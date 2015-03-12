@@ -2,6 +2,6 @@
 {
     public interface IResponseResult
     {
-        string GetAutoinfo(string format);
+        string GetAutoinfo();
     }
 }

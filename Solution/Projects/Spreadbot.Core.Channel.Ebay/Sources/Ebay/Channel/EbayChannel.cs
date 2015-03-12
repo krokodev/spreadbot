@@ -20,10 +20,9 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // Publish
-        // Code: EbayChannel : * Publish
+        // Code: EbayChannel : Publish
         public IResponse Publish(IArgs args)
         {
-            // Todo: Delete sent feed
             IResponse mipResponse;
             try
             {
@@ -31,7 +30,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
                 CreateFeedFile(publishArgs.Feed);
 
-                mipResponse = MipConnector.SendFeedFolder(publishArgs.Feed);
+                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.Feed);
 
                 EraseFeedFolder(publishArgs.Feed);
 
@@ -39,12 +38,12 @@ namespace Spreadbot.Core.Channel.Ebay
             }
             catch (Exception exception)
             {
-                return new ChannelResponse<BoolResult>(false, ChannelStatusCode.PublishFail, exception);
+                return new ChannelResponse<EbayPublishResult>(false, ChannelStatusCode.PublishFail, exception);
             }
 
-            return new ChannelResponse<BoolResult>(true,
+            return new ChannelResponse<EbayPublishResult>(true,
                 ChannelStatusCode.PublishSuccess,
-                new BoolResult(true),
+                new EbayPublishResult(mipResponse),
                 mipResponse);
         }
 

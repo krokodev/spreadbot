@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Crocodev.Common;
+using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
@@ -16,12 +17,12 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse<SendFeedFolderResult> SendZippedFeed(string feed, Request.Identifier reqId)
+            public static MipResponse<SendZippedFeedFolderResult> SendZippedFeed(string feed, Request.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static MipResponse<SendFeedFolderResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<SendZippedFeedFolderResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
             {
                 return SendZippedFeed(feed.Name, reqId);
             }

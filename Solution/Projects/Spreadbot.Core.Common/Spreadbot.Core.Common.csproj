@@ -49,13 +49,16 @@
     <Compile Include="Sources\Exceptions\SpreadbotException.cs" />
     <Compile Include="Sources\Operations\Args\Args.cs" />
     <Compile Include="Sources\Operations\Args\IArgs.cs" />
+    <Compile Include="Sources\Operations\Results\ResponseResult.cs" />
+    <Compile Include="Sources\Operations\Results\BoolResult.cs" />
     <Compile Include="Sources\Operations\Task\ITask.cs" />
     <Compile Include="Sources\Operations\Response\GenericResponse.cs" />
     <Compile Include="Sources\Operations\Response\GenericResponse.pvt.Descriptions.cs" />
     <Compile Include="Sources\Operations\Response\IResponse.cs" />
-    <Compile Include="Sources\Operations\Response\IResponseResult.cs" />
+    <Compile Include="Sources\Operations\Results\IResponseResult.cs" />
     <Compile Include="Sources\Exceptions\ResponseException.cs" />
     <Compile Include="Sources\Operations\Task\Task.cs" />
+    <Compile Include="Sources\Operations\Task\TaskStatusCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">

@@ -1,14 +1,15 @@
+using System;
 using System.Collections.Generic;
 using Crocodev.Common;
+using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Core.Common
 {
-    public abstract class Task : ITask
+    public abstract class Task : Identifiable<Task,int>, ITask
     {
         // ===================================================================================== []
         // Tasks
         private readonly IList<ITask> _subTasks = new List<ITask>();
-
         // --------------------------------------------------------[]
         public Task AddSubTask(ITask task)
         {
@@ -17,10 +18,19 @@ namespace Spreadbot.Core.Common
         }
 
         // ===================================================================================== []
+        // Properties
+        private static int _totalNum;
+        public readonly Identifier Id = (Identifier)(++_totalNum);
+        public readonly DateTime CreationTime = DateTime.Now;
+        public abstract TaskStatusCode StatusCode { get; }
+        public bool IsCritical = false;
+
+
+        // ===================================================================================== []
         // ITask
         public virtual string Autoinfo
         {
-            get { return "Args:[{0}] Response:[{1}]".SafeFormat(Args, Response == null ? "no" : Response.Autoinfo); }
+            get { return "Args:[{0}] Response:[{1}]".SafeFormat(Args, Response == null ? "no" : Response.ToString()); }
         }
 
         // --------------------------------------------------------[]
