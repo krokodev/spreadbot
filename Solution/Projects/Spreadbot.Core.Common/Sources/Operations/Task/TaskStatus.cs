@@ -1,6 +1,6 @@
 namespace Spreadbot.Core.Common
 {
-    public enum TaskStatusCode
+    public enum TaskStatus
     {
         Unknown,
         Todo,

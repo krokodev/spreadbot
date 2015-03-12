@@ -5,10 +5,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class MipGetRequestStatusResult : MipResponseResult
     {
-        public readonly MipRequetStatus Status;
+        public readonly MipRequestStatus Status;
         public readonly string Details;
 
-        public MipGetRequestStatusResult(MipRequetStatus status, string details = "")
+        public MipGetRequestStatusResult(MipRequestStatus status, string details = "")
         {
             Status = status;
             Details = details;

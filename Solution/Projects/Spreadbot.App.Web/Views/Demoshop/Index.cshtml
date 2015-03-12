@@ -45,7 +45,6 @@
 
 @helper ShowTasks(IEnumerable<ITask> tasks)
 {
-    // Code: * StoreView : ShowTasks
     var enumerable = tasks as ITask[] ?? tasks.ToArray();
     if (enumerable.Count() != 0)
     {
@@ -90,10 +89,14 @@
 
         <ul>
             <li>
-                @Html.ActionLink("Run Channel Tasks ({0})".SafeFormat(Model.ChannelTasks.Count(t=>t.Response==null)), "RunChannelTasks")
+                @Html.ActionLink("Run Channel Tasks ({0})".SafeFormat(Model.ChannelTasks.Count(t => t.Response == null)), "RunChannelTasks")
             </li>
             <li>
-                Check publishing process for request [xxx]
+@*
+    // Code: ** View : UpdateChannelTasks
+*@
+
+                @Html.ActionLink("Upadte Task Statuses ({0})".SafeFormat(Model.ChannelTasks.Count()), "UpdateChannelTasks")
             </li>
             <li>
                 View publishing result for request [yyy]

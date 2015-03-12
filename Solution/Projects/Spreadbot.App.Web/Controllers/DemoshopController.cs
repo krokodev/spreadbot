@@ -31,14 +31,21 @@ namespace Spreadbot.App.Web
         }
 
         // ===================================================================================== []
-        // Publish
+        // RunChannelTasks
         public ActionResult RunChannelTasks()
         {
-            // Code: Controller : RunChannelTasks
-
             Dispatcher.RunChannelTasks(DemoshopModel.Instance.ChannelTasks);
 
             return View(DemoshopModel.Instance);
+        }
+
+        // ===================================================================================== []
+        // Update
+        public ActionResult UpdateChannelTasks()
+        {
+            // Code: * Controller : UpdateChannelTasks
+
+            return RedirectToAction("Index");
         }
     }
 }

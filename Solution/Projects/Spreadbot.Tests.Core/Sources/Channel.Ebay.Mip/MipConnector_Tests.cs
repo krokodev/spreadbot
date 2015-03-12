@@ -113,7 +113,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequetStatus.Inprocess, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Inprocess, requestResponse.Result.Status);
         }
         // --------------------------------------------------------[]
         [TestMethod]
@@ -127,7 +127,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequetStatus.Success, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Success, requestResponse.Result.Status);
         }
 
         // --------------------------------------------------------[]
@@ -141,7 +141,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequetStatus.Unknown, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Unknown, requestResponse.Result.Status);
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Spreadbot.Core.Common
         private static int _totalNum;
         public readonly Identifier Id = (Identifier)(++_totalNum);
         public readonly DateTime CreationTime = DateTime.Now;
-        public abstract TaskStatusCode StatusCode { get; }
-        public bool IsCritical = false;
+        public abstract TaskStatus StatusCode { get; }
+        public bool IsCritical = true;
 
 
         // ===================================================================================== []

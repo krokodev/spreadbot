@@ -73,7 +73,7 @@
     <Compile Include="Sources\Mip\Connector\MipConnector.cs" />
     <Compile Include="Sources\Mip\Operations\Results\MipFindRemoteFileResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\MipGetRequestStatusResult.cs" />
-    <Compile Include="Sources\Mip\Operations\Request\MipRequetStatus.cs" />
+    <Compile Include="Sources\Mip\Operations\Request\MipRequestStatus.cs" />
     <Compile Include="Sources\Mip\Settings\MipSettings.cs" />
     <Compile Include="Sources\Mip\Feed\MipFeed.cs" />
     <Compile Include="Sources\Mip\Feed\MipFeedType.cs" />

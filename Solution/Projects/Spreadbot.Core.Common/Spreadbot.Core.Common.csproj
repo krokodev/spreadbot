@@ -58,7 +58,7 @@
     <Compile Include="Sources\Operations\Results\IResponseResult.cs" />
     <Compile Include="Sources\Exceptions\ResponseException.cs" />
     <Compile Include="Sources\Operations\Task\Task.cs" />
-    <Compile Include="Sources\Operations\Task\TaskStatusCode.cs" />
+    <Compile Include="Sources\Operations\Task\TaskStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">

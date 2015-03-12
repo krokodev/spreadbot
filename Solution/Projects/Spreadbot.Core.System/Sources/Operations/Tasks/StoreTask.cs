@@ -10,9 +10,9 @@ namespace Spreadbot.Core.System
         }
         // Code: StoreTask : Autoinfo
 
-        public override TaskStatusCode StatusCode
+        public override TaskStatus StatusCode
         {
-            get { return TaskStatusCode.Unknown; }
+            get { return TaskStatus.Unknown; }
         }
     }
 }

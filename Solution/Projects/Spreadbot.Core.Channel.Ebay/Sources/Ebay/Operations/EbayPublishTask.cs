@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Channel.Ebay
         // ===================================================================================== []
         // Constructor
         public EbayPublishTask(MipFeedType mipFeedType, string feedContent, string itemInfo)
-            :base(ChannelMethod.Publish)
+            : base(ChannelMethod.Publish)
         {
             Channel = new EbayChannel();
             Args = new EbayPublishArgs
@@ -21,29 +21,47 @@ namespace Spreadbot.Core.Channel.Ebay
                     ItemInfo = itemInfo
                 }
             };
+            MipRequestStatusCode = MipRequestStatus.Unknown;
         }
 
         // ===================================================================================== []
         // Response
         public new ChannelResponse<EbayPublishResult> Response
         {
-            get
-            {
-                return (ChannelResponse<EbayPublishResult>)base.Response; 
-            }
+            get { return (ChannelResponse<EbayPublishResult>) base.Response; }
         }
 
         // ===================================================================================== []
         // StatusCode
-        public override TaskStatusCode StatusCode
+        public MipRequestStatus MipRequestStatusCode { get; set; }
+        // --------------------------------------------------------[]
+        public override TaskStatus StatusCode
         {
             get
             {
-                if (Response==null)
+                if (Response == null)
                 {
-                    return TaskStatusCode.Todo;
+                    return TaskStatus.Todo;
                 }
-                return TaskStatusCode.Inprocess;
+                if (!Response.IsSuccess)
+                {
+                    return TaskStatus.Fail;
+                }
+                switch (MipRequestStatusCode)
+                {
+                    case MipRequestStatus.Unknown:
+                        return TaskStatus.Inprocess;
+
+                    case MipRequestStatus.Fail:
+                        return TaskStatus.Fail;
+
+                    case MipRequestStatus.Inprocess:
+                        return TaskStatus.Inprocess;
+
+                    case MipRequestStatus.Success:
+                        return TaskStatus.Inprocess;
+                }
+                throw new SpreadbotException("Wrong MipRequestStatusCode [{0}]", MipRequestStatusCode);
             }
         }
 
@@ -55,15 +73,20 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 return string.Format(
-                    "{0}, {1}, {2}, {3}, {4}, {5}",
+                    "{0}, {1}, {2}, {3}, {4}",
                     StatusCode,
-                    Id,
-                    CreationTime.ToShortTimeString(),
                     IsCriticalInfo,
                     MissionInfo,
-                    ResponseResultInfo
+                    ResponseResultInfo,
+                    MipRequestStatusInfo
                     );
             }
+        }
+
+        // --------------------------------------------------------[]
+        public string MipRequestStatusInfo
+        {
+            get { return "MipRequestStatus: [{0}]".SafeFormat(MipRequestStatusCode); }
         }
 
         // --------------------------------------------------------[]
@@ -77,8 +100,8 @@ namespace Spreadbot.Core.Channel.Ebay
         {
             get
             {
-                return "{0}".TryFormat(Response == null 
-                    ? "no response" 
+                return "{0}".TryFormat(Response == null
+                    ? "no response"
                     : Response.Result.ToString());
             }
         }

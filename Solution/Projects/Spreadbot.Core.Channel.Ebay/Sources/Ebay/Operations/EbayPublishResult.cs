@@ -6,17 +6,20 @@ namespace Spreadbot.Core.Channel.Ebay
 {
     public class EbayPublishResult : MipResponseResult
     {
-        private readonly MipRequest.Identifier _mipRequestId;
+        public readonly MipRequest.Identifier MipRequestId;
 
         public EbayPublishResult(MipRequest.Identifier mipRequestId)
         {
-            _mipRequestId = mipRequestId;
+            MipRequestId = mipRequestId;
         }
 
-        // Code: * EbayPublishResul : GetAutoinfo
+        // Code: EbayPublishResul : GetAutoinfo
         public override string Autoinfo
         {
-            get { return Template.SafeFormat("MipRequestId", _mipRequestId); }
+            get
+            {
+                return Template.SafeFormat("MipRequestId", MipRequestId);
+            }
         }
     }
 }

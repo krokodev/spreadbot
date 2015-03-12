@@ -1,6 +1,6 @@
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public enum MipRequetStatus
+    public enum MipRequestStatus
     {
         Success,
         Inprocess,

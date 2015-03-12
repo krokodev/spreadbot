@@ -85,7 +85,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 {
                     return new MipResponse<MipGetRequestStatusResult>(true,
                         MipStatusCode.GetRequestStatusSuccess,
-                        new MipGetRequestStatusResult(MipRequetStatus.Inprocess)
+                        new MipGetRequestStatusResult(MipRequestStatus.Inprocess)
                         );
                 }
 
@@ -97,7 +97,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
                 return new MipResponse<MipGetRequestStatusResult>(true,
                     MipStatusCode.GetRequestStatusSuccess,
-                    new MipGetRequestStatusResult(MipRequetStatus.Unknown),
+                    new MipGetRequestStatusResult(MipRequestStatus.Unknown),
                     response
                     );
             }
@@ -131,8 +131,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             // Todo: Later : Parse XML
             return new MipGetRequestStatusResult(
                 content.Contains("<status>SUCCESS</status>")
-                    ? MipRequetStatus.Success
-                    : MipRequetStatus.Fail,
+                    ? MipRequestStatus.Success
+                    : MipRequestStatus.Fail,
                 content);
         }
 
