@@ -3,7 +3,7 @@ using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.App.Web.Configuration
 {
-    public class Paths: SmartConfigurationElement
+    public class DemoshopPaths: SmartConfigurationElement
     {
         [ConfigurationProperty("XmlTemplatesPath", IsRequired = true)]
         public string XmlTemplatesPath

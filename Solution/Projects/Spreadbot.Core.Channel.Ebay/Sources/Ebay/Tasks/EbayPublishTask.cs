@@ -9,13 +9,13 @@ namespace Spreadbot.Core.Channel.Ebay
     {
         // ===================================================================================== []
         // Constructor
-        public EbayPublishTask(FeedType feedType, string feedContent, string itemInfo)
+        public EbayPublishTask(MipFeedType mipFeedType, string feedContent, string itemInfo)
             :base(ChannelMethod.Publish)
         {
             Channel = new EbayChannel();
             Args = new EbayPublishArgs
             {
-                Feed = new Feed(feedType)
+                MipFeed = new MipFeed(mipFeedType)
                 {
                     Content = feedContent,
                     ItemInfo = itemInfo
@@ -87,7 +87,7 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 var args = (EbayPublishArgs) Args;
-                return "Publish [{0}:{1}] on eBay".TryFormat(args.Feed.Name, args.Feed.ItemInfo);
+                return "Publish [{0}:{1}] on eBay".TryFormat(args.MipFeed.Name, args.MipFeed.ItemInfo);
             }
         }
     }

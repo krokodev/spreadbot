@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public enum RequestProcessingStage
+    public enum MipRequestProcessingStage
     {
         None,
         Output,

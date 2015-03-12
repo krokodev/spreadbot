@@ -30,7 +30,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static MipResponse<SendZippedFeedFolderResult> DoSendZippedFeed(string feed, Request.Identifier reqId)
+            private static MipResponse<MipSendZippedFeedFolderResult> DoSendZippedFeed(string feed, MipRequest.Identifier reqId)
             {
                 try
                 {
@@ -41,9 +41,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new MipResponse<SendZippedFeedFolderResult> (false, MipStatusCode.SendZippedFeedFail, exception);
+                    return new MipResponse<MipSendZippedFeedFolderResult> (false, MipStatusCode.SendZippedFeedFail, exception);
                 }
-                return new MipResponse<SendZippedFeedFolderResult>(true, MipStatusCode.SendZippedFeedSuccess, new SendZippedFeedFolderResult(reqId));
+                return new MipResponse<MipSendZippedFeedFolderResult>(true, MipStatusCode.SendZippedFeedSuccess, new MipSendZippedFeedFolderResult(reqId));
             }
 
             // ===================================================================================== []
@@ -71,7 +71,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // FindFileNamePrefixInRemoteDir
-            private static MipResponse<FindRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
+            private static MipResponse<MipFindRemoteFileResult> FindRemoteFileNamePrefixInRemoteDir(string prefix,
                 string remoteDir)
             {
                 var files = GetRemoteDirFiles(remoteDir);
@@ -79,14 +79,14 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 {
                     if (fileInfo.Name.Contains(prefix))
                     {
-                        return new MipResponse<FindRemoteFileResult>(
+                        return new MipResponse<MipFindRemoteFileResult>(
                             true,
                             MipStatusCode.FindRemoteFileSuccess,
-                            new FindRemoteFileResult(remoteDir, fileInfo.Name)
+                            new MipFindRemoteFileResult(remoteDir, fileInfo.Name)
                             );
                     }
                 }
-                return new MipResponse<FindRemoteFileResult>(
+                return new MipResponse<MipFindRemoteFileResult>(
                     false,
                     MipStatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDir)
@@ -145,10 +145,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 {
                     Protocol = Protocol.Sftp,
                     GiveUpSecurityAndAcceptAnySshHostKey = true,
-                    HostName = Settings.HostName,
-                    PortNumber = Settings.PortNumber,
-                    UserName = Settings.UserName,
-                    Password = password ?? Settings.Password
+                    HostName = MipSettings.HostName,
+                    PortNumber = MipSettings.PortNumber,
+                    UserName = MipSettings.UserName,
+                    Password = password ?? MipSettings.Password
                 };
             }
 

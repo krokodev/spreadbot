@@ -10,8 +10,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void SendZippedFeed()
         {
-            var feed = new Feed(FeedType.Product);
-            var response = MipConnector.SftpHelper.SendZippedFeed(feed.Name, Request.GenerateTestId());
+            var feed = new MipFeed(MipFeedType.Product);
+            var response = MipConnector.SftpHelper.SendZippedFeed(feed.Name, MipRequest.GenerateTestId());
 
             Trace.TraceInformation(response.Autoinfo);
             

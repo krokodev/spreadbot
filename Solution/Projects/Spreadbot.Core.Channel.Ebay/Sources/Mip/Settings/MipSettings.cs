@@ -3,61 +3,61 @@ using Spreadbot.Core.Channel.Ebay.Mip.Configuration;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public static class Settings
+    public static class MipSettings
     {
         // ===================================================================================== []
         // Mip server
         public static string HostName
         {
-            get { return MipPublic.Instance.Connection.HostName; }
+            get { return MipPublicConfig.Instance.MipConnection.HostName; }
         }
 
         // --------------------------------------------------------[]
         public static int PortNumber
         {
-            get { return MipPublic.Instance.Connection.PortNumber; }
+            get { return MipPublicConfig.Instance.MipConnection.PortNumber; }
         }
 
         // --------------------------------------------------------[]
         public static string UserName
         {
-            get { return MipSecurity.Instance.SecretData.UserName; }
+            get { return MipSecurityConfig.Instance.MipSecretData.UserName; }
         }
 
         // --------------------------------------------------------[]
         public static string Password
         {
-            get { return MipSecurity.Instance.SecretData.Password; }
+            get { return MipSecurityConfig.Instance.MipSecretData.Password; }
         }
 
         // ===================================================================================== []
         // Local pathes
         public static string ZippedFeedsPath
         {
-            get { return MapToDataDirectory(MipPublic.Instance.Paths.ZippedFeedsPath); }
+            get { return MapToDataDirectory(MipPublicConfig.Instance.MipPaths.ZippedFeedsPath); }
         }
 
         public static string FeedsPath
         {
-            get { return MapToDataDirectory(MipPublic.Instance.Paths.FeedsPath); }
+            get { return MapToDataDirectory(MipPublicConfig.Instance.MipPaths.FeedsPath); }
         }
 
         public static string InboxPath
         {
-            get { return MapToDataDirectory(MipPublic.Instance.Paths.InboxPath); }
+            get { return MapToDataDirectory(MipPublicConfig.Instance.MipPaths.InboxPath); }
         }
 
         // ===================================================================================== []
         // Remote pathes
         public static string RemoteBasePath
         {
-            get { return MipPublic.Instance.Paths.RemoteBasePath; }
+            get { return MipPublicConfig.Instance.MipPaths.RemoteBasePath; }
         }
 
         // --------------------------------------------------------[]
         public static int OutputFolderNameUtcHourOffset
         {
-            get { return MipPublic.Instance.Paths.OutputFolderNameUtcHourOffset; }
+            get { return MipPublicConfig.Instance.MipPaths.OutputFolderNameUtcHourOffset; }
         }
 
         // ===================================================================================== []

@@ -68,46 +68,46 @@ namespace Spreadbot.App.Web
 
             AddTask(
                 storeTask
-                    .AddSubTask(new EbayPublishTask(FeedType.Product, FeedContent(FeedType.Product), Item.Sku))
-                    .AddSubTask(new EbayPublishTask(FeedType.Availability, FeedContent(FeedType.Availability), Item.Sku))
-                    .AddSubTask(new EbayPublishTask(FeedType.Distribution, FeedContent(FeedType.Distribution), Item.Sku)),
+                    .AddSubTask(new EbayPublishTask(MipFeedType.Product, FeedContent(MipFeedType.Product), Item.Sku))
+                    .AddSubTask(new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability), Item.Sku))
+                    .AddSubTask(new EbayPublishTask(MipFeedType.Distribution, FeedContent(MipFeedType.Distribution), Item.Sku)),
                 true);
         }
 
         // --------------------------------------------------------[]
         // Code: Demoshop : FeedContent
-        private static string FeedContent(FeedType feedType)
+        private static string FeedContent(MipFeedType mipFeedType)
         {
-            var template = FeedTemplate(feedType);
+            var template = FeedTemplate(mipFeedType);
             var item = Instance.Item;
 
-            switch (feedType)
+            switch (mipFeedType)
             {
-                case FeedType.Product:
+                case MipFeedType.Product:
                     return template
                         .Replace("{item.sku}",item.Sku)
                         .Replace("{item.title}",item.Title)
                         ;
-                case FeedType.Availability:
+                case MipFeedType.Availability:
                     return template
                         .Replace("{item.sku}", item.Sku)
                         .Replace("{item.quantity}", item.Quantity.ToString(CultureInfo.CreateSpecificCulture("en-US")))
                         ;
-                case FeedType.Distribution:
+                case MipFeedType.Distribution:
                     return template
                         .Replace("{item.sku}", item.Sku)
                         .Replace("{item.price}", item.Price.ToString(CultureInfo.CreateSpecificCulture("en-US")))
                         ;
             }
 
-            throw new SpreadbotException("Wrong FeedType=[{0}]", feedType);
+            throw new SpreadbotException("Wrong FeedType=[{0}]", mipFeedType);
         }
 
         // --------------------------------------------------------[]
-        private static string FeedTemplate(FeedType feedType)
+        private static string FeedTemplate(MipFeedType mipFeedType)
         {
             var templateFolder = DemoshopConfig.Instance.Paths.XmlTemplatesPath.MapPathToDataDirectory();
-            var xmlTemplateFilePath = string.Format(@"{0}{1}.xml", templateFolder, feedType);
+            var xmlTemplateFilePath = string.Format(@"{0}{1}.xml", templateFolder, mipFeedType);
             return File.ReadAllText(xmlTemplateFilePath);
         }
     }

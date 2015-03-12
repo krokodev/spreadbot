@@ -3,9 +3,9 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class SendZippedFeedFolderResult : ResponseResult
+    public class MipSendZippedFeedFolderResult : MipResponseResult
     {
-        public SendZippedFeedFolderResult(Request.Identifier requestId)
+        public MipSendZippedFeedFolderResult(MipRequest.Identifier requestId)
         {
             RequestId = requestId;
         }
@@ -15,6 +15,6 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             return Template.SafeFormat("RequestId", RequestId);
         }
 
-        public Request.Identifier RequestId { get; set; }
+        public MipRequest.Identifier RequestId { get; set; }
     }
 }

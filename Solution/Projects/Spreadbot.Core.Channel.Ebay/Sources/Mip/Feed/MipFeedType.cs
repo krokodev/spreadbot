@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public enum FeedType
+    public enum MipFeedType
     {
         None,
         Product,

@@ -11,55 +11,55 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
     {
         // ===================================================================================== []
         // SendFeedFolder
-        public static MipResponse<SendZippedFeedFolderResult> SendZippedFeedFolder(Feed feed)
+        public static MipResponse<MipSendZippedFeedFolderResult> SendZippedFeedFolder(MipFeed mipFeed)
         {
-            var reqId = Request.GenerateId();
-            return DoSendZippedFeedFolder(feed, reqId);
+            var reqId = MipRequest.GenerateId();
+            return DoSendZippedFeedFolder(mipFeed, reqId);
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse<SendZippedFeedFolderResult> SendTestFeedFolder(Feed feed)
+        public static MipResponse<MipSendZippedFeedFolderResult> SendTestFeedFolder(MipFeed mipFeed)
         {
-            var reqId = Request.GenerateTestId();
-            return DoSendZippedFeedFolder(feed, reqId);
+            var reqId = MipRequest.GenerateTestId();
+            return DoSendZippedFeedFolder(mipFeed, reqId);
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<SendZippedFeedFolderResult>
-            DoSendZippedFeedFolder(Feed feed, Identifiable<Request, Guid>.Identifier reqId)
+        private static MipResponse<MipSendZippedFeedFolderResult>
+            DoSendZippedFeedFolder(MipFeed mipFeed, Identifiable<MipRequest, Guid>.Identifier reqId)
         {
             try
             {
-                ZipHelper.ZipFeed(feed, reqId).Check();
-                SftpHelper.SendZippedFeed(feed, reqId).Check();
+                ZipHelper.ZipFeed(mipFeed, reqId).Check();
+                SftpHelper.SendZippedFeed(mipFeed, reqId).Check();
             }
             catch (Exception exception)
             {
-                return new MipResponse<SendZippedFeedFolderResult>(false,
+                return new MipResponse<MipSendZippedFeedFolderResult>(false,
                     MipStatusCode.SendZippedFeedFolderFail,
                     exception
                     );
             }
-            return new MipResponse<SendZippedFeedFolderResult>(true,
+            return new MipResponse<MipSendZippedFeedFolderResult>(true,
                 MipStatusCode.SendZippedFeedFolderSuccess,
-                new SendZippedFeedFolderResult(reqId)
+                new MipSendZippedFeedFolderResult(reqId)
                 );
         }
 
         // ===================================================================================== []
         // FindRequest
-        public static MipResponse<FindRemoteFileResult> FindRequest(Request request, RequestProcessingStage stage)
+        public static MipResponse<MipFindRemoteFileResult> FindRequest(MipRequest mipRequest, MipRequestProcessingStage stage)
         {
-            MipResponse<FindRemoteFileResult> findResponse;
+            MipResponse<MipFindRemoteFileResult> findResponse;
             try
             {
                 switch (stage)
                 {
-                    case RequestProcessingStage.Inprocess:
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess(request);
+                    case MipRequestProcessingStage.Inprocess:
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess(mipRequest);
                         break;
-                    case RequestProcessingStage.Output:
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput(request);
+                    case MipRequestProcessingStage.Output:
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput(mipRequest);
                         break;
                     default:
                         throw new Exception("Wrong stage {0}".SafeFormat(stage));
@@ -68,55 +68,55 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             }
             catch (Exception exception)
             {
-                return new MipResponse<FindRemoteFileResult>(false, MipStatusCode.FindRequestFail, exception);
+                return new MipResponse<MipFindRemoteFileResult>(false, MipStatusCode.FindRequestFail, exception);
             }
-            return new MipResponse<FindRemoteFileResult>(true, MipStatusCode.FindRequestSuccess, findResponse.Result,
+            return new MipResponse<MipFindRemoteFileResult>(true, MipStatusCode.FindRequestSuccess, findResponse.Result,
                 findResponse);
         }
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static MipResponse<GetRequestStatusResult> GetRequestStatus(Request request, bool ignoreInprocess = false)
+        public static MipResponse<MipGetRequestStatusResult> GetRequestStatus(MipRequest mipRequest, bool ignoreInprocess = false)
         {
             try
             {
-                var response = FindRequest(request, RequestProcessingStage.Inprocess);
+                var response = FindRequest(mipRequest, MipRequestProcessingStage.Inprocess);
                 if (response.Code == MipStatusCode.FindRequestSuccess && !ignoreInprocess)
                 {
-                    return new MipResponse<GetRequestStatusResult>(true,
+                    return new MipResponse<MipGetRequestStatusResult>(true,
                         MipStatusCode.GetRequestStatusSuccess,
-                        new GetRequestStatusResult(RequetStatus.Inprocess)
+                        new MipGetRequestStatusResult(MipRequetStatus.Inprocess)
                         );
                 }
 
-                response = FindRequest(request, RequestProcessingStage.Output);
+                response = FindRequest(mipRequest, MipRequestProcessingStage.Output);
                 if (response.Code == MipStatusCode.FindRequestSuccess)
                 {
                     return GetRequestOutputStatus(response);
                 }
 
-                return new MipResponse<GetRequestStatusResult>(true,
+                return new MipResponse<MipGetRequestStatusResult>(true,
                     MipStatusCode.GetRequestStatusSuccess,
-                    new GetRequestStatusResult(RequetStatus.Unknown),
+                    new MipGetRequestStatusResult(MipRequetStatus.Unknown),
                     response
                     );
             }
             catch (Exception exception)
             {
-                return new MipResponse<GetRequestStatusResult>(false, MipStatusCode.GetRequestStatusFail, exception);
+                return new MipResponse<MipGetRequestStatusResult>(false, MipStatusCode.GetRequestStatusFail, exception);
             }
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<GetRequestStatusResult> GetRequestOutputStatus(
-            MipResponse<FindRemoteFileResult> response)
+        private static MipResponse<MipGetRequestStatusResult> GetRequestOutputStatus(
+            MipResponse<MipFindRemoteFileResult> response)
         {
             var statusResult = ReadRequestOutputStatus(response);
-            return new MipResponse<GetRequestStatusResult>(true, MipStatusCode.GetRequestStatusSuccess, statusResult);
+            return new MipResponse<MipGetRequestStatusResult>(true, MipStatusCode.GetRequestStatusSuccess, statusResult);
         }
 
         // --------------------------------------------------------[]
-        private static GetRequestStatusResult ReadRequestOutputStatus(MipResponse<FindRemoteFileResult> response)
+        private static MipGetRequestStatusResult ReadRequestOutputStatus(MipResponse<MipFindRemoteFileResult> response)
         {
             var fileName = response.Result.FileName;
             var remotePath = response.Result.FolderPath;
@@ -126,26 +126,26 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        private static GetRequestStatusResult ParseRequestContent(string content)
+        private static MipGetRequestStatusResult ParseRequestContent(string content)
         {
             // Todo: Later : Parse XML
-            return new GetRequestStatusResult(
+            return new MipGetRequestStatusResult(
                 content.Contains("<status>SUCCESS</status>")
-                    ? RequetStatus.Success
-                    : RequetStatus.Fail,
+                    ? MipRequetStatus.Success
+                    : MipRequetStatus.Fail,
                 content);
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedXmlFilePath(Feed feed)
+        public static string LocalFeedXmlFilePath(MipFeed mipFeed)
         {
-            return DoLocalFeedXmlFilePath(feed);
+            return DoLocalFeedXmlFilePath(mipFeed);
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedFolder(Feed feed)
+        public static string LocalFeedFolder(MipFeed mipFeed)
         {
-            return DoLocalFeedFolder(feed.Name);
+            return DoLocalFeedFolder(mipFeed.Name);
         }
     }
 }

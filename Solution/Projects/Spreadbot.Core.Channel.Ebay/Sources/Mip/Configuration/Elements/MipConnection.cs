@@ -3,7 +3,7 @@ using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip.Configuration
 {
-    public class Connection : SmartConfigurationElement
+    public class MipConnection : SmartConfigurationElement
     {
         [ConfigurationProperty("HostName", IsRequired = true)]
         public string HostName

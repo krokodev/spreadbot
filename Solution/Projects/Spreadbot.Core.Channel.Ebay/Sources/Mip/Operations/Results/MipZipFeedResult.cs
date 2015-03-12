@@ -3,9 +3,9 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class ZipFeedResult : ResponseResult
+    public class MipZipFeedResult : MipResponseResult
     {
-        public ZipFeedResult(string zipFileName)
+        public MipZipFeedResult(string zipFileName)
         {
             ZipFileName = zipFileName;
         }

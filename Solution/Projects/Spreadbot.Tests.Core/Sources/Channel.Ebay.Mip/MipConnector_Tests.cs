@@ -9,15 +9,15 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         // ===================================================================================== []
         // SendFeed
         [TestMethod]
-        public void SendFeed()
+        public void SendZippedFeedFolder()
         {
-            var feed = new Feed(FeedType.Product);
+            var feed = new MipFeed(MipFeedType.Product);
 
             var response = MipConnector.SendZippedFeedFolder(feed);
             Trace.TraceInformation(response.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.SendZippedFeedFolderSuccess, response.Code);
-            Assert.IsTrue(Request.VerifyRequestId(response.Result.RequestId));
+            Assert.IsTrue(MipRequest.VerifyRequestId(response.Result.RequestId));
         }
 
         // ===================================================================================== []
@@ -25,11 +25,11 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void FindRequest_Inprocess()
         {
-            var feed = new Feed(FeedType.Product);
+            var feed = new MipFeed(MipFeedType.Product);
             var sendResponse = MipConnector.SendZippedFeedFolder(feed);
-            var request = new Request(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.RequestId);
 
-            var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Inprocess);
+            var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Inprocess);
             Trace.TraceInformation(findResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.FindRequestSuccess, findResponse.Code);
@@ -42,10 +42,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void FindRequest_Inprocess_Unknown()
         {
-            var feed = new Feed(FeedType.Product);
-            var request = new Request(feed, Request.GenerateId());
+            var feed = new MipFeed(MipFeedType.Product);
+            var request = new MipRequest(feed, MipRequest.GenerateId());
 
-            var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Inprocess);
+            var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Inprocess);
             Trace.TraceInformation(findResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.FindRequestFail, findResponse.Code);
@@ -57,10 +57,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void FindRequest_Inprocess_Wrong()
         {
-            var feed = new Feed(FeedType.None);
-            var request = new Request(feed, Request.GenerateId());
+            var feed = new MipFeed(MipFeedType.None);
+            var request = new MipRequest(feed, MipRequest.GenerateId());
 
-            var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Inprocess);
+            var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Inprocess);
             Trace.TraceInformation(findResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.FindRequestFail, findResponse.Code);
@@ -72,11 +72,11 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void FindRequest_Output()
         {
-            var feed = new Feed(FeedType.Product);
+            var feed = new MipFeed(MipFeedType.Product);
             var sendResponse = MipConnector.SendTestFeedFolder(feed);
-            var request = new Request(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.RequestId);
 
-            var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Output);
+            var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Output);
             Trace.TraceInformation(findResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.FindRequestSuccess, findResponse.Code);
@@ -90,10 +90,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void FindRequest_Output_Unknown()
         {
-            var feed = new Feed(FeedType.Product);
-            var request = new Request(feed, Request.GenerateId());
+            var feed = new MipFeed(MipFeedType.Product);
+            var request = new MipRequest(feed, MipRequest.GenerateId());
 
-            var findResponse = MipConnector.FindRequest(request, RequestProcessingStage.Output);
+            var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Output);
             Trace.TraceInformation(findResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.FindRequestFail, findResponse.Code);
@@ -105,43 +105,43 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void GetRequestStatus_Inproc()
         {
-            var feed = new Feed(FeedType.Availability);
+            var feed = new MipFeed(MipFeedType.Availability);
             var sendResponse = MipConnector.SendZippedFeedFolder(feed);
-            var request = new Request(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.RequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request);
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(RequetStatus.Inprocess, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequetStatus.Inprocess, requestResponse.Result.Status);
         }
         // --------------------------------------------------------[]
         [TestMethod]
         public void GetRequestStatus_Success()
         {
-            var feed = new Feed(FeedType.Distribution);
+            var feed = new MipFeed(MipFeedType.Distribution);
             var sendResponse = MipConnector.SendTestFeedFolder(feed);
-            var request = new Request(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.RequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request, ignoreInprocess: true);
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(RequetStatus.Success, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequetStatus.Success, requestResponse.Result.Status);
         }
 
         // --------------------------------------------------------[]
         [TestMethod]
         public void GetRequestStatus_Unknown()
         {
-            var feed = new Feed(FeedType.Product);
-            var request = new Request(feed, Request.GenerateId());
+            var feed = new MipFeed(MipFeedType.Product);
+            var request = new MipRequest(feed, MipRequest.GenerateId());
 
             var requestResponse = MipConnector.GetRequestStatus(request);
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(RequetStatus.Unknown, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequetStatus.Unknown, requestResponse.Result.Status);
         }
     }
 }

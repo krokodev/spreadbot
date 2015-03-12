@@ -3,15 +3,15 @@ using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class Feed : Identifiable<Feed, Guid>
+    public class MipFeed : Identifiable<MipFeed, Guid>
     {
-        public Feed(FeedType feedType)
+        public MipFeed(MipFeedType mipFeedType)
         {
-            _type = feedType;
+            _type = mipFeedType;
             Id = (Identifier) Guid.NewGuid();
         }
 
-        private readonly FeedType _type;
+        private readonly MipFeedType _type;
 
         public string Name
         {

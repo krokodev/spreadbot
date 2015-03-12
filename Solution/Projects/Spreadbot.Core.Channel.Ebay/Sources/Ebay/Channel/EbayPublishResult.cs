@@ -1,22 +1,23 @@
 using Crocodev.Common;
+using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public class EbayPublishResult : ResponseResult
+    public class EbayPublishResult : MipResponseResult
     {
         // Code: * ResponseResult
         // Todo: Request.Identifier 
-        private readonly IResponse _mipResponse;
+        private readonly MipRequest.Identifier _mipRequestId;
 
-        public EbayPublishResult(IResponse mipResponse)
+        public EbayPublishResult(MipRequest.Identifier mipRequestId)
         {
-            _mipResponse = mipResponse;
+            _mipRequestId = mipRequestId;
         }
 
         public override string GetAutoinfo()
         {
-            return Template.SafeFormat("MipResponse", _mipResponse);
+            return Template.SafeFormat("MipRequestId", _mipRequestId);
         }
     }
 }

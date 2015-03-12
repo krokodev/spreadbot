@@ -3,7 +3,7 @@ using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip.Configuration
 {
-    public class Paths: SmartConfigurationElement
+    public class MipPaths: SmartConfigurationElement
     {
         [ConfigurationProperty("ZippedFeedsPath", IsRequired = true)]
         public string ZippedFeedsPath

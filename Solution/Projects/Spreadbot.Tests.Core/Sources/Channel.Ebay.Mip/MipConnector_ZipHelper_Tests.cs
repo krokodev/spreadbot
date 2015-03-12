@@ -11,8 +11,8 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         [TestMethod]
         public void ZipFeed()
         {
-            var feed = new Feed(FeedType.Product);
-            var reqId = Request.GenerateTestId().ToString();
+            var feed = new MipFeed(MipFeedType.Product);
+            var reqId = MipRequest.GenerateTestId().ToString();
 
             var response = MipConnector.ZipHelper.ZipFeed(feed.Name, reqId);
             Trace.TraceInformation(response.Autoinfo);

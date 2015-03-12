@@ -23,16 +23,16 @@ namespace Spreadbot.Core.Channel.Ebay
         // Code: EbayChannel : Publish
         public IResponse Publish(IArgs args)
         {
-            IResponse mipResponse;
+            MipResponse<MipSendZippedFeedFolderResult> mipResponse;
             try
             {
                 var publishArgs = (EbayPublishArgs) args;
 
-                CreateFeedFile(publishArgs.Feed);
+                CreateFeedFile(publishArgs.MipFeed);
 
-                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.Feed);
+                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.MipFeed);
 
-                EraseFeedFolder(publishArgs.Feed);
+                EraseFeedFolder(publishArgs.MipFeed);
 
                 mipResponse.Check();
             }
@@ -43,26 +43,26 @@ namespace Spreadbot.Core.Channel.Ebay
 
             return new ChannelResponse<EbayPublishResult>(true,
                 ChannelStatusCode.PublishSuccess,
-                new EbayPublishResult(mipResponse),
+                new EbayPublishResult(mipResponse.Result.RequestId),
                 mipResponse);
         }
 
         // --------------------------------------------------------[]
-        private void CreateFeedFile(Feed feed)
+        private void CreateFeedFile(MipFeed mipFeed)
         {
-            CreateFeedFolderIfNeed(feed);
+            CreateFeedFolderIfNeed(mipFeed);
 
-            var fileName = MipConnector.LocalFeedXmlFilePath(feed);
+            var fileName = MipConnector.LocalFeedXmlFilePath(mipFeed);
             using (var file = File.CreateText(fileName))
             {
-                file.Write(feed.Content);
+                file.Write(mipFeed.Content);
             }
         }
 
         // --------------------------------------------------------[]
-        private static void CreateFeedFolderIfNeed(Feed feed)
+        private static void CreateFeedFolderIfNeed(MipFeed mipFeed)
         {
-            var feedFolder = MipConnector.LocalFeedFolder(feed);
+            var feedFolder = MipConnector.LocalFeedFolder(mipFeed);
             if (!Directory.Exists(feedFolder))
             {
                 Directory.CreateDirectory(feedFolder);
@@ -70,10 +70,10 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        private static void EraseFeedFolder(Feed feed)
+        private static void EraseFeedFolder(MipFeed mipFeed)
         {
             Directory
-                .GetFiles(MipConnector.LocalFeedFolder(feed))
+                .GetFiles(MipConnector.LocalFeedFolder(mipFeed))
                 .ForEach(File.Delete);
         }
     }

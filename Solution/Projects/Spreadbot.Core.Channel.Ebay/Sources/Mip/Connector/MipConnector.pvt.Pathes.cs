@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         private static string LocalZippedFeedFile(string feed, string reqId)
         {
             return string.Format(@"{0}\{1}.{2}.zip",
-                Settings.ZippedFeedsPath,
+                MipSettings.ZippedFeedsPath,
                 feed,
                 reqId
                 );
@@ -20,7 +20,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         private static string DoLocalFeedFolder(string feed)
         {
             return string.Format("{0}{1}",
-                Settings.FeedsPath,
+                MipSettings.FeedsPath,
                 feed
                 );
         }
@@ -28,16 +28,16 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         // --------------------------------------------------------[]
         private static string LocalRequestResultsFolder()
         {
-            return Settings.InboxPath;
+            return MipSettings.InboxPath;
         }
 
         // --------------------------------------------------------[]
-        private static string DoLocalFeedXmlFilePath(Feed feed)
+        private static string DoLocalFeedXmlFilePath(MipFeed mipFeed)
         {
             return string.Format(@"{0}\{1}.{2}.xml",
-                DoLocalFeedFolder(feed.Name),
-                feed.Name,
-                (Guid)feed.Id
+                DoLocalFeedFolder(mipFeed.Name),
+                mipFeed.Name,
+                (Guid)mipFeed.Id
                 );
         }
 
@@ -47,7 +47,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         private static string RemoteFeedOutgoingZipFilePath(string feed, string reqId)
         {
             return string.Format("{0}{1}/{1}.{2}.zip",
-                Settings.RemoteBasePath,
+                MipSettings.RemoteBasePath,
                 feed,
                 reqId
                 );
@@ -57,7 +57,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         private static string RemoteFeedInprocessFolderPath(string feed)
         {
             return string.Format("{0}{1}/inprocess",
-                Settings.RemoteBasePath,
+                MipSettings.RemoteBasePath,
                 feed
                 );
         }
@@ -80,7 +80,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         private static string RemoteFeedOutputFolderPath(string feed, int dayShift)
         {
             return string.Format("{0}{1}/output/{2}",
-                Settings.RemoteBasePath,
+                MipSettings.RemoteBasePath,
                 feed,
                 DataBasedFolderName(dayShift)
                 );
@@ -89,7 +89,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         // ===================================================================================== []
         private static string DataBasedFolderName(int dayShift)
         {
-            var hourOffset = Settings.OutputFolderNameUtcHourOffset;
+            var hourOffset = MipSettings.OutputFolderNameUtcHourOffset;
             var utcNow = DateTime.UtcNow;
             var mipNow = utcNow.AddHours(hourOffset + 24*dayShift);
 

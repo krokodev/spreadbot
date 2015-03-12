@@ -3,7 +3,7 @@ using Crocodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip.Configuration
 {
-    public class SecretData : SmartConfigurationElement
+    public class MipSecretData : SmartConfigurationElement
     {
         [ConfigurationProperty("UserName", IsRequired = true)]
         public string UserName

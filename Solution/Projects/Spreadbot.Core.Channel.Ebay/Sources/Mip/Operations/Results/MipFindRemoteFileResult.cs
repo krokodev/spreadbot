@@ -3,12 +3,12 @@ using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class FindRemoteFileResult : ResponseResult
+    public class MipFindRemoteFileResult : MipResponseResult
     {
         public readonly string FileName;
         public readonly string FolderPath;
 
-        public FindRemoteFileResult(string folderPath, string fileName)
+        public MipFindRemoteFileResult(string folderPath, string fileName)
         {
             FolderPath = folderPath;
             FileName = fileName;

@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         {
             // ===================================================================================== []
             // ZipFeed
-            public static MipResponse<ZipFeedResult> ZipFeed(string feed, string reqId)
+            public static MipResponse<MipZipFeedResult> ZipFeed(string feed, string reqId)
             {
                 string zipFileName;
                 try
@@ -23,15 +23,15 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new MipResponse<ZipFeedResult>(false, MipStatusCode.ZipFeedFail, exception);
+                    return new MipResponse<MipZipFeedResult>(false, MipStatusCode.ZipFeedFail, exception);
                 }
-                return new MipResponse<ZipFeedResult>(true, MipStatusCode.ZipFeedSuccess, new ZipFeedResult(zipFileName));
+                return new MipResponse<MipZipFeedResult>(true, MipStatusCode.ZipFeedSuccess, new MipZipFeedResult(zipFileName));
             }
 
             // --------------------------------------------------------[]
-            public static MipResponse<ZipFeedResult> ZipFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<MipZipFeedResult> ZipFeed(MipFeed mipFeed, MipRequest.Identifier reqId)
             {
-                return ZipFeed(feed.Name, reqId.Value.ToString());
+                return ZipFeed(mipFeed.Name, reqId.Value.ToString());
             }
 
             // ===================================================================================== []

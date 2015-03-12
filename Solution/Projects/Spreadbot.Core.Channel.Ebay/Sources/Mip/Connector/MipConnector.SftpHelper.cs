@@ -17,32 +17,32 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse<SendZippedFeedFolderResult> SendZippedFeed(string feed, Request.Identifier reqId)
+            public static MipResponse<MipSendZippedFeedFolderResult> SendZippedFeed(string feed, MipRequest.Identifier reqId)
             {
                 return DoSendZippedFeed(feed, reqId);
             }
 
-            public static MipResponse<SendZippedFeedFolderResult> SendZippedFeed(Feed feed, Request.Identifier reqId)
+            public static MipResponse<MipSendZippedFeedFolderResult> SendZippedFeed(MipFeed mipFeed, MipRequest.Identifier reqId)
             {
-                return SendZippedFeed(feed.Name, reqId);
+                return SendZippedFeed(mipFeed.Name, reqId);
             }
 
             // ===================================================================================== []
             // Find remote files Inproc
-            public static MipResponse<FindRemoteFileResult> FindRequestRemoteFileNameInInprocess(Request request)
+            public static MipResponse<MipFindRemoteFileResult> FindRequestRemoteFileNameInInprocess(MipRequest mipRequest)
             {
-                var remoteDir = RemoteFeedInprocessFolderPath(request.Feed.Name);
-                var prefix = request.FileNamePrefix();
+                var remoteDir = RemoteFeedInprocessFolderPath(mipRequest.MipFeed.Name);
+                var prefix = mipRequest.FileNamePrefix();
 
                 return FindRemoteFileNamePrefixInRemoteDir(prefix, remoteDir);
             }
 
             // ===================================================================================== []
             // Find remote files Output
-            public static MipResponse<FindRemoteFileResult> FindRequestRemoteFileNameInOutput(Request request)
+            public static MipResponse<MipFindRemoteFileResult> FindRequestRemoteFileNameInOutput(MipRequest mipRequest)
             {
-                var remoteDirs = RemoteFeedOutputFolderPathes(request.Feed.Name);
-                var prefix = request.FileNamePrefix();
+                var remoteDirs = RemoteFeedOutputFolderPathes(mipRequest.MipFeed.Name);
+                var prefix = mipRequest.FileNamePrefix();
 
                 foreach (var remoteDir in remoteDirs)
                 {
@@ -52,7 +52,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                         return response;
                     }
                 }
-                return new MipResponse<FindRemoteFileResult>(
+                return new MipResponse<MipFindRemoteFileResult>(
                     false,
                     MipStatusCode.FindRemoteFileFail,
                     "Remote file [{0}] not found in [{1}]".SafeFormat(prefix, remoteDirs.FoldToStringBy(s => s)));

@@ -3,16 +3,16 @@ using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class Request : Identifiable<Request, Guid>
+    public class MipRequest : Identifiable<MipRequest, Guid>
     {
-        public Request(Feed feed, Identifier requestId)
+        public MipRequest(MipFeed mipFeed, Identifier requestId)
         {
-            Feed = feed;
+            MipFeed = mipFeed;
             Id = requestId;
         }
 
         public Identifier Id { get; set; }
-        public Feed Feed { get; set; }
+        public MipFeed MipFeed { get; set; }
 
         public static Identifier GenerateId()
         {
@@ -31,7 +31,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public string FileNamePrefix()
         {
-            return string.Format("{0}.{1}", Feed.Name, Id);
+            return string.Format("{0}.{1}", MipFeed.Name, Id);
         }
     }
 }
