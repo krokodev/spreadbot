@@ -12,9 +12,9 @@ namespace Spreadbot.Core.Common
 
         public bool Value { get; set; }
 
-        public override string GetAutoinfo()
+        public override string Autoinfo
         {
-            return Template.SafeFormat("Value", Value);
+            get { return Template.SafeFormat("Value", Value); }
         }
     }
 }

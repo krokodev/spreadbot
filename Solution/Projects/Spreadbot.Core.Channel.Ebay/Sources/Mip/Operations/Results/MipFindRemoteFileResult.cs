@@ -14,13 +14,12 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             FileName = fileName;
         }
 
-        public override string GetAutoinfo()
+        public override string Autoinfo
         {
-            return 
-                Template.SafeFormat(
-                    "FolderPath", FolderPath)
-                   + " " +
-                   Template.SafeFormat("FileName", FileName);
+            get
+            {
+                return Template.SafeFormat("FolderPath", FolderPath) + ", " + Template.SafeFormat("FileName", FileName);
+            }
         }
     }
 }

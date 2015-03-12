@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Ebay\Channel\EbayChannel.cs" />
-    <Compile Include="Sources\Ebay\Channel\EbayPublishResult.cs" />
-    <Compile Include="Sources\Ebay\Tasks\EbayPublishArgs.cs" />
-    <Compile Include="Sources\Ebay\Tasks\EbayPublishTask.cs" />
+    <Compile Include="Sources\Ebay\Operations\EbayPublishResult.cs" />
+    <Compile Include="Sources\Ebay\Operations\EbayPublishArgs.cs" />
+    <Compile Include="Sources\Ebay\Operations\EbayPublishTask.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipConnection.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipPaths.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipSecretData.cs" />

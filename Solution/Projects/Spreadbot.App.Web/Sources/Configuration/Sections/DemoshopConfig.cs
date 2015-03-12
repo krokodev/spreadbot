@@ -7,7 +7,7 @@ namespace Spreadbot.App.Web.Configuration
     public class DemoshopConfig : SmartConfigurationSection<DemoshopConfig>
     {
         [ConfigurationProperty("DemoshopPaths", IsRequired = true)]
-        public DemoshopPaths Paths
+        public DemoshopPaths DemoshopPaths
         {
             get { return (DemoshopPaths)this[GetMethodName()]; }
         }

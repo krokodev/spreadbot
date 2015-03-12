@@ -106,7 +106,7 @@ namespace Spreadbot.App.Web
         // --------------------------------------------------------[]
         private static string FeedTemplate(MipFeedType mipFeedType)
         {
-            var templateFolder = DemoshopConfig.Instance.Paths.XmlTemplatesPath.MapPathToDataDirectory();
+            var templateFolder = DemoshopConfig.Instance.DemoshopPaths.XmlTemplatesPath.MapPathToDataDirectory();
             var xmlTemplateFilePath = string.Format(@"{0}{1}.xml", templateFolder, mipFeedType);
             return File.ReadAllText(xmlTemplateFilePath);
         }

@@ -2,11 +2,11 @@
 {
     public abstract class MipResponseResult: IResponseResult
     {
-        protected const string Template = "{0}:[{1}]";
-        public abstract string GetAutoinfo();
+        protected const string Template = "{0}: [{1}]";
+        public abstract string Autoinfo { get; }
         public override string ToString()
         {
-            return GetAutoinfo();
+            return Autoinfo;
         }
     }
 }

@@ -10,9 +10,12 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             RequestId = requestId;
         }
 
-        public override string GetAutoinfo()
+        public override string Autoinfo
         {
-            return Template.SafeFormat("RequestId", RequestId);
+            get 
+            {
+                return Template.SafeFormat("RequestId", RequestId);
+            }
         }
 
         public MipRequest.Identifier RequestId { get; set; }

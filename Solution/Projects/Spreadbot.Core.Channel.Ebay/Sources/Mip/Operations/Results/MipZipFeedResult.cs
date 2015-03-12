@@ -12,9 +12,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         public string ZipFileName { get; set; }
 
-        public override string GetAutoinfo()
+        public override string Autoinfo
         {
-            return Template.SafeFormat("ZipFileName", ZipFileName);
+            get { return Template.SafeFormat("ZipFileName", ZipFileName); }
         }
     }
 }
