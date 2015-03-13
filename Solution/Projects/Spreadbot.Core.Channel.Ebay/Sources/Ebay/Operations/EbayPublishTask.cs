@@ -80,12 +80,10 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 return string.Format(
-                    "{0}, {1}, {2}, {3}, {4}",
+                    "{0} | {1} | {2}",
                     StatusCode,
                     IsCriticalInfo,
-                    MissionInfo,
-                    ResponseResultInfo,
-                    MipRequestStatusInfo
+                    MissionInfo
                     );
             }
         }
@@ -119,7 +117,7 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 var args = (EbayPublishArgs) Args;
-                return "Publish [{0}, {1}] on eBay".TryFormat(args.Feed.Name, args.Feed.ItemInfo);
+                return "Publish {1} {0} on eBay".TryFormat(args.Feed.Name, args.Feed.ItemInfo);
             }
         }
 

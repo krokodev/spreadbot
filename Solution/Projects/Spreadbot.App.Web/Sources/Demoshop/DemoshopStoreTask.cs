@@ -1,13 +1,18 @@
 using Spreadbot.Core.Common;
-using Spreadbot.Core.System;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.App.Web
 {
-    public class DemoshopStoreTask: AbstractStoreTask
+    public class DemoshopStoreTask : AbstractStoreTask
     {
         public DemoshopStoreTask(string description)
-            :base(description)
+            : base(description)
         {
+        }
+
+        public override TaskStatus StatusCode
+        {
+            get { return CalcSuperTaskStatusCode(); }
         }
     }
 }

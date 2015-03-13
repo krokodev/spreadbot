@@ -10,5 +10,6 @@ namespace Spreadbot.Sdk.Common
         string Description { get; set; }
         IEnumerable<ITask> SubTasks { get; }
         TaskStatus StatusCode { get; }
+        bool IsCritical { get; set; }
     }
 }

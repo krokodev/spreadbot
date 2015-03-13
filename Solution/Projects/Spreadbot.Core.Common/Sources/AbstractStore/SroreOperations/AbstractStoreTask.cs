@@ -11,9 +11,16 @@ namespace Spreadbot.Core.Common
             Description = description;
         }
 
-        public override TaskStatus StatusCode
+        public override string Autoinfo
         {
-            get { return TaskStatus.Unknown; }
+            get
+            {
+                return string.Format(
+                    "{0} | {1}",
+                    StatusCode,
+                    Description
+                    );
+            }
         }
     }
 }
