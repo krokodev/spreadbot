@@ -23,7 +23,7 @@ namespace Spreadbot.Core.Channel.Ebay
                     ItemInfo = itemInfo
                 }
             };
-            MipRequestStatusCode = MipRequestStatus.Initial;
+            MipRequestStatusCode = MipRequestStatus.Unknown;
         }
 
         // ===================================================================================== []
@@ -31,6 +31,7 @@ namespace Spreadbot.Core.Channel.Ebay
         public new ChannelResponse<EbayPublishResult> Response
         {
             get { return (ChannelResponse<EbayPublishResult>) base.Response; }
+            set { base.Response = value; }
         }
 
         // ===================================================================================== []
@@ -131,7 +132,7 @@ namespace Spreadbot.Core.Channel.Ebay
         // --------------------------------------------------------[]
         public void AssertCanBeProceeded()
         {
-            if (MipRequestStatusCode != MipRequestStatus.Initial ||
+            if (MipRequestStatusCode != MipRequestStatus.Initial &&
                 MipRequestStatusCode != MipRequestStatus.Inprocess)
             {
                 throw new SpreadbotException("Unexpected Task MipRequestStatusCode: [{0}]", MipRequestStatusCode);

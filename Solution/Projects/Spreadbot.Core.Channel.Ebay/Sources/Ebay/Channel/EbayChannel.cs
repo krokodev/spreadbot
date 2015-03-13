@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 using MoreLinq;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
-using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
@@ -23,30 +20,33 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // Publish
-        public override IChannelResponse Publish(IChannelTaskArgs args)
+        public override void Publish(IChannelTask task)
         {
-            MipResponse<MipSendZippedFeedFolderResult> mipResponse;
             try
             {
-                var publishArgs = (EbayPublishArgs) args;
+                var publishTask = (EbayPublishTask)task;
+                var publishArgs = (EbayPublishArgs)task.Args;
 
                 CreateFeedFile(publishArgs.Feed);
 
-                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.Feed);
+                var mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.Feed);
 
                 EraseFeedFolder(publishArgs.Feed);
 
                 mipResponse.Check();
+
+                publishTask.Response = new ChannelResponse<EbayPublishResult>(true,
+                    ChannelResponseStatusCode.PublishSuccess,
+                    new EbayPublishResult(mipResponse.Result.MipRequestId),
+                    mipResponse);
+
+                publishTask.MipRequestStatusCode = MipRequestStatus.Initial;
             }
             catch (Exception exception)
             {
-                return new ChannelResponse<EbayPublishResult>(false, ChannelResponseStatusCode.PublishFail, exception);
+                task.Response = new ChannelResponse<EbayPublishResult>(false, ChannelResponseStatusCode.PublishFail,
+                    exception);
             }
-
-            return new ChannelResponse<EbayPublishResult>(true,
-                ChannelResponseStatusCode.PublishSuccess,
-                new EbayPublishResult(mipResponse.Result.MipRequestId),
-                mipResponse);
         }
 
         // --------------------------------------------------------[]

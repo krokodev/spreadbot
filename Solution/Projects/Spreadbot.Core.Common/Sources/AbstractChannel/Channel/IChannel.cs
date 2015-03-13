@@ -3,7 +3,7 @@
     public interface IChannel
     {
         string Name { get; }
-        IChannelResponse Publish(IChannelTaskArgs taskArgs);
-        void ProceedTask(IChannelTask channelTask);
+        void Publish(IChannelTask task);
+        void ProceedTask(IChannelTask task);
     }
 }

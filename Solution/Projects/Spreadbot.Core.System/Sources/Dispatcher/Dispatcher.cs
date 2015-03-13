@@ -21,7 +21,7 @@ namespace Spreadbot.Core.System
             switch (task.Method)
             {
                 case ChannelMethod.Publish:
-                    task.Response = task.Channel.Publish(task.ChannelArgs);
+                    task.Channel.Publish(task);
                     break;
                 default:
                     throw new SpreadbotException("Unexpected task operation [{0}]", task.Method);
