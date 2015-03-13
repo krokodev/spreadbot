@@ -80,7 +80,7 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 return string.Format(
-                    "{0} | {1} | {2}",
+                    "{0}: {2} ({1})",
                     StatusCode,
                     IsCriticalInfo,
                     MissionInfo

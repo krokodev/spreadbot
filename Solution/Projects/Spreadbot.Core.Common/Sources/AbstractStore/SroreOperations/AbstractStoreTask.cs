@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Common
             get
             {
                 return string.Format(
-                    "{0} | {1}",
+                    "{0}: {1}",
                     StatusCode,
                     Description
                     );

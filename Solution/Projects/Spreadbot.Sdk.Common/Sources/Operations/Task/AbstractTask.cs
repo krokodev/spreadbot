@@ -11,6 +11,13 @@ namespace Spreadbot.Sdk.Common
     public abstract class AbstractTask : Identifiable<AbstractTask, int>, ITask
     {
         // ===================================================================================== []
+        // Ctor
+        protected AbstractTask()
+        {
+            IsCritical = true;
+        }
+
+        // ===================================================================================== []
         // Tasks
         private readonly IList<ITask> _subTasks = new List<ITask>();
         // --------------------------------------------------------[]
@@ -27,7 +34,6 @@ namespace Spreadbot.Sdk.Common
         public readonly DateTime CreationTime = DateTime.Now;
         public abstract TaskStatus StatusCode { get; }
         public bool IsCritical { get; set; }
-
 
         // ===================================================================================== []
         // ITask
