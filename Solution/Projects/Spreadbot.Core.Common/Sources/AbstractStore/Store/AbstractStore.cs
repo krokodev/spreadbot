@@ -42,5 +42,8 @@ namespace Spreadbot.Core.Common
         {
             get { return Tasks.OfType<IStoreTask>(); }
         }
+
+        // --------------------------------------------------------[]
+        public abstract string Name { get; }
     }
 }

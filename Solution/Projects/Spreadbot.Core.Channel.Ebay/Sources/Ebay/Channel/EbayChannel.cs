@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Channel.Ebay
     {
         // ===================================================================================== []
         // Name
-        private const string ConstName = "eBay.Mip";
+        private const string ConstName = "Ebay";
         // --------------------------------------------------------[]
         public override string Name
         {
@@ -94,7 +94,7 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        // Code: ** EbayChanel : ProceedPublishTask
+        // Code: EbayChanel : ProceedPublishTask
         private static void ProceedPublishTask(EbayPublishTask task)
         {
             task.AssertCanBeProceeded();

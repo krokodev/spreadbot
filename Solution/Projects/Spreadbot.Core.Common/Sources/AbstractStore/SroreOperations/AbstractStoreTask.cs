@@ -6,8 +6,9 @@ namespace Spreadbot.Core.Common
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {
-        protected AbstractStoreTask(string description)
+        protected AbstractStoreTask(IStore store, string description)
         {
+            Store = store;
             Description = description;
         }
 
@@ -16,11 +17,14 @@ namespace Spreadbot.Core.Common
             get
             {
                 return string.Format(
-                    "{0}: {1}",
+                    "{2} {0}: {1}",
                     StatusCode,
-                    Description
+                    Description,
+                    Store.Name
                     );
             }
         }
+
+        public IStore Store { get; set; }
     }
 }

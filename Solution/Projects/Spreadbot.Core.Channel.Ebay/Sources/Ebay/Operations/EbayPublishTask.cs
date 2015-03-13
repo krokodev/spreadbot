@@ -36,7 +36,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // StatusCode
-        // Code: * EbayPublishTask : StatusCode
+        // Code: EbayPublishTask : StatusCode
         public MipRequestStatus MipRequestStatusCode { get; set; }
         // --------------------------------------------------------[]
         public override TaskStatus StatusCode
@@ -80,10 +80,11 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 return string.Format(
-                    "{0}: {2} ({1})",
+                    "{3} {0}: {1} {2}",
                     StatusCode,
                     IsCriticalInfo,
-                    MissionInfo
+                    MissionInfo,
+                    Channel.Name
                     );
             }
         }
@@ -117,13 +118,13 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 var args = (EbayPublishArgs) Args;
-                return "Publish {1} {0} on eBay".TryFormat(args.Feed.Name, args.Feed.ItemInfo);
+                return "Publish [{0}]".TryFormat(args.Feed.Name);
             }
         }
 
         // ===================================================================================== []
         // IProceedableTask
-        // Code: *** EbayPublishTask : SaveProceedInfo
+        // Code: EbayPublishTask : SaveProceedInfo
         private readonly TaskProceedHelper _taskProceedHelper = new TaskProceedHelper();
         // --------------------------------------------------------[]
         public void SaveProceedInfo(ITaskProceedInfo info)

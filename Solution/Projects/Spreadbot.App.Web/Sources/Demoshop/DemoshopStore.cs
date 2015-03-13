@@ -63,7 +63,7 @@ namespace Spreadbot.App.Web
         // Tasks
         public void PublishItemOnEbay()
         {
-            var storeTask = new DemoshopStoreTask("Publish [{0}] on eBay".SafeFormat(Item));
+            var storeTask = new DemoshopStoreTask(this, "Publish [{0}] on eBay".SafeFormat(Item.Sku));
 
             AddTask(
                 storeTask
@@ -108,5 +108,13 @@ namespace Spreadbot.App.Web
             var xmlTemplateFilePath = string.Format(@"{0}{1}.xml", templateFolder, mipFeedType);
             return File.ReadAllText(xmlTemplateFilePath);
         }
+
+        // ===================================================================================== []
+        // IStore
+        public override string Name
+        {
+            get { return "Demoshop"; }
+        }
+
     }
 }

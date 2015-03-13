@@ -35,7 +35,7 @@ namespace Spreadbot.App.Web
         public ActionResult RunChannelTasks()
         {
             Dispatcher.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
-            return View(new DemoshopModel());
+            return RedirectToAction("Index");
         }
 
         // ===================================================================================== []

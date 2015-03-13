@@ -5,6 +5,16 @@
 @using Spreadbot.Sdk.Common
 @model DemoshopModel
 
+
+@functions {
+
+    private static string TaskClass(TaskStatus statusCode)
+    {
+        return "sb-task sb-task-{0}".TryFormat(statusCode.ToString().ToLower());
+    }
+
+}
+
 @{
     // ===================================================================================== []
     // >> View | Demoshop | Index
@@ -51,7 +61,7 @@
         <ul>
             @foreach (var task in enumerable)
             {
-                <li>@task</li>
+                <li class="@TaskClass(task.StatusCode)">@task</li>
                 @ShowTasks(task.SubTasks)
             }
         </ul>
@@ -62,6 +72,20 @@
 @*
     // ===================================================================================== []
 *@
+
+<style>
+    
+    .sb-task{margin: 2px; padding: 2px;}
+     .sb-task-unknown { background:  #bfbfbf; color: #000000 }
+
+    .sb-task-todo { background: #deeafc; color: #393ba7;}
+
+    .sb-task-inprocess { background:  #ffe970; color: #513e00;}
+
+    .sb-task-fail { background:  red; color: yellow;}
+
+    .sb-task-success { background: #a9e99c; color: #005204;}
+</style>
 
 <div>
 
@@ -76,17 +100,20 @@
 
     <div>
         <h2>
-            Store and Channel Tasks
+            Store/channel Tasks
         </h2>
         @ShowTasks(DemoshopModel.StoreTasks)
-        @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", DemoshopModel.Item)
+        <ul>
+            <li>
+                @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", DemoshopModel.Item)
+            </li>
+        </ul>
     </div>
 
     <div>
         <h2>
-            eBay Publisher
+            Spreadbot Dispatcher
         </h2>
-
         <ul>
             <li>
                 @Html.ActionLink(
@@ -101,14 +128,13 @@
                     "ProceedChannelTasks")
             </li>
             <li>
-                View publishing result for request [yyy]
+                [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
+            </li>
+            <li>
+                [<a href="http://www.ebay.com/itm/321693290987">http://www.ebay.com/itm/321693290987</a>]
             </li>
         </ul>
-
-
     </div>
 
-    [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]<br>
-    [<a href="http://www.ebay.com/itm/321693290987">http://www.ebay.com/itm/321693290987</a>]
 
 </div>

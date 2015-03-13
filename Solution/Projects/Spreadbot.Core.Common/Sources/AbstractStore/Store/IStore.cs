@@ -8,5 +8,6 @@ namespace Spreadbot.Core.Common
         IEnumerable<ITask> Tasks { get; }
         IEnumerable<IChannelTask> ChannelTasks { get; }
         IEnumerable<IStoreTask> StoreTasks { get; }
+        string Name { get; }
     }
 }
