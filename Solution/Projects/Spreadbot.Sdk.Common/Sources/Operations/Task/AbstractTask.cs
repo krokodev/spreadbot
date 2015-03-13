@@ -6,13 +6,13 @@ using Crocodev.Common.Identifier;
 // !>> Core | Sdk | Task
 namespace Spreadbot.Sdk.Common
 {
-    public abstract class Task : Identifiable<Task,int>, ITask
+    public abstract class AbstractTask : Identifiable<AbstractTask,int>, ITask
     {
         // ===================================================================================== []
         // Tasks
         private readonly IList<ITask> _subTasks = new List<ITask>();
         // --------------------------------------------------------[]
-        public Task AddSubTask(ITask task)
+        public AbstractTask AddSubTask(ITask task)
         {
             _subTasks.Add(task);
             return this;

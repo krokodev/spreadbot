@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Core.System
 {
-    public enum ChannelStatusCode
+    public enum ChannelResponseStatusCode
     {
         Unknown,
         PublishFail,

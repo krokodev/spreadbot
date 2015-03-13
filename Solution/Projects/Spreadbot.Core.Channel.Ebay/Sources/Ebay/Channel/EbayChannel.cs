@@ -38,11 +38,11 @@ namespace Spreadbot.Core.Channel.Ebay
             }
             catch (Exception exception)
             {
-                return new ChannelResponse<EbayPublishResult>(false, ChannelStatusCode.PublishFail, exception);
+                return new ChannelResponse<EbayPublishResult>(false, ChannelResponseStatusCode.PublishFail, exception);
             }
 
             return new ChannelResponse<EbayPublishResult>(true,
-                ChannelStatusCode.PublishSuccess,
+                ChannelResponseStatusCode.PublishSuccess,
                 new EbayPublishResult(mipResponse.Result.RequestId),
                 mipResponse);
         }

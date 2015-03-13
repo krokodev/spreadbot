@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Spreadbot.App.Web
 {
-    public class DemoshopItemModel
+    public class DemoshopItem
     {
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         public string Sku { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Sdk.Common
 {
-    public abstract class Args : IArgs
+    public abstract class AbstractArgs : IArgs
     {
         public override string ToString()
         {

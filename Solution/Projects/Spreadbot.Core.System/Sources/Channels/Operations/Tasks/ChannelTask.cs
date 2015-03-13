@@ -4,7 +4,7 @@ using Spreadbot.Sdk.Common;
 // !>> Core | Channel Task
 namespace Spreadbot.Core.System
 {
-    public abstract class ChannelTask : Task, IChannelTask
+    public abstract class ChannelTask : AbstractTask, IChannelTask
     {
         // ===================================================================================== []
         // Constructor

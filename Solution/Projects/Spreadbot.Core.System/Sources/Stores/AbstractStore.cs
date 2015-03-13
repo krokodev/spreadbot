@@ -5,7 +5,7 @@ using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.System
 {
-    public class Store : IStore
+    public abstract class AbstractStore : IStore
     {
         // ===================================================================================== []
         // Tasks

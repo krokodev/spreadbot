@@ -4,9 +4,9 @@
 
 namespace Spreadbot.Core.System
 {
-    public class StoreTask : Task, IStoreTask
+    public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {
-        public StoreTask(string description)
+        protected AbstractStoreTask(string description)
         {
             Description = description;
         }

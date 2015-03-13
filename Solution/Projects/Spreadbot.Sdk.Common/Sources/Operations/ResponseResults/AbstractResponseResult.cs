@@ -1,6 +1,6 @@
 ﻿namespace Spreadbot.Sdk.Common
 {
-    public abstract class ResponseResult: IResponseResult
+    public abstract class AbstractResponseResult: IResponseResult
     {
         protected const string Template = "{0}:{1}";
         public abstract string Autoinfo { get; }

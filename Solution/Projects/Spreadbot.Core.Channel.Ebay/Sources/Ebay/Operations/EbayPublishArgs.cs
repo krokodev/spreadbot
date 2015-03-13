@@ -5,7 +5,7 @@ using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public class EbayPublishArgs : Args
+    public class EbayPublishArgs : AbstractArgs
     {
         public MipFeed MipFeed { get; set; }
 

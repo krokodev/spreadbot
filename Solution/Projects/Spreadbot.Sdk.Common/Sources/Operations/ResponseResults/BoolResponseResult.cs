@@ -2,7 +2,7 @@ using Crocodev.Common;
 
 namespace Spreadbot.Sdk.Common
 {
-    public class BoolResponseResult : ResponseResult
+    public class BoolResponseResult : AbstractResponseResult
     {
         public BoolResponseResult(bool value)
         {

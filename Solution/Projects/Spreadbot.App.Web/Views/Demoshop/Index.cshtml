@@ -92,7 +92,7 @@
             <li>
                 @Html.ActionLink(
                     "Run Channel Tasks ({0})"
-                        .SafeFormat(Model.ChannelTasks.Count(t => t.StatusCode == TaskStatus.Todo)),
+                        .SafeFormat(Model.ChannelTasksTodo.Count()),
                     "RunChannelTasks")
             </li>
             <li>
@@ -101,7 +101,7 @@
                 *@
                 @Html.ActionLink(
                     "Upadte Task Statuses ({0})"
-                        .SafeFormat(Model.ChannelTasks.Count(t => t.StatusCode == TaskStatus.Inprocess)),
+                        .SafeFormat(Model.ChannelTasksInprocess.Count()),
                     "UpdateChannelTasks")
             </li>
             <li>

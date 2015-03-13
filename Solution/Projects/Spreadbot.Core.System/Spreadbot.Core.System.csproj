@@ -46,18 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Operations\Responses\ChannelResponse.cs" />
-    <Compile Include="Sources\Operations\ChannelStatusCode.cs" />
-    <Compile Include="Sources\Operations\Methods\ChannelMethod.cs" />
-    <Compile Include="Sources\Operations\Tasks\ChannelTask.cs" />
+    <Compile Include="Sources\Channels\Operations\Responses\ChannelResponse.cs" />
+    <Compile Include="Sources\Channels\Operations\Responses\ChannelResponseStatusCode.cs" />
+    <Compile Include="Sources\Channels\Operations\Methods\ChannelMethod.cs" />
+    <Compile Include="Sources\Channels\Operations\Tasks\ChannelTask.cs" />
     <Compile Include="Sources\Channels\IChannel.cs" />
-    <Compile Include="Sources\Operations\Tasks\IChannelTask.cs" />
-    <Compile Include="Sources\Operations\Tasks\IStoreTask.cs" />
-    <Compile Include="Sources\Operations\Tasks\StoreTask.cs" />
+    <Compile Include="Sources\Channels\Operations\Tasks\IChannelTask.cs" />
+    <Compile Include="Sources\Stores\Operations\IStoreTask.cs" />
+    <Compile Include="Sources\Stores\Operations\AbstractStoreTask.cs" />
     <Compile Include="Sources\Stores\IStore.cs" />
     <Compile Include="Sources\Dispatcher\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\Stores\Store.cs" />
+    <Compile Include="Sources\Stores\AbstractStore.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

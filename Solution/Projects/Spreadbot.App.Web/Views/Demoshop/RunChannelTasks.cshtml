@@ -1,4 +1,5 @@
-﻿@model Spreadbot.App.Web.DemoshopModel
+﻿@using Spreadbot.App.Web
+@model Spreadbot.App.Web.DemoshopModel
 @{
     // ===================================================================================== []
     // !>> View | Demoshop | RunChannelTasks
@@ -10,7 +11,7 @@
     Channel Tasks Running Result
 </h2>
 
-@foreach (var task in Model.ChannelTasks)
+@foreach (var task in DemoshopModel.ChannelTasks)
 {
     <pre>@task</pre>
 }
