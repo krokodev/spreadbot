@@ -54,15 +54,19 @@ namespace Spreadbot.Core.Channel.Ebay
                 switch (MipRequestStatusCode)
                 {
                     case MipRequestStatus.Initial:
+                        return TaskStatus.Inprocess;
+
                     case MipRequestStatus.Inprocess:
                         return TaskStatus.Inprocess;
 
                     case MipRequestStatus.Unknown:
+                        return TaskStatus.Fail;
+
                     case MipRequestStatus.Fail:
                         return TaskStatus.Fail;
 
                     case MipRequestStatus.Success:
-                        return TaskStatus.Inprocess;
+                        return TaskStatus.Success;
                 }
                 throw new SpreadbotException("Wrong MipRequestStatusCode [{0}]", MipRequestStatusCode);
             }

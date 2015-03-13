@@ -5,7 +5,7 @@ namespace Spreadbot.Sdk.Common
         Unknown,
         Todo,
         Inprocess,
-        Succes,
+        Success,
         Fail
     }
 }
