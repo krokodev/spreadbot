@@ -6,6 +6,6 @@ namespace Spreadbot.Core.Common
 
         public abstract IChannelResponse Publish(IChannelTaskArgs taskArgs);
 
-        public abstract void Update(IChannelTask channelTask);
+        public abstract void ProceedTask(IChannelTask channelTask);
     }
 }

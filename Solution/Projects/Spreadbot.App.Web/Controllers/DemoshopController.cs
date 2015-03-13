@@ -39,10 +39,10 @@ namespace Spreadbot.App.Web
         }
 
         // ===================================================================================== []
-        // Update
-        public ActionResult UpdateChannelTasks()
+        // ProceedChannelTasks
+        public ActionResult ProceedChannelTasks()
         {
-            Dispatcher.UpdateChannelTasks(DemoshopModel.ChannelTasksInprocess);
+            Dispatcher.ProceedChannelTasks(DemoshopModel.ChannelTasksInprocess);
             return RedirectToAction("Index");
         }
     }

@@ -5,18 +5,18 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class MipGetRequestStatusResult : MipResponseResult
     {
-        public readonly MipRequestStatus Status;
+        public readonly MipRequestStatus MipRequestStatusCode;
         public readonly string Details;
 
-        public MipGetRequestStatusResult(MipRequestStatus status, string details = "")
+        public MipGetRequestStatusResult(MipRequestStatus mipRequestStatusCode, string details = "")
         {
-            Status = status;
+            MipRequestStatusCode = mipRequestStatusCode;
             Details = details;
         }
 
         public override string Autoinfo
         {
-            get { return Template.SafeFormat("Status", Status) + ", " + Template.SafeFormat("Details", Details); }
+            get { return Template.SafeFormat("Status", MipRequestStatusCode) + ", " + Template.SafeFormat("Details", Details); }
         }
     }
 }

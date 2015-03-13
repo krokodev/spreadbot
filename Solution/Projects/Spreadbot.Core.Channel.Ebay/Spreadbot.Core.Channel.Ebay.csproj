@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Ebay\Channel\EbayChannel.cs" />
+    <Compile Include="Sources\Mip\Operations\Response\MipRequestStatusResponse.cs" />
     <Compile Include="Sources\Ebay\Operations\EbayPublishResult.cs" />
     <Compile Include="Sources\Ebay\Operations\EbayPublishArgs.cs" />
     <Compile Include="Sources\Ebay\Operations\EbayPublishTask.cs" />

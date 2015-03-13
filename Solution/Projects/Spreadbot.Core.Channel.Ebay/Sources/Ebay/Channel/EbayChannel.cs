@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using MoreLinq;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
@@ -12,7 +14,7 @@ namespace Spreadbot.Core.Channel.Ebay
     {
         // ===================================================================================== []
         // Name
-        private const string ConstName = "eBay";
+        private const string ConstName = "eBay.Mip";
         // --------------------------------------------------------[]
         public override string Name
         {
@@ -21,7 +23,6 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // Publish
-        // Code: EbayChannel : Publish
         public override IChannelResponse Publish(IChannelTaskArgs args)
         {
             MipResponse<MipSendZippedFeedFolderResult> mipResponse;
@@ -29,11 +30,11 @@ namespace Spreadbot.Core.Channel.Ebay
             {
                 var publishArgs = (EbayPublishArgs) args;
 
-                CreateFeedFile(publishArgs.MipFeed);
+                CreateFeedFile(publishArgs.Feed);
 
-                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.MipFeed);
+                mipResponse = MipConnector.SendZippedFeedFolder(publishArgs.Feed);
 
-                EraseFeedFolder(publishArgs.MipFeed);
+                EraseFeedFolder(publishArgs.Feed);
 
                 mipResponse.Check();
             }
@@ -44,7 +45,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
             return new ChannelResponse<EbayPublishResult>(true,
                 ChannelResponseStatusCode.PublishSuccess,
-                new EbayPublishResult(mipResponse.Result.RequestId),
+                new EbayPublishResult(mipResponse.Result.MipRequestId),
                 mipResponse);
         }
 
@@ -79,10 +80,43 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // ===================================================================================== []
-        // Update
-        public override void Update(IChannelTask channelTask)
+        // Proceed
+        public override void ProceedTask(IChannelTask channelTask)
         {
-            throw new NotImplementedException();
+            switch (channelTask.Method)
+            {
+                case ChannelMethod.Publish:
+                    ProceedPublishTask((EbayPublishTask) channelTask);
+                    break;
+                default:
+                    throw new SpreadbotException("Unexpected Task Channel Method: [{0}]", channelTask.Method);
+            }
+        }
+
+        // --------------------------------------------------------[]
+        // Code: ** EbayChanel : ProceedPublishTask
+        private static void ProceedPublishTask(EbayPublishTask task)
+        {
+            task.AssertCanBeProceeded();
+
+            MipRequestStatusResponse statusResponse = null;
+
+            try
+            {
+                var args = (EbayPublishArgs) task.ChannelArgs;
+                var request = new MipRequest(args.Feed, task.Response.Result.MipRequestId);
+
+                statusResponse = MipConnector.GetRequestStatus(request);
+                statusResponse.Check();
+
+                task.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
+                task.SaveProceedInfo(statusResponse);
+            }
+            catch
+            {
+                task.MipRequestStatusCode = MipRequestStatus.Fail;
+                task.SaveProceedInfo(statusResponse);
+            }
         }
     }
 }

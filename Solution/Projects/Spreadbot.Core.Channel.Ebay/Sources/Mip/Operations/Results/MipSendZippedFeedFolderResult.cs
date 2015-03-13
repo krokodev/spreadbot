@@ -5,19 +5,19 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class MipSendZippedFeedFolderResult : MipResponseResult
     {
-        public MipSendZippedFeedFolderResult(MipRequest.Identifier requestId)
+        public MipSendZippedFeedFolderResult(MipRequest.Identifier mipRequestId)
         {
-            RequestId = requestId;
+            MipRequestId = mipRequestId;
         }
 
         public override string Autoinfo
         {
             get 
             {
-                return Template.SafeFormat("RequestId", RequestId);
+                return Template.SafeFormat("RequestId", MipRequestId);
             }
         }
 
-        public MipRequest.Identifier RequestId { get; set; }
+        public MipRequest.Identifier MipRequestId { get; set; }
     }
 }

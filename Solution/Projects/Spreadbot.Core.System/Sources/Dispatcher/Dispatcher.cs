@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using MoreLinq;
 using Spreadbot.Core.Common;
 using Spreadbot.Sdk.Common;
@@ -36,22 +35,22 @@ namespace Spreadbot.Core.System
         }
 
         // ===================================================================================== []
-        // UpdateChannelTasks
-        // Code: ** Dispatcher : UpdateChannelTasks
-        private static void UpdateChannelTask(IChannelTask task)
+        // ProceedChannelTasks
+        // Code: Dispatcher : ProceedChannelTasks
+        private static void ProceedChannelTask(IChannelTask task)
         {
             if (task.StatusCode != TaskStatus.Inprocess)
             {
                 throw new SpreadbotException("Task is not In-Process [{0}]", task);
             }
 
-            task.Channel.Update(task);
+            task.Channel.ProceedTask(task);
         }
 
         // --------------------------------------------------------[]
-        public static void UpdateChannelTasks(IEnumerable<IChannelTask> tasks)
+        public static void ProceedChannelTasks(IEnumerable<IChannelTask> tasks)
         {
-            tasks.ForEach(UpdateChannelTask);
+            tasks.ForEach(ProceedChannelTask);
         }
 
         // --------------------------------------------------------[]

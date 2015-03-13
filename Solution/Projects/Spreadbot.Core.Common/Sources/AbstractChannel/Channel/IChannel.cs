@@ -4,6 +4,6 @@
     {
         string Name { get; }
         IChannelResponse Publish(IChannelTaskArgs taskArgs);
-        void Update(IChannelTask channelTask);
+        void ProceedTask(IChannelTask channelTask);
     }
 }

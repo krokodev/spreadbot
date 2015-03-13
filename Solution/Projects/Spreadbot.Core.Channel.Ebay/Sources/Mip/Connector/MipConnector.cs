@@ -76,14 +76,14 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static MipResponse<MipGetRequestStatusResult> GetRequestStatus(MipRequest mipRequest, bool ignoreInprocess = false)
+        public static MipRequestStatusResponse GetRequestStatus(MipRequest mipRequest, bool ignoreInprocess = false)
         {
             try
             {
                 var response = FindRequest(mipRequest, MipRequestProcessingStage.Inprocess);
                 if (response.Code == MipStatusCode.FindRequestSuccess && !ignoreInprocess)
                 {
-                    return new MipResponse<MipGetRequestStatusResult>(true,
+                    return new MipRequestStatusResponse(true,
                         MipStatusCode.GetRequestStatusSuccess,
                         new MipGetRequestStatusResult(MipRequestStatus.Inprocess)
                         );
@@ -95,7 +95,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                     return GetRequestOutputStatus(response);
                 }
 
-                return new MipResponse<MipGetRequestStatusResult>(true,
+                return new MipRequestStatusResponse(true,
                     MipStatusCode.GetRequestStatusSuccess,
                     new MipGetRequestStatusResult(MipRequestStatus.Unknown),
                     response
@@ -103,16 +103,16 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             }
             catch (Exception exception)
             {
-                return new MipResponse<MipGetRequestStatusResult>(false, MipStatusCode.GetRequestStatusFail, exception);
+                return new MipRequestStatusResponse(false, MipStatusCode.GetRequestStatusFail, exception);
             }
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse<MipGetRequestStatusResult> GetRequestOutputStatus(
+        private static MipRequestStatusResponse GetRequestOutputStatus(
             MipResponse<MipFindRemoteFileResult> response)
         {
             var statusResult = ReadRequestOutputStatus(response);
-            return new MipResponse<MipGetRequestStatusResult>(true, MipStatusCode.GetRequestStatusSuccess, statusResult);
+            return new MipRequestStatusResponse(true, MipStatusCode.GetRequestStatusSuccess, statusResult);
         }
 
         // --------------------------------------------------------[]

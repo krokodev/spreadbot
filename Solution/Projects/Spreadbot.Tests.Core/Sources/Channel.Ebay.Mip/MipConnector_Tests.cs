@@ -17,7 +17,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             Trace.TraceInformation(response.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.SendZippedFeedFolderSuccess, response.Code);
-            Assert.IsTrue(MipRequest.VerifyRequestId(response.Result.RequestId));
+            Assert.IsTrue(MipRequest.VerifyRequestId(response.Result.MipRequestId));
         }
 
         // ===================================================================================== []
@@ -27,7 +27,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Product);
             var sendResponse = MipConnector.SendZippedFeedFolder(feed);
-            var request = new MipRequest(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.MipRequestId);
 
             var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Inprocess);
             Trace.TraceInformation(findResponse.Autoinfo);
@@ -74,7 +74,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Product);
             var sendResponse = MipConnector.SendTestFeedFolder(feed);
-            var request = new MipRequest(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.MipRequestId);
 
             var findResponse = MipConnector.FindRequest(request, MipRequestProcessingStage.Output);
             Trace.TraceInformation(findResponse.Autoinfo);
@@ -107,13 +107,13 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Availability);
             var sendResponse = MipConnector.SendZippedFeedFolder(feed);
-            var request = new MipRequest(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.MipRequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request);
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequestStatus.Inprocess, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Inprocess, requestResponse.Result.MipRequestStatusCode);
         }
         // --------------------------------------------------------[]
         [TestMethod]
@@ -121,13 +121,13 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
         {
             var feed = new MipFeed(MipFeedType.Distribution);
             var sendResponse = MipConnector.SendTestFeedFolder(feed);
-            var request = new MipRequest(feed, sendResponse.Result.RequestId);
+            var request = new MipRequest(feed, sendResponse.Result.MipRequestId);
 
             var requestResponse = MipConnector.GetRequestStatus(request, ignoreInprocess: true);
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequestStatus.Success, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode);
         }
 
         // --------------------------------------------------------[]
@@ -141,7 +141,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip.Tests
             Trace.TraceInformation(requestResponse.Autoinfo);
 
             Assert.AreEqual(MipStatusCode.GetRequestStatusSuccess, requestResponse.Code);
-            Assert.AreEqual(MipRequestStatus.Unknown, requestResponse.Result.Status);
+            Assert.AreEqual(MipRequestStatus.Unknown, requestResponse.Result.MipRequestStatusCode);
         }
     }
 }

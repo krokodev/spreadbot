@@ -1,13 +1,13 @@
 ﻿using Crocodev.Common;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
-using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
 // !>> Core | EBay | EbayPublishTask
+
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public sealed class EbayPublishTask : AbstractChannelTask
+    public sealed class EbayPublishTask : AbstractChannelTask, IProceedableTask
     {
         // ===================================================================================== []
         // Constructor
@@ -17,7 +17,7 @@ namespace Spreadbot.Core.Channel.Ebay
             Channel = new EbayChannel();
             Args = new EbayPublishArgs
             {
-                MipFeed = new MipFeed(mipFeedType)
+                Feed = new MipFeed(mipFeedType)
                 {
                     Content = feedContent,
                     ItemInfo = itemInfo
@@ -59,7 +59,7 @@ namespace Spreadbot.Core.Channel.Ebay
                     case MipRequestStatus.Unknown:
                     case MipRequestStatus.Fail:
                         return TaskStatus.Fail;
-                        
+
                     case MipRequestStatus.Success:
                         return TaskStatus.Inprocess;
                 }
@@ -114,7 +114,27 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 var args = (EbayPublishArgs) Args;
-                return "Publish [{0}, {1}] on eBay".TryFormat(args.MipFeed.Name, args.MipFeed.ItemInfo);
+                return "Publish [{0}, {1}] on eBay".TryFormat(args.Feed.Name, args.Feed.ItemInfo);
+            }
+        }
+
+        // ===================================================================================== []
+        // IProceedableTask
+        // Code: *** EbayPublishTask : SaveProceedInfo
+        private readonly TaskProceedHelper _taskProceedHelper = new TaskProceedHelper();
+        // --------------------------------------------------------[]
+        public void SaveProceedInfo(ITaskProceedInfo info)
+        {
+            _taskProceedHelper.Save(info);
+        }
+
+        // --------------------------------------------------------[]
+        public void AssertCanBeProceeded()
+        {
+            if (MipRequestStatusCode != MipRequestStatus.Initial ||
+                MipRequestStatusCode != MipRequestStatus.Inprocess)
+            {
+                throw new SpreadbotException("Unexpected Task MipRequestStatusCode: [{0}]", MipRequestStatusCode);
             }
         }
     }
