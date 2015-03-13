@@ -2,18 +2,19 @@
 using System.IO;
 using MoreLinq;
 using Spreadbot.Core.Channel.Ebay.Mip;
+using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public class EbayChannel : IChannel
+    public class EbayChannel : AbstractChannel
     {
         // ===================================================================================== []
         // Name
         private const string ConstName = "eBay";
         // --------------------------------------------------------[]
-        public string Name
+        public override string Name
         {
             get { return ConstName; }
         }
@@ -21,7 +22,7 @@ namespace Spreadbot.Core.Channel.Ebay
         // ===================================================================================== []
         // Publish
         // Code: EbayChannel : Publish
-        public IResponse Publish(IArgs args)
+        public override IChannelResponse Publish(IChannelTaskArgs args)
         {
             MipResponse<MipSendZippedFeedFolderResult> mipResponse;
             try
@@ -48,7 +49,7 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        private void CreateFeedFile(MipFeed mipFeed)
+        private static void CreateFeedFile(MipFeed mipFeed)
         {
             CreateFeedFolderIfNeed(mipFeed);
 
@@ -75,6 +76,13 @@ namespace Spreadbot.Core.Channel.Ebay
             Directory
                 .GetFiles(MipConnector.LocalFeedFolder(mipFeed))
                 .ForEach(File.Delete);
+        }
+
+        // ===================================================================================== []
+        // Update
+        public override void Update(IChannelTask channelTask)
+        {
+            throw new NotImplementedException();
         }
     }
 }

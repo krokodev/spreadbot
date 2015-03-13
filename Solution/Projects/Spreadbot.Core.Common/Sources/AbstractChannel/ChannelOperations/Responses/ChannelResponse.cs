@@ -1,9 +1,11 @@
 using System;
 using Spreadbot.Sdk.Common;
 
-namespace Spreadbot.Core.System
+namespace Spreadbot.Core.Common
 {
-    public class ChannelResponse<TR> : GenericResponse<TR, ChannelResponseStatusCode> where TR : IResponseResult
+    public class ChannelResponse<TR> :
+        GenericResponse<TR, ChannelResponseStatusCode>, IChannelResponse
+        where TR : IResponseResult
     {
         public ChannelResponse(bool isSucces, ChannelResponseStatusCode code, Exception exception)
             : base(isSucces, code, exception)

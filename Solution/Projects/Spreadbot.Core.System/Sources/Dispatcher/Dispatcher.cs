@@ -2,6 +2,7 @@
 using System.Linq;
 using MoreLinq;
 using Spreadbot.Core.Common;
+using Spreadbot.Sdk.Common;
 
 // >> Core | Dispatcher
 
@@ -11,18 +12,17 @@ namespace Spreadbot.Core.System
     {
         // ===================================================================================== []
         // RunChannelTask
-        // Code: Dispatcher : RunChannelTask
         public static void RunChannelTask(IChannelTask task)
         {
-            if (task.Response != null)
+            if (task.StatusCode!=TaskStatus.Todo)
             {
-                throw new SpreadbotException("Task is already done [{0}]", task);
+                throw new SpreadbotException("Task was already run [{0}]", task);
             }
 
             switch (task.Method)
             {
                 case ChannelMethod.Publish:
-                    task.Response = task.Channel.Publish(task.Args);
+                    task.Response = task.Channel.Publish(task.ChannelArgs);
                     break;
                 default:
                     throw new SpreadbotException("Unexpected task operation [{0}]", task.Method);
@@ -32,7 +32,28 @@ namespace Spreadbot.Core.System
         // --------------------------------------------------------[]
         public static void RunChannelTasks(IEnumerable<IChannelTask> tasks)
         {
-            tasks.Where(t => t.Response == null).ForEach(RunChannelTask);
+            tasks.ForEach(RunChannelTask);
         }
+
+        // ===================================================================================== []
+        // UpdateChannelTasks
+        // Code: ** Dispatcher : UpdateChannelTasks
+        private static void UpdateChannelTask(IChannelTask task)
+        {
+            if (task.StatusCode != TaskStatus.Inprocess)
+            {
+                throw new SpreadbotException("Task is not In-Process [{0}]", task);
+            }
+
+            task.Channel.Update(task);
+        }
+
+        // --------------------------------------------------------[]
+        public static void UpdateChannelTasks(IEnumerable<IChannelTask> tasks)
+        {
+            tasks.ForEach(UpdateChannelTask);
+        }
+
+        // --------------------------------------------------------[]
     }
 }

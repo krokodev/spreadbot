@@ -1,4 +1,4 @@
-﻿namespace Spreadbot.Core.System
+﻿namespace Spreadbot.Core.Common
 {
     public enum ChannelResponseStatusCode
     {

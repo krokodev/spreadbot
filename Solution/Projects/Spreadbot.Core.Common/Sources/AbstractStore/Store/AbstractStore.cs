@@ -3,7 +3,7 @@ using System.Linq;
 using MoreLinq;
 using Spreadbot.Sdk.Common;
 
-namespace Spreadbot.Core.System
+namespace Spreadbot.Core.Common
 {
     public abstract class AbstractStore : IStore
     {

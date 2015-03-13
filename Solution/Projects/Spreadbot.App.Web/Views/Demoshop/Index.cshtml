@@ -2,7 +2,6 @@
 @using Crocodev.Common
 @using Spreadbot.App.Web
 @using Spreadbot.Core.Channel.Ebay.Mip.Configuration
-@using Spreadbot.Core.Common
 @using Spreadbot.Sdk.Common
 @model DemoshopModel
 
@@ -18,10 +17,10 @@
     using (Html.BeginForm("UpdateItem", "Demoshop", FormMethod.Post))
     {
         <fieldset class="sb-table">
-            @FormEditor(m => m.Item.Sku)
-            @FormEditor(m => m.Item.Title, "sb-width-500px")
-            @FormEditor(m => m.Item.Price)
-            @FormEditor(m => m.Item.Quantity)
+            @FormEditor(m => DemoshopModel.Item.Sku)
+            @FormEditor(m => DemoshopModel.Item.Title, "sb-width-500px")
+            @FormEditor(m => DemoshopModel.Item.Price)
+            @FormEditor(m => DemoshopModel.Item.Quantity)
         </fieldset>
         <input type="submit" value="Update"/>
     }
@@ -79,8 +78,8 @@
         <h2>
             Store and Channel Tasks
         </h2>
-        @ShowTasks(Model.StoreTasks)
-        @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", Model.Item)
+        @ShowTasks(DemoshopModel.StoreTasks)
+        @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", DemoshopModel.Item)
     </div>
 
     <div>
@@ -92,16 +91,13 @@
             <li>
                 @Html.ActionLink(
                     "Run Channel Tasks ({0})"
-                        .SafeFormat(Model.ChannelTasksTodo.Count()),
+                        .SafeFormat(DemoshopModel.ChannelTasksTodo.Count()),
                     "RunChannelTasks")
             </li>
             <li>
-                @*
-                // Code: ** View : UpdateChannelTasks
-                *@
                 @Html.ActionLink(
-                    "Upadte Task Statuses ({0})"
-                        .SafeFormat(Model.ChannelTasksInprocess.Count()),
+                    "Update Task Statuses ({0})"
+                        .SafeFormat(DemoshopModel.ChannelTasksInprocess.Count()),
                     "UpdateChannelTasks")
             </li>
             <li>

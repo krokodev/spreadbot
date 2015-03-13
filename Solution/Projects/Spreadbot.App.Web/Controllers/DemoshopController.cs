@@ -34,8 +34,7 @@ namespace Spreadbot.App.Web
         // RunChannelTasks
         public ActionResult RunChannelTasks()
         {
-            Dispatcher.RunChannelTasks(DemoshopModel.ChannelTasks);
-
+            Dispatcher.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
             return View(new DemoshopModel());
         }
 
@@ -43,8 +42,7 @@ namespace Spreadbot.App.Web
         // Update
         public ActionResult UpdateChannelTasks()
         {
-            // Code: * Controller : UpdateChannelTasks
-
+            Dispatcher.UpdateChannelTasks(DemoshopModel.ChannelTasksInprocess);
             return RedirectToAction("Index");
         }
     }

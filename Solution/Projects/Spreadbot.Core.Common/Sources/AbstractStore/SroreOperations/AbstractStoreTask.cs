@@ -2,7 +2,7 @@
 
 // !>> Core | StoreTask
 
-namespace Spreadbot.Core.System
+namespace Spreadbot.Core.Common
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {

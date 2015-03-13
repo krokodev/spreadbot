@@ -34,7 +34,7 @@ namespace Spreadbot.Sdk.Common
         }
 
         // --------------------------------------------------------[]
-        public virtual IArgs Args { get; protected set; }
+        public virtual ITaskArgs Args { get; protected set; }
         // --------------------------------------------------------[]
         public virtual IResponse Response { get; set; }
         // --------------------------------------------------------[]

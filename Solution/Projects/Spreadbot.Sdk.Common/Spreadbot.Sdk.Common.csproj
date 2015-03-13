@@ -50,9 +50,10 @@
     <Compile Include="Sources\Crocodev.Common\FileSystemExtensions.cs" />
     <Compile Include="Sources\Crocodev.Common\StringExtensions.cs" />
     <Compile Include="Sources\Crocodev.Common\Stub.cs" />
+    <Compile Include="Sources\Exceptions\SpreadbotException.cs" />
     <Compile Include="Sources\Operations\Args\AbstractArgs.cs" />
-    <Compile Include="Sources\Operations\Args\IArgs.cs" />
-    <Compile Include="Sources\Operations\Exceptions\ResponseException.cs" />
+    <Compile Include="Sources\Operations\Args\ITaskArgs.cs" />
+    <Compile Include="Sources\Exceptions\ResponseException.cs" />
     <Compile Include="Sources\Operations\ResponseResults\BoolResponseResult.cs" />
     <Compile Include="Sources\Operations\ResponseResults\IResponseResult.cs" />
     <Compile Include="Sources\Operations\ResponseResults\AbstractResponseResult.cs" />

@@ -8,6 +8,7 @@ using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.App.Web
 {
@@ -73,7 +74,6 @@ namespace Spreadbot.App.Web
         }
 
         // --------------------------------------------------------[]
-        // Code: DemoshopStore : FeedContent
         private static string FeedContent(MipFeedType mipFeedType)
         {
             var template = FeedTemplate(mipFeedType);

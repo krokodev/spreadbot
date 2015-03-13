@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
@@ -9,18 +10,21 @@ namespace Spreadbot.App.Web
 {
     public class DemoshopModel
     {
-        public DemoshopItem Item { get; set; }
+        public static DemoshopItem Item
+        {
+            get { return Store.Item; }
+        }
 
         public static IEnumerable<IStoreTask> StoreTasks
         {
             get { return Store.StoreTasks; }           
         }
-        public IEnumerable<IChannelTask> ChannelTasksTodo
+        public static IEnumerable<IChannelTask> ChannelTasksTodo
         {
             get { return Store.ChannelTasks.Where(t=>t.StatusCode==TaskStatus.Todo); }
         }
 
-        public IEnumerable<IChannelTask> ChannelTasksInprocess
+        public static IEnumerable<IChannelTask> ChannelTasksInprocess
         {
             get { return Store.ChannelTasks.Where(t => t.StatusCode == TaskStatus.Inprocess); }
         }

@@ -1,14 +1,15 @@
 ﻿using Crocodev.Common;
 using Spreadbot.Sdk.Common;
 
-// !>> Core | Channel Task
-namespace Spreadbot.Core.System
+// !>> Core | ChannelTask
+
+namespace Spreadbot.Core.Common
 {
-    public abstract class ChannelTask : AbstractTask, IChannelTask
+    public abstract class AbstractChannelTask : AbstractTask, IChannelTask
     {
         // ===================================================================================== []
         // Constructor
-        protected ChannelTask(ChannelMethod method)
+        protected AbstractChannelTask(ChannelMethod method)
         {
             Method = method;
         }
@@ -19,7 +20,7 @@ namespace Spreadbot.Core.System
         {
             get
             {
-                return base.Autoinfo+" Channel: [{0}] Args: [{1}] Response: [{2}]"
+                return base.Autoinfo + " Channel: [{0}] Args: [{1}] Response: [{2}]"
                     .SafeFormat(
                         Channel.Name,
                         Args,
@@ -33,5 +34,10 @@ namespace Spreadbot.Core.System
         public IChannel Channel { get; protected set; }
         // --------------------------------------------------------[]
         public ChannelMethod Method { get; set; }
+        // --------------------------------------------------------[]
+        public IChannelTaskArgs ChannelArgs
+        {
+            get { return (IChannelTaskArgs) Args; }
+        }
     }
 }

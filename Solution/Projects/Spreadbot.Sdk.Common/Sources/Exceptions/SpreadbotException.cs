@@ -1,7 +1,7 @@
 ﻿using System;
 using Crocodev.Common;
 
-namespace Spreadbot.Core.Common
+namespace Spreadbot.Sdk.Common
 {
     public class SpreadbotException : Exception
     {

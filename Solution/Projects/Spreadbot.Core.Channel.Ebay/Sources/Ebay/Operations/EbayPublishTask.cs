@@ -7,7 +7,7 @@ using Spreadbot.Sdk.Common;
 // !>> Core | EBay | EbayPublishTask
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public sealed class EbayPublishTask : ChannelTask
+    public sealed class EbayPublishTask : AbstractChannelTask
     {
         // ===================================================================================== []
         // Constructor
@@ -23,7 +23,7 @@ namespace Spreadbot.Core.Channel.Ebay
                     ItemInfo = itemInfo
                 }
             };
-            MipRequestStatusCode = MipRequestStatus.Unknown;
+            MipRequestStatusCode = MipRequestStatus.Initial;
         }
 
         // ===================================================================================== []
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // StatusCode
-        // Code: ** EbayPublishTask : StatusCode
+        // Code: * EbayPublishTask : StatusCode
         public MipRequestStatus MipRequestStatusCode { get; set; }
         // --------------------------------------------------------[]
         public override TaskStatus StatusCode
@@ -52,15 +52,14 @@ namespace Spreadbot.Core.Channel.Ebay
                 }
                 switch (MipRequestStatusCode)
                 {
-                    case MipRequestStatus.Unknown:
-                        return TaskStatus.Inprocess;
-
-                    case MipRequestStatus.Fail:
-                        return TaskStatus.Fail;
-
+                    case MipRequestStatus.Initial:
                     case MipRequestStatus.Inprocess:
                         return TaskStatus.Inprocess;
 
+                    case MipRequestStatus.Unknown:
+                    case MipRequestStatus.Fail:
+                        return TaskStatus.Fail;
+                        
                     case MipRequestStatus.Success:
                         return TaskStatus.Inprocess;
                 }
@@ -70,7 +69,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // Autoinfo
-        // Code: * EbayPublishTask : Autoinfo
+        // Code: EbayPublishTask : Autoinfo
         public override string Autoinfo
         {
             get
