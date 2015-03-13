@@ -1,6 +1,7 @@
 ﻿using System;
 using Crocodev.Common;
 using Spreadbot.Core.Common;
+using Spreadbot.Sdk.Common;
 using WinSCP;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
@@ -11,7 +12,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         {
             // ===================================================================================== []
             // DoTestConnection
-            private static MipResponse<BoolResult> DoTestConnection(string password)
+            private static MipResponse<BoolResponseResult> DoTestConnection(string password)
             {
                 try
                 {
@@ -23,9 +24,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new MipResponse<BoolResult>(false, MipStatusCode.TestConnectionFail, exception);
+                    return new MipResponse<BoolResponseResult>(false, MipStatusCode.TestConnectionFail, exception);
                 }
-                return new MipResponse<BoolResult>(true, MipStatusCode.TestConnectionSuccess, new BoolResult(true));
+                return new MipResponse<BoolResponseResult>(true, MipStatusCode.TestConnectionSuccess, new BoolResponseResult(true));
             }
 
             // ===================================================================================== []

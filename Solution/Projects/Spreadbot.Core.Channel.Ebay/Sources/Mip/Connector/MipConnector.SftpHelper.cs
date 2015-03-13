@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Crocodev.Common;
 using Spreadbot.Core.Common;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
@@ -10,7 +11,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         {
             // ===================================================================================== []
             // TestConnection
-            public static MipResponse<BoolResult> TestConnection(string password = null)
+            public static MipResponse<BoolResponseResult> TestConnection(string password = null)
             {
                 return DoTestConnection(password);
             }

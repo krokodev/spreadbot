@@ -1,6 +1,4 @@
-using System;
-
-namespace Spreadbot.Core.Common
+namespace Spreadbot.Sdk.Common
 {
     public interface IResponse
     {

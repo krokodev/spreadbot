@@ -1,6 +1,8 @@
-namespace Spreadbot.Core.Common
+using System;
+
+namespace Spreadbot.Sdk.Common
 {
-    public class ResponseException: SpreadbotException
+    public class ResponseException: Exception
     {
         public ResponseException(IResponse response)
         {

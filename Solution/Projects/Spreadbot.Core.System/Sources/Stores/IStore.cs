@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Spreadbot.Core.Common;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.System
 {

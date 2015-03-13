@@ -3,7 +3,8 @@
 @using Spreadbot.App.Web
 @using Spreadbot.Core.Channel.Ebay.Mip.Configuration
 @using Spreadbot.Core.Common
-@model Spreadbot.App.Web.DemoshopModel
+@using Spreadbot.Sdk.Common
+@model DemoshopModel
 
 @{
     // ===================================================================================== []
@@ -22,14 +23,14 @@
             @FormEditor(m => m.Item.Price)
             @FormEditor(m => m.Item.Quantity)
         </fieldset>
-        <input type="submit" value="Update" />
+        <input type="submit" value="Update"/>
     }
 }
 
 @helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
 {
     var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new { @class });
+    var textBox = Html.TextBoxFor(expression, new {@class});
 
     @FormView.Editor(label, textBox)
 }
@@ -38,7 +39,7 @@
 @helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
 {
     var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new { @class });
+    var textBox = Html.TextBoxFor(expression, new {@class});
 
     @FormView.Editor(label, textBox)
 }
@@ -89,19 +90,26 @@
 
         <ul>
             <li>
-                @Html.ActionLink("Run Channel Tasks ({0})".SafeFormat(Model.ChannelTasks.Count(t => t.Response == null)), "RunChannelTasks")
+                @Html.ActionLink(
+                    "Run Channel Tasks ({0})"
+                        .SafeFormat(Model.ChannelTasks.Count(t => t.StatusCode == TaskStatus.Todo)),
+                    "RunChannelTasks")
             </li>
             <li>
-@*
-    // Code: ** View : UpdateChannelTasks
-*@
-
-                @Html.ActionLink("Upadte Task Statuses ({0})".SafeFormat(Model.ChannelTasks.Count()), "UpdateChannelTasks")
+                @*
+                // Code: ** View : UpdateChannelTasks
+                *@
+                @Html.ActionLink(
+                    "Upadte Task Statuses ({0})"
+                        .SafeFormat(Model.ChannelTasks.Count(t => t.StatusCode == TaskStatus.Inprocess)),
+                    "UpdateChannelTasks")
             </li>
             <li>
                 View publishing result for request [yyy]
             </li>
         </ul>
+
+
     </div>
 
     [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]<br>

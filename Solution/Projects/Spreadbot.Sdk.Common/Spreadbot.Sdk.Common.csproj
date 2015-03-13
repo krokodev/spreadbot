@@ -50,6 +50,18 @@
     <Compile Include="Sources\Crocodev.Common\FileSystemExtensions.cs" />
     <Compile Include="Sources\Crocodev.Common\StringExtensions.cs" />
     <Compile Include="Sources\Crocodev.Common\Stub.cs" />
+    <Compile Include="Sources\Operations\Args\Args.cs" />
+    <Compile Include="Sources\Operations\Args\IArgs.cs" />
+    <Compile Include="Sources\Operations\Exceptions\ResponseException.cs" />
+    <Compile Include="Sources\Operations\ResponseResults\BoolResponseResult.cs" />
+    <Compile Include="Sources\Operations\ResponseResults\IResponseResult.cs" />
+    <Compile Include="Sources\Operations\ResponseResults\ResponseResult.cs" />
+    <Compile Include="Sources\Operations\Response\GenericResponse.cs" />
+    <Compile Include="Sources\Operations\Response\GenericResponse.pvt.Descriptions.cs" />
+    <Compile Include="Sources\Operations\Response\IResponse.cs" />
+    <Compile Include="Sources\Operations\Task\ITask.cs" />
+    <Compile Include="Sources\Operations\Task\Task.cs" />
+    <Compile Include="Sources\Operations\Task\TaskStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,4 +1,6 @@
-﻿using Spreadbot.Core.Common;
+﻿using Spreadbot.Sdk.Common;
+
+// !>> Core | StoreTask
 
 namespace Spreadbot.Core.System
 {
@@ -8,7 +10,6 @@ namespace Spreadbot.Core.System
         {
             Description = description;
         }
-        // Code: StoreTask : Autoinfo
 
         public override TaskStatus StatusCode
         {

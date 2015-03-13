@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Spreadbot.Core.Common
+namespace Spreadbot.Sdk.Common
 {
     public interface ITask
     {
@@ -9,5 +9,6 @@ namespace Spreadbot.Core.Common
         IResponse Response { get; set; }
         string Description { get; set; }
         IEnumerable<ITask> SubTasks { get; }
+        TaskStatus StatusCode { get; }
     }
 }

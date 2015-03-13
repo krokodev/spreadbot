@@ -2,7 +2,9 @@
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
+using Spreadbot.Sdk.Common;
 
+// !>> Core | EBay | EbayPublishTask
 namespace Spreadbot.Core.Channel.Ebay
 {
     public sealed class EbayPublishTask : ChannelTask
@@ -33,6 +35,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // StatusCode
+        // Code: ** EbayPublishTask : StatusCode
         public MipRequestStatus MipRequestStatusCode { get; set; }
         // --------------------------------------------------------[]
         public override TaskStatus StatusCode

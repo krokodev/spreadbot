@@ -1,4 +1,4 @@
-﻿namespace Spreadbot.Core.Common
+﻿namespace Spreadbot.Sdk.Common
 {
     public abstract class Args : IArgs
     {

@@ -1,11 +1,10 @@
 using Crocodev.Common;
 
-namespace Spreadbot.Core.Common
-
+namespace Spreadbot.Sdk.Common
 {
-    public class BoolResult : ResponseResult
+    public class BoolResponseResult : ResponseResult
     {
-        public BoolResult(bool value)
+        public BoolResponseResult(bool value)
         {
             Value = value;
         }

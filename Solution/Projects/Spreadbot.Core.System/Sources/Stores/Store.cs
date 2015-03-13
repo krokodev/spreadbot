@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
-using Spreadbot.Core.Common;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.System
 {

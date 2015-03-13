@@ -1,6 +1,6 @@
 using System;
 
-namespace Spreadbot.Core.Common
+namespace Spreadbot.Sdk.Common
 {
     public partial class GenericResponse<TR,TC> : IResponse where TR:IResponseResult
     {

@@ -2,8 +2,8 @@
 using System.IO;
 using MoreLinq;
 using Spreadbot.Core.Channel.Ebay.Mip;
-using Spreadbot.Core.Common;
 using Spreadbot.Core.System;
+using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {

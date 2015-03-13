@@ -2,7 +2,7 @@
 using Crocodev.Common;
 using MoreLinq;
 
-namespace Spreadbot.Core.Common
+namespace Spreadbot.Sdk.Common
 {
     public partial class GenericResponse<TR,TC>
     {

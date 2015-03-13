@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Crocodev.Common;
 using Crocodev.Common.Identifier;
 
-namespace Spreadbot.Core.Common
+// !>> Core | Sdk | Task
+namespace Spreadbot.Sdk.Common
 {
     public abstract class Task : Identifiable<Task,int>, ITask
     {
@@ -24,7 +25,6 @@ namespace Spreadbot.Core.Common
         public readonly DateTime CreationTime = DateTime.Now;
         public abstract TaskStatus StatusCode { get; }
         public bool IsCritical = true;
-
 
         // ===================================================================================== []
         // ITask

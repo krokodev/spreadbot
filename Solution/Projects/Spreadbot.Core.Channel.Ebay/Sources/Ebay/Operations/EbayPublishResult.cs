@@ -13,7 +13,6 @@ namespace Spreadbot.Core.Channel.Ebay
             MipRequestId = mipRequestId;
         }
 
-        // Code: EbayPublishResul : GetAutoinfo
         public override string Autoinfo
         {
             get

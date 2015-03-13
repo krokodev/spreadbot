@@ -65,6 +65,10 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
+      <Project>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</Project>
+      <Name>Spreadbot.Sdk.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
