@@ -7,6 +7,12 @@ namespace Spreadbot.Sdk.Common
     public partial class GenericResponse<TR,TC>
     {
         // ===================================================================================== []
+        // Ctror
+        protected GenericResponse()
+        {
+        }
+
+        // ===================================================================================== []
         // Get Autoinfo
         private string GetSuccessAutoinfo(int level)
         {

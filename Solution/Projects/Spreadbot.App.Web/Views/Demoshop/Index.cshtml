@@ -17,7 +17,7 @@
 
 @{
     // ===================================================================================== []
-    // >> View | Demoshop | Index
+    // !>> View | Demoshop | Index
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
@@ -106,6 +106,12 @@
         <ul>
             <li>
                 @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", DemoshopModel.Item)
+            </li>
+            <li>
+                @Html.ActionLink("Save tasks", "SaveTasks")
+            </li>
+            <li>
+                @Html.ActionLink("Restore tasks", "RestoreTasks")
             </li>
         </ul>
     </div>

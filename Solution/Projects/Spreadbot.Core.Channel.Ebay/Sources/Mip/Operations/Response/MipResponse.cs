@@ -5,6 +5,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class MipResponse<TR> : GenericResponse<TR, MipStatusCode> where TR : IResponseResult
     {
+        public MipResponse()
+        {
+        }
+
         public MipResponse(bool isSucces, MipStatusCode code)
             : base(isSucces, code)
         {

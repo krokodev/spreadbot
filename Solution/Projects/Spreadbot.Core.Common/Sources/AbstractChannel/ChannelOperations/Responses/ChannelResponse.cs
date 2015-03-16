@@ -7,6 +7,10 @@ namespace Spreadbot.Core.Common
         GenericResponse<TR, ChannelResponseStatusCode>, IChannelResponse
         where TR : IResponseResult
     {
+        public ChannelResponse()
+        {
+        }
+
         public ChannelResponse(bool isSucces, ChannelResponseStatusCode code, Exception exception)
             : base(isSucces, code, exception)
         {

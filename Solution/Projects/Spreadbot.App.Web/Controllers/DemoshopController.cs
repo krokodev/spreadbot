@@ -10,7 +10,6 @@ namespace Spreadbot.App.Web
         // Index
         public ActionResult Index()
         {
-            DemoshopModel.SaveChanges();
             return View(new DemoshopModel());
         }
 
@@ -28,7 +27,6 @@ namespace Spreadbot.App.Web
         public ActionResult AddTask()
         {
             DemoshopModel.PublishItemOnEbay();
-            DemoshopModel.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -37,7 +35,6 @@ namespace Spreadbot.App.Web
         public ActionResult RunChannelTasks()
         {
             Dispatcher.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
-            DemoshopModel.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -46,7 +43,21 @@ namespace Spreadbot.App.Web
         public ActionResult ProceedChannelTasks()
         {
             Dispatcher.ProceedChannelTasks(DemoshopModel.ChannelTasksInprocess);
-            DemoshopModel.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // ===================================================================================== []
+        // Save/Restore Tasks
+        public ActionResult SaveTasks()
+        {
+            DemoshopModel.Save();
+            return RedirectToAction("Index");
+        }
+
+        // --------------------------------------------------------[]
+        public ActionResult RestoreTasks()
+        {
+            DemoshopModel.Restore();
             return RedirectToAction("Index");
         }
     }

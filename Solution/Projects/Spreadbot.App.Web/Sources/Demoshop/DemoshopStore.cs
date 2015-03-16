@@ -82,6 +82,7 @@ namespace Spreadbot.App.Web
             get { return _storeTasks; }
             set { _storeTasks = value; }
         }
+
         public List<AbstractChannelTask> ChannelTasks
         {
             get { return _channelTasks; }
@@ -169,10 +170,15 @@ namespace Spreadbot.App.Web
         // Save/Restore
         // Code: Demoshop.SaveChanges()
         // --------------------------------------------------------[]
-        public void SaveChanges()
+        public void Save()
         {
-            var path = DataFileName();
-            Serializer.Default.Serialize(this, path);
+            Serializer.Default.Serialize(this, DataFileName());
+        }
+
+        // --------------------------------------------------------[]
+        public void Restore()
+        {
+            Serializer.Default.Deserialize(this, DataFileName());
         }
 
         // --------------------------------------------------------[]

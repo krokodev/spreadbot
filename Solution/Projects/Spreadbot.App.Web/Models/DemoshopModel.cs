@@ -49,11 +49,19 @@ namespace Spreadbot.App.Web
         }
 
         private static readonly object Locker=0;
-        public static void SaveChanges()
+        public static void Save()
         {
             lock (Locker)
             {
-                Store.SaveChanges();
+                Store.Save();
+            }
+        }
+
+        public static void Restore()
+        {
+            lock (Locker)
+            {
+                Store.Restore();
             }
         }
     }

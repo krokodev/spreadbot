@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Common
                     "{2} {0}: {1}",
                     StatusCode,
                     Description,
-                    Store.Name
+                    "Store.Name"
                     );
             }
         }

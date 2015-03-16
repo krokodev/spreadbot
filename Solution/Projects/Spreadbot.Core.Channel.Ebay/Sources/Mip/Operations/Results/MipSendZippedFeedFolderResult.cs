@@ -5,6 +5,10 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
 {
     public class MipSendZippedFeedFolderResult : MipResponseResult
     {
+        public MipSendZippedFeedFolderResult()
+        {
+        }
+
         public MipSendZippedFeedFolderResult(MipRequest.Identifier mipRequestId)
         {
             MipRequestId = mipRequestId;
