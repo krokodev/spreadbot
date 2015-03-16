@@ -55,12 +55,15 @@
     <Compile Include="Sources\AbstractChannel\ChannelOperations\Responses\IChannelResponse.cs" />
     <Compile Include="Sources\AbstractChannel\ChannelOperations\Tasks\AbstractChannelTask.cs" />
     <Compile Include="Sources\AbstractChannel\ChannelOperations\Tasks\IChannelTask.cs" />
-    <Compile Include="Sources\AbstractStore\Store\AbstractStore.cs" />
+    <Compile Include="Sources\AbstractStore\Operations\AbstractStoreTask.cs" />
     <Compile Include="Sources\AbstractStore\Store\IStore.cs" />
-    <Compile Include="Sources\AbstractStore\SroreOperations\AbstractStoreTask.cs" />
-    <Compile Include="Sources\AbstractStore\SroreOperations\IStoreTask.cs" />
+    <Compile Include="Sources\AbstractStore\Operations\IStoreTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nereal.Serialization\Nereal.Serialization.csproj">
+      <Project>{3f84d09a-e2b3-4487-a576-e1e8b7e469c8}</Project>
+      <Name>Nereal.Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
       <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
       <Name>Spreadbot.Sdk.Common</Name>

@@ -11,6 +11,10 @@ namespace Spreadbot.Core.Channel.Ebay
     {
         // ===================================================================================== []
         // Constructor
+        public EbayPublishTask()
+        {
+            
+        }
         public EbayPublishTask(MipFeedType mipFeedType, string feedContent, string itemInfo)
             : base(ChannelMethod.Publish)
         {
@@ -88,19 +92,19 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        public string MipRequestStatusInfo
+        private string MipRequestStatusInfo
         {
             get { return "MipRequestStatus: [{0}]".SafeFormat(MipRequestStatusCode); }
         }
 
         // --------------------------------------------------------[]
-        public object IsCriticalInfo
+        private string IsCriticalInfo
         {
             get { return IsCritical ? "Critical" : "Non critical"; }
         }
 
         // --------------------------------------------------------[]
-        public string ResponseResultInfo
+        private string ResponseResultInfo
         {
             get
             {
@@ -111,7 +115,7 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        public string MissionInfo
+        private string MissionInfo
         {
             get
             {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using Crocodev.Common;
 using Crocodev.Common.Identifier;
 
@@ -41,7 +42,7 @@ namespace Spreadbot.Sdk.Common
         public readonly DateTime CreationTime = DateTime.Now;
         public abstract TaskStatus StatusCode { get; }
         public bool IsCritical { get; set; }
-        public virtual AbstractArgs Args { get; protected set; }
+        protected AbstractArgs Args { get; set; }
 
         // ===================================================================================== []
         // ITask
@@ -53,6 +54,7 @@ namespace Spreadbot.Sdk.Common
         // --------------------------------------------------------[]
         ITaskArgs ITask.Args { get { return Args; } }
         // --------------------------------------------------------[]
+        [XmlIgnore]
         public virtual IResponse Response { get; set; }
         // --------------------------------------------------------[]
         public string Description { get; set; }

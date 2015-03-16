@@ -14,6 +14,12 @@ namespace Spreadbot.Core.Common
             Method = method;
         }
 
+        // --------------------------------------------------------[]
+        protected AbstractChannelTask()
+            :this(ChannelMethod.Unknown)
+        {
+        }
+
         // ===================================================================================== []
         // ITask
         public override string Autoinfo
@@ -31,7 +37,7 @@ namespace Spreadbot.Core.Common
 
         // ===================================================================================== []
         // IChannelTask
-        public IChannel Channel { get; protected set; }
+        public IChannel Channel { get; set; }
         // --------------------------------------------------------[]
         public ChannelMethod Method { get; set; }
         // --------------------------------------------------------[]

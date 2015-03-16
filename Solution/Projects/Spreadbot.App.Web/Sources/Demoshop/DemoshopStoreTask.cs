@@ -5,6 +5,10 @@ namespace Spreadbot.App.Web
 {
     public class DemoshopStoreTask : AbstractStoreTask
     {
+        public DemoshopStoreTask()
+        {
+            
+        }
         public DemoshopStoreTask(IStore store, string description)
             : base(store, description)
         {

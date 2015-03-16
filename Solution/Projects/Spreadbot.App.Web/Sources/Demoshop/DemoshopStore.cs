@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using System.Xml.Serialization;
 using Crocodev.Common;
+using Nereal.Serialization;
 using Spreadbot.App.Web.Configuration;
 using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.Channel.Ebay.Mip;
@@ -13,7 +14,7 @@ using Spreadbot.Sdk.Common;
 namespace Spreadbot.App.Web
 {
     // !>> App | Web | DemoshopStore
-    public class DemoshopStore : AbstractStore
+    public class DemoshopStore : IStore
     {
         // ===================================================================================== []
         // Instance
@@ -61,18 +62,52 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Tasks
+        private List<DemoshopStoreTask> _storeTasks = new List<DemoshopStoreTask>();
+        private List<AbstractChannelTask> _channelTasks = new List<AbstractChannelTask>();
+        // --------------------------------------------------------[]
+        private void AddTask(DemoshopStoreTask task)
+        {
+            _storeTasks.Add(task);
+        }
+
+        // --------------------------------------------------------[]
+        private void AddTask(AbstractChannelTask task)
+        {
+            _channelTasks.Add(task);
+        }
+
+        // --------------------------------------------------------[]
+        public List<DemoshopStoreTask> StoreTasks
+        {
+            get { return _storeTasks; }
+            set { _storeTasks = value; }
+        }
+        public List<AbstractChannelTask> ChannelTasks
+        {
+            get { return _channelTasks; }
+            set { _channelTasks = value; }
+        }
+
+        // ===================================================================================== []
+        // PublishItemOnEbay
         public void PublishItemOnEbay()
         {
-            var storeTask = new DemoshopStoreTask(this, "Publish [{0}] on eBay".SafeFormat(Item.Sku));
+            var storeTask =
+                new DemoshopStoreTask(this, "Publish [{0}] on eBay".SafeFormat(Item.Sku));
 
-            AddTask(
-                storeTask
-                    .AddSubTask(new EbayPublishTask(MipFeedType.Product, FeedContent(MipFeedType.Product), Item.Sku))
-                    .AddSubTask(new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability),
-                        Item.Sku))
-                    .AddSubTask(new EbayPublishTask(MipFeedType.Distribution, FeedContent(MipFeedType.Distribution),
-                        Item.Sku)),
-                true);
+            var productTask =
+                new EbayPublishTask(MipFeedType.Product, FeedContent(MipFeedType.Product), Item.Sku);
+            var distributionTask =
+                new EbayPublishTask(MipFeedType.Distribution, FeedContent(MipFeedType.Distribution), Item.Sku);
+            var availabilityTask =
+                new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability), Item.Sku);
+
+            AddTask(storeTask);
+            AddTask(productTask);
+            AddTask(distributionTask);
+            AddTask(availabilityTask);
+
+            storeTask.AddSubTask(productTask).AddSubTask(distributionTask).AddSubTask(availabilityTask);
         }
 
         // --------------------------------------------------------[]
@@ -113,9 +148,21 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // IStore
-        public override string Name
+        public string Name
         {
             get { return "Demoshop"; }
+        }
+
+        // --------------------------------------------------------[]
+        IEnumerable<IChannelTask> IStore.ChannelTasks
+        {
+            get { return ChannelTasks; }
+        }
+
+        // --------------------------------------------------------[]
+        IEnumerable<IStoreTask> IStore.StoreTasks
+        {
+            get { return StoreTasks; }
         }
 
         // ===================================================================================== []
@@ -125,11 +172,7 @@ namespace Spreadbot.App.Web
         public void SaveChanges()
         {
             var path = DataFileName();
-            var x = new XmlSerializer(typeof(DemoshopStore));
-            using (var writer = new StreamWriter(path))
-            {
-                x.Serialize(writer, this);     
-            }
+            Serializer.Default.Serialize(this, path);
         }
 
         // --------------------------------------------------------[]

@@ -196,6 +196,10 @@
     <Content Include="Views\Demoshop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nereal.Serialization\Nereal.Serialization.csproj">
+      <Project>{3f84d09a-e2b3-4487-a576-e1e8b7e469c8}</Project>
+      <Name>Nereal.Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Channel.Ebay.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
       <Name>Spreadbot.Core.Channel.Ebay</Name>
@@ -238,7 +242,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53972</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37809/</IISUrl>
+          <IISUrl>http://localhost:37810/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

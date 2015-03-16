@@ -1,6 +1,6 @@
-﻿using Spreadbot.Sdk.Common;
-
-// !>> Core | StoreTask
+// !>> Core | AbstractStoreTask
+using Spreadbot.Sdk.Common;
+using Nereal.Serialization;
 
 namespace Spreadbot.Core.Common
 {
@@ -10,6 +10,10 @@ namespace Spreadbot.Core.Common
         {
             Store = store;
             Description = description;
+        }
+
+        protected AbstractStoreTask()
+        {
         }
 
         public override string Autoinfo
@@ -25,6 +29,7 @@ namespace Spreadbot.Core.Common
             }
         }
 
+        [NotSerialize]
         public IStore Store { get; set; }
     }
 }
