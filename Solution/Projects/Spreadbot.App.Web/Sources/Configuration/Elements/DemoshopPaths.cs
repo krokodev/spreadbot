@@ -10,5 +10,11 @@ namespace Spreadbot.App.Web.Configuration
         {
             get { return (string)this[GetPropertyName()]; }
         }
+        [ConfigurationProperty("XmlDataFileName", IsRequired = true)]
+        public string XmlDataFileName
+        {
+            get { return (string)this[GetPropertyName()]; }
+        }
+
     }
 }

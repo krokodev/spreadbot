@@ -19,12 +19,19 @@ namespace Spreadbot.Sdk.Common
 
         // ===================================================================================== []
         // Tasks
-        private readonly IList<ITask> _subTasks = new List<ITask>();
+        private List<AbstractTask> _subTasks = new List<AbstractTask>();
         // --------------------------------------------------------[]
-        public AbstractTask AddSubTask(ITask task)
+        public AbstractTask AddSubTask(AbstractTask task)
         {
             _subTasks.Add(task);
             return this;
+        }
+
+        // --------------------------------------------------------[]
+        public List<AbstractTask> SubTasks
+        {
+            get { return _subTasks; }
+            set { _subTasks=value; }
         }
 
         // ===================================================================================== []
@@ -34,6 +41,7 @@ namespace Spreadbot.Sdk.Common
         public readonly DateTime CreationTime = DateTime.Now;
         public abstract TaskStatus StatusCode { get; }
         public bool IsCritical { get; set; }
+        public virtual AbstractArgs Args { get; protected set; }
 
         // ===================================================================================== []
         // ITask
@@ -43,13 +51,13 @@ namespace Spreadbot.Sdk.Common
         }
 
         // --------------------------------------------------------[]
-        public virtual ITaskArgs Args { get; protected set; }
+        ITaskArgs ITask.Args { get { return Args; } }
         // --------------------------------------------------------[]
         public virtual IResponse Response { get; set; }
         // --------------------------------------------------------[]
         public string Description { get; set; }
         // --------------------------------------------------------[]
-        public virtual IEnumerable<ITask> SubTasks
+        IEnumerable<ITask> ITask.SubTasks
         {
             get { return _subTasks; }
         }
@@ -63,7 +71,7 @@ namespace Spreadbot.Sdk.Common
 
         // ===================================================================================== []
         // Utils
-        public TaskStatus CalcSuperTaskStatusCode()
+        protected TaskStatus CalcSuperTaskStatusCode()
         {
             var totalSubCount = SubTasks.Count();
 

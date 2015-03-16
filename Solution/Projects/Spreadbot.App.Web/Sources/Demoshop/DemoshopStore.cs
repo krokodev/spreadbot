@@ -2,12 +2,12 @@
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using System.Xml.Serialization;
 using Crocodev.Common;
 using Spreadbot.App.Web.Configuration;
 using Spreadbot.Core.Channel.Ebay;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
-using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.App.Web
@@ -17,16 +17,16 @@ namespace Spreadbot.App.Web
     {
         // ===================================================================================== []
         // Instance
-        private static readonly Lazy<DemoshopStore> LazyInstance = new Lazy<DemoshopStore>(CreateInstance,
-            LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy<DemoshopStore> LazyInstance =
+            new Lazy<DemoshopStore>(CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication);
 
+        // --------------------------------------------------------[]
         public DemoshopStore()
         {
             LoadItem();
         }
 
         // --------------------------------------------------------[]
-
         private static DemoshopStore CreateInstance()
         {
             return new DemoshopStore();
@@ -68,8 +68,10 @@ namespace Spreadbot.App.Web
             AddTask(
                 storeTask
                     .AddSubTask(new EbayPublishTask(MipFeedType.Product, FeedContent(MipFeedType.Product), Item.Sku))
-                    .AddSubTask(new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability), Item.Sku))
-                    .AddSubTask(new EbayPublishTask(MipFeedType.Distribution, FeedContent(MipFeedType.Distribution), Item.Sku)),
+                    .AddSubTask(new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability),
+                        Item.Sku))
+                    .AddSubTask(new EbayPublishTask(MipFeedType.Distribution, FeedContent(MipFeedType.Distribution),
+                        Item.Sku)),
                 true);
         }
 
@@ -83,8 +85,8 @@ namespace Spreadbot.App.Web
             {
                 case MipFeedType.Product:
                     return template
-                        .Replace("{item.sku}",item.Sku)
-                        .Replace("{item.title}",item.Title)
+                        .Replace("{item.sku}", item.Sku)
+                        .Replace("{item.title}", item.Title)
                         ;
                 case MipFeedType.Availability:
                     return template
@@ -116,5 +118,24 @@ namespace Spreadbot.App.Web
             get { return "Demoshop"; }
         }
 
+        // ===================================================================================== []
+        // Save/Restore
+        // Code: Demoshop.SaveChanges()
+        // --------------------------------------------------------[]
+        public void SaveChanges()
+        {
+            var path = DataFileName();
+            var x = new XmlSerializer(typeof(DemoshopStore));
+            using (var writer = new StreamWriter(path))
+            {
+                x.Serialize(writer, this);     
+            }
+        }
+
+        // --------------------------------------------------------[]
+        private static string DataFileName()
+        {
+            return DemoshopConfig.Instance.DemoshopPaths.XmlDataFileName.MapPathToDataDirectory();
+        }
     }
 }

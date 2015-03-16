@@ -36,7 +36,6 @@ namespace Spreadbot.Core.System
 
         // ===================================================================================== []
         // ProceedChannelTasks
-        // Code: Dispatcher : ProceedChannelTasks
         private static void ProceedChannelTask(IChannelTask task)
         {
             if (task.StatusCode != TaskStatus.Inprocess)

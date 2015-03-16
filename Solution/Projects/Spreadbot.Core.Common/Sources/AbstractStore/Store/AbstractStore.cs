@@ -9,36 +9,44 @@ namespace Spreadbot.Core.Common
     {
         // ===================================================================================== []
         // Tasks
-        private readonly IList<ITask> _tasks = new List<ITask>();
+        private List<AbstractTask> _tasks = new List<AbstractTask>();
         // --------------------------------------------------------[]
-        protected void AddTask(ITask task, bool withSubTasks = false)
+        public List<AbstractTask> Tasks
         {
-            _tasks.Add(task);
+            get { return _tasks; }
+            set { _tasks = value; }
+        }
+        // --------------------------------------------------------[]
+        protected void AddTask(AbstractTask task, bool withSubTasks = false)
+        {
+            Tasks.Add(task);
             if (withSubTasks)
+            {
                 AddTasks(task.SubTasks, true);
+            }
         }
 
         // --------------------------------------------------------[]
-        protected void AddTasks(IEnumerable<ITask> tasks, bool withSubTasks = false)
+        protected void AddTasks(IEnumerable<AbstractTask> tasks, bool withSubTasks = false)
         {
             tasks.ForEach(t => { AddTask(t, withSubTasks); });
         }
 
         // ===================================================================================== []
         // IStore
-        public IEnumerable<ITask> Tasks
+        IEnumerable<ITask> IStore.Tasks
         {
-            get { return _tasks; }
+            get { return Tasks; }
         }
 
         // --------------------------------------------------------[]
-        public IEnumerable<IChannelTask> ChannelTasks
+        IEnumerable<IChannelTask> IStore.ChannelTasks
         {
             get { return Tasks.OfType<IChannelTask>(); }
         }
 
         // --------------------------------------------------------[]
-        public IEnumerable<IStoreTask> StoreTasks
+        IEnumerable<IStoreTask> IStore.StoreTasks
         {
             get { return Tasks.OfType<IStoreTask>(); }
         }

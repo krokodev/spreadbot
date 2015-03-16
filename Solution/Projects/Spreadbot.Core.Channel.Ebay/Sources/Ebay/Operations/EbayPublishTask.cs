@@ -36,7 +36,6 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // StatusCode
-        // Code: EbayPublishTask : StatusCode
         public MipRequestStatus MipRequestStatusCode { get; set; }
         // --------------------------------------------------------[]
         public override TaskStatus StatusCode
@@ -74,7 +73,6 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // Autoinfo
-        // Code: EbayPublishTask : Autoinfo
         public override string Autoinfo
         {
             get
@@ -124,7 +122,6 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // ===================================================================================== []
         // IProceedableTask
-        // Code: EbayPublishTask : SaveProceedInfo
         private readonly TaskProceedHelper _taskProceedHelper = new TaskProceedHelper();
         // --------------------------------------------------------[]
         public void SaveProceedInfo(ITaskProceedInfo info)

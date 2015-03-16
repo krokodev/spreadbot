@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Spreadbot.Core.Common;
-using Spreadbot.Core.System;
 using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.App.Web
@@ -17,21 +16,21 @@ namespace Spreadbot.App.Web
 
         public static IEnumerable<IStoreTask> StoreTasks
         {
-            get { return Store.StoreTasks; }           
+            get { return ((IStore) Store).StoreTasks; }           
         }
         public static IEnumerable<IChannelTask> ChannelTasksTodo
         {
-            get { return Store.ChannelTasks.Where(t=>t.StatusCode==TaskStatus.Todo); }
+            get { return ChannelTasks.Where(t=>t.StatusCode==TaskStatus.Todo); }
         }
 
         public static IEnumerable<IChannelTask> ChannelTasksInprocess
         {
-            get { return Store.ChannelTasks.Where(t => t.StatusCode == TaskStatus.Inprocess); }
+            get { return ChannelTasks.Where(t => t.StatusCode == TaskStatus.Inprocess); }
         }
 
         public static IEnumerable<IChannelTask> ChannelTasks
         {
-            get { return Store.ChannelTasks; }
+            get { return ((IStore) Store).ChannelTasks; }
         }
 
         public static DemoshopStore Store
@@ -47,6 +46,15 @@ namespace Spreadbot.App.Web
         public static void PublishItemOnEbay()
         {
             Store.PublishItemOnEbay();
+        }
+
+        private static readonly object Locker=0;
+        public static void SaveChanges()
+        {
+            lock (Locker)
+            {
+                Store.SaveChanges();
+            }
         }
     }
 }

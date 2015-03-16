@@ -94,7 +94,6 @@ namespace Spreadbot.Core.Channel.Ebay
         }
 
         // --------------------------------------------------------[]
-        // Code: EbayChanel : ProceedPublishTask
         private static void ProceedPublishTask(EbayPublishTask task)
         {
             task.AssertCanBeProceeded();
