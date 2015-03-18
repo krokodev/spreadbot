@@ -6,9 +6,9 @@ namespace Spreadbot.Core.Common
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {
-        protected AbstractStoreTask(IStore store, string description)
+        protected AbstractStoreTask(IStore storeRef, string description)
         {
-            Store = store;
+            StoreRef = storeRef;
             Description = description;
         }
 
@@ -21,15 +21,17 @@ namespace Spreadbot.Core.Common
             get
             {
                 return string.Format(
-                    "{2} {0}: {1}",
+                    "Store {2} {0}: {1}",
                     StatusCode,
                     Description,
-                    "Store.Name"
+                    StoreRef.Name
                     );
             }
         }
 
         [NotSerialize]
-        public IStore Store { get; set; }
+        // Code: AbstractStoreTask.StoreRef
+        // Todo: Use Resolver and [Reference]
+        public IStore StoreRef { get; set; }
     }
 }

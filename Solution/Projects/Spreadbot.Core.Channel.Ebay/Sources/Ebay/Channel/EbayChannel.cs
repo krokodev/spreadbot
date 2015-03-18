@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using MoreLinq;
 using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Common;
@@ -17,6 +18,29 @@ namespace Spreadbot.Core.Channel.Ebay
         {
             get { return ConstName; }
         }
+
+        // ===================================================================================== []
+        // Instance
+        private static readonly Lazy<EbayChannel> LazyInstance =
+            new Lazy<EbayChannel>(CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication);
+
+        // --------------------------------------------------------[]
+        public EbayChannel()
+        {
+        }
+
+        // --------------------------------------------------------[]
+        private static EbayChannel CreateInstance()
+        {
+            return new EbayChannel();
+        }
+
+        // --------------------------------------------------------[]
+        public static EbayChannel Instance
+        {
+            get { return LazyInstance.Value; }
+        }
+
 
         // ===================================================================================== []
         // Publish

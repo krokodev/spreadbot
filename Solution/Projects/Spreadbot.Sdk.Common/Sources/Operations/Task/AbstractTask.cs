@@ -9,7 +9,7 @@ using Crocodev.Common.Identifier;
 
 namespace Spreadbot.Sdk.Common
 {
-    public abstract class AbstractTask : Identifiable<AbstractTask, int>, ITask
+    public abstract class AbstractTask : ITask
     {
         // ===================================================================================== []
         // Ctor
@@ -37,9 +37,6 @@ namespace Spreadbot.Sdk.Common
 
         // ===================================================================================== []
         // Properties
-        private static int _totalNum;
-        public readonly Identifier Id = (Identifier) (++_totalNum);
-        public readonly DateTime CreationTime = DateTime.Now;
         public abstract TaskStatus StatusCode { get; }
         public bool IsCritical { get; set; }
         protected AbstractArgs Args { get; set; }
@@ -54,7 +51,6 @@ namespace Spreadbot.Sdk.Common
         // --------------------------------------------------------[]
         ITaskArgs ITask.Args { get { return Args; } }
         // --------------------------------------------------------[]
-        [XmlIgnore]
         public virtual IResponse Response { get; set; }
         // --------------------------------------------------------[]
         public string Description { get; set; }

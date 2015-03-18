@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Crocodev.Common;
 using Nereal.Serialization;
@@ -41,7 +42,9 @@ namespace Spreadbot.App.Web
 
         // ===================================================================================== []
         // Item
+        [NotSerialize]
         public DemoshopItem Item { get; set; }
+
         // --------------------------------------------------------[]
         private void LoadItem()
         {
@@ -63,17 +66,10 @@ namespace Spreadbot.App.Web
         // ===================================================================================== []
         // Tasks
         private List<DemoshopStoreTask> _storeTasks = new List<DemoshopStoreTask>();
-        private List<AbstractChannelTask> _channelTasks = new List<AbstractChannelTask>();
         // --------------------------------------------------------[]
         private void AddTask(DemoshopStoreTask task)
         {
             _storeTasks.Add(task);
-        }
-
-        // --------------------------------------------------------[]
-        private void AddTask(AbstractChannelTask task)
-        {
-            _channelTasks.Add(task);
         }
 
         // --------------------------------------------------------[]
@@ -83,10 +79,10 @@ namespace Spreadbot.App.Web
             set { _storeTasks = value; }
         }
 
-        public List<AbstractChannelTask> ChannelTasks
+        // --------------------------------------------------------[]
+        public IEnumerable<AbstractChannelTask> GetChannelTasks()
         {
-            get { return _channelTasks; }
-            set { _channelTasks = value; }
+            return StoreTasks.SelectMany(t => t.SubTasks.Select(cnt => (AbstractChannelTask) cnt));
         }
 
         // ===================================================================================== []
@@ -103,12 +99,12 @@ namespace Spreadbot.App.Web
             var availabilityTask =
                 new EbayPublishTask(MipFeedType.Availability, FeedContent(MipFeedType.Availability), Item.Sku);
 
-            AddTask(storeTask);
-            AddTask(productTask);
-            AddTask(distributionTask);
-            AddTask(availabilityTask);
+            storeTask
+                .AddSubTask(productTask)
+                .AddSubTask(distributionTask)
+                .AddSubTask(availabilityTask);
 
-            storeTask.AddSubTask(productTask).AddSubTask(distributionTask).AddSubTask(availabilityTask);
+            AddTask(storeTask);
         }
 
         // --------------------------------------------------------[]
@@ -155,9 +151,9 @@ namespace Spreadbot.App.Web
         }
 
         // --------------------------------------------------------[]
-        IEnumerable<IChannelTask> IStore.ChannelTasks
+        IEnumerable<IChannelTask> IStore.GetChannelTasks()
         {
-            get { return ChannelTasks; }
+            return GetChannelTasks();
         }
 
         // --------------------------------------------------------[]

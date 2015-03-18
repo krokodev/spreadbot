@@ -21,7 +21,7 @@ namespace Spreadbot.Core.System
             switch (task.Method)
             {
                 case ChannelMethod.Publish:
-                    task.Channel.Publish(task);
+                    task.ChannelRef.Publish(task);
                     break;
                 default:
                     throw new SpreadbotException("Unexpected task operation [{0}]", task.Method);
@@ -43,7 +43,7 @@ namespace Spreadbot.Core.System
                 throw new SpreadbotException("Task is not In-Process [{0}]", task);
             }
 
-            task.Channel.ProceedTask(task);
+            task.ChannelRef.ProceedTask(task);
         }
 
         // --------------------------------------------------------[]

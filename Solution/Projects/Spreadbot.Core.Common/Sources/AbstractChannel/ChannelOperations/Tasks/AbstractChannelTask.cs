@@ -1,7 +1,8 @@
 ﻿using Crocodev.Common;
+using Nereal.Serialization;
 using Spreadbot.Sdk.Common;
 
-// !>> Core | ChannelTask
+// !>> Core | AbstractChannelTask
 
 namespace Spreadbot.Core.Common
 {
@@ -9,16 +10,22 @@ namespace Spreadbot.Core.Common
     {
         // ===================================================================================== []
         // Constructor
-        protected AbstractChannelTask(ChannelMethod method)
+        protected AbstractChannelTask(IChannel channelRef, ChannelMethod method)
         {
+            ChannelRef = channelRef;
             Method = method;
         }
 
         // --------------------------------------------------------[]
         protected AbstractChannelTask()
-            :this(ChannelMethod.Unknown)
+            :this(null, ChannelMethod.Unknown)
         {
         }
+
+        // ===================================================================================== []
+        // Properties
+        [NotSerialize]
+        protected IChannel ChannelRef { get; set; }
 
         // ===================================================================================== []
         // ITask
@@ -28,7 +35,7 @@ namespace Spreadbot.Core.Common
             {
                 return base.Autoinfo + " Channel: [{0}] Args: [{1}] Response: [{2}]"
                     .SafeFormat(
-                        Channel.Name,
+                        ChannelRef.Name,
                         Args,
                         Response == null ? "no" : Response.Autoinfo
                     );
@@ -37,7 +44,12 @@ namespace Spreadbot.Core.Common
 
         // ===================================================================================== []
         // IChannelTask
-        public IChannel Channel { get; set; }
+        [NotSerialize]
+        // Code: AbstractChannelTask.Channel
+        IChannel IChannelTask.ChannelRef
+        {
+            get { return ChannelRef;}
+        }
         // --------------------------------------------------------[]
         public ChannelMethod Method { get; set; }
         // --------------------------------------------------------[]

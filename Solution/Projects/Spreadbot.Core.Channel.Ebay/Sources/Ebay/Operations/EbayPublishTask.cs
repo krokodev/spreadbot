@@ -18,9 +18,8 @@ namespace Spreadbot.Core.Channel.Ebay
 
         // --------------------------------------------------------[]
         public EbayPublishTask(MipFeedType mipFeedType, string feedContent, string itemInfo)
-            : base(ChannelMethod.Publish)
+            : base(EbayChannel.Instance, ChannelMethod.Publish)
         {
-            Channel = new EbayChannel();
             Args = new EbayPublishArgs
             {
                 Feed = new MipFeed(mipFeedType)
@@ -84,11 +83,11 @@ namespace Spreadbot.Core.Channel.Ebay
             get
             {
                 return string.Format(
-                    "{3} {0}: {1} {2}",
+                    "Channel {3} {0}: {1} {2}",
                     StatusCode,
                     IsCriticalInfo,
                     MissionInfo,
-                    Channel.Name
+                    ChannelRef.Name
                     );
             }
         }

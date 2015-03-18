@@ -9,8 +9,8 @@ namespace Spreadbot.App.Web
         {
             
         }
-        public DemoshopStoreTask(IStore store, string description)
-            : base(store, description)
+        public DemoshopStoreTask(IStore storeRef, string description)
+            : base(storeRef, description)
         {
         }
 

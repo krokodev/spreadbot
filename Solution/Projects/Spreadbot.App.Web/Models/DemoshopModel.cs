@@ -30,7 +30,7 @@ namespace Spreadbot.App.Web
 
         public static IEnumerable<IChannelTask> ChannelTasks
         {
-            get { return ((IStore) Store).ChannelTasks; }
+            get { return ((IStore) Store).GetChannelTasks(); }
         }
 
         public static DemoshopStore Store

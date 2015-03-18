@@ -4,7 +4,7 @@ namespace Spreadbot.Core.Common
 {
     public interface IChannelTask : ITask
     {
-        IChannel Channel { get; }
+        IChannel ChannelRef { get; }
         ChannelMethod Method { get; }
         IChannelTaskArgs ChannelArgs { get; }
     }
