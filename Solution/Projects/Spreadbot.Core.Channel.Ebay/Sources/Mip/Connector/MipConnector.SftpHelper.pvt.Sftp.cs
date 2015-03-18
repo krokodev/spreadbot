@@ -12,7 +12,7 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         {
             // ===================================================================================== []
             // DoTestConnection
-            private static MipResponse<BoolResponseResult> DoTestConnection(string password)
+            private static MipResponse<MipTestConnectionResult> DoTestConnection(string password)
             {
                 try
                 {
@@ -24,9 +24,9 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
                 }
                 catch (Exception exception)
                 {
-                    return new MipResponse<BoolResponseResult>(false, MipStatusCode.TestConnectionFail, exception);
+                    return new MipResponse<MipTestConnectionResult>(false, MipStatusCode.TestConnectionFail, exception);
                 }
-                return new MipResponse<BoolResponseResult>(true, MipStatusCode.TestConnectionSuccess, new BoolResponseResult(true));
+                return new MipResponse<MipTestConnectionResult>(true, MipStatusCode.TestConnectionSuccess, new MipTestConnectionResult(true));
             }
 
             // ===================================================================================== []

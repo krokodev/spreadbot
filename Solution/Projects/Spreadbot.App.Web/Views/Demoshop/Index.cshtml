@@ -53,15 +53,15 @@
     @FormView.Editor(label, textBox)
 }
 
-@helper ShowTasks(IEnumerable<ITask> tasks)
+@helper ShowTasks(IEnumerable<IHierarchicalTask> tasks)
 {
-    var enumerable = tasks as ITask[] ?? tasks.ToArray();
+    var enumerable = tasks as IHierarchicalTask[] ?? tasks.ToArray();
     if (enumerable.Count() != 0)
     {
         <ul>
             @foreach (var task in enumerable)
             {
-                <li class="@TaskClass(task.StatusCode)">@task</li>
+                <li class="@TaskClass(task.GetStatusCode())">@task</li>
                 @ShowTasks(task.SubTasks)
             }
         </ul>

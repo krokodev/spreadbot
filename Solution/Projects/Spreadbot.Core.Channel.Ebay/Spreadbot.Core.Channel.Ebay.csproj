@@ -52,17 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sources\Ebay\Channel\EbayChannel.cs" />
+    <Compile Include="Sources\Ebay\Operations\Tasks\EbayPublishTask.imp.ITask.cs" />
+    <Compile Include="Sources\Ebay\Operations\Tasks\EbayPublishTask.state.cs" />
+    <Compile Include="Sources\Ebay\Operations\Tasks\EbayPublishTask.imp.IProceedableTask.cs" />
+    <Compile Include="Sources\Mip\Operations\Results\MipTestConnectionResult.cs" />
+    <Compile Include="Sources\Mip\Operations\Response\IMipResponse.cs" />
+    <Compile Include="Sources\Mip\Operations\Results\IMipResponseResult.cs" />
     <Compile Include="Sources\Mip\Operations\Response\MipRequestStatusResponse.cs" />
-    <Compile Include="Sources\Ebay\Operations\EbayPublishResult.cs" />
-    <Compile Include="Sources\Ebay\Operations\EbayPublishArgs.cs" />
-    <Compile Include="Sources\Ebay\Operations\EbayPublishTask.cs" />
+    <Compile Include="Sources\Ebay\Operations\Results\EbayPublishResult.cs" />
+    <Compile Include="Sources\Ebay\Operations\Args\EbayPublishArgs.cs" />
+    <Compile Include="Sources\Ebay\Operations\Tasks\EbayPublishTask.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipConnection.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipPaths.cs" />
     <Compile Include="Sources\Mip\Configuration\Elements\MipSecretData.cs" />
     <Compile Include="Sources\Mip\Configuration\Sections\MipPublicConfig.cs" />
     <Compile Include="Sources\Mip\Configuration\Sections\MipSecurityConfig.cs" />
     <Compile Include="Sources\Mip\Operations\Response\MipResponse.cs" />
-    <Compile Include="Sources\Mip\Operations\Results\MipResponseResult.cs" />
+    <Compile Include="Sources\Mip\Operations\Results\AbstractMipResponseResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\MipZipFeedResult.cs" />
     <Compile Include="Sources\Mip\Operations\Results\MipSendZippedFeedFolderResult.cs" />
     <Compile Include="Sources\Mip\Connector\MipConnector.pvt.Pathes.cs" />

@@ -1,9 +1,8 @@
 using Crocodev.Common;
-using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class MipZipFeedResult : MipResponseResult
+    public class MipZipFeedResult : AbstractMipResponseResult
     {
         public MipZipFeedResult(string zipFileName)
         {

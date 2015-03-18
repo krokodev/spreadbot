@@ -1,9 +1,8 @@
 using Crocodev.Common;
-using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class MipSendZippedFeedFolderResult : MipResponseResult
+    public class MipSendZippedFeedFolderResult : AbstractMipResponseResult
     {
         public MipSendZippedFeedFolderResult()
         {
@@ -20,6 +19,11 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
             {
                 return Template.SafeFormat("RequestId", MipRequestId);
             }
+        }
+
+        public override MipRequest.Identifier GetMipRequestId()
+        {
+            return MipRequestId;
         }
 
         public MipRequest.Identifier MipRequestId { get; set; }

@@ -60,8 +60,11 @@
     <Compile Include="Sources\Operations\Response\GenericResponse.cs" />
     <Compile Include="Sources\Operations\Response\GenericResponse.pvt.Descriptions.cs" />
     <Compile Include="Sources\Operations\Response\IResponse.cs" />
+    <Compile Include="Sources\Operations\Task\AbstractTask.pvt.SubTasks.cs" />
+    <Compile Include="Sources\Operations\Task\AbstractTask.state.cs" />
+    <Compile Include="Sources\Operations\Task\AbstractTask.imp.ITask.cs" />
     <Compile Include="Sources\Operations\Task\IProceedableTask.cs" />
-    <Compile Include="Sources\Operations\Task\ITask.cs" />
+    <Compile Include="Sources\Operations\Task\IHierarchicalTask.cs" />
     <Compile Include="Sources\Operations\Task\AbstractTask.cs" />
     <Compile Include="Sources\Operations\Task\ITaskProceedInfo.cs" />
     <Compile Include="Sources\Operations\Task\TaskProceedHelper.cs" />

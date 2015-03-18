@@ -2,7 +2,8 @@ using System;
 
 namespace Spreadbot.Sdk.Common
 {
-    public partial class GenericResponse<TR,TC> : IResponse where TR:IResponseResult
+    public partial class GenericResponse<TR, TC> : IResponse
+        where TR : IResponseResult
     {
         // ===================================================================================== []
         // Protected
@@ -26,7 +27,7 @@ namespace Spreadbot.Sdk.Common
         }
 
         protected GenericResponse(bool isSucces, TC code, TR result, IResponse innerResponse)
-            :this(isSucces,code,result)
+            : this(isSucces, code, result)
         {
             InnerResponse = innerResponse;
         }
@@ -44,11 +45,12 @@ namespace Spreadbot.Sdk.Common
         public string Details { get; set; }
         public Exception Exception { get; set; }
         public IResponse InnerResponse { get; set; }
-        
+
         public string Autoinfo
         {
             get { return GetAutoinfo(0); }
         }
+
         public string GetAutoinfo(int level)
         {
             return IsSuccess

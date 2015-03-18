@@ -16,16 +16,17 @@ namespace Spreadbot.App.Web
 
         public static IEnumerable<IStoreTask> StoreTasks
         {
-            get { return ((IStore) Store).StoreTasks; }           
+            get { return ((IStore) Store).StoreTasks; }
         }
+
         public static IEnumerable<IChannelTask> ChannelTasksTodo
         {
-            get { return ChannelTasks.Where(t=>t.StatusCode==TaskStatus.Todo); }
+            get { return ChannelTasks.Where(t => t.GetStatusCode() == TaskStatus.Todo); }
         }
 
         public static IEnumerable<IChannelTask> ChannelTasksInprocess
         {
-            get { return ChannelTasks.Where(t => t.StatusCode == TaskStatus.Inprocess); }
+            get { return ChannelTasks.Where(t => t.GetStatusCode() == TaskStatus.Inprocess); }
         }
 
         public static IEnumerable<IChannelTask> ChannelTasks
@@ -48,7 +49,8 @@ namespace Spreadbot.App.Web
             Store.PublishItemOnEbay();
         }
 
-        private static readonly object Locker=0;
+        private static readonly object Locker = 0;
+
         public static void Save()
         {
             lock (Locker)

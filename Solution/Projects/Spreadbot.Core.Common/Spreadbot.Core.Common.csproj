@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\AbstractChannel\ChannelOperations\Tasks\AbstractChannelTask.imp.IChannelTask.cs" />
+    <Compile Include="Sources\AbstractChannel\ChannelOperations\Tasks\AbstractChannelTask.state.cs" />
     <Compile Include="Sources\AbstractChannel\Channel\AbstractChannel.cs" />
     <Compile Include="Sources\AbstractChannel\Channel\IChannel.cs" />
     <Compile Include="Sources\AbstractChannel\ChannelOperations\Args\IChannelTaskArgs.cs" />

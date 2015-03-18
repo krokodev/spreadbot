@@ -1,4 +1,5 @@
-﻿using System;
+﻿// !>> EbayChannel
+using System;
 using System.IO;
 using System.Threading;
 using MoreLinq;
@@ -8,6 +9,7 @@ using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
+    //Todo: Ref: Split file
     public class EbayChannel : AbstractChannel
     {
         // ===================================================================================== []
@@ -59,7 +61,7 @@ namespace Spreadbot.Core.Channel.Ebay
 
                 mipResponse.Check();
 
-                publishTask.Response = new ChannelResponse<EbayPublishResult>(true,
+                ((IHierarchicalTask) publishTask).Response = new ChannelResponse<EbayPublishResult>(true,
                     ChannelResponseStatusCode.PublishSuccess,
                     new EbayPublishResult(mipResponse.Result.MipRequestId),
                     mipResponse);
@@ -107,38 +109,38 @@ namespace Spreadbot.Core.Channel.Ebay
         // Proceed
         public override void ProceedTask(IChannelTask channelTask)
         {
-            switch (channelTask.Method)
+            switch (channelTask.ChannelMethod)
             {
                 case ChannelMethod.Publish:
                     ProceedPublishTask((EbayPublishTask) channelTask);
                     break;
                 default:
-                    throw new SpreadbotException("Unexpected Task Channel Method: [{0}]", channelTask.Method);
+                    throw new SpreadbotException("Unexpected Task Channel Method: [{0}]", channelTask.ChannelMethod);
             }
         }
 
         // --------------------------------------------------------[]
-        private static void ProceedPublishTask(EbayPublishTask task)
+        private static void ProceedPublishTask(EbayPublishTask ebayPublishTask)
         {
-            task.AssertCanBeProceeded();
+            ((IProceedableTask) ebayPublishTask).AssertCanBeProceeded();
 
             MipRequestStatusResponse statusResponse = null;
 
             try
             {
-                var args = (EbayPublishArgs) task.ChannelArgs;
-                var request = new MipRequest(args.Feed, task.Response.Result.MipRequestId);
+                var ebayPublishArgs = (EbayPublishArgs) ebayPublishTask.GetChannelArgs();
+                var mipRequest = new MipRequest(ebayPublishArgs.Feed, ebayPublishTask.GetMipRequestId());
 
-                statusResponse = MipConnector.GetRequestStatus(request);
+                statusResponse = MipConnector.GetRequestStatus(mipRequest);
                 statusResponse.Check();
 
-                task.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
-                task.SaveProceedInfo(statusResponse);
+                ebayPublishTask.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
+                ((IProceedableTask) ebayPublishTask).SaveProceedInfo(statusResponse);
             }
             catch
             {
-                task.MipRequestStatusCode = MipRequestStatus.Fail;
-                task.SaveProceedInfo(statusResponse);
+                ebayPublishTask.MipRequestStatusCode = MipRequestStatus.Fail;
+                ((IProceedableTask) ebayPublishTask).SaveProceedInfo(statusResponse);
             }
         }
     }

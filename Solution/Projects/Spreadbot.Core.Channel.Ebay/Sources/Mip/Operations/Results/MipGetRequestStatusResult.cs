@@ -1,9 +1,8 @@
 ﻿using Crocodev.Common;
-using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class MipGetRequestStatusResult : MipResponseResult
+    public class MipGetRequestStatusResult : AbstractMipResponseResult
     {
         public readonly MipRequestStatus MipRequestStatusCode;
         public readonly string Details;

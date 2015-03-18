@@ -13,18 +13,18 @@ namespace Spreadbot.Core.System
         // RunChannelTask
         public static void RunChannelTask(IChannelTask task)
         {
-            if (task.StatusCode!=TaskStatus.Todo)
+            if (task.GetStatusCode()!=TaskStatus.Todo)
             {
                 throw new SpreadbotException("Task was already run [{0}]", task);
             }
 
-            switch (task.Method)
+            switch (task.ChannelMethod)
             {
                 case ChannelMethod.Publish:
                     task.ChannelRef.Publish(task);
                     break;
                 default:
-                    throw new SpreadbotException("Unexpected task operation [{0}]", task.Method);
+                    throw new SpreadbotException("Unexpected task operation [{0}]", task.ChannelMethod);
             }
         }
 
@@ -38,7 +38,7 @@ namespace Spreadbot.Core.System
         // ProceedChannelTasks
         private static void ProceedChannelTask(IChannelTask task)
         {
-            if (task.StatusCode != TaskStatus.Inprocess)
+            if (task.GetStatusCode() != TaskStatus.Inprocess)
             {
                 throw new SpreadbotException("Task is not In-Process [{0}]", task);
             }

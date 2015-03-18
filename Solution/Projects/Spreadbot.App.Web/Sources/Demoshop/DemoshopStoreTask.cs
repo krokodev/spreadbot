@@ -5,18 +5,23 @@ namespace Spreadbot.App.Web
 {
     public class DemoshopStoreTask : AbstractStoreTask
     {
+        // ===================================================================================== []
+        // Ctor
         public DemoshopStoreTask()
         {
-            
         }
+
+        // --------------------------------------------------------[]
         public DemoshopStoreTask(IStore storeRef, string description)
             : base(storeRef, description)
         {
         }
 
-        public override TaskStatus StatusCode
+        // ===================================================================================== []
+        // Public
+        public override TaskStatus GetStatusCode()
         {
-            get { return CalcSuperTaskStatusCode(); }
+            return CalcSuperTaskStatusCode();
         }
     }
 }

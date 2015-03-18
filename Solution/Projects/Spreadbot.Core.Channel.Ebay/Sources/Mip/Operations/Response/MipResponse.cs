@@ -3,7 +3,8 @@ using Spreadbot.Sdk.Common;
 
 namespace Spreadbot.Core.Channel.Ebay.Mip
 {
-    public class MipResponse<TR> : GenericResponse<TR, MipStatusCode> where TR : IResponseResult
+    public class MipResponse<TR> : GenericResponse<TR, MipStatusCode>, IMipResponse
+        where TR : IMipResponseResult
     {
         public MipResponse()
         {
@@ -32,6 +33,11 @@ namespace Spreadbot.Core.Channel.Ebay.Mip
         public MipResponse(bool isSucces, MipStatusCode code, string details)
             : base(isSucces, code, details)
         {
+        }
+
+        public MipRequest.Identifier GetMipRequestId()
+        {
+            return Result.GetMipRequestId();
         }
     }
 }

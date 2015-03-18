@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Common
             {
                 return string.Format(
                     "Store {2} {0}: {1}",
-                    StatusCode,
+                    GetStatusCode(),
                     Description,
                     StoreRef.Name
                     );

@@ -2,10 +2,10 @@
 
 namespace Spreadbot.Core.Common
 {
-    public interface IChannelTask : ITask
+    public interface IChannelTask : IHierarchicalTask
     {
         IChannel ChannelRef { get; }
-        ChannelMethod Method { get; }
-        IChannelTaskArgs ChannelArgs { get; }
+        ChannelMethod ChannelMethod { get; }
+        IChannelTaskArgs GetChannelArgs();
     }
 }

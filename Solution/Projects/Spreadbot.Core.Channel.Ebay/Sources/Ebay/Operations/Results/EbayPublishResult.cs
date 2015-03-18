@@ -1,10 +1,9 @@
 using Crocodev.Common;
 using Spreadbot.Core.Channel.Ebay.Mip;
-using Spreadbot.Core.Common;
 
 namespace Spreadbot.Core.Channel.Ebay
 {
-    public class EbayPublishResult : MipResponseResult
+    public class EbayPublishResult : AbstractMipResponseResult
     {
         public readonly MipRequest.Identifier MipRequestId;
 

@@ -2,7 +2,7 @@
 
 namespace Spreadbot.Core.Common
 {
-    public interface IStoreTask: ITask
+    public interface IStoreTask: IHierarchicalTask
     {
         IStore StoreRef { get; set; }
     }
