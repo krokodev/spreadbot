@@ -9,7 +9,6 @@ using Spreadbot.Core.Common.Channel;
 
 namespace Spreadbot.Core.Channel.Ebay.Channel
 {
-    //Todo: Ref: Split file
     public partial class EbayChannel : AbstractChannel
     {
         // ===================================================================================== []

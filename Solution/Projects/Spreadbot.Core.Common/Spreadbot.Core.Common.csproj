@@ -30,11 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common">
-      <HintPath>..\..\packages\crocodev.common.1.0.1.36194\lib\net451\Crocodev.Common.dll</HintPath>
+    <Reference Include="Crocodev.Common, Version=1.0.2.27296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Extensions, Version=1.0.5556.27133, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Serialization, Version=1.0.5556.27134, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,10 +71,6 @@
     <Compile Include="Store.Operations\IStoreTask.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nereal.Serialization\Nereal.Serialization.csproj">
-      <Project>{3f84d09a-e2b3-4487-a576-e1e8b7e469c8}</Project>
-      <Name>Nereal.Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
       <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
       <Name>Spreadbot.Sdk.Common</Name>
@@ -74,7 +79,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -30,12 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common">
-      <HintPath>..\..\packages\crocodev.common.1.0.1.36194\lib\net451\Crocodev.Common.dll</HintPath>
+    <Reference Include="Crocodev.Common, Version=1.0.2.27296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
     <Reference Include="MoreLinq, Version=1.1.17511.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Extensions, Version=1.0.5556.27133, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Serialization, Version=1.0.5556.27134, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,7 +58,9 @@
     <Compile Include="Dispatcher\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
@@ -59,9 +70,6 @@
       <Project>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</Project>
       <Name>Spreadbot.Sdk.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
