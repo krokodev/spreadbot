@@ -77,13 +77,13 @@
     <Compile Include="References\References.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
+    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
-      <Name>Spreadbot.Core.Common</Name>
+      <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Connectors.Ebay.csproj">
+    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Channels.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Connectors.Ebay</Name>
+      <Name>Spreadbot.Core.Channels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
       <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
@@ -108,6 +108,7 @@
     </Content>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

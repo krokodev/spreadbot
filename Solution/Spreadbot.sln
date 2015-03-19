@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EF6CE066
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.App.Web", "projects\Spreadbot.App.Web\Spreadbot.App.Web.csproj", "{FA55CC33-16A1-4AF9-B818-27BDAFA35489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Common", "Projects\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj", "{5599EFE5-4D66-464D-91EE-3F76153BF8FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Abstracts", "Projects\Spreadbot.Core.Common\Spreadbot.Core.Abstracts.csproj", "{5599EFE5-4D66-464D-91EE-3F76153BF8FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sdk", "Sdk", "{D47486A1-A2FE-49C7-9151-C75C1FAB2841}"
 EndProject
@@ -30,10 +30,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Sdk.Tools", "proj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".architecture", ".architecture", "{01BC851E-0DE7-4A91-B1C7-198FDC687D21}"
 	ProjectSection(SolutionItems) = preProject
-		architecture\AbstractTask.dgml = architecture\AbstractTask.dgml
+		architecture\Explore.dgml = architecture\Explore.dgml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Connectors.Ebay", "projects\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Connectors.Ebay.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels", "projects\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Channels.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

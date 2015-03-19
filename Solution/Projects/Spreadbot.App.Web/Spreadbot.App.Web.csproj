@@ -142,10 +142,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Sources\Demoshop\DemoshopStore.cs" />
-    <Compile Include="Sources\Demoshop\DemoshopItem.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.state.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.pvt.Utils.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.pvt.Publish.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.pvt.Item.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.pvt.Tasks.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.imp.IStore.cs" />
+    <Compile Include="Sources\Demoshop\Manager\DemoshopStoreManager.cs" />
+    <Compile Include="Sources\Demoshop\Items\DemoshopItem.cs" />
     <Compile Include="Models\DemoshopModel.cs" />
-    <Compile Include="Sources\Demoshop\DemoshopStoreTask.cs" />
+    <Compile Include="Sources\Demoshop\Operations\Tasks\DemoshopStoreTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\References.cs" />
     <Compile Include="Sources\Configuration\Elements\DemoshopPaths.cs" />
@@ -204,13 +210,13 @@
     <Content Include="Views\Demoshop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
+    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
-      <Name>Spreadbot.Core.Common</Name>
+      <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Connectors.Ebay.csproj">
+    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Channels.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Connectors.Ebay</Name>
+      <Name>Spreadbot.Core.Channels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
       <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>

@@ -18,7 +18,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // Public
         public override string ToString()
         {
-            return Autoinfo;
+            return GetAutoinfo();
         }
 
         // --------------------------------------------------------[]

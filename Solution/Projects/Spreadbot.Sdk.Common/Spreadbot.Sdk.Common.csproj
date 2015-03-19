@@ -56,7 +56,7 @@
     <Compile Include="Exceptions\SpreadbotException.cs" />
     <Compile Include="Operations\Args\AbstractArgs.cs" />
     <Compile Include="Operations\Args\ITaskArgs.cs" />
-    <Compile Include="Exceptions\ResponseException.cs" />
+    <Compile Include="Operations\Responses\ResponseException.cs" />
     <Compile Include="Operations\ResponseResults\BoolResponseResult.cs" />
     <Compile Include="Operations\ResponseResults\IResponseResult.cs" />
     <Compile Include="Operations\ResponseResults\AbstractResponseResult.cs" />

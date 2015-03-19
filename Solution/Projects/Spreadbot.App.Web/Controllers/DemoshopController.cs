@@ -6,6 +6,7 @@
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
 using Spreadbot.App.Web.Sources.Demoshop;
+using Spreadbot.App.Web.Sources.Demoshop.Item;
 using Spreadbot.Core.System.Dispatcher;
 
 namespace Spreadbot.App.Web.Controllers
@@ -41,7 +42,7 @@ namespace Spreadbot.App.Web.Controllers
         // RunChannelTasks
         public ActionResult RunChannelTasks()
         {
-            Dispatcher.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
+            Dispatcher.Instance.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
             return RedirectToAction("Index");
         }
 
@@ -49,7 +50,7 @@ namespace Spreadbot.App.Web.Controllers
         // ProceedChannelTasks
         public ActionResult ProceedChannelTasks()
         {
-            Dispatcher.ProceedChannelTasks(DemoshopModel.ChannelTasksInprocess);
+            Dispatcher.Instance.ProceedChannelTasks(DemoshopModel.ChannelTasksInprocess);
             return RedirectToAction("Index");
         }
 

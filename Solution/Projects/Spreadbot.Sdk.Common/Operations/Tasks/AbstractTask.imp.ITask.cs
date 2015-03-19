@@ -15,8 +15,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         // ===================================================================================== []
         // Implicit
-        // Todo: Ref: Rename to GetAutoInfo()
-        public abstract string Autoinfo { get; }
+        public abstract string GetAutoinfo();
         // --------------------------------------------------------[]
         public string Description { get; set; }
         // --------------------------------------------------------[]

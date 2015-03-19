@@ -1,0 +1,18 @@
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.Core.Common
+// IStore.cs
+// romak_000, 2015-03-19 15:49
+
+using System.Collections.Generic;
+using Spreadbot.Core.Common.Channel.Operations.Tasks;
+using Spreadbot.Core.Common.Store.Operations;
+
+namespace Spreadbot.Core.Common.Store
+{
+    public interface IStoreManager
+    {
+        IEnumerable<IChannelTask> GetChannelTasks();
+        IEnumerable<IStoreTask> StoreTasks { get; }
+        string Id { get; }
+    }
+}

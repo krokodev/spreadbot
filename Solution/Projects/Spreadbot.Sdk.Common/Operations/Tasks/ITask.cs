@@ -11,7 +11,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public interface ITask
     {
-        string Autoinfo { get; }
+        string GetAutoinfo();
         ITaskArgs Args { get; }
         IResponse Response { get; set; }
         string Description { get; set; }

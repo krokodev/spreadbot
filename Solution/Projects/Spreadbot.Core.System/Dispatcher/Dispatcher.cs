@@ -1,64 +1,61 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-19 17:04
 
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using MoreLinq;
-using Spreadbot.Core.Common.Channel.Operations.Methods;
 using Spreadbot.Core.Common.Channel.Operations.Tasks;
-using Spreadbot.Sdk.Common.Exceptions;
-using Spreadbot.Sdk.Common.Operations.Tasks;
+using Spreadbot.Core.Connectors.Ebay.Channel;
 
 // >> Core | Dispatcher
 
 namespace Spreadbot.Core.System.Dispatcher
 {
-    public class Dispatcher
+    public partial class Dispatcher
     {
         // ===================================================================================== []
-        // RunChannelTask
-        public static void RunChannelTask(IChannelTask task)
-        {
-            if (task.GetStatusCode() != TaskStatus.Todo)
-            {
-                throw new SpreadbotException("Task was already run [{0}]", task);
-            }
+        // Instance
+        private static readonly Lazy<Dispatcher> LazyInstance =
+            new Lazy<Dispatcher>(CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication);
 
-            switch (task.ChannelMethod)
-            {
-                case ChannelMethod.Publish:
-                    task.ChannelRef.Publish(task);
-                    break;
-                default:
-                    throw new SpreadbotException("Unexpected task operation [{0}]", task.ChannelMethod);
-            }
+        // --------------------------------------------------------[]
+        private static Dispatcher CreateInstance()
+        {
+            return new Dispatcher();
         }
 
         // --------------------------------------------------------[]
-        public static void RunChannelTasks(IEnumerable<IChannelTask> tasks)
+        public static Dispatcher Instance
+        {
+            get { return LazyInstance.Value; }
+        }
+
+        // --------------------------------------------------------[]
+        public Dispatcher()
+        {
+            RegisterChannel(EbayChannelManager.Instance);
+        }
+
+        // ===================================================================================== []
+        // ChannelTasks
+        public void RunChannelTask(IChannelTask task)
+        {
+            DoRunChannelTask(task);
+        }
+
+        // --------------------------------------------------------[]
+        public void RunChannelTasks(IEnumerable<IChannelTask> tasks)
         {
             tasks.ForEach(RunChannelTask);
         }
 
-        // ===================================================================================== []
-        // ProceedChannelTasks
-        private static void ProceedChannelTask(IChannelTask task)
-        {
-            if (task.GetStatusCode() != TaskStatus.Inprocess)
-            {
-                throw new SpreadbotException("Task is not In-Process [{0}]", task);
-            }
-
-            task.ChannelRef.ProceedTask(task);
-        }
-
         // --------------------------------------------------------[]
-        public static void ProceedChannelTasks(IEnumerable<IChannelTask> tasks)
+        public void ProceedChannelTasks(IEnumerable<IChannelTask> tasks)
         {
-            tasks.ForEach(ProceedChannelTask);
+            DoProceedChannelTasks(tasks);
         }
-
-        // --------------------------------------------------------[]
     }
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9B60020-90E6-4B41-B29B-62958242CE58}</ProjectGuid>
+    <ProjectGuid>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Core.System</RootNamespace>
-    <AssemblyName>Spreadbot.Core.System</AssemblyName>
+    <RootNamespace>Spreadbot.Core.Common</RootNamespace>
+    <AssemblyName>Spreadbot.Core.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,8 +34,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
-    <Reference Include="MoreLinq, Version=1.1.17511.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="Nereal.Extensions, Version=1.0.5556.27923, Culture=neutral, processorArchitecture=MSIL">
@@ -55,22 +54,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dispatcher\Dispatcher.pvt.Channels.cs" />
-    <Compile Include="Dispatcher\Dispatcher.pvt.ChannelTasks.cs" />
-    <Compile Include="Dispatcher\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.imp.IChannelTask.cs" />
+    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.state.cs" />
+    <Compile Include="Chanel\Manager\AbstractChannelManager.cs" />
+    <Compile Include="Chanel\Manager\IChannelManager.cs" />
+    <Compile Include="Chanel\Operations\Args\IChannelTaskArgs.cs" />
+    <Compile Include="Chanel\Operations\Methods\ChannelMethod.cs" />
+    <Compile Include="Chanel\Operations\Responses\ChannelResponse.cs" />
+    <Compile Include="Chanel\Operations\Responses\ChannelResponseStatusCode.cs" />
+    <Compile Include="Chanel\Operations\Responses\IChannelResponse.cs" />
+    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.cs" />
+    <Compile Include="Chanel\Operations\Tasks\IChannelTask.cs" />
+    <Compile Include="Store\Operations\Tasks\AbstractStoreTask.cs" />
+    <Compile Include="Store\Manager\IStoreManager.cs" />
+    <Compile Include="Store\Operations\Tasks\IStoreTask.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Abstracts.csproj">
-      <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
-      <Name>Spreadbot.Core.Abstracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Channels.csproj">
-      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Channels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
-      <Project>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</Project>
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
       <Name>Spreadbot.Sdk.Common</Name>
     </ProjectReference>
   </ItemGroup>

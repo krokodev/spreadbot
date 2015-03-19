@@ -6,6 +6,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Spreadbot.App.Web.Sources.Demoshop;
+using Spreadbot.App.Web.Sources.Demoshop.Item;
+using Spreadbot.App.Web.Sources.Demoshop.Store;
 using Spreadbot.Core.Common.Channel.Operations.Tasks;
 using Spreadbot.Core.Common.Store;
 using Spreadbot.Core.Common.Store.Operations;
@@ -17,12 +19,12 @@ namespace Spreadbot.App.Web.Models
     {
         public static DemoshopItem Item
         {
-            get { return Store.Item; }
+            get { return StoreManager.Item; }
         }
 
         public static IEnumerable<IStoreTask> StoreTasks
         {
-            get { return ((IStore) Store).StoreTasks; }
+            get { return ((IStoreManager) StoreManager).StoreTasks; }
         }
 
         public static IEnumerable<IChannelTask> ChannelTasksTodo
@@ -37,22 +39,22 @@ namespace Spreadbot.App.Web.Models
 
         public static IEnumerable<IChannelTask> ChannelTasks
         {
-            get { return ((IStore) Store).GetChannelTasks(); }
+            get { return ((IStoreManager) StoreManager).GetChannelTasks(); }
         }
 
-        public static DemoshopStore Store
+        public static DemoshopStoreManager StoreManager
         {
-            get { return DemoshopStore.Instance; }
+            get { return DemoshopStoreManager.Instance; }
         }
 
         public static void SaveItem(DemoshopItem item)
         {
-            Store.SaveItem(item);
+            StoreManager.SaveItem(item);
         }
 
         public static void PublishItemOnEbay()
         {
-            Store.PublishItemOnEbay();
+            StoreManager.PublishItemOnEbay();
         }
 
         private static readonly object Locker = 0;
@@ -61,7 +63,7 @@ namespace Spreadbot.App.Web.Models
         {
             lock (Locker)
             {
-                Store.Save();
+                StoreManager.Save();
             }
         }
 
@@ -69,7 +71,7 @@ namespace Spreadbot.App.Web.Models
         {
             lock (Locker)
             {
-                Store.Restore();
+                StoreManager.Restore();
             }
         }
     }
