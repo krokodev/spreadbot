@@ -1,14 +1,14 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipResponse.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Results;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Operations.Response
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Operations.Response
 {
     public class MipResponse<TR> : GenericResponse<TR, MipStatusCode>, IMipResponse
         where TR : IMipResponseResult

@@ -7,8 +7,8 @@
     <ProjectGuid>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Core.Channel.Ebay</RootNamespace>
-    <AssemblyName>Spreadbot.Core.Channel.Ebay</AssemblyName>
+    <RootNamespace>Spreadbot.Core.Connectors.Ebay</RootNamespace>
+    <AssemblyName>Spreadbot.Core.Connectors.Ebay</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

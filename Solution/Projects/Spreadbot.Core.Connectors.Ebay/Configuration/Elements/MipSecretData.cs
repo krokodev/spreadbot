@@ -1,12 +1,12 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipSecretData.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
 
-namespace Spreadbot.Core.Channel.Ebay.Configuration.Elements
+namespace Spreadbot.Core.Connectors.Ebay.Configuration.Elements
 {
     public class MipSecretData : SmartConfigurationElement
     {

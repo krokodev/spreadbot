@@ -1,12 +1,12 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipGetRequestStatusResult.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Operations.Results
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Operations.Results
 {
     public class MipGetRequestStatusResult : AbstractMipResponseResult
     {

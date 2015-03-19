@@ -1,12 +1,12 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipRequest.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System;
-using Spreadbot.Core.Channel.Ebay.Mip.Feed;
+using Spreadbot.Core.Connectors.Ebay.Mip.Feed;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Operations.Request
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request
 {
     public class MipRequest
     {

@@ -1,12 +1,12 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipSettings.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System;
-using Spreadbot.Core.Channel.Ebay.Configuration.Sections;
+using Spreadbot.Core.Connectors.Ebay.Configuration.Sections;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Settings
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Settings
 {
     public static class MipSettings
     {

@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Common
 // AbstractStoreTask.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using Nereal.Serialization;
 using Spreadbot.Sdk.Common.Operations.Tasks;

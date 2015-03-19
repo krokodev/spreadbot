@@ -1,19 +1,19 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // EbayChannel.pvt.Utils.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using System.IO;
 using MoreLinq;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Args;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Tasks;
-using Spreadbot.Core.Channel.Ebay.Mip.Connector;
-using Spreadbot.Core.Channel.Ebay.Mip.Feed;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Response;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Args;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Tasks;
+using Spreadbot.Core.Connectors.Ebay.Mip.Connector;
+using Spreadbot.Core.Connectors.Ebay.Mip.Feed;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Response;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Core.Channel.Ebay.Channel
+namespace Spreadbot.Core.Connectors.Ebay.Channel
 {
     public partial class EbayChannel
     {

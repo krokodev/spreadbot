@@ -1,12 +1,12 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipFeed.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System;
 using Crocodev.Common.Identifier;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Feed
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Feed
 {
     public class MipFeed : Identifiable<MipFeed, Guid>
     {

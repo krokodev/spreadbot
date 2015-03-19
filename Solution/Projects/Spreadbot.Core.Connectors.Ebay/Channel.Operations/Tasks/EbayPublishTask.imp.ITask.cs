@@ -1,17 +1,17 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // EbayPublishTask.imp.ITask.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Args;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Args;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 // !>> Core | EBay | EbayPublishTask.imp.ITask
 
-namespace Spreadbot.Core.Channel.Ebay.Channel.Operations.Tasks
+namespace Spreadbot.Core.Connectors.Ebay.Channel.Operations.Tasks
 {
     public sealed partial class EbayPublishTask
     {

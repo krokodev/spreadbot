@@ -1,21 +1,21 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // EbayChannel.imp.IChannel.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using System;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Args;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Results;
-using Spreadbot.Core.Channel.Ebay.Channel.Operations.Tasks;
-using Spreadbot.Core.Channel.Ebay.Mip.Connector;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Common.Channel.Operations.Methods;
 using Spreadbot.Core.Common.Channel.Operations.Responses;
 using Spreadbot.Core.Common.Channel.Operations.Tasks;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Args;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Results;
+using Spreadbot.Core.Connectors.Ebay.Channel.Operations.Tasks;
+using Spreadbot.Core.Connectors.Ebay.Mip.Connector;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Core.Channel.Ebay.Channel
+namespace Spreadbot.Core.Connectors.Ebay.Channel
 {
     public partial class EbayChannel
     {

@@ -1,17 +1,17 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-19 15:38
+// romak_000, 2015-03-19 15:49
 
 using System;
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Results;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Core.Channel.Ebay.Mip.Settings;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Response;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Core.Connectors.Ebay.Mip.Settings;
 using WinSCP;
 
-namespace Spreadbot.Core.Channel.Ebay.Mip.Connector
+namespace Spreadbot.Core.Connectors.Ebay.Mip.Connector
 {
     public partial class MipConnector
     {

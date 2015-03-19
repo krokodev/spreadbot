@@ -1,13 +1,13 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // EbayPublishResult.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using System;
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channel.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Results;
 
-namespace Spreadbot.Core.Channel.Ebay.Channel.Operations.Results
+namespace Spreadbot.Core.Connectors.Ebay.Channel.Operations.Results
 {
     public class EbayPublishResult : AbstractMipResponseResult
     {

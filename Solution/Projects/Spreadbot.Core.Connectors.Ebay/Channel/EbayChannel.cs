@@ -1,13 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Connectors.Ebay
 // EbayChannel.cs
-// romak_000, 2015-03-19 15:37
+// romak_000, 2015-03-19 15:49
 
 using System;
 using System.Threading;
 using Spreadbot.Core.Common.Channel;
 
-namespace Spreadbot.Core.Channel.Ebay.Channel
+namespace Spreadbot.Core.Connectors.Ebay.Channel
 {
     public partial class EbayChannel : AbstractChannel
     {
