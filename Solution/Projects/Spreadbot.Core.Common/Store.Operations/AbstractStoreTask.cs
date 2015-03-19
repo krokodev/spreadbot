@@ -1,13 +1,12 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Common
 // AbstractStoreTask.cs
-// romak_000, 2015-03-19 13:52
+// romak_000, 2015-03-19 15:37
 
 using Nereal.Serialization;
-using Spreadbot.Core.Common.Store;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Core.Common.StoreOperations
+namespace Spreadbot.Core.Common.Store.Operations
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {

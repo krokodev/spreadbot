@@ -1,11 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.cs
-// romak_000, 2015-03-19 13:34
+// romak_000, 2015-03-19 15:37
 
 using System.Collections.Generic;
 using MoreLinq;
-using Spreadbot.Core.Common;
 using Spreadbot.Core.Common.Channel.Operations.Methods;
 using Spreadbot.Core.Common.Channel.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;

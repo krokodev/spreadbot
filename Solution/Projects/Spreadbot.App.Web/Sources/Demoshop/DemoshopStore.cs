@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopStore.cs
-// romak_000, 2015-03-19 14:07
+// romak_000, 2015-03-19 15:37
 
 using System;
 using System.Collections.Generic;
@@ -9,15 +9,14 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using Crocodev.Common;
+using Crocodev.Common.Extensions;
 using Nereal.Serialization;
 using Spreadbot.App.Web.Sources.Configuration.Sections;
 using Spreadbot.Core.Channel.Ebay.Channel.Operations.Tasks;
 using Spreadbot.Core.Channel.Ebay.Mip.Feed;
 using Spreadbot.Core.Common.Channel.Operations.Tasks;
 using Spreadbot.Core.Common.Store;
-using Spreadbot.Core.Common.StoreOperations;
-using Spreadbot.Sdk.Common.Crocodev.Common.Etensions;
+using Spreadbot.Core.Common.Store.Operations;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.App.Web.Sources.Demoshop

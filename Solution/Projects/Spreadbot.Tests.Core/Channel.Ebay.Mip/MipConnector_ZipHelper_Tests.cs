@@ -1,12 +1,11 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_ZipHelper_Tests.cs
-// romak_000, 2015-03-19 13:45
+// romak_000, 2015-03-19 15:37
 
 using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spreadbot.Core.Channel.Ebay.Mip;
 using Spreadbot.Core.Channel.Ebay.Mip.Connector;
 using Spreadbot.Core.Channel.Ebay.Mip.Feed;
 using Spreadbot.Core.Channel.Ebay.Mip.Operations.Request;

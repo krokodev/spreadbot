@@ -35,20 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common, Version=1.0.2.27296, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Crocodev.Common, Version=1.0.2.27923, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Crocodev.Common.dll</HintPath>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
-    <Reference Include="Nereal.Extensions, Version=1.0.5556.27133, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nereal.Extensions, Version=1.0.5556.27923, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Extensions.dll</HintPath>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Nereal.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Nereal.Serialization, Version=1.0.5556.27134, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nereal.Serialization, Version=1.0.5556.27923, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27296\lib\net451\Nereal.Serialization.dll</HintPath>
+      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Nereal.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -77,13 +77,13 @@
     <Compile Include="References\References.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spreadbot.Core.Channel.Ebay\Spreadbot.Core.Connectors.Ebay.csproj">
-      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Connectors.Ebay</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Common\Spreadbot.Core.Common.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Connectors.Ebay\Spreadbot.Core.Connectors.Ebay.csproj">
+      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
+      <Name>Spreadbot.Core.Connectors.Ebay</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
       <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>

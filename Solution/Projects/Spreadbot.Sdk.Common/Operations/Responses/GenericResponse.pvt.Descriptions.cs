@@ -1,10 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.pvt.Descriptions.cs
-// romak_000, 2015-03-19 13:44
+// romak_000, 2015-03-19 15:38
 
 using System;
-using Crocodev.Common;
+using Crocodev.Common.Extensions;
 using MoreLinq;
 using Spreadbot.Sdk.Common.Exceptions;
 

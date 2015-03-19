@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // ResponseException.cs
-// romak_000, 2015-03-19 13:44
+// romak_000, 2015-03-19 15:38
 
 using Spreadbot.Sdk.Common.Operations.Responses;
 
