@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// WebApiConfig.cs
+// romak_000, 2015-03-19 14:07
+
 using System.Web.Http;
 
 namespace Spreadbot.App.Web
@@ -12,8 +14,8 @@ namespace Spreadbot.App.Web
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
         }
     }
 }

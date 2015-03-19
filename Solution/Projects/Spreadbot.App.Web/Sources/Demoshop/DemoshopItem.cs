@@ -1,6 +1,11 @@
+// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// DemoshopItem.cs
+// romak_000, 2015-03-19 14:07
+
 using System.ComponentModel.DataAnnotations;
 
-namespace Spreadbot.App.Web
+namespace Spreadbot.App.Web.Sources.Demoshop
 {
     public class DemoshopItem
     {

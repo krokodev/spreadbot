@@ -1,4 +1,8 @@
-﻿using System.Web;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// FilterConfig.cs
+// romak_000, 2015-03-19 14:07
+
 using System.Web.Mvc;
 
 namespace Spreadbot.App.Web

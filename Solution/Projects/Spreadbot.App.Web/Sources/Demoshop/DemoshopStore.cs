@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// DemoshopStore.cs
+// romak_000, 2015-03-19 14:07
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,13 +11,16 @@ using System.Linq;
 using System.Threading;
 using Crocodev.Common;
 using Nereal.Serialization;
-using Spreadbot.App.Web.Configuration;
-using Spreadbot.Core.Channel.Ebay;
-using Spreadbot.Core.Channel.Ebay.Mip;
-using Spreadbot.Core.Common;
-using Spreadbot.Sdk.Common;
+using Spreadbot.App.Web.Sources.Configuration.Sections;
+using Spreadbot.Core.Channel.Ebay.Channel.Operations.Tasks;
+using Spreadbot.Core.Channel.Ebay.Mip.Feed;
+using Spreadbot.Core.Common.Channel.Operations.Tasks;
+using Spreadbot.Core.Common.Store;
+using Spreadbot.Core.Common.StoreOperations;
+using Spreadbot.Sdk.Common.Crocodev.Common.Etensions;
+using Spreadbot.Sdk.Common.Exceptions;
 
-namespace Spreadbot.App.Web
+namespace Spreadbot.App.Web.Sources.Demoshop
 {
     // !>> App | Web | DemoshopStore
     public class DemoshopStore : IStore

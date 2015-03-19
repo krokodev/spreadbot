@@ -1,0 +1,31 @@
+<ArchitectureGraph>
+  <Module Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.App.Web" />
+  <Module Identifier="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" Name="Spreadbot.Core.Channel.Ebay" />
+  <Module Identifier="F9B60020-90E6-4B41-B29B-62958242CE58" Name="Spreadbot.Core.System" />
+  <Module Identifier="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" Name="Spreadbot.Sdk.Common" />
+  <Module Identifier="5599EFE5-4D66-464D-91EE-3F76153BF8FF" Name="Spreadbot.Core.Common" />
+  <Module Identifier="3F84D09A-E2B3-4487-A576-E1E8B7E469C8" Name="Nereal.Serialization" />
+  <Module Identifier="BCE9417B-B7B8-4BE6-B4E0-64BB8F64FF7E" Name="Nereal.Extensions" />
+  <Module Identifier="1ED946C5-318D-461F-9DDD-DF3C321144BA" Name="Spreadbot.Sdk.Tools" />
+  <Module Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Tests.Core" />
+  <Reference Identifier="F9B60020-90E6-4B41-B29B-62958242CE58/r:Spreadbot.Sdk.Common" SourceId="F9B60020-90E6-4B41-B29B-62958242CE58" Name="Spreadbot.Sdk.Common" TargetId="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" />
+  <Reference Identifier="5599EFE5-4D66-464D-91EE-3F76153BF8FF/r:Spreadbot.Sdk.Common" SourceId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" Name="Spreadbot.Sdk.Common" TargetId="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" />
+  <Reference Identifier="3F84D09A-E2B3-4487-A576-E1E8B7E469C8/r:Nereal.Extensions" SourceId="3F84D09A-E2B3-4487-A576-E1E8B7E469C8" Name="Nereal.Extensions" TargetId="BCE9417B-B7B8-4BE6-B4E0-64BB8F64FF7E" />
+  <Reference Identifier="5599EFE5-4D66-464D-91EE-3F76153BF8FF/r:Nereal.Serialization" SourceId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" Name="Nereal.Serialization" TargetId="3F84D09A-E2B3-4487-A576-E1E8B7E469C8" />
+  <Reference Identifier="F9B60020-90E6-4B41-B29B-62958242CE58/r:Spreadbot.Core.Common" SourceId="F9B60020-90E6-4B41-B29B-62958242CE58" Name="Spreadbot.Core.Common" TargetId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" />
+  <Reference Identifier="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36/r:Spreadbot.Core.System" SourceId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" Name="Spreadbot.Core.System" TargetId="F9B60020-90E6-4B41-B29B-62958242CE58" />
+  <Reference Identifier="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36/r:Spreadbot.Sdk.Common" SourceId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" Name="Spreadbot.Sdk.Common" TargetId="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" />
+  <Reference Identifier="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36/r:Spreadbot.Sdk.Tools" SourceId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" Name="Spreadbot.Sdk.Tools" TargetId="1ED946C5-318D-461F-9DDD-DF3C321144BA" />
+  <Reference Identifier="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36/r:Spreadbot.Core.Common" SourceId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" Name="Spreadbot.Core.Common" TargetId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Spreadbot.Core.Channel.Ebay" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.Core.Channel.Ebay" TargetId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Spreadbot.Core.System" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.Core.System" TargetId="F9B60020-90E6-4B41-B29B-62958242CE58" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Spreadbot.Sdk.Common" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.Sdk.Common" TargetId="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Spreadbot.Sdk.Tools" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.Sdk.Tools" TargetId="1ED946C5-318D-461F-9DDD-DF3C321144BA" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Spreadbot.Core.Common" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Spreadbot.Core.Common" TargetId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" />
+  <Reference Identifier="FA55CC33-16A1-4AF9-B818-27BDAFA35489/r:Nereal.Serialization" SourceId="FA55CC33-16A1-4AF9-B818-27BDAFA35489" Name="Nereal.Serialization" TargetId="3F84D09A-E2B3-4487-A576-E1E8B7E469C8" />
+  <Reference Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA/r:Spreadbot.Core.Channel.Ebay" SourceId="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Core.Channel.Ebay" TargetId="B2E6C77D-B62E-47A2-B79A-BC4CA5635A36" />
+  <Reference Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA/r:Spreadbot.Core.System" SourceId="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Core.System" TargetId="F9B60020-90E6-4B41-B29B-62958242CE58" />
+  <Reference Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA/r:Spreadbot.Sdk.Common" SourceId="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Sdk.Common" TargetId="D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5" />
+  <Reference Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA/r:Spreadbot.Sdk.Tools" SourceId="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Sdk.Tools" TargetId="1ED946C5-318D-461F-9DDD-DF3C321144BA" />
+  <Reference Identifier="9F9E37D0-9359-4CCB-B585-319F369D3BDA/r:Spreadbot.Core.Common" SourceId="9F9E37D0-9359-4CCB-B585-319F369D3BDA" Name="Spreadbot.Core.Common" TargetId="5599EFE5-4D66-464D-91EE-3F76153BF8FF" />
+</ArchitectureGraph>

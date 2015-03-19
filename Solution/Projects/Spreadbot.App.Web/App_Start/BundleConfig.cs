@@ -1,4 +1,9 @@
-﻿using System.Web.Optimization;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// BundleConfig.cs
+// romak_000, 2015-03-19 14:07
+
+using System.Web.Optimization;
 
 namespace Spreadbot.App.Web
 {

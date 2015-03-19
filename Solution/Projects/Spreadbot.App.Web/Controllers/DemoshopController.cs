@@ -1,7 +1,14 @@
-﻿using System.Web.Mvc;
-using Spreadbot.Core.System;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// DemoshopController.cs
+// romak_000, 2015-03-19 14:07
 
-namespace Spreadbot.App.Web
+using System.Web.Mvc;
+using Spreadbot.App.Web.Models;
+using Spreadbot.App.Web.Sources.Demoshop;
+using Spreadbot.Core.System.Dispatcher;
+
+namespace Spreadbot.App.Web.Controllers
 {
     // !>> Controller | DemoshopController
     public class DemoshopController : Controller

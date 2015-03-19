@@ -1,7 +1,13 @@
-using Spreadbot.Core.Common;
-using Spreadbot.Sdk.Common;
+// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// DemoshopStoreTask.cs
+// romak_000, 2015-03-19 14:07
 
-namespace Spreadbot.App.Web
+using Spreadbot.Core.Common.Store;
+using Spreadbot.Core.Common.StoreOperations;
+using Spreadbot.Sdk.Common.Operations.Tasks;
+
+namespace Spreadbot.App.Web.Sources.Demoshop
 {
     public class DemoshopStoreTask : AbstractStoreTask
     {

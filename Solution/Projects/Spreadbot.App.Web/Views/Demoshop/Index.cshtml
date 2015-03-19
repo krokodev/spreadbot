@@ -1,9 +1,10 @@
 ﻿@using System.Linq.Expressions
 @using Crocodev.Common
-@using Spreadbot.App.Web
-@using Spreadbot.Core.Channel.Ebay.Mip.Configuration
-@using Spreadbot.Sdk.Common
-@model DemoshopModel
+@using Spreadbot.App.Web.Models
+@using Spreadbot.Core.Channel.Ebay.Configuration.Sections
+@using Spreadbot.Sdk.Common.Crocodev.Common.Etensions
+@using Spreadbot.Sdk.Common.Operations.Tasks
+@model Spreadbot.App.Web.Models.DemoshopModel
 
 
 @functions {
@@ -53,9 +54,9 @@
     @FormView.Editor(label, textBox)
 }
 
-@helper ShowTasks(IEnumerable<IHierarchicalTask> tasks)
+@helper ShowTasks(IEnumerable<ITask> tasks)
 {
-    var enumerable = tasks as IHierarchicalTask[] ?? tasks.ToArray();
+    var enumerable = tasks as ITask[] ?? tasks.ToArray();
     if (enumerable.Count() != 0)
     {
         <ul>
@@ -75,16 +76,35 @@
 
 <style>
     
-    .sb-task{margin: 2px; padding: 2px;}
-     .sb-task-unknown { background:  #bfbfbf; color: #000000 }
+    .sb-task {
+        margin: 2px;
+        padding: 2px;
+    }
 
-    .sb-task-todo { background: #deeafc; color: #393ba7;}
+    .sb-task-unknown {
+        background: #bfbfbf;
+        color: #000000
+    }
 
-    .sb-task-inprocess { background:  #ffe970; color: #513e00;}
+    .sb-task-todo {
+        background: #deeafc;
+        color: #393ba7;
+    }
 
-    .sb-task-fail { background:  red; color: yellow;}
+    .sb-task-inprocess {
+        background: #ffe970;
+        color: #513e00;
+    }
 
-    .sb-task-success { background: #a9e99c; color: #005204;}
+    .sb-task-fail {
+        background: red;
+        color: yellow;
+    }
+
+    .sb-task-success {
+        background: #a9e99c;
+        color: #005204;
+    }
 </style>
 
 <div>

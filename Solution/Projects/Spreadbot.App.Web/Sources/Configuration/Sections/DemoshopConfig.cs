@@ -1,7 +1,13 @@
-﻿using System.Configuration;
-using Crocodev.Common.SmartConfiguration;
+﻿// Spreadbot (c) 2015 Crocodev
+// Spreadbot.App.Web
+// DemoshopConfig.cs
+// romak_000, 2015-03-19 14:07
 
-namespace Spreadbot.App.Web.Configuration
+using System.Configuration;
+using Crocodev.Common.SmartConfiguration;
+using Spreadbot.App.Web.Sources.Configuration.Elements;
+
+namespace Spreadbot.App.Web.Sources.Configuration.Sections
 {
     [SectionName("Spreadbot/Demoshop")]
     public class DemoshopConfig : SmartConfigurationSection<DemoshopConfig>
@@ -9,7 +15,7 @@ namespace Spreadbot.App.Web.Configuration
         [ConfigurationProperty("DemoshopPaths", IsRequired = true)]
         public DemoshopPaths DemoshopPaths
         {
-            get { return (DemoshopPaths)this[GetMethodName()]; }
+            get { return (DemoshopPaths) this[GetMethodName()]; }
         }
     }
 }

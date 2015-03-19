@@ -1,17 +1,17 @@
-<productRequest>	
-	<product>
-	   <SKU>{item.sku}</SKU>
-		<productInformation localizedFor="en_US">
-		    <title>Test Item: {item.title} with sku: {item.sku}</title>
-			<description>
-				<productDescription>Spreadbot test Item {item.sku}: {item.title} with sku: {item.sku}</productDescription>
-			</description>
-			<pictureURL>http://www.mirmirov.ru/lj/2009-01-14/robot1.jpeg</pictureURL>
-			<shippingDetails measurementSystem="ENGLISH">
-				<weightMajor>5</weightMajor>
-				<weightMinor>4</weightMinor>
-			</shippingDetails>
-			<category categoryType="EBAY_LEAF_CATEGORY">115623</category> 
-		</productInformation>
-	</product>
+<productRequest>
+  <product>
+    <SKU>{item.sku}</SKU>
+    <productInformation localizedFor="en_US">
+      <title>Test Item: {item.title} with sku: {item.sku}</title>
+      <description>
+        <productDescription>Spreadbot test Item {item.sku}: {item.title} with sku: {item.sku}</productDescription>
+      </description>
+      <pictureURL>http://www.mirmirov.ru/lj/2009-01-14/robot1.jpeg</pictureURL>
+      <shippingDetails measurementSystem="ENGLISH">
+        <weightMajor>5</weightMajor>
+        <weightMinor>4</weightMinor>
+      </shippingDetails>
+      <category categoryType="EBAY_LEAF_CATEGORY">115623</category>
+    </productInformation>
+  </product>
 </productRequest>

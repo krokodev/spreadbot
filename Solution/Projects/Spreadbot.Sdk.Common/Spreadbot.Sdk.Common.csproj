@@ -39,36 +39,33 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sources\Crocodev.Common\FileSystemExtensions.cs" />
-    <Compile Include="Sources\Crocodev.Common\StringExtensions.cs" />
-    <Compile Include="Sources\Crocodev.Common\Stub.cs" />
-    <Compile Include="Sources\Exceptions\SpreadbotException.cs" />
-    <Compile Include="Sources\Operations\Args\AbstractArgs.cs" />
-    <Compile Include="Sources\Operations\Args\ITaskArgs.cs" />
-    <Compile Include="Sources\Exceptions\ResponseException.cs" />
-    <Compile Include="Sources\Operations\ResponseResults\BoolResponseResult.cs" />
-    <Compile Include="Sources\Operations\ResponseResults\IResponseResult.cs" />
-    <Compile Include="Sources\Operations\ResponseResults\AbstractResponseResult.cs" />
-    <Compile Include="Sources\Operations\Response\GenericResponse.cs" />
-    <Compile Include="Sources\Operations\Response\GenericResponse.pvt.Descriptions.cs" />
-    <Compile Include="Sources\Operations\Response\IResponse.cs" />
-    <Compile Include="Sources\Operations\Task\AbstractTask.pvt.SubTasks.cs" />
-    <Compile Include="Sources\Operations\Task\AbstractTask.state.cs" />
-    <Compile Include="Sources\Operations\Task\AbstractTask.imp.ITask.cs" />
-    <Compile Include="Sources\Operations\Task\IProceedableTask.cs" />
-    <Compile Include="Sources\Operations\Task\IHierarchicalTask.cs" />
-    <Compile Include="Sources\Operations\Task\AbstractTask.cs" />
-    <Compile Include="Sources\Operations\Task\ITaskProceedInfo.cs" />
-    <Compile Include="Sources\Operations\Task\TaskProceedHelper.cs" />
-    <Compile Include="Sources\Operations\Task\TaskStatus.cs" />
+    <Compile Include="Crocodev.Common\Etensions\FileSystemExtensions.cs" />
+    <Compile Include="Crocodev.Common\Etensions\StringExtensions.cs" />
+    <Compile Include="Crocodev.Common\Stub.cs" />
+    <Compile Include="Exceptions\SpreadbotException.cs" />
+    <Compile Include="Operations\Args\AbstractArgs.cs" />
+    <Compile Include="Operations\Args\ITaskArgs.cs" />
+    <Compile Include="Exceptions\ResponseException.cs" />
+    <Compile Include="Operations\ResponseResults\BoolResponseResult.cs" />
+    <Compile Include="Operations\ResponseResults\IResponseResult.cs" />
+    <Compile Include="Operations\ResponseResults\AbstractResponseResult.cs" />
+    <Compile Include="Operations\Responses\GenericResponse.cs" />
+    <Compile Include="Operations\Responses\GenericResponse.pvt.Descriptions.cs" />
+    <Compile Include="Operations\Responses\IResponse.cs" />
+    <Compile Include="Operations\Tasks\AbstractTask.pvt.SubTasks.cs" />
+    <Compile Include="Operations\Tasks\AbstractTask.state.cs" />
+    <Compile Include="Operations\Tasks\AbstractTask.imp.ITask.cs" />
+    <Compile Include="Operations\Tasks\IProceedableTask.cs" />
+    <Compile Include="Operations\Tasks\ITask.cs" />
+    <Compile Include="Operations\Tasks\AbstractTask.cs" />
+    <Compile Include="Operations\Tasks\ITaskProceedInfo.cs" />
+    <Compile Include="Operations\Tasks\TaskProceedHelper.cs" />
+    <Compile Include="Operations\Tasks\TaskStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
