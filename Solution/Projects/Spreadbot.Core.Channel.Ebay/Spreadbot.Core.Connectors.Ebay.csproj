@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Channel\EbayChannel.pvt.Utils.cs" />
+    <Compile Include="Channel\EbayChannel.imp.IChannel.cs" />
     <Compile Include="Channel\EbayChannel.cs" />
     <Compile Include="Channel.Operations\Tasks\EbayPublishTask.imp.ITask.cs" />
     <Compile Include="Channel.Operations\Tasks\EbayPublishTask.state.cs" />
