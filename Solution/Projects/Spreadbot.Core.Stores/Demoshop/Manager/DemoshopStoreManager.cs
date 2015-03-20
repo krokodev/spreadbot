@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-20 23:58
+// romak_000, 2015-03-21 1:54
 
 using System;
+using System.IO;
 using System.Threading;
 using Crocodev.Common.Extensions;
 using Nereal.Serialization;
@@ -41,7 +42,9 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         public void Restore()
         {
-            Serializer.Default.Deserialize( this, DataFileName() );
+            if( File.Exists( DataFileName() ) ) {
+                Serializer.Default.Deserialize( this, DataFileName() );
+            }
         }
 
         // ===================================================================================== []

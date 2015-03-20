@@ -9,9 +9,6 @@ using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
-    // Code: DemoshopStore.state
-    // Todo: save <MipRequestId />
-
     public partial class DemoshopStoreManager
     {
         [Serialize]

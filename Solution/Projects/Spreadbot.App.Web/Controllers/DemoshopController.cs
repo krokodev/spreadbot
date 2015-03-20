@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 1:52
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
@@ -17,6 +17,7 @@ namespace Spreadbot.App.Web.Controllers
         // Index
         public ActionResult Index()
         {
+            DemoshopModel.Restore();
             return View( new DemoshopModel() );
         }
 
@@ -34,6 +35,7 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult AddTask()
         {
             DemoshopModel.CreateTaskPublishItemOnEbay();
+            DemoshopModel.Save();
             return RedirectToAction( "Index" );
         }
 
@@ -42,7 +44,8 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult RunChannelTasks()
         {
             Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
-            return RedirectToAction( "Index" );
+            DemoshopModel.Save();
+            return RedirectToAction("Index");
         }
 
         // ===================================================================================== []
@@ -50,7 +53,8 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult ProceedChannelTasks()
         {
             Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
-            return RedirectToAction( "Index" );
+            DemoshopModel.Save();
+            return RedirectToAction("Index");
         }
 
         // ===================================================================================== []

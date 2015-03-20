@@ -71,5 +71,13 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             } );
             store.DeleteTask( task );
         }
+
+        // --------------------------------------------------------[]
+        [Ignore]
+        [TestMethod]
+        public void SaveRestore_Proceed_Task_PublishItemOnEbay()
+        {
+            // Todo: Create_Run_SaveRestore_Proceed_Task_PublishItemOnEbay
+        }
     }
 }

@@ -156,6 +156,7 @@
     <Content Include="App_Data\Configs\Mip.Public.config" />
     <Content Include="App_Data\Configs\Mip.Security.config" />
     <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
+    <Content Include="App_Data\Stores\Demoshop\Data\.gitignore" />
     <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
     <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
     <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
@@ -203,6 +204,10 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj">
+      <Project>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</Project>
+      <Name>Spreadbot.Core.Channels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Stores\Spreadbot.Core.Stores.csproj">
       <Project>{4b00ed58-9c97-4c8a-bbab-167cf31abb31}</Project>
       <Name>Spreadbot.Core.Stores</Name>
@@ -220,9 +225,7 @@
       <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Stores\Demoshop\Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
