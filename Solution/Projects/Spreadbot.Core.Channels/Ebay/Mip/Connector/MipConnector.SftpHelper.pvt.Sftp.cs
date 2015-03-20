@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 20:44
 
 using System;
 using Crocodev.Common.Extensions;
@@ -45,8 +45,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             {
                 try {
                     UploadFiles(
-                                LocalZippedFeedFile( feed, reqId.ToString() ),
-                                RemoteFeedOutgoingZipFilePath( feed, reqId.ToString() )
+                        LocalZippedFeedFile( feed, reqId.ToString() ),
+                        RemoteFeedOutgoingZipFilePath( feed, reqId.ToString() )
                         );
                 }
                 catch( Exception exception ) {
@@ -58,7 +58,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipSendZippedFeedFolderResult >(
                     true,
                     MipStatusCode.SendZippedFeedSuccess,
-                    new MipSendZippedFeedFolderResult( reqId ) );
+                    new MipSendZippedFeedFolderResult { MipRequestId = reqId } );
             }
 
             // ===================================================================================== []
@@ -114,10 +114,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     session.Open( sessionOptions );
 
                     var transferResult = session.PutFiles(
-                                                          localPath,
-                                                          remotePath,
-                                                          false,
-                                                          transferOptions
+                        localPath,
+                        remotePath,
+                        false,
+                        transferOptions
                         );
 
                     transferResult.Check();
@@ -135,10 +135,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     session.Open( sessionOptions );
 
                     var transferResult = session.GetFiles(
-                                                          remotePath,
-                                                          localPath,
-                                                          false,
-                                                          transferOptions
+                        remotePath,
+                        localPath,
+                        false,
+                        transferOptions
                         );
 
                     transferResult.Check();

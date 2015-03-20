@@ -1,18 +1,19 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 20:32
 
 using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    public partial class GenericResponse<TR, TC> : IResponse
+    //Todo: Ref: Split and clean GenericResponse
+    public partial class GenericResponse<TR, TC> : IAbstractResponse
         where TR : IResponseResult
     {
-        // ===================================================================================== []
-        // Protected
+        private int _level;
+
         protected GenericResponse( bool isSucces, TC code )
         {
             IsSuccess = isSucces;
@@ -32,10 +33,11 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             Result = result;
         }
 
-        protected GenericResponse( bool isSucces, TC code, TR result, IResponse innerResponse )
+        protected GenericResponse( bool isSucces, TC code, TR result, IAbstractResponse innerResponse )
             : this( isSucces, code, result )
         {
             InnerResponse = innerResponse;
+            InnerResponse.Level = Level + 1;
         }
 
         protected GenericResponse( bool isSucces, TC code, string details )
@@ -44,24 +46,27 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             Details = details;
         }
 
-        // ===================================================================================== []
-        // Public
         public TC Code { get; set; }
         public TR Result { get; set; }
         public string Details { get; set; }
         public Exception Exception { get; set; }
-        public IResponse InnerResponse { get; set; }
+        public IAbstractResponse InnerResponse { get; set; }
 
         public string Autoinfo
         {
-            get { return GetAutoinfo( 0 ); }
+            get { return IsSuccess ? GetSuccessAutoinfo() : GetFailedAutoinfo(); }
         }
 
-        public string GetAutoinfo( int level )
+        public int Level
         {
-            return IsSuccess
-                       ? GetSuccessAutoinfo( level )
-                       : GetFailedAutoinfo( level );
+            get { return _level; }
+            set
+            {
+                _level = value;
+                if( InnerResponse != null ) {
+                    InnerResponse.Level = Level + 1;
+                }
+            }
         }
 
         public void Check()

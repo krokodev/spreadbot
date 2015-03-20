@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IProceedableTask.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 18:52
 
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -15,13 +15,13 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
     {
         // ===================================================================================== []
         // Explicit
-        void IProceedableTask.SaveProceedInfo( ITaskProceedInfo info )
+        public void AddProceedInfo( ITaskProceedInfo info )
         {
-            _taskProceedHelper.Save( info );
+            _taskProceedHelper.AddProceedInfo( info );
         }
 
         // --------------------------------------------------------[]
-        void IProceedableTask.AssertCanBeProceeded()
+        public void AssertCanBeProceeded()
         {
             if( MipRequestStatusCode != MipRequestStatus.Initial &&
                 MipRequestStatusCode != MipRequestStatus.Inprocess ) {

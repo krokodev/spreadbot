@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 20:44
 
 using System;
 using Crocodev.Common.Extensions;
@@ -51,7 +51,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             return new MipResponse< MipSendZippedFeedFolderResult >(
                 true,
                 MipStatusCode.SendZippedFeedFolderSuccess,
-                new MipSendZippedFeedFolderResult( reqId )
+                new MipSendZippedFeedFolderResult { MipRequestId = reqId }
                 );
         }
 

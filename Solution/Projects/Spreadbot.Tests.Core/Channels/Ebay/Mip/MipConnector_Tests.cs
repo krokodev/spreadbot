@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Tests.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 16:25
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,8 +16,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnector_Tests
     {
         // ===================================================================================== []
-        [ClassInitialize()]
-        public static void Init(TestContext testContext)
+        [ClassInitialize]
+        public static void Init( TestContext testContext )
         {
             MipTestInitializer.PrepareTestFiles();
         }

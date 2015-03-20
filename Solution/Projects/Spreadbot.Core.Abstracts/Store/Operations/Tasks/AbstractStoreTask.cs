@@ -9,14 +9,6 @@ namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {
-        protected AbstractStoreTask( string storeId, string description )
-        {
-            StoreId = storeId;
-            Description = description;
-        }
-
-        protected AbstractStoreTask() {}
-
         public override string GetAutoinfo()
         {
             return string.Format(

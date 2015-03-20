@@ -5,9 +5,9 @@
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
-    public interface IProceedableTask
+    public interface IProceedableTask: IAbstractTask
     {
-        void SaveProceedInfo( ITaskProceedInfo info );
+        void AddProceedInfo( ITaskProceedInfo info );
         void AssertCanBeProceeded();
     }
 }

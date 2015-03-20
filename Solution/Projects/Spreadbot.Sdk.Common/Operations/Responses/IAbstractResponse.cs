@@ -5,11 +5,11 @@
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    public interface IResponse
+    public interface IAbstractResponse
     {
         bool IsSuccess { get; }
         string Autoinfo { get; }
-        string GetAutoinfo( int level );
+        int Level { get; set; }
         void Check();
     }
 }

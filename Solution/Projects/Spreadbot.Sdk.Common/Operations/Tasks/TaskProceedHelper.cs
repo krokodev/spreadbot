@@ -11,7 +11,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         private readonly List< ITaskProceedInfo > _proceedHistory = new List< ITaskProceedInfo >();
 
-        public void Save( ITaskProceedInfo info )
+        public void AddProceedInfo( ITaskProceedInfo info )
         {
             _proceedHistory.Add( info );
         }

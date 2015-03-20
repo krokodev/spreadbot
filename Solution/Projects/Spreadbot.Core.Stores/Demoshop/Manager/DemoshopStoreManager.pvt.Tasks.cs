@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         public IEnumerable< AbstractChannelTask > GetChannelTasks()
         {
-            return StoreTasks.SelectMany( t => t.SubTasks.Select( cnt => ( AbstractChannelTask ) cnt ) );
+            return StoreTasks.SelectMany( t => t.AbstractSubTasks.Select( cnt => ( AbstractChannelTask ) cnt ) );
         }
     }
 }

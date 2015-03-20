@@ -7,7 +7,7 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
 {
-    public interface IStoreTask : ITask
+    public interface IStoreTask : IAbstractTask
     {
         string StoreId { get; set; }
     }

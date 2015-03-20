@@ -1,20 +1,17 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.pvt.Tasks.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 20:01
 
 using System;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
-using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Ebay.Manager
 {
@@ -23,52 +20,55 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
         // --------------------------------------------------------[]
         private static void ProceedPublishTask( EbayPublishTask ebayPublishTask )
         {
-            ( ( IProceedableTask ) ebayPublishTask ).AssertCanBeProceeded();
+            ebayPublishTask.AssertCanBeProceeded();
 
             MipRequestStatusResponse statusResponse = null;
 
             try {
-                var ebayPublishArgs = ( EbayPublishArgs ) ebayPublishTask.GetChannelArgs();
-                var mipRequest = new MipRequest( ebayPublishArgs.FeedHandler, ebayPublishTask.GetMipRequestId() );
+                var ebayPublishArgs = ebayPublishTask.Args;
+                var mipRequest = new MipRequest(
+                    ebayPublishArgs.MipFeedHandler,
+                    ebayPublishTask.EbayPublishResponse.Result.MipRequestId );
 
                 statusResponse = MipConnector.GetRequestStatus( mipRequest );
                 statusResponse.Check();
 
                 ebayPublishTask.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
-                ( ( IProceedableTask ) ebayPublishTask ).SaveProceedInfo( statusResponse );
+                ebayPublishTask.AddProceedInfo( statusResponse );
             }
             catch {
                 ebayPublishTask.MipRequestStatusCode = MipRequestStatus.Fail;
-                ( ( IProceedableTask ) ebayPublishTask ).SaveProceedInfo( statusResponse );
+                ebayPublishTask.AddProceedInfo( statusResponse );
             }
         }
 
-        private void DoProceedTask( IChannelTask channelTask )
+        // --------------------------------------------------------[]
+        private void DoProceedTask( EbayPublishTask task )
         {
-            switch( channelTask.ChannelMethod ) {
+            switch( task.ChannelMethod ) {
                 case ChannelMethod.Publish :
-                    ProceedPublishTask( ( EbayPublishTask ) channelTask );
+                    ProceedPublishTask( task );
                     break;
                 default :
-                    throw new SpreadbotException( "Unexpected Task Channel Method: [{0}]", channelTask.ChannelMethod );
+                    throw new SpreadbotException( "Unexpected Task Channel Method: [{0}]", task.ChannelMethod );
             }
         }
 
-        private static void DoRunPublishTask( IChannelTask task )
+        // --------------------------------------------------------[]
+        private static void DoRunPublishTask( EbayPublishTask publishTask )
         {
             try {
-                var publishTask = ( EbayPublishTask ) task;
-                var publishArgs = ( EbayPublishArgs ) task.Args;
+                var publishArgs = publishTask.Args;
 
-                CreateFeedFile( publishArgs.FeedHandler );
+                CreateFeedFile( publishArgs.MipFeedHandler );
 
-                var mipResponse = MipConnector.SendZippedFeedFolder( publishArgs.FeedHandler );
+                var mipResponse = MipConnector.SendZippedFeedFolder( publishArgs.MipFeedHandler );
 
-                EraseFeedFolder( publishArgs.FeedHandler );
+                EraseFeedFolder( publishArgs.MipFeedHandler );
 
                 mipResponse.Check();
 
-                ( ( ITask ) publishTask ).Response = new ChannelResponse< EbayPublishResult >(
+                publishTask.EbayPublishResponse = new ChannelResponse< EbayPublishResult >(
                     true,
                     ChannelResponseStatusCode.PublishSuccess,
                     new EbayPublishResult( mipResponse.Result.MipRequestId ),
@@ -77,7 +77,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 publishTask.MipRequestStatusCode = MipRequestStatus.Initial;
             }
             catch( Exception exception ) {
-                task.Response = new ChannelResponse< EbayPublishResult >(
+                publishTask.EbayPublishResponse = new ChannelResponse< EbayPublishResult >(
                     false,
                     ChannelResponseStatusCode.PublishFail,
                     exception );

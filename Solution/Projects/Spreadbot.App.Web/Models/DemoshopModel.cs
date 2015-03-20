@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 17:22
 
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.Stores.Demoshop.Manager;
+using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.App.Web.Models
@@ -51,9 +52,9 @@ namespace Spreadbot.App.Web.Models
             StoreManager.SaveItem( item );
         }
 
-        public static void PublishItemOnEbay()
+        public static void CreateTaskPublishItemOnEbay()
         {
-            StoreManager.PublishItemOnEbay();
+            StoreManager.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
         }
 
         private static readonly object Locker = 0;

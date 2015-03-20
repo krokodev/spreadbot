@@ -21,7 +21,7 @@ namespace Spreadbot.Core.Abstracts.Chanel.Operations.Responses
         public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, TR result )
             : base( isSucces, code, result ) {}
 
-        public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, TR result, IResponse inner )
+        public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, TR result, IAbstractResponse inner )
             : base( isSucces, code, result, inner ) {}
     }
 }

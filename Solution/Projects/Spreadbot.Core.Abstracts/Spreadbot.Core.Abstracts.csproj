@@ -59,7 +59,6 @@
     <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.state.cs" />
     <Compile Include="Chanel\Manager\AbstractChannelManager.cs" />
     <Compile Include="Chanel\Manager\IChannelManager.cs" />
-    <Compile Include="Chanel\Operations\Args\IChannelTaskArgs.cs" />
     <Compile Include="Chanel\Operations\Methods\ChannelMethod.cs" />
     <Compile Include="Chanel\Operations\Responses\ChannelResponse.cs" />
     <Compile Include="Chanel\Operations\Responses\ChannelResponseStatusCode.cs" />

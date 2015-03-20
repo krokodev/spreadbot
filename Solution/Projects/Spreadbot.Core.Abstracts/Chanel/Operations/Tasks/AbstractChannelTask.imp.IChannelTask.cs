@@ -3,7 +3,6 @@
 // AbstractChannelTask.imp.IChannelTask.cs
 // romak_000, 2015-03-20 13:56
 
-using Spreadbot.Core.Abstracts.Chanel.Operations.Args;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
 
 namespace Spreadbot.Core.Abstracts.Chanel.Operations.Tasks
@@ -20,10 +19,5 @@ namespace Spreadbot.Core.Abstracts.Chanel.Operations.Tasks
         // --------------------------------------------------------[]
         public ChannelMethod ChannelMethod { get; set; }
 
-        // --------------------------------------------------------[]
-        public IChannelTaskArgs GetChannelArgs()
-        {
-            return ( IChannelTaskArgs ) AbstractArgs;
-        }
     }
 }

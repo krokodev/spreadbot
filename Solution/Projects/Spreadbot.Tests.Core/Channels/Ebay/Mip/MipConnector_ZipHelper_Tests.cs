@@ -17,7 +17,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnector_ZipHelper_Tests
     {
         // ===================================================================================== []
-        [ClassInitialize()]
+        [ClassInitialize]
         public static void Init(TestContext testContext)
         {
             MipTestInitializer.PrepareTestFiles();

@@ -60,6 +60,7 @@
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Tasks.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Utils.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.state.cs" />
+    <Compile Include="Demoshop\Operations\Tasks\DemoshopStoreTaskType.cs" />
     <Compile Include="Demoshop\Operations\Tasks\DemoshopStoreTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

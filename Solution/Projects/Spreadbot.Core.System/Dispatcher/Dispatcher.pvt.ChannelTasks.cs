@@ -16,7 +16,7 @@ namespace Spreadbot.Core.System.Dispatcher
     {
         // ===================================================================================== []
         // DoRunChannelTask
-        public void DoRunChannelTask( IChannelTask task )
+        private void DoRunChannelTask( IChannelTask task )
         {
             if( task.GetStatusCode() != TaskStatus.Todo ) {
                 throw new SpreadbotException( "Task was already run [{0}]", task );

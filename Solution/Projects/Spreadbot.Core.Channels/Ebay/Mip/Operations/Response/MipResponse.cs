@@ -1,17 +1,17 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipResponse.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 20:41
 
 using System;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 {
-    public class MipResponse<TR> : GenericResponse< TR, MipStatusCode >, IMipResponse
-        where TR : IMipResponseResult
+    public class MipResponse<TR> : GenericResponse< TR, MipStatusCode >
+        where TR : IResponseResult
     {
         public MipResponse() {}
 
@@ -24,15 +24,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
         public MipResponse( bool isSucces, MipStatusCode code, TR result )
             : base( isSucces, code, result ) {}
 
-        public MipResponse( bool isSucces, MipStatusCode code, TR result, IResponse innerResponse )
+        public MipResponse( bool isSucces, MipStatusCode code, TR result, IAbstractResponse innerResponse )
             : base( isSucces, code, result, innerResponse ) {}
 
         public MipResponse( bool isSucces, MipStatusCode code, string details )
             : base( isSucces, code, details ) {}
-
-        public Guid GetMipRequestId()
-        {
-            return Result.GetMipRequestId();
-        }
     }
 }

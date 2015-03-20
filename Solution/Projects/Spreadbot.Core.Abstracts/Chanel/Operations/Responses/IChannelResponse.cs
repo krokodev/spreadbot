@@ -7,5 +7,5 @@ using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Abstracts.Chanel.Operations.Responses
 {
-    public interface IChannelResponse : IResponse {}
+    public interface IChannelResponse : IAbstractResponse {}
 }

@@ -1,21 +1,19 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // ITask.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 19:02
 
 using System.Collections.Generic;
-using Spreadbot.Sdk.Common.Operations.Args;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
-    public interface ITask
+    public interface IAbstractTask
     {
         string GetAutoinfo();
-        ITaskArgs Args { get; }
-        IResponse Response { get; set; }
+        IAbstractResponse AbstractResponse { get; set; }
         string Description { get; set; }
-        IEnumerable< ITask > SubTasks { get; }
+        IEnumerable< IAbstractTask > AbstractSubTasks { get; }
         TaskStatus GetStatusCode();
         bool IsCritical { get; set; }
     }

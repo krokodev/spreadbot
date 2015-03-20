@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishResult.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 20:42
 
 using System;
 using Crocodev.Common.Extensions;

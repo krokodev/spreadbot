@@ -63,12 +63,10 @@
     <Compile Include="Ebay\Manager\EbayChannelManager.pvt.Tasks.cs" />
     <Compile Include="Ebay\Manager\EbayChannelManager.imp.IChannelManager.cs" />
     <Compile Include="Ebay\Manager\EbayChannelManager.cs" />
-    <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.ITask.cs" />
+    <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IAbstractTask.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.state.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IProceedableTask.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipTestConnectionResult.cs" />
-    <Compile Include="Ebay\Mip\Operations\Response\IMipResponse.cs" />
-    <Compile Include="Ebay\Mip\Operations\Results\IMipResponseResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Response\MipRequestStatusResponse.cs" />
     <Compile Include="Ebay\Operations\Results\EbayPublishResult.cs" />
     <Compile Include="Ebay\Operations\Args\EbayPublishArgs.cs" />

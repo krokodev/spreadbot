@@ -33,7 +33,7 @@ namespace Spreadbot.App.Web.Controllers
         // Add Task
         public ActionResult AddTask()
         {
-            DemoshopModel.PublishItemOnEbay();
+            DemoshopModel.CreateTaskPublishItemOnEbay();
             return RedirectToAction( "Index" );
         }
 

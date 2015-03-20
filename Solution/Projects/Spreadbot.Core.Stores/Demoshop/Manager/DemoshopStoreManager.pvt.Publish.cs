@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Publish.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 20:50
 
 using System.Globalization;
 using System.IO;
@@ -18,24 +18,19 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     {
         // ===================================================================================== []
         // PublishItemOnEbay
-        private DemoshopStoreTask DoPublishOnEbay()
+        private DemoshopStoreTask DoCreateTaskPublishOnEbay()
         {
             var storeTask =
-                new DemoshopStoreTask( Id, "Publish [{0}] on eBay".SafeFormat( Item.Sku ) );
+                new DemoshopStoreTask { StoreId = Id, Description = "Publish [{0}] on eBay".SafeFormat( Item.Sku ) };
 
-            var productTask =
-                new EbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku );
-            var distributionTask =
-                new EbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku );
-            var availabilityTask =
-                new EbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku );
-
-            storeTask
-                .AddSubTask( productTask )
-                .AddSubTask( distributionTask )
-                .AddSubTask( availabilityTask );
+            storeTask.AddSubTasks(
+                new EbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku ),
+                new EbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku ),
+                new EbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku )
+                );
 
             AddTask( storeTask );
+
             return storeTask;
         }
 
@@ -56,8 +51,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                     return template
                         .Replace( "{item.sku}", item.Sku )
                         .Replace(
-                                 "{item.quantity}",
-                                 item.Quantity.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
+                            "{item.quantity}",
+                            item.Quantity.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
                 case MipFeedType.Distribution :
                     return template

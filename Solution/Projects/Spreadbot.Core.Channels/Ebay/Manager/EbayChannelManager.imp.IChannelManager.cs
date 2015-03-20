@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.imp.IChannelManager.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 18:49
 
 using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Ebay.Manager
 {
@@ -12,13 +13,13 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
         // --------------------------------------------------------[]
         public override void RunPublishTask( IChannelTask task )
         {
-            DoRunPublishTask( task );
+            DoRunPublishTask( ( EbayPublishTask ) task );
         }
 
         // --------------------------------------------------------[]
         public override void ProceedTask( IChannelTask channelTask )
         {
-            DoProceedTask( channelTask );
+            DoProceedTask( ( EbayPublishTask ) channelTask );
         }
 
         // --------------------------------------------------------[]

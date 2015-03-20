@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.pvt.Descriptions.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 20:06
 
 using System;
 using Crocodev.Common.Extensions;
@@ -17,103 +17,100 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         // ===================================================================================== []
         // Get Autoinfo
-        private string GetSuccessAutoinfo( int level )
+        private string GetSuccessAutoinfo()
         {
             return AutoinfoResponse(
-                                    level++,
-                                    AutoinfoField( "Result", Result, level ),
-                                    AutoinfoField( "Details", Details, level ),
-                                    AutoinfoInnerResponse( InnerResponse, level )
+                AutoinfoField( "Result", Result),
+                AutoinfoField( "Details", Details),
+                AutoinfoInnerResponse( InnerResponse )
                 );
         }
 
         // --------------------------------------------------------[]
-        private string GetFailedAutoinfo( int level )
+        private string GetFailedAutoinfo()
         {
             return AutoinfoResponse(
-                                    level++,
-                                    AutoinfoException( Exception, level ),
-                                    AutoinfoField( "Details", Details, level ),
-                                    AutoinfoInnerResponse( InnerResponse, level )
+                AutoinfoException( Exception),
+                AutoinfoField( "Details", Details ),
+                AutoinfoInnerResponse( InnerResponse)
                 );
         }
 
         // ===================================================================================== []
         // Elements
-        private static string AutoinfoField( string name, object value, int level )
+        private string AutoinfoField( string name, object value)
         {
             if( value == null ) {
                 return "";
             }
 
-            return "{0}{1}: [{2}]".SafeFormat( NewLine( level ), name, value );
+            return "{0}{1}: [{2}]".SafeFormat( NewLine( Level ), name, value );
         }
 
         // --------------------------------------------------------[]
-        private static string AutoinfoException( Exception e, int level )
+        private string AutoinfoException( Exception e)
         {
             if( e == null ) {
                 return null;
             }
 
             return AutoinfoSection(
-                                   "Exception",
-                                   level++,
-                                   AutoinfoField( "Type", e.GetType(), level ),
-                                   AutoinfoField( "Message", ExceptionMessage( e, level + 1 ), level ),
-                                   AutoinfoField(
-                                                 "InnerException",
-                                                 AutoinfoException( e.InnerException, level ),
-                                                 level )
+                "Exception",
+                AutoinfoField( "Type", e.GetType()),
+                AutoinfoField( "Message", ExceptionMessage( e) ),
+                AutoinfoField(
+                    "InnerException",
+                    AutoinfoException( e.InnerException)
+                    )
                 );
         }
 
-        private static string ExceptionMessage( Exception e, int level )
+        // --------------------------------------------------------[]
+        private string ExceptionMessage( Exception e)
         {
             var responseException = e as ResponseException;
             if( responseException != null ) {
-                return responseException.Response.GetAutoinfo( level );
+                return responseException.Response.Autoinfo;
             }
             return e.Message;
         }
 
         // --------------------------------------------------------[]
-        private static string AutoinfoInnerResponse( IResponse response, int level )
+        private string AutoinfoInnerResponse( IAbstractResponse response)
         {
             if( response == null ) {
                 return null;
             }
 
             return AutoinfoSection(
-                                   "InnerResponse",
-                                   level++,
-                                   response.GetAutoinfo( level )
+                "InnerResponse",
+                response.Autoinfo
                 );
         }
 
         // --------------------------------------------------------[]
-        private static string AutoinfoSection( string sectionName, int level = 0, params string[] args )
+        private string AutoinfoSection( string sectionName, params string[] args )
         {
             var sectionContent = "";
             args.ForEach(
-                         arg => {
-                             sectionContent = "{0}{1}".SafeFormat(
-                                                                  sectionContent,
-                                                                  arg
-                                 );
-                         } );
+                arg => {
+                    sectionContent = "{0}{1}".SafeFormat(
+                        sectionContent,
+                        arg
+                        );
+                } );
 
             return "{0}{1}:{0}[{2}{0}]".SafeFormat(
-                                                   NewLine( level ),
-                                                   sectionName,
-                                                   sectionContent
+                NewLine( Level ),
+                sectionName,
+                sectionContent
                 );
         }
 
         // --------------------------------------------------------[]
-        private string AutoinfoResponse( int level = 0, params string[] args )
+        private string AutoinfoResponse( params string[] args )
         {
-            return AutoinfoSection( Code.ToString(), level, args );
+            return AutoinfoSection( Code.ToString(), args );
         }
 
         // --------------------------------------------------------[]

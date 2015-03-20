@@ -52,6 +52,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="WinSCPnet">
       <HintPath>..\..\packages\WinSCP.5.7\lib\WinSCPnet.dll</HintPath>
     </Reference>

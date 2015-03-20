@@ -9,7 +9,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 {
     public class ResponseException : SpreadbotException
     {
-        public ResponseException( IResponse response )
+        public ResponseException( IAbstractResponse response )
         {
             Response = response;
         }
@@ -19,6 +19,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             get { return Response.Autoinfo; }
         }
 
-        public IResponse Response { get; set; }
+        public IAbstractResponse Response { get; private set; }
     }
 }
