@@ -11,7 +11,7 @@ namespace Spreadbot.App.Web.References
     {
         public static void Register()
         {
-            Project.UseIt();
+            SdkProject.UseIt();
         }
     }
 }

@@ -5,7 +5,7 @@
 
 namespace Spreadbot.Sdk.Tools
 {
-    public static class Project
+    public static class SdkProject
     {
         public static void UseIt() {}
     }
