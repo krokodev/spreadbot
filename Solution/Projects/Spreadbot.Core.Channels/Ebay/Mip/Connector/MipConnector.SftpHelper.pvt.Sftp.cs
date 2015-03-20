@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-20 20:44
+// romak_000, 2015-03-21 1:36
 
 using System;
 using Crocodev.Common.Extensions;
@@ -41,12 +41,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
             // ===================================================================================== []
             // DoSendZippedFeed
-            private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeed( string feed, Guid reqId )
+            private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeed( string feed, string reqId )
             {
                 try {
                     UploadFiles(
-                        LocalZippedFeedFile( feed, reqId.ToString() ),
-                        RemoteFeedOutgoingZipFilePath( feed, reqId.ToString() )
+                        LocalZippedFeedFile( feed, reqId ),
+                        RemoteFeedOutgoingZipFilePath( feed, reqId )
                         );
                 }
                 catch( Exception exception ) {

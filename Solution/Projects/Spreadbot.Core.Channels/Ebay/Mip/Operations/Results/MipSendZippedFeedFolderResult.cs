@@ -15,6 +15,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
             get { return Template.SafeFormat( "RequestId", MipRequestId ); }
         }
 
-        public Guid MipRequestId { get; set; }
+        public string MipRequestId { get; set; }
     }
 }

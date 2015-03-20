@@ -11,7 +11,6 @@ namespace Spreadbot.Core.Abstracts.Chanel.Operations.Tasks
     {
         // ===================================================================================== []
         // Protected
-        [Serialize]
-        protected string ChannelId { get; set; }
+        public string ChannelId { get; set; }
     }
 }

@@ -1,12 +1,16 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Publish.cs
-// romak_000, 2015-03-20 20:50
+// romak_000, 2015-03-21 1:26
 
 using System.Globalization;
 using System.IO;
 using Crocodev.Common.Extensions;
+using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
+using Spreadbot.Core.Channels.Ebay.Manager;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
@@ -24,14 +28,34 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 new DemoshopStoreTask { StoreId = Id, Description = "Publish [{0}] on eBay".SafeFormat( Item.Sku ) };
 
             storeTask.AddSubTasks(
-                new EbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku ),
-                new EbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku ),
-                new EbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku )
+                CreateEbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku ),
+                CreateEbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku ),
+                CreateEbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku )
                 );
 
             AddTask( storeTask );
 
             return storeTask;
+        }
+
+        // --------------------------------------------------------[]
+        private static EbayPublishTask CreateEbayPublishTask(
+            MipFeedType mipFeedType,
+            string feedContent,
+            string itemInfo )
+        {
+            return new EbayPublishTask {
+                IsCritical = true,
+                MipRequestStatusCode = MipRequestStatus.Unknown,
+                ChannelId = EbayChannelManager.Instance.Id,
+                ChannelMethod = ChannelMethod.Publish,
+                Args = new EbayPublishArgs {
+                    MipFeedHandler = new MipFeedHandler( mipFeedType ) {
+                        Content = feedContent,
+                        ItemInfo = itemInfo,
+                    },
+                }
+            };
         }
 
         // ===================================================================================== []
@@ -57,7 +81,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 case MipFeedType.Distribution :
                     return template
                         .Replace( "{item.sku}", item.Sku )
-                        .Replace( "{item.price}", item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
+                        .Replace( "{item.price}",
+                            item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
             }
 

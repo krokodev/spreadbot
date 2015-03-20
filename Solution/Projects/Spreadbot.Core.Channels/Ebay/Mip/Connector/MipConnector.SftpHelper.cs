@@ -27,14 +27,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( string feed, Guid reqId )
+            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( string feed, string reqId )
             {
                 return DoSendZippedFeed( feed, reqId );
             }
 
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( MipFeedHandler mipFeedHandler, Guid reqId )
+            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( MipFeedHandler mipFeedHandler, string reqId )
             {
-                return SendZippedFeed( mipFeedHandler.Name, reqId );
+                return SendZippedFeed( mipFeedHandler.GetName(), reqId );
             }
 
             // ===================================================================================== []
@@ -42,7 +42,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
                 MipRequest mipRequest )
             {
-                var remoteDir = RemoteFeedInprocessFolderPath( mipRequest.MipFeedHandler.Name );
+                var remoteDir = RemoteFeedInprocessFolderPath( mipRequest.MipFeedHandler.GetName() );
                 var prefix = mipRequest.FileNamePrefix();
 
                 return FindRemoteFileNamePrefixInRemoteDir( prefix, remoteDir );
@@ -53,7 +53,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
                 MipRequest mipRequest )
             {
-                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequest.MipFeedHandler.Name );
+                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequest.MipFeedHandler.GetName() );
                 var prefix = mipRequest.FileNamePrefix();
 
                 foreach( var remoteDir in remoteDirs ) {

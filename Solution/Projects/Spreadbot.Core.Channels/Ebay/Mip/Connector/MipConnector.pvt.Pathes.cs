@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.Pathes.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 1:30
 
 using System;
 using System.Globalization;
@@ -17,10 +17,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string LocalZippedFeedFile( string feed, string reqId )
         {
             return string.Format(
-                                 @"{0}\{1}.{2}.zip",
-                                 MipSettings.ZippedFeedsPath,
-                                 feed,
-                                 reqId
+                @"{0}\{1}.{2}.zip",
+                MipSettings.ZippedFeedsPath,
+                feed,
+                reqId
                 );
         }
 
@@ -28,9 +28,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string DoLocalFeedFolder( string feed )
         {
             return string.Format(
-                                 "{0}{1}",
-                                 MipSettings.FeedsPath,
-                                 feed
+                "{0}{1}",
+                MipSettings.FeedsPath,
+                feed
                 );
         }
 
@@ -44,10 +44,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string DoLocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
         {
             return string.Format(
-                                 @"{0}\{1}.{2}.xml",
-                                 DoLocalFeedFolder( mipFeedHandler.Name ),
-                                 mipFeedHandler.Name,
-                                 ( Guid ) mipFeedHandler.Id
+                @"{0}\{1}.{2}.xml",
+                DoLocalFeedFolder( mipFeedHandler.GetName() ),
+                mipFeedHandler.GetName(),
+                mipFeedHandler.Id
                 );
         }
 
@@ -56,10 +56,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string RemoteFeedOutgoingZipFilePath( string feed, string reqId )
         {
             return string.Format(
-                                 "{0}{1}/{1}.{2}.zip",
-                                 MipSettings.RemoteBasePath,
-                                 feed,
-                                 reqId
+                "{0}{1}/{1}.{2}.zip",
+                MipSettings.RemoteBasePath,
+                feed,
+                reqId
                 );
         }
 
@@ -67,9 +67,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string RemoteFeedInprocessFolderPath( string feed )
         {
             return string.Format(
-                                 "{0}{1}/inprocess",
-                                 MipSettings.RemoteBasePath,
-                                 feed
+                "{0}{1}/inprocess",
+                MipSettings.RemoteBasePath,
+                feed
                 );
         }
 
@@ -89,10 +89,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static string RemoteFeedOutputFolderPath( string feed, int dayShift )
         {
             return string.Format(
-                                 "{0}{1}/output/{2}",
-                                 MipSettings.RemoteBasePath,
-                                 feed,
-                                 DataBasedFolderName( dayShift )
+                "{0}{1}/output/{2}",
+                MipSettings.RemoteBasePath,
+                feed,
+                DataBasedFolderName( dayShift )
                 );
         }
 

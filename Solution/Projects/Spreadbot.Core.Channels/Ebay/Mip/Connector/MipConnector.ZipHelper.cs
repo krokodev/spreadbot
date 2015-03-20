@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.ZipHelper.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 1:34
 
 using System;
 using System.IO;
@@ -25,8 +25,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 try {
                     zipFileName = LocalZippedFeedFile( feed, reqId );
                     ZipFolderFiles(
-                                   DoLocalFeedFolder( feed ),
-                                   zipFileName
+                        DoLocalFeedFolder( feed ),
+                        zipFileName
                         );
                 }
                 catch( Exception exception ) {
@@ -39,9 +39,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // --------------------------------------------------------[]
-            public static MipResponse< MipZipFeedResult > ZipFeed( MipFeedHandler mipFeedHandler, Guid reqId )
+            public static MipResponse<MipZipFeedResult> ZipFeed(MipFeedHandler mipFeedHandler, string reqId)
             {
-                return ZipFeed( mipFeedHandler.Name, reqId.ToString() );
+                return ZipFeed( mipFeedHandler.GetName(), reqId );
             }
 
             // ===================================================================================== []

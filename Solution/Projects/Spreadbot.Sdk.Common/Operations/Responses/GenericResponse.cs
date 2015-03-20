@@ -46,8 +46,8 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         protected GenericResponse() {}
-        public TC Code { get; private set; }
-        public TR Result { get; private set; }
+        public TC Code { get; set; }
+        public TR Result { get;  set; }
         private string Details { get; set; }
         private Exception Exception { get; set; }
         private IAbstractResponse InnerResponse { get; set; }

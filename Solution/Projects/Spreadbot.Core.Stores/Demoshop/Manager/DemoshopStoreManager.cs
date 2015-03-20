@@ -21,7 +21,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
-        private DemoshopStoreManager()
+        public DemoshopStoreManager()
         {
             LoadItem();
         }

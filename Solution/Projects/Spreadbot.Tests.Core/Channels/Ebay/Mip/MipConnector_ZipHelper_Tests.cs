@@ -30,7 +30,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var feed = new MipFeedHandler( MipFeedType.Product );
             var reqId = MipRequest.GenerateTestId().ToString();
 
-            var response = MipConnector.ZipHelper.ZipFeed( feed.Name, reqId );
+            var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
             Trace.TraceInformation( response.Autoinfo );
 
             Assert.AreEqual( MipStatusCode.ZipFeedSuccess, response.Code );

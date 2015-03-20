@@ -10,34 +10,34 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
 {
     public class MipRequest
     {
-        public MipRequest( MipFeedHandler mipFeedHandler, Guid requestId )
+        public MipRequest( MipFeedHandler mipFeedHandler, string requestId )
         {
             MipFeedHandler = mipFeedHandler;
             Id = requestId;
         }
 
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public MipFeedHandler MipFeedHandler { get; set; }
 
-        public static Guid GenerateId()
+        public static string GenerateId()
         {
-            return Guid.NewGuid();
+            return Guid.NewGuid().ToString();
         }
 
-        public static Guid GenerateTestId()
+        public static string GenerateTestId()
         {
-            return new Guid();
+            return new Guid().ToString();
         }
 
-        public static bool VerifyRequestId( Guid requestId )
+        public static bool VerifyRequestId(string requestId)
         {
             Guid guid;
-            return Guid.TryParse( requestId.ToString(), out guid );
+            return Guid.TryParse( requestId, out guid );
         }
 
         public string FileNamePrefix()
         {
-            return string.Format( "{0}.{1}", MipFeedHandler.Name, Id );
+            return string.Format( "{0}.{1}", MipFeedHandler.GetName(), Id );
         }
     }
 }

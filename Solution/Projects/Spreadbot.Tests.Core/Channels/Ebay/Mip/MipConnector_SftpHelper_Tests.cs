@@ -16,7 +16,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnector_SftpHelper_Tests
     {
         // ===================================================================================== []
-        [ClassInitialize()]
+        [ClassInitialize]
         public static void Init( TestContext testContext )
         {
             MipTestInitializer.PrepareTestFiles();
@@ -27,7 +27,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void SendZippedFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var response = MipConnector.SftpHelper.SendZippedFeed( feed.Name, MipRequest.GenerateTestId() );
+            var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequest.GenerateTestId() );
 
             Trace.TraceInformation( response.Autoinfo );
 

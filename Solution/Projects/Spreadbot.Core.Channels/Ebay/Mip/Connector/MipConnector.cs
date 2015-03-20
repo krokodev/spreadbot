@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // --------------------------------------------------------[]
         private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeedFolder(
             MipFeedHandler mipFeedHandler,
-            Guid reqId )
+            string reqId )
         {
             try {
                 ZipHelper.ZipFeed( mipFeedHandler, reqId ).Check();
@@ -155,7 +155,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // --------------------------------------------------------[]
         public static string LocalFeedFolder( MipFeedHandler mipFeedHandler )
         {
-            return DoLocalFeedFolder( mipFeedHandler.Name );
+            return DoLocalFeedFolder( mipFeedHandler.GetName() );
         }
     }
 }

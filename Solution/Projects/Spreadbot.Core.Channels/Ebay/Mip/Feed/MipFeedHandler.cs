@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
-// MipFeed.cs
-// romak_000, 2015-03-20 13:56
+// MipFeedHandler.cs
+// romak_000, 2015-03-21 1:13
 
 using System;
 
@@ -9,26 +9,31 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Feed
 {
     public class MipFeedHandler
     {
-        public MipFeedHandler( MipFeedType mipFeedType )
+        public MipFeedHandler()
         {
-            _type = mipFeedType;
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
         }
 
-        private readonly MipFeedType _type;
-
-        public string Name
+        public MipFeedHandler( MipFeedType mipFeedType )
+            : this()
         {
-            get { return _type.ToString().ToLower(); }
+            Type = mipFeedType;
+        }
+
+        public MipFeedType Type { get; set; }
+
+        public string GetName()
+        {
+            return Type.ToString().ToLower();
         }
 
         public string Content { get; set; }
-        public Guid Id { get; private set; }
+        public string Id { get; private set; }
         public string ItemInfo { get; set; }
 
         public override string ToString()
         {
-            return Name;
+            return GetName();
         }
     }
 }

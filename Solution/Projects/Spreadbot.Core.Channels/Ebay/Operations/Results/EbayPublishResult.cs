@@ -11,14 +11,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Results
 {
     public class EbayPublishResult : AbstractMipResponseResult
     {
-        public readonly Guid MipRequestId;
-
-        public EbayPublishResult() {}
-
-        public EbayPublishResult( Guid mipRequestId )
-        {
-            MipRequestId = mipRequestId;
-        }
+        public string MipRequestId { get; set; }
 
         public override string Autoinfo
         {
