@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // FilterConfig.cs
-// romak_000, 2015-03-19 15:48
+// romak_000, 2015-03-20 13:56
 
 using System.Web.Mvc;
 
@@ -9,9 +9,9 @@ namespace Spreadbot.App.Web
 {
     public class FilterConfig
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters( GlobalFilterCollection filters )
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add( new HandleErrorAttribute() );
         }
     }
 }

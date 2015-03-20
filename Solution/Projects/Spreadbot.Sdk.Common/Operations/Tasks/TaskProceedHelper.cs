@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // TaskProceedHelper.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 using System.Collections.Generic;
 
@@ -9,11 +9,11 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public class TaskProceedHelper
     {
-        private readonly List<ITaskProceedInfo> _proceedHistory = new List<ITaskProceedInfo>();
+        private readonly List< ITaskProceedInfo > _proceedHistory = new List< ITaskProceedInfo >();
 
-        public void Save(ITaskProceedInfo info)
+        public void Save( ITaskProceedInfo info )
         {
-            _proceedHistory.Add(info);
+            _proceedHistory.Add( info );
         }
     }
 }

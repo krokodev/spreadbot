@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
@@ -22,9 +22,9 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         }
 
         // --------------------------------------------------------[]
-        public AbstractTask AddSubTask(AbstractTask task)
+        public AbstractTask AddSubTask( AbstractTask task )
         {
-            return DoAddSubTask(task);
+            return DoAddSubTask( task );
         }
 
         // ===================================================================================== []

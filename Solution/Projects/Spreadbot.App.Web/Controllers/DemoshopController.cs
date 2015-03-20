@@ -1,12 +1,11 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// romak_000, 2015-03-19 15:48
+// romak_000, 2015-03-20 13:56
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
-using Spreadbot.App.Web.Sources.Demoshop;
-using Spreadbot.App.Web.Sources.Demoshop.Item;
+using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.System.Dispatcher;
 
 namespace Spreadbot.App.Web.Controllers
@@ -18,16 +17,16 @@ namespace Spreadbot.App.Web.Controllers
         // Index
         public ActionResult Index()
         {
-            return View(new DemoshopModel());
+            return View( new DemoshopModel() );
         }
 
         // ===================================================================================== []
         // UpdateItem
         [HttpPost]
-        public ActionResult UpdateItem([Bind(Include = "Sku, Title, Price, Quantity")] DemoshopItem item)
+        public ActionResult UpdateItem( [Bind( Include = "Sku, Title, Price, Quantity" )] DemoshopItem item )
         {
-            DemoshopModel.SaveItem(item);
-            return RedirectToAction("Index");
+            DemoshopModel.SaveItem( item );
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []
@@ -35,23 +34,23 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult AddTask()
         {
             DemoshopModel.PublishItemOnEbay();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []
         // RunChannelTasks
         public ActionResult RunChannelTasks()
         {
-            Dispatcher.Instance.RunChannelTasks(DemoshopModel.ChannelTasksTodo);
-            return RedirectToAction("Index");
+            Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []
         // ProceedChannelTasks
         public ActionResult ProceedChannelTasks()
         {
-            Dispatcher.Instance.ProceedChannelTasks(DemoshopModel.ChannelTasksInprocess);
-            return RedirectToAction("Index");
+            Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []
@@ -59,14 +58,14 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult SaveTasks()
         {
             DemoshopModel.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
 
         // --------------------------------------------------------[]
         public ActionResult RestoreTasks()
         {
             DemoshopModel.Restore();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
     }
 }

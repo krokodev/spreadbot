@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // Global.asax.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:56
 
 using System.Web;
 using System.Web.Http;
@@ -17,10 +17,10 @@ namespace Spreadbot.App.Web
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            WebApiConfig.Register( GlobalConfiguration.Configuration );
+            FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
+            RouteConfig.RegisterRoutes( RouteTable.Routes );
+            BundleConfig.RegisterBundles( BundleTable.Bundles );
         }
     }
 }

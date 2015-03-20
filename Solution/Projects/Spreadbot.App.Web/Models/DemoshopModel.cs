@@ -1,16 +1,15 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:56
 
 using System.Collections.Generic;
 using System.Linq;
-using Spreadbot.App.Web.Sources.Demoshop;
-using Spreadbot.App.Web.Sources.Demoshop.Item;
-using Spreadbot.App.Web.Sources.Demoshop.Store;
-using Spreadbot.Core.Common.Channel.Operations.Tasks;
-using Spreadbot.Core.Common.Store;
-using Spreadbot.Core.Common.Store.Operations;
+using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Store.Manager;
+using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
+using Spreadbot.Core.Stores.Demoshop.Items;
+using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.App.Web.Models
@@ -22,24 +21,24 @@ namespace Spreadbot.App.Web.Models
             get { return StoreManager.Item; }
         }
 
-        public static IEnumerable<IStoreTask> StoreTasks
+        public static IEnumerable< IStoreTask > StoreTasks
         {
-            get { return ((IStoreManager) StoreManager).StoreTasks; }
+            get { return ( ( IStoreManager ) StoreManager ).StoreTasks; }
         }
 
-        public static IEnumerable<IChannelTask> ChannelTasksTodo
+        public static IEnumerable< IChannelTask > ChannelTasksTodo
         {
-            get { return ChannelTasks.Where(t => t.GetStatusCode() == TaskStatus.Todo); }
+            get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Todo ); }
         }
 
-        public static IEnumerable<IChannelTask> ChannelTasksInprocess
+        public static IEnumerable< IChannelTask > ChannelTasksInprocess
         {
-            get { return ChannelTasks.Where(t => t.GetStatusCode() == TaskStatus.Inprocess); }
+            get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Inprocess ); }
         }
 
-        public static IEnumerable<IChannelTask> ChannelTasks
+        public static IEnumerable< IChannelTask > ChannelTasks
         {
-            get { return ((IStoreManager) StoreManager).GetChannelTasks(); }
+            get { return ( ( IStoreManager ) StoreManager ).GetChannelTasks(); }
         }
 
         public static DemoshopStoreManager StoreManager
@@ -47,9 +46,9 @@ namespace Spreadbot.App.Web.Models
             get { return DemoshopStoreManager.Instance; }
         }
 
-        public static void SaveItem(DemoshopItem item)
+        public static void SaveItem( DemoshopItem item )
         {
-            StoreManager.SaveItem(item);
+            StoreManager.SaveItem( item );
         }
 
         public static void PublishItemOnEbay()
@@ -61,16 +60,14 @@ namespace Spreadbot.App.Web.Models
 
         public static void Save()
         {
-            lock (Locker)
-            {
+            lock( Locker ) {
                 StoreManager.Save();
             }
         }
 
         public static void Restore()
         {
-            lock (Locker)
-            {
+            lock( Locker ) {
                 StoreManager.Restore();
             }
         }

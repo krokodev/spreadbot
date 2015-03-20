@@ -1,14 +1,14 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.cs
-// romak_000, 2015-03-19 17:04
+// romak_000, 2015-03-20 13:56
 
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using MoreLinq;
-using Spreadbot.Core.Common.Channel.Operations.Tasks;
-using Spreadbot.Core.Connectors.Ebay.Channel;
+using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Channels.Ebay.Manager;
 
 // >> Core | Dispatcher
 
@@ -18,8 +18,8 @@ namespace Spreadbot.Core.System.Dispatcher
     {
         // ===================================================================================== []
         // Instance
-        private static readonly Lazy<Dispatcher> LazyInstance =
-            new Lazy<Dispatcher>(CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy< Dispatcher > LazyInstance =
+            new Lazy< Dispatcher >( CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
         private static Dispatcher CreateInstance()
@@ -36,26 +36,26 @@ namespace Spreadbot.Core.System.Dispatcher
         // --------------------------------------------------------[]
         public Dispatcher()
         {
-            RegisterChannel(EbayChannelManager.Instance);
+            RegisterChannel( EbayChannelManager.Instance );
         }
 
         // ===================================================================================== []
         // ChannelTasks
-        public void RunChannelTask(IChannelTask task)
+        public void RunChannelTask( IChannelTask task )
         {
-            DoRunChannelTask(task);
+            DoRunChannelTask( task );
         }
 
         // --------------------------------------------------------[]
-        public void RunChannelTasks(IEnumerable<IChannelTask> tasks)
+        public void RunChannelTasks( IEnumerable< IChannelTask > tasks )
         {
-            tasks.ForEach(RunChannelTask);
+            tasks.ForEach( RunChannelTask );
         }
 
         // --------------------------------------------------------[]
-        public void ProceedChannelTasks(IEnumerable<IChannelTask> tasks)
+        public void ProceedChannelTasks( IEnumerable< IChannelTask > tasks )
         {
-            DoProceedChannelTasks(tasks);
+            DoProceedChannelTasks( tasks );
         }
     }
 }

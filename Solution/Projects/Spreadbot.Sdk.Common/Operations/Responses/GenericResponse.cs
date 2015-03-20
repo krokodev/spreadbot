@@ -1,10 +1,9 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 using System;
-using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
@@ -14,33 +13,33 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
     {
         // ===================================================================================== []
         // Protected
-        protected GenericResponse(bool isSucces, TC code)
+        protected GenericResponse( bool isSucces, TC code )
         {
             IsSuccess = isSucces;
             Code = code;
         }
 
-        protected GenericResponse(bool isSucces, TC code, Exception exception)
-            : this(isSucces, code)
+        protected GenericResponse( bool isSucces, TC code, Exception exception )
+            : this( isSucces, code )
 
         {
             Exception = exception;
         }
 
-        protected GenericResponse(bool isSucces, TC code, TR result)
-            : this(isSucces, code)
+        protected GenericResponse( bool isSucces, TC code, TR result )
+            : this( isSucces, code )
         {
             Result = result;
         }
 
-        protected GenericResponse(bool isSucces, TC code, TR result, IResponse innerResponse)
-            : this(isSucces, code, result)
+        protected GenericResponse( bool isSucces, TC code, TR result, IResponse innerResponse )
+            : this( isSucces, code, result )
         {
             InnerResponse = innerResponse;
         }
 
-        protected GenericResponse(bool isSucces, TC code, string details)
-            : this(isSucces, code)
+        protected GenericResponse( bool isSucces, TC code, string details )
+            : this( isSucces, code )
         {
             Details = details;
         }
@@ -55,21 +54,20 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         public string Autoinfo
         {
-            get { return GetAutoinfo(0); }
+            get { return GetAutoinfo( 0 ); }
         }
 
-        public string GetAutoinfo(int level)
+        public string GetAutoinfo( int level )
         {
             return IsSuccess
-                ? GetSuccessAutoinfo(level)
-                : GetFailedAutoinfo(level);
+                       ? GetSuccessAutoinfo( level )
+                       : GetFailedAutoinfo( level );
         }
 
         public void Check()
         {
-            if (!IsSuccess)
-            {
-                throw new ResponseException(this);
+            if( !IsSuccess ) {
+                throw new ResponseException( this );
             }
         }
 

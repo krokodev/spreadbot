@@ -1,14 +1,14 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_SftpHelper_Tests.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spreadbot.Core.Connectors.Ebay.Mip.Connector;
-using Spreadbot.Core.Connectors.Ebay.Mip.Feed;
-using Spreadbot.Core.Connectors.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Connectors.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 
 namespace Spreadbot.Tests.Core.Channel.Ebay.Mip
 {
@@ -19,12 +19,12 @@ namespace Spreadbot.Tests.Core.Channel.Ebay.Mip
         [TestMethod]
         public void SendZippedFeed()
         {
-            var feed = new MipFeed(MipFeedType.Product);
-            var response = MipConnector.SftpHelper.SendZippedFeed(feed.Name, MipRequest.GenerateTestId());
+            var feed = new MipFeed( MipFeedType.Product );
+            var response = MipConnector.SftpHelper.SendZippedFeed( feed.Name, MipRequest.GenerateTestId() );
 
-            Trace.TraceInformation(response.Autoinfo);
+            Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual(MipStatusCode.SendZippedFeedSuccess, response.Code);
+            Assert.AreEqual( MipStatusCode.SendZippedFeedSuccess, response.Code );
         }
 
         // ===================================================================================== []
@@ -33,20 +33,20 @@ namespace Spreadbot.Tests.Core.Channel.Ebay.Mip
         {
             var response = MipConnector.SftpHelper.TestConnection();
 
-            Trace.TraceInformation(response.Autoinfo);
+            Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual(MipStatusCode.TestConnectionSuccess, response.Code);
+            Assert.AreEqual( MipStatusCode.TestConnectionSuccess, response.Code );
         }
 
         // ===================================================================================== []
         [TestMethod]
         public void TestConnection_Bad()
         {
-            var response = MipConnector.SftpHelper.TestConnection("wrong password");
+            var response = MipConnector.SftpHelper.TestConnection( "wrong password" );
 
-            Trace.TraceInformation(response.Autoinfo);
+            Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual(MipStatusCode.TestConnectionFail, response.Code);
+            Assert.AreEqual( MipStatusCode.TestConnectionFail, response.Code );
         }
     }
 }

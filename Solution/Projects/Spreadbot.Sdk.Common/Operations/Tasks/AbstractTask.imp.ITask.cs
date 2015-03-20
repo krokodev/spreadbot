@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.imp.ITask.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 using System.Collections.Generic;
 using Spreadbot.Sdk.Common.Operations.Args;
@@ -16,8 +16,10 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // ===================================================================================== []
         // Implicit
         public abstract string GetAutoinfo();
+
         // --------------------------------------------------------[]
         public string Description { get; set; }
+
         // --------------------------------------------------------[]
         public abstract TaskStatus GetStatusCode();
 
@@ -30,8 +32,9 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
         // --------------------------------------------------------[]
         IResponse ITask.Response { get; set; }
+
         // --------------------------------------------------------[]
-        IEnumerable<ITask> ITask.SubTasks
+        IEnumerable< ITask > ITask.SubTasks
         {
             get { return SubTasks; }
         }

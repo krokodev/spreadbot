@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.state.cs
-// romak_000, 2015-03-19 15:49
+// romak_000, 2015-03-20 13:57
 
 using System.Collections.Generic;
 using Spreadbot.Sdk.Common.Operations.Args;
@@ -14,8 +14,9 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // Public
         // --------------------------------------------------------[]
         public bool IsCritical { get; set; }
+
         // --------------------------------------------------------[]
-        public List<AbstractTask> SubTasks
+        public List< AbstractTask > SubTasks
         {
             get { return _subTasks; }
             set { _subTasks = value; }

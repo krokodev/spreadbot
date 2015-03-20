@@ -3,9 +3,9 @@
 @functions{
 
     // >> App_Code | LayoutView
-    private new static HtmlHelper<object> Html
+    private new static HtmlHelper< object > Html
     {
-        get { return ((WebViewPage) WebPageContext.Current.Page).Html; }
+        get { return ( ( WebViewPage ) WebPageContext.Current.Page ).Html; }
     }
 
 }
@@ -13,8 +13,8 @@
 @helper Header()
 {
     <div>
-        @MenuActionLink("Home", "Home")
-        | @MenuActionLink("Demo Shop", "Demoshop")
+        @MenuActionLink( "Home", "Home" )
+        | @MenuActionLink( "Demo Shop", "Demoshop" )
     </div>
     <hr/>
 }
@@ -23,26 +23,26 @@
 {
     <hr/>
     <div >
-        @MenuLink("Blog", "http://romankoshelev.info/tag/spreadbot/")
-        | @MenuLink("Loc", "http://localhost/spreadbot/")
-        | @MenuLink("Web", "http://www.spreadbot.net")
-        | @MenuLink("Azure", "https://manage.windowsazure.com/@romakoshgmail.onmicrosoft.com#Workspaces/WebsiteExtension/Website/spreadbot/dashboard")
-        | @MenuLink("Jira", "https://rk-dev.atlassian.net/secure/RapidBoard.jspa?rapidView=2")
-        | @MenuLink("Github", "https://github.com/RomanKoshelev/spreadbot")
+        @MenuLink( "Blog", "http://romankoshelev.info/tag/spreadbot/" )
+        | @MenuLink( "Loc", "http://localhost/spreadbot/" )
+        | @MenuLink( "Web", "http://www.spreadbot.net" )
+        | @MenuLink( "Azure", "https://manage.windowsazure.com/@romakoshgmail.onmicrosoft.com#Workspaces/WebsiteExtension/Website/spreadbot/dashboard" )
+        | @MenuLink( "Jira", "https://rk-dev.atlassian.net/secure/RapidBoard.jspa?rapidView=2" )
+        | @MenuLink( "Github", "https://github.com/RomanKoshelev/spreadbot" )
     </div>
 }
 
-@helper MenuActionLink(string text, string controller, string action = "Index")
+@helper MenuActionLink( string text, string controller, string action = "Index" )
 {
     @Html.ActionLink(
-        text,
-        action,
-        controller,
-        null,
-        new {@class = ""})
+                     text,
+                     action,
+                     controller,
+                     null,
+                     new { @class = "" } )
 }
 
-@helper MenuLink(string text, string href)
+@helper MenuLink( string text, string href )
 {
     <a href="@href">@text</a>
 }

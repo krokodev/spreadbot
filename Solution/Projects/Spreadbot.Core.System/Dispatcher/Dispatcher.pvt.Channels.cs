@@ -1,10 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.pvt.Channels.cs
-// romak_000, 2015-03-19 17:01
+// romak_000, 2015-03-20 13:56
 
 using System.Collections.Generic;
-using Spreadbot.Core.Common.Channel;
+using Spreadbot.Core.Abstracts.Chanel.Manager;
 
 namespace Spreadbot.Core.System.Dispatcher
 {
@@ -12,18 +12,19 @@ namespace Spreadbot.Core.System.Dispatcher
     {
         // ===================================================================================== []
         // RegisterChannel
-        private readonly List<IChannelManager> _channels = new List<IChannelManager>();
+        private readonly List< IChannelManager > _channels = new List< IChannelManager >();
+
         // --------------------------------------------------------[]
-        private void RegisterChannel(IChannelManager channelManager)
+        private void RegisterChannel( IChannelManager channelManager )
         {
-            _channels.Add(channelManager);
+            _channels.Add( channelManager );
         }
 
         // ===================================================================================== []
         // FindChannel
-        private IChannelManager FindChannel(string channelId)
+        private IChannelManager FindChannel( string channelId )
         {
-            return _channels.Find(c => c.Id == channelId);
+            return _channels.Find( c => c.Id == channelId );
         }
     }
 }
