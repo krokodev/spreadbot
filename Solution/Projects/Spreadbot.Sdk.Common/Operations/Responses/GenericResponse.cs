@@ -1,14 +1,13 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-20 20:32
+// romak_000, 2015-03-21 0:09
 
 using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    //Todo: Ref: Split and clean GenericResponse
     public partial class GenericResponse<TR, TC> : IAbstractResponse
         where TR : IResponseResult
     {
@@ -46,11 +45,12 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             Details = details;
         }
 
-        public TC Code { get; set; }
-        public TR Result { get; set; }
-        public string Details { get; set; }
-        public Exception Exception { get; set; }
-        public IAbstractResponse InnerResponse { get; set; }
+        protected GenericResponse() {}
+        public TC Code { get; private set; }
+        public TR Result { get; private set; }
+        private string Details { get; set; }
+        private Exception Exception { get; set; }
+        private IAbstractResponse InnerResponse { get; set; }
 
         public string Autoinfo
         {
@@ -76,6 +76,11 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             }
         }
 
-        public bool IsSuccess { get; private set; }
+        public bool IsSuccess { get; set; }
+
+        public override string ToString()
+        {
+            return Autoinfo;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-20 16:35
+// romak_000, 2015-03-20 23:58
 
 using System;
 using System.Threading;
@@ -15,7 +15,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     public partial class DemoshopStoreManager : IStoreManager
     {
         // ===================================================================================== []
-        // Instance
         private static readonly Lazy< DemoshopStoreManager > LazyInstance =
             new Lazy< DemoshopStoreManager >(
                 () => new DemoshopStoreManager(),
@@ -34,7 +33,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // ===================================================================================== []
-        // Save/Restore
         public void Save()
         {
             Serializer.Default.Serialize( this, DataFileName() );
@@ -47,7 +45,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // ===================================================================================== []
-        // PublishItemOnEbay
         public DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
         {
             switch( taskType ) {
@@ -55,6 +52,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                     return DoCreateTaskPublishOnEbay();
             }
             throw new ArgumentException( "Unknown taskType: [{0}]".SafeFormat( taskType ) );
+        }
+
+        // --------------------------------------------------------[]
+        public void DeleteTask( DemoshopStoreTask task )
+        {
+            StoreTasks.Remove( task );
         }
     }
 }

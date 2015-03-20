@@ -12,11 +12,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
     public partial class GenericResponse<TR, TC>
     {
         // ===================================================================================== []
-        // Ctror
-        protected GenericResponse() {}
-
-        // ===================================================================================== []
-        // Get Autoinfo
+        // Autoinfo
         private string GetSuccessAutoinfo()
         {
             return AutoinfoResponse(
@@ -117,13 +113,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         private static string NewLine( int level )
         {
             return "\n" + ( level == 0 ? "" : new string( ' ', 2*level ) );
-        }
-
-        // ===================================================================================== []
-        // Object
-        public override string ToString()
-        {
-            return Autoinfo;
         }
     }
 }

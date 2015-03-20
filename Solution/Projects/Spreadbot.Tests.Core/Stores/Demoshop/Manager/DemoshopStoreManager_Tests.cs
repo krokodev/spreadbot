@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-20 21:29
+// romak_000, 2015-03-20 23:57
 
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
@@ -30,8 +31,8 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
             Assert.IsNull( task.AbstractResponse );
-            task.AbstractSubTasks.ForEach(
-                ct => { Assert.IsTrue( ct.IsCritical ); } );
+            task.AbstractSubTasks.ForEach( ct => { Assert.IsTrue( ct.IsCritical ); } );
+            store.DeleteTask( task );
         }
 
         // --------------------------------------------------------[]
@@ -43,16 +44,32 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
-            task.AbstractSubTasks.ForEach(
-                ct => {
-                    var ept = ( EbayPublishTask ) ct;
-                    Assert.AreEqual( TaskStatus.Inprocess, ct.GetStatusCode() );
 
-                    Assert.IsNotNull( ct.AbstractResponse );
-                    Trace.Write( ct.AbstractResponse );
+            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                Trace.Write( t );
+                Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
+                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+            } );
+            store.DeleteTask( task );
+        }
 
-                    Assert.IsNotNull( ept.EbayPublishResponse.Result.MipRequestId );
-                } );
+        // --------------------------------------------------------[]
+        [TestMethod]
+        public void Proceed_Task_PublishItemOnEbay()
+        {
+            var store = DemoshopStoreManager.Instance;
+            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
+            Dispatcher.Instance.ProceedChannelTasks( store.GetChannelTasks() );
+
+            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+
+            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                Trace.Write( t );
+                Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+            } );
+            store.DeleteTask( task );
         }
     }
 }
