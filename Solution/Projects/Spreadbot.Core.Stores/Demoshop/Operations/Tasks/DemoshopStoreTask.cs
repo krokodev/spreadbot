@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreTask.cs
-// romak_000, 2015-03-20 20:55
+// romak_000, 2015-03-20 21:26
 
 using System.Collections.Generic;
 using Nereal.Serialization;
@@ -15,13 +15,13 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
 {
     public class DemoshopStoreTask : AbstractStoreTask
     {
-        public DemoshopStoreTask()
-        {
-            ChannelTasks = new List< AbstractChannelTask >();
-        }
+        private readonly List< AbstractChannelTask > _channelTasks = new List< AbstractChannelTask >();
 
         [Serialize]
-        private List< AbstractChannelTask > ChannelTasks { get; set; }
+        private List< AbstractChannelTask > ChannelTasks
+        {
+            get { return _channelTasks; }
+        }
 
         [Serialize]
         public override IAbstractResponse AbstractResponse { get; set; }

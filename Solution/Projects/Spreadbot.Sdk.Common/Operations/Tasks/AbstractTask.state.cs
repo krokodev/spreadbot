@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.state.cs
-// romak_000, 2015-03-20 19:02
+// romak_000, 2015-03-20 21:23
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {

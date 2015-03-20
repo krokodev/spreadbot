@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
-// AbstractTask.imp.ITask.cs
-// romak_000, 2015-03-20 19:12
+// AbstractTask.imp.IAbstractTask.cs
+// romak_000, 2015-03-20 21:21
 
 using System.Collections.Generic;
 using Spreadbot.Sdk.Common.Operations.Responses;
@@ -10,12 +10,16 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public abstract partial class AbstractTask
     {
+        private readonly IEnumerable< IAbstractTask > _abstractSubTasks = new List< IAbstractTask >();
         public abstract string GetAutoinfo();
 
         public abstract TaskStatus GetStatusCode();
 
         public abstract IAbstractResponse AbstractResponse { get; set; }
 
-        public abstract IEnumerable< IAbstractTask > AbstractSubTasks { get; }
+        public virtual IEnumerable< IAbstractTask > AbstractSubTasks
+        {
+            get { return _abstractSubTasks; }
+        }
     }
 }

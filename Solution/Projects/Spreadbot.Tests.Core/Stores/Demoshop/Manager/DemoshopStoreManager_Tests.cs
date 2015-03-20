@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-20 16:51
+// romak_000, 2015-03-20 21:29
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,8 +28,8 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             var store = DemoshopStoreManager.Instance;
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
-            Assert.AreEqual(TaskStatus.Todo, task.GetStatusCode());
-            Assert.IsNull(task.AbstractResponse);
+            Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
+            Assert.IsNull( task.AbstractResponse );
             task.AbstractSubTasks.ForEach(
                 ct => { Assert.IsTrue( ct.IsCritical ); } );
         }
@@ -47,7 +47,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
                 ct => {
                     var ept = ( EbayPublishTask ) ct;
                     Assert.AreEqual( TaskStatus.Inprocess, ct.GetStatusCode() );
-                    
+
                     Assert.IsNotNull( ct.AbstractResponse );
                     Trace.Write( ct.AbstractResponse );
 
