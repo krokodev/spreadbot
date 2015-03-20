@@ -69,10 +69,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Channel.Ebay.Mip\MipConfiguration_Tests.cs" />
-    <Compile Include="Channel.Ebay.Mip\MipConnector_Tests.cs" />
-    <Compile Include="Channel.Ebay.Mip\MipConnector_ZipHelper_Tests.cs" />
-    <Compile Include="Channel.Ebay.Mip\MipConnector_SftpHelper_Tests.cs" />
+    <Compile Include="Channels\Ebay\Configuration\MipConfiguration_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipTestInitializer.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_ZipHelper_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_SftpHelper_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\References.cs" />
   </ItemGroup>
@@ -95,16 +96,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="App.config" />
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.Public.config">
+    <Content Include="App_Data\Configs\Mip.Public.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Spreadbot\Configuration\Mip.Security.config">
+    <Content Include="App_Data\Configs\Mip.Security.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Stores\Demoshop\Data\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

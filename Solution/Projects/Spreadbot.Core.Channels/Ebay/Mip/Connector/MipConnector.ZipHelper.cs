@@ -39,9 +39,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // --------------------------------------------------------[]
-            public static MipResponse< MipZipFeedResult > ZipFeed( MipFeed mipFeed, Guid reqId )
+            public static MipResponse< MipZipFeedResult > ZipFeed( MipFeedHandler mipFeedHandler, Guid reqId )
             {
-                return ZipFeed( mipFeed.Name, reqId.ToString() );
+                return ZipFeed( mipFeedHandler.Name, reqId.ToString() );
             }
 
             // ===================================================================================== []

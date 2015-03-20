@@ -13,30 +13,30 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
     public partial class EbayChannelManager
     {
         // --------------------------------------------------------[]
-        private static void CreateFeedFile( MipFeed mipFeed )
+        private static void CreateFeedFile( MipFeedHandler mipFeedHandler )
         {
-            CreateFeedFolderIfNeed( mipFeed );
+            CreateFeedFolderIfNeed( mipFeedHandler );
 
-            var fileName = MipConnector.LocalFeedXmlFilePath( mipFeed );
+            var fileName = MipConnector.LocalFeedXmlFilePath( mipFeedHandler );
             using( var file = File.CreateText( fileName ) ) {
-                file.Write( mipFeed.Content );
+                file.Write( mipFeedHandler.Content );
             }
         }
 
         // --------------------------------------------------------[]
-        private static void CreateFeedFolderIfNeed( MipFeed mipFeed )
+        private static void CreateFeedFolderIfNeed( MipFeedHandler mipFeedHandler )
         {
-            var feedFolder = MipConnector.LocalFeedFolder( mipFeed );
+            var feedFolder = MipConnector.LocalFeedFolder( mipFeedHandler );
             if( !Directory.Exists( feedFolder ) ) {
                 Directory.CreateDirectory( feedFolder );
             }
         }
 
         // --------------------------------------------------------[]
-        private static void EraseFeedFolder( MipFeed mipFeed )
+        private static void EraseFeedFolder( MipFeedHandler mipFeedHandler )
         {
             Directory
-                .GetFiles( MipConnector.LocalFeedFolder( mipFeed ) )
+                .GetFiles( MipConnector.LocalFeedFolder( mipFeedHandler ) )
                 .ForEach( File.Delete );
         }
     }

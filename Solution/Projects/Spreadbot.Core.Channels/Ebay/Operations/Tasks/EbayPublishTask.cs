@@ -28,7 +28,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             : base( EbayChannelManager.Instance.Id, ChannelMethod.Publish )
         {
             AbstractArgs = new EbayPublishArgs {
-                Feed = new MipFeed( mipFeedType ) {
+                FeedHandler = new MipFeedHandler( mipFeedType ) {
                     Content = feedContent,
                     ItemInfo = itemInfo
                 }

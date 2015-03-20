@@ -12,11 +12,11 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Args
 {
     public class EbayPublishArgs : AbstractArgs, IChannelTaskArgs
     {
-        public MipFeed Feed { get; set; }
+        public MipFeedHandler FeedHandler { get; set; }
 
         public override string Autoinfo
         {
-            get { return "Feed:[{0}]".SafeFormat( Feed ); }
+            get { return "Feed:[{0}]".SafeFormat( FeedHandler ); }
         }
     }
 }

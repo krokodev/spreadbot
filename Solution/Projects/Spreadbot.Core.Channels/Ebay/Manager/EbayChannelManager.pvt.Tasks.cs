@@ -29,7 +29,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
             try {
                 var ebayPublishArgs = ( EbayPublishArgs ) ebayPublishTask.GetChannelArgs();
-                var mipRequest = new MipRequest( ebayPublishArgs.Feed, ebayPublishTask.GetMipRequestId() );
+                var mipRequest = new MipRequest( ebayPublishArgs.FeedHandler, ebayPublishTask.GetMipRequestId() );
 
                 statusResponse = MipConnector.GetRequestStatus( mipRequest );
                 statusResponse.Check();
@@ -60,11 +60,11 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 var publishTask = ( EbayPublishTask ) task;
                 var publishArgs = ( EbayPublishArgs ) task.Args;
 
-                CreateFeedFile( publishArgs.Feed );
+                CreateFeedFile( publishArgs.FeedHandler );
 
-                var mipResponse = MipConnector.SendZippedFeedFolder( publishArgs.Feed );
+                var mipResponse = MipConnector.SendZippedFeedFolder( publishArgs.FeedHandler );
 
-                EraseFeedFolder( publishArgs.Feed );
+                EraseFeedFolder( publishArgs.FeedHandler );
 
                 mipResponse.Check();
 

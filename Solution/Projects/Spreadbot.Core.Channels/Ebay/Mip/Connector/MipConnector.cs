@@ -19,27 +19,27 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
         // ===================================================================================== []
         // SendFeedFolder
-        public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeedFolder( MipFeed mipFeed )
+        public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeedFolder( MipFeedHandler mipFeedHandler )
         {
             var reqId = MipRequest.GenerateId();
-            return DoSendZippedFeedFolder( mipFeed, reqId );
+            return DoSendZippedFeedFolder( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse< MipSendZippedFeedFolderResult > SendTestFeedFolder( MipFeed mipFeed )
+        public static MipResponse< MipSendZippedFeedFolderResult > SendTestFeedFolder( MipFeedHandler mipFeedHandler )
         {
             var reqId = MipRequest.GenerateTestId();
-            return DoSendZippedFeedFolder( mipFeed, reqId );
+            return DoSendZippedFeedFolder( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
         private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeedFolder(
-            MipFeed mipFeed,
+            MipFeedHandler mipFeedHandler,
             Guid reqId )
         {
             try {
-                ZipHelper.ZipFeed( mipFeed, reqId ).Check();
-                SftpHelper.SendZippedFeed( mipFeed, reqId ).Check();
+                ZipHelper.ZipFeed( mipFeedHandler, reqId ).Check();
+                SftpHelper.SendZippedFeed( mipFeedHandler, reqId ).Check();
             }
             catch( Exception exception ) {
                 return new MipResponse< MipSendZippedFeedFolderResult >(
@@ -147,15 +147,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedXmlFilePath( MipFeed mipFeed )
+        public static string LocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
         {
-            return DoLocalFeedXmlFilePath( mipFeed );
+            return DoLocalFeedXmlFilePath( mipFeedHandler );
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedFolder( MipFeed mipFeed )
+        public static string LocalFeedFolder( MipFeedHandler mipFeedHandler )
         {
-            return DoLocalFeedFolder( mipFeed.Name );
+            return DoLocalFeedFolder( mipFeedHandler.Name );
         }
     }
 }

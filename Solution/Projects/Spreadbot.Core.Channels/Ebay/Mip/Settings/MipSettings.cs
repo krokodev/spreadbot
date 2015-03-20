@@ -1,9 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipSettings.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 15:02
 
-using System;
+using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
@@ -42,14 +42,22 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
             get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.ZippedFeedsPath ); }
         }
 
+        // --------------------------------------------------------[]
         public static string FeedsPath
         {
             get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.FeedsPath ); }
         }
 
+        // --------------------------------------------------------[]
         public static string InboxPath
         {
             get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.InboxPath ); }
+        }
+
+        // --------------------------------------------------------[]
+        public static string BasePath
+        {
+            get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.BasePath ); }
         }
 
         // ===================================================================================== []
@@ -69,7 +77,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
         // Map
         private static string MapToDataDirectory( string path )
         {
-            return AppDomain.CurrentDomain.GetData( "DataDirectory" ) + path;
+            return path.MapPathToDataDirectory();
         }
     }
 }

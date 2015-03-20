@@ -93,7 +93,7 @@
     <Compile Include="Ebay\Mip\Operations\Results\MipGetRequestStatusResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Request\MipRequestStatus.cs" />
     <Compile Include="Ebay\Mip\Settings\MipSettings.cs" />
-    <Compile Include="Ebay\Mip\Feed\MipFeed.cs" />
+    <Compile Include="Ebay\Mip\Feed\MipFeedHandler.cs" />
     <Compile Include="Ebay\Mip\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ebay\Mip\Operations\StatusCode\MipStatusCode.cs" />

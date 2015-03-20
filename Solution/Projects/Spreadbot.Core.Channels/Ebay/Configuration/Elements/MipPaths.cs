@@ -10,6 +10,13 @@ namespace Spreadbot.Core.Channels.Ebay.Configuration.Elements
 {
     public class MipPaths : SmartConfigurationElement
     {
+        [ConfigurationProperty("BasePath", IsRequired = true)]
+        public string BasePath
+        {
+            get { return (string)this[GetPropertyName()]; }
+        }
+
+
         [ConfigurationProperty( "ZippedFeedsPath", IsRequired = true )]
         public string ZippedFeedsPath
         {

@@ -41,13 +41,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static string DoLocalFeedXmlFilePath( MipFeed mipFeed )
+        private static string DoLocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
         {
             return string.Format(
                                  @"{0}\{1}.{2}.xml",
-                                 DoLocalFeedFolder( mipFeed.Name ),
-                                 mipFeed.Name,
-                                 ( Guid ) mipFeed.Id
+                                 DoLocalFeedFolder( mipFeedHandler.Name ),
+                                 mipFeedHandler.Name,
+                                 ( Guid ) mipFeedHandler.Id
                 );
         }
 

@@ -52,7 +52,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 "Channel {3} {0}: {1} {2}",
                 GetStatusCode(),
                 IsCritical ? "Critical" : "Non critical",
-                "Publish [{0}]".TryFormat( ( ( EbayPublishArgs ) AbstractArgs ).Feed.Name ),
+                "Publish [{0}]".TryFormat( ( ( EbayPublishArgs ) AbstractArgs ).FeedHandler.Name ),
                 ChannelId );
         }
     }

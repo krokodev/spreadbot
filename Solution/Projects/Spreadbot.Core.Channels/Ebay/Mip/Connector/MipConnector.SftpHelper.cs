@@ -32,9 +32,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return DoSendZippedFeed( feed, reqId );
             }
 
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( MipFeed mipFeed, Guid reqId )
+            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( MipFeedHandler mipFeedHandler, Guid reqId )
             {
-                return SendZippedFeed( mipFeed.Name, reqId );
+                return SendZippedFeed( mipFeedHandler.Name, reqId );
             }
 
             // ===================================================================================== []
@@ -42,7 +42,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
                 MipRequest mipRequest )
             {
-                var remoteDir = RemoteFeedInprocessFolderPath( mipRequest.MipFeed.Name );
+                var remoteDir = RemoteFeedInprocessFolderPath( mipRequest.MipFeedHandler.Name );
                 var prefix = mipRequest.FileNamePrefix();
 
                 return FindRemoteFileNamePrefixInRemoteDir( prefix, remoteDir );
@@ -53,7 +53,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
                 MipRequest mipRequest )
             {
-                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequest.MipFeed.Name );
+                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequest.MipFeedHandler.Name );
                 var prefix = mipRequest.FileNamePrefix();
 
                 foreach( var remoteDir in remoteDirs ) {
