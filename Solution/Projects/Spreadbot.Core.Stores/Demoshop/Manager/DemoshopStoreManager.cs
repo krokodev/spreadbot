@@ -1,12 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-20 15:46
 
 using System;
 using System.Threading;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Store.Manager;
+using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
@@ -15,18 +16,14 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // ===================================================================================== []
         // Instance
         private static readonly Lazy< DemoshopStoreManager > LazyInstance =
-            new Lazy< DemoshopStoreManager >( CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication );
+            new Lazy< DemoshopStoreManager >(
+                () => new DemoshopStoreManager(),
+                LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
-        public DemoshopStoreManager()
+        private DemoshopStoreManager()
         {
             LoadItem();
-        }
-
-        // --------------------------------------------------------[]
-        private static DemoshopStoreManager CreateInstance()
-        {
-            return new DemoshopStoreManager();
         }
 
         // --------------------------------------------------------[]
@@ -50,9 +47,9 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 
         // ===================================================================================== []
         // PublishItemOnEbay
-        public void PublishItemOnEbay()
+        public DemoshopStoreTask PublishItemOnEbay()
         {
-            DoPublishOnEbay();
+            return DoPublishOnEbay();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     {
         // ===================================================================================== []
         // PublishItemOnEbay
-        private void DoPublishOnEbay()
+        private DemoshopStoreTask DoPublishOnEbay()
         {
             var storeTask =
                 new DemoshopStoreTask( Id, "Publish [{0}] on eBay".SafeFormat( Item.Sku ) );
@@ -36,6 +36,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 .AddSubTask( availabilityTask );
 
             AddTask( storeTask );
+            return storeTask;
         }
 
         // ===================================================================================== []

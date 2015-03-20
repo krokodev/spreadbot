@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.state.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-20 16:18
 
 using System.Collections.Generic;
 using Nereal.Serialization;
@@ -14,7 +14,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     public partial class DemoshopStoreManager
     {
         [Serialize]
-        private List< DemoshopStoreTask > StoreTasks
+        public List< DemoshopStoreTask > StoreTasks
         {
             get { return _storeTasks; }
             set { _storeTasks = value; }

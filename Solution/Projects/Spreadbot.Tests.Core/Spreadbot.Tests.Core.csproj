@@ -76,11 +76,20 @@
     <Compile Include="Channels\Ebay\Mip\MipConnector_SftpHelper_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\References.cs" />
+    <Compile Include="Stores\Demoshop\Manager\DemoshopStoreManager_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
+      <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
+      <Name>Spreadbot.Core.Abstracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj">
       <Project>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</Project>
       <Name>Spreadbot.Core.Channels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Stores\Spreadbot.Core.Stores.csproj">
+      <Project>{4B00ED58-9C97-4C8A-BBAB-167CF31ABB31}</Project>
+      <Name>Spreadbot.Core.Stores</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.System\Spreadbot.Core.System.csproj">
       <Project>{f9b60020-90e6-4b41-b29b-62958242ce58}</Project>
@@ -112,6 +121,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
+    <Content Include="App_Data\Configs\Demoshop.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
