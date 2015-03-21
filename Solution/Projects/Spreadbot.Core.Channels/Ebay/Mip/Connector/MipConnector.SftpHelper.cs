@@ -1,9 +1,8 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:11
 
-using System;
 using System.IO;
 using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -32,7 +31,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return DoSendZippedFeed( feed, reqId );
             }
 
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( MipFeedHandler mipFeedHandler, string reqId )
+            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed(
+                MipFeedHandler mipFeedHandler,
+                string reqId )
             {
                 return SendZippedFeed( mipFeedHandler.GetName(), reqId );
             }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipGetRequestStatusResult.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:11
 
 using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
             get
             {
                 return Template.SafeFormat( "Status", MipRequestStatusCode ) + ", " +
-                       Template.SafeFormat( "Details", Details );
+                    Template.SafeFormat( "Details", Details );
             }
         }
     }

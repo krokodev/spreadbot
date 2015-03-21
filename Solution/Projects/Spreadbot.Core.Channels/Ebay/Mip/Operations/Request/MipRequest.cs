@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipRequest.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:11
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -29,7 +29,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
             return new Guid().ToString();
         }
 
-        public static bool VerifyRequestId(string requestId)
+        public static bool VerifyRequestId( string requestId )
         {
             Guid guid;
             return Guid.TryParse( requestId, out guid );

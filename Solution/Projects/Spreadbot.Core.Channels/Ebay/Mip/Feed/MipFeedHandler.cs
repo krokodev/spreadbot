@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFeedHandler.cs
-// romak_000, 2015-03-21 1:13
+// romak_000, 2015-03-21 2:11
 
 using System;
 

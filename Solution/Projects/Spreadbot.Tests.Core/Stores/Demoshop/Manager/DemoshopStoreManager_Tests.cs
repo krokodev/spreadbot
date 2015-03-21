@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-20 23:57
+// romak_000, 2015-03-21 2:11
 
 using System.Diagnostics;
 using System.Linq;

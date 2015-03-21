@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipPaths.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:11
 
 using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
@@ -10,12 +10,11 @@ namespace Spreadbot.Core.Channels.Ebay.Configuration.Elements
 {
     public class MipPaths : SmartConfigurationElement
     {
-        [ConfigurationProperty("BasePath", IsRequired = true)]
+        [ConfigurationProperty( "BasePath", IsRequired = true )]
         public string BasePath
         {
-            get { return (string)this[GetPropertyName()]; }
+            get { return ( string ) this[ GetPropertyName() ]; }
         }
-
 
         [ConfigurationProperty( "ZippedFeedsPath", IsRequired = true )]
         public string ZippedFeedsPath

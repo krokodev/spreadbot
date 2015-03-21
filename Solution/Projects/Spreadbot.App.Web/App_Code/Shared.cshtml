@@ -20,29 +20,29 @@
 @helper Format( string text, params object[] args )
 {
     @Text( string.Format(
-                         text,
-                         args ) )
+        text,
+        args ) )
 }
 
 @helper ActionLink( string text, string controller, string action = "Index", string cssClass = "" )
 {
     @Html.ActionLink(
-                     text,
-                     action,
-                     controller,
-                     null,
-                     new { @class = cssClass } )
+        text,
+        action,
+        controller,
+        null,
+        new { @class = cssClass } )
 }
 
 
 @helper ActionLink( string text, string controller, string action, int id, string @class = null )
 {
     @Html.ActionLink(
-                     text,
-                     action,
-                     controller,
-                     new { id },
-                     new { @class } )
+        text,
+        action,
+        controller,
+        new { id },
+        new { @class } )
 }
 
 @helper Text( string text )

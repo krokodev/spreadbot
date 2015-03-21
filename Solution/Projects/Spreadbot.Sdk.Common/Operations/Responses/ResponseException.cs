@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // ResponseException.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-21 2:13
 
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -19,6 +19,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             get { return Response.Autoinfo; }
         }
 
-        public IAbstractResponse Response { get; private set; }
+        public IAbstractResponse Response { get; set; }
     }
 }

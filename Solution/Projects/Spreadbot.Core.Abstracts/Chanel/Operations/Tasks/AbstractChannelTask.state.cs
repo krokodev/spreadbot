@@ -1,9 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // AbstractChannelTask.state.cs
-// romak_000, 2015-03-20 13:56
-
-using Nereal.Serialization;
+// romak_000, 2015-03-21 2:11
 
 namespace Spreadbot.Core.Abstracts.Chanel.Operations.Tasks
 {

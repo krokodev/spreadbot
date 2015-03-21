@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // FilterConfig.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:10
 
 using System.Web.Mvc;
 

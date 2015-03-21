@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // RouteConfig.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:10
 
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -16,16 +16,16 @@ namespace Spreadbot.App.Web
 
             routes.MapRoute
                 (
-                 "Default",
-                 "{controller}/{action}/{id}",
-                 new {
-                     controller = "Home",
-                     action = "Index",
-                     id = UrlParameter.Optional
-                 },
-                 new[] {
-                     "Spreadbot.App.Web"
-                 }
+                    "Default",
+                    "{controller}/{action}/{id}",
+                    new {
+                        controller = "Home",
+                        action = "Index",
+                        id = UrlParameter.Optional
+                    },
+                    new[] {
+                        "Spreadbot.App.Web"
+                    }
                 );
         }
     }

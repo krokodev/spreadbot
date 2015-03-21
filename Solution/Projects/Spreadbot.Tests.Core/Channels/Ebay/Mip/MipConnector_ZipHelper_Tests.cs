@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_ZipHelper_Tests.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-21 2:11
 
 using System.Diagnostics;
 using System.IO;
@@ -18,7 +18,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     {
         // ===================================================================================== []
         [ClassInitialize]
-        public static void Init(TestContext testContext)
+        public static void Init( TestContext testContext )
         {
             MipTestInitializer.PrepareTestFiles();
         }

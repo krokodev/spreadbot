@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// romak_000, 2015-03-21 1:52
+// romak_000, 2015-03-21 2:10
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
@@ -45,7 +45,7 @@ namespace Spreadbot.App.Web.Controllers
         {
             Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
             DemoshopModel.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []
@@ -54,7 +54,7 @@ namespace Spreadbot.App.Web.Controllers
         {
             Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
             DemoshopModel.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
 
         // ===================================================================================== []

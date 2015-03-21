@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.pvt.ChannelTasks.cs
-// romak_000, 2015-03-20 13:56
+// romak_000, 2015-03-21 2:11
 
 using System.Collections.Generic;
 using MoreLinq;

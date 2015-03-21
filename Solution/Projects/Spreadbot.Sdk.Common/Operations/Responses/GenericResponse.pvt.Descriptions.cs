@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.pvt.Descriptions.cs
-// romak_000, 2015-03-20 20:06
+// romak_000, 2015-03-21 2:11
 
 using System;
 using Crocodev.Common.Extensions;
@@ -16,8 +16,8 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         private string GetSuccessAutoinfo()
         {
             return AutoinfoResponse(
-                AutoinfoField( "Result", Result),
-                AutoinfoField( "Details", Details),
+                AutoinfoField( "Result", Result ),
+                AutoinfoField( "Details", Details ),
                 AutoinfoInnerResponse( InnerResponse )
                 );
         }
@@ -26,15 +26,15 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         private string GetFailedAutoinfo()
         {
             return AutoinfoResponse(
-                AutoinfoException( Exception),
+                AutoinfoException( Exception ),
                 AutoinfoField( "Details", Details ),
-                AutoinfoInnerResponse( InnerResponse)
+                AutoinfoInnerResponse( InnerResponse )
                 );
         }
 
         // ===================================================================================== []
         // Elements
-        private string AutoinfoField( string name, object value)
+        private string AutoinfoField( string name, object value )
         {
             if( value == null ) {
                 return "";
@@ -44,7 +44,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         // --------------------------------------------------------[]
-        private string AutoinfoException( Exception e)
+        private string AutoinfoException( Exception e )
         {
             if( e == null ) {
                 return null;
@@ -52,17 +52,17 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
             return AutoinfoSection(
                 "Exception",
-                AutoinfoField( "Type", e.GetType()),
-                AutoinfoField( "Message", ExceptionMessage( e) ),
+                AutoinfoField( "Type", e.GetType() ),
+                AutoinfoField( "Message", ExceptionMessage( e ) ),
                 AutoinfoField(
                     "InnerException",
-                    AutoinfoException( e.InnerException)
+                    AutoinfoException( e.InnerException )
                     )
                 );
         }
 
         // --------------------------------------------------------[]
-        private string ExceptionMessage( Exception e)
+        private string ExceptionMessage( Exception e )
         {
             var responseException = e as ResponseException;
             if( responseException != null ) {
@@ -72,7 +72,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         // --------------------------------------------------------[]
-        private string AutoinfoInnerResponse( IAbstractResponse response)
+        private string AutoinfoInnerResponse( IAbstractResponse response )
         {
             if( response == null ) {
                 return null;

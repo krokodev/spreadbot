@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-21 0:09
+// romak_000, 2015-03-21 2:17
 
 using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
@@ -47,7 +47,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         protected GenericResponse() {}
         public TC Code { get; set; }
-        public TR Result { get;  set; }
+        public TR Result { get; set; }
         private string Details { get; set; }
         private Exception Exception { get; set; }
         private IAbstractResponse InnerResponse { get; set; }

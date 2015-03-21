@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Tasks.cs
-// romak_000, 2015-03-20 13:57
+// romak_000, 2015-03-21 2:11
 
 using System.Collections.Generic;
 using System.Linq;

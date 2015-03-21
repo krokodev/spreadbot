@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-21 1:36
+// romak_000, 2015-03-21 2:11
 
 using System;
 using Crocodev.Common.Extensions;

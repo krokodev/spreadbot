@@ -3,7 +3,7 @@
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -122,7 +122,7 @@
             <li>
                 @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", DemoshopModel.Item )
             </li>
-@*            <li>
+            @*            <li>
                 @Html.ActionLink( "Save tasks", "SaveTasks" )
             </li>
             <li>
