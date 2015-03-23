@@ -40,7 +40,6 @@
     @FormView.Editor( label, textBox )
 }
 
-
 @helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
 {
     var label = Html.LabelFor( expression );
@@ -127,7 +126,7 @@
                 @Html.ActionLink("Save tasks", "SaveTasks") |
                 @Html.ActionLink( "Restore tasks", "RestoreTasks" ) | 
 *@
-                Cleare all tasks [@Html.ActionLink( "ok", "DeleteTasks" )]
+                Remove all tasks [@Html.ActionLink( "ok", "DeleteTasks" )]
             </li>
         </ul>
 
