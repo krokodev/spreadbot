@@ -1,0 +1,31 @@
+﻿@using Spreadbot.App.Web.Models
+@using Spreadbot.Sdk.Common.Operations.Responses
+@using Spreadbot.Sdk.Common.Operations.Tasks
+@model Spreadbot.App.Web.Models.DemoshopModel
+
+@functions {
+    private static string AbstractResponse(IAbstractResponse resp)
+    {
+        return resp == null ? "\nno" : resp.ToString();
+    }
+}
+
+@{
+    // !>> View | Demoshop | ShowTask
+    ViewBag.Title = "Task details";
+    Layout = "~/Views/Shared/Layouts/Default.cshtml";
+}
+
+@{
+    var task = (AbstractTask)DemoshopModel.FindTask(ViewBag.TaskId);
+}
+
+<pre><code>
+        
+<b>Task:</b><br>@task.ToString()<br />
+<b>Id:</b><br>@task.Id<br/>
+<b>Response:</b>@AbstractResponse( task.AbstractResponse )<br />
+<b>Created:</b><br/>@task.CreationTime<br />
+<b>Last update:</b><br/>@task.LastUpdateTime<br />
+     
+</code></pre>
