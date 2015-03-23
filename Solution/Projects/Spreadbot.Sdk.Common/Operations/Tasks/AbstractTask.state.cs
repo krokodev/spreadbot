@@ -13,5 +13,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         public string Description { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime LastUpdateTime { get; protected set; }
+        public string Id { get; private set; }
     }
 }

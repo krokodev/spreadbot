@@ -177,6 +177,7 @@
   <ItemGroup>
     <Content Include="App_Data\Configs\Demoshop.config" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
+    <Content Include="Views\Demoshop\ShowTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

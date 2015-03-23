@@ -6,8 +6,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoreLinq;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
@@ -20,11 +20,11 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
 {
-    [TestClass]
+    [TestFixture]
     public class DemoshopStoreManager_Tests
     {
         // --------------------------------------------------------[]
-       // [TestInitialize]
+        [SetUp]
         private void DeleteAllStoreTasks()
         {
             DemoshopStoreManager.Instance.DeleteAllTasks();
@@ -37,7 +37,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Create_Task_PublishItemOnEbay()
         {
             var store = DemoshopStoreManager.Instance;
@@ -49,7 +49,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Run_Task_PublishItemOnEbay()
         {
             var store = DemoshopStoreManager.Instance;
@@ -65,7 +65,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Proceed_Task_PublishItemOnEbay()
         {
             var dispatcher = Dispatcher.Instance;
@@ -84,7 +84,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Save_and_Restore_Tasks()
         {
             var store = DemoshopStoreManager.Instance;
@@ -110,7 +110,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Create_Run_SaveRestore_Proceed_Task_PublishItemOnEbay()
         {
             var dispatcher = Dispatcher.Instance;
@@ -137,14 +137,13 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [Ignore]
-        [TestMethod]
+        [Test]
         public void ChannelTasks_LastUpdateTime()
         {
             var dispatcher = Dispatcher.Instance;
             var store = DemoshopStoreManager.Instance;
 
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             AssertThatLastUpdateTimeIsCorrect();
 
             dispatcher.RunChannelTasks( store.GetChannelTasks() );
@@ -157,10 +156,11 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         private static void AssertThatLastUpdateTimeIsCorrect()
         {
-/*
+
             DemoshopEbayPublishTasks()
-                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 1 ).Seconds ); } );
-*/
+                .ForEach( t => {
+                    Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 15 ).Seconds );
+                } );
         }
     }
 }

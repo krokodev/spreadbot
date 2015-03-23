@@ -82,6 +82,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                     ChannelResponseStatusCode.PublishFail,
                     exception );
             }
+            // Code: DoRunPublishTask
             task.WasUpdatedNow();
         }
     }

@@ -18,7 +18,7 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult Index()
         {
             DemoshopModel.Restore();
-            return View( new DemoshopModel() );
+            return View();
         }
 
         // ===================================================================================== []
@@ -78,6 +78,13 @@ namespace Spreadbot.App.Web.Controllers
             DemoshopModel.DeleteTasks();
             DemoshopModel.Save();
             return RedirectToAction("Index");
+        }
+
+        // --------------------------------------------------------[]
+        public ActionResult ShowTask(string taskId)
+        {
+            ViewBag.TaskId = taskId;
+            return View();
         }
     }
 }

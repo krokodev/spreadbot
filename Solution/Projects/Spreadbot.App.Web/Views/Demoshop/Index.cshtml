@@ -1,21 +1,19 @@
 ﻿@using System.Linq.Expressions
-@using Crocodev.Common.Extensions
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model  DemoshopModel 
 
 @functions {
 
     private static string TaskClass( TaskStatus statusCode )
     {
-        return string.Format("sb-task sb-task-{0}", statusCode.ToString().ToLower());
+        return string.Format( "sb-task sb-task-{0}", statusCode.ToString().ToLower() );
     }
 
 }
 
 @{
-    // ===================================================================================== []
     // !>> View | Demoshop | Index
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
@@ -58,8 +56,7 @@
         <ul>
             @foreach( var task in enumerable ) {
                 <li class="@TaskClass( task.GetStatusCode() )">
-                    @task<br>
-                    @task.CreationTime.ToString("u") - @task.LastUpdateTime.ToString("u")
+                    @task [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
                 </li>
                 @ShowTasks( task.AbstractSubTasks )
             }
@@ -143,13 +140,13 @@
         <ul>
             <li>
                 @Html.ActionLink(
-                    string.Format("Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count()),
-                    "RunChannelTasks")
+                    string.Format( "Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count() ),
+                    "RunChannelTasks" )
             </li>
             <li>
                 @Html.ActionLink(
-                    string.Format("Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count()),
-                    "ProceedChannelTasks")
+                    string.Format( "Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count() ),
+                    "ProceedChannelTasks" )
             </li>
             <li>
                 [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]

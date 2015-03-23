@@ -19,5 +19,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         bool IsCritical { get; set; }
         DateTime CreationTime { get; }
         DateTime LastUpdateTime { get; }
+        string Id { get; }
     }
 }

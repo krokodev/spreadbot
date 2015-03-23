@@ -13,6 +13,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         {
             CreationTime = DateTime.Now;
             LastUpdateTime = DateTime.Now;
+            Id = Guid.NewGuid().ToString();
         }
 
         public override string ToString()

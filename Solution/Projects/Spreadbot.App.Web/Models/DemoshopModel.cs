@@ -79,5 +79,10 @@ namespace Spreadbot.App.Web.Models
                 StoreManager.DeleteAllTasks();
             }
         }
+
+        public static AbstractTask FindTask( string taskId )
+        {
+            return StoreManager.FindTask(taskId);
+        }
     }
 }

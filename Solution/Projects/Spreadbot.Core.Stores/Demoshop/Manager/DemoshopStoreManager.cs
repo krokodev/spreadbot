@@ -1,14 +1,16 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-23 16:18
+// romak_000, 2015-03-23 19:52
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
+using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
@@ -66,6 +68,15 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         public void DeleteAllTasks()
         {
             StoreTasks.Clear();
+        }
+
+        // --------------------------------------------------------[]
+        public AbstractTask FindTask( string taskId )
+        {
+            return ( AbstractTask ) StoreTasks
+                .SelectMany( t => t.AbstractSubTasks )
+                .Concat( StoreTasks )
+                .First( tt => tt.Id == taskId );
         }
     }
 }
