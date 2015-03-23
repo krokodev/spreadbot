@@ -3,6 +3,7 @@
 // DemoshopStoreTask.cs
 // romak_000, 2015-03-21 2:11
 
+using System;
 using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
@@ -31,6 +32,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
 
         public override TaskStatus GetStatusCode()
         {
+            LastUpdateTime = DateTime.Now;
             return CalcSuperTaskStatusCode();
         }
 

@@ -3,6 +3,7 @@
 // EbayPublishTask.imp.IProceedableTask.cs
 // romak_000, 2015-03-21 2:11
 
+using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -17,6 +18,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         // Explicit
         public void AddProceedInfo( ITaskProceedInfo info )
         {
+            LastUpdateTime = DateTime.Now;
             _taskProceedHelper.AddProceedInfo( info );
         }
 

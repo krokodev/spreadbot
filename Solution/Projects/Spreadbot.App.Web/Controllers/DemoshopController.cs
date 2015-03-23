@@ -71,5 +71,13 @@ namespace Spreadbot.App.Web.Controllers
             DemoshopModel.Restore();
             return RedirectToAction( "Index" );
         }
+
+        // --------------------------------------------------------[]
+        public ActionResult DeleteTasks()
+        {
+            DemoshopModel.DeleteTasks();
+            DemoshopModel.Save();
+            return RedirectToAction("Index");
+        }
     }
 }

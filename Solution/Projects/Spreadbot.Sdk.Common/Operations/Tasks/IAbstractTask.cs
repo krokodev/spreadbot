@@ -3,6 +3,7 @@
 // IAbstractTask.cs
 // romak_000, 2015-03-21 2:11
 
+using System;
 using System.Collections.Generic;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
@@ -16,5 +17,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         IEnumerable< IAbstractTask > AbstractSubTasks { get; }
         TaskStatus GetStatusCode();
         bool IsCritical { get; set; }
+        DateTime CreationTime { get; }
+        DateTime LastUpdateTime { get; }
     }
 }

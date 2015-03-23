@@ -3,7 +3,7 @@
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -57,7 +57,10 @@
     if( enumerable.Count() != 0 ) {
         <ul>
             @foreach( var task in enumerable ) {
-                <li class="@TaskClass( task.GetStatusCode() )">@task</li>
+                <li class="@TaskClass( task.GetStatusCode() )">
+                    @task<br>
+                    @task.CreationTime.ToString("u") - @task.LastUpdateTime.ToString("u")
+                </li>
                 @ShowTasks( task.AbstractSubTasks )
             }
         </ul>
@@ -122,13 +125,15 @@
             <li>
                 @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", DemoshopModel.Item )
             </li>
-            @*            <li>
-                @Html.ActionLink( "Save tasks", "SaveTasks" )
-            </li>
             <li>
-                @Html.ActionLink( "Restore tasks", "RestoreTasks" )
-            </li>*@
+                @*
+                @Html.ActionLink("Save tasks", "SaveTasks") |
+                @Html.ActionLink( "Restore tasks", "RestoreTasks" ) | 
+*@
+                Cleare all tasks [@Html.ActionLink( "ok", "DeleteTasks" )]
+            </li>
         </ul>
+
     </div>
 
     <div>

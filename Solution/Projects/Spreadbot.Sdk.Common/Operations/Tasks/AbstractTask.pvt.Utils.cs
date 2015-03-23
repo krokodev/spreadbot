@@ -10,7 +10,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public abstract partial class AbstractTask
     {
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         // StatusCode
         private TaskStatus DoCalcSuperTaskStatusCode()
         {

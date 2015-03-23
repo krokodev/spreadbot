@@ -1,12 +1,15 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-23 12:34
+// romak_000, 2015-03-23 14:36
 
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+//using System.Diagnostics;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoreLinq;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
@@ -16,22 +19,24 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
 {
-    [TestClass]
+    [TestFixture]
     public class DemoshopStoreManager_Tests
     {
         // --------------------------------------------------------[]
-        [ClassInitialize]
-        public static void Init( TestContext testContext ) {}
-
-        // --------------------------------------------------------[]
-        [TestCleanup]
-        public void DeleteAllStoreTasks()
+        [SetUp]
+        private void DeleteAllStoreTasks()
         {
             DemoshopStoreManager.Instance.DeleteAllTasks();
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        private static IEnumerable< EbayPublishTask > DemoshopEbayPublishTasks()
+        {
+            return DemoshopStoreManager.Instance.GetChannelTasks().OfType< EbayPublishTask >();
+        }
+
+        // --------------------------------------------------------[]
+        [Test]
         public void Create_Task_PublishItemOnEbay()
         {
             var store = DemoshopStoreManager.Instance;
@@ -43,7 +48,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Run_Task_PublishItemOnEbay()
         {
             var store = DemoshopStoreManager.Instance;
@@ -51,15 +56,15 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Trace.WriteLine( t.EbayPublishResponse );
+                Console.WriteLine(t.EbayPublishResponse);
                 Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
                 Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
             } );
-            Assert.AreEqual(TaskStatus.Inprocess, task.GetStatusCode());
+            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Proceed_Task_PublishItemOnEbay()
         {
             var dispatcher = Dispatcher.Instance;
@@ -70,15 +75,15 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Trace.WriteLine(t);
+                Console.WriteLine(t);
                 Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
                 Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
             } );
-            Assert.AreEqual(TaskStatus.Inprocess, task.GetStatusCode());
+            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Save_and_Restore_Tasks()
         {
             var store = DemoshopStoreManager.Instance;
@@ -104,31 +109,49 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
+        [Test]
         public void Create_Run_SaveRestore_Proceed_Task_PublishItemOnEbay()
         {
             var dispatcher = Dispatcher.Instance;
             var store = DemoshopStoreManager.Instance;
 
-            store.CreateTask(DemoshopStoreTaskType.PublishOnEbay);
+            store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             store.SaveData();
             store.RestoreData();
 
-            dispatcher.RunChannelTasks(store.GetChannelTasks());
-            dispatcher.ProceedChannelTasks(store.GetChannelTasks());
+            dispatcher.RunChannelTasks( store.GetChannelTasks() );
+            dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
             store.SaveData();
             store.RestoreData();
 
-            Assert.AreEqual(1, store.StoreTasks.Count);
-            Assert.AreEqual(3, store.GetChannelTasks().Count());
+            Assert.AreEqual( 1, store.StoreTasks.Count );
+            Assert.AreEqual( 3, store.GetChannelTasks().Count() );
 
-            store.GetChannelTasks().OfType<EbayPublishTask>().ForEach(t =>
-            {
-                Trace.WriteLine(t);
-                Assert.IsTrue(t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success);
-                Assert.IsNotNull(t.EbayPublishResponse.Result.MipRequestId);
-            });
+            DemoshopEbayPublishTasks().ForEach( t => {
+                Console.WriteLine(t);
+                Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+            } );
+        }
+
+        // --------------------------------------------------------[]
+        [Test]
+        public void ChannelTasks_LastUpdateTime()
+        {
+            var dispatcher = Dispatcher.Instance;
+            var store = DemoshopStoreManager.Instance;
+
+            store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            DemoshopEbayPublishTasks()
+                .ForEach(
+                    t => { Assert.AreEqual( DateTime.Now.ToLongTimeString(), t.LastUpdateTime.ToLongTimeString() ); } );
+
+            dispatcher.RunChannelTasks( store.GetChannelTasks() );
+            DemoshopEbayPublishTasks().ForEach( t => { Assert.AreEqual( DateTime.Now, t.LastUpdateTime ); } );
+
+            dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
+            DemoshopEbayPublishTasks().ForEach( t => { Assert.AreEqual( DateTime.Now, t.LastUpdateTime ); } );
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// romak_000, 2015-03-21 2:10
+// romak_000, 2015-03-23 13:35
 
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +70,13 @@ namespace Spreadbot.App.Web.Models
         {
             lock( Locker ) {
                 StoreManager.RestoreData();
+            }
+        }
+
+        public static void DeleteTasks()
+        {
+            lock( Locker ) {
+                StoreManager.DeleteAllTasks();
             }
         }
     }
