@@ -50,13 +50,12 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
-
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Trace.Write( t );
+                Trace.WriteLine( t.EbayPublishResponse );
                 Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
                 Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
             } );
+            Assert.AreEqual(TaskStatus.Inprocess, task.GetStatusCode());
         }
 
         // --------------------------------------------------------[]
@@ -70,13 +69,12 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             dispatcher.RunChannelTasks( store.GetChannelTasks() );
             dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
-
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Trace.Write( t );
+                Trace.WriteLine(t);
                 Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
                 Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
             } );
+            Assert.AreEqual(TaskStatus.Inprocess, task.GetStatusCode());
         }
 
         // --------------------------------------------------------[]
@@ -127,7 +125,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
 
             store.GetChannelTasks().OfType<EbayPublishTask>().ForEach(t =>
             {
-                Trace.Write(t);
+                Trace.WriteLine(t);
                 Assert.IsTrue(t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success);
                 Assert.IsNotNull(t.EbayPublishResponse.Result.MipRequestId);
             });
