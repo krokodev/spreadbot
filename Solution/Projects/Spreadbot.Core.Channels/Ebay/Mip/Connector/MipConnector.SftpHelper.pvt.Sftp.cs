@@ -99,7 +99,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
                     MipStatusCode.FindRemoteFileFail,
-                    "Remote file [{0}] not found in [{1}]".SafeFormat( prefix, remoteDir )
+                    string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDir)
                     );
             }
 

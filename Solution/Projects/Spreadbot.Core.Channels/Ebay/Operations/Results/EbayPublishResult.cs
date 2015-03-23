@@ -1,9 +1,8 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishResult.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 16:23
 
-using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Results
@@ -14,7 +13,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Results
 
         public override string Autoinfo
         {
-            get { return Template.SafeFormat( "MipRequestId", MipRequestId ); }
+            get { return string.Format( Template, "MipRequestId", MipRequestId ); }
         }
     }
 }

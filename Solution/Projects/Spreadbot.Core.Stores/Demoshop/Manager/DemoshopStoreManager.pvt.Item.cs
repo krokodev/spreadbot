@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         private void LoadItem()
         {
-            Item = new DemoshopItem() {
+            Item = new DemoshopItem {
                 Sku = "DS-1001",
                 Title = "Demoshop Single Item",
                 Price = 7.00m,

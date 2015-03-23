@@ -18,7 +18,7 @@ namespace Spreadbot.Sdk.Common.Operations.ResponseResults
 
         public override string Autoinfo
         {
-            get { return Template.SafeFormat( "Value", Value ); }
+            get { return string.Format(Template, "Value", Value ); }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.pvt.Descriptions.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 16:20
 
 using System;
 using Crocodev.Common.Extensions;
@@ -40,7 +40,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
                 return "";
             }
 
-            return "{0}{1}: [{2}]".SafeFormat( NewLine( Level ), name, value );
+            return string.Format( "{0}{1}: [{2}]", NewLine( Level ), name, value );
         }
 
         // --------------------------------------------------------[]
@@ -89,14 +89,9 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         {
             var sectionContent = "";
             args.ForEach(
-                arg => {
-                    sectionContent = "{0}{1}".SafeFormat(
-                        sectionContent,
-                        arg
-                        );
-                } );
+                arg => { sectionContent = string.Format( "{0}{1}", sectionContent, arg ); } );
 
-            return "{0}{1}:{0}[{2}{0}]".SafeFormat(
+            return string.Format("{0}{1}:{0}[{2}{0}]",
                 NewLine( Level ),
                 sectionName,
                 sectionContent

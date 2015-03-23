@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 
         public override string Autoinfo
         {
-            get { return Template.SafeFormat( "Value", Value ); }
+            get { return string.Format(Template, "Value", Value); }
         }
     }
 }

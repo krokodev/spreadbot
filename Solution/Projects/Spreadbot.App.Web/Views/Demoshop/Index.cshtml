@@ -9,7 +9,7 @@
 
     private static string TaskClass( TaskStatus statusCode )
     {
-        return "sb-task sb-task-{0}".TryFormat( statusCode.ToString().ToLower() );
+        return string.Format("sb-task sb-task-{0}", statusCode.ToString().ToLower());
     }
 
 }
@@ -143,15 +143,13 @@
         <ul>
             <li>
                 @Html.ActionLink(
-                    "Run Channel Tasks ({0})"
-                        .SafeFormat( DemoshopModel.ChannelTasksTodo.Count() ),
-                    "RunChannelTasks" )
+                    string.Format("Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count()),
+                    "RunChannelTasks")
             </li>
             <li>
                 @Html.ActionLink(
-                    "Proceed Channel Tasks ({0})"
-                        .SafeFormat( DemoshopModel.ChannelTasksInprocess.Count() ),
-                    "ProceedChannelTasks" )
+                    string.Format("Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count()),
+                    "ProceedChannelTasks")
             </li>
             <li>
                 [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
@@ -160,6 +158,7 @@
                 [<a href="http://www.ebay.com/itm/321693290987">http://www.ebay.com/itm/321693290987</a>]
             </li>
         </ul>
+
     </div>
 
 

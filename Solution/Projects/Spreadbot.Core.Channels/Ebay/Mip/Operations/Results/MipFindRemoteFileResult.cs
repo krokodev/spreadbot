@@ -22,8 +22,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
         {
             get
             {
-                return Template.SafeFormat( "FolderPath", FolderPath ) + ", "
-                    + Template.SafeFormat( "FileName", FileName );
+                return string.Format(Template, "FolderPath", FolderPath) + ", "
+                    + string.Format(Template, "FileName", FileName);
             }
         }
     }

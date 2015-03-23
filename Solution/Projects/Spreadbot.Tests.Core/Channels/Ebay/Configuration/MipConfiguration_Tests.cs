@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConfiguration_Tests.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 15:37
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;

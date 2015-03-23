@@ -23,8 +23,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
         {
             get
             {
-                return Template.SafeFormat( "Status", MipRequestStatusCode ) + ", " +
-                    Template.SafeFormat( "Details", Details );
+                return string.Format(Template, "Status", MipRequestStatusCode) + ", " +
+                    string.Format(Template, "Details", Details);
             }
         }
     }

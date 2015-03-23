@@ -1,12 +1,11 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 16:18
 
 using System;
 using System.IO;
 using System.Threading;
-using Crocodev.Common.Extensions;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
@@ -54,7 +53,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 case DemoshopStoreTaskType.PublishOnEbay :
                     return DoCreateTaskPublishOnEbay();
             }
-            throw new ArgumentException( "Unknown taskType: [{0}]".SafeFormat( taskType ) );
+            throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
         }
 
         // --------------------------------------------------------[]

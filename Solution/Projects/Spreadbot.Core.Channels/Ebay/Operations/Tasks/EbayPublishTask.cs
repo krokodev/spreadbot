@@ -1,8 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 15:07
 
+using System;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
@@ -19,6 +20,12 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         public EbayPublishArgs Args { get; set; }
 
         [NotSerialize]
+        // Is serialized by [AbstractResponse]
         public ChannelResponse< EbayPublishResult > EbayPublishResponse { get; set; }
+
+        public void WasUpdatedNow()
+        {
+            LastUpdateTime = DateTime.Now;
+        }
     }
 }

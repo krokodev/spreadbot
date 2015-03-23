@@ -13,6 +13,6 @@ namespace Spreadbot.Sdk.Common.Exceptions
         protected SpreadbotException() {}
 
         public SpreadbotException( string template, params object[] args )
-            : base( template.SafeFormat( args ) ) {}
+            : base( string.Format(template, args ) ) {}
     }
 }

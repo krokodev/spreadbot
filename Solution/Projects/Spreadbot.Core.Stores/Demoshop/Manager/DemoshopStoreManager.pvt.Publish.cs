@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Publish.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 16:37
 
 using System.Globalization;
 using System.IO;
@@ -25,13 +25,16 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         private DemoshopStoreTask DoCreateTaskPublishOnEbay()
         {
             var storeTask =
-                new DemoshopStoreTask { StoreId = Id, Description = "Publish [{0}] on eBay".SafeFormat( Item.Sku ) };
+                new DemoshopStoreTask {
+                    StoreId = Id,
+                    Description = string.Format( "Publish [{0}] on eBay", Item.Sku )
+                };
 
-            storeTask.AddSubTasks(
+            storeTask.AddSubTasks( new[] {
                 CreateEbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku ),
                 CreateEbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku ),
                 CreateEbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku )
-                );
+            } );
 
             AddTask( storeTask );
 

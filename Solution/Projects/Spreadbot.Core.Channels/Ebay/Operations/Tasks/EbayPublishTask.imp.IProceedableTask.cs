@@ -18,7 +18,6 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         // Explicit
         public void AddProceedInfo( ITaskProceedInfo info )
         {
-            LastUpdateTime = DateTime.Now;
             _taskProceedHelper.AddProceedInfo( info );
         }
 

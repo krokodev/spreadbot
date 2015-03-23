@@ -71,7 +71,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         findResponse = SftpHelper.FindRequestRemoteFileNameInOutput( mipRequest );
                         break;
                     default :
-                        throw new Exception( "Wrong stage {0}".SafeFormat( stage ) );
+                        throw new Exception( string.Format("Wrong stage {0}",stage ) );
                 }
                 findResponse.Check();
             }

@@ -66,19 +66,19 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
                     MipStatusCode.FindRemoteFileFail,
-                    "Remote file [{0}] not found in [{1}]".SafeFormat( prefix, remoteDirs.FoldToStringBy( s => s ) ) );
+                    string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDirs.FoldToStringBy(s => s)));
             }
 
             // ===================================================================================== []
             // GetRemoteFileContent
             public static string GetRemoteFileContent( string remoteFolder, string fileName, string localFolder )
             {
-                var remotePath = @"{0}/{1}".SafeFormat( remoteFolder, fileName );
-                var localPath = @"{0}\{1}".SafeFormat( localFolder, fileName );
+                var remotePath = string.Format(@"{0}/{1}", remoteFolder, fileName);
+                var localPath = string.Format(@"{0}\{1}", localFolder, fileName);
 
                 DownloadFiles( remotePath, localPath );
 
-                return File.ReadAllText( @"{0}\{1}".SafeFormat( localFolder, fileName ) );
+                return File.ReadAllText(string.Format(@"{0}\{1}", localFolder, fileName));
             }
         }
     }
