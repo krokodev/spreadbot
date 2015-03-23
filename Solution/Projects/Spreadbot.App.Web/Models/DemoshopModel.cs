@@ -62,14 +62,14 @@ namespace Spreadbot.App.Web.Models
         public static void Save()
         {
             lock( Locker ) {
-                StoreManager.Save();
+                StoreManager.SaveData();
             }
         }
 
         public static void Restore()
         {
             lock( Locker ) {
-                StoreManager.Restore();
+                StoreManager.RestoreData();
             }
         }
     }

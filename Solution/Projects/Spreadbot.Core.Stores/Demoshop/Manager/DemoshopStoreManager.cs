@@ -34,13 +34,13 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // ===================================================================================== []
-        public void Save()
+        public void SaveData()
         {
             Serializer.Default.Serialize( this, DataFileName() );
         }
 
         // --------------------------------------------------------[]
-        public void Restore()
+        public void RestoreData()
         {
             if( File.Exists( DataFileName() ) ) {
                 Serializer.Default.Deserialize( this, DataFileName() );
@@ -61,6 +61,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         public void DeleteTask( DemoshopStoreTask task )
         {
             StoreTasks.Remove( task );
+        }
+
+        // --------------------------------------------------------[]
+        public void DeleteAllTasks()
+        {
+            StoreTasks.Clear();
         }
     }
 }
