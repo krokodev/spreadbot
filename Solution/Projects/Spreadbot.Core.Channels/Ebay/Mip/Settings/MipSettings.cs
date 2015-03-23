@@ -68,9 +68,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
         }
 
         // --------------------------------------------------------[]
-        public static int OutputFolderNameUtcHourOffset
+        public static string TimeZone
         {
-            get { return MipPublicConfig.Instance.MipPaths.OutputFolderNameUtcHourOffset; }
+            get { return MipPublicConfig.Instance.MipPaths.SftpServerTimeZone; }
         }
 
         // ===================================================================================== []

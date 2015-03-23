@@ -40,10 +40,10 @@ namespace Spreadbot.Core.Channels.Ebay.Configuration.Elements
             get { return ( string ) this[ GetPropertyName() ]; }
         }
 
-        [ConfigurationProperty( "OutputFolderNameUtcHourOffset", IsRequired = true )]
-        public int OutputFolderNameUtcHourOffset
+        [ConfigurationProperty("SftpServerTimeZone", IsRequired = true)]
+        public string SftpServerTimeZone
         {
-            get { return ( int ) this[ GetPropertyName() ]; }
+            get { return ( string ) this[ GetPropertyName() ]; }
         }
     }
 }

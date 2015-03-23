@@ -1,10 +1,14 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConfiguration_Tests.cs
-// romak_000, 2015-03-23 15:37
+// romak_000, 2015-03-23 20:37
 
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
+using Spreadbot.Core.Channels.Ebay.Mip.Settings;
+using Assert = NUnit.Framework.Assert;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Configuration
 {
@@ -24,6 +28,14 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Configuration
         {
             var configuration = MipSecurityConfig.Instance;
             Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName );
+        }
+
+        [TestMethod]
+        public void Mip_TimeZone()
+        {
+            //var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, MipSettings.TimeZone );
+            
+            Assert.That(MipSettings.TimeZone, Is.EqualTo("Mountain Standard Time"));
         }
     }
 }

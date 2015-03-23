@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.Pathes.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-23 20:47
 
 using System;
 using System.Globalization;
@@ -99,11 +99,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // ===================================================================================== []
         private static string DataBasedFolderName( int dayShift )
         {
-            var hourOffset = MipSettings.OutputFolderNameUtcHourOffset;
-            var utcNow = DateTime.UtcNow;
-            var mipNow = utcNow.AddHours( hourOffset + 24*dayShift );
+            var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, MipSettings.TimeZone );
+            var dirTime = mipNow.AddHours( 24*dayShift );
 
-            return mipNow.Date.ToString( "MMM-dd-yyy", CultureInfo.CreateSpecificCulture( "en-US" ) );
+            return dirTime.Date.ToString( "MMM-dd-yyy", CultureInfo.CreateSpecificCulture( "en-US" ) );
         }
     }
 }

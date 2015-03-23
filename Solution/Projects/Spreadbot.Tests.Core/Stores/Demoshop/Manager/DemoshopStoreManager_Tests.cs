@@ -25,7 +25,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
     {
         // --------------------------------------------------------[]
         [SetUp]
-        private void DeleteAllStoreTasks()
+        public void DeleteAllStoreTasks()
         {
             DemoshopStoreManager.Instance.DeleteAllTasks();
         }
