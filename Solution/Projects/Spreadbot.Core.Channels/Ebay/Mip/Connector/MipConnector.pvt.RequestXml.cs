@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.RequestXml.cs
-// romak_000, 2015-03-24 13:28
+// romak_000, 2015-03-24 14:34
 
 using System.Collections.Generic;
 using System.Xml;
@@ -15,26 +15,26 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        private static MipGetRequestStatusResult MakeReqreuesStatusResultByParsingXmlContent(
+        private static MipGetRequestStatusResult MakeRequestStatusResultByParsingXmlContent(
             MipFeedType feedType,
             string content )
         {
-            return new MipGetRequestStatusResult(
-                IsContentSuccessfull( feedType, content )
-                    ? MipRequestStatus.Success
-                    : MipRequestStatus.Fail,
-                content );
+            return new MipGetRequestStatusResult {
+                MipRequestStatusCode = GetRequestStatusFromContent( feedType, content ),
+                MipItemId = GetRequestItemIdFromContent( feedType, content ),
+                Details = content,
+            };
         }
 
         // --------------------------------------------------------[]
-        private static bool IsContentSuccessfull( MipFeedType feedType, string content )
+        private static MipRequestStatus GetRequestStatusFromContent( MipFeedType feedType, string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/responseMessage/response/status" }
             };
 
             if( !statusNodePath.ContainsKey( feedType ) ) {
-                return false;
+                return MipRequestStatus.Unknown;
             }
 
             var xml = new XmlDocument {
@@ -42,7 +42,34 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             };
 
             var statusNode = xml.SelectSingleNode( statusNodePath[ feedType ] );
-            return statusNode != null && statusNode.InnerText == "SUCCESS";
+            if( statusNode != null && statusNode.InnerText == "SUCCESS" ) {
+                return MipRequestStatus.Success;
+            }
+
+            return MipRequestStatus.Unknown;
+        }
+
+        // --------------------------------------------------------[]
+        private static string GetRequestItemIdFromContent( MipFeedType feedType, string content )
+        {
+            var itemIdPath = new Dictionary< MipFeedType, string > {
+                { MipFeedType.Product, "/productResponse/responseMessage/response/itemID" }
+            };
+
+            if( !itemIdPath.ContainsKey( feedType ) ) {
+                return null;
+            }
+
+            var xml = new XmlDocument {
+                InnerXml = content
+            };
+
+            var itemIdNode = xml.SelectSingleNode( itemIdPath[ feedType ] );
+            if( itemIdNode != null ) {
+                return itemIdNode.InnerText;
+            }
+
+            return null;
         }
     }
 }

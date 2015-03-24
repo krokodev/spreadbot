@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// romak_000, 2015-03-24 11:58
+// romak_000, 2015-03-24 14:36
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -96,19 +96,19 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     return new MipRequestStatusResponse(
                         true,
                         MipStatusCode.GetRequestStatusSuccess,
-                        new MipGetRequestStatusResult( MipRequestStatus.Inprocess )
+                        new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Inprocess }
                         );
                 }
 
                 response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
                 if( response.Code == MipStatusCode.FindRequestSuccess ) {
-                    return GetRequestOutputStatus(mipRequestHandler.MipFeedHandler.Type, response);
+                    return GetRequestOutputStatus( mipRequestHandler.MipFeedHandler.Type, response );
                 }
 
                 return new MipRequestStatusResponse(
                     true,
                     MipStatusCode.GetRequestStatusSuccess,
-                    new MipGetRequestStatusResult( MipRequestStatus.Unknown ),
+                    new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
                     response
                     );
             }
@@ -122,7 +122,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {
-            var statusResult = ReadRequestOutputStatus(feedType, response);
+            var statusResult = ReadRequestOutputStatus( feedType, response );
             return new MipRequestStatusResponse( true, MipStatusCode.GetRequestStatusSuccess, statusResult );
         }
 
@@ -135,7 +135,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             var remotePath = response.Result.RemoteFolderPath;
             var localPath = LocalRequestResultsFolder();
             var content = SftpHelper.GetRemoteFileContent( remotePath, fileName, localPath );
-            return MakeReqreuesStatusResultByParsingXmlContent(feedType, content);
+            return MakeRequestStatusResultByParsingXmlContent( feedType, content );
         }
 
         // --------------------------------------------------------[]

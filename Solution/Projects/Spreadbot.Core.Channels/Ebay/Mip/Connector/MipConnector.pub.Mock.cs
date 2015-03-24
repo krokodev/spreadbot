@@ -52,7 +52,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             var localPath = string.Format(@"{0}\{1}", LocalRequestResultsFolder(), fileName);
             var content = File.ReadAllText(localPath);
 
-            return MakeReqreuesStatusResultByParsingXmlContent(feedType, content);
+            return MakeRequestStatusResultByParsingXmlContent(feedType, content);
         }
     }
 }

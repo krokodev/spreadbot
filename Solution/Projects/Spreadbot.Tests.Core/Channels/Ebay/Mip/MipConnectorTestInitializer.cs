@@ -15,6 +15,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnectorTestInitializer
     {
         public const string ProductSuccessRequestId = "0000-product-success-0000";
+        public const string ProductItemId = "321693290987";
 
         // Code: MipConnectorTestInitializer
         public static void PrepareTestFiles()
