@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnector_SftpHelper_Tests.cs
-// romak_000, 2015-03-21 2:11
+// MipConnector_Sftp_Tests.cs
+// romak_000, 2015-03-24 11:27
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,13 +13,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestClass]
-    public class MipConnector_SftpHelper_Tests
+    public class MipConnector_Sftp_Tests
     {
         // ===================================================================================== []
         [ClassInitialize]
         public static void Init( TestContext testContext )
         {
-            MipTestInitializer.PrepareTestFiles();
+            MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // ===================================================================================== []
@@ -27,7 +27,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void SendZippedFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequest.GenerateTestId() );
+            var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequestHandler.GenerateTestId() );
 
             Trace.TraceInformation( response.Autoinfo );
 

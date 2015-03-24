@@ -54,6 +54,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
                 "Exception",
                 AutoinfoField( "Type", e.GetType() ),
                 AutoinfoField( "Message", ExceptionMessage( e ) ),
+                AutoinfoField( "StackTrace", e.StackTrace ),
                 AutoinfoField(
                     "InnerException",
                     AutoinfoException( e.InnerException )
@@ -85,7 +86,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         // --------------------------------------------------------[]
-        private string AutoinfoSection( string sectionName, params string[] args )
+        private string AutoinfoSection( string sectionName, params string[] args)
         {
             var sectionContent = "";
             args.ForEach(

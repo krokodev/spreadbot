@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnector_Tests.cs
-// romak_000, 2015-03-21 2:11
+// MipConnector_Basic_Tests.cs
+// romak_000, 2015-03-24 11:27
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,13 +13,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestClass]
-    public class MipConnector_Tests
+    public class MipConnector_Basic_Tests
     {
         // ===================================================================================== []
         [ClassInitialize]
         public static void Init( TestContext testContext )
         {
-            MipTestInitializer.PrepareTestFiles();
+            MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // ===================================================================================== []
@@ -33,7 +33,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             Trace.TraceInformation( response.Autoinfo );
 
             Assert.AreEqual( MipStatusCode.SendZippedFeedFolderSuccess, response.Code );
-            Assert.IsTrue( MipRequest.VerifyRequestId( response.Result.MipRequestId ) );
+            Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
         }
 
         // ===================================================================================== []
@@ -43,15 +43,15 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
-            var request = new MipRequest( feed, sendResponse.Result.MipRequestId );
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
 
             Assert.AreEqual( MipStatusCode.FindRequestSuccess, findResponse.Code );
-            Assert.IsNotNull( findResponse.Result.FileName );
-            Assert.IsNotNull( findResponse.Result.FolderPath );
-            Assert.IsTrue( findResponse.Result.FileName.Length > 1 );
+            Assert.IsNotNull( findResponse.Result.RemoteFileName );
+            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+            Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
         }
 
         // --------------------------------------------------------[]
@@ -59,7 +59,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void FindRequest_Inprocess_Unknown()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var request = new MipRequest( feed, MipRequest.GenerateId() );
+            var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
@@ -74,7 +74,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void FindRequest_Inprocess_Wrong()
         {
             var feed = new MipFeedHandler( MipFeedType.None );
-            var request = new MipRequest( feed, MipRequest.GenerateId() );
+            var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
@@ -90,16 +90,16 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            var request = new MipRequest( feed, sendResponse.Result.MipRequestId );
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
             Trace.TraceInformation( findResponse.Autoinfo );
 
             Assert.AreEqual( MipStatusCode.FindRequestSuccess, findResponse.Code );
-            Assert.IsNotNull( findResponse.Result.FileName );
-            Assert.IsNotNull( findResponse.Result.FolderPath );
-            Assert.IsTrue( findResponse.Result.FileName.Length > 1 );
-            Assert.IsTrue( findResponse.Result.FolderPath.Length > 1 );
+            Assert.IsNotNull( findResponse.Result.RemoteFileName );
+            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+            Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
+            Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
         }
 
         // --------------------------------------------------------[]
@@ -107,7 +107,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void FindRequest_Output_Unknown()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var request = new MipRequest( feed, MipRequest.GenerateId() );
+            var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
             Trace.TraceInformation( findResponse.Autoinfo );
@@ -123,7 +123,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
-            var request = new MipRequest( feed, sendResponse.Result.MipRequestId );
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var requestResponse = MipConnector.GetRequestStatus( request );
             Trace.TraceInformation( requestResponse.Autoinfo );
@@ -138,7 +138,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Distribution );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            var request = new MipRequest( feed, sendResponse.Result.MipRequestId );
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
             Trace.TraceInformation( requestResponse.Autoinfo );
@@ -152,7 +152,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void GetRequestStatus_Unknown()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var request = new MipRequest( feed, MipRequest.GenerateId() );
+            var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var requestResponse = MipConnector.GetRequestStatus( request );
             Trace.TraceInformation( requestResponse.Autoinfo );

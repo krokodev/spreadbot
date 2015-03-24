@@ -8,9 +8,9 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
 {
-    public class MipRequest
+    public class MipRequestHandler
     {
-        public MipRequest( MipFeedHandler mipFeedHandler, string requestId )
+        public MipRequestHandler( MipFeedHandler mipFeedHandler, string requestId )
         {
             MipFeedHandler = mipFeedHandler;
             Id = requestId;

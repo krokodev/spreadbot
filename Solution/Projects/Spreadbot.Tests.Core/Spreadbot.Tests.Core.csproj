@@ -35,20 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common, Version=1.0.2.27923, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Crocodev.Common, Version=1.1.5561.23011, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Crocodev.Common.dll</HintPath>
+      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
-    <Reference Include="Nereal.Extensions, Version=1.0.5556.27923, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Nereal.Extensions.dll</HintPath>
+    <Reference Include="Nereal.Extensions">
+      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Nereal.Extensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Nereal.Serialization, Version=1.0.5556.27923, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nereal.Serialization, Version=1.0.5561.23011, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.0.2.27923\lib\net451\Nereal.Serialization.dll</HintPath>
+      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Nereal.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.3.0.0-alpha-5\lib\net45\nunit.framework.dll</HintPath>
@@ -76,10 +76,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Channels\Ebay\Configuration\MipConfiguration_Tests.cs" />
-    <Compile Include="Channels\Ebay\Mip\MipTestInitializer.cs" />
-    <Compile Include="Channels\Ebay\Mip\MipConnector_Tests.cs" />
-    <Compile Include="Channels\Ebay\Mip\MipConnector_ZipHelper_Tests.cs" />
-    <Compile Include="Channels\Ebay\Mip\MipConnector_SftpHelper_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnectorTestInitializer.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Status_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Basic_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Zip_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Sftp_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\References.cs" />
     <Compile Include="Stores\Demoshop\Manager\DemoshopStoreManager_Tests.cs" />

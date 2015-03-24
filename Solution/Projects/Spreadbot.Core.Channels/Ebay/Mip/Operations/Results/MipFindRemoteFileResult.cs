@@ -1,29 +1,29 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFindRemoteFileResult.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-24 11:57
 
-using Crocodev.Common.Extensions;
+using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {
     public class MipFindRemoteFileResult : AbstractMipResponseResult
     {
-        public readonly string FileName;
-        public readonly string FolderPath;
+        public readonly string RemoteFileName;
+        public readonly string RemoteFolderPath;
 
-        public MipFindRemoteFileResult( string folderPath, string fileName )
+        public MipFindRemoteFileResult( string remoteFolderPath, string remoteFileName )
         {
-            FolderPath = folderPath;
-            FileName = fileName;
+            RemoteFolderPath = remoteFolderPath;
+            RemoteFileName = remoteFileName;
         }
 
         public override string Autoinfo
         {
             get
             {
-                return string.Format(Template, "FolderPath", FolderPath) + ", "
-                    + string.Format(Template, "FileName", FileName);
+                return string.Format( Template, "FolderPath", RemoteFolderPath ) + ", "
+                    + string.Format( Template, "FileName", RemoteFileName );
             }
         }
     }

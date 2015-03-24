@@ -1,10 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-24 11:58
 
 using System;
-using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
@@ -21,14 +20,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // SendFeedFolder
         public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeedFolder( MipFeedHandler mipFeedHandler )
         {
-            var reqId = MipRequest.GenerateId();
+            var reqId = MipRequestHandler.GenerateId();
             return DoSendZippedFeedFolder( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
         public static MipResponse< MipSendZippedFeedFolderResult > SendTestFeedFolder( MipFeedHandler mipFeedHandler )
         {
-            var reqId = MipRequest.GenerateTestId();
+            var reqId = MipRequestHandler.GenerateTestId();
             return DoSendZippedFeedFolder( mipFeedHandler, reqId );
         }
 
@@ -58,20 +57,20 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // ===================================================================================== []
         // FindRequest
         public static MipResponse< MipFindRemoteFileResult > FindRequest(
-            MipRequest mipRequest,
+            MipRequestHandler mipRequestHandler,
             MipRequestProcessingStage stage )
         {
             MipResponse< MipFindRemoteFileResult > findResponse;
             try {
                 switch( stage ) {
                     case MipRequestProcessingStage.Inprocess :
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess( mipRequest );
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess( mipRequestHandler );
                         break;
                     case MipRequestProcessingStage.Output :
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput( mipRequest );
+                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput( mipRequestHandler );
                         break;
                     default :
-                        throw new Exception( string.Format("Wrong stage {0}",stage ) );
+                        throw new Exception( string.Format( "Wrong stage {0}", stage ) );
                 }
                 findResponse.Check();
             }
@@ -87,10 +86,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static MipRequestStatusResponse GetRequestStatus( MipRequest mipRequest, bool ignoreInprocess = false )
+        public static MipRequestStatusResponse GetRequestStatus(
+            MipRequestHandler mipRequestHandler,
+            bool ignoreInprocess = false )
         {
             try {
-                var response = FindRequest( mipRequest, MipRequestProcessingStage.Inprocess );
+                var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
                 if( response.Code == MipStatusCode.FindRequestSuccess && !ignoreInprocess ) {
                     return new MipRequestStatusResponse(
                         true,
@@ -99,9 +100,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         );
                 }
 
-                response = FindRequest( mipRequest, MipRequestProcessingStage.Output );
+                response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
                 if( response.Code == MipStatusCode.FindRequestSuccess ) {
-                    return GetRequestOutputStatus( response );
+                    return GetRequestOutputStatus(mipRequestHandler.MipFeedHandler.Type, response);
                 }
 
                 return new MipRequestStatusResponse(
@@ -118,32 +119,23 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // --------------------------------------------------------[]
         private static MipRequestStatusResponse GetRequestOutputStatus(
+            MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {
-            var statusResult = ReadRequestOutputStatus( response );
+            var statusResult = ReadRequestOutputStatus(feedType, response);
             return new MipRequestStatusResponse( true, MipStatusCode.GetRequestStatusSuccess, statusResult );
         }
 
         // --------------------------------------------------------[]
         private static MipGetRequestStatusResult ReadRequestOutputStatus(
+            MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {
-            var fileName = response.Result.FileName;
-            var remotePath = response.Result.FolderPath;
+            var fileName = response.Result.RemoteFileName;
+            var remotePath = response.Result.RemoteFolderPath;
             var localPath = LocalRequestResultsFolder();
             var content = SftpHelper.GetRemoteFileContent( remotePath, fileName, localPath );
-            return ParseRequestContent( content );
-        }
-
-        // --------------------------------------------------------[]
-        private static MipGetRequestStatusResult ParseRequestContent( string content )
-        {
-            // Todo: Later : Parse XML
-            return new MipGetRequestStatusResult(
-                content.Contains( "<status>SUCCESS</status>" )
-                    ? MipRequestStatus.Success
-                    : MipRequestStatus.Fail,
-                content );
+            return MakeReqreuesStatusResultByParsingXmlContent(feedType, content);
         }
 
         // --------------------------------------------------------[]

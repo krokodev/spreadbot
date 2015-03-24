@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-23 15:41
+// romak_000, 2015-03-24 11:27
 
 using System;
 using System.Collections.Generic;
@@ -156,11 +156,8 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         private static void AssertThatLastUpdateTimeIsCorrect()
         {
-
             DemoshopEbayPublishTasks()
-                .ForEach( t => {
-                    Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 15 ).Seconds );
-                } );
+                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 15 ).Seconds ); } );
         }
     }
 }

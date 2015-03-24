@@ -41,10 +41,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             // ===================================================================================== []
             // Find remote files Inproc
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
-                MipRequest mipRequest )
+                MipRequestHandler mipRequestHandler )
             {
-                var remoteDir = RemoteFeedInprocessFolderPath( mipRequest.MipFeedHandler.GetName() );
-                var prefix = mipRequest.FileNamePrefix();
+                var remoteDir = RemoteFeedInprocessFolderPath( mipRequestHandler.MipFeedHandler.GetName() );
+                var prefix = mipRequestHandler.FileNamePrefix();
 
                 return FindRemoteFileNamePrefixInRemoteDir( prefix, remoteDir );
             }
@@ -52,10 +52,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             // ===================================================================================== []
             // Find remote files Output
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
-                MipRequest mipRequest )
+                MipRequestHandler mipRequestHandler )
             {
-                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequest.MipFeedHandler.GetName() );
-                var prefix = mipRequest.FileNamePrefix();
+                var remoteDirs = RemoteFeedOutputFolderPathes( mipRequestHandler.MipFeedHandler.GetName() );
+                var prefix = mipRequestHandler.FileNamePrefix();
 
                 foreach( var remoteDir in remoteDirs ) {
                     var response = FindRemoteFileNamePrefixInRemoteDir( prefix, remoteDir );

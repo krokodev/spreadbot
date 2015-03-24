@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnector_ZipHelper_Tests.cs
-// romak_000, 2015-03-21 2:11
+// MipConnector_Zip_Tests.cs
+// romak_000, 2015-03-24 11:27
 
 using System.Diagnostics;
 using System.IO;
@@ -14,13 +14,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestClass]
-    public class MipConnector_ZipHelper_Tests
+    public class MipConnector_Zip_Tests
     {
         // ===================================================================================== []
         [ClassInitialize]
         public static void Init( TestContext testContext )
         {
-            MipTestInitializer.PrepareTestFiles();
+            MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // ===================================================================================== []
@@ -28,7 +28,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void ZipFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var reqId = MipRequest.GenerateTestId().ToString();
+            var reqId = MipRequestHandler.GenerateTestId();
 
             var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
             Trace.TraceInformation( response.Autoinfo );

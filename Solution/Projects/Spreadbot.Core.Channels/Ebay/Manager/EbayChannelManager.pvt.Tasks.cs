@@ -26,7 +26,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
             try {
                 var ebayPublishArgs = task.Args;
-                var mipRequest = new MipRequest(
+                var mipRequest = new MipRequestHandler(
                     ebayPublishArgs.MipFeedHandler,
                     task.EbayPublishResponse.Result.MipRequestId );
 
@@ -82,7 +82,6 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                     ChannelResponseStatusCode.PublishFail,
                     exception );
             }
-            // Code: DoRunPublishTask
             task.WasUpdatedNow();
         }
     }
