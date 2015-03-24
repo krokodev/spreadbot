@@ -1,8 +1,9 @@
 ﻿@using System.Linq.Expressions
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
+@using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  DemoshopModel 
+@model DemoshopModel 
 
 @functions {
 
@@ -56,12 +57,27 @@
             @foreach( var task in enumerable ) {
                 <li class="@TaskClass( task.GetStatusCode() )">
                     @task [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
+                    @ItemIdLink( task as EbayPublishTask )
                 </li>
                 @ShowTasks( task.AbstractSubTasks )
             }
         </ul>
     }
 }
+
+@helper ItemIdLink( EbayPublishTask task )
+{
+    try {
+        var itemId = task.EbayPublishResponse.Result.MipItemId;
+        if( itemId != null ) {
+            <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
+        }
+    }
+    catch {
+        <span></span>
+    }
+}
+
 
 
 @*

@@ -52,7 +52,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         private Exception Exception { get; set; }
         private IAbstractResponse InnerResponse { get; set; }
 
-        public string Autoinfo
+        public virtual string Autoinfo
         {
             get { return IsSuccess ? GetSuccessAutoinfo() : GetFailedAutoinfo(); }
         }

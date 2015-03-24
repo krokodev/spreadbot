@@ -31,5 +31,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 
         public MipRequestStatusResponse( bool isSucces, MipStatusCode code, string details )
             : base( isSucces, code, details ) {}
+
     }
 }

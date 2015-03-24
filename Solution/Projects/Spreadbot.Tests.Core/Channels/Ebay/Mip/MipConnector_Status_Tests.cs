@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Status_Tests.cs
-// romak_000, 2015-03-24 14:37
+// romak_000, 2015-03-24 14:42
 
 using System;
 using NUnit.Framework;
@@ -31,6 +31,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ProductSuccessRequestId );
 
             var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+            Console.WriteLine("Result.MipRequestStatusCode: [{0}]", requestResponse.Result.MipRequestStatusCode);
             Console.WriteLine( requestResponse.Autoinfo );
 
             Assert.AreEqual( MipStatusCode.GetRequestStatusSuccess, requestResponse.Code );
@@ -45,7 +46,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ProductSuccessRequestId );
 
             var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-            Console.WriteLine( requestResponse.Autoinfo );
+            Console.WriteLine("Result.MipItemId: [{0}]", requestResponse.Result.MipItemId);
+            Console.WriteLine(requestResponse.Autoinfo);
 
             Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
         }
