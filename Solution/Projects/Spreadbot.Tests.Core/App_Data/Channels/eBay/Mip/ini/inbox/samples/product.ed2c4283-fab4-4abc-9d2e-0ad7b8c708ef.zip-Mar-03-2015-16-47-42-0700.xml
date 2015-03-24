@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5017145319 --><productResponse>
+  <error>
+    <errorID>MIP_2000</errorID>
+    <severity>ERROR</severity>
+    <category>APPLICATION</category>
+    <message><![CDATA[A fatal error occurred while processing your request: API Request Building Failed: "Internal Service Error"]]></message>
+  </error>
+  <status>FAILURE</status>
+</productResponse>

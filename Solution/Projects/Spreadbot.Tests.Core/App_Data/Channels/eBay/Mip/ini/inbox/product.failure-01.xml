@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5017836996 --><productResponse>
+  <responseMessage>
+    <SKU>MIP_SKU_11</SKU>
+    <response locale="en_US">
+      <status>FAILURE</status>
+      <error>
+        <errorID>API_291</errorID>
+        <severity>ERROR</severity>
+        <category>REQUEST</category>
+        <message><![CDATA[You are not allowed to revise ended listings.]]></message>
+      </error>
+    </response>
+  </responseMessage>
+  <status>FAILURE</status>
+</productResponse>

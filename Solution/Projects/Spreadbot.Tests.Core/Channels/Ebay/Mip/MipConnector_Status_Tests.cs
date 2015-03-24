@@ -42,20 +42,30 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void Read_Product_Item()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
-            var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ProductSuccessRequestId );
+            var feed = new MipFeedHandler(MipFeedType.Product);
+            var request = new MipRequestHandler(feed, MipConnectorTestInitializer.ProductSuccessRequestId);
 
-            var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+            var requestResponse = MipConnector.Mock_GetRequestStatus(request);
             Console.WriteLine("Result.MipItemId: [{0}]", requestResponse.Result.MipItemId);
             Console.WriteLine(requestResponse.Autoinfo);
 
-            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
+            Assert.AreEqual(MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId);
         }
-
         // --------------------------------------------------------[]
         [Ignore( "Not ready" )]
         [Test]
-        public void Read_Product_Status_Fail() {}
+        public void Read_Product_Status_Fail_On_Mip()
+        {
+            var feed = new MipFeedHandler(MipFeedType.Product);
+            var request = new MipRequestHandler(feed, MipConnectorTestInitializer.ProductFailRequestId);
+
+            var requestResponse = MipConnector.Mock_GetRequestStatus(request);
+            Console.WriteLine("Result.MipItemId: [{0}]", requestResponse.Result.MipItemId);
+            Console.WriteLine(requestResponse.Autoinfo);
+
+            Assert.AreEqual(MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId);
+        }
+
 
         // --------------------------------------------------------[]
         [Ignore( "Not ready" )]

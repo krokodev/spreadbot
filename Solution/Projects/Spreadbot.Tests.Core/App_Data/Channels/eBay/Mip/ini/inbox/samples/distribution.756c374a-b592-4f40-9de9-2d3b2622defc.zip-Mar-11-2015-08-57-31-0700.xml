@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5017769852 --><distributionResponse>
+  <responseMessage>
+    <SKU>DS-1001</SKU>
+    <channelID>EBAY_US</channelID>
+    <status>FAILURE</status>
+    <error>
+      <errorID>API_21919067</errorID>
+      <severity>ERROR</severity>
+      <category>REQUEST</category>
+      <message><![CDATA[This Listing is a duplicate of your item: Test Item: Demoshop Single Item (321693275866). Under the Duplicate Listing policy, sellers can't have multiple Fixed Price listings, multiple Auction-style (with the Buy It Now option) listings, or in both the Fixed Price and Auction-style (with the Buy It Now option) listings for identical items at the same time. We recommend you create a multiple quantity Fixed Price listing to sell identical items.]]></message>
+      <parameter name="1">321693275866</parameter>
+      <parameter name="0">Test Item: Demoshop Single Item</parameter>
+    </error>
+  </responseMessage>
+  <status>FAILURE</status>
+</distributionResponse>

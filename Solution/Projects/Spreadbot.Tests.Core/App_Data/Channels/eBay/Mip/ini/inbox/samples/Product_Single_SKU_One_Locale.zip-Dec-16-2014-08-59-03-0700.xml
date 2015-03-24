@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5011850128 --><productResponse>
+  <error>
+    <errorID>MIP_27</errorID>
+    <severity>ERROR</severity>
+    <category>APPLICATION</category>
+    <message><![CDATA[Product ID "MIP_SKU_11" refers to a Description Template that does not exist: "/store/lookup/template/description.html"]]></message>
+  </error>
+  <status>FAILURE</status>
+</productResponse>

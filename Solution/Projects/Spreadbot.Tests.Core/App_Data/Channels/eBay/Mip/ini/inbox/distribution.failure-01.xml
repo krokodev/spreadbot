@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5017766200 --><distributionResponse>
+  <responseMessage>
+    <SKU>DS-002</SKU>
+    <channelID>EBAY_US</channelID>
+    <status>FAILURE</status>
+    <error>
+      <errorID>API_21919188</errorID>
+      <severity>ERROR</severity>
+      <category>REQUEST</category>
+      <message><![CDATA[This listing would cause you to exceed the amount you can list. You can list up to $146.00 more in total sales this month. Please consider reducing the starting price or request to list more: https://scgi.ebay.com/ws/eBayISAPI.dll?UpgradeLimits&appId=0&refId=19 .]]></message>
+      <parameter name="4">OPTIONAL</parameter>
+      <parameter name="1">&amp;appId=0&amp;refId=19 .</parameter>
+      <parameter name="0">This listing would cause you to exceed the amount ($500.00) you can list. </parameter>
+      <parameter name="3">&lt;div>This listing would cause you to exceed the amount you can list. You can list up to $146.00 more in total sales this month. Please consider reducing the starting price or &lt;a target="_blank" href="https://scgi.ebay.com/ws/eBayISAPI.dll?UpgradeLimits&amp;appId=0&amp;refId=19">request to list more&lt;/a>.&lt;/div></parameter>
+      <parameter name="2">https://scgi.ebay.com/ws/eBayISAPI.dll?UpgradeLimits&amp;appId=0&amp;refId=19</parameter>
+    </error>
+  </responseMessage>
+  <status>FAILURE</status>
+</distributionResponse>
