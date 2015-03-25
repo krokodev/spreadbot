@@ -1,9 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Status_Tests.cs
-// romak_000, 2015-03-25 14:07
+// romak_000, 2015-03-25 14:52
 
-using System;
+using Crocodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
@@ -29,38 +29,31 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         private static void TestItemId( MipFeedType mipFeedType )
         {
             var feed = new MipFeedHandler( mipFeedType );
-            var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestIds );
+            var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
+            var testInfo = "{0} ItemId".SafeFormat( feed.Type );
 
             var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-            Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
-            Console.WriteLine( requestResponse.Autoinfo );
-            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
+            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId, testInfo );
         }
 
         // --------------------------------------------------------[]
         private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
         {
-            var wasVerified = false;
-
+            var wasTested = false;
             var feed = new MipFeedHandler( mipFeedType );
 
             MipConnectorTestInitializer.TestRequestIds( feed.Type, mipRequestStatus )
                 .ForEach( reqId => {
                     var request = new MipRequestHandler( feed, reqId );
                     var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-                    wasVerified = true;
+                    var testInfo = "{0}.{1} checking status".SafeFormat( feed.Type, reqId );
+                    wasTested = true;
 
-                    Console.WriteLine( "\n\n" );
-                    Console.WriteLine( "Feed: [{0}]", mipFeedType);
-                    Console.WriteLine( "RequestID: [{0}]", reqId );
-                    Console.WriteLine( "Result.MipRequestStatusCode: [{0}]", requestResponse.Result.MipRequestStatusCode );
-                   // Console.WriteLine( requestResponse.Autoinfo );
-
-                    Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
-                    Assert.AreEqual( mipRequestStatus, requestResponse.Result.MipRequestStatusCode );
+                    Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code, testInfo );
+                    Assert.AreEqual( mipRequestStatus, requestResponse.Result.MipRequestStatusCode, testInfo );
                 } );
 
-            Assert.AreEqual( true, wasVerified );
+            Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipRequestStatus ) );
         }
 
         // --------------------------------------------------------[]

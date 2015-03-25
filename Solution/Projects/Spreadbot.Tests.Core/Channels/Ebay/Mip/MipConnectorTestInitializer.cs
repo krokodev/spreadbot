@@ -20,7 +20,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnectorTestInitializer
     {
         public const string ProductItemId = "321693290987";
-        public const string ItemRequestIds = "itemid-present";
+        public const string ItemRequestId = "item-present";
 
         // Code: MipConnectorTestInitializer
         // --------------------------------------------------------[]
@@ -31,7 +31,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 @"src\availability\Availability_Single_SKU_One_Locale.xml",
                 @"src\product\Product_Single_SKU_One_Locale.xml",
                 @"src\distribution\Distribution_Single_SKU_One_Locale.xml",
-                @"inbox\product.{0}.xml".SafeFormat( ItemRequestIds ),
+                @"inbox\product.{0}.xml".SafeFormat( ItemRequestId ),
+                @"inbox\distribution.{0}.xml".SafeFormat( ItemRequestId ),
             };
 
             AddFeedStatusSamples( files );

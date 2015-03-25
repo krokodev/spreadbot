@@ -1,8 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.RequestXml.cs
-// romak_000, 2015-03-25 13:41
+// romak_000, 2015-03-25 15:16
 
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -33,36 +34,65 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             var statusNodePath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/status" },
                 { MipFeedType.Availability, "/inventoryResponse/status" },
+                { MipFeedType.Distribution, "/distributionResponse/status" },
             };
+            var extraRequestStatusControl =
+                new Dictionary< MipFeedType, Func< XmlDocument, MipRequestStatus, MipRequestStatus > > {
+                    { MipFeedType.Product, ExtraCheckProductStatus },
+                    { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
+                    { MipFeedType.Distribution, ExtraCheckDistributionStatus },
+                };
 
-            if( !statusNodePath.ContainsKey( feedType ) ) {
-                return MipRequestStatus.Unknown;
+            try {
+                var xml = new XmlDocument {
+                    InnerXml = content
+                };
+
+                var statusNode = xml.SelectSingleNode( statusNodePath[ feedType ] );
+                if( statusNode != null ) {
+                    switch( statusNode.InnerText ) {
+                        case "SUCCESS" :
+                            return extraRequestStatusControl[ feedType ]( xml, MipRequestStatus.Success );
+                        case "FAILURE" :
+                            return MipRequestStatus.Failure;
+                    }
+                }
             }
-
-            var xml = new XmlDocument {
-                InnerXml = content
-            };
-            var statusNode = xml.SelectSingleNode( statusNodePath[ feedType ] );
-
-            if( statusNode == null ) {
-                return MipRequestStatus.Unknown;
-            }
-
-            switch( statusNode.InnerText ) {
-                case "SUCCESS" :
-                    return MipRequestStatus.Success;
-                case "FAILURE" :
-                    return MipRequestStatus.Failure;
+            catch {
+                // ignored
             }
 
             return MipRequestStatus.Unknown;
         }
 
         // --------------------------------------------------------[]
+        private static MipRequestStatus ExtraCheckDistributionStatus( XmlDocument xml, MipRequestStatus defStatus )
+        {
+            return defStatus;
+        }
+
+        // --------------------------------------------------------[]
+        private static MipRequestStatus ExtraCheckAvailabilityStatus( XmlDocument xml, MipRequestStatus defStatus )
+        {
+            var errorIdNode = xml.SelectSingleNode( "/inventoryResponse/error/errorID" );
+            if(  errorIdNode!= null ) {
+                return MipRequestStatus.Failure;
+            }
+            return defStatus;
+        }
+
+        // --------------------------------------------------------[]
+        private static MipRequestStatus ExtraCheckProductStatus( XmlDocument xml, MipRequestStatus defStatus )
+        {
+            return defStatus;
+        }
+
+        // --------------------------------------------------------[]
         private static string GetRequestItemIdFromContent( MipFeedType feedType, string content )
         {
             var itemIdPath = new Dictionary< MipFeedType, string > {
-                { MipFeedType.Product, "/productResponse/responseMessage/response/itemID" }
+                { MipFeedType.Product, "/productResponse/responseMessage/response/itemID" },
+                { MipFeedType.Distribution, "/distributionResponse/responseMessage/itemID" }
             };
 
             if( !itemIdPath.ContainsKey( feedType ) ) {
