@@ -1,10 +1,9 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipResponse.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;

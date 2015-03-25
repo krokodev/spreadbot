@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// romak_000, 2015-03-21 2:10
+// romak_000, 2015-03-25 15:24
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
@@ -77,11 +77,11 @@ namespace Spreadbot.App.Web.Controllers
         {
             DemoshopModel.DeleteTasks();
             DemoshopModel.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction( "Index" );
         }
 
         // --------------------------------------------------------[]
-        public ActionResult ShowTask(string taskId)
+        public ActionResult ShowTask( string taskId )
         {
             ViewBag.TaskId = taskId;
             return View();

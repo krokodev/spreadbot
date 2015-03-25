@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// romak_000, 2015-03-24 14:36
+// romak_000, 2015-03-25 15:24
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -75,7 +75,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 findResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipFindRemoteFileResult >( false, MipOperationStatus.FindRequestFailure, exception );
+                return new MipResponse< MipFindRemoteFileResult >( false,
+                    MipOperationStatus.FindRequestFailure,
+                    exception );
             }
             return new MipResponse< MipFindRemoteFileResult >(
                 true,

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// romak_000, 2015-03-23 13:35
+// romak_000, 2015-03-25 15:24
 
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +82,7 @@ namespace Spreadbot.App.Web.Models
 
         public static AbstractTask FindTask( string taskId )
         {
-            return StoreManager.FindTask(taskId);
+            return StoreManager.FindTask( taskId );
         }
     }
 }

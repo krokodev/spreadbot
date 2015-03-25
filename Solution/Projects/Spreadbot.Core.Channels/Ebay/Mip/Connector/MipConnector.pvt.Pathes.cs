@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.Pathes.cs
-// romak_000, 2015-03-23 20:47
+// romak_000, 2015-03-25 15:24
 
 using System;
 using System.Globalization;

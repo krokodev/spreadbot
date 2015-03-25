@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pub.Mock.cs
-// romak_000, 2015-03-24 12:12
+// romak_000, 2015-03-25 15:24
 
 using System;
 using System.IO;
@@ -22,11 +22,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             try {
                 return Mock_GetRequestOutputStatus(
-                    mipRequestHandler.MipFeedHandler.Type, 
+                    mipRequestHandler.MipFeedHandler.Type,
                     new MipResponse< MipFindRemoteFileResult >(
                         true,
                         MipOperationStatus.FindRequestSuccess,
-                        new MipFindRemoteFileResult("mock", mipRequestHandler.FileNamePrefix()+".xml"))
+                        new MipFindRemoteFileResult( "mock", mipRequestHandler.FileNamePrefix() + ".xml" ) )
                     );
             }
             catch( Exception exception ) {
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {
-            var statusResult = Mock_ReadRequestOutputStatus(feedType, response);
+            var statusResult = Mock_ReadRequestOutputStatus( feedType, response );
             return new MipRequestStatusResponse( true, MipOperationStatus.GetRequestStatusSuccess, statusResult );
         }
 
@@ -50,10 +50,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             var fileName = response.Result.RemoteFileName;
 
-            var localPath = string.Format(@"{0}\{1}", LocalRequestResultsFolder(), fileName);
-            var content = File.ReadAllText(localPath);
+            var localPath = string.Format( @"{0}\{1}", LocalRequestResultsFolder(), fileName );
+            var content = File.ReadAllText( localPath );
 
-            return MakeRequestStatusResultByParsingXmlContent(feedType, content);
+            return MakeRequestStatusResultByParsingXmlContent( feedType, content );
         }
     }
 }

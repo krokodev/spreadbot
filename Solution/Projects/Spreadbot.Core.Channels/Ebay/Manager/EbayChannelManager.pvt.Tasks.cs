@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.pvt.Tasks.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
                 task.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
                 task.EbayPublishResponse.Result.MipItemId = statusResponse.Result.MipItemId;
-                task.AddProceedInfo(statusResponse);
+                task.AddProceedInfo( statusResponse );
             }
             catch {
                 task.MipRequestStatusCode = MipRequestStatus.Failure;

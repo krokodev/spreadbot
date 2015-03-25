@@ -1,9 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFindRemoteFileResult.cs
-// romak_000, 2015-03-24 11:57
-
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
+// romak_000, 2015-03-25 15:24
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {

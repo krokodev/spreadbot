@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.RequestXml.cs
-// romak_000, 2015-03-25 15:16
+// romak_000, 2015-03-25 15:24
 
 using System;
 using System.Collections.Generic;
@@ -75,7 +75,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static MipRequestStatus ExtraCheckAvailabilityStatus( XmlDocument xml, MipRequestStatus defStatus )
         {
             var errorIdNode = xml.SelectSingleNode( "/inventoryResponse/error/errorID" );
-            if(  errorIdNode!= null ) {
+            if( errorIdNode != null ) {
                 return MipRequestStatus.Failure;
             }
             return defStatus;

@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-21 2:17
+// romak_000, 2015-03-25 15:25
 
 using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;

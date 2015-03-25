@@ -1,10 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System;
-using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
@@ -99,7 +98,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
                     MipOperationStatus.FindRemoteFileFailure,
-                    string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDir)
+                    string.Format( "Remote file [{0}] not found in [{1}]", prefix, remoteDir )
                     );
             }
 

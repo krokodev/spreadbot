@@ -1,10 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // SpreadbotException.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:25
 
 using System;
-using Crocodev.Common.Extensions;
 
 namespace Spreadbot.Sdk.Common.Exceptions
 {
@@ -13,6 +12,6 @@ namespace Spreadbot.Sdk.Common.Exceptions
         protected SpreadbotException() {}
 
         public SpreadbotException( string template, params object[] args )
-            : base( string.Format(template, args ) ) {}
+            : base( string.Format( template, args ) ) {}
     }
 }

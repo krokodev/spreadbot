@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // EnumUtil.cs
-// romak_000, 2015-03-25 12:39
+// romak_000, 2015-03-25 15:25
 
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreTask.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         [Serialize]
         public override IAbstractResponse AbstractResponse { get; set; }
 
-        public void AddSubTasks( IEnumerable<EbayPublishTask> tasks )
+        public void AddSubTasks( IEnumerable< EbayPublishTask > tasks )
         {
             ChannelTasks.AddRange( tasks );
         }

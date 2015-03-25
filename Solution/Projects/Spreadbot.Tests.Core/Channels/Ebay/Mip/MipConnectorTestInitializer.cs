@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnectorTestInitializer.cs
-// romak_000, 2015-03-25 13:08
+// romak_000, 2015-03-25 15:25
 
 using System.Collections.Generic;
 using System.IO;

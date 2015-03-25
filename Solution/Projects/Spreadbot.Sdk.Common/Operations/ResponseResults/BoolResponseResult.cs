@@ -1,9 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // BoolResponseResult.cs
-// romak_000, 2015-03-21 2:11
-
-using Crocodev.Common.Extensions;
+// romak_000, 2015-03-25 15:25
 
 namespace Spreadbot.Sdk.Common.Operations.ResponseResults
 {
@@ -18,7 +16,7 @@ namespace Spreadbot.Sdk.Common.Operations.ResponseResults
 
         public override string Autoinfo
         {
-            get { return string.Format(Template, "Value", Value ); }
+            get { return string.Format( Template, "Value", Value ); }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // IAbstractTask.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:25
 
 using System;
 using System.Collections.Generic;

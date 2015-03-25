@@ -1,10 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.pvt.Descriptions.cs
-// romak_000, 2015-03-23 16:20
+// romak_000, 2015-03-25 15:25
 
 using System;
-using Crocodev.Common.Extensions;
 using MoreLinq;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
@@ -86,13 +85,13 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         // --------------------------------------------------------[]
-        private string AutoinfoSection( string sectionName, params string[] args)
+        private string AutoinfoSection( string sectionName, params string[] args )
         {
             var sectionContent = "";
             args.ForEach(
                 arg => { sectionContent = string.Format( "{0}{1}", sectionContent, arg ); } );
 
-            return string.Format("{0}{1}:{0}[{2}{0}]",
+            return string.Format( "{0}{1}:{0}[{2}{0}]",
                 NewLine( Level ),
                 sectionName,
                 sectionContent

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Status_Tests.cs
-// romak_000, 2015-03-25 14:52
+// romak_000, 2015-03-25 15:25
 
 using Crocodev.Common.Extensions;
 using MoreLinq;

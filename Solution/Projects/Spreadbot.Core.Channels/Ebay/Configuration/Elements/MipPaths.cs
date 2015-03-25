@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipPaths.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
@@ -40,7 +40,7 @@ namespace Spreadbot.Core.Channels.Ebay.Configuration.Elements
             get { return ( string ) this[ GetPropertyName() ]; }
         }
 
-        [ConfigurationProperty("SftpServerTimeZone", IsRequired = true)]
+        [ConfigurationProperty( "SftpServerTimeZone", IsRequired = true )]
         public string SftpServerTimeZone
         {
             get { return ( string ) this[ GetPropertyName() ]; }

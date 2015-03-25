@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Sftp_Tests.cs
-// romak_000, 2015-03-24 11:27
+// romak_000, 2015-03-25 15:24
 
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.cs
-// romak_000, 2015-03-21 2:11
+// romak_000, 2015-03-25 15:24
 
 using System.IO;
 using Crocodev.Common.Extensions;
@@ -66,19 +66,19 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
                     MipOperationStatus.FindRemoteFileFailure,
-                    string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDirs.FoldToStringBy(s => s)));
+                    string.Format( "Remote file [{0}] not found in [{1}]", prefix, remoteDirs.FoldToStringBy( s => s ) ) );
             }
 
             // ===================================================================================== []
             // GetRemoteFileContent
             public static string GetRemoteFileContent( string remoteFolder, string fileName, string localFolder )
             {
-                var remotePath = string.Format(@"{0}/{1}", remoteFolder, fileName);
-                var localPath = string.Format(@"{0}\{1}", localFolder, fileName);
+                var remotePath = string.Format( @"{0}/{1}", remoteFolder, fileName );
+                var localPath = string.Format( @"{0}\{1}", localFolder, fileName );
 
                 DownloadFiles( remotePath, localPath );
 
-                return File.ReadAllText(string.Format(@"{0}\{1}", localFolder, fileName));
+                return File.ReadAllText( string.Format( @"{0}\{1}", localFolder, fileName ) );
             }
         }
     }

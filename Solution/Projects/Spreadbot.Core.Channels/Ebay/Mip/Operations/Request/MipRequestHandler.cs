@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
-// MipRequest.cs
-// romak_000, 2015-03-21 2:11
+// MipRequestHandler.cs
+// romak_000, 2015-03-25 15:24
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
