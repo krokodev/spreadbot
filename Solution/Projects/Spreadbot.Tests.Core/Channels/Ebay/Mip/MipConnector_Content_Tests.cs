@@ -1,9 +1,8 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnector_Status_Tests.cs
-// romak_000, 2015-03-25 15:25
+// MipConnector_Content_Tests.cs
+// romak_000, 2015-03-25 19:44
 
-using System;
 using Crocodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
@@ -16,7 +15,7 @@ using Spreadbot.Tests.Core.Common;
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestFixture]
-    public class MipConnector_Content_Tests: SpreadbotBaseTest
+    public class MipConnector_Content_Tests : SpreadbotBaseTest
     {
         // --------------------------------------------------------[]
         [SetUp]
