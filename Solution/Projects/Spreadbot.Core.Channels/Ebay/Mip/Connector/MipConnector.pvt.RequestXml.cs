@@ -26,8 +26,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             };
         }
 
-        // Code: GetRequestStatusFromContent
-
         // --------------------------------------------------------[]
         private static MipRequestStatus GetRequestStatusFromContent( MipFeedType feedType, string content )
         {

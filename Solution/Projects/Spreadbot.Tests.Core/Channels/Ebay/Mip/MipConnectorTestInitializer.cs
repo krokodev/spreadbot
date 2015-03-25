@@ -23,7 +23,6 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public const string ProductItemId = "321693290987";
         public const string ItemRequestId = "item-present";
 
-        // Code: MipConnectorTestInitializer
         // --------------------------------------------------------[]
         public static void PrepareTestFiles()
         {

@@ -13,8 +13,6 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Tests.Core.Common;
 
-// Code: MipConnector_Content_Tests
-
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestFixture]

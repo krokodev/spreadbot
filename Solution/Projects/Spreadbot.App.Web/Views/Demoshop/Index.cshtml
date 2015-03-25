@@ -1,11 +1,9 @@
-﻿@using System.Globalization
-@using System.Linq.Expressions
-@using System.Threading
+﻿@using System.Linq.Expressions
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -40,7 +38,7 @@
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @FormView.Editor( label, textBox )
+    @(( HelperResult ) FormView.Editor( label, textBox ))
 }
 
 @helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
@@ -48,7 +46,7 @@
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @FormView.Editor( label, textBox )
+    @(( HelperResult ) FormView.Editor( label, textBox ))
 }
 
 @helper ShowTasks( IEnumerable< IAbstractTask > tasks )

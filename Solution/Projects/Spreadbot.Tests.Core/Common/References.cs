@@ -5,7 +5,7 @@
 
 using Spreadbot.Sdk.Tools;
 
-namespace Spreadbot.Tests.Core.References
+namespace Spreadbot.Tests.Core.Common
 {
     internal class References
     {
