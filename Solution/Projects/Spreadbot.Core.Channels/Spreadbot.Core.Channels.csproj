@@ -95,7 +95,7 @@
     <Compile Include="Ebay\Mip\Feed\MipFeedHandler.cs" />
     <Compile Include="Ebay\Mip\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ebay\Mip\Operations\StatusCode\MipStatusCode.cs" />
+    <Compile Include="Ebay\Mip\Operations\StatusCode\MipOperationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

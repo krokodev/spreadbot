@@ -30,7 +30,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static MipRequestStatus GetRequestStatusFromContent( MipFeedType feedType, string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
-                { MipFeedType.Product, "/productResponse/responseMessage/response/status" }
+                { MipFeedType.Product, "/productResponse/status" }
             };
 
             if( !statusNodePath.ContainsKey( feedType ) ) {

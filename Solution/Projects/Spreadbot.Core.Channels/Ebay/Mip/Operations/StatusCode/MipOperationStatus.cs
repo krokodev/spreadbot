@@ -5,22 +5,22 @@
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode
 {
-    public enum MipStatusCode
+    public enum MipOperationStatus
     {
         Unknown,
         TestConnectionSuccess,
-        TestConnectionFail,
+        TestConnectionFailure,
         SendZippedFeedFolderSuccess,
-        SendZippedFeedFolderFail,
+        SendZippedFeedFolderFailure,
         SendZippedFeedSuccess,
-        SendZippedFeedFail,
+        SendZippedFeedFailure,
         ZipFeedSuccess,
-        ZipFeedFail,
+        ZipFeedFailure,
         FindRequestSuccess,
-        FindRequestFail,
+        FindRequestFailure,
         FindRemoteFileSuccess,
-        FindRemoteFileFail,
+        FindRemoteFileFailure,
         GetRequestStatusSuccess,
-        GetRequestStatusFail
+        GetRequestStatusFailure
     }
 }

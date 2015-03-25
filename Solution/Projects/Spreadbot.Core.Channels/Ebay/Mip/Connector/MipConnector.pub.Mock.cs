@@ -24,12 +24,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     mipRequestHandler.MipFeedHandler.Type, 
                     new MipResponse< MipFindRemoteFileResult >(
                         true,
-                        MipStatusCode.FindRequestSuccess,
+                        MipOperationStatus.FindRequestSuccess,
                         new MipFindRemoteFileResult("mock", mipRequestHandler.FileNamePrefix()+".xml"))
                     );
             }
             catch( Exception exception ) {
-                return new MipRequestStatusResponse( false, MipStatusCode.GetRequestStatusFail, exception );
+                return new MipRequestStatusResponse( false, MipOperationStatus.GetRequestStatusFailure, exception );
             }
         }
 
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipResponse< MipFindRemoteFileResult > response )
         {
             var statusResult = Mock_ReadRequestOutputStatus(feedType, response);
-            return new MipRequestStatusResponse( true, MipStatusCode.GetRequestStatusSuccess, statusResult );
+            return new MipRequestStatusResponse( true, MipOperationStatus.GetRequestStatusSuccess, statusResult );
         }
 
         // --------------------------------------------------------[]

@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 case MipRequestStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MipRequestStatus.Fail :
+                case MipRequestStatus.Failure :
                     return TaskStatus.Failure;
 
                 case MipRequestStatus.Success :

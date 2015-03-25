@@ -30,11 +30,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         );
                 }
                 catch( Exception exception ) {
-                    return new MipResponse< MipZipFeedResult >( false, MipStatusCode.ZipFeedFail, exception );
+                    return new MipResponse< MipZipFeedResult >( false, MipOperationStatus.ZipFeedFailure, exception );
                 }
                 return new MipResponse< MipZipFeedResult >(
                     true,
-                    MipStatusCode.ZipFeedSuccess,
+                    MipOperationStatus.ZipFeedSuccess,
                     new MipZipFeedResult( zipFileName ) );
             }
 

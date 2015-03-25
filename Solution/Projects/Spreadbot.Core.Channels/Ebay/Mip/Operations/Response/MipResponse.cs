@@ -11,24 +11,24 @@ using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 {
-    public class MipResponse<TR> : GenericResponse< TR, MipStatusCode >
+    public class MipResponse<TR> : GenericResponse< TR, MipOperationStatus >
         where TR : IResponseResult
     {
         public MipResponse() {}
 
-        public MipResponse( bool isSucces, MipStatusCode code )
+        public MipResponse( bool isSucces, MipOperationStatus code )
             : base( isSucces, code ) {}
 
-        public MipResponse( bool isSucces, MipStatusCode code, Exception exception )
+        public MipResponse( bool isSucces, MipOperationStatus code, Exception exception )
             : base( isSucces, code, exception ) {}
 
-        public MipResponse( bool isSucces, MipStatusCode code, TR result )
+        public MipResponse( bool isSucces, MipOperationStatus code, TR result )
             : base( isSucces, code, result ) {}
 
-        public MipResponse( bool isSucces, MipStatusCode code, TR result, IAbstractResponse innerResponse )
+        public MipResponse( bool isSucces, MipOperationStatus code, TR result, IAbstractResponse innerResponse )
             : base( isSucces, code, result, innerResponse ) {}
 
-        public MipResponse( bool isSucces, MipStatusCode code, string details )
+        public MipResponse( bool isSucces, MipOperationStatus code, string details )
             : base( isSucces, code, details ) {}
     }
 }

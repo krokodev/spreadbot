@@ -11,6 +11,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
         Initial,
         Inprocess,
         Success,
-        Fail
+        Failure
     }
 }

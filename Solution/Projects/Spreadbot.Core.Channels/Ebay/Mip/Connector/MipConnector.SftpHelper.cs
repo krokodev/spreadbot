@@ -59,13 +59,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
                 foreach( var remoteDir in remoteDirs ) {
                     var response = FindRemoteFileNamePrefixInRemoteDir( prefix, remoteDir );
-                    if( response.Code == MipStatusCode.FindRemoteFileSuccess ) {
+                    if( response.Code == MipOperationStatus.FindRemoteFileSuccess ) {
                         return response;
                     }
                 }
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
-                    MipStatusCode.FindRemoteFileFail,
+                    MipOperationStatus.FindRemoteFileFailure,
                     string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDirs.FoldToStringBy(s => s)));
             }
 

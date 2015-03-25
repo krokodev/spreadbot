@@ -30,12 +30,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 catch( Exception exception ) {
                     return new MipResponse< MipTestConnectionResult >(
                         false,
-                        MipStatusCode.TestConnectionFail,
+                        MipOperationStatus.TestConnectionFailure,
                         exception );
                 }
                 return new MipResponse< MipTestConnectionResult >(
                     true,
-                    MipStatusCode.TestConnectionSuccess,
+                    MipOperationStatus.TestConnectionSuccess,
                     new MipTestConnectionResult( true ) );
             }
 
@@ -52,12 +52,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 catch( Exception exception ) {
                     return new MipResponse< MipSendZippedFeedFolderResult >(
                         false,
-                        MipStatusCode.SendZippedFeedFail,
+                        MipOperationStatus.SendZippedFeedFailure,
                         exception );
                 }
                 return new MipResponse< MipSendZippedFeedFolderResult >(
                     true,
-                    MipStatusCode.SendZippedFeedSuccess,
+                    MipOperationStatus.SendZippedFeedSuccess,
                     new MipSendZippedFeedFolderResult { MipRequestId = reqId } );
             }
 
@@ -91,14 +91,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     if( fileInfo.Name.Contains( prefix ) ) {
                         return new MipResponse< MipFindRemoteFileResult >(
                             true,
-                            MipStatusCode.FindRemoteFileSuccess,
+                            MipOperationStatus.FindRemoteFileSuccess,
                             new MipFindRemoteFileResult( remoteDir, fileInfo.Name )
                             );
                     }
                 }
                 return new MipResponse< MipFindRemoteFileResult >(
                     false,
-                    MipStatusCode.FindRemoteFileFail,
+                    MipOperationStatus.FindRemoteFileFailure,
                     string.Format("Remote file [{0}] not found in [{1}]", prefix, remoteDir)
                     );
             }

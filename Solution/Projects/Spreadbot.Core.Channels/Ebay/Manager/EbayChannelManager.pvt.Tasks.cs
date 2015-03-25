@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 task.AddProceedInfo(statusResponse);
             }
             catch {
-                task.MipRequestStatusCode = MipRequestStatus.Fail;
+                task.MipRequestStatusCode = MipRequestStatus.Failure;
                 task.AddProceedInfo( statusResponse );
             }
             task.WasUpdatedNow();

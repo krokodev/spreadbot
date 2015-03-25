@@ -31,7 +31,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.SendZippedFeedSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.SendZippedFeedSuccess, response.Code );
         }
 
         // ===================================================================================== []
@@ -42,7 +42,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.TestConnectionSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.Code );
         }
 
         // ===================================================================================== []
@@ -53,7 +53,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.TestConnectionFail, response.Code );
+            Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.Code );
         }
     }
 }

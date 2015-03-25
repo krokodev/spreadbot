@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Status_Tests.cs
-// romak_000, 2015-03-24 14:42
+// romak_000, 2015-03-25 13:12
 
 using System;
+using MoreLinq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -28,44 +29,57 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void Read_Product_Status_Success()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ProductSuccessRequestId );
 
-            var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-            Console.WriteLine("Result.MipRequestStatusCode: [{0}]", requestResponse.Result.MipRequestStatusCode);
-            Console.WriteLine( requestResponse.Autoinfo );
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
+                .ForEach( reqId => {
+                    var request = new MipRequestHandler( feed, reqId );
 
-            Assert.AreEqual( MipStatusCode.GetRequestStatusSuccess, requestResponse.Code );
-            Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+                    var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+                    Console.WriteLine( "\n\n");
+                    Console.WriteLine( "RequestID: [{0}]", reqId);
+                    Console.WriteLine( "Result.MipRequestStatusCode: [{0}]", requestResponse.Result.MipRequestStatusCode );
+                    Console.WriteLine( requestResponse.Autoinfo );
+
+                    Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
+                    Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+                } );
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Read_Product_Item()
         {
-            var feed = new MipFeedHandler(MipFeedType.Product);
-            var request = new MipRequestHandler(feed, MipConnectorTestInitializer.ProductSuccessRequestId);
+            var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var requestResponse = MipConnector.Mock_GetRequestStatus(request);
-            Console.WriteLine("Result.MipItemId: [{0}]", requestResponse.Result.MipItemId);
-            Console.WriteLine(requestResponse.Autoinfo);
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
+                .ForEach( reqId => {
+                    var request = new MipRequestHandler( feed, reqId );
 
-            Assert.AreEqual(MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId);
+                    var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+                    Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
+                    Console.WriteLine( requestResponse.Autoinfo );
+
+                    Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
+                } );
         }
+
         // --------------------------------------------------------[]
         [Ignore( "Not ready" )]
         [Test]
         public void Read_Product_Status_Fail_On_Mip()
         {
-            var feed = new MipFeedHandler(MipFeedType.Product);
-            var request = new MipRequestHandler(feed, MipConnectorTestInitializer.ProductFailRequestId);
+            var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var requestResponse = MipConnector.Mock_GetRequestStatus(request);
-            Console.WriteLine("Result.MipItemId: [{0}]", requestResponse.Result.MipItemId);
-            Console.WriteLine(requestResponse.Autoinfo);
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
+                .ForEach( reqId => {
+                    var request = new MipRequestHandler( feed, reqId );
+                    var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+                    Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
+                    Console.WriteLine( requestResponse.Autoinfo );
 
-            Assert.AreEqual(MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId);
+                    Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
+                } );
         }
-
 
         // --------------------------------------------------------[]
         [Ignore( "Not ready" )]

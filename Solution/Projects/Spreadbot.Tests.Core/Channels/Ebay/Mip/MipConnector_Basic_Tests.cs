@@ -32,7 +32,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var response = MipConnector.SendZippedFeedFolder( feed );
             Trace.TraceInformation( response.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.SendZippedFeedFolderSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
             Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
         }
 
@@ -48,7 +48,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.FindRequestSuccess, findResponse.Code );
+            Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
             Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
             Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
@@ -64,9 +64,9 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.FindRequestFail, findResponse.Code );
+            Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
             Assert.IsNull( findResponse.Result );
-            Assert.IsTrue( findResponse.Autoinfo.Contains( MipStatusCode.FindRemoteFileFail.ToString() ) );
+            Assert.IsTrue( findResponse.Autoinfo.Contains( MipOperationStatus.FindRemoteFileFailure.ToString() ) );
         }
 
         // --------------------------------------------------------[]
@@ -79,7 +79,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Trace.TraceInformation( findResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.FindRequestFail, findResponse.Code );
+            Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
             Assert.IsNull( findResponse.Result );
             Assert.IsTrue( findResponse.Autoinfo.Contains( "Exception" ) );
         }
@@ -95,7 +95,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
             Trace.TraceInformation( findResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.FindRequestSuccess, findResponse.Code );
+            Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
             Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
             Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
@@ -112,7 +112,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
             Trace.TraceInformation( findResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.FindRequestFail, findResponse.Code );
+            Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
             Assert.IsNull( findResponse.Result );
         }
 
@@ -128,7 +128,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var requestResponse = MipConnector.GetRequestStatus( request );
             Trace.TraceInformation( requestResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.GetRequestStatusSuccess, requestResponse.Code );
+            Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Inprocess, requestResponse.Result.MipRequestStatusCode );
         }
 
@@ -143,7 +143,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
             Trace.TraceInformation( requestResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.GetRequestStatusSuccess, requestResponse.Code );
+            Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
         }
 
@@ -157,7 +157,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var requestResponse = MipConnector.GetRequestStatus( request );
             Trace.TraceInformation( requestResponse.Autoinfo );
 
-            Assert.AreEqual( MipStatusCode.GetRequestStatusSuccess, requestResponse.Code );
+            Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Unknown, requestResponse.Result.MipRequestStatusCode );
         }
     }

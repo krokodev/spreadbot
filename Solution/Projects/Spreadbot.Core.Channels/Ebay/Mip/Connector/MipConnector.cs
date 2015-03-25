@@ -43,13 +43,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             catch( Exception exception ) {
                 return new MipResponse< MipSendZippedFeedFolderResult >(
                     false,
-                    MipStatusCode.SendZippedFeedFolderFail,
+                    MipOperationStatus.SendZippedFeedFolderFailure,
                     exception
                     );
             }
             return new MipResponse< MipSendZippedFeedFolderResult >(
                 true,
-                MipStatusCode.SendZippedFeedFolderSuccess,
+                MipOperationStatus.SendZippedFeedFolderSuccess,
                 new MipSendZippedFeedFolderResult { MipRequestId = reqId }
                 );
         }
@@ -75,11 +75,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 findResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipFindRemoteFileResult >( false, MipStatusCode.FindRequestFail, exception );
+                return new MipResponse< MipFindRemoteFileResult >( false, MipOperationStatus.FindRequestFailure, exception );
             }
             return new MipResponse< MipFindRemoteFileResult >(
                 true,
-                MipStatusCode.FindRequestSuccess,
+                MipOperationStatus.FindRequestSuccess,
                 findResponse.Result,
                 findResponse );
         }
@@ -92,28 +92,28 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
-                if( response.Code == MipStatusCode.FindRequestSuccess && !ignoreInprocess ) {
+                if( response.Code == MipOperationStatus.FindRequestSuccess && !ignoreInprocess ) {
                     return new MipRequestStatusResponse(
                         true,
-                        MipStatusCode.GetRequestStatusSuccess,
+                        MipOperationStatus.GetRequestStatusSuccess,
                         new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Inprocess }
                         );
                 }
 
                 response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
-                if( response.Code == MipStatusCode.FindRequestSuccess ) {
+                if( response.Code == MipOperationStatus.FindRequestSuccess ) {
                     return GetRequestOutputStatus( mipRequestHandler.MipFeedHandler.Type, response );
                 }
 
                 return new MipRequestStatusResponse(
                     true,
-                    MipStatusCode.GetRequestStatusSuccess,
+                    MipOperationStatus.GetRequestStatusSuccess,
                     new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
                     response
                     );
             }
             catch( Exception exception ) {
-                return new MipRequestStatusResponse( false, MipStatusCode.GetRequestStatusFail, exception );
+                return new MipRequestStatusResponse( false, MipOperationStatus.GetRequestStatusFailure, exception );
             }
         }
 
@@ -123,7 +123,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipResponse< MipFindRemoteFileResult > response )
         {
             var statusResult = ReadRequestOutputStatus( feedType, response );
-            return new MipRequestStatusResponse( true, MipStatusCode.GetRequestStatusSuccess, statusResult );
+            return new MipRequestStatusResponse( true, MipOperationStatus.GetRequestStatusSuccess, statusResult );
         }
 
         // --------------------------------------------------------[]

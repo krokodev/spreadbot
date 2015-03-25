@@ -13,23 +13,23 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 {
     public class MipRequestStatusResponse : MipResponse< MipGetRequestStatusResult >, ITaskProceedInfo
     {
-        public MipRequestStatusResponse( bool isSucces, MipStatusCode code )
+        public MipRequestStatusResponse( bool isSucces, MipOperationStatus code )
             : base( isSucces, code ) {}
 
-        public MipRequestStatusResponse( bool isSucces, MipStatusCode code, Exception exception )
+        public MipRequestStatusResponse( bool isSucces, MipOperationStatus code, Exception exception )
             : base( isSucces, code, exception ) {}
 
-        public MipRequestStatusResponse( bool isSucces, MipStatusCode code, MipGetRequestStatusResult result )
+        public MipRequestStatusResponse( bool isSucces, MipOperationStatus code, MipGetRequestStatusResult result )
             : base( isSucces, code, result ) {}
 
         public MipRequestStatusResponse(
             bool isSucces,
-            MipStatusCode code,
+            MipOperationStatus code,
             MipGetRequestStatusResult result,
             IAbstractResponse innerResponse )
             : base( isSucces, code, result, innerResponse ) {}
 
-        public MipRequestStatusResponse( bool isSucces, MipStatusCode code, string details )
+        public MipRequestStatusResponse( bool isSucces, MipOperationStatus code, string details )
             : base( isSucces, code, details ) {}
 
     }
