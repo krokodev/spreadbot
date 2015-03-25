@@ -69,7 +69,6 @@
     <Compile Include="Operations\Tasks\IAbstractTask.cs" />
     <Compile Include="Operations\Tasks\AbstractTask.cs" />
     <Compile Include="Operations\Tasks\ITaskProceedInfo.cs" />
-    <Compile Include="Operations\Tasks\TaskProceedHelper.cs" />
     <Compile Include="Operations\Tasks\TaskStatus.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // Global.asax.cs
-// romak_000, 2015-03-25 19:45
+// romak_000, 2015-03-25 21:08
 
 using System;
 using System.Globalization;
@@ -30,8 +30,13 @@ namespace Spreadbot.App.Web
 
         private void Application_BeginRequest( object sender, EventArgs e )
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            try {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            }
+            catch {
+                // ignored
+            }
         }
     }
 }

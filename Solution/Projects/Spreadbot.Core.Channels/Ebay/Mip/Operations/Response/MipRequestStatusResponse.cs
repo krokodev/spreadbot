@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipRequestStatusResponse.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-25 21:47
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
@@ -13,6 +13,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 {
     public class MipRequestStatusResponse : MipResponse< MipGetRequestStatusResult >, ITaskProceedInfo
     {
+        public MipRequestStatusResponse() {}
+
         public MipRequestStatusResponse( bool isSucces, MipOperationStatus code )
             : base( isSucces, code ) {}
 
@@ -31,5 +33,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 
         public MipRequestStatusResponse( bool isSucces, MipOperationStatus code, string details )
             : base( isSucces, code, details ) {}
+
+        public DateTime ProceedTime { get; set; }
     }
 }

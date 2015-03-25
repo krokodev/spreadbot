@@ -1,33 +1,54 @@
-﻿@using Spreadbot.App.Web.Models
+﻿@using Crocodev.Common.Extensions
+@using Spreadbot.App.Web.Models
 @using Spreadbot.Sdk.Common.Operations.Responses
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
     private static string AbstractResponse( IAbstractResponse resp )
     {
-        return resp == null ? "\nno" : resp.ToString();
+        return resp == null ? "\n  no" : resp.ToString();
+    }
+
+    private static string Subtasks( IEnumerable< IAbstractTask > tasks )
+    {
+        return "\n  " + tasks.FoldToStringBy( t => t.ToString(), "\n  ", "no" );
+    }
+
+    private static string ProceedHistory( AbstractTask task )
+    {
+        if( !( task is IProceedableTask ) ) {
+            return "no";
+        }
+
+        var pt = ( IProceedableTask ) task;
+
+        return "\n\n"+pt.GetProceedHistory().FoldToStringBy( h => h.ProceedTime.ToString("MMM-dd HH:mm:ss") +" "+h.ToString(), "\n\n", "no" );
     }
 
 }
-
+@helper TaskField( string name, object value )
+{
+    <div style="font-size: 16px">
+        <pre><code><b>@name:</b> @value.ToString()<br /></code></pre>
+    </div>
+}
 @{
     // !>> View | Demoshop | ShowTask
     ViewBag.Title = "Task details";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
-
 @{
     var task = ( AbstractTask ) DemoshopModel.FindTask( ViewBag.TaskId );
 }
 
-<pre><code>
-        
-<b>Task:</b><br>@task.ToString()<br />
-<b>Id:</b><br>@task.Id<br/>
-<b>Response:</b>@AbstractResponse( task.AbstractResponse )<br />
-<b>Created:</b><br/>@task.CreationTime<br />
-<b>Last update:</b><br/>@task.LastUpdateTime<br />
-     
-</code></pre>
+@TaskField( "Id", task.Id )
+@TaskField( "Description", task.Description ?? task.ToString() )
+@TaskField( "Status", task.GetStatusCode() )
+@TaskField( "IsCritical", task.IsCritical )
+@TaskField( "CreationTime", task.CreationTime )
+@TaskField( "LastUpdateTime", task.LastUpdateTime )
+@TaskField( "Response", AbstractResponse( task.AbstractResponse ) )
+@TaskField( "Subtasks", Subtasks( task.AbstractSubTasks ) )
+@TaskField( "ProceedHistory", ProceedHistory( task ) )

@@ -35,6 +35,9 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
                 task.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
                 task.EbayPublishResponse.Result.MipItemId = statusResponse.Result.MipItemId;
+                
+                // Code: task.AddProceedInfo( statusResponse );
+                statusResponse.ProceedTime = DateTime.Now;
                 task.AddProceedInfo( statusResponse );
             }
             catch {

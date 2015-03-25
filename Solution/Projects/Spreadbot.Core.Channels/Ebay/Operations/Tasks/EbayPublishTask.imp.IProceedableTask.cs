@@ -1,26 +1,22 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IProceedableTask.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-25 21:51
 
+using System.Collections.Generic;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
-
-// !>> Core | EBay | EbayPublishTask.imp.IProceedableTask
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 {
     public sealed partial class EbayPublishTask
     {
-        // ===================================================================================== []
-        // Explicit
         public void AddProceedInfo( ITaskProceedInfo info )
         {
-            _taskProceedHelper.AddProceedInfo( info );
+            ProceedHistory.Add( info );
         }
 
-        // --------------------------------------------------------[]
         public void AssertCanBeProceeded()
         {
             if( MipRequestStatusCode != MipRequestStatus.Initial &&
@@ -29,8 +25,11 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             }
         }
 
-        // ===================================================================================== []
-        // Utils
-        private readonly TaskProceedHelper _taskProceedHelper = new TaskProceedHelper();
+        public readonly List< ITaskProceedInfo > ProceedHistory = new List< ITaskProceedInfo >();
+
+        public IEnumerable< ITaskProceedInfo > GetProceedHistory()
+        {
+            return ProceedHistory;
+        }
     }
 }
