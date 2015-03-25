@@ -77,12 +77,13 @@
   <ItemGroup>
     <Compile Include="Channels\Ebay\Configuration\MipConfiguration_Tests.cs" />
     <Compile Include="Channels\Ebay\Mip\MipConnectorTestInitializer.cs" />
-    <Compile Include="Channels\Ebay\Mip\MipConnector_Status_Tests.cs" />
+    <Compile Include="Channels\Ebay\Mip\MipConnector_Content_Tests.cs" />
     <Compile Include="Channels\Ebay\Mip\MipConnector_Basic_Tests.cs" />
     <Compile Include="Channels\Ebay\Mip\MipConnector_Zip_Tests.cs" />
     <Compile Include="Channels\Ebay\Mip\MipConnector_Sftp_Tests.cs" />
+    <Compile Include="Common\SpreadbotBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="References\References.cs" />
+    <Compile Include="Common\References.cs" />
     <Compile Include="Stores\Demoshop\Manager\DemoshopStoreManager_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

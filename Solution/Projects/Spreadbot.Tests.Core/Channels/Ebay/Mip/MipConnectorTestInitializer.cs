@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Crocodev.Common.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoreLinq;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
@@ -16,7 +16,8 @@ using Spreadbot.Sdk.Common.Crocodev.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    [TestClass]
+    [Ignore("Just a helper class")]
+    [TestFixture]
     public class MipConnectorTestInitializer
     {
         public const string ProductItemId = "321693290987";

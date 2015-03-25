@@ -3,35 +3,37 @@
 // MipConnector_Zip_Tests.cs
 // romak_000, 2015-03-25 15:25
 
-using System.Diagnostics;
+using System;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Tests.Core.Common;
+
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    [TestClass]
-    public class MipConnector_Zip_Tests
+    [TestFixture]
+    public class MipConnector_Zip_Tests: SpreadbotBaseTest
     {
         // ===================================================================================== []
-        [ClassInitialize]
-        public static void Init( TestContext testContext )
+        [SetUp]
+        public static void Init()
         {
             MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // ===================================================================================== []
-        [TestMethod]
+        [Test]
         public void ZipFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var reqId = MipRequestHandler.GenerateTestId();
 
             var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
-            Trace.TraceInformation( response.Autoinfo );
+            Console.WriteLine( response.Autoinfo );
 
             Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.Code );
             Assert.IsTrue( File.Exists( response.Result.ZipFileName ) );

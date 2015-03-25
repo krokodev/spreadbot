@@ -3,55 +3,56 @@
 // MipConnector_Sftp_Tests.cs
 // romak_000, 2015-03-25 15:24
 
-using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Tests.Core.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    [TestClass]
-    public class MipConnector_Sftp_Tests
+    [TestFixture]
+    public class MipConnector_Sftp_Tests: SpreadbotBaseTest
     {
         // ===================================================================================== []
-        [ClassInitialize]
-        public static void Init( TestContext testContext )
+        [SetUp]
+        public static void Init()
         {
             MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // ===================================================================================== []
-        [TestMethod]
+        [Test]
         public void SendZippedFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequestHandler.GenerateTestId() );
 
-            Trace.TraceInformation( response.Autoinfo );
+            Console.WriteLine( response.Autoinfo );
 
             Assert.AreEqual( MipOperationStatus.SendZippedFeedSuccess, response.Code );
         }
 
         // ===================================================================================== []
-        [TestMethod]
+        [Test]
         public void TestConnection_Good()
         {
             var response = MipConnector.SftpHelper.TestConnection();
 
-            Trace.TraceInformation( response.Autoinfo );
+            Console.WriteLine( response.Autoinfo );
 
             Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.Code );
         }
 
         // ===================================================================================== []
-        [TestMethod]
+        [Test]
         public void TestConnection_Bad()
         {
             var response = MipConnector.SftpHelper.TestConnection( "wrong password" );
 
-            Trace.TraceInformation( response.Autoinfo );
+            Console.WriteLine( response.Autoinfo );
 
             Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.Code );
         }

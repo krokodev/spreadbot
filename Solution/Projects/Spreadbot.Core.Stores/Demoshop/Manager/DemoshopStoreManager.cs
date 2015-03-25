@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-25 18:34
 
 using System;
 using System.IO;
@@ -43,13 +43,19 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         public void RestoreData()
         {
-            if( File.Exists( DataFileName() ) ) {
-                Serializer.Default.Deserialize( this, DataFileName() );
+            try {
+                if( File.Exists( DataFileName() ) ) {
+                    Serializer.Default.Deserialize( this, DataFileName() );
+                }
+            }
+            catch( Exception ) {
+                // ignored
             }
         }
 
         // ===================================================================================== []
-        public DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
+        public
+            DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
         {
             switch( taskType ) {
                 case DemoshopStoreTaskType.PublishOnEbay :

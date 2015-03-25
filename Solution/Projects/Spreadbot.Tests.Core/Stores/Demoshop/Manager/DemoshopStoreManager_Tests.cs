@@ -157,7 +157,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         private static void AssertThatLastUpdateTimeIsCorrect()
         {
             DemoshopEbayPublishTasks()
-                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 15 ).Seconds ); } );
+                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 30 ).Seconds ); } );
         }
     }
 }

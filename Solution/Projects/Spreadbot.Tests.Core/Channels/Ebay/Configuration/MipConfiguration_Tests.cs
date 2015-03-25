@@ -3,18 +3,17 @@
 // MipConfiguration_Tests.cs
 // romak_000, 2015-03-25 15:24
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
-using Assert = NUnit.Framework.Assert;
+using Spreadbot.Tests.Core.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Configuration
 {
-    [TestClass]
-    public class MipConfiguration_Tests
+    [TestFixture]
+    public class MipConfiguration_Tests: SpreadbotBaseTest
     {
-        [TestMethod]
+        [Test]
         public void Read_Mip_Config()
         {
             var configuration = MipPublicConfig.Instance;
@@ -22,14 +21,14 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Configuration
             Assert.AreEqual( 22, configuration.MipConnection.PortNumber );
         }
 
-        [TestMethod]
+        [Test]
         public void Read_Mip_Security_Config()
         {
             var configuration = MipSecurityConfig.Instance;
             Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName );
         }
 
-        [TestMethod]
+        [Test]
         public void Mip_TimeZone()
         {
             //var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, MipSettings.TimeZone );
