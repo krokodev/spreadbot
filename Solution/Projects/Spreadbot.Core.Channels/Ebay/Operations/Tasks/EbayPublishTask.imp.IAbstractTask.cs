@@ -23,7 +23,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 return TaskStatus.Todo;
             }
             if( !AbstractResponse.IsSuccess ) {
-                return TaskStatus.Fail;
+                return TaskStatus.Failure;
             }
             switch( MipRequestStatusCode ) {
                 case MipRequestStatus.Initial :
@@ -33,10 +33,10 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                     return TaskStatus.Inprocess;
 
                 case MipRequestStatus.Unknown :
-                    return TaskStatus.Fail;
+                    return TaskStatus.Failure;
 
                 case MipRequestStatus.Fail :
-                    return TaskStatus.Fail;
+                    return TaskStatus.Failure;
 
                 case MipRequestStatus.Success :
                     return TaskStatus.Success;

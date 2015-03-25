@@ -28,15 +28,15 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
                 return TaskStatus.Success;
             }
 
-            if( AbstractSubTasks.Any( t => t.IsCritical && t.GetStatusCode() == TaskStatus.Fail ) ||
-                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Fail ) == totalSubCount ) {
-                return TaskStatus.Fail;
+            if( AbstractSubTasks.Any( t => t.IsCritical && t.GetStatusCode() == TaskStatus.Failure ) ||
+                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Failure ) == totalSubCount ) {
+                return TaskStatus.Failure;
             }
 
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Todo ) +
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Inprocess ) +
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Success ) +
-                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Fail && !t.IsCritical )
+                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Failure && !t.IsCritical )
                 == totalSubCount ) {
                 return TaskStatus.Inprocess;
             }

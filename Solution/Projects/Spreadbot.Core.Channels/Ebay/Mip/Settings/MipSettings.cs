@@ -55,7 +55,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
         }
 
         // --------------------------------------------------------[]
-        public static string BasePath
+        public static string LocalBasePath
         {
             get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.BasePath ); }
         }

@@ -11,6 +11,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         Todo,
         Inprocess,
         Success,
-        Fail
+        Failure
     }
 }
