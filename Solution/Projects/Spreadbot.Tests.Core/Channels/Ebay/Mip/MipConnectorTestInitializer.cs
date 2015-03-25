@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Crocodev.Common.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -19,6 +20,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
     public class MipConnectorTestInitializer
     {
         public const string ProductItemId = "321693290987";
+        public const string ItemRequestIds = "itemid-present";
 
         // Code: MipConnectorTestInitializer
         // --------------------------------------------------------[]
@@ -29,6 +31,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 @"src\availability\Availability_Single_SKU_One_Locale.xml",
                 @"src\product\Product_Single_SKU_One_Locale.xml",
                 @"src\distribution\Distribution_Single_SKU_One_Locale.xml",
+                @"inbox\product.{0}.xml".SafeFormat( ItemRequestIds ),
             };
 
             AddFeedStatusSamples( files );

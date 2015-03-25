@@ -11,12 +11,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 
+// !>> MipConnector.pub.Mock.cs
+
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     // Ref: Use Mock<MipConnector> + regular method GetRequestStatus
     public partial class MipConnector
     {
-        // Code: MipConnector.Mock_GetRequestStatus
         public static MipRequestStatusResponse Mock_GetRequestStatus( MipRequestHandler mipRequestHandler )
         {
             try {

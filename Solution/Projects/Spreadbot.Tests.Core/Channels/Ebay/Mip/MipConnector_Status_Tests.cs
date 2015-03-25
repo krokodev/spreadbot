@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Status_Tests.cs
-// romak_000, 2015-03-25 13:12
+// romak_000, 2015-03-25 14:07
 
 using System;
 using MoreLinq;
@@ -11,9 +11,10 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 
+// Code: MipConnector_Content_Tests
+
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    // Code: MipConnector_Content_Tests
     [TestFixture]
     public class MipConnector_Content_Tests
     {
@@ -25,80 +26,72 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        [Test]
-        public void Read_Product_Status_Success()
+        private static void TestItemId( MipFeedType mipFeedType )
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
+            var feed = new MipFeedHandler( mipFeedType );
+            var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestIds );
 
-            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
+            var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+            Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
+            Console.WriteLine( requestResponse.Autoinfo );
+            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
+        }
+
+        // --------------------------------------------------------[]
+        private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
+        {
+            var wasVerified = false;
+
+            var feed = new MipFeedHandler( mipFeedType );
+
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, mipRequestStatus )
                 .ForEach( reqId => {
                     var request = new MipRequestHandler( feed, reqId );
-
                     var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-                    Console.WriteLine( "\n\n");
-                    Console.WriteLine( "RequestID: [{0}]", reqId);
+                    wasVerified = true;
+
+                    Console.WriteLine( "\n\n" );
+                    Console.WriteLine( "Feed: [{0}]", mipFeedType);
+                    Console.WriteLine( "RequestID: [{0}]", reqId );
                     Console.WriteLine( "Result.MipRequestStatusCode: [{0}]", requestResponse.Result.MipRequestStatusCode );
-                    Console.WriteLine( requestResponse.Autoinfo );
+                   // Console.WriteLine( requestResponse.Autoinfo );
 
                     Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
-                    Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+                    Assert.AreEqual( mipRequestStatus, requestResponse.Result.MipRequestStatusCode );
                 } );
+
+            Assert.AreEqual( true, wasVerified );
         }
 
         // --------------------------------------------------------[]
-        [Test]
-        public void Read_Product_Item()
+        private static void TestAllFeedStatuses( MipFeedType mipFeedType )
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
-
-            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
-                .ForEach( reqId => {
-                    var request = new MipRequestHandler( feed, reqId );
-
-                    var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-                    Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
-                    Console.WriteLine( requestResponse.Autoinfo );
-
-                    Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
-                } );
+            TestFeedStatus( mipFeedType, MipRequestStatus.Success );
+            TestFeedStatus( mipFeedType, MipRequestStatus.Failure );
+            TestFeedStatus( mipFeedType, MipRequestStatus.Unknown );
         }
 
         // --------------------------------------------------------[]
-        [Ignore( "Not ready" )]
         [Test]
-        public void Read_Product_Status_Fail_On_Mip()
+        public void Read_Product_Content()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
-
-            MipConnectorTestInitializer.TestRequestIds( feed.Type, MipRequestStatus.Success )
-                .ForEach( reqId => {
-                    var request = new MipRequestHandler( feed, reqId );
-                    var requestResponse = MipConnector.Mock_GetRequestStatus( request );
-                    Console.WriteLine( "Result.MipItemId: [{0}]", requestResponse.Result.MipItemId );
-                    Console.WriteLine( requestResponse.Autoinfo );
-
-                    Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId );
-                } );
+            TestItemId( MipFeedType.Product );
+            TestAllFeedStatuses( MipFeedType.Product );
         }
 
         // --------------------------------------------------------[]
-        [Ignore( "Not ready" )]
         [Test]
-        public void Read_Availability_Status_Success() {}
+        public void Read_Availability_Content()
+        {
+            TestAllFeedStatuses( MipFeedType.Availability );
+        }
 
         // --------------------------------------------------------[]
-        [Ignore( "Not ready" )]
         [Test]
-        public void Read_Availability_Status_Fail() {}
-
-        // --------------------------------------------------------[]
-        [Ignore( "Not ready" )]
-        [Test]
-        public void Read_Distribution_Status_Success() {}
-
-        // --------------------------------------------------------[]
-        [Ignore( "Not ready" )]
-        [Test]
-        public void Read_Disrtibution_Status_Fail() {}
+        public void Read_Distribution_Content()
+        {
+            TestItemId( MipFeedType.Distribution );
+            TestAllFeedStatuses( MipFeedType.Distribution );
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.RequestXml.cs
-// romak_000, 2015-03-24 14:34
+// romak_000, 2015-03-25 13:41
 
 using System.Collections.Generic;
 using System.Xml;
@@ -11,7 +11,6 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
-    // Code: ParseRequestXmlContent
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
@@ -26,11 +25,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             };
         }
 
+        // Code: GetRequestStatusFromContent
+
         // --------------------------------------------------------[]
         private static MipRequestStatus GetRequestStatusFromContent( MipFeedType feedType, string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
-                { MipFeedType.Product, "/productResponse/status" }
+                { MipFeedType.Product, "/productResponse/status" },
+                { MipFeedType.Availability, "/inventoryResponse/status" },
             };
 
             if( !statusNodePath.ContainsKey( feedType ) ) {
@@ -40,10 +42,17 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             var xml = new XmlDocument {
                 InnerXml = content
             };
-
             var statusNode = xml.SelectSingleNode( statusNodePath[ feedType ] );
-            if( statusNode != null && statusNode.InnerText == "SUCCESS" ) {
-                return MipRequestStatus.Success;
+
+            if( statusNode == null ) {
+                return MipRequestStatus.Unknown;
+            }
+
+            switch( statusNode.InnerText ) {
+                case "SUCCESS" :
+                    return MipRequestStatus.Success;
+                case "FAILURE" :
+                    return MipRequestStatus.Failure;
             }
 
             return MipRequestStatus.Unknown;
