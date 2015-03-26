@@ -12,15 +12,5 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
         public MipRequestStatus MipRequestStatusCode { get; set; }
         public string MipItemId { get; set; }
         public string Details { get; set; }
-
-        public override string Autoinfo
-        {
-            get
-            {
-                return string.Format( Template, "Status", MipRequestStatusCode ) + ", " +
-                    string.Format( Template, "ItemId", MipItemId ) + ", " +
-                    string.Format( Template, "Details", Details );
-            }
-        }
     }
 }

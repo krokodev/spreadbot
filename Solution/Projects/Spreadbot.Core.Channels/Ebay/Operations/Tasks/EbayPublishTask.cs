@@ -11,6 +11,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Sdk.Common.Operations.Tasks;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 {
@@ -20,7 +21,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         public EbayPublishArgs Args { get; set; }
 
         [NotSerialize]
-
+        [YamlIgnore]
         // Is serialized by [AbstractResponse]
         public ChannelResponse< EbayPublishResult > EbayPublishResponse { get; set; }
 

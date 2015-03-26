@@ -30,7 +30,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var feed = new MipFeedHandler( MipFeedType.Product );
             var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequestHandler.GenerateTestId() );
 
-            Console.WriteLine( response.Autoinfo );
+            Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.SendZippedFeedSuccess, response.Code );
         }
@@ -41,7 +41,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var response = MipConnector.SftpHelper.TestConnection();
 
-            Console.WriteLine( response.Autoinfo );
+            Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.Code );
         }
@@ -52,7 +52,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var response = MipConnector.SftpHelper.TestConnection( "wrong password" );
 
-            Console.WriteLine( response.Autoinfo );
+            Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.Code );
         }

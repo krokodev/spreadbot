@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
 {
     public abstract class AbstractStoreTask : AbstractTask, IStoreTask
     {
-        public override string GetAutoinfo()
+        public override string GetBriefInfo()
         {
             return string.Format(
                 "Store {2} {0}: {1}",

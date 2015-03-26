@@ -4,6 +4,7 @@
 // romak_000, 2015-03-25 15:25
 
 using System;
+using Spreadbot.Sdk.Common.Crocodev.Common;
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
@@ -18,12 +19,14 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
         public override string ToString()
         {
-            return GetAutoinfo();
+            return this.ToYamlString();
         }
 
         protected TaskStatus CalcSuperTaskStatusCode()
         {
             return DoCalcSuperTaskStatusCode();
         }
+
+        public abstract string GetBriefInfo();
     }
 }

@@ -3,16 +3,15 @@
 // AbstractResponseResult.cs
 // romak_000, 2015-03-25 15:25
 
+using Spreadbot.Sdk.Common.Crocodev.Common;
+
 namespace Spreadbot.Sdk.Common.Operations.ResponseResults
 {
     public abstract class AbstractResponseResult : IResponseResult
     {
-        protected const string Template = "{0}:{1}";
-        public abstract string Autoinfo { get; }
-
         public override string ToString()
         {
-            return Autoinfo;
+            return this.ToYamlString();
         }
     }
 }

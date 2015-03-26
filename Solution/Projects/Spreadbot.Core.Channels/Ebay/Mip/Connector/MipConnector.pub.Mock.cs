@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pub.Mock.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-26 16:56
 
 using System;
 using System.IO;
@@ -26,8 +26,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     new MipResponse< MipFindRemoteFileResult >(
                         true,
                         MipOperationStatus.FindRequestSuccess,
-                        new MipFindRemoteFileResult( "mock", mipRequestHandler.FileNamePrefix() + ".xml" ) )
-                    );
+                        new MipFindRemoteFileResult {
+                            RemoteFolderPath = "mock",
+                            RemoteFileName = mipRequestHandler.FileNamePrefix() + ".xml"
+                        } ) );
             }
             catch( Exception exception ) {
                 return new MipRequestStatusResponse( false, MipOperationStatus.GetRequestStatusFailure, exception );

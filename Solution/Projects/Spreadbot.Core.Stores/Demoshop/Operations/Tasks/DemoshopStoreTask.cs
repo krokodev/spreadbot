@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         [Serialize]
         public override IAbstractResponse AbstractResponse { get; set; }
 
-        public void AddSubTasks( IEnumerable< EbayPublishTask > tasks )
+        public void AddSubTasks( params  EbayPublishTask[] tasks )
         {
             ChannelTasks.AddRange( tasks );
         }

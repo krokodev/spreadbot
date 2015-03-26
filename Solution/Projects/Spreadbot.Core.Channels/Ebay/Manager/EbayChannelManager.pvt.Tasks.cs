@@ -83,7 +83,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
             catch( Exception exception ) {
                 task.EbayPublishResponse = new ChannelResponse< EbayPublishResult >(
                     false,
-                    ChannelResponseStatusCode.PublishFail,
+                    ChannelResponseStatusCode.PublishFailure,
                     exception );
             }
             task.WasUpdatedNow();

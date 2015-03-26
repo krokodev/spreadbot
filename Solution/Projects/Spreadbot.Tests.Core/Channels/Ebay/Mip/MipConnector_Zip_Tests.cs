@@ -33,7 +33,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var reqId = MipRequestHandler.GenerateTestId();
 
             var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
-            Console.WriteLine( response.Autoinfo );
+            Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.Code );
             Assert.IsTrue( File.Exists( response.Result.ZipFileName ) );

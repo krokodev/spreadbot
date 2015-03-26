@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.ZipHelper.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-26 16:57
 
 using System;
 using System.IO;
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipZipFeedResult >(
                     true,
                     MipOperationStatus.ZipFeedSuccess,
-                    new MipZipFeedResult( zipFileName ) );
+                    new MipZipFeedResult { ZipFileName = zipFileName } );
             }
 
             // --------------------------------------------------------[]

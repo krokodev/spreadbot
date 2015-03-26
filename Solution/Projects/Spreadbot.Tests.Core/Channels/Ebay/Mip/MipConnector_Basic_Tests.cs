@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// romak_000, 2015-03-25 18:40
+// romak_000, 2015-03-26 18:06
 
 using System;
 using NUnit.Framework;
@@ -14,7 +14,7 @@ using Spreadbot.Tests.Core.Common;
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestFixture]
-    public class MipConnector_Basic_Tests: SpreadbotBaseTest
+    public class MipConnector_Basic_Tests : SpreadbotBaseTest
     {
         // ===================================================================================== []
         [SetUp]
@@ -31,7 +31,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var feed = new MipFeedHandler( MipFeedType.Product );
 
             var response = MipConnector.SendZippedFeedFolder( feed );
-            Console.WriteLine( response.Autoinfo );
+            Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
             Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
@@ -47,7 +47,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
-            Console.WriteLine( findResponse.Autoinfo );
+            Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
@@ -63,11 +63,12 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
-            Console.WriteLine( findResponse.Autoinfo );
+            Console.WriteLine( findResponse );
 
-            Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
-            Assert.IsNull( findResponse.Result );
-            Assert.IsTrue( findResponse.Autoinfo.Contains( MipOperationStatus.FindRemoteFileFailure.ToString() ) );
+            Assert.That( findResponse.Code.Equals( MipOperationStatus.FindRequestFailure ) );
+            Assert.That( findResponse.Result == null );
+            Assert.That( findResponse.ToString().Contains( MipOperationStatus.FindRemoteFileFailure.ToString() ),
+                "FindResponse Contains 'FindRemoteFileFailure'" );
         }
 
         // --------------------------------------------------------[]
@@ -78,11 +79,11 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
-            Console.WriteLine( findResponse.Autoinfo );
+            Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
             Assert.IsNull( findResponse.Result );
-            Assert.IsTrue( findResponse.Autoinfo.Contains( "Exception" ) );
+            Assert.IsTrue( findResponse.ToString().Contains( "Exception" ) );
         }
 
         // --------------------------------------------------------[]
@@ -94,7 +95,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
-            Console.WriteLine( findResponse.Autoinfo );
+            Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
@@ -111,7 +112,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
-            Console.WriteLine( findResponse.Autoinfo );
+            Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.Code );
             Assert.IsNull( findResponse.Result );
@@ -127,7 +128,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var requestResponse = MipConnector.GetRequestStatus( request );
-            Console.WriteLine( requestResponse.Autoinfo );
+            Console.WriteLine( requestResponse );
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Inprocess, requestResponse.Result.MipRequestStatusCode );
@@ -142,7 +143,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
             var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
-            Console.WriteLine( requestResponse.Autoinfo );
+            Console.WriteLine( requestResponse );
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
@@ -156,7 +157,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var requestResponse = MipConnector.GetRequestStatus( request );
-            Console.WriteLine( requestResponse.Autoinfo );
+            Console.WriteLine( requestResponse );
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
             Assert.AreEqual( MipRequestStatus.Unknown, requestResponse.Result.MipRequestStatusCode );

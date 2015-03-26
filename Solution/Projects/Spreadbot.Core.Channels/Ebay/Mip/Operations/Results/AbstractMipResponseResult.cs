@@ -3,18 +3,16 @@
 // AbstractMipResponseResult.cs
 // romak_000, 2015-03-25 15:24
 
+using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {
     public abstract class AbstractMipResponseResult : IResponseResult
     {
-        protected const string Template = "{0}: [{1}]";
-        public abstract string Autoinfo { get; }
-
         public override string ToString()
         {
-            return Autoinfo;
+            return this.ToYamlString();
         }
     }
 }

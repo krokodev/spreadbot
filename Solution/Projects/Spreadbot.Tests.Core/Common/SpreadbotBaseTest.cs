@@ -4,8 +4,6 @@ using NUnit.Framework;
 
 namespace Spreadbot.Tests.Core.Common
 {
-    [Ignore("Just base class")]
-    [TestFixture]
     public class SpreadbotBaseTest
     {
         [SetUp]

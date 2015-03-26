@@ -11,7 +11,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     public abstract partial class AbstractTask
     {
         private readonly IEnumerable< IAbstractTask > _abstractSubTasks = new List< IAbstractTask >();
-        public abstract string GetAutoinfo();
 
         public abstract TaskStatus GetStatusCode();
 

@@ -7,16 +7,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {
     public class MipTestConnectionResult : AbstractMipResponseResult
     {
-        public MipTestConnectionResult( bool value )
-        {
-            Value = value;
-        }
-
         public bool Value { get; set; }
-
-        public override string Autoinfo
-        {
-            get { return string.Format( Template, "Value", Value ); }
-        }
     }
 }

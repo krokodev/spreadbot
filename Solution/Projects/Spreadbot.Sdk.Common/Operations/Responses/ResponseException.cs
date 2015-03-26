@@ -16,7 +16,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         public override string Message
         {
-            get { return Response.Autoinfo; }
+            get { return Response.ToString(); }
         }
 
         public IAbstractResponse Response { get; set; }

@@ -1,31 +1,35 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-25 15:25
+// romak_000, 2015-03-26 18:13
 
 using System;
+using System.Dynamic;
+using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
+
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    public partial class GenericResponse<TR, TC> : IAbstractResponse
+    public class GenericResponse<TR, TC> : IAbstractResponse
         where TR : IResponseResult
     {
-        private int _level;
-
+        // --------------------------------------------------------[]
         protected GenericResponse( bool isSucces, TC code )
         {
             IsSuccess = isSucces;
             Code = code;
         }
 
+        // --------------------------------------------------------[]
         protected GenericResponse( bool isSucces, TC code, Exception exception )
             : this( isSucces, code )
-
         {
-            Exception = exception;
+            ExceptionInfo = GetExceptionInfo( exception );
         }
 
+        // --------------------------------------------------------[]
         protected GenericResponse( bool isSucces, TC code, TR result )
             : this( isSucces, code )
         {
@@ -36,7 +40,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             : this( isSucces, code, result )
         {
             InnerResponse = innerResponse;
-            InnerResponse.Level = Level + 1;
         }
 
         protected GenericResponse( bool isSucces, TC code, string details )
@@ -46,29 +49,17 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         protected GenericResponse() {}
+
+        // --------------------------------------------------------[]
+        // Code: GenericResponse.Yaml
         public TC Code { get; set; }
+        public bool IsSuccess { get; set; }
         public TR Result { get; set; }
-        private string Details { get; set; }
-        private Exception Exception { get; set; }
-        private IAbstractResponse InnerResponse { get; set; }
+        public string Details { get; set; }
+        public dynamic ExceptionInfo { get; set; }
+        public IAbstractResponse InnerResponse { get; set; }
 
-        public virtual string Autoinfo
-        {
-            get { return IsSuccess ? GetSuccessAutoinfo() : GetFailedAutoinfo(); }
-        }
-
-        public int Level
-        {
-            get { return _level; }
-            set
-            {
-                _level = value;
-                if( InnerResponse != null ) {
-                    InnerResponse.Level = Level + 1;
-                }
-            }
-        }
-
+        // --------------------------------------------------------[]
         public void Check()
         {
             if( !IsSuccess ) {
@@ -76,11 +67,28 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             }
         }
 
-        public bool IsSuccess { get; set; }
-
+        // --------------------------------------------------------[]
         public override string ToString()
         {
-            return Autoinfo;
+            return this.ToYamlString();
+        }
+
+        // --------------------------------------------------------[]
+        private static dynamic GetExceptionInfo( Exception exception )
+        {
+            // Code: PrepareExceptionInfo
+            dynamic exceptionInfo = new ExpandoObject();
+
+            exceptionInfo.Type = exception.GetType().ToString();
+            exceptionInfo.Message = exception.Message;
+            exceptionInfo.StackTrace = exception.StackTrace;
+            exceptionInfo.Source = exception.Source;
+
+            if( exception.InnerException != null ) {
+                exceptionInfo.InnerException = GetExceptionInfo( exception.InnerException );
+            }
+
+            return exceptionInfo;
         }
     }
 }

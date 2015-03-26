@@ -11,7 +11,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public interface IAbstractTask
     {
-        string GetAutoinfo();
+        string GetBriefInfo();
         IAbstractResponse AbstractResponse { get; }
         string Description { get; set; }
         IEnumerable< IAbstractTask > AbstractSubTasks { get; }

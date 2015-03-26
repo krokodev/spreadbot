@@ -7,11 +7,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {
     public class MipSendZippedFeedFolderResult : AbstractMipResponseResult
     {
-        public override string Autoinfo
-        {
-            get { return string.Format( Template, "RequestId", MipRequestId ); }
-        }
-
         public string MipRequestId { get; set; }
     }
 }

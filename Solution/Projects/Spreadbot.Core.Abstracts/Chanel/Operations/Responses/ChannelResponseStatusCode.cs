@@ -8,7 +8,7 @@ namespace Spreadbot.Core.Abstracts.Chanel.Operations.Responses
     public enum ChannelResponseStatusCode
     {
         Unknown,
-        PublishFail,
+        PublishFailure,
         PublishSuccess
     }
 }

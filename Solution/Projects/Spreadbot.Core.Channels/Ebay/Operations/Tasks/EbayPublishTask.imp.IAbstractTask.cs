@@ -59,7 +59,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         }
 
         // --------------------------------------------------------[]
-        public override string GetAutoinfo()
+        public override string GetBriefInfo()
         {
             return string.Format(
                 "Channel {3} {0}: {1} {2}",

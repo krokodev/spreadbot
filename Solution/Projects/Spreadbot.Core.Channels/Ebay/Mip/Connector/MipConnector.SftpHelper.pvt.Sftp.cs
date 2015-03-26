@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-26 16:57
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new MipResponse< MipTestConnectionResult >(
                     true,
                     MipOperationStatus.TestConnectionSuccess,
-                    new MipTestConnectionResult( true ) );
+                    new MipTestConnectionResult { Value = true } );
             }
 
             // ===================================================================================== []
@@ -91,7 +91,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         return new MipResponse< MipFindRemoteFileResult >(
                             true,
                             MipOperationStatus.FindRemoteFileSuccess,
-                            new MipFindRemoteFileResult( remoteDir, fileInfo.Name )
+                            new MipFindRemoteFileResult { RemoteFolderPath = remoteDir, RemoteFileName = fileInfo.Name }
                             );
                     }
                 }
