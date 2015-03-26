@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // AbstractMipResponseResult.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-26 19:42
 
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;

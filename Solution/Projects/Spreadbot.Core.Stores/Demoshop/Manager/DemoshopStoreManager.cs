@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-25 18:34
+// romak_000, 2015-03-26 19:42
 
 using System;
 using System.IO;

@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-26 18:13
+// romak_000, 2015-03-26 19:42
 
 using System;
 using System.Dynamic;
@@ -81,6 +81,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
             exceptionInfo.Type = exception.GetType().ToString();
             exceptionInfo.Message = exception.Message;
+
             //exceptionInfo.StackTrace = exception.StackTrace;
             //exceptionInfo.Source = exception.Source;
 

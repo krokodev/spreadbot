@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// romak_000, 2015-03-26 18:06
+// romak_000, 2015-03-26 19:42
 
 using System;
 using NUnit.Framework;
@@ -44,11 +44,11 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
-            Console.WriteLine( sendResponse);
+            Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );          
+            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
@@ -94,9 +94,9 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            Console.WriteLine( sendResponse);
+            Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
-            
+
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
             Console.WriteLine( findResponse );
@@ -144,7 +144,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Distribution );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            Console.WriteLine( sendResponse);
+            Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );

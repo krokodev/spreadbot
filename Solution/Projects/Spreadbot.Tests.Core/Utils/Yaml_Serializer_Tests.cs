@@ -1,11 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // Yaml_Serializer_Tests.cs
-// romak_000, 2015-03-26 16:21
+// romak_000, 2015-03-26 19:42
 
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using NUnit.Framework;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
@@ -13,8 +11,7 @@ using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Tests.Core.Common;
-using YamlDotNet.RepresentationModel;
-using YamlDotNet.Serialization;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
@@ -53,7 +50,6 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 CheckData = CkeckPhraze;
             }
         }
-
 
         // --------------------------------------------------------[]
         [Test]
@@ -99,7 +95,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 new Exception( "Test Exception" )
                 );
 
-             var str = storeTask.ToYamlString();
+            var str = storeTask.ToYamlString();
 
             Console.WriteLine( str );
 

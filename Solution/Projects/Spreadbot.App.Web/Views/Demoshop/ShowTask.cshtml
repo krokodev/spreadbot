@@ -2,7 +2,7 @@
 @using Spreadbot.App.Web.Models
 @using Spreadbot.Sdk.Common.Operations.Responses
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -24,7 +24,7 @@
 
         var pt = ( IProceedableTask ) task;
 
-        return "\n\n"+pt.GetProceedHistory().FoldToStringBy( h => h.ProceedTime.ToString("MMM-dd HH:mm:ss") +" "+h.ToString(), "\n\n", "no" );
+        return "\n\n" + pt.GetProceedHistory().FoldToStringBy( h => h.ProceedTime.ToString( "MMM-dd HH:mm:ss" ) + " " + h.ToString(), "\n\n", "no" );
     }
 
 }

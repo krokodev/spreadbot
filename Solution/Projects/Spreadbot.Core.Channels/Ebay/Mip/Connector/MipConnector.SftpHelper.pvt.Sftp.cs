@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// romak_000, 2015-03-26 16:57
+// romak_000, 2015-03-26 19:42
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;

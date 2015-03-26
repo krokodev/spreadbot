@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractResponseResult.cs
-// romak_000, 2015-03-25 15:25
+// romak_000, 2015-03-26 19:42
 
 using Spreadbot.Sdk.Common.Crocodev.Common;
 

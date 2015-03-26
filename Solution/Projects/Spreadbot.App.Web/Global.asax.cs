@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // Global.asax.cs
-// romak_000, 2015-03-25 21:08
+// romak_000, 2015-03-26 19:41
 
 using System;
 using System.Globalization;

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IProceedableTask.cs
-// romak_000, 2015-03-25 21:51
+// romak_000, 2015-03-26 19:42
 
 using System.Collections.Generic;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
@@ -25,9 +25,9 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 throw new SpreadbotException( "Unexpected Task MipRequestStatusCode: [{0}]", MipRequestStatusCode );
             }
         }
-        
-        [YamlMember(Order=99)]
-        public List<ITaskProceedInfo> ProceedHistory { get; set; }
+
+        [YamlMember( Order = 99 )]
+        public List< ITaskProceedInfo > ProceedHistory { get; set; }
 
         public IEnumerable< ITaskProceedInfo > GetProceedHistory()
         {

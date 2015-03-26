@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreTask.cs
-// romak_000, 2015-03-25 15:24
+// romak_000, 2015-03-26 19:42
 
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
             set { _channelTasks = value; }
         }
 
-        [YamlMember(Alias = "SubTasks", Order = 100)]
+        [YamlMember( Alias = "SubTasks", Order = 100 )]
         public override IEnumerable< IAbstractTask > AbstractSubTasks
         {
             get { return ChannelTasks; }
@@ -39,10 +39,10 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         }
 
         [Serialize]
-        [YamlMember(Alias = "Response")]
+        [YamlMember( Alias = "Response" )]
         public override IAbstractResponse AbstractResponse { get; set; }
 
-        public void AddSubTasks( params  EbayPublishTask[] tasks )
+        public void AddSubTasks( params EbayPublishTask[] tasks )
         {
             ChannelTasks.AddRange( tasks );
         }

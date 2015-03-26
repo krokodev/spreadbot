@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // YamlExtensions.cs
-// romak_000, 2015-03-26 19:31
+// romak_000, 2015-03-26 19:42
 
 using System.IO;
 using YamlDotNet.Serialization;

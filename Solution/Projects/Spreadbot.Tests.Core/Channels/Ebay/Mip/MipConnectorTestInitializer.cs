@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnectorTestInitializer.cs
-// romak_000, 2015-03-25 15:25
+// romak_000, 2015-03-26 19:42
 
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ using Spreadbot.Sdk.Common.Crocodev.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    [Ignore("Just a helper class")]
+    [Ignore( "Just a helper class" )]
     [TestFixture]
     public class MipConnectorTestInitializer
     {

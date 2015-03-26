@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Zip_Tests.cs
-// romak_000, 2015-03-25 15:25
+// romak_000, 2015-03-26 19:42
 
 using System;
 using System.IO;
@@ -12,11 +12,10 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Tests.Core.Common;
 
-
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
     [TestFixture]
-    public class MipConnector_Zip_Tests: SpreadbotBaseTest
+    public class MipConnector_Zip_Tests : SpreadbotBaseTest
     {
         // ===================================================================================== []
         [SetUp]
