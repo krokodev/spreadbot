@@ -1,12 +1,13 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// romak_000, 2015-03-26 19:42
+// romak_000, 2015-03-26 20:21
 
 using System;
 using System.Dynamic;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
+using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
@@ -52,11 +53,31 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         // --------------------------------------------------------[]
         // Code: GenericResponse.Yaml
+        [YamlMember( Order = -1 )]
+        public string Type
+        {
+            get { return GetType().ToString(); }
+
+            // ReSharper disable once ValueParameterNotUsed
+            set { }
+        }
+
+        [YamlMember( Order = 0 )]
         public TC Code { get; set; }
+
+        [YamlMember( Order = 1 )]
         public bool IsSuccess { get; set; }
+
+        [YamlMember( Order = 2 )]
         public TR Result { get; set; }
+
+        [YamlMember( Order = 3 )]
         public string Details { get; set; }
+
+        [YamlMember( Order = 4 )]
         public dynamic ExceptionInfo { get; set; }
+
+        [YamlMember( Order = 5 )]
         public IAbstractResponse InnerResponse { get; set; }
 
         // --------------------------------------------------------[]

@@ -5,7 +5,7 @@
 
 using System;
 using System.Threading;
-using Spreadbot.Core.Abstracts.Chanel.Manager;
+using Spreadbot.Core.Abstracts.Channel.Manager;
 
 namespace Spreadbot.Core.Channels.Ebay.Manager
 {

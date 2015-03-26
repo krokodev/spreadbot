@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFeedHandler.cs
-// romak_000, 2015-03-26 19:42
+// romak_000, 2015-03-26 20:29
 
 using System;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Feed
 {
@@ -14,22 +15,28 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Feed
             Id = Guid.NewGuid().ToString();
         }
 
-        public MipFeedHandler( MipFeedType mipFeedType )
+        public MipFeedHandler( MipFeedType type )
             : this()
         {
-            Type = mipFeedType;
+            Type = type;
         }
-
-        public MipFeedType Type { get; set; }
 
         public string GetName()
         {
             return Type.ToString().ToLower();
         }
 
-        public string Content { get; set; }
+        [YamlMember( Alias = "FeedType" )]
+        public MipFeedType Type { get; set; }
+
+        [YamlMember( Alias = "FeedId" )]
         public string Id { get; private set; }
+
+        [YamlMember( Order = 90 )]
         public string ItemInfo { get; set; }
+
+        [YamlMember( Alias = "FeedContent", Order = 99)]
+        public string Content { get; set; }
 
         public override string ToString()
         {

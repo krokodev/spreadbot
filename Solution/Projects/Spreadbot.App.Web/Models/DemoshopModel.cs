@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Items;

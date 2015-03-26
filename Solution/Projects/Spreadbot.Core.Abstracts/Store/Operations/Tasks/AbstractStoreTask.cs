@@ -4,6 +4,7 @@
 // romak_000, 2015-03-26 19:42
 
 using Spreadbot.Sdk.Common.Operations.Tasks;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
 {
@@ -18,7 +19,7 @@ namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
                 StoreId
                 );
         }
-
+        [YamlMember(Order = 19)]
         public string StoreId { get; set; }
     }
 }

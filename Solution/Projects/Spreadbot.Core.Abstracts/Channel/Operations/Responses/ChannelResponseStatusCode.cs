@@ -3,7 +3,7 @@
 // ChannelResponseStatusCode.cs
 // romak_000, 2015-03-26 19:42
 
-namespace Spreadbot.Core.Abstracts.Chanel.Operations.Responses
+namespace Spreadbot.Core.Abstracts.Channel.Operations.Responses
 {
     public enum ChannelResponseStatusCode
     {

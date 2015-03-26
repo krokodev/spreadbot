@@ -3,7 +3,7 @@
 // ChannelMethod.cs
 // romak_000, 2015-03-26 19:42
 
-namespace Spreadbot.Core.Abstracts.Chanel.Operations.Methods
+namespace Spreadbot.Core.Abstracts.Channel.Operations.Methods
 {
     public enum ChannelMethod
     {

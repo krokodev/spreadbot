@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using MoreLinq;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Manager;
 
 // >> Core | Dispatcher

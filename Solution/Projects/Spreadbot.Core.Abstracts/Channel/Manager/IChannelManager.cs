@@ -3,9 +3,9 @@
 // IChannelManager.cs
 // romak_000, 2015-03-26 19:42
 
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 
-namespace Spreadbot.Core.Abstracts.Chanel.Manager
+namespace Spreadbot.Core.Abstracts.Channel.Manager
 {
     public interface IChannelManager
     {

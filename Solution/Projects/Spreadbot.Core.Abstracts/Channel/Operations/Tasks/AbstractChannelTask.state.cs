@@ -3,12 +3,13 @@
 // AbstractChannelTask.state.cs
 // romak_000, 2015-03-26 19:42
 
-namespace Spreadbot.Core.Abstracts.Chanel.Operations.Tasks
+using YamlDotNet.Serialization;
+
+namespace Spreadbot.Core.Abstracts.Channel.Operations.Tasks
 {
     public abstract partial class AbstractChannelTask
     {
-        // ===================================================================================== []
-        // Protected
+        [YamlMember(Order = 9)]
         public string ChannelId { get; set; }
     }
 }

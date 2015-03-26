@@ -15,7 +15,7 @@
 }
 
 @{
-    // !>> View | Demoshop | Index
+    // !>> View | Demoshop
     ViewBag.Title = "Demo Shop";
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
@@ -56,7 +56,7 @@
         <ul>
             @foreach( var task in enumerable ) {
                 <li class="@TaskClass( task.GetStatusCode() )">
-                    @task [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
+                    @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
                     @ItemIdLink( task as EbayPublishTask )
                 </li>
                 @ShowTasks( task.AbstractSubTasks )

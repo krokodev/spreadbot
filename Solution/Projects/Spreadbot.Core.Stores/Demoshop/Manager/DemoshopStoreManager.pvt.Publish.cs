@@ -6,7 +6,7 @@
 using System.Globalization;
 using System.IO;
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
+using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Core.Channels.Ebay.Manager;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;

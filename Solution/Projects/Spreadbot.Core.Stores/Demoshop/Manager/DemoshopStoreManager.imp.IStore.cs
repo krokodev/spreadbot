@@ -4,7 +4,7 @@
 // romak_000, 2015-03-26 19:42
 
 using System.Collections.Generic;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 

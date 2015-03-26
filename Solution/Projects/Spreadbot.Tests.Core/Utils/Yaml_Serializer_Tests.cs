@@ -5,7 +5,7 @@
 
 using System;
 using NUnit.Framework;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
+using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;

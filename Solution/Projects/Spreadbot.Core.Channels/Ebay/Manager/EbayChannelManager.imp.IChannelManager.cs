@@ -3,7 +3,7 @@
 // EbayChannelManager.imp.IChannelManager.cs
 // romak_000, 2015-03-26 19:42
 
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Ebay.Manager

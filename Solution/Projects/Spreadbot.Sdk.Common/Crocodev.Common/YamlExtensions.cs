@@ -18,7 +18,12 @@ namespace Spreadbot.Sdk.Common.Crocodev.Common
 
             serializer.Serialize( sw, obj );
 
-            return sw.ToString().UnescapeSlashes();
+            return sw
+                .ToString()
+                .UnescapeSlashes()
+                .Replace( "\r","" )
+                .Replace( "\n\n","\n" )
+                .Replace( ": >-\n", ":\n" );
         }
     }
 }

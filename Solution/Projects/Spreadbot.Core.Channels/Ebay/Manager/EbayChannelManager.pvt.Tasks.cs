@@ -4,8 +4,8 @@
 // romak_000, 2015-03-26 19:42
 
 using System;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
+using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
+using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;

@@ -5,10 +5,11 @@
 
 using System;
 using System.Collections.Generic;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Sdk.Common.Operations.Tasks;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 {
@@ -19,8 +20,10 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             ProceedHistory = new List< ITaskProceedInfo >();
         }
 
+        [YamlMember(Order = 10)]
         public MipRequestStatus MipRequestStatusCode { get; set; }
 
+        [YamlMember(Alias="EbayPublishArgs", Order = 29)]
         public EbayPublishArgs Args { get; set; }
 
         public void WasUpdatedNow()

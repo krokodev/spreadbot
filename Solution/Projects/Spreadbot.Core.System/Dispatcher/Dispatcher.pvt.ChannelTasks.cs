@@ -5,8 +5,8 @@
 
 using System.Collections.Generic;
 using MoreLinq;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Methods;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 

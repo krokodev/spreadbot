@@ -58,16 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.imp.IChannelTask.cs" />
-    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.state.cs" />
-    <Compile Include="Chanel\Manager\AbstractChannelManager.cs" />
-    <Compile Include="Chanel\Manager\IChannelManager.cs" />
-    <Compile Include="Chanel\Operations\Methods\ChannelMethod.cs" />
-    <Compile Include="Chanel\Operations\Responses\ChannelResponse.cs" />
-    <Compile Include="Chanel\Operations\Responses\ChannelResponseStatusCode.cs" />
-    <Compile Include="Chanel\Operations\Responses\IChannelResponse.cs" />
-    <Compile Include="Chanel\Operations\Tasks\AbstractChannelTask.cs" />
-    <Compile Include="Chanel\Operations\Tasks\IChannelTask.cs" />
+    <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.imp.IChannelTask.cs" />
+    <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.state.cs" />
+    <Compile Include="Channel\Manager\AbstractChannelManager.cs" />
+    <Compile Include="Channel\Manager\IChannelManager.cs" />
+    <Compile Include="Channel\Operations\Methods\ChannelMethod.cs" />
+    <Compile Include="Channel\Operations\Responses\ChannelResponse.cs" />
+    <Compile Include="Channel\Operations\Responses\ChannelResponseStatusCode.cs" />
+    <Compile Include="Channel\Operations\Responses\IChannelResponse.cs" />
+    <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.cs" />
+    <Compile Include="Channel\Operations\Tasks\IChannelTask.cs" />
     <Compile Include="Store\Operations\Tasks\AbstractStoreTask.cs" />
     <Compile Include="Store\Manager\IStoreManager.cs" />
     <Compile Include="Store\Operations\Tasks\IStoreTask.cs" />

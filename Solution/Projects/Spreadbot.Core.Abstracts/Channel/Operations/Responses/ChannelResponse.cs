@@ -7,7 +7,7 @@ using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
-namespace Spreadbot.Core.Abstracts.Chanel.Operations.Responses
+namespace Spreadbot.Core.Abstracts.Channel.Operations.Responses
 {
     public class ChannelResponse<TR> :
         GenericResponse< TR, ChannelResponseStatusCode >, IChannelResponse

@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 using Nereal.Serialization;
-using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
+using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Responses;
