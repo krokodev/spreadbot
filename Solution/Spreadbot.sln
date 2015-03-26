@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sdk", "Sdk", "{D47486A1-A2F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.System", "projects\Spreadbot.Core.System\Spreadbot.Core.System.csproj", "{F9B60020-90E6-4B41-B29B-62958242CE58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Tests.Core", "projects\Spreadbot.Tests.Core\Spreadbot.Tests.Core.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Core", "projects\Spreadbot.Tests.Core\Spreadbot.Tests.Core.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Sdk.Common", "projects\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj", "{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}"
 EndProject
