@@ -81,8 +81,8 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
             exceptionInfo.Type = exception.GetType().ToString();
             exceptionInfo.Message = exception.Message;
-            exceptionInfo.StackTrace = exception.StackTrace;
-            exceptionInfo.Source = exception.Source;
+            //exceptionInfo.StackTrace = exception.StackTrace;
+            //exceptionInfo.Source = exception.Source;
 
             if( exception.InnerException != null ) {
                 exceptionInfo.InnerException = GetExceptionInfo( exception.InnerException );

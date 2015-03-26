@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 {
@@ -24,8 +25,9 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 throw new SpreadbotException( "Unexpected Task MipRequestStatusCode: [{0}]", MipRequestStatusCode );
             }
         }
-
-        public readonly List< ITaskProceedInfo > ProceedHistory = new List< ITaskProceedInfo >();
+        
+        [YamlMember(Order=99)]
+        public List<ITaskProceedInfo> ProceedHistory { get; set; }
 
         public IEnumerable< ITaskProceedInfo > GetProceedHistory()
         {

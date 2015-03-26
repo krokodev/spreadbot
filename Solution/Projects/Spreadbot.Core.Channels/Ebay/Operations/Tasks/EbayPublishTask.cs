@@ -4,6 +4,7 @@
 // romak_000, 2015-03-25 20:42
 
 using System;
+using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Responses;
 using Spreadbot.Core.Abstracts.Chanel.Operations.Tasks;
@@ -17,13 +18,14 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 {
     public sealed partial class EbayPublishTask : AbstractChannelTask, IProceedableTask
     {
-        public MipRequestStatus MipRequestStatusCode { get; set; }
-        public EbayPublishArgs Args { get; set; }
+        public EbayPublishTask()
+        {
+            ProceedHistory = new List< ITaskProceedInfo >();
+        }
 
-        [NotSerialize]
-        [YamlIgnore]
-        // Is serialized by [AbstractResponse]
-        public ChannelResponse< EbayPublishResult > EbayPublishResponse { get; set; }
+        public MipRequestStatus MipRequestStatusCode { get; set; }
+
+        public EbayPublishArgs Args { get; set; }
 
         public void WasUpdatedNow()
         {

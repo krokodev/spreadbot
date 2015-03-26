@@ -11,6 +11,7 @@ using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
+using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
 {
@@ -25,6 +26,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
             set { _channelTasks = value; }
         }
 
+        [YamlMember(Alias = "SubTasks", Order = 100)]
         public override IEnumerable< IAbstractTask > AbstractSubTasks
         {
             get { return ChannelTasks; }
@@ -37,6 +39,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         }
 
         [Serialize]
+        [YamlMember(Alias = "Response")]
         public override IAbstractResponse AbstractResponse { get; set; }
 
         public void AddSubTasks( params  EbayPublishTask[] tasks )
