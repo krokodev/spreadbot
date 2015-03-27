@@ -3,13 +3,13 @@
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel
+@model Spreadbot.App.Web.Models.DemoshopModel
 
 @functions {
 
-    private static string TaskClass(TaskStatus statusCode)
+    private static string TaskClass( TaskStatus statusCode )
     {
-        return string.Format("sb-task sb-task-{0}", statusCode.ToString().ToLower());
+        return string.Format( "sb-task sb-task-{0}", statusCode.ToString().ToLower() );
     }
 
 }
@@ -22,67 +22,61 @@
 
 @helper ItemEditForm()
 {
-    using (Html.BeginForm("UpdateItem", "Demoshop", FormMethod.Post))
-    {
+    using( Html.BeginForm( "UpdateItem", "Demoshop", FormMethod.Post ) ) {
         <fieldset class="sb-table">
-            @FormEditor(m => DemoshopModel.Item.Sku)
-            @FormEditor(m => DemoshopModel.Item.Title, "sb-width-500px")
-            @FormEditor(m => DemoshopModel.Item.Price)
-            @FormEditor(m => DemoshopModel.Item.Quantity)
+            @FormEditor( m => DemoshopModel.Item.Sku )
+            @FormEditor( m => DemoshopModel.Item.Title, "sb-width-500px" )
+            @FormEditor( m => DemoshopModel.Item.Price )
+            @FormEditor( m => DemoshopModel.Item.Quantity )
         </fieldset>
-        <input type="submit" value="Update" />
+        <input type="submit" value="Update"/>
     }
 }
 
-@helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
+@helper FormEditor( Expression< Func< DemoshopModel, string > > expression, string @class = "sb-width-200px" )
 {
-    var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new { @class });
+    var label = Html.LabelFor( expression );
+    var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @((HelperResult)FormView.Editor(label, textBox))
+    @(( HelperResult ) FormView.Editor( label, textBox ))
 }
 
-@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
+@helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
 {
-    var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new { @class });
+    var label = Html.LabelFor( expression );
+    var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @((HelperResult)FormView.Editor(label, textBox))
+    @(( HelperResult ) FormView.Editor( label, textBox ))
 }
 
-@helper ShowTasks(IEnumerable<IAbstractTask> tasks)
+@helper ShowTasks( IEnumerable< IAbstractTask > tasks )
 {
     var enumerable = tasks.ToList();
-    if (enumerable.Count() != 0)
-    {
+    if( enumerable.Count() != 0 ) {
         <ul>
 
             @*Code: Error  Wake up*@
 
-            @foreach (var task in enumerable)
-            {
+            @foreach( var task in enumerable ) {
                 <li class="@TaskClass( task.GetStatusCode() )">
-                    @task.GetBriefInfo() [@Html.ActionLink("...", "ShowTask", new { taskId = @task.Id }, new { })]
-                    @ItemIdLink(task as EbayPublishTask)
+                    @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
+                    @ItemIdLink( task as EbayPublishTask )
                 </li>
-                @ShowTasks(task.AbstractSubTasks)
+                @ShowTasks( task.AbstractSubTasks )
             }
         </ul>
     }
 }
 
-@helper ItemIdLink(EbayPublishTask task)
+@helper ItemIdLink( EbayPublishTask task )
 {
-    try
-    {
+    try {
         var itemId = task.EbayPublishResponse.Result.MipItemId;
-        if (itemId != null)
-        {
+        if( itemId != null ) {
             <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
         }
     }
-    catch
-    {
+    catch {
         <span></span>
     }
 }
@@ -122,8 +116,8 @@
     .sb-error-message {
         background: red;
         color: yellow;
-        padding: 10px;
         font-size: 20px;
+        padding: 10px;
         width: 1200px;
     }
 
@@ -137,8 +131,7 @@
 
     <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
 
-    @if (!string.IsNullOrEmpty(DemoshopModel.ErrorMessage))
-    {
+    @if( !string.IsNullOrEmpty( DemoshopModel.ErrorMessage ) ) {
         <div class="sb-error-message">
             @DemoshopModel.ErrorMessage
         </div>
@@ -155,17 +148,17 @@
         <h2>
             Store/channel Tasks
         </h2>
-        @ShowTasks(DemoshopModel.StoreTasks)
+        @ShowTasks( DemoshopModel.StoreTasks )
         <ul>
             <li>
-                @Html.ActionLink("Add task:", "AddTask") @string.Format("Publish [{0}] on eBay", DemoshopModel.Item)
+                @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", DemoshopModel.Item )
             </li>
             <li>
                 @*
                     @Html.ActionLink("Save tasks", "SaveTasks") |
                     @Html.ActionLink( "Restore tasks", "RestoreTasks" ) |
                 *@
-                Remove all tasks [@Html.ActionLink("ok", "DeleteTasks")]
+                Remove all tasks [@Html.ActionLink( "ok", "DeleteTasks" )]
             </li>
         </ul>
 
@@ -178,13 +171,13 @@
         <ul>
             <li>
                 @Html.ActionLink(
-                    string.Format("Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count()),
-                    "RunChannelTasks")
+                    string.Format( "Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count() ),
+                    "RunChannelTasks" )
             </li>
             <li>
                 @Html.ActionLink(
-                    string.Format("Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count()),
-                    "ProceedChannelTasks")
+                    string.Format( "Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count() ),
+                    "ProceedChannelTasks" )
             </li>
             <li>
                 [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
