@@ -23,15 +23,33 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         public string Id { get; private set; }
 
         [YamlMember( Order = 1 )]
-        public bool IsCritical { get; set; }
+        public string BriefInfo
+        {
+            get { return GetBriefInfo(); }
 
-        [YamlMember( Order = 2 )]
-        public string Description { get; set; }
+            // ReSharper disable once ValueParameterNotUsed
+            set { }
+        }
+        
+        [YamlMember( Order = 2)]
+        public TaskStatus StatusCode
+        {
+            get { return GetStatusCode(); }
 
-        [YamlMember( Order = 3 )]
-        public DateTime CreationTime { get; set; }
+            // ReSharper disable once ValueParameterNotUsed
+            set { }
+        }
 
         [YamlMember( Order = 4 )]
+        public bool IsCritical { get; set; }
+
+        [YamlMember( Order = 5 )]
+        public string Description { get; set; }
+
+        [YamlMember( Order = 6 )]
+        public DateTime CreationTime { get; set; }
+
+        [YamlMember( Order = 7 )]
         public DateTime LastUpdateTime { get; protected set; }
     }
 }
