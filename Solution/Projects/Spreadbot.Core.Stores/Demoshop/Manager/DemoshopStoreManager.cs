@@ -1,12 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-26 19:42
+// romak_000, 2015-03-27 20:43
 
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Crocodev.Common.Extensions;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
@@ -34,22 +35,38 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             get { return LazyInstance.Value; }
         }
 
+        // Code: SaveData(), Err: Missing Tasks' data
+
         // ===================================================================================== []
         public void SaveData()
         {
-            Serializer.Default.Serialize( this, DataFileName() );
+            var fileName = DataFileName();
+            var tmpFileName = fileName + ".bak";
+            try {
+                Serializer.Default.Serialize( this, tmpFileName );
+                File.Delete( fileName );
+                File.Copy( tmpFileName, fileName );
+                ErrorMessage = "";
+            }
+            catch {
+                ErrorMessage = "Can't save tasks to [{0}]".SafeFormat( fileName );
+            }
         }
+
+        // --------------------------------------------------------[]
+        [NotSerialize]
+        public string ErrorMessage { get; set; }
 
         // --------------------------------------------------------[]
         public void RestoreData()
         {
+            var fileName = DataFileName();
             try {
-                if( File.Exists( DataFileName() ) ) {
-                    Serializer.Default.Deserialize( this, DataFileName() );
-                }
+                Serializer.Default.Deserialize( this, fileName );
+                ErrorMessage = "";
             }
             catch( Exception ) {
-                // ignored
+                ErrorMessage = "Can't load data from [{0}]".SafeFormat( fileName );
             }
         }
 

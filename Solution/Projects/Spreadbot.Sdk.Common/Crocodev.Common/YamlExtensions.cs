@@ -10,7 +10,6 @@ namespace Spreadbot.Sdk.Common.Crocodev.Common
 {
     public static class YamlExtensions
     {
-        // Code: YamlExtensions
         public static string ToYamlString( this object obj )
         {
             var serializer = new Serializer( SerializationOptions.None );
@@ -23,7 +22,9 @@ namespace Spreadbot.Sdk.Common.Crocodev.Common
                 .UnescapeSlashes()
                 .Replace( "\r","" )
                 .Replace( "\n\n","\n" )
-                .Replace( ": >-\n", ":\n" );
+                .Replace( ": >-\n", ":\n" )
+                .Replace( ": >\n", ":\n" )
+                ;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// romak_000, 2015-03-26 19:41
+// romak_000, 2015-03-27 20:34
 
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +45,11 @@ namespace Spreadbot.App.Web.Models
         public static DemoshopStoreManager StoreManager
         {
             get { return DemoshopStoreManager.Instance; }
+        }
+
+        public static string ErrorMessage
+        {
+            get { return DemoshopStoreManager.Instance.ErrorMessage; }
         }
 
         public static void SaveItem( DemoshopItem item )

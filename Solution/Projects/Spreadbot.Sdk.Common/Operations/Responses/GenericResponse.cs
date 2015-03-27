@@ -52,7 +52,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         protected GenericResponse() {}
 
         // --------------------------------------------------------[]
-        // Code: GenericResponse.Yaml
         [YamlMember( Order = -1 )]
         public string Type
         {
@@ -97,7 +96,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         // --------------------------------------------------------[]
         private static dynamic GetExceptionInfo( Exception exception )
         {
-            // Code: PrepareExceptionInfo
             dynamic exceptionInfo = new ExpandoObject();
 
             exceptionInfo.Type = exception.GetType().ToString();
