@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IAbstractTask.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-30 2:48 PM
 
 using System.Collections.Generic;
 using Nereal.Serialization;
@@ -76,7 +76,8 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 "Channel {3} {0}: {1} {2}",
                 GetStatusCode(),
                 IsCritical ? "Critical" : "Non critical",
-                string.Format( "Publish [{0}]", Args.MipFeedHandler.GetName() ),
+                string.Format( "Publish [{0}]",
+                    Args == null ? "n/a" : Args.MipFeedHandler.GetName() ),
                 ChannelId );
         }
     }

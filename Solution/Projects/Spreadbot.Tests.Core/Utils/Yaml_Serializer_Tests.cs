@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // Yaml_Serializer_Tests.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-30 2:44 PM
 
 using System;
 using NUnit.Framework;
@@ -11,6 +11,7 @@ using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Tests.Core.Common;
+using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
@@ -56,7 +57,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public static void SimpleObject_Serialization()
         {
             var obj = new Object();
-            var str = obj.ToYamlString();
+            var str = obj.ToYamlString( SerializationOptions.EmitDefaults );
 
             Console.WriteLine( str );
 
@@ -95,7 +96,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 new Exception( "Test Exception" )
                 );
 
-            var str = storeTask.ToYamlString();
+            var str = storeTask.ToYamlString( SerializationOptions.EmitDefaults );
 
             Console.WriteLine( str );
 

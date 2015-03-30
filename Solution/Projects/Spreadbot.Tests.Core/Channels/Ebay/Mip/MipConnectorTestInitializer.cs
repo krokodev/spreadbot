@@ -1,8 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnectorTestInitializer.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-30 2:18 PM
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Spreadbot.Sdk.Common.Crocodev.Common;
+using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
@@ -36,7 +38,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             };
 
             AddFeedStatusSamples( files );
-            CopyFronIniToStore( files );
+            CopyFromIniToStore( files );
         }
 
         // --------------------------------------------------------[]
@@ -71,14 +73,29 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        private static void CopyFronIniToStore( List< string > files )
+        // Code: CopyFromIniToStore
+        private static void CopyFromIniToStore( List< string > files )
         {
             files.ForEach(
                 file => {
                     var iniFile = MipSettings.LocalBasePath + @"ini\" + file;
                     var storeFile = MipSettings.LocalBasePath + @"store\" + file;
-                    File.Delete( storeFile );
-                    File.Copy( iniFile, storeFile );
+                    var storeFolder = Path.GetDirectoryName( storeFile );
+
+                    if( storeFolder == null ) {
+                        throw new SpreadbotException( "Unknown folder for file [{0}]", storeFile );
+                    }
+                    if( !Directory.Exists( storeFolder ) ) {
+                        Directory.CreateDirectory( storeFolder );
+                    }
+                    if( File.Exists( storeFile ) ) {
+                        File.Delete( storeFile );
+                    }
+                    if( !File.Exists( iniFile ) ) {
+                        Console.WriteLine( "File [{0}] not foind", iniFile );
+                    } else {
+                        File.Copy( iniFile, storeFile );
+                    }
                 } );
         }
     }
