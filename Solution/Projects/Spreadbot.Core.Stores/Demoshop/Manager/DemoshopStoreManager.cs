@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// romak_000, 2015-03-27 20:43
+// Roman, 2015-03-30 12:34 PM
 
 using System;
 using System.IO;
@@ -96,10 +96,15 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         public AbstractTask FindTask( string taskId )
         {
-            return ( AbstractTask ) StoreTasks
-                .SelectMany( t => t.AbstractSubTasks )
-                .Concat( StoreTasks )
-                .First( tt => tt.Id == taskId );
+            try {
+                return ( AbstractTask ) StoreTasks
+                    .SelectMany( t => t.AbstractSubTasks )
+                    .Concat( StoreTasks )
+                    .First( tt => tt.Id == taskId );
+            }
+            catch {
+                return null;
+            }
         }
     }
 }

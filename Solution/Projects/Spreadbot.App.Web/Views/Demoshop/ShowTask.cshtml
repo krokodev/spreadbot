@@ -1,6 +1,16 @@
-﻿@using Spreadbot.App.Web.Models
+﻿@using Crocodev.Common.Extensions
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@using Spreadbot.App.Web.Models
+@model  Spreadbot.App.Web.Models.DemoshopModel 
+
+@helper ShowTask( AbstractTask task )
+{
+    <div style="font-size: 16px">
+        <pre><code>
+@task.ToString()
+        </code></pre>
+    </div>
+}
 
 @{
     // !>> View | Demoshop | ShowTask
@@ -11,8 +21,13 @@
     var task = ( AbstractTask ) DemoshopModel.FindTask( ViewBag.TaskId );
 }
 
-<div style="font-size: 16px">
-    <pre><code>
-@(task.ToString() )
-        </code></pre>
-</div>
+@{
+    if( task != null ) {
+        @ShowTask( task )
+    } else if( !string.IsNullOrEmpty( ViewBag.TaskId ) ) {
+        var answer =string.Format( "Task with Id=[{0}] is not found", ViewBag.TaskId );
+        @answer
+    } else {
+        @:No task info
+    }
+} 
