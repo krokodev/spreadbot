@@ -15,7 +15,7 @@ using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
+namespace Spreadbot.Tests.Core.Utils
 {
     [TestFixture]
     public class Yaml_Serializer_Tests : SpreadbotBaseTest
