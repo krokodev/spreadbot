@@ -1,5 +1,8 @@
 # Test Output
 $(SolutionDir)\scripts\run-script.cmd $(SolutionDir)\scripts\test-output.ps1 $(TargetPath) $(ProjectFileName) $(TargetFileName)
 
-# Restore File From Default
+# Restore Sample File From Default
 $(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.ps1 -source $(ProjectDir)research\default.txt -destination $(ProjectDir)research\security.txt
+
+# Restore Mip.Security.config From Default
+$(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config
