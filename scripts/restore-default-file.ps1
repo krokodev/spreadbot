@@ -1,55 +1,46 @@
+param (
+    [string] $source,
+    [string] $destination
+)
+
 try
 {
-	# settings
-	$rootPath        = "p:\Projects\crocodev"
-	$solutionName    = "Crocodev"
-	$projectName     = "Crocodev.Common"
-	$projectConfig   = "Release"
+	if( Test-Path $destination )
+	{
+		Write-Host "$destination already exists"
+		exit 0
+	}
 
-	# devenv path
-	$env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\"
+	if( -not ( Test-Path $source ) )
+	{
+		Write-Error "Error : default file not found"
+		Write-Host "=========================================================="
+		Write-Host ""
+		Write-Host "File with default data is not found"
+		Write-Host "$source"
+		Write-Host ""
+		Write-Host "=========================================================="
+		exit 0
+	}
+
+    Copy-Item $source -Destination $destination
+	Write-Warning "File was initialized with deafult content, see output for details"
+	Write-Host "=========================================================="
+	Write-Host ""
+	Write-Host "Please pay attention for this file:"
+	Write-Host "$destination"
+	Write-Host ""
+	Write-Host "It is initialized by"
+	Write-Host "$source"
+	Write-Host ""
+	Write-Host "You are to fill it out with actual data"
+	Write-Host ""
+	Write-Host "=========================================================="
 	
-	# values 
-	$solutionPath    = "$rootPath\$solutionName.sln"
-	$assemblyPath    = "$rootPath\projects\$projectName\bin\$projectConfig\$projectName.dll"
-	$packageName     = $projectName.ToLower()
-
-	# build assembly
-	devenv.exe $solutionPath /rebuild $projectConfig
-	if ($LASTEXITCODE -eq 1)
-	{
-		throw "build assembly failed"
-	}
-
-	# get version
-	$assembly        = [Reflection.Assembly]::Loadfile($assemblyPath)
-	$assemblyName    = $assembly.GetName()
-	$assemblyVersion = $assemblyName.Version.ToString()
-	if ($LASTEXITCODE -eq 1)
-	{
-		throw "get version failed"
-	}
-
-	# make package
-	.\NuGet.exe pack ..\projects\$projectName\$projectName.csproj -IncludeReferencedProjects -Prop Configuration=Release
- 	if ($LASTEXITCODE -eq 1)
-	{
-		throw "build package failed"
-	}
-
-	# deploy package
-	$nugetApiKey = gc .\nuget.apikey
-	$deployName  = "$packageName.$assemblyVersion.nupkg"
-	.\NuGet.exe setApiKey $NugetApiKey
-	.\NuGet.exe push $deployName
-	if ($LASTEXITCODE -eq 1)
-	{
-		throw "deploy package failed"
-	}
+	exit 0
 }
-catch
+catch [Exception]
 {
-	Write-Error $_
-	Write-Host "Press enter..."
-	read-host
+	Write-Error "Error: $_.Message"
+	exit 1
 }

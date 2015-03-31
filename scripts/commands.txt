@@ -1,0 +1,5 @@
+# Test Output
+$(SolutionDir)\scripts\run-script.cmd $(SolutionDir)\scripts\test-output.ps1 $(TargetPath) $(ProjectFileName) $(TargetFileName)
+
+# Restore File From Default
+$(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.ps1 -source $(ProjectDir)research\default.txt -destination $(ProjectDir)research\security.txt
