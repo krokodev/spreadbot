@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Sdk.Common", "sou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Sdk.Tools", "sources\Spreadbot.Sdk.Tools\Spreadbot.Sdk.Tools.csproj", "{1ED946C5-318D-461F-9DDD-DF3C321144BA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".architecture", ".architecture", "{01BC851E-0DE7-4A91-B1C7-198FDC687D21}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "architecture", "architecture", "{01BC851E-0DE7-4A91-B1C7-198FDC687D21}"
 	ProjectSection(SolutionItems) = preProject
 		architecture\Explore.dgml = architecture\Explore.dgml
 	EndProjectSection
@@ -38,11 +38,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Abstracts", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels", "sources\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ps1", ".ps1", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
 	ProjectSection(SolutionItems) = preProject
-		.ps1\restore-default-file.ps1 = .ps1\restore-default-file.ps1
-		.ps1\test.ps1 = .ps1\test.ps1
+		scripts\restore-default-file.ps1 = scripts\restore-default-file.ps1
+		scripts\test.ps1 = scripts\test.ps1
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "-", "-", "{D04AE4D7-ECE4-479C-B44C-4412E64F697E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,5 +131,8 @@ Global
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA} = {EF6CE066-22CC-44BB-8768-FF001637E704}
 		{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5} = {D47486A1-A2FE-49C7-9151-C75C1FAB2841}
 		{1ED946C5-318D-461F-9DDD-DF3C321144BA} = {D47486A1-A2FE-49C7-9151-C75C1FAB2841}
+		{01BC851E-0DE7-4A91-B1C7-198FDC687D21} = {D04AE4D7-ECE4-479C-B44C-4412E64F697E}
+		{F92D32FB-8984-4925-B2A7-DF14ABC2889F} = {D04AE4D7-ECE4-479C-B44C-4412E64F697E}
+		{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD} = {D04AE4D7-ECE4-479C-B44C-4412E64F697E}
 	EndGlobalSection
 EndGlobal
