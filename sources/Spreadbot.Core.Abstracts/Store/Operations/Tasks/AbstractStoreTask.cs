@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // AbstractStoreTask.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-31 1:26 PM
 
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
@@ -19,7 +19,8 @@ namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
                 StoreId
                 );
         }
-        [YamlMember(Order = 19)]
+
+        [YamlMember( Order = 19 )]
         public string StoreId { get; set; }
     }
 }

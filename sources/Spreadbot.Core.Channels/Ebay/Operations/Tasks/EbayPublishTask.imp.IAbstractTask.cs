@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IAbstractTask.cs
-// Roman, 2015-03-30 2:48 PM
+// Roman, 2015-03-31 1:27 PM
 
 using System.Collections.Generic;
 using Nereal.Serialization;

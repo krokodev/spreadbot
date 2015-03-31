@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-31 1:27 PM
 
 using System;
 using System.Collections.Generic;
@@ -20,10 +20,10 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             ProceedHistory = new List< ITaskProceedInfo >();
         }
 
-        [YamlMember(Order = 10)]
+        [YamlMember( Order = 10 )]
         public MipRequestStatus MipRequestStatusCode { get; set; }
 
-        [YamlMember(Alias="EbayPublishArgs", Order = 29)]
+        [YamlMember( Alias = "EbayPublishArgs", Order = 29 )]
         public EbayPublishArgs Args { get; set; }
 
         public void WasUpdatedNow()

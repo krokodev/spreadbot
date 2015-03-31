@@ -1,7 +1,6 @@
-﻿@using Crocodev.Common.Extensions
+﻿@using Spreadbot.App.Web.Models
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@using Spreadbot.App.Web.Models
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @helper ShowTask( AbstractTask task )
 {
@@ -25,9 +24,9 @@
     if( task != null ) {
         @ShowTask( task )
     } else if( !string.IsNullOrEmpty( ViewBag.TaskId ) ) {
-        var answer =string.Format( "Task with Id=[{0}] is not found", ViewBag.TaskId );
+        var answer = string.Format( "Task with Id=[{0}] is not found", ViewBag.TaskId );
         @answer
     } else {
         @:No task info
     }
-} 
+}

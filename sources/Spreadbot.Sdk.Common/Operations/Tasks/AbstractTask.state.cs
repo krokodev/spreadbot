@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.state.cs
-// romak_000, 2015-03-26 20:14
+// Roman, 2015-03-31 1:27 PM
 
 using System;
 using YamlDotNet.Serialization;
@@ -30,8 +30,8 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
             // ReSharper disable once ValueParameterNotUsed
             set { }
         }
-        
-        [YamlMember( Order = 2)]
+
+        [YamlMember( Order = 2 )]
         public TaskStatus StatusCode
         {
             get { return GetStatusCode(); }

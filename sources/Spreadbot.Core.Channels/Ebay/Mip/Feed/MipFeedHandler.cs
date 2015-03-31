@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFeedHandler.cs
-// romak_000, 2015-03-26 20:29
+// Roman, 2015-03-31 1:26 PM
 
 using System;
 using YamlDotNet.Serialization;
@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Feed
         [YamlMember( Order = 90 )]
         public string ItemInfo { get; set; }
 
-        [YamlMember( Alias = "FeedContent", Order = 99)]
+        [YamlMember( Alias = "FeedContent", Order = 99 )]
         public string Content { get; set; }
 
         public override string ToString()

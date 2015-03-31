@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopItem.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-31 1:26 PM
 
 using System.ComponentModel.DataAnnotations;
 

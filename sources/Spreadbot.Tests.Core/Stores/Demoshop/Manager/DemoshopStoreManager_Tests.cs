@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// romak_000, 2015-03-26 19:42
+// Roman, 2015-03-31 1:27 PM
 
 using System;
 using System.Collections.Generic;
@@ -88,7 +88,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         public void Save_and_Restore_Tasks()
         {
             // Code: Test: Save_and_Restore_Tasks()
- 
+
             var store = DemoshopStoreManager.Instance;
 
             store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
