@@ -32,8 +32,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string Type
         {
             get { return GetType().ToString(); }
-
-            // Todo: Ref: remove GenericResponse Type.Set
             // ReSharper disable once ValueParameterNotUsed
             //set { }
         }
