@@ -42,7 +42,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.Code );
             }
             catch( SpreadbotException exception ) {
-                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+                IgnoreMipQueueDepthErrorMessage( exception.Message );
             }
         }
 

@@ -1,13 +1,15 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-03-31 1:27 PM
+// Roman, 2015-04-01 2:59 PM
 
 using System;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Tests.Core.Common;
@@ -29,18 +31,14 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void SendZippedFeedFolder()
         {
-            try {
-                var feed = new MipFeedHandler( MipFeedType.Product );
+            var feed = new MipFeedHandler( MipFeedType.Product );
 
-                var response = MipConnector.SendZippedFeedFolder( feed );
-                Console.WriteLine( response );
+            var response = MipConnector.SendZippedFeedFolder( feed );
+            Console.WriteLine( response );
+            IgnoreMipQueueDepthErrorMessage( response.ToString() );
 
-                Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
-                Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
-            }
-            catch( SpreadbotException exception ) {
-                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
-            }
+            Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
+            Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
         }
 
         // ===================================================================================== []
@@ -115,7 +113,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                 Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
             }
             catch( SpreadbotException exception ) {
-                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+                IgnoreMipQueueDepthErrorMessage( exception.Message );
             }
         }
 
@@ -153,22 +151,19 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void GetRequestStatus_Success()
         {
-            try {
-                var feed = new MipFeedHandler( MipFeedType.Distribution );
-                var sendResponse = MipConnector.SendTestFeedFolder( feed );
-                Console.WriteLine( sendResponse );
-                Assert.IsNotNull( sendResponse.Result );
+            var feed = new MipFeedHandler( MipFeedType.Distribution );
+            var sendResponse = MipConnector.SendTestFeedFolder( feed );
+            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
 
-                var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-                var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
-                Console.WriteLine( requestResponse );
+            Console.WriteLine( sendResponse );
+            Assert.IsNotNull( sendResponse.Result );
 
-                Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
-                Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
-            }
-            catch( SpreadbotException exception ) {
-                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
-            }
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
+            var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
+            Console.WriteLine( requestResponse );
+
+            Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
+            Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
         }
 
         // --------------------------------------------------------[]
