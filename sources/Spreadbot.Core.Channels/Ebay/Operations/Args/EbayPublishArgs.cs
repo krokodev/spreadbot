@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishArgs.cs
-// Roman, 2015-03-31 1:27 PM
+// Roman, 2015-04-01 4:59 PM
 
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 

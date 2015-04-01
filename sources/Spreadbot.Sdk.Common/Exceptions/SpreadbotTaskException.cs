@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Core.System
+// Spreadbot.Sdk.Common
 // SpreadbotTaskException.cs
-// Roman, 2015-04-01 1:20 PM
+// Roman, 2015-04-01 4:59 PM
 
 namespace Spreadbot.Sdk.Common.Exceptions
 
