@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 5:23 PM
 
 using System;
 using NUnit.Framework;
@@ -9,7 +9,6 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Tests.Core.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
@@ -94,25 +93,22 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void FindRequest_Output()
         {
-            try {
-                var feed = new MipFeedHandler( MipFeedType.Product );
-                var sendResponse = MipConnector.SendTestFeedFolder( feed );
-                Console.WriteLine( sendResponse );
-                Assert.IsNotNull( sendResponse.Result );
+            var feed = new MipFeedHandler( MipFeedType.Product );
+            var sendResponse = MipConnector.SendTestFeedFolder( feed );
+            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
 
-                var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-                var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
-                Console.WriteLine( findResponse );
+            Console.WriteLine( sendResponse );
+            Assert.IsNotNull( sendResponse.Result );
 
-                Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
-                Assert.IsNotNull( findResponse.Result.RemoteFileName );
-                Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
-                Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
-                Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
-            }
-            catch( SpreadbotException exception ) {
-                IgnoreMipQueueDepthErrorMessage( exception.Message );
-            }
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
+            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
+            Console.WriteLine( findResponse );
+
+            Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
+            Assert.IsNotNull( findResponse.Result.RemoteFileName );
+            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+            Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
+            Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
         }
 
         // --------------------------------------------------------[]

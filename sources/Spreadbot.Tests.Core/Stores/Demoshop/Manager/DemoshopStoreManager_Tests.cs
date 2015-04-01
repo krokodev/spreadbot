@@ -71,20 +71,25 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Proceed_Task_PublishItemOnEbay()
         {
-            var dispatcher = Dispatcher.Instance;
-            var store = DemoshopStoreManager.Instance;
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            try {
+                var dispatcher = Dispatcher.Instance;
+                var store = DemoshopStoreManager.Instance;
+                var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
-            dispatcher.RunChannelTasks( store.GetChannelTasks() );
-            dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
+                dispatcher.RunChannelTasks( store.GetChannelTasks() );
+                dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
-            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
-                Console.WriteLine( t );
-                Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
-            } );
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+                task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                    IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
+                    Console.WriteLine( t );
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                } );
+                Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+            }
+            catch( SpreadbotException exception ) {
+                IgnoreMipQueueDepthErrorMessage( exception.Message );
+            }
         }
 
         // --------------------------------------------------------[]
