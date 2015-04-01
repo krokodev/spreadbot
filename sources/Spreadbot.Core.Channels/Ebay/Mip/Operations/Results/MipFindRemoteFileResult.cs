@@ -8,6 +8,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
     public class MipFindRemoteFileResult : AbstractMipResponseResult
     {
         public string RemoteFileName { get; set; }
-        public string RemoteFolderPath { get; set; }
+        public string RemoteDir { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 7:12 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -68,10 +68,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             try {
                 switch( stage ) {
                     case MipRequestProcessingStage.Inprocess :
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInInprocess( mipRequestHandler );
+                        findResponse = FindRequestRemoteFileNameInInprocess( mipRequestHandler );
                         break;
                     case MipRequestProcessingStage.Output :
-                        findResponse = SftpHelper.FindRequestRemoteFileNameInOutput( mipRequestHandler );
+                        findResponse = FindRequestRemoteFileNameInOutput( mipRequestHandler );
                         break;
                     default :
                         throw new Exception( string.Format( "Wrong stage {0}", stage ) );
@@ -88,6 +88,26 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 MipOperationStatus.FindRequestSuccess,
                 findResponse.Result,
                 findResponse );
+        }
+
+        // --------------------------------------------------------[]
+        private static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
+            MipRequestHandler mipRequestHandler )
+        {
+            var remoteDir = RemoteFeedInprocessFolderPath( mipRequestHandler.MipFeedHandler.GetName() );
+            var prefix = mipRequestHandler.FileNamePrefix();
+
+            return SftpHelper.FindRemoteFile( prefix, remoteDir );
+        }
+
+        // --------------------------------------------------------[]
+        public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
+            MipRequestHandler mipRequestHandler )
+        {
+            var remoteDirs = RemoteFeedOutputFolderPathes( mipRequestHandler.MipFeedHandler.GetName() );
+            var prefix = mipRequestHandler.FileNamePrefix();
+
+            return SftpHelper.FindRemoteFile( prefix, remoteDirs );
         }
 
         // ===================================================================================== []
@@ -138,7 +158,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipResponse< MipFindRemoteFileResult > response )
         {
             var fileName = response.Result.RemoteFileName;
-            var remotePath = response.Result.RemoteFolderPath;
+            var remotePath = response.Result.RemoteDir;
             var localPath = LocalRequestResultsFolder();
             var content = SftpHelper.GetRemoteFileContent( remotePath, fileName, localPath );
             return MakeRequestStatusResultByParsingXmlContent( feedType, content );

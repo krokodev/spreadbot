@@ -78,29 +78,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // ===================================================================================== []
-            // FindFileNamePrefixInRemoteDir
-            private static MipResponse< MipFindRemoteFileResult > FindRemoteFileNamePrefixInRemoteDir(
-                string prefix,
-                string remoteDir )
-            {
-                var files = GetRemoteDirFiles( remoteDir );
-                foreach( RemoteFileInfo fileInfo in files ) {
-                    if( fileInfo.Name.Contains( prefix ) ) {
-                        return new MipResponse< MipFindRemoteFileResult >(
-                            true,
-                            MipOperationStatus.FindRemoteFileSuccess,
-                            new MipFindRemoteFileResult { RemoteFolderPath = remoteDir, RemoteFileName = fileInfo.Name }
-                            );
-                    }
-                }
-                return new MipResponse< MipFindRemoteFileResult >(
-                    false,
-                    MipOperationStatus.FindRemoteFileFailure,
-                    string.Format( "Remote file [{0}] not found in [{1}]", prefix, remoteDir )
-                    );
-            }
-
-            // ===================================================================================== []
             // SftpUploadFiles
             private static void SftpUploadFiles( string localPath, string remotePath )
             {

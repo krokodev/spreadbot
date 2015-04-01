@@ -27,7 +27,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         true,
                         MipOperationStatus.FindRequestSuccess,
                         new MipFindRemoteFileResult {
-                            RemoteFolderPath = "mock",
+                            RemoteDir = "mock",
                             RemoteFileName = mipRequestHandler.FileNamePrefix() + ".xml"
                         } ) );
             }

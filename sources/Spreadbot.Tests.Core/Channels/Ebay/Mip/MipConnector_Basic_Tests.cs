@@ -56,7 +56,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
-            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+            Assert.IsNotNull( findResponse.Result.RemoteDir );
             Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
         }
 
@@ -108,9 +108,9 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
             Assert.IsNotNull( findResponse.Result.RemoteFileName );
-            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+            Assert.IsNotNull( findResponse.Result.RemoteDir );
             Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
-            Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
+            Assert.IsTrue( findResponse.Result.RemoteDir.Length > 1 );
         }
 
         // --------------------------------------------------------[]
