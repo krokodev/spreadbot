@@ -9,6 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Tests.Core.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
@@ -28,13 +29,18 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void SendZippedFeedFolder()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
+            try {
+                var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var response = MipConnector.SendZippedFeedFolder( feed );
-            Console.WriteLine( response );
+                var response = MipConnector.SendZippedFeedFolder( feed );
+                Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
-            Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
+                Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.Code );
+                Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // ===================================================================================== []
@@ -92,20 +98,25 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void FindRequest_Output()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            Console.WriteLine( sendResponse );
-            Assert.IsNotNull( sendResponse.Result );
+            try {
+                var feed = new MipFeedHandler( MipFeedType.Product );
+                var sendResponse = MipConnector.SendTestFeedFolder( feed );
+                Console.WriteLine( sendResponse );
+                Assert.IsNotNull( sendResponse.Result );
 
-            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
-            Console.WriteLine( findResponse );
+                var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
+                var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
+                Console.WriteLine( findResponse );
 
-            Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
-            Assert.IsNotNull( findResponse.Result.RemoteFileName );
-            Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
-            Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
-            Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
+                Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.Code );
+                Assert.IsNotNull( findResponse.Result.RemoteFileName );
+                Assert.IsNotNull( findResponse.Result.RemoteFolderPath );
+                Assert.IsTrue( findResponse.Result.RemoteFileName.Length > 1 );
+                Assert.IsTrue( findResponse.Result.RemoteFolderPath.Length > 1 );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // --------------------------------------------------------[]
@@ -142,17 +153,22 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void GetRequestStatus_Success()
         {
-            var feed = new MipFeedHandler( MipFeedType.Distribution );
-            var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            Console.WriteLine( sendResponse );
-            Assert.IsNotNull( sendResponse.Result );
+            try {
+                var feed = new MipFeedHandler( MipFeedType.Distribution );
+                var sendResponse = MipConnector.SendTestFeedFolder( feed );
+                Console.WriteLine( sendResponse );
+                Assert.IsNotNull( sendResponse.Result );
 
-            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
-            Console.WriteLine( requestResponse );
+                var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
+                var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
+                Console.WriteLine( requestResponse );
 
-            Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
-            Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+                Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code );
+                Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // --------------------------------------------------------[]
