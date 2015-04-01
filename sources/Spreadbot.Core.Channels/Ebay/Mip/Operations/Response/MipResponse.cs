@@ -10,6 +10,7 @@ using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
 {
+    // Todo: Ref: REmove constructors here and in base class, use { initialization }
     public class MipResponse<TR> : GenericResponse< TR, MipOperationStatus >
         where TR : IResponseResult
     {

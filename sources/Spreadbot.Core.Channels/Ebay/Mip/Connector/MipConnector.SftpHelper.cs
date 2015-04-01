@@ -26,20 +26,16 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
             // ===================================================================================== []
             // UploadFeed
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed( string feed, string reqId )
+            public static MipResponse< MipSftpSendFilesResult > SendFiles( string localFiles, string remoteFiles )
             {
-                return DoSendZippedFeed( feed, reqId );
+                return DoSendFiles( localFiles, remoteFiles );
             }
 
-            public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeed(
-                MipFeedHandler mipFeedHandler,
-                string reqId )
-            {
-                return SendZippedFeed( mipFeedHandler.GetName(), reqId );
-            }
 
             // ===================================================================================== []
             // Find remote files Inproc
+            // Code: Todo: Ref: Remove word 'mipRequestHandler' from this level
+            
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
                 MipRequestHandler mipRequestHandler )
             {
@@ -51,6 +47,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
             // ===================================================================================== []
             // Find remote files Output
+            // Code: Todo: Ref: Remove word 'mipRequestHandler' from this level
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
                 MipRequestHandler mipRequestHandler )
             {

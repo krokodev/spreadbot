@@ -14,7 +14,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
         // ===================================================================================== []
         // Local
-        private static string LocalZippedFeedFile( string feed, string reqId )
+        public static string LocalZippedFeedFile( string feed, string reqId )
         {
             return string.Format(
                 @"{0}\{1}.{2}.zip",
@@ -53,7 +53,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // ===================================================================================== []
         // Remote
-        private static string RemoteFeedOutgoingZipFilePath( string feed, string reqId )
+        public static string RemoteFeedOutgoingZipFilePath( string feed, string reqId )
         {
             return string.Format(
                 "{0}{1}/{1}.{2}.zip",

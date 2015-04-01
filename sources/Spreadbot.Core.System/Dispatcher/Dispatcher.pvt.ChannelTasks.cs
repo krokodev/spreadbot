@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.pvt.ChannelTasks.cs
-// Roman, 2015-03-31 1:26 PM
+// Roman, 2015-04-01 1:20 PM
 
 using System.Collections.Generic;
 using MoreLinq;
@@ -19,7 +19,7 @@ namespace Spreadbot.Core.System.Dispatcher
         private void DoRunChannelTask( IChannelTask task )
         {
             if( task.GetStatusCode() != TaskStatus.Todo ) {
-                throw new SpreadbotException( "Task was already run [{0}]", task );
+                throw new SpreadbotTaskException( "Task was already run [{0}]", task );
             }
 
             switch( task.ChannelMethod ) {
@@ -27,7 +27,7 @@ namespace Spreadbot.Core.System.Dispatcher
                     FindChannel( task.ChannelId ).RunPublishTask( task );
                     break;
                 default :
-                    throw new SpreadbotException( "Unexpected task operation [{0}]", task.ChannelMethod );
+                    throw new SpreadbotTaskException( "Unexpected task operation [{0}]", task.ChannelMethod );
             }
         }
 
@@ -42,7 +42,7 @@ namespace Spreadbot.Core.System.Dispatcher
         private void DoProceedChannelTask( IChannelTask task )
         {
             if( task.GetStatusCode() != TaskStatus.Inprocess ) {
-                throw new SpreadbotException( "Task is not In-Process [{0}]", task );
+                throw new SpreadbotTaskException( "Task is not In-Process [{0}]", task );
             }
 
             FindChannel( task.ChannelId ).ProceedTask( task );

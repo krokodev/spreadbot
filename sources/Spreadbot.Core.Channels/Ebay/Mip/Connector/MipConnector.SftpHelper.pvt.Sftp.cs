@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// Roman, 2015-03-31 1:26 PM
+// Roman, 2015-04-01 1:12 PM
 
 using System;
+using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
@@ -39,25 +40,22 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // ===================================================================================== []
-            // DoSendZippedFeed
-            private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeed( string feed, string reqId )
+            // DoSendFiles
+            private static MipResponse< MipSftpSendFilesResult > DoSendFiles( string localFiles, string remoteFiles )
             {
                 try {
-                    UploadFiles(
-                        LocalZippedFeedFile( feed, reqId ),
-                        RemoteFeedOutgoingZipFilePath( feed, reqId )
-                        );
+                    SftpUploadFiles( localFiles, remoteFiles );
                 }
                 catch( Exception exception ) {
-                    return new MipResponse< MipSendZippedFeedFolderResult >(
+                    return new MipResponse< MipSftpSendFilesResult >(
                         false,
-                        MipOperationStatus.SendZippedFeedFailure,
-                        exception );
+                        MipOperationStatus.SftpSendFilesFailure,
+                        exception ) { Details = "localFiles: [{0}]".SafeFormat( localFiles ) };
                 }
-                return new MipResponse< MipSendZippedFeedFolderResult >(
+                return new MipResponse< MipSftpSendFilesResult >(
                     true,
-                    MipOperationStatus.SendZippedFeedSuccess,
-                    new MipSendZippedFeedFolderResult { MipRequestId = reqId } );
+                    MipOperationStatus.SftpSendFilesSuccess,
+                    new MipSftpSendFilesResult { LocalFiles = localFiles, RemoteFiles = remoteFiles } );
             }
 
             // ===================================================================================== []
@@ -103,8 +101,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // ===================================================================================== []
-            // UploadFiles
-            private static void UploadFiles( string localPath, string remotePath )
+            // SftpUploadFiles
+            private static void SftpUploadFiles( string localPath, string remotePath )
             {
                 using( var session = new Session() ) {
                     var sessionOptions = SessionOptions();
@@ -124,7 +122,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // ===================================================================================== []
-            // UploadFiles
+            // SftpUploadFiles
             private static void DownloadFiles( string remotePath, string localPath )
             {
                 using( var session = new Session() ) {

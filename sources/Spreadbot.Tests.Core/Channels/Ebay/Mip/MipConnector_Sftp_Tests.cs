@@ -28,11 +28,16 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         public void SendZippedFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var response = MipConnector.SftpHelper.SendZippedFeed( feed.GetName(), MipRequestHandler.GenerateTestId() );
+
+            var reqId = MipRequestHandler.GenerateTestId();
+            var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
+            var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
+
+            var response = MipConnector.SftpHelper.SendFiles( localFiles, remoteFiles );
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.SendZippedFeedSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.Code );
         }
 
         // ===================================================================================== []

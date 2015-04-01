@@ -73,7 +73,6 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         }
 
         // --------------------------------------------------------[]
-        // Code: CopyFromIniToStore
         private static void CopyFromIniToStore( List< string > files )
         {
             files.ForEach(

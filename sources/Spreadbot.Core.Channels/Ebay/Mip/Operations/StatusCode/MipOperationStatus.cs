@@ -12,8 +12,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode
         TestConnectionFailure,
         SendZippedFeedFolderSuccess,
         SendZippedFeedFolderFailure,
-        SendZippedFeedSuccess,
-        SendZippedFeedFailure,
         ZipFeedSuccess,
         ZipFeedFailure,
         FindRequestSuccess,
@@ -21,6 +19,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode
         FindRemoteFileSuccess,
         FindRemoteFileFailure,
         GetRequestStatusSuccess,
-        GetRequestStatusFailure
+        GetRequestStatusFailure,
+        SftpSendFilesSuccess,
+        SftpSendFilesFailure
     }
 }

@@ -37,10 +37,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             string reqId )
         {
             try {
+                var localFiles = LocalZippedFeedFile( mipFeedHandler.GetName(), reqId );
+                var remoteFiles = RemoteFeedOutgoingZipFilePath( mipFeedHandler.GetName(), reqId );
                 ZipHelper.ZipFeed( mipFeedHandler, reqId ).Check();
-                SftpHelper.SendZippedFeed( mipFeedHandler, reqId ).Check();
+                SftpHelper.SendFiles( localFiles, remoteFiles ).Check();
             }
             catch( Exception exception ) {
+                if (exception.Message.Contains( "Error message from server: Exceeded the Queue Depth" ))
                 return new MipResponse< MipSendZippedFeedFolderResult >(
                     false,
                     MipOperationStatus.SendZippedFeedFolderFailure,

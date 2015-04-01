@@ -35,8 +35,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             get { return LazyInstance.Value; }
         }
 
-        // Code: SaveData(), Err: Missing Tasks' data
-
         // ===================================================================================== []
         public void SaveData()
         {

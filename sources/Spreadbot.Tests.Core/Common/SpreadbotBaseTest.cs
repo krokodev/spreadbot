@@ -11,6 +11,9 @@ namespace Spreadbot.Tests.Core.Common
 {
     public class SpreadbotBaseTest
     {
+        protected const string QueueDepthMessage = "Error message from server: Exceeded the Queue Depth of 10";
+
+
         [SetUp]
         public void InitCulture()
         {

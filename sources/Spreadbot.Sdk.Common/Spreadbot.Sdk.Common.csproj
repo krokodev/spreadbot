@@ -76,6 +76,7 @@
     <Compile Include="Crocodev.Common\EnumUtil.cs" />
     <Compile Include="Crocodev.Common\StringExtensions.cs" />
     <Compile Include="Crocodev.Common\YamlExtensions.cs" />
+    <Compile Include="Exceptions\SpreadbotTaskException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Crocodev.Common\Stub.cs" />
     <Compile Include="Exceptions\SpreadbotException.cs" />
