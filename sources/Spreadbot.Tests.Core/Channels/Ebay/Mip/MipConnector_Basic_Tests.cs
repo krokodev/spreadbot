@@ -1,15 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-04-01 2:59 PM
+// Roman, 2015-04-01 4:59 PM
 
 using System;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Tests.Core.Common;

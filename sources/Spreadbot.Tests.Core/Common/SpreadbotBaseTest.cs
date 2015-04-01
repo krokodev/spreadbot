@@ -1,20 +1,18 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // SpreadbotBaseTest.cs
-// Roman, 2015-03-31 1:27 PM
+// Roman, 2015-04-01 4:59 PM
 
 using System.Globalization;
 using System.Threading;
 using Crocodev.Common.Extensions;
 using NUnit.Framework;
-using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Tests.Core.Common
 {
     public class SpreadbotBaseTest
     {
-        protected const string MipQueueDepthErrorMessage = "Error text from server: Exceeded the Queue Depth of 10";
-
+        protected const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth of 10";
 
         [SetUp]
         public void InitCulture()

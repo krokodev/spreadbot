@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-03-31 1:26 PM
+// Roman, 2015-04-01 4:58 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -43,12 +43,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 SftpHelper.SendFiles( localFiles, remoteFiles ).Check();
             }
             catch( Exception exception ) {
-                if (exception.Message.Contains( "Error message from server: Exceeded the Queue Depth" ))
-                return new MipResponse< MipSendZippedFeedFolderResult >(
-                    false,
-                    MipOperationStatus.SendZippedFeedFolderFailure,
-                    exception
-                    );
+                if( exception.Message.Contains( "Error message from server: Exceeded the Queue Depth" ) ) {
+                    return new MipResponse< MipSendZippedFeedFolderResult >(
+                        false,
+                        MipOperationStatus.SendZippedFeedFolderFailure,
+                        exception
+                        );
+                }
             }
             return new MipResponse< MipSendZippedFeedFolderResult >(
                 true,

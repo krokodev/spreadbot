@@ -10,8 +10,5 @@ namespace Spreadbot.Tests.Core.Utils
     [TestFixture]
     public class Extensions_Tests
     {
-        [Ignore( "Empty" )]
-        [Test]
-        public void Empty_Test() {}
     }
 }

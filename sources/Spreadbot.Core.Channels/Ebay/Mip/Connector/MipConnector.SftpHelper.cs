@@ -1,11 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.cs
-// Roman, 2015-03-31 1:26 PM
+// Roman, 2015-04-01 4:59 PM
 
 using System.IO;
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
@@ -31,11 +30,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return DoSendFiles( localFiles, remoteFiles );
             }
 
-
             // ===================================================================================== []
             // Find remote files Inproc
             // Code: Todo: Ref: Remove word 'mipRequestHandler' from this level
-            
+
             public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
                 MipRequestHandler mipRequestHandler )
             {
