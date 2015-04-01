@@ -5,6 +5,7 @@
 
 using System;
 using System.Dynamic;
+using Nereal.Serialization;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using YamlDotNet.Serialization;
@@ -15,43 +16,53 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 {
     // Todo: Ref: Remove constructors GenericResponse, use { initialization }
 
-    public class GenericResponse<TR, TC> : IAbstractResponse
-        where TR : IResponseResult
+    public class GenericResponse<TResult, TStatusCode> : IAbstractResponse
+        where TResult : IResponseResult
     {
-        // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TC code )
+ /*       // --------------------------------------------------------[]
+        protected GenericResponse( bool isSucces, TStatusCode statusCode )
         {
             IsSuccess = isSucces;
-            Code = code;
+            StatusCode = statusCode;
         }
 
         // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TC code, Exception exception )
-            : this( isSucces, code )
+        protected GenericResponse( bool isSucces, TStatusCode statusCode, Exception exception )
+            : this( isSucces, statusCode )
         {
             ExceptionInfo = GetExceptionInfo( exception );
         }
 
         // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TC code, TR result )
-            : this( isSucces, code )
+        protected GenericResponse( bool isSucces, TStatusCode statusCode, TResult result )
+            : this( isSucces, statusCode )
         {
             Result = result;
         }
 
-        protected GenericResponse( bool isSucces, TC code, TR result, IAbstractResponse innerResponse )
-            : this( isSucces, code, result )
+        protected GenericResponse( bool isSucces, TStatusCode statusCode, TResult result, IAbstractResponse innerResponse )
+            : this( isSucces, statusCode, result )
         {
             InnerResponse = innerResponse;
         }
 
-        protected GenericResponse( bool isSucces, TC code, string details )
-            : this( isSucces, code )
+        protected GenericResponse( bool isSucces, TStatusCode statusCode, string details )
+            : this( isSucces, statusCode )
         {
             Details = details;
         }
+        */
 
-        protected GenericResponse() {}
+        protected GenericResponse()
+        {
+            IsSuccess = true;
+        }
+
+        protected GenericResponse( Exception exception )
+        {
+            IsSuccess = false;
+            ExceptionInfo = GetExceptionInfo( exception );
+        }
 
         // --------------------------------------------------------[]
         [YamlMember( Order = -1 )]
@@ -59,18 +70,19 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         {
             get { return GetType().ToString(); }
 
+            // Todo: Ref: remove GenericResponse Type.Set
             // ReSharper disable once ValueParameterNotUsed
-            set { }
+            //set { }
         }
 
         [YamlMember( Order = 0 )]
-        public TC Code { get; set; }
+        public TStatusCode StatusCode { get; set; }
 
         [YamlMember( Order = 1 )]
         public bool IsSuccess { get; set; }
 
         [YamlMember( Order = 2 )]
-        public TR Result { get; set; }
+        public TResult Result { get; set; }
 
         [YamlMember( Order = 3 )]
         public string Details { get; set; }
@@ -80,6 +92,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         [YamlMember( Order = 5 )]
         public IAbstractResponse InnerResponse { get; set; }
+        
 
         // --------------------------------------------------------[]
         public void Check()

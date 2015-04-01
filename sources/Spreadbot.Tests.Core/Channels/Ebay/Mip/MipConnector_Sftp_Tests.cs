@@ -38,7 +38,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.StatusCode );
         }
 
         // ===================================================================================== []
@@ -49,7 +49,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.StatusCode );
         }
 
         // ===================================================================================== []
@@ -60,7 +60,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.Code );
+            Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.StatusCode );
         }
     }
 }

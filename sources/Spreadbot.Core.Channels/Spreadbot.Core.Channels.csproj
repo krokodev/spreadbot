@@ -86,6 +86,7 @@
     <Compile Include="Ebay\Manager\EbayChannelManager.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.RequestXml.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pub.Mock.cs" />
+    <Compile Include="Ebay\Mip\Operations\Results\MipFindRequestResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipSftpSendFilesResult.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IAbstractTask.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IProceedableTask.cs" />

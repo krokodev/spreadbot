@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // ChannelResponse.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 8:54 PM
 
 using System;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
@@ -15,13 +15,7 @@ namespace Spreadbot.Core.Abstracts.Channel.Operations.Responses
     {
         public ChannelResponse() {}
 
-        public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, Exception exception )
-            : base( isSucces, code, exception ) {}
-
-        public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, TR result )
-            : base( isSucces, code, result ) {}
-
-        public ChannelResponse( bool isSucces, ChannelResponseStatusCode code, TR result, IAbstractResponse inner )
-            : base( isSucces, code, result, inner ) {}
+        public ChannelResponse( Exception exception )
+            : base( exception ) {}
     }
 }

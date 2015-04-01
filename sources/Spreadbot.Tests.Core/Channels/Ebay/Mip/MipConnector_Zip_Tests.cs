@@ -34,9 +34,9 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.StatusCode );
             Assert.IsTrue( File.Exists( response.Result.ZipFileName ) );
-            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.Code );
+            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.StatusCode );
         }
     }
 }

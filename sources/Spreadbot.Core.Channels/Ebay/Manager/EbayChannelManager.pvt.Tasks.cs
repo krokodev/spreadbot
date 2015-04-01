@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.pvt.Tasks.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 8:54 PM
 
 using System;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
@@ -72,18 +72,17 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
                 mipResponse.Check();
 
-                task.EbayPublishResponse = new ChannelResponse< EbayPublishResult >(
-                    true,
-                    ChannelResponseStatusCode.PublishSuccess,
-                    new EbayPublishResult { MipRequestId = mipResponse.Result.MipRequestId },
-                    mipResponse );
+                task.EbayPublishResponse = new ChannelResponse< EbayPublishResult > {
+                    StatusCode = ChannelResponseStatusCode.PublishSuccess,
+                    Result = new EbayPublishResult { MipRequestId = mipResponse.Result.MipRequestId },
+                    InnerResponse = mipResponse
+                };
                 task.MipRequestStatusCode = MipRequestStatus.Initial;
             }
             catch( Exception exception ) {
-                task.EbayPublishResponse = new ChannelResponse< EbayPublishResult >(
-                    false,
-                    ChannelResponseStatusCode.PublishFailure,
-                    exception );
+                task.EbayPublishResponse = new ChannelResponse< EbayPublishResult >( exception ) {
+                    StatusCode = ChannelResponseStatusCode.PublishFailure
+                };
             }
             task.WasUpdatedNow();
         }

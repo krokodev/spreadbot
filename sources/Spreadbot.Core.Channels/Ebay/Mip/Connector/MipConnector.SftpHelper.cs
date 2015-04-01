@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.cs
-// Roman, 2015-04-01 7:24 PM
+// Roman, 2015-04-01 8:14 PM
 
 using System.IO;
 using Crocodev.Common.Extensions;
@@ -36,18 +36,18 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 var files = GetRemoteDirFiles( remoteDir );
                 foreach( RemoteFileInfo fileInfo in files ) {
                     if( fileInfo.Name.Contains( filePrefix ) ) {
-                        return new MipResponse< MipFindRemoteFileResult >(
-                            true,
-                            MipOperationStatus.FindRemoteFileSuccess,
-                            new MipFindRemoteFileResult { RemoteDir = remoteDir, RemoteFileName = fileInfo.Name }
-                            );
+                        return new MipResponse< MipFindRemoteFileResult > {
+                            StatusCode = MipOperationStatus.FindRemoteFileSuccess,
+                            Result =
+                                new MipFindRemoteFileResult { RemoteDir = remoteDir, RemoteFileName = fileInfo.Name }
+                        };
                     }
                 }
-                return new MipResponse< MipFindRemoteFileResult >(
-                    false,
-                    MipOperationStatus.FindRemoteFileFailure,
-                    string.Format( "Remote file [{0}] not found in [{1}]", filePrefix, remoteDir )
-                    );
+                return new MipResponse< MipFindRemoteFileResult > {
+                    IsSuccess = false,
+                    StatusCode = MipOperationStatus.FindRemoteFileFailure,
+                    Details = string.Format( "Remote file [{0}] not found in [{1}]", filePrefix, remoteDir )
+                };
             }
 
             // --------------------------------------------------------[]
@@ -57,16 +57,17 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             {
                 foreach( var remoteDir in remoteDirs ) {
                     var response = FindRemoteFile( filePrefix, remoteDir );
-                    if( response.Code == MipOperationStatus.FindRemoteFileSuccess ) {
+                    if( response.StatusCode == MipOperationStatus.FindRemoteFileSuccess ) {
                         return response;
                     }
                 }
-                return new MipResponse< MipFindRemoteFileResult >(
-                    false,
-                    MipOperationStatus.FindRemoteFileFailure,
-                    string.Format( "Remote file [{0}] not found in [{1}]",
+                return new MipResponse< MipFindRemoteFileResult > {
+                    IsSuccess = false,
+                    StatusCode = MipOperationStatus.FindRemoteFileFailure,
+                    Details = string.Format( "Remote file [{0}] not found in [{1}]",
                         filePrefix,
-                        remoteDirs.FoldToStringBy( s => s ) ) );
+                        remoteDirs.FoldToStringBy( s => s ) )
+                };
             }
 
             // --------------------------------------------------------[]

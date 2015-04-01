@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pub.Mock.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 8:10 PM
 
 using System;
 using System.IO;
@@ -23,16 +23,16 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             try {
                 return Mock_GetRequestOutputStatus(
                     mipRequestHandler.MipFeedHandler.Type,
-                    new MipResponse< MipFindRemoteFileResult >(
-                        true,
-                        MipOperationStatus.FindRequestSuccess,
-                        new MipFindRemoteFileResult {
+                    new MipResponse< MipFindRemoteFileResult > {
+                        StatusCode = MipOperationStatus.FindRequestSuccess,
+                        Result = new MipFindRemoteFileResult {
                             RemoteDir = "mock",
                             RemoteFileName = mipRequestHandler.FileNamePrefix() + ".xml"
-                        } ) );
+                        }
+                    } );
             }
             catch( Exception exception ) {
-                return new MipRequestStatusResponse( false, MipOperationStatus.GetRequestStatusFailure, exception );
+                return new MipRequestStatusResponse( exception ){StatusCode = MipOperationStatus.GetRequestStatusFailure};
             }
         }
 
@@ -41,8 +41,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {
-            var statusResult = Mock_ReadRequestOutputStatus( feedType, response );
-            return new MipRequestStatusResponse( true, MipOperationStatus.GetRequestStatusSuccess, statusResult );
+            return new MipRequestStatusResponse {
+                StatusCode = MipOperationStatus.GetRequestStatusSuccess,
+                Result = Mock_ReadRequestOutputStatus( feedType, response)
+            };
         }
 
         // --------------------------------------------------------[]

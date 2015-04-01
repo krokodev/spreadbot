@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.SftpHelper.pvt.Sftp.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 8:16 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -28,15 +28,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     }
                 }
                 catch( Exception exception ) {
-                    return new MipResponse< MipTestConnectionResult >(
-                        false,
-                        MipOperationStatus.TestConnectionFailure,
-                        exception );
+                    return new MipResponse< MipTestConnectionResult >( exception ) {
+                        StatusCode = MipOperationStatus.TestConnectionFailure
+                    };
                 }
-                return new MipResponse< MipTestConnectionResult >(
-                    true,
-                    MipOperationStatus.TestConnectionSuccess,
-                    new MipTestConnectionResult { Value = true } );
+                return new MipResponse< MipTestConnectionResult > {
+                    StatusCode = MipOperationStatus.TestConnectionSuccess,
+                    Result = new MipTestConnectionResult { Value = true }
+                };
             }
 
             // ===================================================================================== []
@@ -47,15 +46,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     SftpUploadFiles( localFiles, remoteFiles );
                 }
                 catch( Exception exception ) {
-                    return new MipResponse< MipSftpSendFilesResult >(
-                        false,
-                        MipOperationStatus.SftpSendFilesFailure,
-                        exception ) { Details = "localFiles: [{0}]".SafeFormat( localFiles ) };
+                    return new MipResponse< MipSftpSendFilesResult >( exception ) {
+                        StatusCode = MipOperationStatus.SftpSendFilesFailure,
+                        Details = "localFiles: [{0}]".SafeFormat( localFiles )
+                    };
                 }
-                return new MipResponse< MipSftpSendFilesResult >(
-                    true,
-                    MipOperationStatus.SftpSendFilesSuccess,
-                    new MipSftpSendFilesResult { LocalFiles = localFiles, RemoteFiles = remoteFiles } );
+                return new MipResponse< MipSftpSendFilesResult > {
+                    StatusCode = MipOperationStatus.SftpSendFilesSuccess,
+                    Result = new MipSftpSendFilesResult { LocalFiles = localFiles, RemoteFiles = remoteFiles }
+                };
             }
 
             // ===================================================================================== []

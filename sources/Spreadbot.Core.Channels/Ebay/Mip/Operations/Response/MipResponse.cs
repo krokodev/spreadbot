@@ -16,6 +16,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
     {
         public MipResponse() {}
 
+        public MipResponse(Exception exception) :base(exception){ }
+
+        /*        public MipResponse() {}
+
         public MipResponse( bool isSucces, MipOperationStatus code )
             : base( isSucces, code ) {}
 
@@ -29,6 +33,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
             : base( isSucces, code, result, innerResponse ) {}
 
         public MipResponse( bool isSucces, MipOperationStatus code, string details )
-            : base( isSucces, code, details ) {}
+            : base( isSucces, code, details ) {}*/
     }
+        
 }

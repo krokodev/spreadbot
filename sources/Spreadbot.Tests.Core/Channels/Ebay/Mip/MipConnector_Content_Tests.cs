@@ -48,7 +48,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
                     var testInfo = "{0}.{1} checking status".SafeFormat( feed.Type, reqId );
                     wasTested = true;
 
-                    Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.Code, testInfo );
+                    Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode, testInfo );
                     Assert.AreEqual( mipRequestStatus, requestResponse.Result.MipRequestStatusCode, testInfo );
                 } );
 

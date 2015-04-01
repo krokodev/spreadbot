@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.ZipHelper.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 8:17 PM
 
 using System;
 using System.IO;
@@ -30,12 +30,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         );
                 }
                 catch( Exception exception ) {
-                    return new MipResponse< MipZipFeedResult >( false, MipOperationStatus.ZipFeedFailure, exception );
+                    return new MipResponse< MipZipFeedResult >( exception ) {
+                        StatusCode = MipOperationStatus.ZipFeedFailure
+                    };
                 }
-                return new MipResponse< MipZipFeedResult >(
-                    true,
-                    MipOperationStatus.ZipFeedSuccess,
-                    new MipZipFeedResult { ZipFileName = zipFileName } );
+                return new MipResponse< MipZipFeedResult > {
+                    StatusCode = MipOperationStatus.ZipFeedSuccess,
+                    Result = new MipZipFeedResult { ZipFileName = zipFileName }
+                };
             }
 
             // --------------------------------------------------------[]

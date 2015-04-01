@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // Yaml_Serializer_Tests.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 8:58 PM
 
 using System;
 using NUnit.Framework;
@@ -70,11 +70,10 @@ namespace Spreadbot.Tests.Core.Utils
         [Test]
         public static void ChannelResponse_Success_Serialization()
         {
-            var response = new ChannelResponse< EbayPublishResult >(
-                true,
-                ChannelResponseStatusCode.PublishSuccess,
-                new EbayPublishResult()
-                );
+            var response = new ChannelResponse< EbayPublishResult > {
+                StatusCode = ChannelResponseStatusCode.PublishSuccess,
+                Result = new EbayPublishResult()
+            };
 
             var str = response.ToYamlString();
             Console.WriteLine( str );
@@ -91,10 +90,9 @@ namespace Spreadbot.Tests.Core.Utils
             var publishTask2 = new EbayPublishTask();
             storeTask.AddSubTasks( publishTask1, publishTask2 );
             publishTask2.AbstractResponse = new ChannelResponse< EbayPublishResult >(
-                false,
-                ChannelResponseStatusCode.PublishFailure,
-                new Exception( "Test Exception" )
-                );
+                new Exception( "Test Exception" ) ) {
+                    StatusCode = ChannelResponseStatusCode.PublishFailure,
+                };
 
             var str = storeTask.ToYamlString( SerializationOptions.EmitDefaults );
 
