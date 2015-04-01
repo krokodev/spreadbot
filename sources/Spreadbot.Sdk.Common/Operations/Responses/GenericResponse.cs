@@ -13,6 +13,8 @@ using YamlDotNet.Serialization;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
+    // Todo: Ref: Remove constructors GenericResponse, use { initialization }
+
     public class GenericResponse<TR, TC> : IAbstractResponse
         where TR : IResponseResult
     {
