@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pub.Mock.cs
-// Roman, 2015-04-01 8:10 PM
+// Roman, 2015-04-01 9:10 PM
 
 using System;
 using System.IO;
@@ -32,7 +32,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     } );
             }
             catch( Exception exception ) {
-                return new MipRequestStatusResponse( exception ){StatusCode = MipOperationStatus.GetRequestStatusFailure};
+                return new MipRequestStatusResponse( exception ) {
+                    StatusCode = MipOperationStatus.GetRequestStatusFailure
+                };
             }
         }
 
@@ -43,7 +45,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return new MipRequestStatusResponse {
                 StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                Result = Mock_ReadRequestOutputStatus( feedType, response)
+                Result = Mock_ReadRequestOutputStatus( feedType, response )
             };
         }
 

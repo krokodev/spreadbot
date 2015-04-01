@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.ZipHelper.cs
-// Roman, 2015-04-01 8:17 PM
+// Roman, 2015-04-01 9:10 PM
 
 using System;
 using System.IO;

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConfiguration_Tests.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 9:11 PM
 
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;

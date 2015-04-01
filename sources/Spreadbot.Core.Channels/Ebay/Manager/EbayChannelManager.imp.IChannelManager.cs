@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.imp.IChannelManager.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 9:10 PM
 
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;

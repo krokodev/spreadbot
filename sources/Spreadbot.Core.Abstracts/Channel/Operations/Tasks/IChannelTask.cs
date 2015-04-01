@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // IChannelTask.cs
-// Roman, 2015-04-01 4:58 PM
+// Roman, 2015-04-01 9:09 PM
 
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Sdk.Common.Operations.Tasks;

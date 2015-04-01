@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-04-01 5:39 PM
+// Roman, 2015-04-01 9:11 PM
 
 using System;
 using NUnit.Framework;

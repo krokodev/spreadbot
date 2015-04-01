@@ -1,11 +1,10 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 9:11 PM
 
 using System;
 using System.Dynamic;
-using Nereal.Serialization;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using YamlDotNet.Serialization;
@@ -14,45 +13,9 @@ using YamlDotNet.Serialization;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    // Todo: Ref: Remove constructors GenericResponse, use { initialization }
-
     public class GenericResponse<TResult, TStatusCode> : IAbstractResponse
         where TResult : IResponseResult
     {
- /*       // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TStatusCode statusCode )
-        {
-            IsSuccess = isSucces;
-            StatusCode = statusCode;
-        }
-
-        // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TStatusCode statusCode, Exception exception )
-            : this( isSucces, statusCode )
-        {
-            ExceptionInfo = GetExceptionInfo( exception );
-        }
-
-        // --------------------------------------------------------[]
-        protected GenericResponse( bool isSucces, TStatusCode statusCode, TResult result )
-            : this( isSucces, statusCode )
-        {
-            Result = result;
-        }
-
-        protected GenericResponse( bool isSucces, TStatusCode statusCode, TResult result, IAbstractResponse innerResponse )
-            : this( isSucces, statusCode, result )
-        {
-            InnerResponse = innerResponse;
-        }
-
-        protected GenericResponse( bool isSucces, TStatusCode statusCode, string details )
-            : this( isSucces, statusCode )
-        {
-            Details = details;
-        }
-        */
-
         protected GenericResponse()
         {
             IsSuccess = true;
@@ -92,7 +55,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 
         [YamlMember( Order = 5 )]
         public IAbstractResponse InnerResponse { get; set; }
-        
 
         // --------------------------------------------------------[]
         public void Check()

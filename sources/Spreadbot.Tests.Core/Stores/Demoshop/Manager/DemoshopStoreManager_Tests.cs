@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-01 4:59 PM
+// Roman, 2015-04-01 9:11 PM
 
 using System;
 using System.Collections.Generic;
@@ -142,6 +142,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
                 Assert.AreEqual( 3, store.GetChannelTasks().Count() );
 
                 DemoshopEbayPublishTasks().ForEach( t => {
+                    Console.WriteLine();
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
                     Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );

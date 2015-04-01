@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-01 9:02 PM
+// Roman, 2015-04-01 9:10 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -9,6 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Exceptions;
 
 // >> Core | Connector
 
@@ -71,7 +72,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         findResponse = FindRequestRemoteFileNameInOutput( mipRequestHandler );
                         break;
                     default :
-                        throw new Exception( string.Format( "Wrong stage {0}", stage ) );
+                        throw new SpreadbotException( "Wrong stage {0}", stage );
                 }
                 findResponse.Check();
             }
