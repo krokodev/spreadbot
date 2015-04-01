@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Crocodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -54,35 +55,45 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Run_Task_PublishItemOnEbay()
         {
-            var store = DemoshopStoreManager.Instance;
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
-            Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
+            try {
+                var store = DemoshopStoreManager.Instance;
+                var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+                Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Console.WriteLine( t.EbayPublishResponse );
-                Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
-            } );
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+                task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                    Console.WriteLine( t.EbayPublishResponse );
+                    Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
+                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                } );
+                Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Proceed_Task_PublishItemOnEbay()
         {
-            var dispatcher = Dispatcher.Instance;
-            var store = DemoshopStoreManager.Instance;
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            try {
+                var dispatcher = Dispatcher.Instance;
+                var store = DemoshopStoreManager.Instance;
+                var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
-            dispatcher.RunChannelTasks( store.GetChannelTasks() );
-            dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
+                dispatcher.RunChannelTasks( store.GetChannelTasks() );
+                dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
-            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                Console.WriteLine( t );
-                Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
-            } );
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+                task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                    Console.WriteLine( t );
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                } );
+                Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // --------------------------------------------------------[]
@@ -117,27 +128,32 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Create_Run_SaveRestore_Proceed_Task_PublishItemOnEbay()
         {
-            var dispatcher = Dispatcher.Instance;
-            var store = DemoshopStoreManager.Instance;
+            try {
+                var dispatcher = Dispatcher.Instance;
+                var store = DemoshopStoreManager.Instance;
 
-            store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
-            store.SaveData();
-            store.RestoreData();
+                store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+                store.SaveData();
+                store.RestoreData();
 
-            dispatcher.RunChannelTasks( store.GetChannelTasks() );
-            dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
+                dispatcher.RunChannelTasks( store.GetChannelTasks() );
+                dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
-            store.SaveData();
-            store.RestoreData();
+                store.SaveData();
+                store.RestoreData();
 
-            Assert.AreEqual( 1, store.StoreTasks.Count );
-            Assert.AreEqual( 3, store.GetChannelTasks().Count() );
+                Assert.AreEqual( 1, store.StoreTasks.Count );
+                Assert.AreEqual( 3, store.GetChannelTasks().Count() );
 
-            DemoshopEbayPublishTasks().ForEach( t => {
-                Console.WriteLine( t );
-                Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
-            } );
+                DemoshopEbayPublishTasks().ForEach( t => {
+                    Console.WriteLine( t );
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                } );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // --------------------------------------------------------[]
@@ -159,9 +175,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
                 AssertThatLastUpdateTimeIsCorrect();
             }
             catch( SpreadbotException exception ) {
-                if( exception.Message.Contains( QueueDepthMessage ) ) {
-                    Assert.Inconclusive( QueueDepthMessage );
-                }
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
             }
         }
 

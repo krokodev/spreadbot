@@ -9,6 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Tests.Core.Common;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
@@ -27,17 +28,22 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void SendZippedFeed()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
+            try {
+                var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var reqId = MipRequestHandler.GenerateTestId();
-            var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
-            var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
+                var reqId = MipRequestHandler.GenerateTestId();
+                var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
+                var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
 
-            var response = MipConnector.SftpHelper.SendFiles( localFiles, remoteFiles );
+                var response = MipConnector.SftpHelper.SendFiles( localFiles, remoteFiles );
 
-            Console.WriteLine( response );
+                Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.Code );
+                Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.Code );
+            }
+            catch( SpreadbotException exception ) {
+                Assert_Inconclusive_If_Exception_Contains( exception, MipQueueDepthErrorMessage );
+            }
         }
 
         // ===================================================================================== []

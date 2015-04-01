@@ -18,7 +18,7 @@ using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 {
-    [Ignore( "Just a helper class" )]
+    [Ignore]
     [TestFixture]
     public class MipConnectorTestInitializer
     {
