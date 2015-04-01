@@ -45,6 +45,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
+            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
+
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
