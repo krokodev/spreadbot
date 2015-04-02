@@ -44,8 +44,6 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void FindRequest_Inprocess()
         {
-            // Code: Fixed: FindRequest_Inprocess => FindRequestFailure
-
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );

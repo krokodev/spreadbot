@@ -52,23 +52,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
                 sendResponse = SftpHelper.SendFiles( localFiles, remoteFiles );
                 sendResponse.Check();
-                sendResponse.InnerResponse = zipResponse;
             }
             catch( Exception exception ) {
                 return new MipResponse< MipSendZippedFeedFolderResult >( exception ) {
                     StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
                 };
             }
-
-            // Todo: remove code
-/*            catch( Exception exception ) {
-                if( exception.Message.Contains( MipQueueDepthErrorMessage ) ) {
-                    return new MipResponse< MipSendZippedFeedFolderResult >( exception ) {
-                        StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
-                        Details = MipQueueDepthErrorMessage
-                    };
-                }
-            }*/
+            
+            // Ref: Use arary of responses instead inner-inner chain
+            sendResponse.InnerResponse = zipResponse;
             return new MipResponse< MipSendZippedFeedFolderResult > {
                 StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,
                 Result = new MipSendZippedFeedFolderResult { MipRequestId = reqId },
