@@ -1,13 +1,14 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-01 9:11 PM
+// Roman, 2015-04-02 5:31 PM
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
 using NUnit.Framework;
+using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
@@ -163,39 +164,35 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
                 var store = DemoshopStoreManager.Instance;
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
-                AssertThatLastUpdateTimeIsCorrect();
+                Assert_That_Last_Update_Time_is_Correct();
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
-                AssertThatLastUpdateTimeIsCorrect();
+                Assert_That_Last_Update_Time_is_Correct();
 
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
-                AssertThatLastUpdateTimeIsCorrect();
+                Assert_That_Last_Update_Time_is_Correct();
             }
             catch( SpreadbotException exception ) {
                 IgnoreMipQueueDepthErrorMessage( exception.Message );
             }
         }
 
-
         // --------------------------------------------------------[]
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay()
         {
             var store = DemoshopStoreManager.Instance;
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var task = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
-                Console.WriteLine( t.EbayPublishResponse );
-                Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
-            } );
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+            Console.WriteLine( task );
+
+            Assert.That( task.GetStatusCode() == TaskStatus.Failure, "Task failure" );
+            Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
 
         // --------------------------------------------------------[]
-        private static void AssertThatLastUpdateTimeIsCorrect()
+        private static void Assert_That_Last_Update_Time_is_Correct()
         {
             DemoshopEbayPublishTasks()
                 .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 30 ).Seconds ); } );

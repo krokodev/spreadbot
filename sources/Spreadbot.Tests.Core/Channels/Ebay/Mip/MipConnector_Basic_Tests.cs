@@ -53,8 +53,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
             Assert.IsNotNull( sendResponse.Result, "Result" );
             Assert.IsNotNull( sendResponse.InnerResponse, "InnerResponse" );
 
-            Assert_that_Text_Contains( sendResponse, MipOperationStatus.ZipFeedSuccess );
-            Assert_that_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
+            Assert_That_Text_Contains( sendResponse, MipOperationStatus.ZipFeedSuccess );
+            Assert_That_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
@@ -79,8 +79,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.That( findResponse.StatusCode.Equals( MipOperationStatus.FindRequestFailure ) );
             Assert.That( findResponse.Result == null );
-            Assert_that_Text_Contains( findResponse, MipOperationStatus.FindRequestFailure );
-            Assert_that_Text_Contains( findResponse, @"not found in [store/product/inprocess]" );
+            Assert_That_Text_Contains( findResponse, MipOperationStatus.FindRequestFailure );
+            Assert_That_Text_Contains( findResponse, @"not found in [store/product/inprocess]" );
         }
 
         // --------------------------------------------------------[]

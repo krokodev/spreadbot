@@ -32,7 +32,7 @@ namespace Spreadbot.Tests.Core.Common
             Assert_Inconclusive_if_Text_Contains_Message( dump, MipConnector.MipQueueDepthErrorMessage );
         }
 
-        protected static void Assert_that_Text_Contains( object text, object fragment )
+        protected static void Assert_That_Text_Contains( object text, object fragment )
         {
             Assert.That( text.ToString()
                 .Contains( fragment.ToString() ),

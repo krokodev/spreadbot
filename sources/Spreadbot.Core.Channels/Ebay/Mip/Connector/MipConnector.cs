@@ -19,6 +19,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     public partial class MipConnector
     {
         public const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth";
+        public const string MipWriteToLocationErrorMessage = "You are not eligible to write at this location";
+
 
         // ===================================================================================== []
         // SendFeedFolder
