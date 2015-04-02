@@ -191,9 +191,32 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
 
-// Todo: Task_Num_Is_The_Same_After_Reload_Without_Deleting
+        [Test]
+        public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
+        {
+            var store = DemoshopStoreManager.Instance;
+            store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var taskNum = store.GetChannelTasks().Count();
 
-        // Todo: Task_Keeps_Id_After_Reload
+            DemoshopStoreManager.Instance.SaveData();
+            DemoshopStoreManager.Instance.RestoreData();
+            
+            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Task num" );
+        }
+
+        [Test]
+        public void Task_Keeps_Id_After_Reload()
+        {
+            var store = DemoshopStoreManager.Instance;
+            var id = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay ).Id;
+
+            DemoshopStoreManager.Instance.SaveData();
+            DemoshopStoreManager.Instance.RestoreData();
+            
+            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            Assert.AreEqual( id, task.Id, "Task.Id" );
+        }
 
         // --------------------------------------------------------[]
         [Test]
