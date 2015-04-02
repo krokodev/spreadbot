@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
-// YamlExtensions.cs
+// YamlUtils.cs
 // Roman, 2015-04-01 9:11 PM
 
 using System.IO;
@@ -8,9 +8,9 @@ using YamlDotNet.Serialization;
 
 namespace Spreadbot.Sdk.Common.Crocodev.Common
 {
-    public static class YamlExtensions
+    public static class YamlUtils
     {
-        public static string ToYamlString( this object obj, SerializationOptions options = SerializationOptions.None )
+        public static string MakeYamlString( object obj, SerializationOptions options = SerializationOptions.None )
         {
             var serializer = new Serializer( options );
             var sw = new StringWriter();
@@ -25,6 +25,11 @@ namespace Spreadbot.Sdk.Common.Crocodev.Common
                 .Replace( ": >-\n", ":\n" )
                 .Replace( ": >\n", ":\n" )
                 ;
+        }
+
+        public static string ToYamlString( this object obj, SerializationOptions options = SerializationOptions.None )
+        {
+            return MakeYamlString( obj, options );
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
             
-            // Ref: Use arary of responses instead inner-inner chain
+            // Ref: Use array of responses instead inner-inner chain
             sendResponse.InnerResponse = zipResponse;
             return new MipResponse< MipSendZippedFeedFolderResult > {
                 StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,

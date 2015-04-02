@@ -48,7 +48,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string Details { get; set; }
 
         [YamlMember( Order = 4 )]
-        public dynamic ExceptionInfo { get; set; }
+        public string ExceptionInfo { get; set; }
 
         [YamlMember( Order = 5 )]
         public IAbstractResponse InnerResponse { get; set; }
@@ -68,15 +68,12 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         // --------------------------------------------------------[]
-        private static dynamic GetExceptionInfo( Exception exception )
+        private static string GetExceptionInfo( Exception exception )
         {
             dynamic exceptionInfo = new ExpandoObject();
 
             exceptionInfo.Type = exception.GetType().ToString();
             exceptionInfo.Message = exception.Message;
-
-            //exceptionInfo.StackTrace = exception.StackTrace;
-            //exceptionInfo.Source = exception.Source;
 
             if( exception is ISpreadbotDetaledException ) {
                 exceptionInfo.Details = ( ( ISpreadbotDetaledException ) exception ).GetDetails();
@@ -85,7 +82,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
                 exceptionInfo.InnerException = GetExceptionInfo( exception.InnerException );
             }
 
-            return exceptionInfo;
+            return YamlUtils.MakeYamlString(exceptionInfo);
         }
     }
 }

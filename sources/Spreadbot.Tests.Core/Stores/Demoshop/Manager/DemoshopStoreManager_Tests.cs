@@ -179,7 +179,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
 
         // --------------------------------------------------------[]
         [Test]
-        public void Run_Wrong_Task_PublishItemOnEbay()
+        public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
         {
             var store = DemoshopStoreManager.Instance;
             var task = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
@@ -191,6 +191,28 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
 
+// Todo: Task_Num_Is_The_Same_After_Reload_Without_Deleting
+
+        // Todo: Task_Keeps_Id_After_Reload
+
+        // --------------------------------------------------------[]
+        [Test]
+        public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
+        {
+            var store = DemoshopStoreManager.Instance;
+            store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
+
+            DemoshopStoreManager.Instance.SaveData();
+            DemoshopStoreManager.Instance.DeleteAllTasks();
+            DemoshopStoreManager.Instance.RestoreData();
+            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+
+            Console.WriteLine( task );
+
+            Assert.That( task.GetStatusCode() == TaskStatus.Failure, "Task failure" );
+            Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
+        }
         // --------------------------------------------------------[]
         private static void Assert_That_Last_Update_Time_is_Correct()
         {
