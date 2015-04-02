@@ -1,11 +1,11 @@
 echo.
-echo Adding...
+echo [Add]
 git add --all
 
 echo.
-echo Comitting...
+echo [Commit]
 git commit -a -m %1
 
 echo.
-echo Pushing...
+echo [Push]
 git push
