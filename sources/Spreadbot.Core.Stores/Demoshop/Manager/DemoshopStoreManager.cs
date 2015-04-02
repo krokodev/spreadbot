@@ -69,8 +69,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // ===================================================================================== []
-        public
-            DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
+        public DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
         {
             switch( taskType ) {
                 case DemoshopStoreTaskType.PublishOnEbay :

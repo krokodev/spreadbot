@@ -176,6 +176,24 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
             }
         }
 
+
+        // --------------------------------------------------------[]
+        [Test]
+        public void Run_Wrong_Task_PublishItemOnEbay()
+        {
+            var store = DemoshopStoreManager.Instance;
+            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
+
+            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
+                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
+                Console.WriteLine( t.EbayPublishResponse );
+                Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
+                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+            } );
+            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+        }
+
         // --------------------------------------------------------[]
         private static void AssertThatLastUpdateTimeIsCorrect()
         {
