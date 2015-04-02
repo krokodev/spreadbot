@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-04-01 9:11 PM
+// Roman, 2015-04-02 10:55 AM
 
 using System;
+using Crocodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -62,6 +63,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
         // --------------------------------------------------------[]
         [Test]
+
+        // Code: Fixed: FindResponse not Contains 'FindRemoteFileFailure'
         public void FindRequest_Inprocess_Unknown()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
@@ -72,8 +75,12 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.That( findResponse.StatusCode.Equals( MipOperationStatus.FindRequestFailure ) );
             Assert.That( findResponse.Result == null );
-            Assert.That( findResponse.ToString().Contains( MipOperationStatus.FindRemoteFileFailure.ToString() ),
-                "FindResponse Contains 'FindRemoteFileFailure'" );
+            Assert.That( findResponse.ToString()
+                .Contains( MipOperationStatus.FindRequestFailure.ToString() ),
+                "FindResponse Contains '{0}'".SafeFormat( MipOperationStatus.FindRequestFailure ) );
+            Assert.That( findResponse.ToString()
+                .Contains( @"not found in [store/product/inprocess]" ),
+                "Contains 'not found in'");
         }
 
         // --------------------------------------------------------[]

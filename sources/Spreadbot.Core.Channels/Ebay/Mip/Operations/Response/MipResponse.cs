@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
     {
         public MipResponse() {}
 
-        public MipResponse( Exception exception )
+        public  MipResponse( Exception exception )
             : base( exception ) {}
     }
 }

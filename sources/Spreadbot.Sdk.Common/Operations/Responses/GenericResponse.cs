@@ -6,6 +6,7 @@
 using System;
 using System.Dynamic;
 using Spreadbot.Sdk.Common.Crocodev.Common;
+using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using YamlDotNet.Serialization;
 
@@ -32,8 +33,6 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string Type
         {
             get { return GetType().ToString(); }
-            // ReSharper disable once ValueParameterNotUsed
-            //set { }
         }
 
         [YamlMember( Order = 0 )]
@@ -58,7 +57,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public void Check()
         {
             if( !IsSuccess ) {
-                throw new ResponseException( this );
+                throw new SpreadbotResponseException( this );
             }
         }
 
@@ -79,6 +78,9 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             //exceptionInfo.StackTrace = exception.StackTrace;
             //exceptionInfo.Source = exception.Source;
 
+            if( exception is ISpreadbotDetaledException ) {
+                exceptionInfo.Details = ( ( ISpreadbotDetaledException ) exception ).GetDetails();
+            }
             if( exception.InnerException != null ) {
                 exceptionInfo.InnerException = GetExceptionInfo( exception.InnerException );
             }
