@@ -42,16 +42,20 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public bool IsSuccess { get; set; }
 
         [YamlMember( Order = 2 )]
-        public TResult Result { get; set; }
+        public string ArgsInfo { get; set; }
 
         [YamlMember( Order = 3 )]
-        public string Details { get; set; }
+        public TResult Result { get; set; }
 
         [YamlMember( Order = 4 )]
-        public string ExceptionInfo { get; set; }
+        public string Details { get; set; }
 
         [YamlMember( Order = 5 )]
+        public string ExceptionInfo { get; set; }
+
+        [YamlMember( Order = 6 )]
         public IAbstractResponse InnerResponse { get; set; }
+
 
         // --------------------------------------------------------[]
         public void Check()

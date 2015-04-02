@@ -139,7 +139,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void GetRequestStatus_Inproc()
         {
-            var feed = new MipFeedHandler( MipFeedType.Availability );
+            var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
 
@@ -154,7 +154,7 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void GetRequestStatus_Success()
         {
-            var feed = new MipFeedHandler( MipFeedType.Distribution );
+            var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
 
@@ -181,6 +181,20 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );
             Assert.AreEqual( MipRequestStatus.Unknown, requestResponse.Result.MipRequestStatusCode );
+        }
+
+        
+        // --------------------------------------------------------[]
+        [Test]
+        public void Response_Contains_ArgsInfo()
+        {
+            var feed = new MipFeedHandler( MipFeedType.None );
+            var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
+
+            var requestResponse = MipConnector.GetRequestStatus( request );
+            Console.WriteLine( requestResponse );
+
+            Assert_That_Text_Contains( requestResponse, "ArgsInfo" );
         }
     }
 }

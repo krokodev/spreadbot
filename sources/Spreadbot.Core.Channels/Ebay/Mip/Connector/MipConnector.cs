@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-01 9:10 PM
+// Roman, 2015-04-02 6:52 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -9,8 +9,8 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
-using Spreadbot.Sdk.Common.Operations.Responses;
 
 // >> Core | Connector
 
@@ -20,7 +20,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
         public const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth";
         public const string MipWriteToLocationErrorMessage = "You are not eligible to write at this location";
-
 
         // ===================================================================================== []
         // SendFeedFolder
@@ -43,12 +42,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             string reqId )
         {
             MipResponse< MipZipFeedResult > zipResponse;
-            MipResponse< MipSftpSendFilesResult> sendResponse;
+            MipResponse< MipSftpSendFilesResult > sendResponse;
 
             try {
                 var localFiles = LocalZippedFeedFile( mipFeedHandler.GetName(), reqId );
                 var remoteFiles = RemoteFeedOutgoingZipFilePath( mipFeedHandler.GetName(), reqId );
-                
+
                 zipResponse = ZipHelper.ZipFeed( mipFeedHandler, reqId );
                 zipResponse.Check();
 
@@ -60,7 +59,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
                 };
             }
-            
+
             // Ref: Use array of responses instead of inner-inner chain
             sendResponse.InnerResponse = zipResponse;
             return new MipResponse< MipSendZippedFeedFolderResult > {
@@ -132,11 +131,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipRequestHandler mipRequestHandler,
             bool ignoreInprocess = false )
         {
+
+            // Code: ArgsInfo
+
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess && !ignoreInprocess ) {
                     return new MipRequestStatusResponse {
                         StatusCode = MipOperationStatus.GetRequestStatusSuccess,
+                        ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler ),
                         Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Inprocess }
                     };
                 }
@@ -148,13 +151,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
                 return new MipRequestStatusResponse {
                     StatusCode = MipOperationStatus.GetRequestStatusSuccess,
+                    ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler ),
                     Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
                     InnerResponse = response
                 };
             }
             catch( Exception exception ) {
                 return new MipRequestStatusResponse( exception ) {
-                    StatusCode = MipOperationStatus.GetRequestStatusFailure
+                    StatusCode = MipOperationStatus.GetRequestStatusFailure,
+                    ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler )
                 };
             }
         }

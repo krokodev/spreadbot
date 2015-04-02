@@ -31,5 +31,10 @@ namespace Spreadbot.Sdk.Common.Crocodev.Common
         {
             return MakeYamlString( obj, options );
         }
+
+        public static string MakeArgsInfo( params object[] args )
+        {
+            return args.ToYamlString();
+        }
     }
 }
