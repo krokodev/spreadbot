@@ -10,6 +10,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 // >> Core | Connector
 
@@ -17,6 +18,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     public partial class MipConnector
     {
+        public const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth";
+
         // ===================================================================================== []
         // SendFeedFolder
         public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeedFolder( MipFeedHandler mipFeedHandler )
@@ -37,22 +40,39 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipFeedHandler mipFeedHandler,
             string reqId )
         {
+            MipResponse< MipZipFeedResult > zipResponse;
+            MipResponse< MipSftpSendFilesResult> sendResponse;
+
             try {
                 var localFiles = LocalZippedFeedFile( mipFeedHandler.GetName(), reqId );
                 var remoteFiles = RemoteFeedOutgoingZipFilePath( mipFeedHandler.GetName(), reqId );
-                ZipHelper.ZipFeed( mipFeedHandler, reqId ).Check();
-                SftpHelper.SendFiles( localFiles, remoteFiles ).Check();
+                
+                zipResponse = ZipHelper.ZipFeed( mipFeedHandler, reqId );
+                zipResponse.Check();
+
+                sendResponse = SftpHelper.SendFiles( localFiles, remoteFiles );
+                sendResponse.Check();
+                sendResponse.InnerResponse = zipResponse;
             }
             catch( Exception exception ) {
-                if( exception.Message.Contains( "Error message from server: Exceeded the Queue Depth" ) ) {
+                return new MipResponse< MipSendZippedFeedFolderResult >( exception ) {
+                    StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
+                };
+            }
+
+            // Todo: remove code
+/*            catch( Exception exception ) {
+                if( exception.Message.Contains( MipQueueDepthErrorMessage ) ) {
                     return new MipResponse< MipSendZippedFeedFolderResult >( exception ) {
                         StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
+                        Details = MipQueueDepthErrorMessage
                     };
                 }
-            }
+            }*/
             return new MipResponse< MipSendZippedFeedFolderResult > {
                 StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,
-                Result = new MipSendZippedFeedFolderResult { MipRequestId = reqId }
+                Result = new MipSendZippedFeedFolderResult { MipRequestId = reqId },
+                InnerResponse = sendResponse
             };
         }
 

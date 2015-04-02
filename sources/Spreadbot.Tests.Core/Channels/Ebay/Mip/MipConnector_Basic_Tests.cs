@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Basic_Tests.cs
-// Roman, 2015-04-02 10:55 AM
+// Roman, 2015-04-02 2:03 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -44,15 +44,23 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
         [Test]
         public void FindRequest_Inprocess()
         {
+            // Code: Fixed: FindRequest_Inprocess => FindRequestFailure
+
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
 
             Console.WriteLine( sendResponse );
-            Assert.IsNotNull( sendResponse.Result );
+
+            Assert.IsNotNull( sendResponse.Result, "Result" );
+            Assert.IsNotNull( sendResponse.InnerResponse, "InnerResponse" );
+
+            Assert_that_Text_Contains( sendResponse, MipOperationStatus.ZipFeedSuccess );
+            Assert_that_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
+            Console.WriteLine();
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.StatusCode );
@@ -63,8 +71,6 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
         // --------------------------------------------------------[]
         [Test]
-
-        // Code: Fixed: FindResponse not Contains 'FindRemoteFileFailure'
         public void FindRequest_Inprocess_Unknown()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
@@ -75,12 +81,8 @@ namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
 
             Assert.That( findResponse.StatusCode.Equals( MipOperationStatus.FindRequestFailure ) );
             Assert.That( findResponse.Result == null );
-            Assert.That( findResponse.ToString()
-                .Contains( MipOperationStatus.FindRequestFailure.ToString() ),
-                "FindResponse Contains '{0}'".SafeFormat( MipOperationStatus.FindRequestFailure ) );
-            Assert.That( findResponse.ToString()
-                .Contains( @"not found in [store/product/inprocess]" ),
-                "Contains 'not found in'");
+            Assert_that_Text_Contains( findResponse, MipOperationStatus.FindRequestFailure );
+            Assert_that_Text_Contains( findResponse, @"not found in [store/product/inprocess]" );
         }
 
         // --------------------------------------------------------[]

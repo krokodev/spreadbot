@@ -7,13 +7,12 @@ using System.Globalization;
 using System.Threading;
 using Crocodev.Common.Extensions;
 using NUnit.Framework;
+using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 
 namespace Spreadbot.Tests.Core.Common
 {
     public class SpreadbotBaseTest
     {
-        protected const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth of 10";
-
         [SetUp]
         public void InitCulture()
         {
@@ -30,7 +29,14 @@ namespace Spreadbot.Tests.Core.Common
 
         protected static void IgnoreMipQueueDepthErrorMessage( string dump )
         {
-            Assert_Inconclusive_if_Text_Contains_Message( dump, MipQueueDepthErrorMessage );
+            Assert_Inconclusive_if_Text_Contains_Message( dump, MipConnector.MipQueueDepthErrorMessage );
+        }
+
+        protected static void Assert_that_Text_Contains( object text, object fragment )
+        {
+            Assert.That( text.ToString()
+                .Contains( fragment.ToString() ),
+                "Contains '{0}'".SafeFormat( fragment.ToString() ) );
         }
     }
 }
