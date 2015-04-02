@@ -60,7 +60,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // Ref: Use array of responses instead of inner-inner chain
+            // Ref: Use array of responses instead of the inner-inner chain
             sendResponse.InnerResponse = zipResponse;
             return new MipResponse< MipSendZippedFeedFolderResult > {
                 StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,
@@ -131,8 +131,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipRequestHandler mipRequestHandler,
             bool ignoreInprocess = false )
         {
-
-            // Code: ArgsInfo
 
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );

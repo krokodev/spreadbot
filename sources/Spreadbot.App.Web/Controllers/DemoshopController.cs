@@ -13,70 +13,82 @@ namespace Spreadbot.App.Web.Controllers
     // !>> Controller | DemoshopController
     public class DemoshopController : Controller
     {
-        // ===================================================================================== []
-        // Index
+        private static readonly object Locker = 0;
+
+        // --------------------------------------------------------[]
         public ActionResult Index()
         {
-            DemoshopModel.Restore();
+            lock( Locker ) {
+                DemoshopModel.Restore();
+            }
             return View();
         }
 
-        // ===================================================================================== []
-        // UpdateItem
+        // --------------------------------------------------------[]
         [HttpPost]
         public ActionResult UpdateItem( [Bind( Include = "Sku, Title, Price, Quantity" )] DemoshopItem item )
         {
-            DemoshopModel.SaveItem( item );
+            lock( Locker ) {
+                DemoshopModel.SaveItem( item );
+            }
             return RedirectToAction( "Index" );
         }
 
-        // ===================================================================================== []
-        // Add Task
+        // --------------------------------------------------------[]
         public ActionResult AddTask()
         {
-            DemoshopModel.CreateTaskPublishItemOnEbay();
-            DemoshopModel.Save();
+            lock( Locker ) {
+                DemoshopModel.CreateTaskPublishItemOnEbay();
+                DemoshopModel.Save();
+            }
             return RedirectToAction( "Index" );
         }
 
-        // ===================================================================================== []
-        // RunChannelTasks
+        // --------------------------------------------------------[]
         public ActionResult RunChannelTasks()
         {
-            Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
-            DemoshopModel.Save();
+            lock( Locker ) {
+                Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
+                DemoshopModel.Save();
+            }
             return RedirectToAction( "Index" );
         }
 
-        // ===================================================================================== []
-        // ProceedChannelTasks
+        // --------------------------------------------------------[]
         public ActionResult ProceedChannelTasks()
         {
-            Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
-            DemoshopModel.Save();
+            lock( Locker ) {
+                Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
+                DemoshopModel.Save();
+            }
             return RedirectToAction( "Index" );
         }
 
-        // ===================================================================================== []
-        // Save/Restore Tasks
+        // --------------------------------------------------------[]
         public ActionResult SaveTasks()
         {
-            DemoshopModel.Save();
+            lock( Locker ) {
+                DemoshopModel.Save();
+            }
             return RedirectToAction( "Index" );
         }
 
         // --------------------------------------------------------[]
         public ActionResult RestoreTasks()
         {
-            DemoshopModel.Restore();
+            lock( Locker ) {
+                DemoshopModel.Restore();
+            }
             return RedirectToAction( "Index" );
         }
 
         // --------------------------------------------------------[]
         public ActionResult DeleteTasks()
         {
-            DemoshopModel.DeleteTasks();
-            DemoshopModel.Save();
+            lock( Locker ) {
+                DemoshopModel.DeleteTasks();
+                DemoshopModel.Save();
+            }
             return RedirectToAction( "Index" );
         }
 
