@@ -13,6 +13,8 @@ password.*
 *.user
 *.sln.docstates
 
+# Fakes
+FakesAssemblies/
 
 # Test results
 TestResults/
