@@ -32,7 +32,7 @@ namespace Spreadbot.Tests.Core.Units
 
             var response = MipConnector.SendZippedFeedFolder( feed );
             Console.WriteLine( response );
-            IgnoreMipQueueDepthErrorMessage( response.ToString() );
+            IgnoreMipQueueDepthErrorMessage( response );
 
             Assert.AreEqual( MipOperationStatus.SendZippedFeedFolderSuccess, response.StatusCode );
             Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
@@ -45,7 +45,7 @@ namespace Spreadbot.Tests.Core.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
-            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
+            IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
 
@@ -103,7 +103,7 @@ namespace Spreadbot.Tests.Core.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
+            IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
@@ -140,8 +140,9 @@ namespace Spreadbot.Tests.Core.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = MipConnector.SendZippedFeedFolder( feed );
-            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
+            IgnoreMipQueueDepthErrorMessage( sendResponse );
 
+            var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
             var requestResponse = MipConnector.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
@@ -155,7 +156,7 @@ namespace Spreadbot.Tests.Core.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = MipConnector.SendTestFeedFolder( feed );
-            IgnoreMipQueueDepthErrorMessage( sendResponse.ToString() );
+            IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );

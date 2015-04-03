@@ -61,7 +61,7 @@ namespace Spreadbot.Tests.Core.Units
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
+                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse );
                 Console.WriteLine( t.EbayPublishResponse );
                 Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
                 Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
@@ -82,7 +82,7 @@ namespace Spreadbot.Tests.Core.Units
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
                 task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                    IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse.ToString() );
+                    IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse );
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
                     Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );

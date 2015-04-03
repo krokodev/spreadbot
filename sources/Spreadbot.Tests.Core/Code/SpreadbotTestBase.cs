@@ -27,9 +27,9 @@ namespace Spreadbot.Tests.Core.Code
             }
         }
 
-        protected static void IgnoreMipQueueDepthErrorMessage( string dump )
+        protected static void IgnoreMipQueueDepthErrorMessage( object obj )
         {
-            Assert_Inconclusive_if_Text_Contains_Message( dump, MipConnector.MipQueueDepthErrorMessage );
+            Assert_Inconclusive_if_Text_Contains_Message( obj.ToString(), MipConnector.MipQueueDepthErrorMessage );
         }
 
         protected static void Assert_That_Text_Contains( object text, object fragment )
