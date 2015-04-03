@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// SpreadbotBaseTest.cs
-// Roman, 2015-04-01 9:11 PM
+// SpreadbotTestBase.cs
+// Roman, 2015-04-03 1:45 PM
 
 using System.Globalization;
 using System.Threading;
@@ -9,9 +9,9 @@ using Crocodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 
-namespace Spreadbot.Tests.Core.Common
+namespace Spreadbot.Tests.Core.Code
 {
-    public class SpreadbotBaseTest
+    public class SpreadbotTestBase
     {
         [SetUp]
         public void InitCulture()
