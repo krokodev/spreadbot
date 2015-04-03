@@ -1,24 +1,30 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-03 5:09 PM
+// Roman, 2015-04-03 6:21 PM
 
+using System;
 using Crocodev.Common.Extensions;
 using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Tests.Core.Code;
+using Assert = NUnit.Framework.Assert;
 
 namespace Spreadbot.Tests.Core.Units
 {
-    [TestFixture]
-    public class MipConnector_Content_Tests : SpreadbotTestBase
+    [TestClass]
+    public class MipConnector_Content_Tests //: SpreadbotTestBase
     {
         // --------------------------------------------------------[]
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             MipConnectorTestInitializer.PrepareTestFiles();
@@ -29,10 +35,14 @@ namespace Spreadbot.Tests.Core.Units
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
-            
-            var requestResponse = MipConnector.GetRequestStatus( request );
 
-            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId, "{0}.ItemId".SafeFormat( feed.Type ) );
+            var requestResponse = MipConnector.GetRequestStatus( request );
+            Console.WriteLine(requestResponse);
+
+            Assert.NotNull( requestResponse.Result );
+            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId,
+                requestResponse.Result.MipItemId,
+                "{0}.ItemId".SafeFormat( feed.Type ) );
         }
 
         // --------------------------------------------------------[]
@@ -40,16 +50,34 @@ namespace Spreadbot.Tests.Core.Units
         private static void TestItemId( MipFeedType mipFeedType )
         {
             using( ShimsContext.Create() ) {
-                ShimMipConnector.GetRequestStatusMipRequestHandler =
-                    ( mipRequestHandler ) =>
-                        null;
+                ShimMipConnector.FindRequestIn_InprocessMipRequestHandler =
+                    mipRequestHandler => new MipResponse< MipFindRemoteFileResult > {
+                        IsSuccess = false,
+                        StatusCode = MipOperationStatus.FindRemoteFileFailure,
+                        Details = "Fake"
+                    };
+
+                ShimMipConnector.FindRequestIn_OutputMipRequestHandler =
+                    mipRequestHandler => new MipResponse< MipFindRemoteFileResult > {
+                        IsSuccess = true,
+                        StatusCode = MipOperationStatus.FindRemoteFileSuccess,
+                        Result = new MipFindRemoteFileResult {
+                            RemoteDir = "fake/remote/dir",
+                            RemoteFileName = mipRequestHandler.FileNamePrefix() + ".xml"
+                        },
+                        Details = "Fake"
+                    };
+
+                ShimMipConnector.ShimSftpHelper.DoDownloadFilesStringString = ( from, to ) => { };
 
                 DoTestItemId( mipFeedType );
             }
         }
 
         // --------------------------------------------------------[]
-        [Ignore("Waiting for Fakes")][Test]public void Read_ItemId()
+       // [Ignore( "Waiting for Fakes" )]
+        [TestMethod]
+        public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
@@ -77,7 +105,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        private static void TestAllFeedStatuses( MipFeedType mipFeedType )
+/*        private static void TestAllFeedStatuses( MipFeedType mipFeedType )
         {
             TestFeedStatus( mipFeedType, MipRequestStatus.Success );
             TestFeedStatus( mipFeedType, MipRequestStatus.Failure );
@@ -85,7 +113,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore("Waiting for Fakes")]
+        [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]
         public void Read_Product_Content()
         {
@@ -94,7 +122,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore("Waiting for Fakes")]
+        [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]
         public void Read_Availability_Content()
         {
@@ -102,12 +130,12 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore("Waiting for Fakes")]
+        [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]
         public void Read_Distribution_Content()
         {
             TestItemId( MipFeedType.Distribution );
             TestAllFeedStatuses( MipFeedType.Distribution );
-        }
+        }*/
     }
 }

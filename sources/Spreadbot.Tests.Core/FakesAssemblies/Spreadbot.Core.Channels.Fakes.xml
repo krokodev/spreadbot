@@ -46,23 +46,23 @@
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ExtraCheckProductStatusXmlDocumentMipRequestStatus">
             <summary>Sets the shim of MipConnector.ExtraCheckProductStatus(XmlDocument xml, MipRequestStatus defStatus)</summary>
         </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.FindRequestIn_InprocessMipRequestHandler">
+            <summary>Sets the shim of MipConnector.FindRequestIn_Inprocess(MipRequestHandler mipRequestHandler)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.FindRequestIn_OutputMipRequestHandler">
+            <summary>Sets the shim of MipConnector.FindRequestIn_Output(MipRequestHandler mipRequestHandler)</summary>
+        </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.FindRequestMipRequestHandlerMipRequestProcessingStage">
             <summary>Sets the shim of MipConnector.FindRequest(MipRequestHandler mipRequestHandler, MipRequestProcessingStage stage)</summary>
-        </member>
-        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.FindRequestRemoteFileNameInInprocessMipRequestHandler">
-            <summary>Sets the shim of MipConnector.FindRequestRemoteFileNameInInprocess(MipRequestHandler mipRequestHandler)</summary>
-        </member>
-        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.FindRequestRemoteFileNameInOutputMipRequestHandler">
-            <summary>Sets the shim of MipConnector.FindRequestRemoteFileNameInOutput(MipRequestHandler mipRequestHandler)</summary>
         </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestItemIdFromContentMipFeedTypeString">
             <summary>Sets the shim of MipConnector.GetRequestItemIdFromContent(MipFeedType feedType, String content)</summary>
         </member>
-        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestOutputStatusMipFeedTypeMipResponseOfMipFindRequestResultMipRequestHandler">
-            <summary>Sets the shim of MipConnector.GetRequestOutputStatus(MipFeedType feedType, MipResponse`1&lt;MipFindRequestResult&gt; response, MipRequestHandler mipRequestHandler)</summary>
-        </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusFromContentMipFeedTypeString">
             <summary>Sets the shim of MipConnector.GetRequestStatusFromContent(MipFeedType feedType, String content)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusFromOutputMipFeedTypeMipResponseOfMipFindRequestResultMipRequestHandler">
+            <summary>Sets the shim of MipConnector.GetRequestStatusFromOutput(MipFeedType feedType, MipResponse`1&lt;MipFindRequestResult&gt; response, MipRequestHandler mipRequestHandler)</summary>
         </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusMipRequestHandler">
             <summary>Sets the shim of MipConnector.GetRequestStatus(MipRequestHandler mipRequestHandler)</summary>
@@ -79,8 +79,8 @@
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.LocalZippedFeedFileStringString">
             <summary>Sets the shim of MipConnector.LocalZippedFeedFile(String feed, String reqId)</summary>
         </member>
-        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.MakeRequestStatusArgsIfoMipRequestHandler">
-            <summary>Sets the shim of MipConnector.MakeRequestStatusArgsIfo(MipRequestHandler mipRequestHandler)</summary>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.MakeRequestStatusArgsInfoMipRequestHandler">
+            <summary>Sets the shim of MipConnector.MakeRequestStatusArgsInfo(MipRequestHandler mipRequestHandler)</summary>
         </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.MakeRequestStatusResultByParsingXmlContentMipFeedTypeString">
             <summary>Sets the shim of MipConnector.MakeRequestStatusResultByParsingXmlContent(MipFeedType feedType, String content)</summary>
@@ -116,6 +116,105 @@
             <summary>Sets the shim of MipConnector.SendTestFeed(MipFeedHandler mipFeedHandler)</summary>
         </member>
         <member name="T:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper">
+            <summary>Shim type of Spreadbot.Core.Channels.Ebay.Mip.Connector.MipConnector+SftpHelper</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.#ctor(Spreadbot.Core.Channels.Ebay.Mip.Connector.MipConnector.SftpHelper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.Constructor">
+            <summary>Sets the shim of SftpHelper.SftpHelper()</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.DoDownloadFilesStringString">
+            <summary>Sets the shim of SftpHelper.DoDownloadFiles(String remotePath, String localPath)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.DoSendFilesStringString">
+            <summary>Sets the shim of SftpHelper.DoSendFiles(String localFiles, String remoteFiles)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.DoTestConnectionString">
+            <summary>Sets the shim of SftpHelper.DoTestConnection(String password)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.DownloadFilesStringString">
+            <summary>Sets the shim of SftpHelper.DownloadFiles(String remotePath, String localPath)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.FindRemoteFileStringString">
+            <summary>Sets the shim of SftpHelper.FindRemoteFile(String filePrefix, String remoteDir)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.FindRemoteFileStringStringArray">
+            <summary>Sets the shim of SftpHelper.FindRemoteFile(String filePrefix, String[] remoteDirs)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.GetRemoteDirFilesString">
+            <summary>Sets the shim of SftpHelper.GetRemoteDirFiles(String remoteDir)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.GetRemoteFileContentStringStringString">
+            <summary>Sets the shim of SftpHelper.GetRemoteFileContent(String remoteFolder, String fileName, String localFolder)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.SendFilesStringString">
+            <summary>Sets the shim of SftpHelper.SendFiles(String localFiles, String remoteFiles)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.SessionOptionsString">
+            <summary>Sets the shim of SftpHelper.SessionOptions(String password)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.SftpUploadFilesStringString">
+            <summary>Sets the shim of SftpHelper.SftpUploadFiles(String localPath, String remotePath)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.TestConnectionString">
+            <summary>Sets the shim of SftpHelper.TestConnection(String password)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.TransferOptions">
+            <summary>Sets the shim of SftpHelper.TransferOptions()</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper._FindRemoteFileb__25String">
+            <summary>Sets the shim of SftpHelper.&lt;FindRemoteFile&gt;b__25(String s)</summary>
+        </member>
+        <member name="T:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimSftpHelper.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper">
+            <summary>Shim type of Spreadbot.Core.Channels.Ebay.Mip.Connector.MipConnector+ZipHelper</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.#ctor(Spreadbot.Core.Channels.Ebay.Mip.Connector.MipConnector.ZipHelper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.Constructor">
+            <summary>Sets the shim of ZipHelper.ZipHelper()</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.ZipFeedMipFeedHandlerString">
+            <summary>Sets the shim of ZipHelper.ZipFeed(MipFeedHandler mipFeedHandler, String reqId)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.ZipFeedStringString">
+            <summary>Sets the shim of ZipHelper.ZipFeed(String feed, String reqId)</summary>
+        </member>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.ZipFolderFilesStringString">
+            <summary>Sets the shim of ZipHelper.ZipFolderFiles(String sourceDir, String zipFileName)</summary>
+        </member>
+        <member name="T:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.ShimZipHelper.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
     </members>

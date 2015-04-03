@@ -17,8 +17,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
         public partial class SftpHelper
         {
-            // ===================================================================================== []
-            // DoTestConnection
+
+            // --------------------------------------------------------[]
             private static MipResponse< MipTestConnectionResult > DoTestConnection( string password )
             {
                 try {
@@ -38,8 +38,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // ===================================================================================== []
-            // DoSendFiles
+            // --------------------------------------------------------[]
             private static MipResponse< MipSftpSendFilesResult > DoSendFiles( string localFiles, string remoteFiles )
             {
                 try {
@@ -57,8 +56,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // ===================================================================================== []
-            // GetRemoteDirFiles
+            // --------------------------------------------------------[]
             private static RemoteFileInfoCollection GetRemoteDirFiles( string remoteDir )
             {
                 try {
@@ -76,8 +74,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 return new RemoteFileInfoCollection();
             }
 
-            // ===================================================================================== []
-            // SftpUploadFiles
+            // --------------------------------------------------------[]
             private static void SftpUploadFiles( string localPath, string remotePath )
             {
                 using( var session = new Session() ) {
@@ -97,9 +94,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 }
             }
 
-            // ===================================================================================== []
-            // SftpUploadFiles
-            private static void DownloadFiles( string remotePath, string localPath )
+            // --------------------------------------------------------[]
+            private static void DoDownloadFiles( string remotePath, string localPath )
             {
                 using( var session = new Session() ) {
                     var sessionOptions = SessionOptions();
@@ -118,8 +114,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 }
             }
 
-            // ===================================================================================== []
-            // SessionOptions
+            // --------------------------------------------------------[]
             private static SessionOptions SessionOptions( string password = null )
             {
                 return new SessionOptions {
@@ -132,8 +127,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // ===================================================================================== []
-            // TransferOptions
+            // --------------------------------------------------------[]
             private static TransferOptions TransferOptions()
             {
                 return new TransferOptions {

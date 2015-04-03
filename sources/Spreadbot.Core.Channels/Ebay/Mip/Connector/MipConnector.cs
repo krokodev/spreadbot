@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-03 5:22 PM
+// Roman, 2015-04-03 5:31 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -76,10 +76,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             try {
                 switch( stage ) {
                     case MipRequestProcessingStage.Inprocess :
-                        findResponse = FindRequestRemoteFileNameInInprocess( mipRequestHandler );
+                        findResponse = FindRequestIn_Inprocess( mipRequestHandler );
                         break;
                     case MipRequestProcessingStage.Output :
-                        findResponse = FindRequestRemoteFileNameInOutput( mipRequestHandler );
+                        findResponse = FindRequestIn_Output( mipRequestHandler );
                         break;
                     default :
                         throw new SpreadbotException( "Wrong stage {0}", stage );
@@ -103,7 +103,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInInprocess(
+        // Code: FindRequestIn_Inprocess, Fake Shims injection
+        private static MipResponse< MipFindRemoteFileResult > FindRequestIn_Inprocess(
             MipRequestHandler mipRequestHandler )
         {
             var remoteDir = RemoteFeedInprocessFolderPath( mipRequestHandler.MipFeedHandler.GetName() );
@@ -113,7 +114,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse< MipFindRemoteFileResult > FindRequestRemoteFileNameInOutput(
+        public static MipResponse< MipFindRemoteFileResult > FindRequestIn_Output(
             MipRequestHandler mipRequestHandler )
         {
             var remoteDirs = RemoteFeedOutputFolderPathes( mipRequestHandler.MipFeedHandler.GetName() );
@@ -132,19 +133,19 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
                     return new MipRequestStatusResponse {
                         StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                        ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
+                        ArgsInfo = MakeRequestStatusArgsInfo( mipRequestHandler ),
                         Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Inprocess }
                     };
                 }
 
                 response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
-                    return GetRequestOutputStatus( mipRequestHandler.MipFeedHandler.Type, response, mipRequestHandler );
+                    return GetRequestStatusFromOutput( mipRequestHandler.MipFeedHandler.Type, response, mipRequestHandler );
                 }
 
                 return new MipRequestStatusResponse {
                     StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                    ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
+                    ArgsInfo = MakeRequestStatusArgsInfo( mipRequestHandler ),
                     Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
                     InnerResponses = { response }
                 };
@@ -152,26 +153,26 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             catch( Exception exception ) {
                 return new MipRequestStatusResponse( exception ) {
                     StatusCode = MipOperationStatus.GetRequestStatusFailure,
-                    ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler )
+                    ArgsInfo = MakeRequestStatusArgsInfo( mipRequestHandler )
                 };
             }
         }
 
         // --------------------------------------------------------[]
-        private static string MakeRequestStatusArgsIfo( MipRequestHandler mipRequestHandler )
+        private static string MakeRequestStatusArgsInfo( MipRequestHandler mipRequestHandler )
         {
             return "(MipRequestId = {0})".SafeFormat( mipRequestHandler.Id );
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatusResponse GetRequestOutputStatus(
+        private static MipRequestStatusResponse GetRequestStatusFromOutput(
             MipFeedType feedType,
             MipResponse< MipFindRequestResult > response,
             MipRequestHandler mipRequestHandler )
         {
             return new MipRequestStatusResponse {
                 StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
+                ArgsInfo = MakeRequestStatusArgsInfo( mipRequestHandler ),
                 Result = ReadRequestOutputStatus( feedType, response )
             };
         }

@@ -71,14 +71,21 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             }
 
             // --------------------------------------------------------[]
+            // Code: Sftp.GetRemoteFileContent, Fakes injection
             public static string GetRemoteFileContent( string remoteFolder, string fileName, string localFolder )
             {
                 var remotePath = string.Format( @"{0}/{1}", remoteFolder, fileName );
                 var localPath = string.Format( @"{0}\{1}", localFolder, fileName );
 
-                DownloadFiles( remotePath, localPath );
+                DoDownloadFiles( remotePath, localPath );
 
                 return File.ReadAllText( string.Format( @"{0}\{1}", localFolder, fileName ) );
+            }
+
+            // --------------------------------------------------------[]
+            public static void DownloadFiles( string remotePath, string localPath )
+            {
+                DoDownloadFiles( remotePath, localPath );
             }
         }
     }
