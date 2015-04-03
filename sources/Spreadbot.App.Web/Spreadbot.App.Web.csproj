@@ -166,8 +166,7 @@
     <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\Themes\Default\Common.css" />
-    <Content Include="Content\Themes\Default\Form.css" />
+    <Content Include="Content\Common.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -192,9 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Layouts\Default.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Code\FormView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\LayoutView.cshtml" />

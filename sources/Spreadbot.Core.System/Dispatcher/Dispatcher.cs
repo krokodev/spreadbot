@@ -10,8 +10,6 @@ using MoreLinq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Manager;
 
-// >> Core | Dispatcher
-
 namespace Spreadbot.Core.System.Dispatcher
 {
     public partial class Dispatcher

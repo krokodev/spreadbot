@@ -33,12 +33,20 @@
     }
 }
 
+@helper Editor(MvcHtmlString label, MvcHtmlString textBox)
+{
+    <div class="sb-raw">
+        <div class="sb-cell">@label</div>
+        <div class="sb-cell sb-width-10px">&nbsp;</div>
+        <div class="sb-cell">@textBox</div>
+    </div>
+}
 @helper FormEditor( Expression< Func< DemoshopModel, string > > expression, string @class = "sb-width-200px" )
 {
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @(( HelperResult ) FormView.Editor( label, textBox ))
+    @(( HelperResult ) Editor( label, textBox ))
 }
 
 @helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
@@ -46,7 +54,7 @@
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @(( HelperResult ) FormView.Editor( label, textBox ))
+    @(( HelperResult ) Editor( label, textBox ))
 }
 
 @helper ShowTasks( IEnumerable< IAbstractTask > tasks )

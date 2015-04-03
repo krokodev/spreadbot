@@ -10,7 +10,6 @@ using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
-    // !>> App | Web | DemoshopStore
     public partial class DemoshopStoreManager
     {
         // --------------------------------------------------------[]

@@ -12,8 +12,6 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Sdk.Common.Exceptions;
 
-// >> Core | Connector
-
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     public partial class MipConnector
@@ -60,7 +58,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // Done: Ref: Use array of responses instead of the inner-inner chain
             return new MipResponse< MipSendFeedResult > {
                 StatusCode = MipOperationStatus.SendFeedSuccess,
                 Result = new MipSendFeedResult { MipRequestId = reqId },

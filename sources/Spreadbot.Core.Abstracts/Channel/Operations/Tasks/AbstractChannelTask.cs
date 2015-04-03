@@ -5,8 +5,6 @@
 
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-// !>> Core | AbstractChannelTask
-
 namespace Spreadbot.Core.Abstracts.Channel.Operations.Tasks
 {
     public abstract partial class AbstractChannelTask : AbstractTask, IChannelTask {}
