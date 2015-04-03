@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-02 6:52 PM
+// Roman, 2015-04-03 1:44 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -131,7 +131,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             MipRequestHandler mipRequestHandler,
             bool ignoreInprocess = false )
         {
-
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess && !ignoreInprocess ) {

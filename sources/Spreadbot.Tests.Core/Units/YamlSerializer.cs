@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// Yaml_Serializer_Tests.cs
+// YamlSerializer.cs
 // Roman, 2015-04-01 9:11 PM
 
 using System;
@@ -10,15 +10,15 @@ using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Crocodev.Common;
-using Spreadbot.Tests.Core.Common;
+using Spreadbot.Tests.Core.Code;
 using YamlDotNet.Serialization;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Spreadbot.Tests.Core.Utils
+namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class Yaml_Serializer_Tests : SpreadbotBaseTest
+    public class YamlSerializer : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]

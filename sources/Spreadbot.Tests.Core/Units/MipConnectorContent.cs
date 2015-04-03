@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnector_Content_Tests.cs
-// Roman, 2015-04-01 9:11 PM
+// MipConnectorContent.cs
+// Roman, 2015-04-03 1:45 PM
 
 using Crocodev.Common.Extensions;
 using MoreLinq;
@@ -10,12 +10,12 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Tests.Core.Common;
+using Spreadbot.Tests.Core.Code;
 
-namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
+namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class MipConnector_Content_Tests : SpreadbotBaseTest
+    public class MipConnectorContent : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]

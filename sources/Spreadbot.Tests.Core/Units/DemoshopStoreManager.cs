@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-02 5:31 PM
+// DemoshopStoreManager.cs
+// Roman, 2015-04-03 1:45 PM
 
 using System;
 using System.Collections.Generic;
@@ -11,39 +11,40 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
-using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Core.System.Dispatcher;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
-using Spreadbot.Tests.Core.Common;
+using Spreadbot.Tests.Core.Code;
 
 //using System.Diagnostics;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
+namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class DemoshopStoreManager_Tests : SpreadbotBaseTest
+    public class DemoshopStoreManager : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]
         public void DeleteAllStoreTasks()
         {
-            DemoshopStoreManager.Instance.DeleteAllTasks();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.DeleteAllTasks();
         }
 
         // --------------------------------------------------------[]
         private static IEnumerable< EbayPublishTask > DemoshopEbayPublishTasks()
         {
-            return DemoshopStoreManager.Instance.GetChannelTasks().OfType< EbayPublishTask >();
+            return
+                Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.GetChannelTasks()
+                    .OfType< EbayPublishTask >();
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Create_Task_PublishItemOnEbay()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
@@ -55,7 +56,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Run_Task_PublishItemOnEbay()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
@@ -74,7 +75,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
                 var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
@@ -99,7 +100,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         {
             // StatusCode: Test: Save_and_Restore_Tasks()
 
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
 
             store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             store.SaveData();
@@ -127,7 +128,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
                 store.SaveData();
@@ -161,7 +162,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
                 Assert_That_Last_Update_Time_is_Correct();
@@ -181,7 +182,7 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             var task = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
@@ -194,27 +195,27 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             var taskNum = store.GetChannelTasks().Count();
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.RestoreData();
-            
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.SaveData();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.RestoreData();
+
+            var task = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.StoreTasks.First();
             Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Task num" );
         }
 
         [Test]
         public void Task_Keeps_Id_After_Reload()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             var id = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay ).Id;
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.RestoreData();
-            
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.SaveData();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.RestoreData();
+
+            var task = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.StoreTasks.First();
             Assert.AreEqual( id, task.Id, "Task.Id" );
         }
 
@@ -222,20 +223,21 @@ namespace Spreadbot.Tests.Core.Stores.Demoshop.Manager
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance;
             store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.DeleteAllTasks();
-            DemoshopStoreManager.Instance.RestoreData();
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.SaveData();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.DeleteAllTasks();
+            Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.RestoreData();
+            var task = Spreadbot.Core.Stores.Demoshop.Manager.DemoshopStoreManager.Instance.StoreTasks.First();
 
             Console.WriteLine( task );
 
             Assert.That( task.GetStatusCode() == TaskStatus.Failure, "Task failure" );
             Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
+
         // --------------------------------------------------------[]
         private static void Assert_That_Last_Update_Time_is_Correct()
         {

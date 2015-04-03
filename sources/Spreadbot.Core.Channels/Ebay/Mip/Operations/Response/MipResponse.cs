@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipResponse.cs
-// Roman, 2015-04-01 9:10 PM
+// Roman, 2015-04-03 1:45 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Response
     {
         public MipResponse() {}
 
-        public  MipResponse( Exception exception )
+        public MipResponse( Exception exception )
             : base( exception ) {}
     }
 }

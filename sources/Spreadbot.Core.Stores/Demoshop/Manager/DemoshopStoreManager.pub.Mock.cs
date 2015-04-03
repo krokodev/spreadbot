@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pub.Mock.cs
-// Roman, 2015-04-02 5:21 PM
+// Roman, 2015-04-03 1:44 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;

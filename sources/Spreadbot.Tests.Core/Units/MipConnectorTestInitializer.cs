@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // MipConnectorTestInitializer.cs
-// Roman, 2015-04-01 9:11 PM
+// Roman, 2015-04-03 1:45 PM
 
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
-namespace Spreadbot.Tests.Core.Channels.Ebay.Mip
+namespace Spreadbot.Tests.Core.Units
 {
     [Ignore]
     [TestFixture]
