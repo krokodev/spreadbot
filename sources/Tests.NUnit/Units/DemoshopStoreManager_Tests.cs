@@ -96,8 +96,6 @@ namespace Tests.MSTest.Units
         [Test]
         public void Save_and_Restore_Tasks()
         {
-            // StatusCode: Test: Save_and_Restore_Tasks()
-
             var store = DemoshopStoreManager.Instance;
 
             store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
