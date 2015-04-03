@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.Core
+// Tests.MSTest
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-03 6:21 PM
+// Roman, 2015-04-03 8:17 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -35,7 +35,7 @@ namespace Tests.MSTest.Units
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
 
             var requestResponse = MipConnector.GetRequestStatus( request );
-            Console.WriteLine(requestResponse);
+            Console.WriteLine( requestResponse );
 
             Assert.IsNotNull( requestResponse.Result );
             Assert.AreEqual( MipConnectorTestInitializer.ProductItemId,
@@ -73,7 +73,7 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-       // [Ignore( "Waiting for Fakes" )]
+        // [Ignore( "Waiting for Fakes" )]
         [TestMethod]
         public void Read_ItemId()
         {
@@ -103,7 +103,7 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-/*        private static void TestAllFeedStatuses( MipFeedType mipFeedType )
+        /*        private static void TestAllFeedStatuses( MipFeedType mipFeedType )
         {
             TestFeedStatus( mipFeedType, MipRequestStatus.Success );
             TestFeedStatus( mipFeedType, MipRequestStatus.Failure );

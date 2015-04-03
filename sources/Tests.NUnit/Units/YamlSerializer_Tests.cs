@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.Core
+// Tests.NUnit
 // YamlSerializer_Tests.cs
-// Roman, 2015-04-03 1:45 PM
+// Roman, 2015-04-03 8:17 PM
 
 using System;
 using NUnit.Framework;

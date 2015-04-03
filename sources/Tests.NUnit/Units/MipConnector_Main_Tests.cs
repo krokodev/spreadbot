@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.Core
+// Tests.NUnit
 // MipConnector_Main_Tests.cs
-// Roman, 2015-04-03 1:45 PM
+// Roman, 2015-04-03 8:17 PM
 
 using System;
 using NUnit.Framework;
@@ -39,7 +39,6 @@ namespace Tests.MSTest.Units
             Assert_That_Text_Contains( response, MipOperationStatus.ZipFeedSuccess );
             Assert_That_Text_Contains( response, MipOperationStatus.SftpSendFilesSuccess );
         }
-
 
         // --------------------------------------------------------[]
         [Test]
@@ -129,7 +128,7 @@ namespace Tests.MSTest.Units
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
             var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
-            
+
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.StatusCode );
@@ -154,11 +153,11 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore("Waiting for Fakes")]
+        [Ignore( "Waiting for Fakes" )]
         [Test]
         public void GetRequestStatus_Success()
         {
-/*
+            /*
             var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = MipConnector.SendTestFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
