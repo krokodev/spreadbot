@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // YamlSerializer_Tests.cs
-// Roman, 2015-04-03 8:17 PM
+// Roman, 2015-04-03 8:55 PM
 
 using System;
 using NUnit.Framework;
@@ -13,9 +13,7 @@ using Spreadbot.Sdk.Common.Crocodev.Common;
 using Tests.Common;
 using YamlDotNet.Serialization;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
-namespace Spreadbot.Tests.Core.Units
+namespace Tests.NUnit.Units
 {
     [TestFixture]
     public class YamlSerializer_Tests : SpreadbotTestBase

@@ -7,6 +7,7 @@ using System;
 using Crocodev.Common.Extensions;
 using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -73,13 +74,21 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        // [Ignore( "Waiting for Fakes" )]
+        [Ignore]
         [TestMethod]
         public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
 
+        // --------------------------------------------------------[]
+        [TestMethod]
+        public void Read_Mip_Config()
+        {
+            var configuration = MipPublicConfig.Instance;
+            Assert.AreEqual( "mip.ebay.com", configuration.MipConnection.HostName );
+            Assert.AreEqual( 22, configuration.MipConnection.PortNumber );
+        }
         // --------------------------------------------------------[]
         private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
         {

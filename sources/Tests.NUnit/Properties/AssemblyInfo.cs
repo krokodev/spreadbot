@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // AssemblyInfo.cs
-// Roman, 2015-04-03 8:17 PM
+// Roman, 2015-04-03 8:55 PM
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -10,11 +10,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle( "Tests.MSTest" )]
+[assembly : AssemblyTitle( "Tests.NUnit" )]
 [assembly : AssemblyDescription( "" )]
 [assembly : AssemblyConfiguration( "" )]
 [assembly : AssemblyCompany( "" )]
-[assembly : AssemblyProduct( "Tests.MSTest" )]
+[assembly : AssemblyProduct( "Tests.NUnit" )]
 [assembly : AssemblyCopyright( "Copyright ©  2015" )]
 [assembly : AssemblyTrademark( "" )]
 [assembly : AssemblyCulture( "" )]

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-03 8:33 PM
+// Roman, 2015-04-03 8:55 PM
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using Tests.Common;
 
-namespace Tests.MSTest.Units
+namespace Tests.NUnit.Units
 {
     [TestFixture]
     public class DemoshopStoreManager_Tests : SpreadbotTestBase

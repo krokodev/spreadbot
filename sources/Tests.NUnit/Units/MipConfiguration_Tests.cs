@@ -1,14 +1,14 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConfiguration_Tests.cs
-// Roman, 2015-04-03 8:17 PM
+// Roman, 2015-04-03 8:55 PM
 
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Tests.Common;
 
-namespace Tests.MSTest.Units
+namespace Tests.NUnit.Units
 {
     [TestFixture]
     public class MipConfiguration_Tests : SpreadbotTestBase
@@ -31,8 +31,6 @@ namespace Tests.MSTest.Units
         [Test]
         public void Mip_TimeZone()
         {
-            //var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, MipSettings.TimeZone );
-
             Assert.That( MipSettings.TimeZone, Is.EqualTo( "Mountain Standard Time" ) );
         }
     }
