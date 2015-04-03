@@ -1,15 +1,15 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-03 1:44 PM
+// Roman, 2015-04-03 2:05 PM
 
 using System;
+using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
 // >> Core | Connector
@@ -60,7 +60,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 };
             }
 
-            // Ref: Use array of responses instead of the inner-inner chain
+            // Code: Todo: Ref: Use array of responses instead of the inner-inner chain
             sendResponse.InnerResponse = zipResponse;
             return new MipResponse< MipSendZippedFeedFolderResult > {
                 StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,
@@ -136,19 +136,19 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess && !ignoreInprocess ) {
                     return new MipRequestStatusResponse {
                         StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                        ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler ),
+                        ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
                         Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Inprocess }
                     };
                 }
 
                 response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
-                    return GetRequestOutputStatus( mipRequestHandler.MipFeedHandler.Type, response );
+                    return GetRequestOutputStatus( mipRequestHandler.MipFeedHandler.Type, response, mipRequestHandler );
                 }
 
                 return new MipRequestStatusResponse {
                     StatusCode = MipOperationStatus.GetRequestStatusSuccess,
-                    ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler ),
+                    ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
                     Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
                     InnerResponse = response
                 };
@@ -156,18 +156,26 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             catch( Exception exception ) {
                 return new MipRequestStatusResponse( exception ) {
                     StatusCode = MipOperationStatus.GetRequestStatusFailure,
-                    ArgsInfo = YamlUtils.MakeArgsInfo( mipRequestHandler )
+                    ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler )
                 };
             }
         }
 
         // --------------------------------------------------------[]
+        private static string MakeRequestStatusArgsIfo( MipRequestHandler mipRequestHandler )
+        {
+            return "(MipRequestId = {0})".SafeFormat( mipRequestHandler.Id );
+        }
+
+        // --------------------------------------------------------[]
         private static MipRequestStatusResponse GetRequestOutputStatus(
             MipFeedType feedType,
-            MipResponse< MipFindRequestResult > response )
+            MipResponse< MipFindRequestResult > response,
+            MipRequestHandler mipRequestHandler)
         {
             return new MipRequestStatusResponse {
                 StatusCode = MipOperationStatus.GetRequestStatusSuccess,
+                ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
                 Result = ReadRequestOutputStatus( feedType, response )
             };
         }

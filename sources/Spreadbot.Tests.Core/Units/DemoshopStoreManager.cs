@@ -148,6 +148,7 @@ namespace Spreadbot.Tests.Core.Units
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
                     Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                    Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );
             }
             catch( SpreadbotException exception ) {

@@ -54,9 +54,6 @@
     var enumerable = tasks.ToList();
     if( enumerable.Count() != 0 ) {
         <ul>
-
-            @* StatusCode: Bug: Wake up*@
-
             @foreach( var task in enumerable ) {
                 <li class="@TaskClass( task.GetStatusCode() )">
                     @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
