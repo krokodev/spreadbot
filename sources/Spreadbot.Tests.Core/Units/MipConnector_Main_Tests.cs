@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnectorBasic.cs
+// MipConnectorBasic_Tests.cs
 // Roman, 2015-04-03 1:45 PM
 
 using System;
@@ -14,7 +14,7 @@ using Spreadbot.Tests.Core.Code;
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class MipConnectorBasic : SpreadbotTestBase
+    public class MipConnectorBasic_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]
@@ -157,6 +157,7 @@ namespace Spreadbot.Tests.Core.Units
         [Test]
         public void GetRequestStatus_Success()
         {
+/*
             var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = MipConnector.SendTestFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
@@ -170,6 +171,8 @@ namespace Spreadbot.Tests.Core.Units
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );
             Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
+*/
+            Assert.Fail();
         }
 
         // --------------------------------------------------------[]

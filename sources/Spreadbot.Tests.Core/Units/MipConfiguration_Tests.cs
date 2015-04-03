@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConfiguration.cs
+// MipConfiguration_Tests.cs
 // Roman, 2015-04-03 1:45 PM
 
 using NUnit.Framework;
@@ -11,7 +11,7 @@ using Spreadbot.Tests.Core.Code;
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class MipConfiguration : SpreadbotTestBase
+    public class MipConfiguration_Tests : SpreadbotTestBase
     {
         [Test]
         public void Read_Mip_Config()

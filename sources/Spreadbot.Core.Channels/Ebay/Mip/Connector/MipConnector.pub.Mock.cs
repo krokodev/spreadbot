@@ -48,7 +48,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipGetRequestStatusResult Mock_ReadRequestOutputStatus(
+        public static MipGetRequestStatusResult Mock_ReadRequestOutputStatus(
             MipFeedType feedType,
             MipResponse< MipFindRemoteFileResult > response )
         {

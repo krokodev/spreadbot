@@ -18,8 +18,6 @@ using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Tests.Core.Units
 {
-    [Ignore]
-    [TestFixture]
     public class MipConnectorTestInitializer
     {
         public const string ProductItemId = "321693290987";

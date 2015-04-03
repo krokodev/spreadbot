@@ -60,6 +60,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
@@ -74,6 +75,9 @@
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spreadbot.Core.Channels.Fakes">
+      <HintPath>FakesAssemblies\Spreadbot.Core.Channels.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -104,18 +108,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Units\MipConfiguration.cs" />
-    <Compile Include="Units\MipConnectorTestInitializer.cs" />
-    <Compile Include="Units\MipConnectorContent.cs" />
-    <Compile Include="Units\MipConnectorBasic.cs" />
-    <Compile Include="Units\MipConnectorZip.cs" />
-    <Compile Include="Units\MipConnectorSftp.cs" />
+    <Compile Include="Units\MipConfiguration_Tests.cs" />
+    <Compile Include="Code\MipConnectorTestInitializer.cs" />
+    <Compile Include="Units\MipConnectorContent_Tests.cs" />
+    <Compile Include="Units\MipConnectorBasic_Tests.cs" />
+    <Compile Include="Units\MipConnectorZip_Tests.cs" />
+    <Compile Include="Units\MipConnectorSftp_Tests.cs" />
     <Compile Include="Code\SpreadbotTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\References.cs" />
-    <Compile Include="Units\DemoshopStoreManager.cs" />
-    <Compile Include="Units\Extensions.cs" />
-    <Compile Include="Units\YamlSerializer.cs" />
+    <Compile Include="Units\DemoshopStoreManager_Tests.cs" />
+    <Compile Include="Units\Extensions_Tests.cs" />
+    <Compile Include="Units\YamlSerializer_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
@@ -163,6 +167,7 @@
     <Content Include="App_Data\Configs\Demoshop.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Fakes Include="Fakes\Spreadbot.Core.Channels.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

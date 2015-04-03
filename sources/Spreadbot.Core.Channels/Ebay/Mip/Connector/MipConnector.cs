@@ -123,13 +123,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static MipRequestStatusResponse GetRequestStatus(
-            MipRequestHandler mipRequestHandler,
-            bool ignoreInprocess = false )
+        public static MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler)
         {
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
-                if( response.StatusCode == MipOperationStatus.FindRequestSuccess && !ignoreInprocess ) {
+                if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
                     return new MipRequestStatusResponse {
                         StatusCode = MipOperationStatus.GetRequestStatusSuccess,
                         ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),

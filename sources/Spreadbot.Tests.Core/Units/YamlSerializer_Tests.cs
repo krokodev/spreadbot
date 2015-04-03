@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// YamlSerializer.cs
+// YamlSerializer_Tests.cs
 // Roman, 2015-04-03 1:45 PM
 
 using System;
@@ -18,7 +18,7 @@ using YamlDotNet.Serialization;
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class YamlSerializer : SpreadbotTestBase
+    public class YamlSerializer_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]

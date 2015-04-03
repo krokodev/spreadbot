@@ -1,21 +1,21 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnectorContent.cs
-// Roman, 2015-04-03 1:45 PM
+// MipConnector_Content_Tests.cs
+// Roman, 2015-04-03 5:09 PM
 
 using Crocodev.Common.Extensions;
-using MoreLinq;
+using Microsoft.QualityTools.Testing.Fakes;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Tests.Core.Code;
 
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class MipConnectorContent : SpreadbotTestBase
+    public class MipConnector_Content_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]
@@ -25,20 +25,41 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        private static void TestItemId( MipFeedType mipFeedType )
+        // Code: Use Fakes
+        private static void DoTestItemId( MipFeedType mipFeedType )
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
             var testInfo = "{0} ItemId".SafeFormat( feed.Type );
 
-            var requestResponse = MipConnector.Mock_GetRequestStatus( request );
+            var requestResponse = MipConnector.GetRequestStatus( request );
             Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId, testInfo );
+        }
+
+        // --------------------------------------------------------[]
+        private static void TestItemId( MipFeedType mipFeedType )
+        {
+            using( ShimsContext.Create() ) {
+                ShimMipConnector
+                    .GetRequestStatusMipRequestHandlerBoolean =
+                    ( mipRequestHandler, b ) =>
+                        null;
+
+                DoTestItemId( mipFeedType );
+            }
+        }
+
+        // --------------------------------------------------------[]
+        [Test]
+        public void Read_ItemId()
+        {
+            TestItemId( MipFeedType.Distribution );
         }
 
         // --------------------------------------------------------[]
         private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
         {
-            var wasTested = false;
+            /*            var wasTested = false;
             var feed = new MipFeedHandler( mipFeedType );
 
             MipConnectorTestInitializer.TestRequestIds( feed.Type, mipRequestStatus )
@@ -52,7 +73,8 @@ namespace Spreadbot.Tests.Core.Units
                     Assert.AreEqual( mipRequestStatus, requestResponse.Result.MipRequestStatusCode, testInfo );
                 } );
 
-            Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipRequestStatus ) );
+            Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipRequestStatus ) );*/
+            Assert.Fail();
         }
 
         // --------------------------------------------------------[]

@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// DemoshopStoreManager.cs
+// DemoshopStoreManager_Tests.cs
 // Roman, 2015-04-03 2:43 PM
 
 using System;
@@ -20,7 +20,7 @@ using Spreadbot.Tests.Core.Code;
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class DemoshopStoreManager : SpreadbotTestBase
+    public class DemoshopStoreManager_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]
