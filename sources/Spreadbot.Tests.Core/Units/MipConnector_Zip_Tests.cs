@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
-// MipConnectorZip_Tests.cs
+// MipConnector_Zip_Tests.cs
 // Roman, 2015-04-03 1:45 PM
 
 using System;
@@ -15,7 +15,7 @@ using Spreadbot.Tests.Core.Code;
 namespace Spreadbot.Tests.Core.Units
 {
     [TestFixture]
-    public class MipConnectorZip_Tests : SpreadbotTestBase
+    public class MipConnector_Zip_Tests : SpreadbotTestBase
     {
         // ===================================================================================== []
         [SetUp]

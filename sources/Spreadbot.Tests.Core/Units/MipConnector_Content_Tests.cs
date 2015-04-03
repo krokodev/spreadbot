@@ -39,14 +39,14 @@ namespace Spreadbot.Tests.Core.Units
         // --------------------------------------------------------[]
         private static void TestItemId( MipFeedType mipFeedType )
         {
-            using( ShimsContext.Create() ) {
+/*            using( ShimsContext.Create() ) {
                 ShimMipConnector
                     .GetRequestStatusMipRequestHandlerBoolean =
                     ( mipRequestHandler, b ) =>
                         null;
 
                 DoTestItemId( mipFeedType );
-            }
+            }*/
         }
 
         // --------------------------------------------------------[]

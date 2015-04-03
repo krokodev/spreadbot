@@ -64,8 +64,8 @@
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusFromContentMipFeedTypeString">
             <summary>Sets the shim of MipConnector.GetRequestStatusFromContent(MipFeedType feedType, String content)</summary>
         </member>
-        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusMipRequestHandlerBoolean">
-            <summary>Sets the shim of MipConnector.GetRequestStatus(MipRequestHandler mipRequestHandler, Boolean ignoreInprocess)</summary>
+        <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.GetRequestStatusMipRequestHandler">
+            <summary>Sets the shim of MipConnector.GetRequestStatus(MipRequestHandler mipRequestHandler)</summary>
         </member>
         <member name="P:Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes.ShimMipConnector.LocalFeedFolderMipFeedHandler">
             <summary>Sets the shim of MipConnector.LocalFeedFolder(MipFeedHandler mipFeedHandler)</summary>
