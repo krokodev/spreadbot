@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.pvt.Tasks.cs
-// Roman, 2015-04-03 1:44 PM
+// Roman, 2015-04-03 2:55 PM
 
 using System;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
@@ -66,7 +66,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
                 CreateFeedFile( publishArgs.MipFeedHandler );
 
-                var mipResponse = MipConnector.SendZippedFeedFolder( publishArgs.MipFeedHandler );
+                var mipResponse = MipConnector.SendFeed( publishArgs.MipFeedHandler );
 
                 EraseFeedFolder( publishArgs.MipFeedHandler );
 
@@ -75,7 +75,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 task.EbayPublishResponse = new ChannelResponse< EbayPublishResult > {
                     StatusCode = ChannelResponseStatusCode.PublishSuccess,
                     Result = new EbayPublishResult { MipRequestId = mipResponse.Result.MipRequestId },
-                    InnerResponse = mipResponse
+                    InnerResponses = { mipResponse }
                 };
                 task.MipRequestStatusCode = MipRequestStatus.Initial;
             }

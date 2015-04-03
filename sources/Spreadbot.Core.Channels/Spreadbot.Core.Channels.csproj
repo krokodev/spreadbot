@@ -103,7 +103,7 @@
     <Compile Include="Ebay\Mip\Operations\Response\MipResponse.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\AbstractMipResponseResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipZipFeedResult.cs" />
-    <Compile Include="Ebay\Mip\Operations\Results\MipSendZippedFeedFolderResult.cs" />
+    <Compile Include="Ebay\Mip\Operations\Results\MipSendFeedResult.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.Pathes.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.ZipHelper.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />

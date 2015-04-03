@@ -4,6 +4,7 @@
 // Roman, 2015-04-03 1:45 PM
 
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -20,9 +21,11 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         protected GenericResponse()
         {
             IsSuccess = true;
+            InnerResponses = new List< IAbstractResponse >();
         }
 
         protected GenericResponse( Exception exception )
+            :this()
         {
             IsSuccess = false;
             ExceptionInfo = GetExceptionInfo( exception );
@@ -54,7 +57,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string ExceptionInfo { get; set; }
 
         [YamlMember( Order = 6 )]
-        public IAbstractResponse InnerResponse { get; set; }
+        public List<IAbstractResponse> InnerResponses { get; set; }
 
         // --------------------------------------------------------[]
         public void Check()

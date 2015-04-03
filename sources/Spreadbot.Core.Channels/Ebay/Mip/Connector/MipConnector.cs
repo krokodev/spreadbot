@@ -23,21 +23,21 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // ===================================================================================== []
         // SendFeedFolder
-        public static MipResponse< MipSendZippedFeedFolderResult > SendZippedFeedFolder( MipFeedHandler mipFeedHandler )
+        public static MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )
         {
             var reqId = MipRequestHandler.GenerateId();
-            return DoSendZippedFeedFolder( mipFeedHandler, reqId );
+            return DoSendFeed( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
-        public static MipResponse< MipSendZippedFeedFolderResult > SendTestFeedFolder( MipFeedHandler mipFeedHandler )
+        public static MipResponse< MipSendFeedResult > SendTestFeed( MipFeedHandler mipFeedHandler )
         {
             var reqId = MipRequestHandler.GenerateTestId();
-            return DoSendZippedFeedFolder( mipFeedHandler, reqId );
+            return DoSendFeed( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipSendZippedFeedFolderResult > DoSendZippedFeedFolder(
+        private static MipResponse< MipSendFeedResult > DoSendFeed(
             MipFeedHandler mipFeedHandler,
             string reqId )
         {
@@ -55,17 +55,16 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipSendZippedFeedFolderResult >( exception ) {
-                    StatusCode = MipOperationStatus.SendZippedFeedFolderFailure,
+                return new MipResponse< MipSendFeedResult >( exception ) {
+                    StatusCode = MipOperationStatus.SendFeedFailure,
                 };
             }
 
-            // Code: Todo: Ref: Use array of responses instead of the inner-inner chain
-            sendResponse.InnerResponse = zipResponse;
-            return new MipResponse< MipSendZippedFeedFolderResult > {
-                StatusCode = MipOperationStatus.SendZippedFeedFolderSuccess,
-                Result = new MipSendZippedFeedFolderResult { MipRequestId = reqId },
-                InnerResponse = sendResponse
+            // Done: Ref: Use array of responses instead of the inner-inner chain
+            return new MipResponse< MipSendFeedResult > {
+                StatusCode = MipOperationStatus.SendFeedSuccess,
+                Result = new MipSendFeedResult { MipRequestId = reqId },
+                InnerResponses = {zipResponse, sendResponse}
             };
         }
 
@@ -101,7 +100,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         RemoteDir = findResponse.Result.RemoteDir,
                         RemoteFileName = findResponse.Result.RemoteFileName
                     },
-                InnerResponse = findResponse
+                InnerResponses = {findResponse}
             };
         }
 
@@ -150,7 +149,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     StatusCode = MipOperationStatus.GetRequestStatusSuccess,
                     ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
                     Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
-                    InnerResponse = response
+                    InnerResponses = {response}
                 };
             }
             catch( Exception exception ) {

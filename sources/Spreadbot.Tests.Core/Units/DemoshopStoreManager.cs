@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Tests.Core
 // DemoshopStoreManager.cs
-// Roman, 2015-04-03 1:45 PM
+// Roman, 2015-04-03 2:43 PM
 
 using System;
 using System.Collections.Generic;
@@ -16,9 +16,6 @@ using Spreadbot.Core.System.Dispatcher;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using Spreadbot.Tests.Core.Code;
-
-//using System.Diagnostics;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spreadbot.Tests.Core.Units
 {
