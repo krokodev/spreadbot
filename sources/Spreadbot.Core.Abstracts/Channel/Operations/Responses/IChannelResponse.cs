@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // IChannelResponse.cs
-// Roman, 2015-04-03 1:44 PM
+// Roman, 2015-04-03 8:16 PM
 
 using Spreadbot.Sdk.Common.Operations.Responses;
 

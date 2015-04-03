@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- RequestID:5017765212 -->
+<inventoryResponse>
+    <status>SUCCESS</status>
+    <summary>
+        <requestsTotal>0</requestsTotal>
+        <requestsSuccessful>0</requestsSuccessful>
+        <requestsWithFailures>0</requestsWithFailures>
+    </summary>
+    <error>
+        <errorID>javax.xml.bind.UnmarshalException</errorID>
+        <severity>ERROR</severity>
+        <category>REQUEST</category>
+    </error>
+</inventoryResponse>

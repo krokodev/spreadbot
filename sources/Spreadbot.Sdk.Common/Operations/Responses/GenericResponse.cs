@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// Roman, 2015-04-03 1:45 PM
+// Roman, 2015-04-03 8:17 PM
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         }
 
         protected GenericResponse( Exception exception )
-            :this()
+            : this()
         {
             IsSuccess = false;
             ExceptionInfo = GetExceptionInfo( exception );
@@ -57,7 +57,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string ExceptionInfo { get; set; }
 
         [YamlMember( Order = 6 )]
-        public List<IAbstractResponse> InnerResponses { get; set; }
+        public List< IAbstractResponse > InnerResponses { get; set; }
 
         // --------------------------------------------------------[]
         public void Check()

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.System
 // Dispatcher.pvt.Channels.cs
-// Roman, 2015-04-03 1:44 PM
+// Roman, 2015-04-03 8:16 PM
 
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Manager;

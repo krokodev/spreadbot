@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipFeedHandler.cs
-// Roman, 2015-04-03 1:45 PM
+// Roman, 2015-04-03 8:16 PM
 
 using System;
 using YamlDotNet.Serialization;

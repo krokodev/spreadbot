@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- RequestID:5018549460 -->
+<inventoryResponse>
+    <status>SUCCESS</status>
+    <summary>
+        <requestsTotal>1</requestsTotal>
+        <requestsSuccessful>1</requestsSuccessful>
+        <requestsWithFailures>0</requestsWithFailures>
+    </summary>
+</inventoryResponse>

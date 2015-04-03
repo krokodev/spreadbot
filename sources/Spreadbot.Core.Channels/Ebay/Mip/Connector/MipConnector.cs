@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-03 5:31 PM
+// Roman, 2015-04-03 8:16 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -140,7 +140,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
                 response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Output );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
-                    return GetRequestStatusFromOutput( mipRequestHandler.MipFeedHandler.Type, response, mipRequestHandler );
+                    return GetRequestStatusFromOutput( mipRequestHandler.MipFeedHandler.Type,
+                        response,
+                        mipRequestHandler );
                 }
 
                 return new MipRequestStatusResponse {

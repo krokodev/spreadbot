@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Utils.cs
-// Roman, 2015-04-03 1:44 PM
+// Roman, 2015-04-03 8:16 PM
 
 using Crocodev.Common.Extensions;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;

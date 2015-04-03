@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- RequestID: 5016112608 --><productResponse>
+  <error>
+    <errorID>MIP_1108</errorID>
+    <severity>ERROR</severity>
+    <category>APPLICATION</category>
+    <message><![CDATA[A fatal error occurred while processing your request: The file uploaded is not a valid zip or is damaged. Either (1) The zip file is invalid/damaged or (2) The transmission of the zip file was abruptly terminated. Please confirm that the zip file is indeed valid, and if so, re-submit it.]]></message>
+  </error>
+  <status>FAILURE</status>
+</productResponse>
