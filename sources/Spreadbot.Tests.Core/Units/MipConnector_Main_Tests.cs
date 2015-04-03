@@ -154,6 +154,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
+        [Ignore("Waiting for Fakes")]
         [Test]
         public void GetRequestStatus_Success()
         {

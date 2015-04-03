@@ -25,28 +25,27 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        // Code: Use Fakes
         private static void DoTestItemId( MipFeedType mipFeedType )
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
-            var testInfo = "{0} ItemId".SafeFormat( feed.Type );
-
+            
             var requestResponse = MipConnector.GetRequestStatus( request );
-            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId, testInfo );
+
+            Assert.AreEqual( MipConnectorTestInitializer.ProductItemId, requestResponse.Result.MipItemId, "{0}.ItemId".SafeFormat( feed.Type ) );
         }
 
         // --------------------------------------------------------[]
+        // Code: Use Fakes
         private static void TestItemId( MipFeedType mipFeedType )
         {
-/*            using( ShimsContext.Create() ) {
-                ShimMipConnector
-                    .GetRequestStatusMipRequestHandlerBoolean =
-                    ( mipRequestHandler, b ) =>
+            using( ShimsContext.Create() ) {
+                ShimMipConnector.GetRequestStatusMipRequestHandler =
+                    ( mipRequestHandler ) =>
                         null;
 
                 DoTestItemId( mipFeedType );
-            }*/
+            }
         }
 
         // --------------------------------------------------------[]
@@ -74,6 +73,7 @@ namespace Spreadbot.Tests.Core.Units
                 } );
 
             Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipRequestStatus ) );*/
+
             Assert.Fail();
         }
 
@@ -86,6 +86,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
+        [Ignore("Waiting for Fakes")]
         [Test]
         public void Read_Product_Content()
         {
@@ -94,6 +95,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
+        [Ignore("Waiting for Fakes")]
         [Test]
         public void Read_Availability_Content()
         {
@@ -101,6 +103,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
+        [Ignore("Waiting for Fakes")]
         [Test]
         public void Read_Distribution_Content()
         {
