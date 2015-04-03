@@ -49,8 +49,7 @@ namespace Spreadbot.Tests.Core.Units
         }
 
         // --------------------------------------------------------[]
-        [Test]
-        public void Read_ItemId()
+        [Ignore("Waiting for Fakes")][Test]public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }

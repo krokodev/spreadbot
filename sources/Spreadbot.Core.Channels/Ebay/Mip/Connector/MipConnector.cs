@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-03 2:05 PM
+// Roman, 2015-04-03 5:22 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -61,12 +61,13 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             return new MipResponse< MipSendFeedResult > {
                 StatusCode = MipOperationStatus.SendFeedSuccess,
                 Result = new MipSendFeedResult { MipRequestId = reqId },
-                InnerResponses = {zipResponse, sendResponse}
+                InnerResponses = { zipResponse, sendResponse }
             };
         }
 
         // ===================================================================================== []
         // FindRequest
+        // Code: FindRequest, Fake Shims injection
         public static MipResponse< MipFindRequestResult > FindRequest(
             MipRequestHandler mipRequestHandler,
             MipRequestProcessingStage stage )
@@ -97,7 +98,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         RemoteDir = findResponse.Result.RemoteDir,
                         RemoteFileName = findResponse.Result.RemoteFileName
                     },
-                InnerResponses = {findResponse}
+                InnerResponses = { findResponse }
             };
         }
 
@@ -123,8 +124,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
         // ===================================================================================== []
         // GetRequestStatus
-        public static MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler)
+        public static MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler )
         {
+            // Code: GetRequestStatus, Fake Shims injection
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {
@@ -144,7 +146,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     StatusCode = MipOperationStatus.GetRequestStatusSuccess,
                     ArgsInfo = MakeRequestStatusArgsIfo( mipRequestHandler ),
                     Result = new MipGetRequestStatusResult { MipRequestStatusCode = MipRequestStatus.Unknown },
-                    InnerResponses = {response}
+                    InnerResponses = { response }
                 };
             }
             catch( Exception exception ) {
@@ -165,7 +167,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static MipRequestStatusResponse GetRequestOutputStatus(
             MipFeedType feedType,
             MipResponse< MipFindRequestResult > response,
-            MipRequestHandler mipRequestHandler)
+            MipRequestHandler mipRequestHandler )
         {
             return new MipRequestStatusResponse {
                 StatusCode = MipOperationStatus.GetRequestStatusSuccess,
