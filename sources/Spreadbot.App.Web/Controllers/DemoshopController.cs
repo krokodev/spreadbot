@@ -1,19 +1,20 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// Roman, 2015-04-01 9:08 PM
+// Roman, 2015-04-03 12:48 PM
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.System.Dispatcher;
 
+// !>> Controller | DemoshopController
+
 namespace Spreadbot.App.Web.Controllers
 {
-    // !>> Controller | DemoshopController
     public class DemoshopController : Controller
     {
-        private static readonly object Locker = 0;
+        private static readonly object Locker = new object();
 
         // --------------------------------------------------------[]
         public ActionResult Index()

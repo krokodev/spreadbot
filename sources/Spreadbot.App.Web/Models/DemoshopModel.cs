@@ -17,6 +17,10 @@ namespace Spreadbot.App.Web.Models
 {
     public class DemoshopModel
     {
+        static DemoshopModel()
+        {
+            Restore();    
+        }
         public static DemoshopItem Item
         {
             get { return StoreManager.Item; }

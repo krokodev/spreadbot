@@ -14,7 +14,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // StatusCode
         private TaskStatus DoCalcSuperTaskStatusCode()
         {
-            // StatusCode: Bug: Exception on Azure after waking up:
+            // Fixed: Exception on Azure after waking up
             var totalSubCount = AbstractSubTasks.Count();
 
             if( AbstractSubTasks.Any( t => t.GetStatusCode() == TaskStatus.Unknown ) ) {
