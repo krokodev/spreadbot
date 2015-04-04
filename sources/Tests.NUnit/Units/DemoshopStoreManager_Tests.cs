@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-03 8:55 PM
+// Roman, 2015-04-04 11:05 AM
 
 using System;
 using System.Collections.Generic;
@@ -27,22 +27,22 @@ namespace Tests.NUnit.Units
         [SetUp]
         public void DeleteAllStoreTasks()
         {
-            DemoshopStoreManager.Instance.DeleteAllTasks();
+            using( var store = new DemoshopStoreManager() ) {
+                store.DeleteAllTasks();
+            }
         }
 
         // --------------------------------------------------------[]
-        private static IEnumerable< EbayPublishTask > DemoshopEbayPublishTasks()
+        private static IEnumerable< EbayPublishTask > GetEbayPublishTasks( DemoshopStoreManager store )
         {
-            return
-                DemoshopStoreManager.Instance.GetChannelTasks()
-                    .OfType< EbayPublishTask >();
+            return store.GetEbayPublishTasks();
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Create_Task_PublishItemOnEbay()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
@@ -54,7 +54,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Task_PublishItemOnEbay()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
@@ -73,7 +73,7 @@ namespace Tests.NUnit.Units
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = new DemoshopStoreManager();
                 var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
@@ -96,12 +96,12 @@ namespace Tests.NUnit.Units
         [Test]
         public void Save_and_Restore_Tasks()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
 
             store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             store.SaveData();
             store.DeleteAllTasks();
-            store.RestoreData();
+            store.LoadData();
 
             Assert.AreEqual( 1, store.StoreTasks.Count );
             Assert.AreEqual( 3, store.GetChannelTasks().Count() );
@@ -124,22 +124,22 @@ namespace Tests.NUnit.Units
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = new DemoshopStoreManager();
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
                 store.SaveData();
-                store.RestoreData();
+                store.LoadData();
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
                 store.SaveData();
-                store.RestoreData();
+                store.LoadData();
 
                 Assert.AreEqual( 1, store.StoreTasks.Count );
                 Assert.AreEqual( 3, store.GetChannelTasks().Count() );
 
-                DemoshopEbayPublishTasks().ForEach( t => {
+                store.GetEbayPublishTasks().ForEach( t => {
                     Console.WriteLine();
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
@@ -159,16 +159,16 @@ namespace Tests.NUnit.Units
         {
             try {
                 var dispatcher = Dispatcher.Instance;
-                var store = DemoshopStoreManager.Instance;
+                var store = new DemoshopStoreManager();
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
-                Assert_That_Last_Update_Time_is_Correct();
+                Assert_That_Last_Update_Time_is_Correct(store);
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
-                Assert_That_Last_Update_Time_is_Correct();
+                Assert_That_Last_Update_Time_is_Correct(store);
 
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
-                Assert_That_Last_Update_Time_is_Correct();
+                Assert_That_Last_Update_Time_is_Correct(store);
             }
             catch( SpreadbotException exception ) {
                 IgnoreMipQueueDepthErrorMessage( exception.Message );
@@ -179,7 +179,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             var task = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
@@ -192,27 +192,27 @@ namespace Tests.NUnit.Units
         [Test]
         public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             var taskNum = store.GetChannelTasks().Count();
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.RestoreData();
+            store.SaveData();
+            store.LoadData();
 
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            var task = store.StoreTasks.First();
             Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Task num" );
         }
 
         [Test]
         public void Task_Keeps_Id_After_Reload()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             var id = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay ).Id;
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.RestoreData();
+            store.SaveData();
+            store.LoadData();
 
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            var task = store.StoreTasks.First();
             Assert.AreEqual( id, task.Id, "Task.Id" );
         }
 
@@ -220,14 +220,14 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
         {
-            var store = DemoshopStoreManager.Instance;
+            var store = new DemoshopStoreManager();
             store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            DemoshopStoreManager.Instance.SaveData();
-            DemoshopStoreManager.Instance.DeleteAllTasks();
-            DemoshopStoreManager.Instance.RestoreData();
-            var task = DemoshopStoreManager.Instance.StoreTasks.First();
+            store.SaveData();
+            store.DeleteAllTasks();
+            store.LoadData();
+            var task = store.StoreTasks.First();
 
             Console.WriteLine( task );
 
@@ -236,9 +236,9 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void Assert_That_Last_Update_Time_is_Correct()
+        private static void Assert_That_Last_Update_Time_is_Correct(DemoshopStoreManager store)
         {
-            DemoshopEbayPublishTasks()
+            store.GetEbayPublishTasks()
                 .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 30 ).Seconds ); } );
         }
     }

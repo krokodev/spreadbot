@@ -1,87 +1,62 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-04 11:23 AM
 
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Crocodev.Common.Extensions;
-using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Store.Manager;
+using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
-    public partial class DemoshopStoreManager : IStoreManager
+    public partial class DemoshopStoreManager : IStoreManager, IDisposable
     {
-        // ===================================================================================== []
-        private static readonly Lazy< DemoshopStoreManager > LazyInstance =
-            new Lazy< DemoshopStoreManager >(
-                () => new DemoshopStoreManager(),
-                LazyThreadSafetyMode.ExecutionAndPublication );
-
         // --------------------------------------------------------[]
         public DemoshopStoreManager()
         {
-            LoadItem();
+            LoadData();
+            if( Item == null ) {
+                SetItemToDefault();
+            }
         }
 
         // --------------------------------------------------------[]
-        public static DemoshopStoreManager Instance
+        public void Dispose()
         {
-            get { return LazyInstance.Value; }
+            SaveData();
         }
 
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
+        private readonly object _locker = new object();
+
         public void SaveData()
         {
-            var fileName = DataFileName();
-            var tmpFileName = fileName + ".bak";
-            try {
-                Serializer.Default.Serialize( this, tmpFileName );
-                File.Delete( fileName );
-                File.Copy( tmpFileName, fileName );
-                ErrorMessage = "";
-            }
-            catch {
-                ErrorMessage = "Can't save tasks to [{0}]".SafeFormat( fileName );
+            lock( _locker ) {
+                _SaveData();
             }
         }
 
         // --------------------------------------------------------[]
-        [NotSerialize]
-        public string ErrorMessage { get; set; }
-
-        // --------------------------------------------------------[]
-        public void RestoreData()
+        public void LoadData()
         {
-            var fileName = DataFileName();
-            try {
-                Serializer.Default.Deserialize( this, fileName );
-                ErrorMessage = "";
-            }
-            catch( Exception ) {
-                ErrorMessage = "Can't load data from [{0}]".SafeFormat( fileName );
+            lock( _locker ) {
+                _LoadData();
             }
         }
 
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         public DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
         {
             switch( taskType ) {
                 case DemoshopStoreTaskType.PublishOnEbay :
-                    return DoCreateTaskPublishOnEbay();
+                    return CreateTaskPublishOnEbay();
+                default :
+                    throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
             }
-            throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
-        }
-
-        // --------------------------------------------------------[]
-        public void DeleteTask( DemoshopStoreTask task )
-        {
-            StoreTasks.Remove( task );
         }
 
         // --------------------------------------------------------[]
@@ -102,6 +77,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             catch {
                 return null;
             }
+        }
+
+        // --------------------------------------------------------[]
+        public IEnumerable< EbayPublishTask > GetEbayPublishTasks()
+        {
+            return GetChannelTasks().OfType< EbayPublishTask >();
         }
     }
 }

@@ -3,13 +3,18 @@
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
     private static string TaskClass( TaskStatus statusCode )
     {
         return string.Format( "sb-task sb-task-{0}", statusCode.ToString().ToLower() );
+    }
+
+    private static string MessageClass(string message)
+    {
+        return "sb-message" + (message.Contains( "Error:")?" sb-error-color":"");
     }
 
 }
@@ -20,14 +25,22 @@
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 
+@helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
+{
+    var label = Html.LabelFor(expression);
+    var textBox = Html.TextBoxFor(expression, new { @class });
+
+    @((HelperResult)Editor(label, textBox))
+}
+
 @helper ItemEditForm()
 {
     using( Html.BeginForm( "UpdateItem", "Demoshop", FormMethod.Post ) ) {
         <fieldset class="sb-table">
-            @FormEditor( m => DemoshopModel.Item.Sku )
-            @FormEditor( m => DemoshopModel.Item.Title, "sb-width-500px" )
-            @FormEditor( m => DemoshopModel.Item.Price )
-            @FormEditor( m => DemoshopModel.Item.Quantity )
+            @FormEditor( m => Model.Item.Sku )
+            @FormEditor( m => Model.Item.Title, "sb-width-500px" )
+            @FormEditor( m => Model.Item.Price )
+            @FormEditor( m => Model.Item.Quantity )
         </fieldset>
         <input type="submit" value="Update"/>
     }
@@ -41,15 +54,8 @@
         <div class="sb-cell">@textBox</div>
     </div>
 }
-@helper FormEditor( Expression< Func< DemoshopModel, string > > expression, string @class = "sb-width-200px" )
-{
-    var label = Html.LabelFor( expression );
-    var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @(( HelperResult ) Editor( label, textBox ))
-}
-
-@helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
+@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
 {
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
@@ -118,12 +124,16 @@
         color: yellow;
     }
 
-    .sb-error-message {
-        background: red;
-        color: yellow;
+    .sb-message {
+        background: rgb(229, 229, 229);
+        color: rgb(84, 84, 84);
         font-size: 20px;
         padding: 10px;
-        width: 1200px;
+    }
+
+    .sb-error-color {
+        background: red;
+        color: yellow;
     }
 
     .sb-task-success {
@@ -136,9 +146,9 @@
 
     <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
 
-    @if( !string.IsNullOrEmpty( DemoshopModel.ErrorMessage ) ) {
-        <div class="sb-error-message">
-            @DemoshopModel.ErrorMessage
+    @if( !string.IsNullOrEmpty( Model.Message ) ) {
+        <div class= "@MessageClass(Model.Message)">
+            @Model.Message
         </div>
     }
 
@@ -153,10 +163,10 @@
         <h2>
             Store/channel Tasks
         </h2>
-        @ShowTasks( DemoshopModel.StoreTasks )
+        @ShowTasks( Model.StoreTasks )
         <ul>
             <li>
-                @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", DemoshopModel.Item )
+                @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", Model.Item )
             </li>
             <li>
                 @*
@@ -176,12 +186,12 @@
         <ul>
             <li>
                 @Html.ActionLink(
-                    string.Format( "Run Channel Tasks ({0})", DemoshopModel.ChannelTasksTodo.Count() ),
+                    string.Format( "Run Channel Tasks ({0})", Model.ChannelTasksTodo.Count() ),
                     "RunChannelTasks" )
             </li>
             <li>
                 @Html.ActionLink(
-                    string.Format( "Proceed Channel Tasks ({0})", DemoshopModel.ChannelTasksInprocess.Count() ),
+                    string.Format( "Proceed Channel Tasks ({0})", Model.ChannelTasksInprocess.Count() ),
                     "ProceedChannelTasks" )
             </li>
             <li>

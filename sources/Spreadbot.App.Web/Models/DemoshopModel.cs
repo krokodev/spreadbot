@@ -1,8 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// Roman, 2015-04-03 8:15 PM
+// Roman, 2015-04-04 11:21 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
@@ -15,84 +16,82 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.App.Web.Models
 {
-    public class DemoshopModel
+    public class DemoshopModel : IDisposable
     {
-        static DemoshopModel()
+        // --------------------------------------------------------[]
+        private DemoshopStoreManager StoreManager { get; set; }
+
+        // --------------------------------------------------------[]
+        public DemoshopModel()
         {
-            Restore();
+            StoreManager = new DemoshopStoreManager();
         }
 
-        public static DemoshopItem Item
+        // --------------------------------------------------------[]
+        public DemoshopItem Item
         {
             get { return StoreManager.Item; }
         }
 
-        public static IEnumerable< IStoreTask > StoreTasks
+        // --------------------------------------------------------[]
+        public IEnumerable< IStoreTask > StoreTasks
         {
             get { return ( ( IStoreManager ) StoreManager ).StoreTasks; }
         }
 
-        public static IEnumerable< IChannelTask > ChannelTasksTodo
+        // --------------------------------------------------------[]
+        public IEnumerable< IChannelTask > ChannelTasksTodo
         {
             get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Todo ); }
         }
 
-        public static IEnumerable< IChannelTask > ChannelTasksInprocess
+        // --------------------------------------------------------[]
+        public IEnumerable< IChannelTask > ChannelTasksInprocess
         {
             get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Inprocess ); }
         }
 
-        public static IEnumerable< IChannelTask > ChannelTasks
+        // --------------------------------------------------------[]
+        public IEnumerable< IChannelTask > ChannelTasks
         {
             get { return ( ( IStoreManager ) StoreManager ).GetChannelTasks(); }
         }
 
-        public static DemoshopStoreManager StoreManager
+        // --------------------------------------------------------[]
+        public string Message
         {
-            get { return DemoshopStoreManager.Instance; }
+            get { return StoreManager.Message; }
+            set { StoreManager.Message = value; }
         }
 
-        public static string ErrorMessage
+        // --------------------------------------------------------[]
+        public void UpdateItem( DemoshopItem item )
         {
-            get { return DemoshopStoreManager.Instance.ErrorMessage; }
+            StoreManager.UpdateItem( item );
         }
 
-        public static void SaveItem( DemoshopItem item )
-        {
-            StoreManager.SaveItem( item );
-        }
-
-        public static void CreateTaskPublishItemOnEbay()
+        // --------------------------------------------------------[]
+        public void CreateTaskPublishItemOnEbay()
         {
             StoreManager.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
         }
 
-        private static readonly object Locker = 0;
-
-        public static void Save()
+        // --------------------------------------------------------[]
+        public void DeleteTasks()
         {
-            lock( Locker ) {
-                StoreManager.SaveData();
-            }
+            StoreManager.DeleteAllTasks();
         }
 
-        public static void Restore()
-        {
-            lock( Locker ) {
-                StoreManager.RestoreData();
-            }
-        }
-
-        public static void DeleteTasks()
-        {
-            lock( Locker ) {
-                StoreManager.DeleteAllTasks();
-            }
-        }
-
-        public static AbstractTask FindTask( string taskId )
+        // --------------------------------------------------------[]
+        public AbstractTask FindTask( string taskId )
         {
             return StoreManager.FindTask( taskId );
+        }
+
+        // --------------------------------------------------------[]
+        public void Dispose()
+        {
+            StoreManager.Dispose();
         }
     }
 }

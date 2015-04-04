@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// Roman, 2015-04-03 8:15 PM
+// Roman, 2015-04-04 11:29 AM
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
@@ -14,23 +14,19 @@ namespace Spreadbot.App.Web.Controllers
 {
     public class DemoshopController : Controller
     {
-        private static readonly object Locker = new object();
-
         // --------------------------------------------------------[]
         public ActionResult Index()
         {
-            lock( Locker ) {
-                DemoshopModel.Restore();
-            }
-            return View();
+            return View( new DemoshopModel() );
         }
 
         // --------------------------------------------------------[]
         [HttpPost]
         public ActionResult UpdateItem( [Bind( Include = "Sku, Title, Price, Quantity" )] DemoshopItem item )
         {
-            lock( Locker ) {
-                DemoshopModel.SaveItem( item );
+            using( var model = new DemoshopModel() ) {
+                model.UpdateItem( item );
+                model.Message = "Item updated";
             }
             return RedirectToAction( "Index" );
         }
@@ -38,9 +34,9 @@ namespace Spreadbot.App.Web.Controllers
         // --------------------------------------------------------[]
         public ActionResult AddTask()
         {
-            lock( Locker ) {
-                DemoshopModel.CreateTaskPublishItemOnEbay();
-                DemoshopModel.Save();
+            using( var model = new DemoshopModel() ) {
+                model.CreateTaskPublishItemOnEbay();
+                model.Message = "Task added";
             }
             return RedirectToAction( "Index" );
         }
@@ -48,9 +44,9 @@ namespace Spreadbot.App.Web.Controllers
         // --------------------------------------------------------[]
         public ActionResult RunChannelTasks()
         {
-            lock( Locker ) {
-                Dispatcher.Instance.RunChannelTasks( DemoshopModel.ChannelTasksTodo );
-                DemoshopModel.Save();
+            using( var model = new DemoshopModel() ) {
+                Dispatcher.Instance.RunChannelTasks( model.ChannelTasksTodo );
+                model.Message = "Tasks started";
             }
             return RedirectToAction( "Index" );
         }
@@ -58,27 +54,9 @@ namespace Spreadbot.App.Web.Controllers
         // --------------------------------------------------------[]
         public ActionResult ProceedChannelTasks()
         {
-            lock( Locker ) {
-                Dispatcher.Instance.ProceedChannelTasks( DemoshopModel.ChannelTasksInprocess );
-                DemoshopModel.Save();
-            }
-            return RedirectToAction( "Index" );
-        }
-
-        // --------------------------------------------------------[]
-        public ActionResult SaveTasks()
-        {
-            lock( Locker ) {
-                DemoshopModel.Save();
-            }
-            return RedirectToAction( "Index" );
-        }
-
-        // --------------------------------------------------------[]
-        public ActionResult RestoreTasks()
-        {
-            lock( Locker ) {
-                DemoshopModel.Restore();
+            using( var model = new DemoshopModel() ) {
+                Dispatcher.Instance.ProceedChannelTasks( model.ChannelTasksInprocess );
+                model.Message = "Tasks proceeded";
             }
             return RedirectToAction( "Index" );
         }
@@ -86,14 +64,15 @@ namespace Spreadbot.App.Web.Controllers
         // --------------------------------------------------------[]
         public ActionResult DeleteTasks()
         {
-            lock( Locker ) {
-                DemoshopModel.DeleteTasks();
-                DemoshopModel.Save();
+            using( var model = new DemoshopModel() ) {
+                model.DeleteTasks();
+                model.Message = "Tasks deleted";
             }
             return RedirectToAction( "Index" );
         }
 
         // --------------------------------------------------------[]
+        // Code: Tode: Ref: Use TaskModel
         public ActionResult ShowTask( string taskId )
         {
             ViewBag.TaskId = taskId;

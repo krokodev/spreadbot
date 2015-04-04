@@ -1,22 +1,16 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Item.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-04 11:29 AM
 
-using Nereal.Serialization;
 using Spreadbot.Core.Stores.Demoshop.Items;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
     {
-        // ===================================================================================== []
-        // Item
-        [NotSerialize]
-        public DemoshopItem Item { get; set; }
-
         // --------------------------------------------------------[]
-        private void LoadItem()
+        private void SetItemToDefault()
         {
             Item = new DemoshopItem {
                 Sku = "DS-1001",
@@ -27,9 +21,10 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        public void SaveItem( DemoshopItem item )
+        public void UpdateItem( DemoshopItem item )
         {
             Item = item;
+            Message = "Item updated";
         }
     }
 }

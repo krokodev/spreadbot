@@ -4,20 +4,26 @@
 // Roman, 2015-04-03 8:16 PM
 
 using System.ComponentModel.DataAnnotations;
+using Nereal.Serialization;
 
 namespace Spreadbot.Core.Stores.Demoshop.Items
 {
     public class DemoshopItem
     {
+        [Serialize]
         [DisplayFormat( DataFormatString = "{0}", ApplyFormatInEditMode = true )]
         public string Sku { get; set; }
 
+        
+        [Serialize]
         [DisplayFormat( DataFormatString = "{0}", ApplyFormatInEditMode = true )]
         public string Title { get; set; }
 
+        [Serialize]
         [DisplayFormat( DataFormatString = "{0:n2}", ApplyFormatInEditMode = true )]
         public decimal Price { get; set; }
 
+        [Serialize]
         [DisplayFormat( DataFormatString = "{0:n0}", ApplyFormatInEditMode = true )]
         public decimal Quantity { get; set; }
 

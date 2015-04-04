@@ -10,8 +10,6 @@ namespace Spreadbot.Core.System.Dispatcher
 {
     public partial class Dispatcher
     {
-        // ===================================================================================== []
-        // RegisterChannel
         private readonly List< IChannelManager > _channels = new List< IChannelManager >();
 
         // --------------------------------------------------------[]
@@ -20,8 +18,6 @@ namespace Spreadbot.Core.System.Dispatcher
             _channels.Add( channelManager );
         }
 
-        // ===================================================================================== []
-        // FindChannel
         private IChannelManager FindChannel( string channelId )
         {
             return _channels.Find( c => c.Id == channelId );

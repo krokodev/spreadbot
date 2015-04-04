@@ -20,9 +20,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
     {
-        // ===================================================================================== []
-        // PublishItemOnEbay
-        private DemoshopStoreTask DoCreateTaskPublishOnEbay()
+        // --------------------------------------------------------[]
+        private DemoshopStoreTask CreateTaskPublishOnEbay()
         {
             var storeTask =
                 new DemoshopStoreTask {
@@ -37,7 +36,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 );
 
             AddTask( storeTask );
-
             return storeTask;
         }
 
@@ -61,39 +59,36 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             };
         }
 
-        // ===================================================================================== []
-        // FeedContent
-        private static string FeedContent( MipFeedType mipFeedType )
+        // --------------------------------------------------------[]
+        private string FeedContent( MipFeedType mipFeedType )
         {
             var template = FeedTemplate( mipFeedType );
-            var item = Instance.Item;
 
             switch( mipFeedType ) {
                 case MipFeedType.Product :
                     return template
-                        .Replace( "{item.sku}", item.Sku )
-                        .Replace( "{item.title}", item.Title )
+                        .Replace( "{item.sku}", Item.Sku )
+                        .Replace( "{item.title}", Item.Title )
                         ;
                 case MipFeedType.Availability :
                     return template
-                        .Replace( "{item.sku}", item.Sku )
+                        .Replace( "{item.sku}", Item.Sku )
                         .Replace(
                             "{item.quantity}",
-                            item.Quantity.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
+                            Item.Quantity.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
                 case MipFeedType.Distribution :
                     return template
-                        .Replace( "{item.sku}", item.Sku )
+                        .Replace( "{item.sku}", Item.Sku )
                         .Replace( "{item.price}",
-                            item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
+                            Item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
             }
 
             throw new SpreadbotException( "Wrong FeedType=[{0}]", mipFeedType );
         }
 
-        // ===================================================================================== []
-        // FeedTemplate
+        // --------------------------------------------------------[]
         private static string FeedTemplate( MipFeedType mipFeedType )
         {
             var templateFolder = DemoshopConfig.Instance.DemoshopPaths.XmlTemplatesPath.MapPathToDataDirectory();
