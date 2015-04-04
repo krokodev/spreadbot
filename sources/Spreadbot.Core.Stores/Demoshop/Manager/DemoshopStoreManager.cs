@@ -31,11 +31,11 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        private static readonly object _locker = new object();
+        private static readonly object Locker = new object();
 
         public void SaveData()
         {
-            lock( _locker ) {
+            lock( Locker ) {
                 _SaveData();
             }
         }
@@ -43,7 +43,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         public void LoadData()
         {
-            lock( _locker ) {
+            lock( Locker ) {
                 _LoadData();
             }
         }
