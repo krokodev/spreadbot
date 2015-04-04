@@ -68,6 +68,11 @@ namespace Spreadbot.App.Web.Models
         public void UpdateItem( DemoshopItem item )
         {
             StoreManager.UpdateItem( item );
+        }        
+        // --------------------------------------------------------[]
+        public void SetItemToDefault()
+        {
+            StoreManager.SetItemToDefault();
         }
 
         // --------------------------------------------------------[]

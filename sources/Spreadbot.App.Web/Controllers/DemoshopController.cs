@@ -77,5 +77,15 @@ namespace Spreadbot.App.Web.Controllers
             ViewBag.TaskId = taskId;
             return View(new DemoshopModel());
         }
+
+        // --------------------------------------------------------[]
+        public ActionResult RevertItem()
+        {
+            using( var model = new DemoshopModel() ) {
+                model.SetItemToDefault();
+                model.Message = "Item reverted";
+            }
+            return RedirectToAction( "Index" );
+        }
     }
 }

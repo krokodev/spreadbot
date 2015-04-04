@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     public partial class DemoshopStoreManager
     {
         // --------------------------------------------------------[]
-        private void SetItemToDefault()
+        public void SetItemToDefault()
         {
             Item = new DemoshopItem {
                 Sku = "DS-1001",
