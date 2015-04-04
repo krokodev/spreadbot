@@ -1,6 +1,9 @@
-﻿@using Spreadbot.App.Web.Models
-@using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+﻿@using Spreadbot.Sdk.Common.Operations.Tasks
+@model  Spreadbot.App.Web.Models.DemoshopModel 
+
+@{
+    // Here: View | ShowTask
+}
 
 @helper ShowTask( AbstractTask task )
 {
@@ -16,7 +19,7 @@
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 @{
-    var task = ( AbstractTask ) DemoshopModel.FindTask( ViewBag.TaskId );
+    var task = ( AbstractTask ) Model.FindTask( ViewBag.TaskId );
 }
 
 @{

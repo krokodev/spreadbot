@@ -8,7 +8,7 @@ using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.System.Dispatcher;
 
-// !>> Controller | DemoshopController
+// Here: Controller | DemoshopController
 
 namespace Spreadbot.App.Web.Controllers
 {
@@ -72,11 +72,10 @@ namespace Spreadbot.App.Web.Controllers
         }
 
         // --------------------------------------------------------[]
-        // Code: Tode: Ref: Use TaskModel
         public ActionResult ShowTask( string taskId )
         {
             ViewBag.TaskId = taskId;
-            return View();
+            return View(new DemoshopModel());
         }
     }
 }
