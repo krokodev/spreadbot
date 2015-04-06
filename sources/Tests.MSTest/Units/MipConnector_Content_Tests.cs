@@ -78,7 +78,7 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-     //   [TestMethod]
+         [TestMethod]
       //  [DeploymentItem( @"App_Data\", "App_Data" )]
         public void Read_ItemId()
         {
@@ -87,7 +87,7 @@ namespace Tests.MSTest.Units
 
         // --------------------------------------------------------[]
         [TestMethod]
-        [DeploymentItem( @"App_Data\", "App_Data" )]
+        //[DeploymentItem( @"App_Data\", "App_Data" )]
         public void Read_Mip_Config()
         {
             var configuration = MipPublicConfig.Instance;
