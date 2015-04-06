@@ -108,6 +108,111 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\availability.failure-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\availability.failure-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\availability.success-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\availability.success-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\availability.unknown-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.failure-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.failure-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.failure-003.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.failure-004.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.failure-005.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.item-present.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.success-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.success-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\distribution.unknown-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-003.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-004.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-005.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.failure-006.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.item-present.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.success-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.success-002.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.success-003.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\product.unknown-001.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\availability.0320f6e2-22a4-4c4d-9963-3e051a9a8b03.zip-Mar-11-2015-07-42-04-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\availability.2ab64f22-9599-476e-bc44-a5c0f3410f7d.zip-Mar-20-2015-13-45-27-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Availability_Single_SKU_One_Locale-error.xml-Mar-24-2015-08-44-29-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Availability_Single_SKU_One_Locale.zip-Dec-15-2014-05-04-08-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\distribution.00000000-0000-0000-0000-000000000000.zip-Mar-20-2015-04-29-41-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\distribution.048b26cb-c0aa-4032-85d2-601be33a04e2.zip-Mar-11-2015-07-58-47-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\distribution.756c374a-b592-4f40-9de9-2d3b2622defc.zip-Mar-11-2015-08-57-31-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\distribution.c8dbf7cc-31c5-4840-9a64-43347c7e164d.zip-Mar-11-2015-07-42-10-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Distribution_Single_SKU_One_Locale.xml-Feb-18-2015-03-36-26-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Distribution_Single_SKU_One_Locale.zip-Dec-15-2014-05-13-45-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Distribution_Single_SKU_One_Locale.zip-Dec-16-2014-10-30-24-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.0000-product-fail-01.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.0000-product-fail-02.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.0000-product-success-0000.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.6f1f8976-049a-41c9-ad2e-abcbdd9205ed.zip-Mar-11-2015-08-13-01-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.881e9687-13ce-40c2-8984-ad334c3b9e5f.zip-Mar-11-2015-03-19-28-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\product.ed2c4283-fab4-4abc-9d2e-0ad7b8c708ef.zip-Mar-03-2015-16-47-42-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Product_Single_SKU_One_Locale.xml-Feb-18-2015-03-20-05-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Product_Single_SKU_One_Locale.zip-Dec-16-2014-05-36-30-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\inbox\samples\Product_Single_SKU_One_Locale.zip-Dec-16-2014-08-59-03-0700.xml" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\src\availability\Availability_Single_SKU_One_Locale.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\src\distribution\Distribution_Single_SKU_One_Locale.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\eBay\Mip\ini\src\product\Product_Single_SKU_One_Locale.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
@@ -128,10 +233,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Fakes Include="Fakes\Spreadbot.Core.Channels.fakes" />
-    <None Include="mstest.runsettings" />
+    <Content Include="App_Data\Channels\eBay\Mip\ini\zip\product.00000000-0000-0000-0000-000000000000.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Channels\eBay\Mip\store\src\availability\" />
+    <Folder Include="App_Data\Channels\eBay\Mip\store\src\distribution\" />
+    <Folder Include="App_Data\Channels\eBay\Mip\store\src\none\" />
+    <Folder Include="App_Data\Channels\eBay\Mip\store\src\product\" />
     <Folder Include="App_Data\Stores\Demoshop\Data\" />
   </ItemGroup>
   <Choose>

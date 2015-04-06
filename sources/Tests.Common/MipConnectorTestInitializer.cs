@@ -88,7 +88,7 @@ namespace Tests.Common
                         File.Delete( storeFile );
                     }
                     if( !File.Exists( iniFile ) ) {
-                        Console.WriteLine( "File [{0}] not foind", iniFile );
+                        Console.WriteLine( "File [{0}] not found", iniFile );
                     } else {
                         File.Copy( iniFile, storeFile );
                     }
