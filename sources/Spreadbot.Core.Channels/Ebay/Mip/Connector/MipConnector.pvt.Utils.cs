@@ -4,7 +4,6 @@
 // Roman, 2015-04-06 3:32 PM
 
 using System;
-using System.Threading;
 using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
@@ -19,7 +18,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipSendFeedResult > DoSendFeed(
+        private static MipResponse< MipSendFeedResult > _SendFeed(
             MipFeedHandler mipFeedHandler,
             string reqId )
         {
@@ -96,7 +95,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipFindRequestResult > _FindRequest( MipRequestHandler mipRequestHandler, MipRequestProcessingStage stage )
+        private MipResponse< MipFindRequestResult > _FindRequest( MipRequestHandler mipRequestHandler, MipRequestProcessingStage stage )
         {
             MipResponse< MipFindRemoteFileResult > findResponse;
             try {
@@ -105,7 +104,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                         findResponse = FindRequestIn_Inprocess( mipRequestHandler );
                         break;
                     case MipRequestProcessingStage.Output :
-                        findResponse = FindRequestIn_Output( mipRequestHandler );
+                        findResponse = FindRequestInOutput( mipRequestHandler );
                         break;
                     default :
                         throw new SpreadbotException( "Wrong stage {0}", stage );
@@ -129,7 +128,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatusResponse _GetRequestStatus( MipRequestHandler mipRequestHandler )
+        private MipRequestStatusResponse _GetRequestStatus( MipRequestHandler mipRequestHandler )
         {
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
@@ -161,6 +160,16 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                     ArgsInfo = MakeRequestStatusArgsInfo( mipRequestHandler )
                 };
             }
+        }
+
+        // --------------------------------------------------------[]
+        private MipResponse< MipFindRemoteFileResult > FindRequestInOutput(
+            MipRequestHandler mipRequestHandler )
+        {
+            var remoteDirs = RemoteFeedOutputFolderPathes( mipRequestHandler.MipFeedHandler.GetName() );
+            var prefix = mipRequestHandler.FileNamePrefix();
+
+            return SftpHelper.FindRemoteFile( prefix, remoteDirs );
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static string DoLocalFeedFolder( string feed )
+        private static string _LocalFeedFolder( string feed )
         {
             return string.Format(
                 "{0}{1}",
@@ -41,11 +41,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static string DoLocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
+        private static string _LocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
         {
             return string.Format(
                 @"{0}\{1}.{2}.xml",
-                DoLocalFeedFolder( mipFeedHandler.GetName() ),
+                _LocalFeedFolder( mipFeedHandler.GetName() ),
                 mipFeedHandler.GetName(),
                 mipFeedHandler.Id
                 );

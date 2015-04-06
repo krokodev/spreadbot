@@ -30,7 +30,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
 
-            var requestResponse = MipConnector.GetRequestStatus( request );
+            var requestResponse = MipConnector.Instance.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
             Assert.IsNotNull( requestResponse.Result );

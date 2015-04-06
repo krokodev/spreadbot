@@ -29,7 +29,7 @@ namespace Tests.NUnit.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var response = MipConnector.SendFeed( feed );
+            var response = MipConnector.Instance.SendFeed( feed );
             Console.WriteLine( response );
             IgnoreMipQueueDepthErrorMessage( response );
 
@@ -45,7 +45,7 @@ namespace Tests.NUnit.Units
         public void FindRequest_Inprocess()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.SendFeed( feed );
+            var sendResponse = MipConnector.Instance.SendFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
@@ -57,7 +57,7 @@ namespace Tests.NUnit.Units
             Assert_That_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Console.WriteLine();
             Console.WriteLine( findResponse );
 
@@ -74,7 +74,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.Product );
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Console.WriteLine( findResponse );
 
             Assert.That( findResponse.StatusCode.Equals( MipOperationStatus.FindRequestFailure ) );
@@ -90,7 +90,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.None );
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindRequest( request, MipRequestProcessingStage.Inprocess );
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestFailure, findResponse.StatusCode );
@@ -103,14 +103,14 @@ namespace Tests.NUnit.Units
         public void FindRequest_Output()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.SendTestFeed( feed );
+            var sendResponse = MipConnector.Instance.SendTestFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
+            var findResponse = MipConnector.Instance.FindRequest( request, MipRequestProcessingStage.Output );
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindRequestSuccess, findResponse.StatusCode );
@@ -127,7 +127,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.Product );
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
-            var findResponse = MipConnector.FindRequest( request, MipRequestProcessingStage.Output );
+            var findResponse = MipConnector.Instance.FindRequest( request, MipRequestProcessingStage.Output );
 
             Console.WriteLine( findResponse );
 
@@ -141,11 +141,11 @@ namespace Tests.NUnit.Units
         public void GetRequestStatus_Inproc()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.SendFeed( feed );
+            var sendResponse = MipConnector.Instance.SendFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var requestResponse = MipConnector.GetRequestStatus( request );
+            var requestResponse = MipConnector.Instance.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );
@@ -182,7 +182,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.Product );
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
-            var requestResponse = MipConnector.GetRequestStatus( request );
+            var requestResponse = MipConnector.Instance.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );
@@ -196,7 +196,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.None );
             var request = new MipRequestHandler( feed, MipRequestHandler.GenerateId() );
 
-            var requestResponse = MipConnector.GetRequestStatus( request );
+            var requestResponse = MipConnector.Instance.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
             Assert_That_Text_Contains( requestResponse, "ArgsInfo" );

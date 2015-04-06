@@ -30,7 +30,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                     ebayPublishArgs.MipFeedHandler,
                     task.EbayPublishResponse.Result.MipRequestId );
 
-                statusResponse = MipConnector.GetRequestStatus( mipRequest );
+                statusResponse = MipConnector.Instance.GetRequestStatus( mipRequest );
                 statusResponse.Check();
 
                 task.MipRequestStatusCode = statusResponse.Result.MipRequestStatusCode;
@@ -66,7 +66,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 
                 CreateFeedFile( publishArgs.MipFeedHandler );
 
-                var mipResponse = MipConnector.SendFeed( publishArgs.MipFeedHandler );
+                var mipResponse = MipConnector.Instance.SendFeed( publishArgs.MipFeedHandler );
 
                 EraseFeedFolder( publishArgs.MipFeedHandler );
 

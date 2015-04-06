@@ -25,7 +25,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 try {
                     zipFileName = LocalZippedFeedFile( feed, reqId );
                     ZipFolderFiles(
-                        DoLocalFeedFolder( feed ),
+                        _LocalFeedFolder( feed ),
                         zipFileName
                         );
                 }
