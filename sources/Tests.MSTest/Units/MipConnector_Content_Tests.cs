@@ -1,10 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.MSTest
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-06 11:51 AM
+// Roman, 2015-04-06 1:15 PM
 
 using System;
-using System.IO;
 using Crocodev.Common.Extensions;
 using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,10 +24,9 @@ namespace Tests.MSTest.Units
     {
         // --------------------------------------------------------[]
         [ClassInitialize]
-        [DeploymentItem( @"App_Data\", "App_Data")]
-        public static void InitClass( TestContext context)
-        {
-        }
+        //[DeploymentItem( @"App_Data\", "App_Data" )]
+        public static void InitClass( TestContext context ) {}
+
         // --------------------------------------------------------[]
         [TestInitialize]
         public void InitMethod()
@@ -52,7 +50,6 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        // Code: Use Fakes
         private static void TestItemId( MipFeedType mipFeedType )
         {
             using( ShimsContext.Create() ) {
@@ -81,12 +78,11 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-          [TestMethod]
+        [TestMethod]
         public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
-
 
         // --------------------------------------------------------[]
         [TestMethod]
@@ -128,7 +124,9 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        [NUnit.Framework.Ignore( "Waiting for Fakes" )]
+        // Code: Use Fakes
+
+         * [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]
         public void Read_Product_Content()
         {
