@@ -185,7 +185,7 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>$(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config</PreBuildEvent>
+    <PreBuildEvent>$(SolutionDir)utils\run-script.cmd $(SolutionDir)utils\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

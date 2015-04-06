@@ -28,13 +28,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Abstracts", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels", "sources\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\commands.txt = scripts\commands.txt
-		scripts\restore-default-file.ps1 = scripts\restore-default-file.ps1
-		scripts\run-script.cmd = scripts\run-script.cmd
-		scripts\sample.ps1 = scripts\sample.ps1
-		scripts\test-output.ps1 = scripts\test-output.ps1
+		utils\commands.txt = utils\commands.txt
+		utils\restore-default-file.ps1 = utils\restore-default-file.ps1
+		utils\run-script.cmd = utils\run-script.cmd
+		utils\sample.ps1 = utils\sample.ps1
+		utils\test-output.ps1 = utils\test-output.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "-", "-", "{D04AE4D7-ECE4-479C-B44C-4412E64F697E}"
