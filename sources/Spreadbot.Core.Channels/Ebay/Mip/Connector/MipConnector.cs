@@ -22,10 +22,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         private static MipConnector _instance;
         public static MipConnector GetInstance()
         {
-            if( _instance == null ) {
-                _instance = new MipConnector();
-            }
-            return _instance;
+            return _instance ?? ( _instance = new MipConnector() );
         }
 
         // --------------------------------------------------------[]

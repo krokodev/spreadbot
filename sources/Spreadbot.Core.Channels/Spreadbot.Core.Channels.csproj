@@ -84,6 +84,8 @@
     <Compile Include="Ebay\Manager\EbayChannelManager.pvt.Tasks.cs" />
     <Compile Include="Ebay\Manager\EbayChannelManager.imp.IChannelManager.cs" />
     <Compile Include="Ebay\Manager\EbayChannelManager.cs" />
+    <Compile Include="Ebay\Mip\Connector\IMipConnector.cs" />
+    <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.RequestXml.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pub.Mock.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipFindRequestResult.cs" />
