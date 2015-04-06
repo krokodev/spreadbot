@@ -127,7 +127,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // GetRequestStatus
         public static MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler )
         {
-            // Code: GetRequestStatus, Fake Shims injection
+            // Code: GetRequestStatus, use Moq
             try {
                 var response = FindRequest( mipRequestHandler, MipRequestProcessingStage.Inprocess );
                 if( response.StatusCode == MipOperationStatus.FindRequestSuccess ) {

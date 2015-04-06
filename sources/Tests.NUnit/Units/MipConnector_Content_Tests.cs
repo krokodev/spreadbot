@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Tests.MSTest
+// Tests.NUnit
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-06 1:15 PM
+// Roman, 2015-04-06 3:09 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -10,9 +10,6 @@ using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Tests.Common;
 
 namespace Tests.NUnit.Units
@@ -45,10 +42,11 @@ namespace Tests.NUnit.Units
         // --------------------------------------------------------[]
         private static void TestItemId( MipFeedType mipFeedType )
         {
-                _TestItemId( mipFeedType );
+            _TestItemId( mipFeedType );
         }
 
         // --------------------------------------------------------[]
+        [Ignore]
         [Test]
         public void Read_ItemId()
         {
