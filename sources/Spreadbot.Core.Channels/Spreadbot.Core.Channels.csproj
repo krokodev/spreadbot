@@ -88,7 +88,6 @@
     <Compile Include="Ebay\Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.RequestXml.cs" />
-    <Compile Include="Ebay\Mip\Connector\MipConnector.pub.Mock.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipFindRequestResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipSftpSendFilesResult.cs" />
     <Compile Include="Ebay\Mip\ZipHelper\IZipHelper.cs" />

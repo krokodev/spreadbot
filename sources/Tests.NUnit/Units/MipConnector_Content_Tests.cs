@@ -51,6 +51,15 @@ namespace Tests.NUnit.Units
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
             var mockSftpHelper = new Mock< WinScpSftpHelper > { CallBase = true };
 
+            ConfigureMockToGetContentFromLocalFolder( mockSftpHelper );
+
+            mockMipConnector.Object.SftpHelper = mockSftpHelper.Object;
+            TestItemId( mipFeedType, mockMipConnector.Object );
+        }
+
+        // --------------------------------------------------------[]
+        private static void ConfigureMockToGetContentFromLocalFolder( Mock< WinScpSftpHelper > mockSftpHelper )
+        {
             mockSftpHelper.Setup( helper => helper.FindRemoteFile(
                 It.IsAny< string >(),
                 It.Is< String >( s => s.ToLower().Contains( "inproc" ) ) ) )
@@ -63,16 +72,16 @@ namespace Tests.NUnit.Units
                 It.IsAny< string >(),
                 It.Is< String >( s => s.ToLower().Contains( "output" ) ) ) )
                 .Returns( (
-                    string filePrefix, 
-                    string remoteDir ) 
+                    string filePrefix,
+                    string remoteDir )
                     => new MipResponse< MipFindRemoteFileResult > {
-                    IsSuccess = true,
-                    StatusCode = MipOperationStatus.FindRemoteFileSuccess,
-                    Result = new MipFindRemoteFileResult {
-                        RemoteDir = "fake",
-                        RemoteFileName = filePrefix+".xml",
-                    }
-                } );
+                        IsSuccess = true,
+                        StatusCode = MipOperationStatus.FindRemoteFileSuccess,
+                        Result = new MipFindRemoteFileResult {
+                            RemoteDir = "fake",
+                            RemoteFileName = filePrefix + ".xml",
+                        }
+                    } );
 
             mockSftpHelper.Setup( helper => helper.GetRemoteFileContent(
                 It.IsAny< string >(),
@@ -82,9 +91,6 @@ namespace Tests.NUnit.Units
                     var filePath = string.Format( @"{0}\{1}", localFolder, fileName );
                     return File.ReadAllText( filePath );
                 } );
-
-            mockMipConnector.Object.SftpHelper = mockSftpHelper.Object;
-            TestItemId( mipFeedType, mockMipConnector.Object );
         }
 
         // --------------------------------------------------------[]
@@ -104,6 +110,7 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
+        // Code: TestFeedStatus, Use via mock
         private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
         {
             /*            var wasTested = false;
