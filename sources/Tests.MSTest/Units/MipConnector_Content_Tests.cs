@@ -24,10 +24,16 @@ namespace Tests.MSTest.Units
     public class MipConnector_Content_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
-        [TestInitialize]
-        public void Init()
+        [ClassInitialize]
+        [DeploymentItem( @"App_Data\", "App_Data")]
+        public static void InitClass( TestContext context)
         {
-            //MipConnectorTestInitializer.PrepareTestFiles();
+        }
+        // --------------------------------------------------------[]
+        [TestInitialize]
+        public void InitMethod()
+        {
+            MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // --------------------------------------------------------[]
@@ -75,26 +81,15 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-       // [Ignore]
-     //   [TestMethod]
+          [TestMethod]
         public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
 
-        // --------------------------------------------------------[]
- //       [TestMethod]
-        [DeploymentItem( @"TestFile.xml")]
-        [DeploymentItem( @"App_Data\", "App_Data")]
-        public void Deployment_Local_Data_Test()
-        {
-            const string file = @"TestFile.xml";
-            Assert.IsTrue( File.Exists( file ), "deployment failed: " + file + " did not get deployed" );
-        }
 
         // --------------------------------------------------------[]
         [TestMethod]
-        [DeploymentItem( @"App_Data\", "App_Data")]
         public void Read_Mip_Config()
         {
             var configuration = MipPublicConfig.Instance;
