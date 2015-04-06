@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
-// MipConnector.cs
-// Roman, 2015-04-06 3:32 PM
+// MipConnector.pvt.Utils.cs
+// Roman, 2015-04-06 5:29 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -16,7 +16,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     public partial class MipConnector
     {
-
         // --------------------------------------------------------[]
         private MipResponse< MipSendFeedResult > _SendFeed(
             MipFeedHandler mipFeedHandler,
@@ -48,8 +47,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             };
         }
 
-
-
         // --------------------------------------------------------[]
         private MipResponse< MipFindRemoteFileResult > FindRequestIn_Inprocess(
             MipRequestHandler mipRequestHandler )
@@ -59,8 +56,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
             return SftpHelper.FindRemoteFile( prefix, remoteDir );
         }
-
-
 
         // --------------------------------------------------------[]
         private static string MakeRequestStatusArgsInfo( MipRequestHandler mipRequestHandler )
@@ -94,7 +89,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRequestResult > _FindRequest( MipRequestHandler mipRequestHandler, MipRequestProcessingStage stage )
+        private MipResponse< MipFindRequestResult > _FindRequest(
+            MipRequestHandler mipRequestHandler,
+            MipRequestProcessingStage stage )
         {
             MipResponse< MipFindRemoteFileResult > findResponse;
             try {

@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-06 3:09 PM
+// Roman, 2015-04-06 6:16 PM
 
 using System;
+using System.IO;
 using Crocodev.Common.Extensions;
 using Moq;
 using NUnit.Framework;
@@ -11,6 +12,10 @@ using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
 using Tests.NUnit.Code;
 
 namespace Tests.NUnit.Units
@@ -26,7 +31,7 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void _TestItemId( MipFeedType mipFeedType, IMipConnector mipConnector )
+        private static void TestItemId( MipFeedType mipFeedType, IMipConnector mipConnector)
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
@@ -41,21 +46,52 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void TestItemId( MipFeedType mipFeedType )
+        private static void MockTestItemId( MipFeedType mipFeedType )
         {
-            var mipConnector = MipConnector.Instance;
-
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
+            var mockSftpHelper = new Mock< WinScpSftpHelper > { CallBase = true };
 
-            _TestItemId( mipFeedType, mockMipConnector.Object );
+            mockSftpHelper.Setup( helper => helper.FindRemoteFile(
+                It.IsAny< string >(),
+                It.Is< String >( s => s.ToLower().Contains( "inproc" ) ) ) )
+                .Returns( new MipResponse< MipFindRemoteFileResult > {
+                    IsSuccess = false,
+                    StatusCode = MipOperationStatus.FindRemoteFileFailure
+                } );
+
+            mockSftpHelper.Setup( helper => helper.FindRemoteFile(
+                It.IsAny< string >(),
+                It.Is< String >( s => s.ToLower().Contains( "output" ) ) ) )
+                .Returns( (
+                    string filePrefix, 
+                    string remoteDir ) 
+                    => new MipResponse< MipFindRemoteFileResult > {
+                    IsSuccess = true,
+                    StatusCode = MipOperationStatus.FindRemoteFileSuccess,
+                    Result = new MipFindRemoteFileResult {
+                        RemoteDir = "fake",
+                        RemoteFileName = filePrefix+".xml",
+                    }
+                } );
+
+            mockSftpHelper.Setup( helper => helper.GetRemoteFileContent(
+                It.IsAny< string >(),
+                It.IsAny< string >(),
+                It.IsAny< string >() ) )
+                .Returns( ( string remoteFolder, string fileName, string localFolder ) => {
+                    var filePath = string.Format( @"{0}\{1}", localFolder, fileName );
+                    return File.ReadAllText( filePath );
+                } );
+
+            mockMipConnector.Object.SftpHelper = mockSftpHelper.Object;
+            TestItemId( mipFeedType, mockMipConnector.Object );
         }
 
         // --------------------------------------------------------[]
-        [Ignore]
         [Test]
         public void Read_ItemId()
         {
-            TestItemId( MipFeedType.Distribution );
+            MockTestItemId( MipFeedType.Distribution );
         }
 
         // --------------------------------------------------------[]
@@ -102,7 +138,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void Read_Product_Content()
         {
-            TestItemId( MipFeedType.Product );
+            MockTestItemId( MipFeedType.Product );
             TestAllFeedStatuses( MipFeedType.Product );
         }
 
@@ -119,7 +155,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void Read_Distribution_Content()
         {
-            TestItemId( MipFeedType.Distribution );
+            MockTestItemId( MipFeedType.Distribution );
             TestAllFeedStatuses( MipFeedType.Distribution );
         }*/
     }

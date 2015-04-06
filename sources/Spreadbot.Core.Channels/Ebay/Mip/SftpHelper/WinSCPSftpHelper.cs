@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipFindRemoteFileResult > FindRemoteFile(
+        public virtual MipResponse< MipFindRemoteFileResult > FindRemoteFile(
             string filePrefix,
             string remoteDir )
         {
@@ -32,7 +32,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipFindRemoteFileResult > FindRemoteFile(
+        public virtual MipResponse< MipFindRemoteFileResult > FindRemoteFile(
             string filePrefix,
             string[] remoteDirs )
         {
@@ -40,7 +40,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        public string GetRemoteFileContent( string remoteFolder, string fileName, string localFolder )
+        public virtual string GetRemoteFileContent( string remoteFolder, string fileName, string localFolder )
         {
             return _GetRemoteFileContent( remoteFolder, fileName, localFolder );
         }
