@@ -5,11 +5,9 @@
 
 using System;
 using Crocodev.Common.Extensions;
-using Microsoft.QualityTools.Testing.Fakes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector.Fakes;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
@@ -17,25 +15,20 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Tests.Common;
 
-namespace Tests.MSTest.Units
+namespace Tests.NUnit.Units
 {
-    [TestClass]
+    [TestFixture]
     public class MipConnector_Content_Tests : SpreadbotTestBase
     {
         // --------------------------------------------------------[]
-        [ClassInitialize]
-        //[DeploymentItem( @"App_Data\", "App_Data" )]
-        public static void InitClass( TestContext context ) {}
-
-        // --------------------------------------------------------[]
-        [TestInitialize]
+        [SetUp]
         public void InitMethod()
         {
             MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // --------------------------------------------------------[]
-        private static void DoTestItemId( MipFeedType mipFeedType )
+        private static void _TestItemId( MipFeedType mipFeedType )
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
@@ -52,42 +45,18 @@ namespace Tests.MSTest.Units
         // --------------------------------------------------------[]
         private static void TestItemId( MipFeedType mipFeedType )
         {
-            using( ShimsContext.Create() ) {
-                ShimMipConnector.FindRequestIn_InprocessMipRequestHandler =
-                    mipRequestHandler => new MipResponse< MipFindRemoteFileResult > {
-                        IsSuccess = false,
-                        StatusCode = MipOperationStatus.FindRemoteFileFailure,
-                        Details = "Fake"
-                    };
-
-                ShimMipConnector.FindRequestIn_OutputMipRequestHandler =
-                    mipRequestHandler => new MipResponse< MipFindRemoteFileResult > {
-                        IsSuccess = true,
-                        StatusCode = MipOperationStatus.FindRemoteFileSuccess,
-                        Result = new MipFindRemoteFileResult {
-                            RemoteDir = "fake/remote/dir",
-                            RemoteFileName = mipRequestHandler.FileNamePrefix() + ".xml"
-                        },
-                        Details = "Fake"
-                    };
-
-                ShimMipConnector.ShimSftpHelper.DoDownloadFilesStringString = ( from, to ) => { };
-
-                DoTestItemId( mipFeedType );
-            }
+                _TestItemId( mipFeedType );
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
-        [DeploymentItem( @"App_Data\", "App_Data" )]
+        [Test]
         public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
 
         // --------------------------------------------------------[]
-        [TestMethod]
-        [DeploymentItem( @"App_Data\", "App_Data" )]
+        [Test]
         public void Read_Mip_Config()
         {
             var configuration = MipPublicConfig.Instance;
@@ -126,7 +95,7 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        // Code: Use Fakes
+        // Code: Use Mocks
 
          * [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]

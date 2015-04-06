@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<inventoryResponse>
-    <status>SUCCESS</status>
-    <summary>
-        <requestsTotal>1</requestsTotal>
-        <requestsSuccessful>1</requestsSuccessful>
-        <requestsWithFailures>0</requestsWithFailures>
-    </summary>
-</inventoryResponse>
