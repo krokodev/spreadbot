@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-06 3:32 PM
 
 using System;
 using System.Threading;
@@ -11,16 +11,11 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
 {
     public partial class EbayChannelManager : AbstractChannelManager
     {
-        // ===================================================================================== []
-        // Instance
-        private static readonly Lazy< EbayChannelManager > LazyInstance =
-            new Lazy< EbayChannelManager >( CreateInstance, LazyThreadSafetyMode.ExecutionAndPublication );
-
         // --------------------------------------------------------[]
-        private static EbayChannelManager CreateInstance()
-        {
-            return new EbayChannelManager();
-        }
+        private static readonly Lazy< EbayChannelManager > LazyInstance =
+            new Lazy< EbayChannelManager >(
+                () => new EbayChannelManager(),
+                LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
         public static EbayChannelManager Instance
