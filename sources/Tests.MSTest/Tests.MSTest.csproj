@@ -118,16 +118,17 @@
     </Content>
     <None Include="App.config" />
     <Content Include="App_Data\Configs\Mip.Public.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Configs\Mip.Security.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
     <Content Include="App_Data\Configs\Demoshop.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Fakes Include="Fakes\Spreadbot.Core.Channels.fakes" />
+    <None Include="mstest.runsettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

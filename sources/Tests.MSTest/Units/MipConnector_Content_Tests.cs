@@ -1,9 +1,10 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.MSTest
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-03 8:17 PM
+// Roman, 2015-04-06 11:51 AM
 
 using System;
+using System.IO;
 using Crocodev.Common.Extensions;
 using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,7 +27,7 @@ namespace Tests.MSTest.Units
         [TestInitialize]
         public void Init()
         {
-            MipConnectorTestInitializer.PrepareTestFiles();
+            //MipConnectorTestInitializer.PrepareTestFiles();
         }
 
         // --------------------------------------------------------[]
@@ -74,21 +75,33 @@ namespace Tests.MSTest.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore]
-        [TestMethod]
+       // [Ignore]
+     //   [TestMethod]
         public void Read_ItemId()
         {
             TestItemId( MipFeedType.Distribution );
         }
 
         // --------------------------------------------------------[]
+ //       [TestMethod]
+        [DeploymentItem( @"TestFile.xml")]
+        [DeploymentItem( @"App_Data\", "App_Data")]
+        public void Deployment_Local_Data_Test()
+        {
+            const string file = @"TestFile.xml";
+            Assert.IsTrue( File.Exists( file ), "deployment failed: " + file + " did not get deployed" );
+        }
+
+        // --------------------------------------------------------[]
         [TestMethod]
+        [DeploymentItem( @"App_Data\", "App_Data")]
         public void Read_Mip_Config()
         {
             var configuration = MipPublicConfig.Instance;
             Assert.AreEqual( "mip.ebay.com", configuration.MipConnection.HostName );
             Assert.AreEqual( 22, configuration.MipConnection.PortNumber );
         }
+
         // --------------------------------------------------------[]
         private static void TestFeedStatus( MipFeedType mipFeedType, MipRequestStatus mipRequestStatus )
         {
