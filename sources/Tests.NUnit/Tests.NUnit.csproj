@@ -60,6 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Crocodev.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
@@ -101,6 +104,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Units\MipConfiguration_Tests.cs" />
+    <Compile Include="Units\MipConnector_Content_Tests.cs" />
     <Compile Include="Units\MipConnector_Main_Tests.cs" />
     <Compile Include="Units\MipConnector_Zip_Tests.cs" />
     <Compile Include="Units\MipConnector_Sftp_Tests.cs" />
