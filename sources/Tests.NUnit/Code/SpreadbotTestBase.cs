@@ -6,10 +6,10 @@
 using System.Globalization;
 using System.Threading;
 using Crocodev.Common.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 
-namespace Tests.Common
+namespace Tests.NUnit.Code
 {
     public class SpreadbotTestBase
     {

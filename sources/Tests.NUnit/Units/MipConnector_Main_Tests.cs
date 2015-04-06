@@ -9,7 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Tests.Common;
+using Tests.NUnit.Code;
 
 namespace Tests.NUnit.Units
 {

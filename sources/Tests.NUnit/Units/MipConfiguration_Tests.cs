@@ -6,7 +6,7 @@
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
-using Tests.Common;
+using Tests.NUnit.Code;
 
 namespace Tests.NUnit.Units
 {

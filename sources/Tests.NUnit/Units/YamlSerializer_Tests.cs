@@ -10,7 +10,7 @@ using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Crocodev.Common;
-using Tests.Common;
+using Tests.NUnit.Code;
 using YamlDotNet.Serialization;
 
 namespace Tests.NUnit.Units

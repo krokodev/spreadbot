@@ -41,8 +41,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "-", "-", "{D04AE4D7-ECE4-47
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.NUnit", "sources\Tests.NUnit\Tests.NUnit.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Common", "sources\Tests.Common\Tests.Common.csproj", "{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,12 +113,6 @@ Global
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|x64.ActiveCfg = Release|x64
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|x64.Build.0 = Release|x64
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

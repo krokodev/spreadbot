@@ -16,7 +16,7 @@ using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Core.System.Dispatcher;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
-using Tests.Common;
+using Tests.NUnit.Code;
 
 namespace Tests.NUnit.Units
 {

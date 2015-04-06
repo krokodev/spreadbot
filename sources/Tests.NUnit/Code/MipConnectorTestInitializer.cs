@@ -15,7 +15,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
-namespace Tests.Common
+namespace Tests.NUnit.Code
 {
     public class MipConnectorTestInitializer
     {

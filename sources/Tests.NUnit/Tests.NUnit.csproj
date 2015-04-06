@@ -103,6 +103,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Code\MipConnectorTestInitializer.cs" />
+    <Compile Include="Code\SpreadbotTestBase.cs" />
     <Compile Include="Units\MipConfiguration_Tests.cs" />
     <Compile Include="Units\MipConnector_Content_Tests.cs" />
     <Compile Include="Units\MipConnector_Main_Tests.cs" />
@@ -137,10 +139,6 @@
     <ProjectReference Include="..\Spreadbot.Sdk.Tools\Spreadbot.Sdk.Tools.csproj">
       <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
       <Name>Spreadbot.Sdk.Tools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tests.Common\Tests.Common.csproj">
-      <Project>{AC3D552D-C124-4AC6-9257-C5B7793C5FF7}</Project>
-      <Name>Tests.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
