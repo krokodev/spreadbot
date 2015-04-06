@@ -33,7 +33,7 @@ namespace Tests.NUnit.Units
             var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
             var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
 
-            var response = MipConnector.SftpHelper.SendFiles( localFiles, remoteFiles );
+            var response = MipConnector.Instance.SftpHelper.SendFiles( localFiles, remoteFiles );
             IgnoreMipQueueDepthErrorMessage( response.ToString() );
 
             Console.WriteLine( response );
@@ -45,7 +45,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void TestConnection_Good()
         {
-            var response = MipConnector.SftpHelper.TestConnection();
+            var response = MipConnector.Instance.SftpHelper.TestConnection();
 
             Console.WriteLine( response );
 
@@ -56,7 +56,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void TestConnection_Bad()
         {
-            var response = MipConnector.SftpHelper.TestConnection( "wrong password" );
+            var response = MipConnector.Instance.SftpHelper.TestConnection( "wrong password" );
 
             Console.WriteLine( response );
 

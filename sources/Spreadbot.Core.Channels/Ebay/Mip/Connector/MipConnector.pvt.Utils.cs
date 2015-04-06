@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     {
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipSendFeedResult > _SendFeed(
+        private MipResponse< MipSendFeedResult > _SendFeed(
             MipFeedHandler mipFeedHandler,
             string reqId )
         {
@@ -51,8 +51,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 
 
         // --------------------------------------------------------[]
-        // Code: FindRequestIn_Inprocess, use Mock
-        private static MipResponse< MipFindRemoteFileResult > FindRequestIn_Inprocess(
+        private MipResponse< MipFindRemoteFileResult > FindRequestIn_Inprocess(
             MipRequestHandler mipRequestHandler )
         {
             var remoteDir = RemoteFeedInprocessFolderPath( mipRequestHandler.MipFeedHandler.GetName() );
@@ -70,7 +69,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatusResponse GetRequestStatusFromOutput(
+        private MipRequestStatusResponse GetRequestStatusFromOutput(
             MipFeedType feedType,
             MipResponse< MipFindRequestResult > response,
             MipRequestHandler mipRequestHandler )
@@ -83,7 +82,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipGetRequestStatusResult ReadRequestOutputStatus(
+        private MipGetRequestStatusResult ReadRequestOutputStatus(
             MipFeedType feedType,
             MipResponse< MipFindRequestResult > response )
         {

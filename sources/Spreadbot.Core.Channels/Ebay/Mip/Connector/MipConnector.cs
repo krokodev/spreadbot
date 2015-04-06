@@ -7,6 +7,8 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
+using Spreadbot.Core.Channels.Ebay.Mip.ZipHelper;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
@@ -17,12 +19,20 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         public const string MipWriteToLocationErrorMessage = "You are not eligible to write at this location";
 
         // --------------------------------------------------------[]
+        public MipConnector()
+        {
+            SftpHelper = new WinScpSftpHelper();
+            ZipHelper = new SystemIoZipHelper();
+        }
         private static MipConnector _instance;
-
         public static MipConnector Instance
         {
             get { return _instance ?? ( _instance = new MipConnector() ); }
         }
+
+        // --------------------------------------------------------[]
+        public ISftpHelper SftpHelper { get; set; }
+        public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
         public MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )

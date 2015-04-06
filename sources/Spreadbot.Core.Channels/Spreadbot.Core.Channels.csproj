@@ -85,11 +85,13 @@
     <Compile Include="Ebay\Manager\EbayChannelManager.imp.IChannelManager.cs" />
     <Compile Include="Ebay\Manager\EbayChannelManager.cs" />
     <Compile Include="Ebay\Mip\Connector\IMipConnector.cs" />
+    <Compile Include="Ebay\Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.RequestXml.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pub.Mock.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipFindRequestResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipSftpSendFilesResult.cs" />
+    <Compile Include="Ebay\Mip\ZipHelper\IZipHelper.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IAbstractTask.cs" />
     <Compile Include="Ebay\Operations\Tasks\EbayPublishTask.imp.IProceedableTask.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipTestConnectionResult.cs" />
@@ -107,9 +109,9 @@
     <Compile Include="Ebay\Mip\Operations\Results\MipZipFeedResult.cs" />
     <Compile Include="Ebay\Mip\Operations\Results\MipSendFeedResult.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.pvt.Pathes.cs" />
-    <Compile Include="Ebay\Mip\Connector\MipConnector.ZipHelper.cs" />
-    <Compile Include="Ebay\Mip\Connector\MipConnector.SftpHelper.pvt.Sftp.cs" />
-    <Compile Include="Ebay\Mip\Connector\MipConnector.SftpHelper.cs" />
+    <Compile Include="Ebay\Mip\ZipHelper\SystemIoZipHelper.cs" />
+    <Compile Include="Ebay\Mip\SftpHelper\WinScpSftpHelper.pvt.Sftp.cs" />
+    <Compile Include="Ebay\Mip\SftpHelper\WinSCPSftpHelper.cs" />
     <Compile Include="Ebay\Mip\Operations\Request\MipRequestProcessingStage.cs" />
     <Compile Include="Ebay\Mip\Operations\Request\MipRequestHandler.cs" />
     <Compile Include="Ebay\Mip\Connector\MipConnector.cs" />

@@ -31,7 +31,7 @@ namespace Tests.NUnit.Units
             var feed = new MipFeedHandler( MipFeedType.Product );
             var reqId = MipRequestHandler.GenerateTestId();
 
-            var response = MipConnector.ZipHelper.ZipFeed( feed.GetName(), reqId );
+            var response = MipConnector.Instance.ZipHelper.ZipFeed( feed, reqId );
             Console.WriteLine( response );
 
             Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.StatusCode );

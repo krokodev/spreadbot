@@ -5,6 +5,7 @@
 
 using System;
 using Crocodev.Common.Extensions;
+using Moq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
@@ -25,12 +26,12 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void _TestItemId( MipFeedType mipFeedType )
+        private static void _TestItemId( MipFeedType mipFeedType, IMipConnector mipConnector )
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
 
-            var requestResponse = MipConnector.Instance.GetRequestStatus( request );
+            var requestResponse = mipConnector.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
 
             Assert.IsNotNull( requestResponse.Result );
@@ -42,7 +43,11 @@ namespace Tests.NUnit.Units
         // --------------------------------------------------------[]
         private static void TestItemId( MipFeedType mipFeedType )
         {
-            _TestItemId( mipFeedType );
+            var mipConnector = MipConnector.Instance;
+
+            var mockMipConnector = new Mock< MipConnector > { CallBase = true };
+
+            _TestItemId( mipFeedType, mockMipConnector.Object );
         }
 
         // --------------------------------------------------------[]
@@ -93,9 +98,7 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        // Code: Use Mocks
-
-         * [NUnit.Framework.Ignore( "Waiting for Fakes" )]
+        [NUnit.Framework.Ignore( "Waiting for Fakes" )]
         [Test]
         public void Read_Product_Content()
         {
