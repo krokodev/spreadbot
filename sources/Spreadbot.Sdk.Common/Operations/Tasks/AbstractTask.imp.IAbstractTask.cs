@@ -10,7 +10,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public abstract partial class AbstractTask
     {
-        private readonly IEnumerable< IAbstractTask > _abstractSubTasks = new List< IAbstractTask >();
+        private IEnumerable< IAbstractTask > _abstractSubTasks;
 
         public abstract TaskStatus GetStatusCode();
 
@@ -18,7 +18,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
         public virtual IEnumerable< IAbstractTask > AbstractSubTasks
         {
-            get { return _abstractSubTasks; }
+            get { return _abstractSubTasks ?? ( _abstractSubTasks = new List< IAbstractTask >() ); }
         }
     }
 }

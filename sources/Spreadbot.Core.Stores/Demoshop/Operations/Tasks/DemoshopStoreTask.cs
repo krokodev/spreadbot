@@ -17,12 +17,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
 {
     public class DemoshopStoreTask : AbstractStoreTask
     {
-        private List< AbstractChannelTask > _channelTasks = new List< AbstractChannelTask >();
+        private List< AbstractChannelTask > _channelTasks;
 
         [Serialize]
         private List< AbstractChannelTask > ChannelTasks
         {
-            get { return _channelTasks; }
+            get { return _channelTasks?? (_channelTasks = new List< AbstractChannelTask >()); }
             set { _channelTasks = value; }
         }
 

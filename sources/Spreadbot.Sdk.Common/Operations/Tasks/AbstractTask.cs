@@ -24,7 +24,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
         protected TaskStatus CalcSuperTaskStatusCode()
         {
-            return DoCalcSuperTaskStatusCode();
+            return _CalcSuperTaskStatusCode();
         }
 
         public abstract string GetBriefInfo();

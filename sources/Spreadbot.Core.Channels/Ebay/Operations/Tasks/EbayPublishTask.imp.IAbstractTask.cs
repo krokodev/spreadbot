@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IAbstractTask.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-07 3:54 PM
 
 using System.Collections.Generic;
 using Nereal.Serialization;
@@ -46,12 +46,12 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         }
 
         // --------------------------------------------------------[]
-        private readonly IEnumerable< IAbstractTask > _abstractSubTasks = new List< IAbstractTask >();
+        private IEnumerable< IAbstractTask > _abstractSubTasks;
 
         [YamlMember( Alias = "SubTasks", Order = 100 )]
         public override IEnumerable< IAbstractTask > AbstractSubTasks
         {
-            get { return _abstractSubTasks; }
+            get { return _abstractSubTasks ?? ( _abstractSubTasks = new List< IAbstractTask >() ); }
         }
 
         // --------------------------------------------------------[]
