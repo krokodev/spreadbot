@@ -14,5 +14,6 @@ namespace Spreadbot.Core.Abstracts.Store.Manager
         IEnumerable< IChannelTask > GetChannelTasks();
         IEnumerable< IStoreTask > StoreTasks { get; }
         string Id { get; }
+        IStoreTask CreateTask( StoreTaskType publishOnEbay );
     }
 }

@@ -1,12 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// Roman, 2015-04-07 12:23 PM
+// Roman, 2015-04-07 2:11 PM
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Spreadbot.Core.Abstracts.Store.Manager;
+using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -49,17 +50,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        public DemoshopStoreTask CreateTask( DemoshopStoreTaskType taskType )
-        {
-            switch( taskType ) {
-                case DemoshopStoreTaskType.PublishOnEbay :
-                    return CreateTaskPublishOnEbay();
-                default :
-                    throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
-            }
-        }
 
-        // --------------------------------------------------------[]
         public void DeleteAllTasks()
         {
             StoreTasks.Clear();
@@ -83,6 +74,13 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         public IEnumerable< EbayPublishTask > GetEbayPublishTasks()
         {
             return GetChannelTasks().OfType< EbayPublishTask >();
+        }
+
+        // --------------------------------------------------------[]
+
+        public void AddTask( DemoshopStoreTask storeTask )
+        {
+            _AddTask( storeTask );
         }
     }
 }

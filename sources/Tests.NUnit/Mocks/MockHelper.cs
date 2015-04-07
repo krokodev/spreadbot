@@ -4,8 +4,10 @@
 // Roman, 2015-04-07 1:15 PM
 
 using Moq;
+using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
+using Spreadbot.Core.Stores.Demoshop.Manager;
 
 namespace Tests.NUnit.Mocks
 {
@@ -45,5 +47,16 @@ namespace Tests.NUnit.Mocks
 
             return mockMipConnector.Object;
         }
+
+        // --------------------------------------------------------[]
+        public static IStoreManager GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask()
+        {
+            var mockDemoshopStoreManager = new Mock< DemoshopStoreManager > { CallBase = true };
+            
+            ConfigureMipConnectorToCreategSimplePublishOnEbayTask( mockDemoshopStoreManager );
+
+            return mockDemoshopStoreManager.Object;
+        }
+
     }
 }

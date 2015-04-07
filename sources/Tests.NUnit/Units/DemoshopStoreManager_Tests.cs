@@ -1,22 +1,22 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-07 12:24 PM
+// Roman, 2015-04-07 2:27 PM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
 using NUnit.Framework;
+using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
-using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Core.System.Dispatcher;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using Tests.NUnit.Code;
+using Tests.NUnit.Mocks;
 
 namespace Tests.NUnit.Units
 {
@@ -33,17 +33,11 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static IEnumerable< EbayPublishTask > GetEbayPublishTasks( DemoshopStoreManager store )
-        {
-            return store.GetEbayPublishTasks();
-        }
-
-        // --------------------------------------------------------[]
         [Test]
         public void Create_Task_PublishItemOnEbay()
         {
             var store = new DemoshopStoreManager();
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
             Assert.IsNull( task.AbstractResponse );
@@ -55,7 +49,7 @@ namespace Tests.NUnit.Units
         public void Run_Task_PublishItemOnEbay()
         {
             var store = new DemoshopStoreManager();
-            var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
@@ -74,7 +68,7 @@ namespace Tests.NUnit.Units
             try {
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
-                var task = store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+                var task = store.CreateTask( StoreTaskType.PublishOnEbay );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
@@ -98,7 +92,7 @@ namespace Tests.NUnit.Units
         {
             var store = new DemoshopStoreManager();
 
-            store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            store.CreateTask( StoreTaskType.PublishOnEbay );
             store.SaveData();
             store.DeleteAllTasks();
             store.LoadData();
@@ -126,7 +120,7 @@ namespace Tests.NUnit.Units
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
 
-                store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+                store.CreateTask( StoreTaskType.PublishOnEbay );
                 store.SaveData();
                 store.LoadData();
 
@@ -161,7 +155,7 @@ namespace Tests.NUnit.Units
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
 
-                store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+                store.CreateTask( StoreTaskType.PublishOnEbay );
                 Assert_That_Last_Update_Time_is_Correct( store );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
@@ -179,8 +173,9 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
         {
-            var store = new DemoshopStoreManager();
-            var task = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var store = MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+
+            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             Console.WriteLine( task );
@@ -189,11 +184,12 @@ namespace Tests.NUnit.Units
             Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
 
+        // --------------------------------------------------------[]
         [Test]
         public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
         {
-            var store = new DemoshopStoreManager();
-            store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            store.CreateTask( StoreTaskType.PublishOnEbay );
             var taskNum = store.GetChannelTasks().Count();
 
             store.SaveData();
@@ -203,11 +199,12 @@ namespace Tests.NUnit.Units
             Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Task num" );
         }
 
+        // --------------------------------------------------------[]
         [Test]
         public void Task_Keeps_Id_After_Reload()
         {
-            var store = new DemoshopStoreManager();
-            var id = store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay ).Id;
+            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var id = store.CreateTask( StoreTaskType.PublishOnEbay ).Id;
 
             store.SaveData();
             store.LoadData();
@@ -220,8 +217,8 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
         {
-            var store = new DemoshopStoreManager();
-            store.Mock_CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            store.CreateTask( StoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             store.SaveData();
@@ -235,7 +232,8 @@ namespace Tests.NUnit.Units
             Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
         }
 
-        // --------------------------------------------------------[]
+        // ===================================================================================== []
+        // Private
         private static void Assert_That_Last_Update_Time_is_Correct( DemoshopStoreManager store )
         {
             store.GetEbayPublishTasks()

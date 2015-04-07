@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Publish.cs
-// Roman, 2015-04-07 12:23 PM
+// Roman, 2015-04-07 2:04 PM
 
 using System.Globalization;
 using System.IO;
@@ -30,20 +30,18 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 };
 
             storeTask.AddSubTasks(
-                CreateEbayPublishTask( MipFeedType.Product, FeedContent( MipFeedType.Product ), Item.Sku ),
-                CreateEbayPublishTask( MipFeedType.Distribution, FeedContent( MipFeedType.Distribution ), Item.Sku ),
-                CreateEbayPublishTask( MipFeedType.Availability, FeedContent( MipFeedType.Availability ), Item.Sku )
+                _CreateEbayPublishTask( MipFeedType.Product ),
+                _CreateEbayPublishTask( MipFeedType.Distribution ),
+                _CreateEbayPublishTask( MipFeedType.Availability )
                 );
 
-            AddTask( storeTask );
+            _AddTask( storeTask );
             return storeTask;
         }
 
         // --------------------------------------------------------[]
-        private static EbayPublishTask CreateEbayPublishTask(
-            MipFeedType mipFeedType,
-            string feedContent,
-            string itemInfo )
+        private EbayPublishTask _CreateEbayPublishTask(
+            MipFeedType mipFeedType )
         {
             return new EbayPublishTask {
                 IsCritical = true,
@@ -52,8 +50,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 ChannelMethod = ChannelMethod.Publish,
                 Args = new EbayPublishArgs {
                     MipFeedHandler = new MipFeedHandler( mipFeedType ) {
-                        Content = feedContent,
-                        ItemInfo = itemInfo,
+                        Content = FeedContent( mipFeedType ),
+                        ItemInfo = Item.Sku,
                     },
                 }
             };

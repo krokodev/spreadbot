@@ -1,8 +1,9 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.imp.IStore.cs
-// Roman, 2015-04-07 12:23 PM
+// Roman, 2015-04-07 1:59 PM
 
+using System;
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Abstracts.Store.Manager;
@@ -28,6 +29,17 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         IEnumerable< IStoreTask > IStoreManager.StoreTasks
         {
             get { return StoreTasks; }
+        }
+
+        // --------------------------------------------------------[]
+        public virtual IStoreTask CreateTask( StoreTaskType taskType )
+        {
+            switch( taskType ) {
+                case StoreTaskType.PublishOnEbay :
+                    return CreateTaskPublishOnEbay();
+                default :
+                    throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
+            }
         }
     }
 }

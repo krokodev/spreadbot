@@ -79,7 +79,7 @@ namespace Spreadbot.App.Web.Models
         // --------------------------------------------------------[]
         public void CreateTaskPublishItemOnEbay()
         {
-            StoreManager.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
+            StoreManager.CreateTask( StoreTaskType.PublishOnEbay );
         }
 
         // --------------------------------------------------------[]

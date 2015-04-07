@@ -89,6 +89,7 @@
     <Compile Include="Store\Operations\Tasks\AbstractStoreTask.cs" />
     <Compile Include="Store\Manager\IStoreManager.cs" />
     <Compile Include="Store\Operations\Tasks\IStoreTask.cs" />
+    <Compile Include="Store\Operations\Tasks\StoreTaskType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">

@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         private List< DemoshopStoreTask > _storeTasks = new List< DemoshopStoreTask >();
 
         // --------------------------------------------------------[]
-        private void AddTask( DemoshopStoreTask task )
+        private void _AddTask( DemoshopStoreTask task )
         {
             _storeTasks.Add( task );
         }
