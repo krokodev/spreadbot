@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-07 2:27 PM
+// Roman, 2015-04-07 2:58 PM
 
 using System;
 using System.Linq;
@@ -230,26 +230,6 @@ namespace Tests.NUnit.Units
             Assert.AreEqual( id, task.Id, "Task.Id" );
         }
 
-        // --------------------------------------------------------[]
-        [Test]
-        public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
-        {
-            var store = new DemoshopStoreManager();
-            store.CreateTask( StoreTaskType.PublishOnEbay );
-            Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
-
-            store.SaveData();
-            store.DeleteAllTasks();
-            store.LoadData();
-
-            Assert.AreEqual( 1, store.StoreTasks.Count(), "Store Task Num" );
-            var task = store.StoreTasks.First();
-
-            Console.WriteLine( task );
-
-            Assert.That( task.GetStatusCode() == TaskStatus.Failure, "Task failure" );
-            Assert_That_Text_Contains( task, MipConnector.MipWriteToLocationErrorMessage );
-        }
 
         // ===================================================================================== []
         // Private
