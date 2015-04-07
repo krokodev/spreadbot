@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Item.cs
-// Roman, 2015-04-04 11:29 AM
+// Roman, 2015-04-07 12:23 PM
 
 using Spreadbot.Core.Stores.Demoshop.Items;
 

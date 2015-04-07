@@ -1,12 +1,11 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
-// MipConnector.SftpHelper.pvt.Sftp.cs
-// Roman, 2015-04-06 4:41 PM
+// WinScpSftpHelper.pvt.Sftp.cs
+// Roman, 2015-04-07 12:24 PM
 
 using System;
 using System.IO;
 using Crocodev.Common.Extensions;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;

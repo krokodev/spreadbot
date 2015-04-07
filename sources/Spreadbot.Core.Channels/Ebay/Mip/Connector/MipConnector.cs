@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-06 3:50 PM
+// Roman, 2015-04-07 12:24 PM
 
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
@@ -24,7 +24,9 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             SftpHelper = new WinScpSftpHelper();
             ZipHelper = new SystemIoZipHelper();
         }
+
         private static MipConnector _instance;
+
         public static MipConnector Instance
         {
             get { return _instance ?? ( _instance = new MipConnector() ); }
@@ -35,16 +37,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )
+        public virtual MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )
         {
-            var reqId = MipRequestHandler.GenerateId();
-            return _SendFeed( mipFeedHandler, reqId );
+            return SendFeed( mipFeedHandler, MipRequestHandler.GenerateId());
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSendFeedResult > SendTestFeed( MipFeedHandler mipFeedHandler )
+        public MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler, string reqId )
         {
-            var reqId = MipRequestHandler.GenerateTestId();
             return _SendFeed( mipFeedHandler, reqId );
         }
 

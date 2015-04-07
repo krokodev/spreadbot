@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Sftp_Tests.cs
-// Roman, 2015-04-03 8:55 PM
+// Roman, 2015-04-07 12:25 PM
 
 using System;
 using NUnit.Framework;
@@ -29,7 +29,7 @@ namespace Tests.NUnit.Units
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var reqId = MipRequestHandler.GenerateTestId();
+            var reqId = MipRequestHandler.GenerateZeroId();
             var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
             var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
 

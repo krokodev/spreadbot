@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopStoreManager_Tests.cs
-// Roman, 2015-04-04 11:05 AM
+// Roman, 2015-04-07 12:24 PM
 
 using System;
 using System.Collections.Generic;
@@ -162,13 +162,13 @@ namespace Tests.NUnit.Units
                 var store = new DemoshopStoreManager();
 
                 store.CreateTask( DemoshopStoreTaskType.PublishOnEbay );
-                Assert_That_Last_Update_Time_is_Correct(store);
+                Assert_That_Last_Update_Time_is_Correct( store );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
-                Assert_That_Last_Update_Time_is_Correct(store);
+                Assert_That_Last_Update_Time_is_Correct( store );
 
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
-                Assert_That_Last_Update_Time_is_Correct(store);
+                Assert_That_Last_Update_Time_is_Correct( store );
             }
             catch( SpreadbotException exception ) {
                 IgnoreMipQueueDepthErrorMessage( exception.Message );
@@ -236,7 +236,7 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void Assert_That_Last_Update_Time_is_Correct(DemoshopStoreManager store)
+        private static void Assert_That_Last_Update_Time_is_Correct( DemoshopStoreManager store )
         {
             store.GetEbayPublishTasks()
                 .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 30 ).Seconds ); } );

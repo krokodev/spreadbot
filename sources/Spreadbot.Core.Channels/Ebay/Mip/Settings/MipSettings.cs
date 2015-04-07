@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipSettings.cs
-// Roman, 2015-04-03 8:17 PM
+// Roman, 2015-04-07 12:24 PM
 
 using Crocodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;

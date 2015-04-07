@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Main_Tests.cs
-// Roman, 2015-04-03 8:55 PM
+// Roman, 2015-04-07 12:25 PM
 
 using System;
 using NUnit.Framework;
@@ -10,6 +10,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Tests.NUnit.Code;
+using Tests.NUnit.Mocks;
 
 namespace Tests.NUnit.Units
 {
@@ -102,8 +103,10 @@ namespace Tests.NUnit.Units
         [Test]
         public void FindRequest_Output()
         {
+            var fakeMipConnector = MockHelper.GetMipConnectorSendingTestFeed();
+
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.Instance.SendTestFeed( feed );
+            var sendResponse = fakeMipConnector.SendFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
@@ -135,8 +138,7 @@ namespace Tests.NUnit.Units
             Assert.IsNull( findResponse.Result );
         }
 
-        // ===================================================================================== [] 
-        // GetRequestStatus
+        // --------------------------------------------------------[]
         [Test]
         public void GetRequestStatus_Inproc()
         {
@@ -153,26 +155,28 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        [Ignore( "Waiting for Fakes" )]
         [Test]
         public void GetRequestStatus_Success()
         {
-            /*
+            var fakeMipConnector = MockHelper.GetMipConnectorIgnoringInprocessAndSendingTestFeed();
+
             var feed = new MipFeedHandler( MipFeedType.Availability );
-            var sendResponse = MipConnector.SendTestFeed( feed );
+            var sendResponse = fakeMipConnector.SendFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
-            var requestResponse = MipConnector.GetRequestStatus( request, ignoreInprocess : true );
+            var requestResponse = fakeMipConnector.GetRequestStatus( request );
             Console.WriteLine( requestResponse );
+
+            if( requestResponse.Result.MipRequestStatusCode != MipRequestStatus.Success ) {
+                Console.WriteLine( "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
+            }
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );
             Assert.AreEqual( MipRequestStatus.Success, requestResponse.Result.MipRequestStatusCode );
-*/
-            Assert.Fail();
         }
 
         // --------------------------------------------------------[]

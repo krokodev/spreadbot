@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// Roman, 2015-04-04 11:21 AM
+// Roman, 2015-04-07 12:22 PM
 
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,8 @@ namespace Spreadbot.App.Web.Models
         public void UpdateItem( DemoshopItem item )
         {
             StoreManager.UpdateItem( item );
-        }        
+        }
+
         // --------------------------------------------------------[]
         public void SetItemToDefault()
         {

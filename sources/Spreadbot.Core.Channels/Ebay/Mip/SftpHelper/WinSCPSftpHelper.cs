@@ -1,9 +1,8 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // WinSCPSftpHelper.cs
-// Roman, 2015-04-06 5:04 PM
+// Roman, 2015-04-07 12:24 PM
 
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 

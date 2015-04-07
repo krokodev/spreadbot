@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Zip_Tests.cs
-// Roman, 2015-04-03 8:55 PM
+// Roman, 2015-04-07 12:25 PM
 
 using System;
 using System.IO;
@@ -17,19 +17,19 @@ namespace Tests.NUnit.Units
     [TestFixture]
     public class MipConnector_Zip_Tests : SpreadbotTestBase
     {
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         [SetUp]
         public static void Init()
         {
             MipConnectorTestInitializer.PrepareTestFiles();
         }
 
-        // ===================================================================================== []
+        // --------------------------------------------------------[]
         [Test]
         public void ZipFeed()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var reqId = MipRequestHandler.GenerateTestId();
+            var reqId = MipRequestHandler.GenerateZeroId();
 
             var response = MipConnector.Instance.ZipHelper.ZipFeed( feed, reqId );
             Console.WriteLine( response );

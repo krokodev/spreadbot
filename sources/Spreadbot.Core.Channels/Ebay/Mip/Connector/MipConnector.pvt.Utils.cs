@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.Utils.cs
-// Roman, 2015-04-06 5:29 PM
+// Roman, 2015-04-07 12:24 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -17,7 +17,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        private MipResponse< MipSendFeedResult > _SendFeed(
+        protected MipResponse< MipSendFeedResult > _SendFeed(
             MipFeedHandler mipFeedHandler,
             string reqId )
         {

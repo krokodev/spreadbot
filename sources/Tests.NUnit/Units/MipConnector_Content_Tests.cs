@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Content_Tests.cs
-// Roman, 2015-04-07 12:15 PM
+// Roman, 2015-04-07 12:25 PM
 
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
@@ -24,7 +24,7 @@ namespace Tests.NUnit.Units
         [Test]
         public void Read_ItemId()
         {
-            TestReadItemId( MipFeedType.Distribution );
+            _TestReadItemId( MipFeedType.Distribution );
         }
 
         // --------------------------------------------------------[]
@@ -40,23 +40,23 @@ namespace Tests.NUnit.Units
         [Test]
         public void Read_Product_Content()
         {
-            TestReadItemId( MipFeedType.Product );
-            TestReadAllFeedStatuses( MipFeedType.Product );
+            _TestReadItemId( MipFeedType.Product );
+            _TestReadAllFeedStatuses( MipFeedType.Product );
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Read_Availability_Content()
         {
-            TestReadAllFeedStatuses( MipFeedType.Availability );
+            _TestReadAllFeedStatuses( MipFeedType.Availability );
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Read_Distribution_Content()
         {
-            TestReadItemId( MipFeedType.Distribution );
-            TestReadAllFeedStatuses( MipFeedType.Distribution );
+            _TestReadItemId( MipFeedType.Distribution );
+            _TestReadAllFeedStatuses( MipFeedType.Distribution );
         }
     }
 }

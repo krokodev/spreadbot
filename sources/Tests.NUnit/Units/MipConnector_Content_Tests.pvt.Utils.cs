@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Content_Tests.pvt.Utils.cs
-// Roman, 2015-04-07 12:13 PM
+// Roman, 2015-04-07 12:25 PM
 
 using System;
 using Crocodev.Common.Extensions;
@@ -20,7 +20,7 @@ namespace Tests.NUnit.Units
     public partial class MipConnector_Content_Tests
     {
         // --------------------------------------------------------[]
-        private static void TestReadItemId( MipFeedType mipFeedType, IMipConnector mipConnector )
+        private static void _TestReadItemId( MipFeedType mipFeedType, IMipConnector mipConnector )
         {
             var feed = new MipFeedHandler( mipFeedType );
             var request = new MipRequestHandler( feed, MipConnectorTestInitializer.ItemRequestId );
@@ -35,9 +35,9 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void TestReadItemId( MipFeedType mipFeedType )
+        private static void _TestReadItemId( MipFeedType mipFeedType )
         {
-            TestReadItemId( mipFeedType, MockHelper.GetMipConnectorForUsingLocalData() );
+            _TestReadItemId( mipFeedType, MockHelper.GetMipConnectorUsingLocalData() );
         }
 
         // --------------------------------------------------------[]
@@ -64,9 +64,9 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-        private static void TestReadAllFeedStatuses( MipFeedType mipFeedType )
+        private static void _TestReadAllFeedStatuses( MipFeedType mipFeedType )
         {
-            var fakeMipConnector = MockHelper.GetMipConnectorForUsingLocalData();
+            var fakeMipConnector = MockHelper.GetMipConnectorUsingLocalData();
 
             TestReadFeedStatus( mipFeedType, MipRequestStatus.Success, fakeMipConnector );
             TestReadFeedStatus( mipFeedType, MipRequestStatus.Failure, fakeMipConnector );

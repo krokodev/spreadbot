@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.state.cs
-// Roman, 2015-04-04 11:35 AM
+// Roman, 2015-04-07 12:23 PM
 
 using System.Collections.Generic;
 using Nereal.Serialization;

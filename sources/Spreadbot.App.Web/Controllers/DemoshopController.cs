@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopController.cs
-// Roman, 2015-04-04 11:29 AM
+// Roman, 2015-04-07 12:22 PM
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
@@ -75,7 +75,7 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult ShowTask( string taskId )
         {
             ViewBag.TaskId = taskId;
-            return View(new DemoshopModel());
+            return View( new DemoshopModel() );
         }
 
         // --------------------------------------------------------[]

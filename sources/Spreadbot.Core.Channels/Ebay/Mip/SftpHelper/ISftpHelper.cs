@@ -1,14 +1,15 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // ISftpHelper.cs
-// Roman, 2015-04-06 4:37 PM
+// Roman, 2015-04-07 12:24 PM
 
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 
-namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
+namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
 {
-    public interface ISftpHelper {
+    public interface ISftpHelper
+    {
         MipResponse< MipSftpSendFilesResult > SendFiles( string localFiles, string remoteFiles );
 
         MipResponse< MipFindRemoteFileResult > FindRemoteFile(

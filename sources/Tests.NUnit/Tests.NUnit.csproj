@@ -105,6 +105,8 @@
   <ItemGroup>
     <Compile Include="Code\MipConnectorTestInitializer.cs" />
     <Compile Include="Code\SpreadbotTestBase.cs" />
+    <Compile Include="Mocks\MockHelper.pvt.SftpHelper.cs" />
+    <Compile Include="Mocks\MockHelper.pvt.MipConnector.cs" />
     <Compile Include="Mocks\MockHelper.cs" />
     <Compile Include="Units\MipConfiguration_Tests.cs" />
     <Compile Include="Units\MipConnector_Content_Tests.pvt.Utils.cs" />

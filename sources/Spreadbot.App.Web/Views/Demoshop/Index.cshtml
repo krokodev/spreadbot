@@ -3,7 +3,7 @@
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -12,9 +12,9 @@
         return string.Format( "sb-task sb-task-{0}", statusCode.ToString().ToLower() );
     }
 
-    private static string MessageClass(string message)
+    private static string MessageClass( string message )
     {
-        return "sb-message" + (message.Contains( "Error:")?" sb-error-color":"");
+        return "sb-message" + ( message.Contains( "Error:" ) ? " sb-error-color" : "" );
     }
 
 }
@@ -25,12 +25,12 @@
     Layout = "~/Views/Shared/Layouts/Default.cshtml";
 }
 
-@helper FormEditor(Expression<Func<DemoshopModel, string>> expression, string @class = "sb-width-200px")
+@helper FormEditor( Expression< Func< DemoshopModel, string > > expression, string @class = "sb-width-200px" )
 {
-    var label = Html.LabelFor(expression);
-    var textBox = Html.TextBoxFor(expression, new { @class });
+    var label = Html.LabelFor( expression );
+    var textBox = Html.TextBoxFor( expression, new { @class } );
 
-    @((HelperResult)Editor(label, textBox))
+    @(( HelperResult ) Editor( label, textBox ))
 }
 
 @helper ItemEditForm()
@@ -55,7 +55,7 @@
     </div>
 }
 
-@helper FormEditor(Expression<Func<DemoshopModel, decimal>> expression, string @class = "sb-width-100px")
+@helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
 {
     var label = Html.LabelFor( expression );
     var textBox = Html.TextBoxFor( expression, new { @class } );
@@ -147,7 +147,7 @@
     <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
 
     @if( !string.IsNullOrEmpty( Model.Message ) ) {
-        <div class= "@MessageClass(Model.Message)">
+        <div class="@MessageClass( Model.Message )">
             @Model.Message
         </div>
     }
@@ -157,7 +157,7 @@
             One-item Store
         </h2>
         @ItemEditForm()
-        @Html.ActionLink(string.Format("Revert Item"),"RevertItem")
+        @Html.ActionLink( string.Format( "Revert Item" ), "RevertItem" )
     </div>
 
     <div>

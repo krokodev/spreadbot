@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // AbstractStoreTask.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-07 12:23 PM
 
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;

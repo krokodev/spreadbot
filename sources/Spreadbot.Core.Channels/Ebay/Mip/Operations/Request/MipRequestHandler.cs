@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipRequestHandler.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-07 12:24 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
@@ -24,11 +24,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
             return Guid.NewGuid().ToString();
         }
 
-        public static string GenerateTestId()
-        {
-            return new Guid().ToString();
-        }
-
         public static bool VerifyRequestId( string requestId )
         {
             Guid guid;
@@ -38,6 +33,11 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Request
         public string FileNamePrefix()
         {
             return string.Format( "{0}.{1}", MipFeedHandler.GetName(), Id );
+        }
+
+        public static string GenerateZeroId()
+        {
+            return new Guid().ToString();
         }
     }
 }

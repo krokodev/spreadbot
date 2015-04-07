@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
-// MipConnector.SystemIoZipHelper.cs
-// Roman, 2015-04-06 4:43 PM
+// SystemIoZipHelper.cs
+// Roman, 2015-04-07 12:24 PM
 
 using System;
 using System.IO;
@@ -14,7 +14,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.ZipHelper
 {
-    public class SystemIoZipHelper: IZipHelper
+    public class SystemIoZipHelper : IZipHelper
     {
         // --------------------------------------------------------[]
         public MipResponse< MipZipFeedResult > ZipFeed( MipFeedHandler mipFeedHandler, string reqId )

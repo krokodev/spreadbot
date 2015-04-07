@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopItem.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-07 12:23 PM
 
 using System.ComponentModel.DataAnnotations;
 using Nereal.Serialization;
@@ -14,7 +14,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Items
         [DisplayFormat( DataFormatString = "{0}", ApplyFormatInEditMode = true )]
         public string Sku { get; set; }
 
-        
         [Serialize]
         [DisplayFormat( DataFormatString = "{0}", ApplyFormatInEditMode = true )]
         public string Title { get; set; }

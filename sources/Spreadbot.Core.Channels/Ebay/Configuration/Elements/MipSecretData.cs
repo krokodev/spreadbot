@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipSecretData.cs
-// Roman, 2015-04-03 8:16 PM
+// Roman, 2015-04-07 12:23 PM
 
 using System.Configuration;
 using Crocodev.Common.SmartConfiguration;
