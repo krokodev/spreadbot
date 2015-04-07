@@ -1,13 +1,12 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.cs
-// Roman, 2015-04-07 2:11 PM
+// Roman, 2015-04-07 2:43 PM
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Spreadbot.Core.Abstracts.Store.Manager;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -50,7 +49,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-
         public void DeleteAllTasks()
         {
             StoreTasks.Clear();

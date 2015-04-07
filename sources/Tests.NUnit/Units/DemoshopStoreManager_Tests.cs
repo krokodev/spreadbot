@@ -188,22 +188,40 @@ namespace Tests.NUnit.Units
         [Test]
         public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
         {
-            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var store = new DemoshopStoreManager();
             store.CreateTask( StoreTaskType.PublishOnEbay );
             var taskNum = store.GetChannelTasks().Count();
 
             store.SaveData();
             store.LoadData();
 
+            Assert.AreEqual( 1, store.StoreTasks.Count(), "Store Task Num" );
             var task = store.StoreTasks.First();
-            Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Task num" );
+            Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Sub Tasks num" );
+        }
+
+        // --------------------------------------------------------[]
+        [Test]
+        public void Task_Num_Is_The_Same_After_Reload_With_Deleting()
+        {
+            var store = new DemoshopStoreManager();
+            store.CreateTask( StoreTaskType.PublishOnEbay );
+            var taskNum = store.GetChannelTasks().Count();
+
+            store.SaveData();
+            store.DeleteAllTasks();
+            store.LoadData();
+
+            Assert.AreEqual( 1, store.StoreTasks.Count(), "Store Task Num" );
+            var task = store.StoreTasks.First();
+            Assert.AreEqual( taskNum, task.AbstractSubTasks.Count(), "Sub Tasks num" );
         }
 
         // --------------------------------------------------------[]
         [Test]
         public void Task_Keeps_Id_After_Reload()
         {
-            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var store = new DemoshopStoreManager();
             var id = store.CreateTask( StoreTaskType.PublishOnEbay ).Id;
 
             store.SaveData();
@@ -217,13 +235,15 @@ namespace Tests.NUnit.Units
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info_After_Reload()
         {
-            var store = ( DemoshopStoreManager ) MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var store = new DemoshopStoreManager();
             store.CreateTask( StoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             store.SaveData();
             store.DeleteAllTasks();
             store.LoadData();
+
+            Assert.AreEqual( 1, store.StoreTasks.Count(), "Store Task Num" );
             var task = store.StoreTasks.First();
 
             Console.WriteLine( task );
