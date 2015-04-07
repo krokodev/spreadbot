@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // DemoshopModel.cs
-// Roman, 2015-04-07 12:22 PM
+// Roman, 2015-04-07 2:56 PM
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,6 @@ using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.Stores.Demoshop.Manager;
-using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.App.Web.Models

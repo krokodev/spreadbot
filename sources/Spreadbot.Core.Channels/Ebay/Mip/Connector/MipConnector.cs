@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.cs
-// Roman, 2015-04-07 12:24 PM
+// Roman, 2015-04-07 2:57 PM
 
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
@@ -39,7 +39,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // --------------------------------------------------------[]
         public virtual MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )
         {
-            return SendFeed( mipFeedHandler, MipRequestHandler.GenerateId());
+            return SendFeed( mipFeedHandler, MipRequestHandler.GenerateId() );
         }
 
         // --------------------------------------------------------[]

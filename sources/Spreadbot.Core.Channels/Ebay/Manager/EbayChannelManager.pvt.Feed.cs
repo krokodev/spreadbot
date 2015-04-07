@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayChannelManager.pvt.Feed.cs
-// Roman, 2015-04-07 12:24 PM
+// Roman, 2015-04-07 2:57 PM
 
 using System.IO;
 using MoreLinq;

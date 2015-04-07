@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Main_Tests.cs
-// Roman, 2015-04-07 12:25 PM
+// Roman, 2015-04-07 2:58 PM
 
 using System;
 using NUnit.Framework;
@@ -172,7 +172,8 @@ namespace Tests.NUnit.Units
             Console.WriteLine( requestResponse );
 
             if( requestResponse.Result.MipRequestStatusCode != MipRequestStatus.Success ) {
-                Console.WriteLine( "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
+                Console.WriteLine(
+                    "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
             }
 
             Assert.AreEqual( MipOperationStatus.GetRequestStatusSuccess, requestResponse.StatusCode );

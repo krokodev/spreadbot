@@ -147,7 +147,6 @@ namespace Tests.NUnit.Units
         }
 
         // --------------------------------------------------------[]
-
         [Test]
         public void ChannelTasks_LastUpdateTime()
         {

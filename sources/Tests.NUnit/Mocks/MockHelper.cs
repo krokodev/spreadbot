@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.cs
-// Roman, 2015-04-07 1:15 PM
+// Roman, 2015-04-07 2:58 PM
 
 using Moq;
 using Spreadbot.Core.Abstracts.Store.Manager;
@@ -52,11 +52,10 @@ namespace Tests.NUnit.Mocks
         public static IStoreManager GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask()
         {
             var mockDemoshopStoreManager = new Mock< DemoshopStoreManager > { CallBase = true };
-            
+
             ConfigureMipConnectorToCreategSimplePublishOnEbayTask( mockDemoshopStoreManager );
 
             return mockDemoshopStoreManager.Object;
         }
-
     }
 }

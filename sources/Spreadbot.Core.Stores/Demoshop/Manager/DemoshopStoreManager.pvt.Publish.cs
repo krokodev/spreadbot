@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Publish.cs
-// Roman, 2015-04-07 2:04 PM
+// Roman, 2015-04-07 2:57 PM
 
 using System.Globalization;
 using System.IO;

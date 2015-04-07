@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.pvt.DemoshopStoreManager.cs
-// Roman, 2015-04-07 2:23 PM
+// Roman, 2015-04-07 2:58 PM
 
 using Moq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;

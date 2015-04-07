@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.pvt.Utils.cs
-// Roman, 2015-04-07 12:24 PM
+// Roman, 2015-04-07 2:58 PM
 
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
