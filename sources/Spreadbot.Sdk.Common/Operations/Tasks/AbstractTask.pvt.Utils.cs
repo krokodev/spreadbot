@@ -1,9 +1,8 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.pvt.Utils.cs
-// Roman, 2015-04-07 3:31 PM
+// Roman, 2015-04-08 3:21 PM
 
-using System.Diagnostics;
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -16,7 +15,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         private TaskStatus _CalcSuperTaskStatusCode()
         {
             if( AbstractSubTasks == null ) {
-                throw  new SpreadbotException( "Task [{0}] AbstractSubTasks == null", Id );
+                return TaskStatus.Unknown;
             }
 
             var totalSubCount = AbstractSubTasks.Count();
