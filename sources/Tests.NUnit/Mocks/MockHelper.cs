@@ -13,7 +13,10 @@ namespace Tests.NUnit.Mocks
 {
     internal partial class MockHelper
     {
-        // --------------------------------------------------------[]
+        /// <summary>
+        /// Gets the mip connector using local data.
+        /// </summary>
+        /// <returns></returns>
         public static IMipConnector GetMipConnectorUsingLocalData()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -25,7 +28,10 @@ namespace Tests.NUnit.Mocks
             return mockMipConnector.Object;
         }
 
-        // --------------------------------------------------------[]
+        /// <summary>
+        /// Gets the mip connector ignoring inprocess and sending test feed.
+        /// </summary>
+        /// <returns></returns>
         public static IMipConnector GetMipConnectorIgnoringInprocessAndSendingTestFeed()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -38,7 +44,10 @@ namespace Tests.NUnit.Mocks
             return mockMipConnector.Object;
         }
 
-        // --------------------------------------------------------[]
+        /// <summary>
+        /// Gets the mip connector sending test feed.
+        /// </summary>
+        /// <returns></returns>
         public static IMipConnector GetMipConnectorSendingTestFeed()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -48,7 +57,10 @@ namespace Tests.NUnit.Mocks
             return mockMipConnector.Object;
         }
 
-        // --------------------------------------------------------[]
+        /// <summary>
+        /// Gets the DemoshopStoreManager creating simple publish on ebay task.
+        /// </summary>
+        /// <returns></returns>
         public static IStoreManager GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask()
         {
             var mockDemoshopStoreManager = new Mock< DemoshopStoreManager > { CallBase = true };

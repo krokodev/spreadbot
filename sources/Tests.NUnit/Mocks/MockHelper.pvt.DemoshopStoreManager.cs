@@ -18,7 +18,6 @@ namespace Tests.NUnit.Mocks
 {
     internal partial class MockHelper
     {
-        // --------------------------------------------------------[]
         private static void ConfigureMipConnectorToCreategSimplePublishOnEbayTask(
             Mock< DemoshopStoreManager > mockDemoshopStoreManager )
         {

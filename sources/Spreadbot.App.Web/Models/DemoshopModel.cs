@@ -17,83 +17,69 @@ namespace Spreadbot.App.Web.Models
 {
     public class DemoshopModel : IDisposable
     {
-        // --------------------------------------------------------[]
         private DemoshopStoreManager StoreManager { get; set; }
 
-        // --------------------------------------------------------[]
         public DemoshopModel()
         {
             StoreManager = new DemoshopStoreManager();
         }
 
-        // --------------------------------------------------------[]
         public DemoshopItem Item
         {
             get { return StoreManager.Item; }
         }
 
-        // --------------------------------------------------------[]
         public IEnumerable< IStoreTask > StoreTasks
         {
             get { return ( ( IStoreManager ) StoreManager ).StoreTasks; }
         }
 
-        // --------------------------------------------------------[]
         public IEnumerable< IChannelTask > ChannelTasksTodo
         {
             get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Todo ); }
         }
 
-        // --------------------------------------------------------[]
         public IEnumerable< IChannelTask > ChannelTasksInprocess
         {
             get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Inprocess ); }
         }
 
-        // --------------------------------------------------------[]
         public IEnumerable< IChannelTask > ChannelTasks
         {
             get { return ( ( IStoreManager ) StoreManager ).GetChannelTasks(); }
         }
 
-        // --------------------------------------------------------[]
         public string Message
         {
             get { return StoreManager.Message; }
             set { StoreManager.Message = value; }
         }
 
-        // --------------------------------------------------------[]
         public void UpdateItem( DemoshopItem item )
         {
             StoreManager.UpdateItem( item );
         }
 
-        // --------------------------------------------------------[]
         public void SetItemToDefault()
         {
             StoreManager.SetItemToDefault();
         }
 
-        // --------------------------------------------------------[]
         public void CreateTaskPublishItemOnEbay()
         {
             StoreManager.CreateTask( StoreTaskType.PublishOnEbay );
         }
 
-        // --------------------------------------------------------[]
         public void DeleteTasks()
         {
             StoreManager.DeleteAllTasks();
         }
 
-        // --------------------------------------------------------[]
         public AbstractTask FindTask( string taskId )
         {
             return StoreManager.FindTask( taskId );
         }
 
-        // --------------------------------------------------------[]
         public void Dispose()
         {
             StoreManager.Dispose();

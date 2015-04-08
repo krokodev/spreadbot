@@ -9,7 +9,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
     {
-        // --------------------------------------------------------[]
         public void SetItemToDefault()
         {
             Item = new DemoshopItem {
@@ -20,7 +19,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             };
         }
 
-        // --------------------------------------------------------[]
         public void UpdateItem( DemoshopItem item )
         {
             Item = item;

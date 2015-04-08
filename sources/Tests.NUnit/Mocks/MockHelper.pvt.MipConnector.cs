@@ -12,7 +12,6 @@ namespace Tests.NUnit.Mocks
 {
     internal partial class MockHelper
     {
-        // --------------------------------------------------------[]
         private static void ConfigureMipConnectorToSendTestFeed( Mock< MipConnector > mockMipConnector )
         {
             mockMipConnector

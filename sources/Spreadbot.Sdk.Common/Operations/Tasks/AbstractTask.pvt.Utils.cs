@@ -12,7 +12,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     public abstract partial class AbstractTask
     {
         // --------------------------------------------------------[]
-        // Code: Bug: _CalcSuperTaskStatusCode null pointer on wake-up
+        // Todo: Remove Tracing
         private TaskStatus _CalcSuperTaskStatusCode()
         {
             Trace.TraceInformation( "_CalcSuperTaskStatusCode({0})", Id );

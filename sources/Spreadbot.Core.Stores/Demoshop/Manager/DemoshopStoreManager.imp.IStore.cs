@@ -13,25 +13,21 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
     {
-        // --------------------------------------------------------[]
         public string Id
         {
             get { return "Demoshop"; }
         }
 
-        // --------------------------------------------------------[]
         IEnumerable< IChannelTask > IStoreManager.GetChannelTasks()
         {
             return GetChannelTasks();
         }
 
-        // --------------------------------------------------------[]
         IEnumerable< IStoreTask > IStoreManager.StoreTasks
         {
             get { return StoreTasks; }
         }
 
-        // --------------------------------------------------------[]
         public virtual IStoreTask CreateTask( StoreTaskType taskType )
         {
             switch( taskType ) {

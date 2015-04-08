@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.pvt.SftpHelper.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-08 12:10 PM
 
 using System;
 using System.IO;
@@ -15,7 +15,6 @@ namespace Tests.NUnit.Mocks
 {
     internal partial class MockHelper
     {
-        // --------------------------------------------------------[]
         private static void ConfigureSftpHelperToGetContentFromLocalFolder( Mock< WinScpSftpHelper > mockSftpHelper )
         {
             ConfigureSftpHelperToIgnoreInprocess( mockSftpHelper );
@@ -23,7 +22,6 @@ namespace Tests.NUnit.Mocks
             ConfigureSftpHelperToGetContentFromLocalFile( mockSftpHelper );
         }
 
-        // --------------------------------------------------------[]
         private static void ConfigureSftpHelperToGetContentFromLocalFile( Mock< WinScpSftpHelper > mockSftpHelper )
         {
             mockSftpHelper
@@ -42,7 +40,6 @@ namespace Tests.NUnit.Mocks
                 } );
         }
 
-        // --------------------------------------------------------[]
         private static void ConfigureSftpHelperToAnswerFoundInOutput( Mock< WinScpSftpHelper > mockSftpHelper )
         {
             mockSftpHelper
@@ -63,7 +60,6 @@ namespace Tests.NUnit.Mocks
                     } );
         }
 
-        // --------------------------------------------------------[]
         private static void ConfigureSftpHelperToIgnoreInprocess( Mock< WinScpSftpHelper > mockSftpHelper )
         {
             mockSftpHelper
