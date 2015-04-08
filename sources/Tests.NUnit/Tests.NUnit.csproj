@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Code\MipConnectorTestInitializer.cs" />
     <Compile Include="Code\SpreadbotTestBase.cs" />
+    <Compile Include="Units\DemoshopController_Tests.cs" />
     <Compile Include="Mocks\MockHelper.pvt.DemoshopStoreManager.cs" />
     <Compile Include="Mocks\MockHelper.pvt.SftpHelper.cs" />
     <Compile Include="Mocks\MockHelper.pvt.MipConnector.cs" />
@@ -121,6 +122,10 @@
     <Compile Include="Units\YamlSerializer_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">
+      <Project>{FA55CC33-16A1-4AF9-B818-27BDAFA35489}</Project>
+      <Name>Spreadbot.App.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>

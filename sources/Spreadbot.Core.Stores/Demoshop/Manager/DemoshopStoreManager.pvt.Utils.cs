@@ -13,13 +13,11 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
     {
-        // --------------------------------------------------------[]
         private static string GetDataFileName()
         {
             return DemoshopConfig.Instance.DemoshopPaths.XmlDataFileName.MapPathToDataDirectory();
         }
 
-        // --------------------------------------------------------[]
         private void _LoadData()
         {
             var fileName = GetDataFileName();
@@ -31,7 +29,6 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             }
         }
 
-        // --------------------------------------------------------[]
         private void _SaveData()
         {
             var fileName = GetDataFileName();
