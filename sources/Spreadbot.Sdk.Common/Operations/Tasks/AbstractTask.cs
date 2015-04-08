@@ -5,6 +5,7 @@
 
 using System;
 using Spreadbot.Sdk.Common.Crocodev.Common;
+using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
@@ -24,7 +25,12 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
         protected TaskStatus CalcSuperTaskStatusCode()
         {
-            return _CalcSuperTaskStatusCode();
+            try {
+                return _CalcSuperTaskStatusCode();
+            }
+            catch( Exception e) {
+                throw new SpreadbotException( "Task: {0} \n\n Exception trace: {1}", ToString(),  e.StackTrace);
+            }
         }
 
         public abstract string GetBriefInfo();
