@@ -159,6 +159,9 @@
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
+    <Content Include="App_Data\Logs\.gitignore">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
     <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
     <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
@@ -175,6 +178,12 @@
     <Content Include="App_Data\Configs\Demoshop.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         private TaskStatus _CalcSuperTaskStatusCode()
         {
-            // Code: Todo: Use Nlog
+            // Code: Todo: Use Nlog to trace _CalcSuperTaskStatusCode
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }

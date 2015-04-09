@@ -40,7 +40,6 @@ namespace Spreadbot.App.Web
             }
         }
 
-        // Code: Application_Error
         private void Application_Error( object sender, EventArgs e )
         {
             var exc = Server.GetLastError();

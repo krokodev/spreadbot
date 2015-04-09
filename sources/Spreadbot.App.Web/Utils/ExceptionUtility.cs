@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Web;
 
-// Code: ExceptionUtility
+// Todo: Use Nlog for ExceptipnUtility
 
 namespace Spreadbot.App.Web.Utils
 {

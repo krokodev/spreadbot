@@ -188,6 +188,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Configs\Demoshop.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\spreadbot-west-us.pubxml" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
     <Content Include="Views\Demoshop\ShowTask.cshtml" />
