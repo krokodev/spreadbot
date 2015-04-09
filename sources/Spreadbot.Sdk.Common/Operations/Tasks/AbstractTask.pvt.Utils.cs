@@ -3,6 +3,7 @@
 // AbstractTask.pvt.Utils.cs
 // Roman, 2015-04-08 3:21 PM
 
+using System;
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -14,6 +15,9 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // Code: _CalcSuperTaskStatusCode, wake-up bug
         private TaskStatus _CalcSuperTaskStatusCode()
         {
+            // Code: catch exception.
+            //throw new Exception( "Catch me!" );
+
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }
@@ -49,7 +53,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
                 return TaskStatus.Inprocess;
             }
 
-            throw new SpreadbotException( "Can't calculate Status StatusCode" );
+            throw new SpreadbotException( "Can't calculate StatusCode" );
         }
     }
 }

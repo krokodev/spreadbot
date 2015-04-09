@@ -29,7 +29,8 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
                 return _CalcSuperTaskStatusCode();
             }
             catch( Exception e) {
-                throw new SpreadbotException( "Task: {0} \n\n Exception trace: {1}", ToString(),  e.StackTrace);
+                // Todo: Log exception
+                return TaskStatus.Unknown;
             }
         }
 
