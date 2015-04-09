@@ -203,7 +203,7 @@
     <Content Include="Views\Bug\Index.cshtml" />
     <Content Include="Views\Http\DefaultRedirect.cshtml" />
     <Content Include="Views\Http\ErrorPage.cshtml" />
-    <None Include="Views\Http\HttpStatus404.cshtml" />
+    <Content Include="Views\Http\HttpStatus404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
