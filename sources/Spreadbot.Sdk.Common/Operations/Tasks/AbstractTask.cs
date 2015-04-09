@@ -30,8 +30,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
             }
             catch( Exception e) {
                 // Todo: Log exception
-                throw;
-                return TaskStatus.Unknown;
+                throw new SpreadbotException( "Task[{0}] \n\nInner: {1}\n{2}", Id, e.Message, e.StackTrace??"no stack trace" );
             }
         }
 

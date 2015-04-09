@@ -15,7 +15,7 @@ namespace Spreadbot.App.Web.Utils
     {
         public static void LogException( Exception exc, string source )
         {
-            var logFile = "App_Data/ErrorLog.txt";
+            var logFile = "App_Data/Logs/ExceptionUtility.txt";
             logFile = HttpContext.Current.Server.MapPath( logFile );
 
             using( var sw = new StreamWriter( logFile, true ) ) {

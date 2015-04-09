@@ -15,7 +15,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         // Code: _CalcSuperTaskStatusCode, wake-up bug
         private TaskStatus _CalcSuperTaskStatusCode()
         {
-            // Code: catch exception.
             throw new Exception( "Catch me!" );
 
             if( AbstractSubTasks == null ) {

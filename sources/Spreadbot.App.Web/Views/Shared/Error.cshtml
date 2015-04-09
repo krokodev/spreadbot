@@ -7,7 +7,6 @@
 
 @{
     ExceptionUtility.LogException(Model.Exception, "Error.cshtml");
-    ExceptionUtility.NotifySystemOps(Model.Exception);
 }
 
 <!DOCTYPE html>
@@ -23,5 +22,12 @@
     <p>Action Name : @Model.ActionName</p>
     <p>Message: @Model.Exception.Message</p>
     <p>Stack trace: <pre>@Model.Exception.StackTrace</pre>
+
+        @Html.ActionLink(
+        "View log",
+        "ErrorLog",
+        "Log",
+        new { },
+        new { })
 </body>
 </html>
