@@ -17,13 +17,17 @@ namespace Spreadbot.App.Web.Controllers
     {
         public ActionResult Trace()
         {
-            ViewBag.Log = GetLogPlainText( "Logs", NLogFileName("TraceFile") );
+            var logName = NLogFileName( "TraceFile" );
+            ViewBag.Log = GetLogPlainText( "Logs", logName );
+            ViewBag.Title = logName;
             return View();
         }
         
         public ActionResult Error()
         {
-            ViewBag.Log = GetLogPlainText( "Logs", NLogFileName("ErrorFile") );
+            var logName = NLogFileName( "ErrorFile" );
+            ViewBag.Log = GetLogPlainText( "Logs", logName );
+            ViewBag.Title = logName;
             return View();
         }
 

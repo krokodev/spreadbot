@@ -145,6 +145,7 @@
     <Content Include="EH_DefaultRedirectErrorPage.aspx" />
     <Content Include="EH_Http404ErrorPage.aspx" />
     <Content Include="EH_HttpErrorPage.aspx" />
+    <Compile Include="Controllers\BugController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Utils\ExceptionUtility.cs" />
     <Compile Include="Controllers\DemoshopController.cs" />
@@ -201,6 +202,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Log\Trace.cshtml" />
     <Content Include="Views\Log\Error.cshtml" />
+    <None Include="Views\Bug\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

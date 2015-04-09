@@ -98,6 +98,7 @@
     <Compile Include="Operations\Tasks\AbstractTask.cs" />
     <Compile Include="Operations\Tasks\ITaskProceedInfo.cs" />
     <Compile Include="Operations\Tasks\TaskStatus.cs" />
+    <Compile Include="Research\BugGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Crocodev.Common\packages.config" />
