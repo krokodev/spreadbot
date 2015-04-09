@@ -11,12 +11,8 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public abstract partial class AbstractTask
     {
-        // --------------------------------------------------------[]
-        // Code: _CalcSuperTaskStatusCode, wake-up bug
         private TaskStatus _CalcSuperTaskStatusCode()
         {
-            throw new Exception( "Catch me!" );
-
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }
