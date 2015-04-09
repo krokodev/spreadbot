@@ -4,6 +4,8 @@
 // Roman, 2015-04-07 2:58 PM
 
 using System;
+using Crocodev.Common.Extensions;
+using NLog;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -11,6 +13,8 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 {
     public abstract partial class AbstractTask : IAbstractTask
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         protected AbstractTask()
         {
             CreationTime = DateTime.Now;
@@ -29,8 +33,8 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
                 return _CalcSuperTaskStatusCode();
             }
             catch( Exception e) {
-                // Todo: Log exception and return Unknown
-                throw new SpreadbotException( "Task[{0}] \n\nInner: {1}\n{2}", Id, e.Message, e.StackTrace??"no stack trace" );
+                Logger.ErrorException( "Task [{0}] status can't be calculated".SafeFormat( Id), e );
+                return TaskStatus.Unknown;
             }
         }
 
