@@ -58,7 +58,7 @@ namespace Spreadbot.App.Web
                 }
 
                 //Redirect HTTP errors to HttpError page
-                Server.Transfer( "HttpErrorPage.aspx" );
+                Server.Transfer( "ErrorHandling/HttpErrorPage.aspx" );
             }
 
             // For other kinds of errors give the user some information
@@ -70,7 +70,7 @@ namespace Spreadbot.App.Web
                 "Default Page</a>\n" );
 
             // Log the exception and notify system operators
-            ExceptionUtility.LogException( exc, "DefaultPage" );
+            ExceptionUtility.LogException( exc, "Application_Error" );
             ExceptionUtility.NotifySystemOps( exc );
 
             // Clear the error from the server
