@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.pvt.Utils.cs
-// Roman, 2015-04-09 2:13 PM
+// Roman, 2015-04-09 4:55 PM
 
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -12,34 +12,58 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         private TaskStatus _CalcSuperTaskStatusCode()
         {
-            // Code: Todo: Use Nlog to trace _CalcSuperTaskStatusCode
-            // Todo: Create Tester class to rise exception
+            /**/
+            Logger.Trace( "_CalcSuperTaskStatusCode():" );
+            Logger.Trace( "1" );
+
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }
 
+            /**/
+            Logger.Trace( "2" );
+
             var totalSubCount = AbstractSubTasks.Count();
+
+            /**/
+            Logger.Trace( "3" );
 
             if( totalSubCount == 0 ) {
                 return TaskStatus.Unknown;
             }
 
+            /**/
+            Logger.Trace( "4" );
+
             if( AbstractSubTasks.Any( t => t.GetStatusCode() == TaskStatus.Unknown ) ) {
                 return TaskStatus.Unknown;
             }
+
+            /**/
+            Logger.Trace( "5" );
 
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Todo ) == totalSubCount ) {
                 return TaskStatus.Todo;
             }
 
+            /**/
+            Logger.Trace( "6" );
+
+
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Success ) == totalSubCount ) {
                 return TaskStatus.Success;
             }
+
+            /**/
+            Logger.Trace( "7" );
 
             if( AbstractSubTasks.Any( t => t.IsCritical && t.GetStatusCode() == TaskStatus.Failure ) ||
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Failure ) == totalSubCount ) {
                 return TaskStatus.Failure;
             }
+
+            /**/
+            Logger.Trace( "8" );
 
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Todo ) +
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Inprocess ) +
@@ -48,6 +72,10 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
                 == totalSubCount ) {
                 return TaskStatus.Inprocess;
             }
+
+            /**/
+            Logger.Trace( "9" );
+
 
             throw new SpreadbotException( "Can't calculate StatusCode" );
         }

@@ -1,21 +1,29 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // LogController.cs
-// Roman, 2015-04-09 1:52 PM
+// Roman, 2015-04-09 5:06 PM
 
 using System;
 using System.IO;
 using System.Web.Mvc;
 using Crocodev.Common.Extensions;
+using NLog;
+using NLog.Targets;
 
 namespace Spreadbot.App.Web.Controllers
 {
     // Here: Controller | LogController
     public class LogController : Controller
     {
-        public ActionResult ErrorLog()
+        public ActionResult Trace()
         {
-            ViewBag.Log = GetLogPlainText( "Logs", "ExceptionUtility.txt" );
+            ViewBag.Log = GetLogPlainText( "Logs", NLogFileName("TraceFile") );
+            return View();
+        }
+        
+        public ActionResult Error()
+        {
+            ViewBag.Log = GetLogPlainText( "Logs", NLogFileName("ErrorFile") );
             return View();
         }
 
@@ -28,6 +36,18 @@ namespace Spreadbot.App.Web.Controllers
             catch( Exception ) {
                 return @"Can't read log [{0}\{1}]".SafeFormat( filePath, fileName );
             }
+        }
+
+        private static string NLogFileName(string name)
+        {
+            var fileTarget = ( FileTarget ) LogManager.Configuration.FindTargetByName( name );
+
+            if( fileTarget == null ) {
+                return null;
+            }
+            var logEventInfo = new LogEventInfo { TimeStamp = DateTime.Now };
+            var fileName = fileTarget.FileName.Render( logEventInfo );
+            return Path.GetFileName( fileName );
         }
     }
 }

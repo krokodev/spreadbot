@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Content Include="App_Data\Logs\.gitignore" />
     <Content Include="EH_DefaultRedirectErrorPage.aspx" />
     <Content Include="EH_Http404ErrorPage.aspx" />
     <Content Include="EH_HttpErrorPage.aspx" />
@@ -198,7 +199,8 @@
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
     <Content Include="Views\Demoshop\ShowTask.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Log\ErrorLog.cshtml" />
+    <Content Include="Views\Log\Trace.cshtml" />
+    <Content Include="Views\Log\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -281,7 +283,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53972</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53973/</IISUrl>
+          <IISUrl>http://localhost:53974/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
