@@ -142,9 +142,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Content Include="App_Data\Logs\.gitignore" />
-    <Content Include="EH_DefaultRedirectErrorPage.aspx" />
-    <Content Include="EH_Http404ErrorPage.aspx" />
-    <Content Include="EH_HttpErrorPage.aspx" />
+    <Compile Include="Controllers\HttpController.cs" />
     <Compile Include="Controllers\BugController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Utils\ExceptionUtility.cs" />
@@ -202,7 +200,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Log\Trace.cshtml" />
     <Content Include="Views\Log\Error.cshtml" />
-    <None Include="Views\Bug\Index.cshtml" />
+    <Content Include="Views\Bug\Index.cshtml" />
+    <Content Include="Views\Http\DefaultRedirect.cshtml" />
+    <Content Include="Views\Http\ErrorPage.cshtml" />
+    <None Include="Views\Http\HttpStatus404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // RouteConfig.cs
-// Roman, 2015-04-07 2:56 PM
+// Roman, 2015-04-09 6:37 PM
 
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -16,7 +16,7 @@ namespace Spreadbot.App.Web
 
             routes.MapRoute
                 (
-                    "Default",
+                    "Main",
                     "{controller}/{action}/{id}",
                     new {
                         controller = "Home",

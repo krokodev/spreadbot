@@ -1,33 +1,21 @@
 ﻿@{ Layout = "~/Views/Shared/Layout.cshtml"; }
-
-@using Spreadbot.App.Web
 @using Spreadbot.App.Web.Utils
-@model System.Web.Mvc.HandleErrorInfo
+
+@model HandleErrorInfo 
 
 
 @{
-    ExceptionUtility.LogException(Model.Exception, "Error.cshtml");
+    ExceptionUtility.LogException( Model.Exception, "Error.cshtml" );
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Error</title>
-</head>
-<body>
-    <h2>
-        Sorry, an error occurred while processing your request.
-    </h2>
-    <p>Controller Name: @Model.ControllerName</p>
-    <p>Action Name : @Model.ActionName</p>
-    <p>Message: @Model.Exception.Message</p>
-    <p>Stack trace: <pre>@Model.Exception.StackTrace</pre>
+<h1>
+    Error
+</h1>
 
-    @Html.ActionLink(
-        "View log",
-        "Trace",
-        "Log",
-        new { },
-        new { })
-</body>
-</html>
+<h2>
+    Sorry, an error occurred while processing your request.
+</h2>
+<p>Controller Name: [@Model.ControllerName]</p>
+<p>Action Name: [@Model.ActionName]</p>
+<p>Message: [@Model.Exception.Message]</p>
+<p>Stack trace: <pre>@Model.Exception.StackTrace</pre>

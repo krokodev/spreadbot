@@ -48,8 +48,7 @@ namespace Spreadbot.App.Web
                 if( exc.Message.Contains( "NoCatch" ) || exc.Message.Contains( "maxUrlLength" ) ) {
                     return;
                 }
-
-                Server.Transfer( "EH_HttpErrorPage.aspx" );
+                Server.Transfer( "~/Http/ErrorPage.aspx" );
             }
 
             Response.Write( "<h2>SB: Global Page Error</h2>\n" );
