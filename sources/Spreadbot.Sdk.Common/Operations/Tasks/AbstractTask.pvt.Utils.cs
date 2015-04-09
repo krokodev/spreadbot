@@ -1,9 +1,8 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.pvt.Utils.cs
-// Roman, 2015-04-08 3:21 PM
+// Roman, 2015-04-09 2:13 PM
 
-using System;
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -13,6 +12,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         private TaskStatus _CalcSuperTaskStatusCode()
         {
+            // Code: Todo: Use Nlog
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }
