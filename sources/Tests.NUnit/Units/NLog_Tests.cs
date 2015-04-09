@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // NLog_Tests.cs
-// Roman, 2015-04-09 2:44 PM
+// Roman, 2015-04-09 4:11 PM
 
 using System;
 using System.IO;
@@ -29,9 +29,9 @@ namespace Tests.NUnit.Units
         {
             Logger.Trace( "CreateLog" );
 
-            var fileName = LogFileName( );
+            var fileName = LogFileName();
 
-            Console.WriteLine("fileName: {0}", fileName);
+            Console.WriteLine( "fileName: {0}", fileName );
             Assert.That( !String.IsNullOrEmpty( fileName ), "Target File Name is assigned" );
             Assert.That( File.Exists( fileName ), "Log file exists" );
         }
@@ -39,10 +39,18 @@ namespace Tests.NUnit.Units
         [Test]
         public void Exception_Logged_With_Detailes()
         {
-            var token = "Some error #{0}".SafeFormat( Guid.NewGuid() );
-            Logger.ErrorException( "Exception",  new SpreadbotException (token) );
-            
-            Assert_That_Log_Contains_Text(token);
+            var errorMessage = "Some error #{0}".SafeFormat( Guid.NewGuid() );
+
+            try {
+                throw new SpreadbotException( errorMessage );
+            }
+            catch( Exception e) {
+                Logger.ErrorException( "Testing Exception", e );
+                Console.WriteLine( e.Message );
+            }
+
+            Assert_That_Log_Contains_Text( errorMessage );
+            Assert_That_Log_Contains_Text( "Exception_Logged_With_Detailes" );
         }
 
         // ===================================================================================== []
@@ -50,8 +58,9 @@ namespace Tests.NUnit.Units
         private void Assert_That_Log_Contains_Text( string text )
         {
             var content = File.ReadAllText( LogFileName() );
-            Assert.That(content.Contains( text ));
+            Assert.That( content.Contains( text ) );
         }
+
         private static string LogFileName()
         {
             var fileTarget = ( FileTarget ) LogManager.Configuration.FindTargetByName( "logfile" );

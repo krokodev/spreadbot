@@ -13,6 +13,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         private TaskStatus _CalcSuperTaskStatusCode()
         {
             // Code: Todo: Use Nlog to trace _CalcSuperTaskStatusCode
+            // Todo: Create Tester class to rise exception
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;
             }
