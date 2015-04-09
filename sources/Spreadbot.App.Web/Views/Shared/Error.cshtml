@@ -1,0 +1,18 @@
+﻿@{ Layout = "~/Views/Shared/Layout.cshtml"; }
+
+@model System.Web.Mvc.HandleErrorInfo
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+</head>
+<body>
+    <h2>
+        Sorry, an error occurred while processing your request.
+    </h2>
+    <p>Controller Name: @Model.ControllerName</p>
+    <p>Action Name : @Model.ActionName</p>
+    <p>Message: @Model.Exception.Message</p>
+</body>
+</html>

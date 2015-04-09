@@ -138,6 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Content Include="DefaultRedirectErrorPage.aspx" />
+    <Content Include="Http404ErrorPage.aspx" />
+    <Content Include="HttpErrorPage.aspx" />
+    <Content Include="GenericErrorPage.aspx" />
     <Content Include="test.aspx" />
     <Compile Include="ExceptionUtility.cs" />
     <Compile Include="Controllers\DemoshopController.cs" />
@@ -185,6 +189,7 @@
     <None Include="Properties\PublishProfiles\spreadbot-west-us.pubxml" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
     <Content Include="Views\Demoshop\ShowTask.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -193,7 +198,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Layouts\Default.cshtml" />
+    <Content Include="Views\Shared\Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\LayoutView.cshtml" />

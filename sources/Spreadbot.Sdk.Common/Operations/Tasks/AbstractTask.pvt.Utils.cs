@@ -16,7 +16,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
         private TaskStatus _CalcSuperTaskStatusCode()
         {
             // Code: catch exception.
-            //throw new Exception( "Catch me!" );
+            throw new Exception( "Catch me!" );
 
             if( AbstractSubTasks == null ) {
                 return TaskStatus.Unknown;

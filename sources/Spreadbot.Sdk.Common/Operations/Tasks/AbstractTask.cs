@@ -30,6 +30,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
             }
             catch( Exception e) {
                 // Todo: Log exception
+                throw;
                 return TaskStatus.Unknown;
             }
         }
