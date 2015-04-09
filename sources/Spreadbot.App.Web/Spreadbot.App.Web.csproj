@@ -138,11 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Content Include="ErrorHandling\Http404ErrorPage.aspx" />
-    <Content Include="ErrorHandling\HttpErrorPage.aspx" />
-    <Content Include="ErrorHandling\GenericErrorPage.aspx" />
-    <Content Include="ErrorHandling\test.aspx" />
-    <Compile Include="ErrorHandling\ExceptionUtility.cs" />
+    <Content Include="EH_DefaultRedirectErrorPage.aspx" />
+    <Content Include="EH_Http404ErrorPage.aspx" />
+    <Content Include="EH_HttpErrorPage.aspx" />
+    <Compile Include="Utils\ExceptionUtility.cs" />
     <Compile Include="Controllers\DemoshopController.cs" />
     <Compile Include="Controllers\HomeController.cs">
       <SubType>

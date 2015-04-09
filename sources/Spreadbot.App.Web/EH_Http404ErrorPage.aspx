@@ -1,15 +1,14 @@
 ﻿<%@ Page Language="C#" %>
 <%@ Import Namespace="Spreadbot.App.Web" %>
+<%@ Import Namespace="Spreadbot.App.Web.Utils" %>
 
 <script runat="server">
   protected HttpException ex = null;
 
   protected void Page_Load(object sender, EventArgs e)
   {
-    // Log the exception and notify system operators
     ex = new HttpException("HTTP 404");
     ExceptionUtility.LogException(ex, "Caught in Http404ErrorPage");
-    ExceptionUtility.NotifySystemOps(ex);
   }
 </script>
 
@@ -23,7 +22,7 @@
   <form id="form1" runat="server">
   <div>
     <h2>
-      HTTP 404 Error Page</h2>
+    SB:  HTTP 404 Error Page</h2>
     Standard error message suitable for file not found errors. 
     The original exception object is not available, 
     but the original requested URL is in the query string.<br />

@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" %>
 <%@ Import Namespace="Spreadbot.App.Web" %>
+<%@ Import Namespace="Spreadbot.App.Web.Utils" %>
 
 <script runat="server">
   protected HttpException ex = null;
@@ -20,9 +21,7 @@
       ex = new HttpException
           (httpCode, "Safe message for unexpected HTTP codes.", ex);
 
-    // Log the exception and notify system operators
     ExceptionUtility.LogException(ex, "HttpErrorPage");
-    ExceptionUtility.NotifySystemOps(ex);
 
     // Fill the page fields
     exMessage.Text = ex.Message;

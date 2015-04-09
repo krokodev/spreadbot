@@ -1,6 +1,7 @@
 ﻿@{ Layout = "~/Views/Shared/Layout.cshtml"; }
 
 @using Spreadbot.App.Web
+@using Spreadbot.App.Web.Utils
 @model System.Web.Mvc.HandleErrorInfo
 
 
@@ -21,5 +22,6 @@
     <p>Controller Name: @Model.ControllerName</p>
     <p>Action Name : @Model.ActionName</p>
     <p>Message: @Model.Exception.Message</p>
+    <p>Stack trace: <pre>@Model.Exception.StackTrace</pre>
 </body>
 </html>
