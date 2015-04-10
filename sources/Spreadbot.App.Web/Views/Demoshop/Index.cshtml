@@ -74,7 +74,6 @@
                     <li class="@TaskClass( task.GetStatusCode() )">
                         @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
                         @ItemIdLink( task as EbayPublishTask )
-                        @{throw  new Exception("Test");}
                     </li>
                     @ShowTasks( task.AbstractSubTasks )
                 }
@@ -84,7 +83,7 @@
     catch( Exception e ) {
         ExceptionUtility.LogException(e, @"Demoshop\Index.cshtml\ShowTasks");
         <div class="sb-error-color">Exception was couhght [@e.GetType() : @e.Message]</div>
-        <div class="sb-error-color">Pleas, press [F5] -- it is known bug.</div>
+        <div class="sb-error-color">Please, press [F5] -- it is known bug about Azure waking-up</div>
     }
 }
 
