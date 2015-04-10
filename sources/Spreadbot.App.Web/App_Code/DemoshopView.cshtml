@@ -1,0 +1,24 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Spreadbot.Core.Stores.Demoshop.Items
+@functions{
+
+    private new static HtmlHelper< object > Html
+    {
+        get { return ( ( WebViewPage ) WebPageContext.Current.Page ).Html; }
+    }
+
+}
+
+@helper ItemEditForm( DemoshopItem item )
+{
+    using( Html.BeginForm( "UpdateItem", "Demoshop", FormMethod.Post ) ) {
+        <fieldset class="sb-table">
+            @Shared.FormEditor( "Sku", item.Sku )
+            @Shared.FormEditor( "Title", item.Title, "sb-width-500px" )
+            @Shared.FormEditor( "Price", item.Price )
+            @Shared.FormEditor( "Quantity", item.Quantity )
+        </fieldset>
+        <input type="submit" value="Update"/>
+    }
+}

@@ -12,10 +12,23 @@
         return new MvcHtmlString( string.Format( "<a class='{0}' href='{1}'>{2}</a>", linkClass, linkUrl, linkText ) );
     }
 
+    private static string MessageClass( string message )
+    {
+        return "sb-message" + ( message.Contains( "Error:" ) ? " sb-message-error" : "" );
+    }
+
 }
 
+@helper Text( string text )
+{ @text }
+
 @helper Link( string linkText, string linkClass, string linkUrl )
-{ @BuildLink( linkText, linkClass, linkUrl ) }
+{
+    @BuildLink(
+        linkText,
+        linkClass,
+        linkUrl )
+}
 
 @helper Format( string text, params object[] args )
 {
@@ -45,5 +58,24 @@
         new { @class } )
 }
 
-@helper Text( string text )
-{ @text }
+
+@helper FormEditor( string name, object value, string @class = "sb-width-100px" )
+{
+    var label = Html.Label( name );
+    var textBox = Html.TextBox( name, value.ToString(), new { @class } );
+
+    <div class="sb-raw">
+        <div class="sb-cell">@label</div>
+        <div class="sb-cell sb-width-10px">&nbsp;</div>
+        <div class="sb-cell">@textBox</div>
+    </div>
+}
+
+@helper ShowMessage( string message )
+{
+    if( !string.IsNullOrEmpty( message ) ) {
+        <div class="@MessageClass( message )">
+            @message
+        </div>
+    }
+}

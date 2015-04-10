@@ -1,24 +1,5 @@
-﻿@using System.Linq.Expressions
-@using Spreadbot.App.Web.Models
-@using Spreadbot.App.Web.Utils
-@using Spreadbot.Core.Channels.Ebay.Configuration.Sections
-@using Spreadbot.Core.Channels.Ebay.Operations.Tasks
-@using Spreadbot.Sdk.Common.Operations.Tasks
+﻿@using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @model  Spreadbot.App.Web.Models.DemoshopModel 
-
-@functions {
-
-    private static string TaskClass( TaskStatus statusCode )
-    {
-        return string.Format( "sb-task sb-task-{0}", statusCode.ToString().ToLower() );
-    }
-
-    private static string MessageClass( string message )
-    {
-        return "sb-message" + ( message.Contains( "Error:" ) ? " sb-error-color" : "" );
-    }
-
-}
 
 @{
     // Here: View | Demoshop
@@ -26,146 +7,18 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-@helper FormEditor( Expression< Func< DemoshopModel, string > > expression, string @class = "sb-width-200px" )
-{
-    var label = Html.LabelFor( expression );
-    var textBox = Html.TextBoxFor( expression, new { @class } );
-
-    @(( HelperResult ) Editor( label, textBox ))
-}
-
-@helper ItemEditForm()
-{
-    using( Html.BeginForm( "UpdateItem", "Demoshop", FormMethod.Post ) ) {
-        <fieldset class="sb-table">
-            @FormEditor( m => Model.Item.Sku )
-            @FormEditor( m => Model.Item.Title, "sb-width-500px" )
-            @FormEditor( m => Model.Item.Price )
-            @FormEditor( m => Model.Item.Quantity )
-        </fieldset>
-        <input type="submit" value="Update"/>
-    }
-}
-
-@helper Editor( MvcHtmlString label, MvcHtmlString textBox )
-{
-    <div class="sb-raw">
-        <div class="sb-cell">@label</div>
-        <div class="sb-cell sb-width-10px">&nbsp;</div>
-        <div class="sb-cell">@textBox</div>
-    </div>
-}
-
-@helper FormEditor( Expression< Func< DemoshopModel, decimal > > expression, string @class = "sb-width-100px" )
-{
-    var label = Html.LabelFor( expression );
-    var textBox = Html.TextBoxFor( expression, new { @class } );
-
-    @(( HelperResult ) Editor( label, textBox ))
-}
-
-@helper ShowTasks( IEnumerable< IAbstractTask > tasks )
-{
-    try {
-        var enumerable = tasks.ToList();
-        if( enumerable.Count() != 0 ) {
-            <ul>
-                @foreach( var task in enumerable ) {
-                    <li class="@TaskClass( task.GetStatusCode() )">
-                        @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
-                        @ItemIdLink( task as EbayPublishTask )
-                    </li>
-                    @ShowTasks( task.AbstractSubTasks )
-                }
-            </ul>
-        }
-    }
-    catch( Exception e ) {
-        ExceptionUtility.LogException(e, @"Demoshop\Index.cshtml\ShowTasks");
-        <div class="sb-error-color">Exception was couhght [@e.GetType() : @e.Message]</div>
-        <div class="sb-error-color">Please, press [F5] -- it is known bug about Azure waking-up</div>
-    }
-}
-
-
-@helper ItemIdLink( EbayPublishTask task )
-{
-    try {
-        var itemId = task.EbayPublishResponse.Result.MipItemId;
-        if( itemId != null ) {
-            <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
-        }
-    }
-    catch {
-        <span></span>
-    }
-}
-
-
-
-@*
-    // ===================================================================================== []
-*@
-
-<style>
-    .sb-task {
-        margin: 2px;
-        padding: 2px;
-    }
-
-    .sb-task-unknown {
-        background: #bfbfbf;
-        color: #000000;
-    }
-
-    .sb-task-todo {
-        background: #deeafc;
-        color: #393ba7;
-    }
-
-    .sb-task-inprocess {
-        background: #ffe970;
-        color: #513e00;
-    }
-
-    .sb-task-failure {
-        background: red;
-        color: yellow;
-    }
-
-    .sb-message {
-        background: rgb(229, 229, 229);
-        color: rgb(84, 84, 84);
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    .sb-error-color {
-        background: red;
-        color: yellow;
-    }
-
-    .sb-task-success {
-        background: #a9e99c;
-        color: #005204;
-    }
-</style>
 
 <div>
 
     <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
 
-    @if( !string.IsNullOrEmpty( Model.Message ) ) {
-        <div class="@MessageClass( Model.Message )">
-            @Model.Message
-        </div>
-    }
+    @Shared.ShowMessage( Model.Message )
 
     <div>
         <h2>
             One-item Store
         </h2>
-        @ItemEditForm()
+        @DemoshopView.ItemEditForm( Model.Item )
         @Html.ActionLink( string.Format( "Revert Item" ), "RevertItem" )
     </div>
 
@@ -173,7 +26,7 @@
         <h2>
             Store/channel Tasks
         </h2>
-        @ShowTasks( Model.StoreTasks )
+        @TaskView.ShowTasks( Model.StoreTasks )
         <ul>
             <li>
                 @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", Model.Item )
@@ -202,9 +55,6 @@
             </li>
             <li>
                 [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
-            </li>
-            <li>
-                [<a href="http://www.ebay.com/itm/321693290987">http://www.ebay.com/itm/321693290987</a>]
             </li>
         </ul>
 

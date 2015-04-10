@@ -8,7 +8,6 @@ using Spreadbot.Sdk.Common.Research;
 
 namespace Spreadbot.App.Web.Controllers
 {
-    // Here: Controller | LogController
     public class BugController : Controller
     {
         public ActionResult Index()

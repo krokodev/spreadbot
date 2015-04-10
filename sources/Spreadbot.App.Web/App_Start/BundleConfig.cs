@@ -15,6 +15,7 @@ namespace Spreadbot.App.Web
             bundles.Add(
                 new StyleBundle( "~/css" )
                     .Include( "~/Content/Common.css" )
+                    .Include( "~/Content/Tasks.css" )
                 );
         }
     }

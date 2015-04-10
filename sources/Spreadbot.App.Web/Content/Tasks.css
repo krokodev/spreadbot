@@ -1,0 +1,29 @@
+﻿.sb-task {
+    margin: 2px;
+    padding: 2px;
+}
+
+.sb-task-unknown {
+    background: #bfbfbf;
+    color: #000000;
+}
+
+.sb-task-todo {
+    background: #deeafc;
+    color: #393ba7;
+}
+
+.sb-task-inprocess {
+    background: #ffe970;
+    color: #513e00;
+}
+
+.sb-task-failure {
+    background: red;
+    color: yellow;
+}
+
+.sb-task-success {
+    background: #a9e99c;
+    color: #005204;
+}

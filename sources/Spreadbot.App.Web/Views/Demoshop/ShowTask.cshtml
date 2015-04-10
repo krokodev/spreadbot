@@ -1,28 +1,23 @@
 ﻿@using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.App.Web.Models.DemoshopModel 
+@model Spreadbot.App.Web.Models.DemoshopModel 
 
 @{
     // Here: View | ShowTask
+    ViewBag.Title = "Task details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    @ShowPage()
 }
 
 @helper ShowTask( AbstractTask task )
 {
     <div style="font-size: 12px">
-        <pre><code>
-@task.ToString()
-        </code></pre>
+        <pre><code>@task.ToString()</code></pre>
     </div>
 }
 
-@{
-    ViewBag.Title = "Task details";
-    Layout = "~/Views/Shared/Layout.cshtml";
-}
-@{
+@helper ShowPage()
+{
     var task = ( AbstractTask ) Model.FindTask( ViewBag.TaskId );
-}
-
-@{
     if( task != null ) {
         @ShowTask( task )
     } else if( !string.IsNullOrEmpty( ViewBag.TaskId ) ) {

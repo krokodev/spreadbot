@@ -12,7 +12,6 @@ using NLog.Targets;
 
 namespace Spreadbot.App.Web.Controllers
 {
-    // Here: Controller | LogController
     public class LogController : Controller
     {
         public ActionResult Trace()
