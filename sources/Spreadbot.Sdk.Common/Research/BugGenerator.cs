@@ -5,7 +5,6 @@
 
 using Spreadbot.Sdk.Common.Exceptions;
 
-// Code: BugGenerator
 namespace Spreadbot.Sdk.Common.Research
 {
     public class BugGenerator

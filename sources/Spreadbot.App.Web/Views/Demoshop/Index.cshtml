@@ -1,9 +1,10 @@
 ﻿@using System.Linq.Expressions
 @using Spreadbot.App.Web.Models
+@using Spreadbot.App.Web.Utils
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @using Spreadbot.Core.Channels.Ebay.Operations.Tasks
 @using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.App.Web.Models.DemoshopModel 
 
 @functions {
 
@@ -65,19 +66,28 @@
 
 @helper ShowTasks( IEnumerable< IAbstractTask > tasks )
 {
-    var enumerable = tasks.ToList();
-    if( enumerable.Count() != 0 ) {
-        <ul>
-            @foreach( var task in enumerable ) {
-                <li class="@TaskClass( task.GetStatusCode() )">
-                    @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
-                    @ItemIdLink( task as EbayPublishTask )
-                </li>
-                @ShowTasks( task.AbstractSubTasks )
-            }
-        </ul>
+    try {
+        var enumerable = tasks.ToList();
+        if( enumerable.Count() != 0 ) {
+            <ul>
+                @foreach( var task in enumerable ) {
+                    <li class="@TaskClass( task.GetStatusCode() )">
+                        @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", new { taskId = @task.Id }, new { } )]
+                        @ItemIdLink( task as EbayPublishTask )
+                        @{throw  new Exception("Test");}
+                    </li>
+                    @ShowTasks( task.AbstractSubTasks )
+                }
+            </ul>
+        }
+    }
+    catch( Exception e ) {
+        ExceptionUtility.LogException(e, @"Demoshop\Index.cshtml\ShowTasks");
+        <div class="sb-error-color">Exception was couhght [@e.GetType() : @e.Message]</div>
+        <div class="sb-error-color">Pleas, press [F5] -- it is known bug.</div>
     }
 }
+
 
 @helper ItemIdLink( EbayPublishTask task )
 {
