@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // DemoshopStoreTask.cs
-// Roman, 2015-04-07 2:57 PM
+// Roman, 2015-04-10 1:28 PM
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         [Serialize]
         private List< AbstractChannelTask > ChannelTasks
         {
-            get { return _channelTasks?? (_channelTasks = new List< AbstractChannelTask >()); }
+            get { return _channelTasks ?? ( _channelTasks = new List< AbstractChannelTask >() ); }
             set { _channelTasks = value; }
         }
 

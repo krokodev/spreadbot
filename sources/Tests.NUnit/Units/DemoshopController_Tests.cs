@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // DemoshopController_Tests.cs
-// Roman, 2015-04-08 1:21 PM
+// Roman, 2015-04-10 1:30 PM
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Tests.NUnit.Units
             }
             var model = new DemoshopModel();
 
-            Console.WriteLine(message);
+            Console.WriteLine( message );
 
             Assert.AreEqual( 1, model.StoreTasks.Count(), "StoreTasks.Count" );
             Assert.AreEqual( message, model.Message, "Message" );

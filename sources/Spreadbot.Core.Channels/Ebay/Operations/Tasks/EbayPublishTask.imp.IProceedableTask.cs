@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // EbayPublishTask.imp.IProceedableTask.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-10 1:29 PM
 
 using System.Collections.Generic;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;

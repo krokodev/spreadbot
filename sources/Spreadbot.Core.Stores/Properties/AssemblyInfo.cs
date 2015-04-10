@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Stores
 // AssemblyInfo.cs
-// Roman, 2015-04-07 2:57 PM
+// Roman, 2015-04-10 1:28 PM
 
 using System.Reflection;
 using System.Runtime.InteropServices;

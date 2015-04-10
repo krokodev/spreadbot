@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // Global.asax.cs
-// Roman, 2015-04-09 1:05 PM
+// Roman, 2015-04-10 1:28 PM
 
 using System;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Spreadbot.App.Web.Utils;
+using NLog;
 
 namespace Spreadbot.App.Web
 {
@@ -29,7 +29,7 @@ namespace Spreadbot.App.Web
             BundleConfig.RegisterBundles( BundleTable.Bundles );
         }
 
-        private void Application_BeginRequest( object sender, EventArgs e )
+        protected void Application_BeginRequest( object sender, EventArgs e )
         {
             try {
                 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -40,7 +40,9 @@ namespace Spreadbot.App.Web
             }
         }
 
-        private void Application_Error( object sender, EventArgs e )
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        protected void Application_Error( object sender, EventArgs e )
         {
             var exc = Server.GetLastError();
 
@@ -55,7 +57,7 @@ namespace Spreadbot.App.Web
             Response.Write( "<p>" + exc.Message + "</p>\n" );
             Response.Write( "<p><pre>" + exc.StackTrace + "</pre></p>\n" );
 
-            ExceptionUtility.LogException( exc, "Application_Error" );
+            Logger.ErrorException( exc.Message, exc );
 
             Server.ClearError();
         }

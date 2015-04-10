@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // AbstractTask.pvt.Utils.cs
-// Roman, 2015-04-09 4:55 PM
+// Roman, 2015-04-10 1:28 PM
 
 using System.Linq;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -49,7 +49,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
             /**/
             Logger.Trace( "6" );
 
-
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Success ) == totalSubCount ) {
                 return TaskStatus.Success;
             }
@@ -75,7 +74,6 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
 
             /**/
             Logger.Trace( "9" );
-
 
             throw new SpreadbotException( "Can't calculate StatusCode" );
         }

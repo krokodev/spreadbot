@@ -1,5 +1,5 @@
 ﻿@using Spreadbot.Sdk.Common.Operations.Tasks
-@model  Spreadbot.Sdk.Common.Operations.Tasks.AbstractTask 
+@model Spreadbot.Sdk.Common.Operations.Tasks.AbstractTask 
 
 @{
     // Here: View | Task
@@ -20,7 +20,7 @@
     if( Model != null ) {
         @ShowTask( Model )
     } else if( !string.IsNullOrEmpty( ViewBag.TaskId ) ) {
-        @:Task is not found:  @ViewBag.TaskId 
+        @:Task is not found: @ViewBag.TaskId 
     } else {
         @:No task Id
     }

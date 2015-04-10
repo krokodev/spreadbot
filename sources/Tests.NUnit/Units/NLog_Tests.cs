@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // NLog_Tests.cs
-// Roman, 2015-04-09 4:11 PM
+// Roman, 2015-04-10 1:30 PM
 
 using System;
 using System.IO;
@@ -44,7 +44,7 @@ namespace Tests.NUnit.Units
             try {
                 throw new SpreadbotException( errorMessage );
             }
-            catch( Exception e) {
+            catch( Exception e ) {
                 Logger.ErrorException( "Testing Exception", e );
                 Console.WriteLine( e.Message );
             }

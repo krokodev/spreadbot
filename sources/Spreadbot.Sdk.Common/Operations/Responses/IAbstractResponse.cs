@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // IAbstractResponse.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-10 1:28 PM
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {

@@ -1,7 +1,7 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Sdk.Common
 // GenericResponse.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-10 1:28 PM
 
 using System;
 using System.Collections.Generic;

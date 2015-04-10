@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipConnector.pvt.RequestXml.cs
-// Roman, 2015-04-07 2:57 PM
+// Roman, 2015-04-10 1:29 PM
 
 using System;
 using System.Collections.Generic;

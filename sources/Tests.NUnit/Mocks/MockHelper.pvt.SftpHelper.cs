@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.pvt.SftpHelper.cs
-// Roman, 2015-04-08 12:10 PM
+// Roman, 2015-04-10 1:29 PM
 
 using System;
 using System.IO;

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // BugController.cs
-// Roman, 2015-04-09 6:03 PM
+// Roman, 2015-04-10 1:27 PM
 
 using System.Web.Mvc;
 using Spreadbot.Sdk.Common.Research;

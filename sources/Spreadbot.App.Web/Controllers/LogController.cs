@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // LogController.cs
-// Roman, 2015-04-09 5:06 PM
+// Roman, 2015-04-10 1:27 PM
 
 using System;
 using System.IO;
@@ -21,7 +21,7 @@ namespace Spreadbot.App.Web.Controllers
             ViewBag.Title = logName;
             return View();
         }
-        
+
         public ActionResult Error()
         {
             var logName = NLogFileName( "ErrorFile" );
@@ -41,7 +41,7 @@ namespace Spreadbot.App.Web.Controllers
             }
         }
 
-        private static string NLogFileName(string name)
+        private static string NLogFileName( string name )
         {
             var fileTarget = ( FileTarget ) LogManager.Configuration.FindTargetByName( name );
 

@@ -1,7 +1,7 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.cs
-// Roman, 2015-04-07 2:58 PM
+// Roman, 2015-04-10 1:29 PM
 
 using Moq;
 using Spreadbot.Core.Abstracts.Store.Manager;
@@ -14,7 +14,7 @@ namespace Tests.NUnit.Mocks
     internal partial class MockHelper
     {
         /// <summary>
-        /// Gets the mip connector using local data.
+        ///     Gets the mip connector using local data.
         /// </summary>
         /// <returns></returns>
         public static IMipConnector GetMipConnectorUsingLocalData()
@@ -29,7 +29,7 @@ namespace Tests.NUnit.Mocks
         }
 
         /// <summary>
-        /// Gets the mip connector ignoring inprocess and sending test feed.
+        ///     Gets the mip connector ignoring inprocess and sending test feed.
         /// </summary>
         /// <returns></returns>
         public static IMipConnector GetMipConnectorIgnoringInprocessAndSendingTestFeed()
@@ -45,7 +45,7 @@ namespace Tests.NUnit.Mocks
         }
 
         /// <summary>
-        /// Gets the mip connector sending test feed.
+        ///     Gets the mip connector sending test feed.
         /// </summary>
         /// <returns></returns>
         public static IMipConnector GetMipConnectorSendingTestFeed()
@@ -58,7 +58,7 @@ namespace Tests.NUnit.Mocks
         }
 
         /// <summary>
-        /// Gets the DemoshopStoreManager creating simple publish on ebay task.
+        ///     Gets the DemoshopStoreManager creating simple publish on ebay task.
         /// </summary>
         /// <returns></returns>
         public static IStoreManager GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask()

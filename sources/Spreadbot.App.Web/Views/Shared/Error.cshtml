@@ -1,10 +1,7 @@
-﻿@{ Layout = "~/Views/Shared/Layout.cshtml"; }
-@using Spreadbot.App.Web.Utils
-
-@model HandleErrorInfo 
-
-
+﻿@using Spreadbot.Sdk.Common.Exceptions
+@model  HandleErrorInfo 
 @{
+    Layout = "~/Views/Shared/Layout.cshtml";
     ExceptionUtility.LogException( Model.Exception, "Error.cshtml" );
 }
 
