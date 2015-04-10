@@ -1,7 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MockHelper.pvt.MipConnector.cs
-// Roman, 2015-04-10 1:29 PM
 
 using Moq;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;

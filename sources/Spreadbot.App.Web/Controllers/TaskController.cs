@@ -1,7 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.App.Web
 // TaskController.cs
-// Roman, 2015-04-10 1:27 PM
 
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;

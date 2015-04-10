@@ -1,7 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Tests.NUnit
 // MipConnector_Content_Tests.pvt.Utils.cs
-// Roman, 2015-04-10 1:29 PM
 
 using System;
 using Crocodev.Common.Extensions;

@@ -1,7 +1,6 @@
 ﻿// Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Abstracts
 // IStoreManager.cs
-// Roman, 2015-04-10 1:28 PM
 
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;

@@ -1,7 +1,6 @@
 // Spreadbot (c) 2015 Crocodev
 // Spreadbot.Core.Channels
 // MipRequestStatusResponse.cs
-// Roman, 2015-04-10 1:29 PM
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
