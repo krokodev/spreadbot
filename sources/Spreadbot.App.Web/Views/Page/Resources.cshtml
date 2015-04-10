@@ -1,0 +1,58 @@
+﻿@{
+    // Here: View | Resources
+    ViewBag.Title = "Resources";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@helper Resource(string textBefore, string name, string url, string textAfter)
+{
+    <li>@textBefore <a href="@url">@name</a> @textAfter</li>
+}
+
+<div>
+    <h2>Spreadbot</h2>
+    <ul>
+        @Resource("Github repository", "github.com/../spreadbot", "https://github.com/RomanKoshelev/spreadbot", "(.Net, C#)")
+        @Resource("Continuous integration server ", "ci.spreadbot.net", "http://www.cyfir.ru/viewType.html?buildTypeId=Spreadbot_Debug&guest=1", " (TeamCity)")
+        @Resource("Demo site", "spreadbot-west-us.azurewebsites.net", "http://spreadbot-west-us.azurewebsites.net", " (Azure)")
+        @Resource("Documentation", "doc.spreadbot.net", "/docs", " (not avlaiable now)")
+    </ul>
+
+
+    <h2>Stores</h2>
+    <ul>
+        <li>
+            Virtocommerce
+            <ul>
+                @Resource("Spreadbot integrated with ", "virtocommerce.com", "http://www.virtocommerce.com", " (.Net, open source, ecommerce platform)")
+                @Resource("Other extensions for Virtocommerce: ", "virtocommerce/apps", "http://www.virtocommerce.com/apps", "")
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Channels</h2>
+    <div >
+        <ul>
+            <li>
+                eBay
+                <ul>
+                    @Resource("", "www.ebay.com", "https://www.ebay.com", " (Spreadbot uses MIP for gettig access to eBay)")
+                    @Resource("Merchant Integration Platform", "ebay/../mip/faqs", "http://pages.ebay.com/en/en-us/mip/faqs.html", " (overview)")
+                    @Resource("Merchant Integration Platform User Guide", "developer.ebay.com/../MIP", "https://developer.ebay.com/Devzone/merchant-products/MIP/MIP_User_Guide.html#Introduction", " (for developers)")
+                    @Resource("Spreadbot + eBay demo", "demoshop", "/Demoshop", " (sending xml-feed and getting itemId)")
+                </ul>
+            </li>
+            <li>
+                Amazon
+                <ul>
+                    @Resource("", "www.amazon.com", "https://www.amazon.com", " (spread run amazon via MWS)")
+                    @Resource("Amazon Marketplace Web Service", "amazon.com/../help/customer", "http://www.amazon.com/gp/help/customer/display.html?nodeId=201269090", " (for sellers)")
+                    @Resource("Amazon MWS documentation", "developer.amazonservices.com/..", "https://developer.amazonservices.com/gp/mws/faq.html/", " (for developers)")
+                </ul>                
+            </li>
+        </ul>
+
+
+    </div>
+</div>

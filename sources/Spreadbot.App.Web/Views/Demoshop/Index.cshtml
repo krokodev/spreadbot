@@ -11,13 +11,13 @@
 <div>
     <p>Edit your Item, then publish it on eBay, check the publishing process and view the result</p>
 
-    @(( HelperResult ) Shared.ShowMessage( Model.Message ))
+    @Shared.ShowMessage( Model.Message )
 
     <div>
         <h2>
             One-item Store
         </h2>
-        @(( HelperResult ) DemoshopView.ItemEditForm( Model.Item ))
+        @DemoshopView.ItemEditForm( Model.Item )
         @Html.ActionLink( "Revert Item", "RevertItem" )
     </div>
 

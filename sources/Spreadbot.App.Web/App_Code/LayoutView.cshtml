@@ -12,10 +12,11 @@
 @helper Header()
 {
     <div>
-        @MenuActionLink( "Home", "Home" )
-        | @MenuActionLink( "Reports", "Home/Reports" )
-        | @MenuActionLink( "Resources", "Home/Resources" )
-        | @MenuActionLink( "Demoshop", "Demoshop" )
+        @MenuActionLink( "Home", "" )
+        | @MenuActionLink("Demoshop", "Demoshop")
+        | @MenuActionLink( "Reports", "Page/Reports" )
+        | @MenuActionLink("Resources", "Page/Resources")
+        | @MenuActionLink("Contacts", "Page/Contacts")
     </div>
     <hr/>
 }

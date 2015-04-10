@@ -5,8 +5,6 @@
 using System.Web.Mvc;
 using Spreadbot.App.Web.Models;
 
-// Here: Controller | Task
-
 namespace Spreadbot.App.Web.Controllers
 {
     public class TaskController : Controller

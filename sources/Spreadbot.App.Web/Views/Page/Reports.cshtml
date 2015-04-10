@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div>
+    <h2>April 10 2015</h2>
+    <ul>
+        <li>
+            + Done this week
+            <ul>
+                <li>This week was dedicated to the refactoring for being ready to start implement new channel</li>
+                <li>Demo site refactored and code cleaned-up</li>
+                <li>Used Moq to reduce load to the MIP services</li>
+                <li>Error handling and NLog implemented</li>
+                <li>This site updated (+reports, +resources pages)</li>
+                <li>Started learning Amazon Marketplace Web Service</li>
+            </ul>
+
+        </li>
+        <li>
+            - Problems
+            <ul>
+                <li>Minor site-side error when Azure wake-up after timeout-suspend (not fixed but workarounded by exception catching)</li>
+                <li>Time spent for using MS Fakes, wich were later substituted by Moq due to Fakes are not (at least easy) compatible with TeamCity</li>
+            </ul>
+        </li>
+        <li>
+            > Plans for the next week
+            <ul>
+                <li>Buy developer account on Amazon</li>
+                <li>Start TDD with AMWS -- send feed via its API</li>
+            </ul>
+        </li>
+    </ul>
+</div>

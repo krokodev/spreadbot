@@ -18,7 +18,7 @@ namespace Spreadbot.App.Web
                     "Main",
                     "{controller}/{action}/{id}",
                     new {
-                        controller = "Home",
+                        controller = "Page",
                         action = "Index",
                         id = UrlParameter.Optional
                     },

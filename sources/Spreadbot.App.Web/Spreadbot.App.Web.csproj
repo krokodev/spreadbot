@@ -147,7 +147,7 @@
     <Compile Include="Controllers\BugController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\DemoshopController.cs" />
-    <Compile Include="Controllers\HomeController.cs">
+    <Compile Include="Controllers\PageController.cs">
       <SubType>
       </SubType>
     </Compile>
@@ -206,12 +206,15 @@
     <Content Include="Views\Http\DefaultRedirect.cshtml" />
     <Content Include="Views\Http\ErrorPage.cshtml" />
     <Content Include="Views\Http\HttpStatus404.cshtml" />
+    <Content Include="Views\Page\Reports.cshtml" />
+    <Content Include="Views\Page\Resources.cshtml" />
+    <Content Include="Views\Page\Contacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Layout.cshtml" />
