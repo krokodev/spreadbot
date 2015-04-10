@@ -236,7 +236,7 @@ namespace Tests.NUnit.Units
         private static void Assert_That_Last_Update_Time_is_Correct( DemoshopStoreManager store )
         {
             store.GetEbayPublishTasks()
-                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 30 ).Seconds ); } );
+                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 45 ).Seconds ); } );
         }
     }
 }
