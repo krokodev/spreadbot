@@ -1,8 +1,8 @@
 ﻿@using Spreadbot.Sdk.Common.Operations.Tasks
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.Sdk.Common.Operations.Tasks.AbstractTask 
 
 @{
-    // Here: View | ShowTask
+    // Here: View | Task
     ViewBag.Title = "Task details";
     Layout = "~/Views/Shared/Layout.cshtml";
     @ShowPage()
@@ -17,13 +17,11 @@
 
 @helper ShowPage()
 {
-    var task = ( AbstractTask ) Model.FindTask( ViewBag.TaskId );
-    if( task != null ) {
-        @ShowTask( task )
+    if( Model != null ) {
+        @ShowTask( Model )
     } else if( !string.IsNullOrEmpty( ViewBag.TaskId ) ) {
-        var answer = string.Format( "Task with Id=[{0}] is not found", ViewBag.TaskId );
-        @answer
+        @:Task is not found:  @ViewBag.TaskId 
     } else {
-        @:No task info
+        @:No task Id
     }
 }

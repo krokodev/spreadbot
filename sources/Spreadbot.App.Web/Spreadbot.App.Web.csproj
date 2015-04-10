@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Content Include="App_Data\Logs\.gitignore" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\HttpController.cs" />
     <Compile Include="Controllers\BugController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -199,7 +200,7 @@
     </None>
     <None Include="Properties\PublishProfiles\spreadbot-west-us.pubxml" />
     <None Include="Properties\PublishProfiles\spreadbot.pubxml" />
-    <Content Include="Views\Demoshop\ShowTask.cshtml" />
+    <Content Include="Views\Task\Show.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Log\Trace.cshtml" />
     <Content Include="Views\Log\Error.cshtml" />

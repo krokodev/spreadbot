@@ -8,7 +8,7 @@ using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.System.Dispatcher;
 
-// Here: Controller | DemoshopController
+// Here: Controller | Demoshop
 
 namespace Spreadbot.App.Web.Controllers
 {
@@ -69,13 +69,6 @@ namespace Spreadbot.App.Web.Controllers
                 model.Message = "Tasks deleted";
             }
             return RedirectToAction( "Index" );
-        }
-
-        // --------------------------------------------------------[]
-        public ActionResult ShowTask( string taskId )
-        {
-            ViewBag.TaskId = taskId;
-            return View( new DemoshopModel() );
         }
 
         // --------------------------------------------------------[]

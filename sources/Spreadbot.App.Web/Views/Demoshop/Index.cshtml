@@ -1,16 +1,15 @@
-﻿@using Spreadbot.Core.Channels.Ebay.Configuration.Sections
+﻿@using Crocodev.Common.Extensions
+@using Spreadbot.Core.Channels.Ebay.Configuration.Sections
 @model  Spreadbot.App.Web.Models.DemoshopModel 
-
 @{
     // Here: View | Demoshop
-    ViewBag.Title = "Demo Shop";
+    ViewBag.Title = "Demoshop";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 
 <div>
-
-    <p>Edit your Item, then publish it on eBay, check the publishing process and view the result.</p>
+    <p>Edit your Item, then publish it on eBay, check the publishing process and view the result</p>
 
     @Shared.ShowMessage( Model.Message )
 
@@ -19,7 +18,7 @@
             One-item Store
         </h2>
         @DemoshopView.ItemEditForm( Model.Item )
-        @Html.ActionLink( string.Format( "Revert Item" ), "RevertItem" )
+        @Html.ActionLink( "Revert Item", "RevertItem" )
     </div>
 
     <div>
@@ -29,7 +28,7 @@
         @TaskView.ShowTasks( Model.StoreTasks )
         <ul>
             <li>
-                @Html.ActionLink( "Add task:", "AddTask" ) @string.Format( "Publish [{0}] on eBay", Model.Item )
+                @Html.ActionLink( "Add task:", "AddTask" ) @("Publish [{0}] on eBay".SafeFormat( Model.Item ))
             </li>
             <li>
                 Remove all tasks [@Html.ActionLink( "remove", "DeleteTasks" )]
@@ -44,21 +43,14 @@
         </h2>
         <ul>
             <li>
-                @Html.ActionLink(
-                    string.Format( "Run Channel Tasks ({0})", Model.ChannelTasksTodo.Count() ),
-                    "RunChannelTasks" )
+                @Html.ActionLink( "Run Channel Tasks ({0})".SafeFormat( Model.ChannelTasksTodo.Count() ), "RunChannelTasks" )
             </li>
             <li>
-                @Html.ActionLink(
-                    string.Format( "Proceed Channel Tasks ({0})", Model.ChannelTasksInprocess.Count() ),
-                    "ProceedChannelTasks" )
+                @Html.ActionLink( "Proceed Channel Tasks ({0})".SafeFormat( Model.ChannelTasksInprocess.Count() ), "ProceedChannelTasks" )
             </li>
             <li>
                 [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
             </li>
         </ul>
-
     </div>
-
-
 </div>

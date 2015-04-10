@@ -24,9 +24,8 @@
         if( enumerable.Count() != 0 ) {
             <ul>
                 @foreach( var task in enumerable ) {
-                    <li class="@TaskClass( task.GetStatusCode() )">
-                        @task.GetBriefInfo() [@Html.ActionLink( "...", "ShowTask", "Demoshop", new { taskId = @task.Id }, new { } )]
-                        @ItemIdLink( task as EbayPublishTask )
+                    <li>
+                        @ShowTaskInfo( task )
                     </li>
                     @ShowTasks( task.AbstractSubTasks )
                 }
@@ -40,16 +39,28 @@
     }
 }
 
-
-@helper ItemIdLink( EbayPublishTask task )
+@helper ItemIdLink( IAbstractTask task )
 {
     try {
-        var itemId = task.EbayPublishResponse.Result.MipItemId;
-        if( itemId != null ) {
-            <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
+        if( task is EbayPublishTask ) {
+            @TryEbayItemIdLink( ( EbayPublishTask ) task )
         }
     }
     catch {
         <span></span>
     }
+}
+
+@helper TryEbayItemIdLink( EbayPublishTask task )
+{
+    var itemId = task.EbayPublishResponse.Result.MipItemId;
+    <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
+}
+
+@helper ShowTaskInfo( IAbstractTask task )
+{
+    <div class="@TaskClass( task.GetStatusCode() )">
+        @task.GetBriefInfo() [@Html.ActionLink( "...", "Show", "Task", new { taskId = @task.Id }, new { } )]
+        @ItemIdLink( task )
+    </div>
 }
