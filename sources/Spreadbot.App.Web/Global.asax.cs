@@ -35,6 +35,7 @@ namespace Spreadbot.App.Web
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             }
             catch {
+                // Todo: Log wrong request
                 // ignored
             }
         }
