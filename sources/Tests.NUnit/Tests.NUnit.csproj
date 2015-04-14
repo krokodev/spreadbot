@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Code\MipConnectorTestInitializer.cs" />
     <Compile Include="Code\SpreadbotTestBase.cs" />
+    <Compile Include="goldfish.cs" />
     <Compile Include="Units\DemoshopController_Tests.cs" />
     <Compile Include="Mocks\MockHelper.pvt.DemoshopStoreManager.cs" />
     <Compile Include="Mocks\MockHelper.pvt.SftpHelper.cs" />
