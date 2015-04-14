@@ -15,6 +15,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
+    <ProjectGuid>{05292895-0696-3169-9285-6122A2E660F3}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,30 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MarketplaceWebService.Samples\*.cs" />
+    <Compile Include="MarketplaceWebService.Samples\CancelFeedSubmissionsSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\CancelReportRequestsSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\CancelReportsSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetFeedSubmissionCountSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetFeedSubmissionListByNextTokenSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetFeedSubmissionListSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetFeedSubmissionResultSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportCountSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportListByNextTokenSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportListSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportRequestCountSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportRequestListByNextTokenSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportRequestListSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportScheduleCountSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportScheduleListByNextTokenSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\GetReportScheduleListSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\ManageReportScheduleSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\MarketplaceWebServiceSamples.cs" />
+    <Compile Include="MarketplaceWebService.Samples\ReportSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\RequestReportSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\SubmitFeedSample.cs" />
+    <Compile Include="MarketplaceWebService.Samples\UpdateReportAcknowledgementsSample.cs" />
+    <Compile Include="Secret\MarketplaceWebServiceSamples.Secret.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarketplaceWebService\MarketplaceWebService.csproj">

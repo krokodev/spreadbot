@@ -23,13 +23,16 @@ using MarketplaceWebService.Mock;
 using MarketplaceWebService.Model;
 using System.IO;
 
+
+// Code: Main
+
 namespace MarketplaceWebService.Samples
 {
 
     /// <summary>
     /// Marketplace Web Service  Samples
     /// </summary>
-    public class MarketplaceWebServiceSamples 
+    public partial class MarketplaceWebServiceSamples 
     {
     
        /**
@@ -137,12 +140,12 @@ namespace MarketplaceWebService.Samples
             // Italy:
             // config.ServiceURL = "https://mws.amazonservices.it";
             //
-            //config.SetUserAgentHeader(
-            //    applicationName,
-            //    applicationVersion,
-            //    "C#",
-            //    "<Parameter 1>", "<Parameter 2>");
-            //MarketplaceWebService service = new MarketplaceWebServiceClient(accessKeyId, secretAccessKey, config);
+            config.SetUserAgentHeader(
+                applicationName,
+                applicationVersion,
+                "C#",
+                "<Parameter 1>", "<Parameter 2>");
+            MarketplaceWebService service = new MarketplaceWebServiceClient(accessKeyId, secretAccessKey, config);
 
 
             /************************************************************************
@@ -155,7 +158,7 @@ namespace MarketplaceWebService.Samples
              * XML files available under MarketplaceWebService\Mock tree
              *
              ***********************************************************************/
-            MarketplaceWebService service = new MarketplaceWebServiceMock();
+            // MarketplaceWebService service = new MarketplaceWebServiceMock();
 
 
             /************************************************************************
@@ -217,11 +220,11 @@ namespace MarketplaceWebService.Samples
              * Uncomment to invoke Submit Feed Action
              ***********************************************************************/
             {
-                // SubmitFeedRequest request = new SubmitFeedRequest();
-                // request.Merchant = merchantId;
-                // request.MWSAuthToken = "<Your MWS Auth Token>"; // Optional
-                // request.MarketplaceIdList = new IdList();
-                // request.MarketplaceIdList.Id = new List<string>( new string [] { marketplaceId } );
+                SubmitFeedRequest request = new SubmitFeedRequest();
+                request.Merchant = merchantId;
+                request.MWSAuthToken = "<Your MWS Auth Token>"; // Optional
+                request.MarketplaceIdList = new IdList();
+                request.MarketplaceIdList.Id = new List<string>( new string [] { marketplaceId } );
 
                 // MWS exclusively offers a streaming interface for uploading your feeds. This is because 
                 // feed sizes can grow to the 1GB+ range - and as your business grows you could otherwise 
@@ -230,16 +233,18 @@ namespace MarketplaceWebService.Samples
                 // you made no changes. For the same reason, we strongly encourage you to generate your feeds to 
                 // local disk then upload them directly from disk to MWS.
 
-                //request.FeedContent = File.Open("feed.xml", FileMode.Open, FileAccess.Read);
+                var filename = // "feed.xml"
+                    @"p:\Projects\spreadbot\other\Research\amazon\samples\Amazon\src\MarketplaceWebService\MarketplaceWebService\Mock\CancelReportRequestsResponse.xml";
+                request.FeedContent = File.Open(filename, FileMode.Open, FileAccess.Read);
 
                 // Calculating the MD5 hash value exhausts the stream, and therefore we must either reset the
                 // position, or create another stream for the calculation.
-                //request.ContentMD5 = MarketplaceWebServiceClient.CalculateContentMD5(request.FeedContent);
-                //request.FeedContent.Position = 0;
+                request.ContentMD5 = MarketplaceWebServiceClient.CalculateContentMD5(request.FeedContent);
+                request.FeedContent.Position = 0;
 
-                //request.FeedType = "FEED_TYPE";
+                request.FeedType = "FEED_TYPE";
 
-                //SubmitFeedSample.InvokeSubmitFeed(service, request);
+                SubmitFeedSample.InvokeSubmitFeed(service, request);
             }
 
 

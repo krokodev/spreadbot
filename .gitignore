@@ -4,6 +4,7 @@
 # Secret files
 login.*
 password.*
+*.[Ss]ecret.cs
 *-secret-file*.*
 *.[Ss]ecurity.config
 !*.[Ss]ample.config
