@@ -57,6 +57,7 @@ namespace MarketplaceWebService.Samples
             Console.WriteLine("===========================================");
             Console.WriteLine();
 
+            Test();
             /************************************************************************
              * Access Key ID and Secret Acess Key ID, obtained from:
              * http://aws.amazon.com
@@ -67,22 +68,22 @@ namespace MarketplaceWebService.Samples
              * to anyone. It is important to keep your Secret Access Key confidential 
              * to protect your account.
              ***********************************************************************/
-            String accessKeyId = "<Your AWS Access Key>";
-            String secretAccessKey = "<Your AWS Secret Key>";
+            // String accessKeyId = Secret.AccessKeyId;
+            // String secretAccessKey = Secret.SecretAccessKey;
 
             /************************************************************************
             * Instantiate  Implementation of Marketplace Web Service 
             ***********************************************************************/
 
-            MarketplaceWebServiceConfig config = new MarketplaceWebServiceConfig();
+            // MarketplaceWebServiceConfig config = new MarketplaceWebServiceConfig();
 
             /************************************************************************
              * The application name and version are included in each MWS call's
              * HTTP User-Agent field. These are required fields.
              ***********************************************************************/
 
-            const string applicationName = "<Your Application Name>";
-            const string applicationVersion = "<Your Application Version>";
+            // const string applicationName = Secret.ApplicationName;
+            // const string applicationVersion = Secret.ApplicationVersion;
 
             //MarketplaceWebService service =
             //    new MarketplaceWebServiceClient(
@@ -97,8 +98,8 @@ namespace MarketplaceWebService.Samples
              * All MWS requests must contain the seller's merchant ID and 
              * marketplace ID.
              ***********************************************************************/
-            const string merchantId = "<Your Merchant ID>";
-            const string marketplaceId = "<Your Marketplace ID>";
+            // const string merchantId = Secret.MerchantId;
+            // const string marketplaceId = Secret.MarketplaceId;
                        
             /************************************************************************
              * Uncomment to configure the client instance. Configuration settings
@@ -117,7 +118,7 @@ namespace MarketplaceWebService.Samples
             // to sell in:
             // 
             // United States:
-             config.ServiceURL = "https://mws.amazonservices.com";
+            // config.ServiceURL = "https://mws.amazonservices.com";
             //
             // United Kingdom:
             // config.ServiceURL = "https://mws.amazonservices.co.uk";
@@ -140,12 +141,13 @@ namespace MarketplaceWebService.Samples
             // Italy:
             // config.ServiceURL = "https://mws.amazonservices.it";
             //
-            config.SetUserAgentHeader(
+
+/*            config.SetUserAgentHeader(
                 applicationName,
                 applicationVersion,
                 "C#",
                 "<Parameter 1>", "<Parameter 2>");
-            MarketplaceWebService service = new MarketplaceWebServiceClient(accessKeyId, secretAccessKey, config);
+            MarketplaceWebService service = new MarketplaceWebServiceClient(accessKeyId, secretAccessKey, config);*/
 
 
             /************************************************************************
@@ -220,7 +222,7 @@ namespace MarketplaceWebService.Samples
              * Uncomment to invoke Submit Feed Action
              ***********************************************************************/
             {
-                SubmitFeedRequest request = new SubmitFeedRequest();
+/*                SubmitFeedRequest request = new SubmitFeedRequest();
                 request.Merchant = merchantId;
                 request.MWSAuthToken = "<Your MWS Auth Token>"; // Optional
                 request.MarketplaceIdList = new IdList();
@@ -233,8 +235,9 @@ namespace MarketplaceWebService.Samples
                 // you made no changes. For the same reason, we strongly encourage you to generate your feeds to 
                 // local disk then upload them directly from disk to MWS.
 
+                // Code: Send Feed sample
                 var filename = // "feed.xml"
-                    @"p:\Projects\spreadbot\other\Research\amazon\samples\Amazon\src\MarketplaceWebService\MarketplaceWebService\Mock\CancelReportRequestsResponse.xml";
+                    @"p:\Projects\spreadbot\other\Research\amazon\samples\Amazon\src\MarketplaceWebService.Samples\xml\feed.xml";
                 request.FeedContent = File.Open(filename, FileMode.Open, FileAccess.Read);
 
                 // Calculating the MD5 hash value exhausts the stream, and therefore we must either reset the
@@ -242,9 +245,9 @@ namespace MarketplaceWebService.Samples
                 request.ContentMD5 = MarketplaceWebServiceClient.CalculateContentMD5(request.FeedContent);
                 request.FeedContent.Position = 0;
 
-                request.FeedType = "FEED_TYPE";
+                request.FeedType = "_POST_PRODUCT_DATA_";
 
-                SubmitFeedSample.InvokeSubmitFeed(service, request);
+                SubmitFeedSample.InvokeSubmitFeed(service, request);*/
             }
 
 

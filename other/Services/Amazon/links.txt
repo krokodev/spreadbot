@@ -1,0 +1,26 @@
+Greetings from Amazon Web Services,
+
+Thank you for signing up for AWS Support (Basic). You now have access to AWS Support (Basic).
+
+If you interact with AWS programmatically using the SDKs, Command Line Interface (CLI), 
+or APIs, you must provide access keys to verify who you are and whether you have permission to access the resources you're requesting. 
+To manage your account's access keys, go to 
+https://console.aws.amazon.com/iam/home?#security_credential .
+
+Documentation, sample code, articles, tutorials, and more can be found in the AWS Resource Center at 
+http://aws.amazon.com/resources/ .
+
+For help and support, visit the AWS Support Center at 
+https://aws.amazon.com/support .
+
+Usage will be billed to your account on a monthly basis. 
+You can manage your account and review your account activity online at 
+https://console.aws.amazon.com/billing/home.
+
+Thank you for your participation in the Amazon Web Services community. See 
+http://aws.amazon.com 
+for more information.
+
+Sincerely,
+
+Amazon Web Services

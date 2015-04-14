@@ -8,6 +8,8 @@ password.*
 *-secret-file*.*
 *.[Ss]ecurity.config
 !*.[Ss]ample.config
+[Ss]ecret/
+
 
 # User-specific files
 *.suo

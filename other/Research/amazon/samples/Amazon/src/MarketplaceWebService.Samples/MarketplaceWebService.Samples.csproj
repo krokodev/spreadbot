@@ -65,6 +65,8 @@
     <Compile Include="MarketplaceWebService.Samples\SubmitFeedSample.cs" />
     <Compile Include="MarketplaceWebService.Samples\UpdateReportAcknowledgementsSample.cs" />
     <Compile Include="Secret\MarketplaceWebServiceSamples.Secret.cs" />
+    <Compile Include="Test\MarketplaceWebServiceSamples.Test.cs" />
+    <Content Include="xml\feed.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarketplaceWebService\MarketplaceWebService.csproj">
