@@ -114,7 +114,7 @@ namespace MarketplaceWebService.Samples
             // to sell in:
             // 
             // United States:
-            // config.ServiceURL = "https://mws.amazonservices.com";
+             config.ServiceURL = "https://mws.amazonservices.com";
             //
             // United Kingdom:
             // config.ServiceURL = "https://mws.amazonservices.co.uk";
