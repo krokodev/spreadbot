@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit
 // YamlSerializer_Tests.cs
 
 using System;
@@ -8,11 +8,11 @@ using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
+using Spreadbot.Nunit.Base;
 using Spreadbot.Sdk.Common.Crocodev.Common;
-using Spreadbot.Tests.NUnit.Code;
 using YamlDotNet.Serialization;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Tests
 {
     [TestFixture]
     public class YamlSerializer_Tests : SpreadbotTestBase

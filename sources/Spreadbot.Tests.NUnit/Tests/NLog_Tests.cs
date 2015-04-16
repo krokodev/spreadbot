@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit
 // NLog_Tests.cs
 
 using System;
@@ -10,7 +10,7 @@ using NLog.Targets;
 using NUnit.Framework;
 using Spreadbot.Sdk.Common.Exceptions;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Tests
 {
     [TestFixture]
     public class NLog_Tests

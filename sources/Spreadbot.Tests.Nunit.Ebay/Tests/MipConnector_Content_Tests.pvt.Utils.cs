@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // MipConnector_Content_Tests.pvt.Utils.cs
 
 using System;
@@ -10,13 +10,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Tests.NUnit.Code;
-using Spreadbot.Tests.NUnit.Mocks;
+using Spreadbot.Nunit.Ebay.Base;
+using Spreadbot.Nunit.Ebay.Mocks;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public partial class MipConnector_Content_Tests
+    public partial class MipConnectorContentEbayTests
     {
         // --------------------------------------------------------[]
         private static void _TestReadItemId( MipFeedType mipFeedType, IMipConnector mipConnector )

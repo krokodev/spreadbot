@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // MipConnector_Sftp_Tests.cs
 
 using System;
@@ -8,12 +8,12 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Tests.NUnit.Code;
+using Spreadbot.Nunit.Ebay.Base;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class MipConnector_Sftp_Tests : SpreadbotTestBase
+    public class MipConnectorSftpEbayTests : SpreadbotEbayTestBase
     {
         // ===================================================================================== []
         [SetUp]

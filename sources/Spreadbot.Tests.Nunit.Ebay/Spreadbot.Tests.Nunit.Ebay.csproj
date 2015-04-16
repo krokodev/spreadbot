@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F9E37D0-9359-4CCB-B585-319F369D3BDA}</ProjectGuid>
+    <ProjectGuid>{D4646AE3-30F7-47E0-ADD9-3000DC812CE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spreadbot.Nunit</RootNamespace>
-    <AssemblyName>Spreadbot.Tests.Nunit</AssemblyName>
+    <RootNamespace>Spreadbot.Nunit.Ebay</RootNamespace>
+    <AssemblyName>Spreadbot.Tests.Nunit.Ebay</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -105,11 +105,21 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Base\SpreadbotTestBase.cs" />
+    <Compile Include="Base\MipConnectorTestInitializer.cs" />
+    <Compile Include="Base\SpreadbotEbayTestBase.cs" />
+    <Compile Include="Tests\DemoshopController_Tests.cs" />
+    <Compile Include="Mocks\MockHelper.pvt.DemoshopStoreManager.cs" />
+    <Compile Include="Mocks\MockHelper.pvt.SftpHelper.cs" />
+    <Compile Include="Mocks\MockHelper.pvt.MipConnector.cs" />
+    <Compile Include="Mocks\MockHelper.cs" />
+    <Compile Include="Tests\MipConfiguration_Tests.cs" />
+    <Compile Include="Tests\MipConnector_Content_Tests.pvt.Utils.cs" />
+    <Compile Include="Tests\MipConnector_Content_Tests.cs" />
+    <Compile Include="Tests\MipConnector_Main_Tests.cs" />
+    <Compile Include="Tests\MipConnector_Zip_Tests.cs" />
+    <Compile Include="Tests\MipConnector_Sftp_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Extensions_Tests.cs" />
-    <Compile Include="Tests\NLog_Tests.cs" />
-    <Compile Include="Tests\YamlSerializer_Tests.cs" />
+    <Compile Include="Tests\DemoshopStoreManager_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">
@@ -140,10 +150,22 @@
       <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
       <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Tests.Nunit\Spreadbot.Tests.Nunit.csproj">
+      <Project>{9f9e37d0-9359-4ccb-b585-319f369d3bda}</Project>
+      <Name>Spreadbot.Tests.Nunit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
+    <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
     <Content Include="App_Data\Logs\.gitignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="App.config" />
     <Content Include="App_Data\Configs\Mip.Public.config">
@@ -156,12 +178,11 @@
     <Content Include="App_Data\Configs\Demoshop.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Stores\Demoshop\Data\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
@@ -183,8 +204,7 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>$(SolutionDir)utils\run-script.cmd $(SolutionDir)utils\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

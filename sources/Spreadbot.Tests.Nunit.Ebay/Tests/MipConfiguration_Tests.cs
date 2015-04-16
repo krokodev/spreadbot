@@ -1,16 +1,16 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // MipConfiguration_Tests.cs
 
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Settings;
-using Spreadbot.Tests.NUnit.Code;
+using Spreadbot.Nunit.Ebay.Base;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class MipConfiguration_Tests : SpreadbotTestBase
+    public class MipConfigurationEbayTests : SpreadbotEbayTestBase
     {
         [Test]
         public void Read_Mip_Config()

@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // MockHelper.pvt.DemoshopStoreManager.cs
 
 using Moq;
@@ -13,7 +13,7 @@ using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
-namespace Spreadbot.Tests.NUnit.Mocks
+namespace Spreadbot.Nunit.Ebay.Mocks
 {
     internal partial class MockHelper
     {

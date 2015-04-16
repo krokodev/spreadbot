@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.Nunit
+// Spreadbot.Tests.Nunit.Amazon
 // AssemblyInfo.cs
 
 using System.Reflection;
@@ -9,11 +9,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle( "Spreadbot.Tests.Nunit" )]
+[assembly : AssemblyTitle( "Spreadbot.Tests.Nunit.Amazon" )]
 [assembly : AssemblyDescription( "" )]
 [assembly : AssemblyConfiguration( "" )]
 [assembly : AssemblyCompany( "" )]
-[assembly : AssemblyProduct( "Spreadbot.Tests.Nunit" )]
+[assembly : AssemblyProduct( "Spreadbot.Tests.Nunit.Amazon" )]
 [assembly : AssemblyCopyright( "Copyright ©  2015" )]
 [assembly : AssemblyTrademark( "" )]
 [assembly : AssemblyCulture( "" )]

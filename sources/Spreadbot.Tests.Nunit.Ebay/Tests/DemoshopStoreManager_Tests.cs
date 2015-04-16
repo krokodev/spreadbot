@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // DemoshopStoreManager_Tests.cs
 
 using System;
@@ -12,15 +12,15 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.System.Dispatcher;
+using Spreadbot.Nunit.Ebay.Base;
+using Spreadbot.Nunit.Ebay.Mocks;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
-using Spreadbot.Tests.NUnit.Code;
-using Spreadbot.Tests.NUnit.Mocks;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class DemoshopStoreManager_Tests : SpreadbotTestBase
+    public class DemoshopStoreManagerEbayTests : SpreadbotEbayTestBase
     {
         // --------------------------------------------------------[]
         [SetUp]

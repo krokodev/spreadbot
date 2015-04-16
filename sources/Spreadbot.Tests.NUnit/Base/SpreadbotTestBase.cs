@@ -1,14 +1,13 @@
 // Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit
 // SpreadbotTestBase.cs
 
 using System.Globalization;
 using System.Threading;
 using Krokodev.Common.Extensions;
 using NUnit.Framework;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 
-namespace Spreadbot.Tests.NUnit.Code
+namespace Spreadbot.Nunit.Base
 {
     public class SpreadbotTestBase
     {
@@ -23,11 +22,6 @@ namespace Spreadbot.Tests.NUnit.Code
             if( text.Contains( message ) ) {
                 Assert.Inconclusive( "Can't concluse the test due to [{0}]".SafeFormat( message ) );
             }
-        }
-
-        protected static void IgnoreMipQueueDepthErrorMessage( object obj )
-        {
-            Assert_Inconclusive_if_Text_Contains_Message( obj.ToString(), MipConnector.MipQueueDepthErrorMessage );
         }
 
         protected static void Assert_That_Text_Contains( object text, object fragment )

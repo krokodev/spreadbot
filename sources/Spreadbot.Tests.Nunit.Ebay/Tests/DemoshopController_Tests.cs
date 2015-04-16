@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // DemoshopController_Tests.cs
 
 using System;
@@ -11,7 +11,7 @@ using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Tests.NUnit.Units
+namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
     public class DemoshopController_Tests

@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Spreadbot.Tests.NUnit
+// Spreadbot.Tests.Nunit.Ebay
 // MipConnectorTestInitializer.cs
 
 using System;
@@ -14,7 +14,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
-namespace Spreadbot.Tests.NUnit.Code
+namespace Spreadbot.Nunit.Ebay.Base
 {
     public class MipConnectorTestInitializer
     {
