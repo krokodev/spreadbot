@@ -1,4 +1,4 @@
-﻿// Spreadbot (c) 2015 Crocodev
+﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.App.Web
 // Global.asax.cs
 

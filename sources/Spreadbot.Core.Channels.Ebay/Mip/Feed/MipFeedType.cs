@@ -1,4 +1,4 @@
-﻿// Spreadbot (c) 2015 Crocodev
+﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
 // MipFeedType.cs
 
