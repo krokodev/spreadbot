@@ -9,4 +9,3 @@ git commit -a -m "$1"
 echo.
 echo [Push]
 git push
-
