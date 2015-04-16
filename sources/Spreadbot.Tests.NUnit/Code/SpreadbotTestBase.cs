@@ -1,5 +1,5 @@
 // Spreadbot (c) 2015 Crocodev
-// Tests.NUnit
+// Spreadbot.Tests.NUnit
 // SpreadbotTestBase.cs
 
 using System.Globalization;
@@ -8,7 +8,7 @@ using Krokodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 
-namespace Tests.NUnit.Code
+namespace Spreadbot.Tests.NUnit.Code
 {
     public class SpreadbotTestBase
     {

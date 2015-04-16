@@ -26,8 +26,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Stores", "so
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Abstracts", "sources\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj", "{5599EFE5-4D66-464D-91EE-3F76153BF8FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels", "sources\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
 	ProjectSection(SolutionItems) = preProject
 		utils\commands.txt = utils\commands.txt
@@ -40,6 +38,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "-", "-", "{D04AE4D7-ECE4-479C-B44C-4412E64F697E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Tests.NUnit", "sources\Spreadbot.Tests.NUnit\Spreadbot.Tests.NUnit.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels.Ebay", "sources\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj", "{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Channels.Amazon", "sources\Spreadbot.Core.Channels.Amazon\Spreadbot.Core.Channels.Amazon.csproj", "{D2EFA878-B988-466A-98C3-E35A5AC040F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,14 +99,6 @@ Global
 		{5599EFE5-4D66-464D-91EE-3F76153BF8FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5599EFE5-4D66-464D-91EE-3F76153BF8FF}.Release|x64.ActiveCfg = Release|x64
 		{5599EFE5-4D66-464D-91EE-3F76153BF8FF}.Release|x64.Build.0 = Release|x64
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|x64.ActiveCfg = Debug|x64
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|x64.Build.0 = Debug|x64
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|x64.ActiveCfg = Release|x64
-		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|x64.Build.0 = Release|x64
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Debug|x64.ActiveCfg = Debug|x64
@@ -113,6 +107,22 @@ Global
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|x64.ActiveCfg = Release|x64
 		{9F9E37D0-9359-4CCB-B585-319F369D3BDA}.Release|x64.Build.0 = Release|x64
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|x64.ActiveCfg = Debug|x64
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Debug|x64.Build.0 = Debug|x64
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|x64.ActiveCfg = Release|x64
+		{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}.Release|x64.Build.0 = Release|x64
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Debug|x64.ActiveCfg = Debug|x64
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Debug|x64.Build.0 = Debug|x64
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Release|x64.ActiveCfg = Release|x64
+		{D2EFA878-B988-466A-98C3-E35A5AC040F7}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

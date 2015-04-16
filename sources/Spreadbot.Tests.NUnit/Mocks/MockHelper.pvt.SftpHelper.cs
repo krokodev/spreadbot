@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Tests.NUnit
+// Spreadbot.Tests.NUnit
 // MockHelper.pvt.SftpHelper.cs
 
 using System;
@@ -10,7 +10,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
 
-namespace Tests.NUnit.Mocks
+namespace Spreadbot.Tests.NUnit.Mocks
 {
     internal partial class MockHelper
     {

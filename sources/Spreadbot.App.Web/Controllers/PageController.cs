@@ -14,14 +14,17 @@ namespace Spreadbot.App.Web.Controllers
         {
             return View();
         }
+
         public ActionResult Reports()
         {
             return View();
         }
+
         public ActionResult Resources()
         {
             return View();
         }
+
         public ActionResult Contacts()
         {
             return View();

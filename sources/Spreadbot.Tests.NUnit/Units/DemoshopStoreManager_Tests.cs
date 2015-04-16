@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Tests.NUnit
+// Spreadbot.Tests.NUnit
 // DemoshopStoreManager_Tests.cs
 
 using System;
@@ -14,10 +14,10 @@ using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.System.Dispatcher;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
-using Tests.NUnit.Code;
-using Tests.NUnit.Mocks;
+using Spreadbot.Tests.NUnit.Code;
+using Spreadbot.Tests.NUnit.Mocks;
 
-namespace Tests.NUnit.Units
+namespace Spreadbot.Tests.NUnit.Units
 {
     [TestFixture]
     public class DemoshopStoreManager_Tests : SpreadbotTestBase

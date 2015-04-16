@@ -1,13 +1,13 @@
 ﻿// Spreadbot (c) 2015 Crocodev
-// Tests.NUnit
+// Spreadbot.Tests.NUnit
 // MipConnector_Content_Tests.cs
 
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Tests.NUnit.Code;
+using Spreadbot.Tests.NUnit.Code;
 
-namespace Tests.NUnit.Units
+namespace Spreadbot.Tests.NUnit.Units
 {
     [TestFixture]
     public partial class MipConnector_Content_Tests : SpreadbotTestBase

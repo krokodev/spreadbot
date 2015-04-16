@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Spreadbot.Core.Channels.Ebay</RootNamespace>
+    <AssemblyName>Spreadbot.Core.Channels.Ebay</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Krokodev.Common">
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Krokodev.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq">
+      <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Extensions, Version=1.0.5583.39016, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Nereal.Serialization, Version=1.0.5583.39016, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WinSCPnet">
+      <HintPath>..\..\packages\WinSCP.5.7\lib\WinSCPnet.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\..\packages\YamlDotNet.3.5.1\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Manager\EbayChannelManager.pvt.Feed.cs" />
+    <Compile Include="Manager\EbayChannelManager.pvt.Tasks.cs" />
+    <Compile Include="Manager\EbayChannelManager.imp.IChannelManager.cs" />
+    <Compile Include="Manager\EbayChannelManager.cs" />
+    <Compile Include="Mip\Connector\IMipConnector.cs" />
+    <Compile Include="Mip\SftpHelper\ISftpHelper.cs" />
+    <Compile Include="Mip\Connector\MipConnector.pvt.Utils.cs" />
+    <Compile Include="Mip\Connector\MipConnector.pvt.RequestXml.cs" />
+    <Compile Include="Mip\Operations\Results\MipFindRequestResult.cs" />
+    <Compile Include="Mip\Operations\Results\MipSftpSendFilesResult.cs" />
+    <Compile Include="Mip\ZipHelper\IZipHelper.cs" />
+    <Compile Include="Operations\Tasks\EbayPublishTask.imp.IAbstractTask.cs" />
+    <Compile Include="Operations\Tasks\EbayPublishTask.imp.IProceedableTask.cs" />
+    <Compile Include="Mip\Operations\Results\MipTestConnectionResult.cs" />
+    <Compile Include="Mip\Operations\Response\MipRequestStatusResponse.cs" />
+    <Compile Include="Operations\Results\EbayPublishResult.cs" />
+    <Compile Include="Operations\Args\EbayPublishArgs.cs" />
+    <Compile Include="Operations\Tasks\EbayPublishTask.cs" />
+    <Compile Include="Configuration\Elements\MipConnection.cs" />
+    <Compile Include="Configuration\Elements\MipPaths.cs" />
+    <Compile Include="Configuration\Elements\MipSecretData.cs" />
+    <Compile Include="Configuration\Sections\MipPublicConfig.cs" />
+    <Compile Include="Configuration\Sections\MipSecurityConfig.cs" />
+    <Compile Include="Mip\Operations\Response\MipResponse.cs" />
+    <Compile Include="Mip\Operations\Results\AbstractMipResponseResult.cs" />
+    <Compile Include="Mip\Operations\Results\MipZipFeedResult.cs" />
+    <Compile Include="Mip\Operations\Results\MipSendFeedResult.cs" />
+    <Compile Include="Mip\Connector\MipConnector.pvt.Pathes.cs" />
+    <Compile Include="Mip\ZipHelper\SystemIoZipHelper.cs" />
+    <Compile Include="Mip\SftpHelper\WinScpSftpHelper.pvt.Sftp.cs" />
+    <Compile Include="Mip\SftpHelper\WinSCPSftpHelper.cs" />
+    <Compile Include="Mip\Operations\Request\MipRequestProcessingStage.cs" />
+    <Compile Include="Mip\Operations\Request\MipRequestHandler.cs" />
+    <Compile Include="Mip\Connector\MipConnector.cs" />
+    <Compile Include="Mip\Operations\Results\MipFindRemoteFileResult.cs" />
+    <Compile Include="Mip\Operations\Results\MipGetRequestStatusResult.cs" />
+    <Compile Include="Mip\Operations\Request\MipRequestStatus.cs" />
+    <Compile Include="Mip\Settings\MipSettings.cs" />
+    <Compile Include="Mip\Feed\MipFeedHandler.cs" />
+    <Compile Include="Mip\Feed\MipFeedType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mip\Operations\StatusCode\MipOperationStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
+      <Project>{5599efe5-4d66-464d-91ee-3f76153bf8ff}</Project>
+      <Name>Spreadbot.Core.Abstracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
+      <Project>{d32ab08e-2141-4cd2-9cd3-6d98fbc00fb5}</Project>
+      <Name>Spreadbot.Sdk.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Sdk.Tools\Spreadbot.Sdk.Tools.csproj">
+      <Project>{1ed946c5-318d-461f-9ddd-df3c321144ba}</Project>
+      <Name>Spreadbot.Sdk.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

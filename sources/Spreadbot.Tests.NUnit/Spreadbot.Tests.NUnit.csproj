@@ -133,9 +133,9 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Channels\Spreadbot.Core.Channels.csproj">
-      <Project>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</Project>
-      <Name>Spreadbot.Core.Channels</Name>
+    <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
+      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
+      <Name>Spreadbot.Core.Channels.Ebay</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Stores\Spreadbot.Core.Stores.csproj">
       <Project>{4B00ED58-9C97-4C8A-BBAB-167CF31ABB31}</Project>
