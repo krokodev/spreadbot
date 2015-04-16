@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{46D2FC64
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "-", "-", "{D04AE4D7-ECE4-479C-B44C-4412E64F697E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.NUnit", "sources\Tests.NUnit\Tests.NUnit.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Tests.NUnit", "sources\Spreadbot.Tests.NUnit\Spreadbot.Tests.NUnit.csproj", "{9F9E37D0-9359-4CCB-B585-319F369D3BDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

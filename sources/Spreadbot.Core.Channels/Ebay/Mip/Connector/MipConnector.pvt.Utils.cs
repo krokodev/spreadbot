@@ -3,7 +3,7 @@
 // MipConnector.pvt.Utils.cs
 
 using System;
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;

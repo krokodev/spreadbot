@@ -2,7 +2,7 @@
 // Spreadbot.Sdk.Common
 // SpreadbotResponseException.cs
 
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 

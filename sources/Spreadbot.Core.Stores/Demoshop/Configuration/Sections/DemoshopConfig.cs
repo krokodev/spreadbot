@@ -3,7 +3,7 @@
 // DemoshopConfig.cs
 
 using System.Configuration;
-using Crocodev.Common.SmartConfiguration;
+using Krokodev.Common.SmartConfiguration;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Elements;
 
 namespace Spreadbot.Core.Stores.Demoshop.Configuration.Sections

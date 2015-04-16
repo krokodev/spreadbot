@@ -3,7 +3,7 @@
 // MipPublicConfig.cs
 
 using System.Configuration;
-using Crocodev.Common.SmartConfiguration;
+using Krokodev.Common.SmartConfiguration;
 using Spreadbot.Core.Channels.Ebay.Configuration.Elements;
 
 namespace Spreadbot.Core.Channels.Ebay.Configuration.Sections

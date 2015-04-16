@@ -3,7 +3,7 @@
 // ExceptionUtility.cs
 
 using System;
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using NLog;
 
 namespace Spreadbot.Sdk.Common.Exceptions

@@ -48,20 +48,19 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crocodev.Common, Version=1.1.5561.23011, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Crocodev.Common.dll</HintPath>
+    <Reference Include="Krokodev.Common">
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Krokodev.Common.dll</HintPath>
     </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
-    <Reference Include="Nereal.Extensions, Version=1.0.5561.23011, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nereal.Extensions, Version=1.0.5583.39016, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Nereal.Extensions.dll</HintPath>
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Nereal.Serialization, Version=1.0.5561.23011, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nereal.Serialization, Version=1.0.5583.39016, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\crocodev.common.1.1.5561.23011\lib\net451\Nereal.Serialization.dll</HintPath>
+      <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>

@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using NLog;
 using NLog.Targets;
 using NUnit.Framework;

@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels
 // MipSettings.cs
 
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Settings

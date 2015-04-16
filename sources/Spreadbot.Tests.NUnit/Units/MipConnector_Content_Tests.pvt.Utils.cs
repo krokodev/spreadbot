@@ -3,7 +3,7 @@
 // MipConnector_Content_Tests.pvt.Utils.cs
 
 using System;
-using Crocodev.Common.Extensions;
+using Krokodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
