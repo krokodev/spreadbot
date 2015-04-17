@@ -107,19 +107,19 @@
   <ItemGroup>
     <Compile Include="Utils\MipConnectorTestInitializer.cs" />
     <Compile Include="Base\Ebay_Tests.cs" />
-    <Compile Include="Tests\DemoshopController_Tests.cs" />
+    <Compile Include="Tests\Demoshop_Controller_Tests.cs" />
     <Compile Include="Mocks\EbayMockHelper.pvt.DemoshopStoreManager.cs" />
     <Compile Include="Mocks\EbayMockHelper.pvt.SftpHelper.cs" />
     <Compile Include="Mocks\EbayMockHelper.pvt.MipConnector.cs" />
     <Compile Include="Mocks\EbayMockHelper.cs" />
-    <Compile Include="Tests\MipConfiguration_Tests.cs" />
+    <Compile Include="Tests\Ebay_Configuration_Tests.cs" />
     <Compile Include="Tests\MipConnector_Content_Tests.pvt.Utils.cs" />
     <Compile Include="Tests\MipConnector_Content_Tests.cs" />
     <Compile Include="Tests\MipConnector_Main_Tests.cs" />
     <Compile Include="Tests\MipConnector_Zip_Tests.cs" />
     <Compile Include="Tests\MipConnector_Sftp_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\DemoshopStoreManager_Tests.cs" />
+    <Compile Include="Tests\Demoshop_StoreManager_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">

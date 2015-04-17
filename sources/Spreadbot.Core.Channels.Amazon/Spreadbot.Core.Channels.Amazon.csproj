@@ -68,6 +68,7 @@
     <Compile Include="Configuration\Elements\MwsSecretData.cs" />
     <Compile Include="Configuration\Sections\AmazonPublicConfig.cs" />
     <Compile Include="Configuration\Sections\AmazonSecretConfig.cs" />
+    <Compile Include="Configuration\Settings\AmazonSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

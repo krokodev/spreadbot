@@ -56,6 +56,9 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Amazon.MarketplaceWebService">
+      <HintPath>..\..\packages\Spreadbot.Include.1.2.1.31569\lib\net45\Amazon.MarketplaceWebService.dll</HintPath>
+    </Reference>
     <Reference Include="Krokodev.Common">
       <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Krokodev.Common.dll</HintPath>
     </Reference>
@@ -80,6 +83,9 @@
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spreadbot.Include">
+      <HintPath>..\..\packages\Spreadbot.Include.1.2.1.31569\lib\net45\Spreadbot.Include.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -107,9 +113,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\Amazom_Tests.cs" />
+    <Compile Include="Tests\Amazon_MarketplaceWebService_Raw_Tests.cs" />
     <Compile Include="Tests\Amazon_Configuration_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">
@@ -151,19 +157,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\Configs\Amazon.Public.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Configs\Amazon.Secret.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Configs\Amazon.Secret.Sample.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\Configs\Amazon.Secret.Sample.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Channels\" />
     <Folder Include="Mocks\" />
   </ItemGroup>
   <Choose>

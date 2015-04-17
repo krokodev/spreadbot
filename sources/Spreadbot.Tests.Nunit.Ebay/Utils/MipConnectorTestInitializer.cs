@@ -8,9 +8,10 @@ using System.IO;
 using System.Linq;
 using Krokodev.Common.Extensions;
 using MoreLinq;
+using Spreadbot.Core.Channels.Ebay.Configuration;
+using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -49,7 +50,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         private static bool FileExists( MipFeedType feed, MipRequestStatus status, int i )
         {
             return File.Exists(
-                MipSettings.LocalBasePath
+                EbaySettings.LocalBasePath
                     + @"ini\"
                     + string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower()
                 );
@@ -73,8 +74,8 @@ namespace Spreadbot.Nunit.Ebay.Utils
         {
             files.ForEach(
                 file => {
-                    var iniFile = MipSettings.LocalBasePath + @"ini\" + file;
-                    var storeFile = MipSettings.LocalBasePath + @"store\" + file;
+                    var iniFile = EbaySettings.LocalBasePath + @"ini\" + file;
+                    var storeFile = EbaySettings.LocalBasePath + @"store\" + file;
                     var storeFolder = Path.GetDirectoryName( storeFile );
 
                     if( storeFolder == null ) {

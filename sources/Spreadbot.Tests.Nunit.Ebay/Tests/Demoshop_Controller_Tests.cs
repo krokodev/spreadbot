@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Ebay
-// DemoshopController_Tests.cs
+// Demoshop_Controller_Tests.cs
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class DemoshopController_Tests : Ebay_Tests
+    public class Demoshop_Controller_Tests : Ebay_Tests
     {
         [Test]
         public void IndexTest()

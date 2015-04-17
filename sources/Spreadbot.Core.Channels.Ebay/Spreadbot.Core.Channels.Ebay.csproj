@@ -120,7 +120,7 @@
     <Compile Include="Mip\Operations\Results\MipFindRemoteFileResult.cs" />
     <Compile Include="Mip\Operations\Results\MipGetRequestStatusResult.cs" />
     <Compile Include="Mip\Operations\Request\MipRequestStatus.cs" />
-    <Compile Include="Mip\Settings\MipSettings.cs" />
+    <Compile Include="Configuration\Settings\EbaySettings.cs" />
     <Compile Include="Mip\Feed\MipFeedHandler.cs" />
     <Compile Include="Mip\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +143,7 @@
       <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

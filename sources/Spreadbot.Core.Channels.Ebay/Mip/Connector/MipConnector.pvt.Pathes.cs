@@ -4,8 +4,8 @@
 
 using System;
 using System.Globalization;
+using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
@@ -17,7 +17,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return string.Format(
                 @"{0}\{1}.{2}.zip",
-                MipSettings.ZippedFeedsPath,
+                EbaySettings.ZippedFeedsPath,
                 feed,
                 reqId
                 );
@@ -28,7 +28,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return string.Format(
                 "{0}{1}",
-                MipSettings.FeedsPath,
+                EbaySettings.FeedsPath,
                 feed
                 );
         }
@@ -36,7 +36,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // --------------------------------------------------------[]
         private static string LocalRequestResultsFolder()
         {
-            return MipSettings.InboxPath;
+            return EbaySettings.InboxPath;
         }
 
         // --------------------------------------------------------[]
@@ -56,7 +56,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return string.Format(
                 "{0}{1}/{1}.{2}.zip",
-                MipSettings.RemoteBasePath,
+                EbaySettings.RemoteBasePath,
                 feed,
                 reqId
                 );
@@ -67,7 +67,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return string.Format(
                 "{0}{1}/inprocess",
-                MipSettings.RemoteBasePath,
+                EbaySettings.RemoteBasePath,
                 feed
                 );
         }
@@ -89,7 +89,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         {
             return string.Format(
                 "{0}{1}/output/{2}",
-                MipSettings.RemoteBasePath,
+                EbaySettings.RemoteBasePath,
                 feed,
                 DataBasedFolderName( dayShift )
                 );
@@ -98,7 +98,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // ===================================================================================== []
         private static string DataBasedFolderName( int dayShift )
         {
-            var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, MipSettings.TimeZone );
+            var mipNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId( DateTime.UtcNow, EbaySettings.TimeZone );
             var dirTime = mipNow.AddHours( 24*dayShift );
 
             return dirTime.Date.ToString( "MMM-dd-yyy", CultureInfo.CreateSpecificCulture( "en-US" ) );

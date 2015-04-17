@@ -3,7 +3,7 @@
 // Amazon_Configuration_Tests.cs
 
 using NUnit.Framework;
-using Spreadbot.Core.Channels.Amazon.Configuration.Sections;
+using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Nunit.Amazon.Base;
 
 namespace Spreadbot.Nunit.Amazon.Tests
@@ -14,16 +14,15 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Read_Amazon_Config()
         {
-            var configuration = AmazonPublicConfig.Instance;
-            Assert.AreEqual( "https://mws.amazonservices.com", configuration.MwsConnection.ServiceUrl );
-            Assert.AreEqual( "ATVPDKIKX0DER", configuration.MwsConnection.MarketplaceId );
+            Assert.AreEqual( "https://mws.amazonservices.com", AmazonSettings.ServiceUrl );
+            Assert.AreEqual( "ATVPDKIKX0DER", AmazonSettings.MarketplaceId );
         }
 
         [Test]
-        public void Read_Amazon_Security_Config()
+        public void Read_Amazon_Secret_Config()
         {
-            var configuration = AmazonSecretConfig.Instance;
-            Assert.AreEqual( "A39AOPPISH8HQ0", configuration.MwsSecretData.MerchantId, 
+            Assert.AreEqual( "A39AOPPISH8HQ0",
+                AmazonSettings.MerchantId,
                 @"Please edit records in [App_data\Configs\Amazon.Secret.config]" );
         }
     }

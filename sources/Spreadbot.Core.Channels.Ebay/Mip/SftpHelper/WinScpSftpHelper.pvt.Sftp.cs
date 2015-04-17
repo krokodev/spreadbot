@@ -5,10 +5,10 @@
 using System;
 using System.IO;
 using Krokodev.Common.Extensions;
+using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Core.Channels.Ebay.Mip.Settings;
 using WinSCP;
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
@@ -117,10 +117,10 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.SftpHelper
             return new SessionOptions {
                 Protocol = Protocol.Sftp,
                 GiveUpSecurityAndAcceptAnySshHostKey = true,
-                HostName = MipSettings.HostName,
-                PortNumber = MipSettings.PortNumber,
-                UserName = MipSettings.UserName,
-                Password = password ?? MipSettings.Password
+                HostName = EbaySettings.HostName,
+                PortNumber = EbaySettings.PortNumber,
+                UserName = EbaySettings.UserName,
+                Password = password ?? EbaySettings.Password
             };
         }
 
