@@ -104,8 +104,8 @@
     <Compile Include="Configuration\Elements\MipConnection.cs" />
     <Compile Include="Configuration\Elements\MipPaths.cs" />
     <Compile Include="Configuration\Elements\MipSecretData.cs" />
-    <Compile Include="Configuration\Sections\MipPublicConfig.cs" />
-    <Compile Include="Configuration\Sections\MipSecurityConfig.cs" />
+    <Compile Include="Configuration\Sections\EbayPublicConfig.cs" />
+    <Compile Include="Configuration\Sections\EbaySecretConfig.cs" />
     <Compile Include="Mip\Operations\Response\MipResponse.cs" />
     <Compile Include="Mip\Operations\Results\AbstractMipResponseResult.cs" />
     <Compile Include="Mip\Operations\Results\MipZipFeedResult.cs" />

@@ -163,9 +163,9 @@
     <Content Include="App_Data\Channels\eBay\Mip\store\inbox\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\src\.gitignore" />
     <Content Include="App_Data\Channels\eBay\Mip\store\zip\.gitignore" />
-    <Content Include="App_Data\Configs\Mip.Public.config" />
-    <Content Include="App_Data\Configs\Mip.Security.config" />
-    <Content Include="App_Data\Configs\Mip.Security.Sample.config" />
+    <Content Include="App_Data\Configs\Ebay.Public.config" />
+    <Content Include="App_Data\Configs\Ebay.Secret.config" />
+    <Content Include="App_Data\Configs\Ebay.Secret.Sample.config" />
     <Content Include="App_Data\Stores\Demoshop\Data\.gitignore" />
     <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
     <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
@@ -297,7 +297,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>$(SolutionDir)utils\run-script.cmd $(SolutionDir)utils\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config</PreBuildEvent>
+    <PreBuildEvent>$(SolutionDir)utils\run-script.cmd $(SolutionDir)utils\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Ebay.Secret.Sample.config -destination $(ProjectDir)App_Data\Configs\Ebay.Secret.config</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

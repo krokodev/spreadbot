@@ -49,7 +49,7 @@
                 @Html.ActionLink( "Proceed Channel Tasks ({0})".SafeFormat( Model.ChannelTasksInprocess.Count() ), "ProceedChannelTasks" )
             </li>
             <li>
-                [@MipSecurityConfig.Instance.MipSecretData.UserName@("@" + MipPublicConfig.Instance.MipConnection.HostName)]
+                [@EbaySecretConfig.Instance.MipSecretData.UserName@("@" + EbayPublicConfig.Instance.MipConnection.HostName)]
             </li>
         </ul>
     </div>

@@ -7,6 +7,7 @@ password.*
 *.[Ss]ecret.cs
 *-secret-file*.*
 *.[Ss]ecurity.config
+*.[Ss]ecret.config
 !*.[Ss]ample.config
 [Ss]ecret/
 

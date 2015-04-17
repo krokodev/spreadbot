@@ -31,7 +31,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void Read_Mip_Config()
         {
-            var configuration = MipPublicConfig.Instance;
+            var configuration = EbayPublicConfig.Instance;
             Assert.AreEqual( "mip.ebay.com", configuration.MipConnection.HostName );
             Assert.AreEqual( 22, configuration.MipConnection.PortNumber );
         }

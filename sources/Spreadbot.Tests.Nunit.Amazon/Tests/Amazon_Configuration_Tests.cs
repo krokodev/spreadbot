@@ -15,11 +15,9 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             Assert.Inconclusive();
 
-            /*
-            var configuration = MipPublicConfig.Instance;
+/*            var configuration = AmazonPublicConfig.Instance;
             Assert.AreEqual( "mip.ebay.com", configuration.MipConnection.HostName );
-            Assert.AreEqual( 22, configuration.MipConnection.PortNumber );
-*/
+            Assert.AreEqual( 22, configuration.MipConnection.PortNumber );*/
         }
 
         [Test]
@@ -28,7 +26,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert.Inconclusive();
 
             /*
-            var configuration = MipSecurityConfig.Instance;
+            var configuration = EbaySecretConfig.Instance;
             Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName );
 */
         }

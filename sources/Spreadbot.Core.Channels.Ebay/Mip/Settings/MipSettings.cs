@@ -13,63 +13,63 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Settings
         // Mip server
         public static string HostName
         {
-            get { return MipPublicConfig.Instance.MipConnection.HostName; }
+            get { return EbayPublicConfig.Instance.MipConnection.HostName; }
         }
 
         // --------------------------------------------------------[]
         public static int PortNumber
         {
-            get { return MipPublicConfig.Instance.MipConnection.PortNumber; }
+            get { return EbayPublicConfig.Instance.MipConnection.PortNumber; }
         }
 
         // --------------------------------------------------------[]
         public static string UserName
         {
-            get { return MipSecurityConfig.Instance.MipSecretData.UserName; }
+            get { return EbaySecretConfig.Instance.MipSecretData.UserName; }
         }
 
         // --------------------------------------------------------[]
         public static string Password
         {
-            get { return MipSecurityConfig.Instance.MipSecretData.Password; }
+            get { return EbaySecretConfig.Instance.MipSecretData.Password; }
         }
 
         // ===================================================================================== []
         // Local pathes
         public static string ZippedFeedsPath
         {
-            get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.ZippedFeedsPath ); }
+            get { return MapToDataDirectory( EbayPublicConfig.Instance.MipPaths.ZippedFeedsPath ); }
         }
 
         // --------------------------------------------------------[]
         public static string FeedsPath
         {
-            get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.FeedsPath ); }
+            get { return MapToDataDirectory( EbayPublicConfig.Instance.MipPaths.FeedsPath ); }
         }
 
         // --------------------------------------------------------[]
         public static string InboxPath
         {
-            get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.InboxPath ); }
+            get { return MapToDataDirectory( EbayPublicConfig.Instance.MipPaths.InboxPath ); }
         }
 
         // --------------------------------------------------------[]
         public static string LocalBasePath
         {
-            get { return MapToDataDirectory( MipPublicConfig.Instance.MipPaths.BasePath ); }
+            get { return MapToDataDirectory( EbayPublicConfig.Instance.MipPaths.BasePath ); }
         }
 
         // ===================================================================================== []
         // Remote pathes
         public static string RemoteBasePath
         {
-            get { return MipPublicConfig.Instance.MipPaths.RemoteBasePath; }
+            get { return EbayPublicConfig.Instance.MipPaths.RemoteBasePath; }
         }
 
         // --------------------------------------------------------[]
         public static string TimeZone
         {
-            get { return MipPublicConfig.Instance.MipPaths.SftpServerTimeZone; }
+            get { return EbayPublicConfig.Instance.MipPaths.SftpServerTimeZone; }
         }
 
         // ===================================================================================== []

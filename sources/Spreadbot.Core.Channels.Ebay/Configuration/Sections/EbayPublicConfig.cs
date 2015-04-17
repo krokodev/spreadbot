@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipPublicConfig.cs
+// EbayPublicConfig.cs
 
 using System.Configuration;
 using Krokodev.Common.SmartConfiguration;
@@ -8,8 +8,8 @@ using Spreadbot.Core.Channels.Ebay.Configuration.Elements;
 
 namespace Spreadbot.Core.Channels.Ebay.Configuration.Sections
 {
-    [SectionName( "Spreadbot/MipPublic" )]
-    public class MipPublicConfig : SmartConfigurationSection< MipPublicConfig >
+    [SectionName( "Spreadbot/EbayPublic" )]
+    public class EbayPublicConfig : SmartConfigurationSection< EbayPublicConfig >
     {
         [ConfigurationProperty( "MipConnection", IsRequired = true )]
         public MipConnection MipConnection
