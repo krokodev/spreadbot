@@ -63,10 +63,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Elements\AmazonConnection.cs" />
-    <Compile Include="Configuration\Elements\AmazonSecretData.cs" />
+    <Compile Include="Configuration\Elements\MwsPaths.cs" />
+    <Compile Include="Configuration\Elements\MwsConnection.cs" />
+    <Compile Include="Configuration\Elements\MwsSecretData.cs" />
     <Compile Include="Configuration\Sections\AmazonPublicConfig.cs" />
-    <Compile Include="Configuration\Sections\AmazonSecurityConfig.cs" />
+    <Compile Include="Configuration\Sections\AmazonSecretConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

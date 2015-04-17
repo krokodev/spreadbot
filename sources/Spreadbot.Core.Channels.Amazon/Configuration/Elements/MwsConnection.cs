@@ -1,22 +1,22 @@
 // Spreadbot (c) 2015 Krokodev
-// Spreadbot.Core.Channels.Ebay
-// AmazonSecretData.cs
+// Spreadbot.Core.Channels.Amazon
+// MwsConnection.cs
 
 using System.Configuration;
 using Krokodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Channels.Amazon.Configuration.Elements
 {
-    public class AmazonSecretData : SmartConfigurationElement
+    public class MwsConnection : SmartConfigurationElement
     {
-        [ConfigurationProperty( "UserName", IsRequired = true )]
-        public string UserName
+        [ConfigurationProperty( "ServiceUrl", IsRequired = true )]
+        public string ServiceUrl
         {
             get { return ( string ) this[ GetPropertyName() ]; }
         }
 
-        [ConfigurationProperty( "Password", IsRequired = true )]
-        public string Password
+        [ConfigurationProperty( "MarketplaceId", IsRequired = true )]
+        public string MarketplaceId
         {
             get { return ( string ) this[ GetPropertyName() ]; }
         }

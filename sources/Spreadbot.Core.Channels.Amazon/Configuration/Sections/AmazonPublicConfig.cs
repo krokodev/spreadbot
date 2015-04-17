@@ -1,5 +1,5 @@
 ﻿// Spreadbot (c) 2015 Krokodev
-// Spreadbot.Core.Channels.Ebay
+// Spreadbot.Core.Channels.Amazon
 // AmazonPublicConfig.cs
 
 using System.Configuration;
@@ -8,21 +8,19 @@ using Spreadbot.Core.Channels.Amazon.Configuration.Elements;
 
 namespace Spreadbot.Core.Channels.Amazon.Configuration.Sections
 {
-    [SectionName( "Spreadbot/MipPublic" )]
+    [SectionName( "Spreadbot/AmazonPublic" )]
     public class AmazonPublicConfig : SmartConfigurationSection< AmazonPublicConfig >
     {
-        [ConfigurationProperty( "AmazonConnection", IsRequired = true )]
-        public AmazonConnection AmazonConnection
+        [ConfigurationProperty( "MwsConnection", IsRequired = true )]
+        public MwsConnection MwsConnection
         {
-            get { return ( AmazonConnection ) this[ GetMethodName() ]; }
+            get { return ( MwsConnection ) this[ GetMethodName() ]; }
         }
 
-/*
-            [ConfigurationProperty( "MipPaths", IsRequired = true )]
-            public MipPaths MipPaths
-            {
-                get { return ( MipPaths ) this[ GetMethodName() ]; }
-            }
-*/
+        [ConfigurationProperty( "MwsPaths", IsRequired = true )]
+        public MwsPaths MwsPaths
+        {
+            get { return ( MwsPaths ) this[ GetMethodName() ]; }
+        }
     }
 }

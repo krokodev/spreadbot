@@ -120,6 +120,10 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Channels.Amazon\Spreadbot.Core.Channels.Amazon.csproj">
+      <Project>{D2EFA878-B988-466A-98C3-E35A5AC040F7}</Project>
+      <Name>Spreadbot.Core.Channels.Amazon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
       <Name>Spreadbot.Core.Channels.Ebay</Name>
@@ -147,11 +151,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="App_Data\Configs\Amazon.Public.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Configs\Amazon.Secret.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Configs\Amazon.Secret.Sample.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Channels\" />
-    <Folder Include="App_Data\Configs\" />
     <Folder Include="Mocks\" />
   </ItemGroup>
   <Choose>
@@ -175,8 +187,7 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>$(SolutionDir)utils\run-script.cmd $(SolutionDir)utils\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Amazon.Secret.Sample.config -destination $(ProjectDir)App_Data\Configs\Amazon.Secret.config</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

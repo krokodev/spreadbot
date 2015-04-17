@@ -3,6 +3,7 @@
 // Amazon_Configuration_Tests.cs
 
 using NUnit.Framework;
+using Spreadbot.Core.Channels.Amazon.Configuration.Sections;
 using Spreadbot.Nunit.Amazon.Base;
 
 namespace Spreadbot.Nunit.Amazon.Tests
@@ -13,22 +14,16 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Read_Amazon_Config()
         {
-            Assert.Inconclusive();
-
-/*            var configuration = AmazonPublicConfig.Instance;
-            Assert.AreEqual( "mip.ebay.com", configuration.MipConnection.HostName );
-            Assert.AreEqual( 22, configuration.MipConnection.PortNumber );*/
+            var configuration = AmazonPublicConfig.Instance;
+            Assert.AreEqual( "https://mws.amazonservices.com", configuration.MwsConnection.ServiceUrl );
+            Assert.AreEqual( "ATVPDKIKX0DER", configuration.MwsConnection.MarketplaceId );
         }
 
         [Test]
         public void Read_Amazon_Security_Config()
         {
-            Assert.Inconclusive();
-
-            /*
-            var configuration = EbaySecretConfig.Instance;
-            Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName );
-*/
+            var configuration = AmazonSecretConfig.Instance;
+            Assert.AreEqual( "A39AOPPISH8HQ0", configuration.MwsSecretData.MerchantId );
         }
     }
 }
