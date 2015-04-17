@@ -1,13 +1,46 @@
 ﻿@{
+    // Here: View | Reports
     this.ViewBag.Title = "Reports";
     this.Layout = "~/Views/Shared/Layout.cshtml";
 }
+
+
+<div>
+    <h2>April 17 2015</h2>
+    <ul>
+        <li>
+            + Done This Week
+            <ul>
+                <li>The main happiness is that the Amazon services have been linked to our Spreadbot</li>
+                <li>First <a href="http://ci.spreadbot.net/viewLog.html?order=DURATION_DESC&recordsPerPage=20&filterText=Amazon&status=&currentGroup=test_ungrouped&scope=*%23teamcity%23*%23teamcity%23*&pager.currentPage=1&buildTypeId=bt1&buildId=209&tab=testsInfo">
+                    Amazon tests</a> (login as guest please) were made and passed -- the sample product feed was sent</li>
+                <li>Access to Amazon MWS (<a href="http://docs.developer.amazonservices.com/en_US/dev_guide/index.html">Marketplace Web Services</a>) was obtained</li>
+                <li>Nuget package <a href="https://www.nuget.org/packages/Spreadbot.Include/">Spreadbot.Include</a> (contains third-part code, e.g. AmazonMarketplaceServices) was made </li>
+                <li><a href="https://www.nuget.org/packages/krokodev.common/">Krokodev.Common</a> tools were migrated from Crocodev.* </li>
+                <li>Repositiories were moved to the <a href="https://github.com/krokodev">Krokodev domain at GitHub</a> tools</li>
+            </ul>
+
+        </li>
+        <li>
+            - Problems
+            <ul>
+                <li>No problems, all goes according the plan</li>
+            </ul>
+        </li>
+        <li>
+            > Plans for Next Week
+            <ul>
+                <li>Develope additioanal tests to be ready to demonstrate Amazon tools on the <a href="/Demoshop">Demoshop</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
 <div>
     <h2>April 10 2015</h2>
     <ul>
         <li>
-            + Done this week
+            + Done This Week
             <ul>
                 <li>This week was dedicated to the refactoring for being ready to start implement new channel</li>
                 <li>Demo site refactored and code cleaned-up</li>
@@ -26,7 +59,7 @@
             </ul>
         </li>
         <li>
-            > Plans for the next week
+            > Plans for Next Week
             <ul>
                 <li>Buy developer account on Amazon</li>
                 <li>Start TDD with AMWS -- send feed via its API</li>
