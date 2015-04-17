@@ -38,6 +38,7 @@ namespace Spreadbot.Core.Channels.Amazon.Configuration.Settings
         {
             get { return MapToDataDirectory( AmazonPublicConfig.Instance.MwsPaths.FeedsPath ); }
         }
+
         public static string BasePath
         {
             get { return MapToDataDirectory( AmazonPublicConfig.Instance.MwsPaths.BasePath ); }

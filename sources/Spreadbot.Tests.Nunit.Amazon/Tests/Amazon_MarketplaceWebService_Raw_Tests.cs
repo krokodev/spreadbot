@@ -40,7 +40,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
                     new IdList {
                         Id = new List< string >( new[] { AmazonSettings.MarketplaceId } )
                     },
-
                 FeedContent = File.Open( fileName, FileMode.Open, FileAccess.Read ),
                 FeedType = FeedType
             };

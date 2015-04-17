@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using Krokodev.Common.Extensions;
 using MoreLinq;
-using Spreadbot.Core.Channels.Ebay.Configuration;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
