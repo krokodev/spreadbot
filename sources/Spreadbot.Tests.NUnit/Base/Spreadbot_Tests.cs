@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit
-// SpreadbotTestBase.cs
+// Spreadbot_Tests.cs
 
 using System.Globalization;
 using System.Threading;
@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Spreadbot.Nunit.Base
 {
-    public class SpreadbotTestBase
+    public class Spreadbot_Tests
     {
         protected void InitCulture()
         {

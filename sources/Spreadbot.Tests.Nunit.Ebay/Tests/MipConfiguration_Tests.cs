@@ -10,7 +10,7 @@ using Spreadbot.Nunit.Ebay.Base;
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class MipConfigurationEbayTests : SpreadbotEbayTestBase
+    public class MipConfiguration_Tests : Ebay_Tests
     {
         [Test]
         public void Read_Mip_Config()

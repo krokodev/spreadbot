@@ -10,11 +10,12 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Mocks;
+using Spreadbot.Nunit.Ebay.Utils;
 
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class MipConnectorMainEbayTests : SpreadbotEbayTestBase
+    public class MipConnectorMain_Tests : Ebay_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]
@@ -102,7 +103,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void FindRequest_Output()
         {
-            var fakeMipConnector = MockHelper.GetMipConnectorSendingTestFeed();
+            var fakeMipConnector = EbayMockHelper.GetMipConnectorSendingTestFeed();
 
             var feed = new MipFeedHandler( MipFeedType.Product );
             var sendResponse = fakeMipConnector.SendFeed( feed );
@@ -157,7 +158,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void GetRequestStatus_Success()
         {
-            var fakeMipConnector = MockHelper.GetMipConnectorIgnoringInprocessAndSendingTestFeed();
+            var fakeMipConnector = EbayMockHelper.GetMipConnectorIgnoringInprocessAndSendingTestFeed();
 
             var feed = new MipFeedHandler( MipFeedType.Availability );
             var sendResponse = fakeMipConnector.SendFeed( feed );

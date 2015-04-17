@@ -10,13 +10,13 @@ using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Mocks;
+using Spreadbot.Nunit.Ebay.Utils;
 
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public partial class MipConnectorContentEbayTests
+    public partial class MipConnectorContent_Tests
     {
         // --------------------------------------------------------[]
         private static void _TestReadItemId( MipFeedType mipFeedType, IMipConnector mipConnector )
@@ -36,7 +36,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         // --------------------------------------------------------[]
         private static void _TestReadItemId( MipFeedType mipFeedType )
         {
-            _TestReadItemId( mipFeedType, MockHelper.GetMipConnectorUsingLocalData() );
+            _TestReadItemId( mipFeedType, EbayMockHelper.GetMipConnectorUsingLocalData() );
         }
 
         // --------------------------------------------------------[]
@@ -65,7 +65,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         // --------------------------------------------------------[]
         private static void _TestReadAllFeedStatuses( MipFeedType mipFeedType )
         {
-            var fakeMipConnector = MockHelper.GetMipConnectorUsingLocalData();
+            var fakeMipConnector = EbayMockHelper.GetMipConnectorUsingLocalData();
 
             TestReadFeedStatus( mipFeedType, MipRequestStatus.Success, fakeMipConnector );
             TestReadFeedStatus( mipFeedType, MipRequestStatus.Failure, fakeMipConnector );

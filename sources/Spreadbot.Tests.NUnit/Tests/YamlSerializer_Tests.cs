@@ -15,7 +15,7 @@ using YamlDotNet.Serialization;
 namespace Spreadbot.Nunit.Tests
 {
     [TestFixture]
-    public class YamlSerializer_Tests : SpreadbotTestBase
+    public class YamlSerializer_Tests : Spreadbot_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]

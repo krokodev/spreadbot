@@ -6,11 +6,12 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Configuration.Sections;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Nunit.Ebay.Base;
+using Spreadbot.Nunit.Ebay.Utils;
 
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public partial class MipConnectorContentEbayTests : SpreadbotEbayTestBase
+    public partial class MipConnectorContent_Tests : Ebay_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]

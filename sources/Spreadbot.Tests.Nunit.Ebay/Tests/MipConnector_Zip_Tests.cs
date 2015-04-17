@@ -10,11 +10,12 @@ using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
 using Spreadbot.Nunit.Ebay.Base;
+using Spreadbot.Nunit.Ebay.Utils;
 
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class MipConnectorZipEbayTests : SpreadbotEbayTestBase
+    public class MipConnector_Zip_Tests : Ebay_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]

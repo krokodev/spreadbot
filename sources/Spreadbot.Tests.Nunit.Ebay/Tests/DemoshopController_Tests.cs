@@ -9,12 +9,13 @@ using Krokodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
+using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class DemoshopController_Tests
+    public class DemoshopController_Tests : Ebay_Tests
     {
         [Test]
         public void IndexTest()

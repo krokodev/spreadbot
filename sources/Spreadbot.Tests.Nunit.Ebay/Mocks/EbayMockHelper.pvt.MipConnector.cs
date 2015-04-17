@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Ebay
-// MockHelper.pvt.MipConnector.cs
+// EbayMockHelper.pvt.MipConnector.cs
 
 using Moq;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
@@ -9,7 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
-    internal partial class MockHelper
+    internal partial class EbayMockHelper
     {
         private static void ConfigureMipConnectorToSendTestFeed( Mock< MipConnector > mockMipConnector )
         {

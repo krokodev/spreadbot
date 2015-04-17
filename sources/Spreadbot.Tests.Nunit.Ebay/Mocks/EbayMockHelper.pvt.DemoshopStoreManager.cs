@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Ebay
-// MockHelper.pvt.DemoshopStoreManager.cs
+// EbayMockHelper.pvt.DemoshopStoreManager.cs
 
 using Moq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
@@ -15,7 +15,7 @@ using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
-    internal partial class MockHelper
+    internal partial class EbayMockHelper
     {
         private static void ConfigureMipConnectorToCreategSimplePublishOnEbayTask(
             Mock< DemoshopStoreManager > mockDemoshopStoreManager )

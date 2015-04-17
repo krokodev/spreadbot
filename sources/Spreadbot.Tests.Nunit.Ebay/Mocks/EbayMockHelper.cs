@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Ebay
-// MockHelper.cs
+// EbayMockHelper.cs
 
 using Moq;
 using Spreadbot.Core.Abstracts.Store.Manager;
@@ -10,7 +10,7 @@ using Spreadbot.Core.Stores.Demoshop.Manager;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
-    internal partial class MockHelper
+    internal partial class EbayMockHelper
     {
         /// <summary>
         ///     Gets the mip connector using local data.

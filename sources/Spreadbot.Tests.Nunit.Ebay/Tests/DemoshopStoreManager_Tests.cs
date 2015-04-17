@@ -20,7 +20,7 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 namespace Spreadbot.Nunit.Ebay.Tests
 {
     [TestFixture]
-    public class DemoshopStoreManagerEbayTests : SpreadbotEbayTestBase
+    public class DemoshopStoreManager_Tests : Ebay_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]
@@ -171,7 +171,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
         {
-            var store = MockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var store = EbayMockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
 
             var task = store.CreateTask( StoreTaskType.PublishOnEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );

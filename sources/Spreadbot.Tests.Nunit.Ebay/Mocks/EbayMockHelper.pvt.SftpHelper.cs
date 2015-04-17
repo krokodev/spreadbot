@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Ebay
-// MockHelper.pvt.SftpHelper.cs
+// EbayMockHelper.pvt.SftpHelper.cs
 
 using System;
 using System.IO;
@@ -12,7 +12,7 @@ using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
-    internal partial class MockHelper
+    internal partial class EbayMockHelper
     {
         private static void ConfigureSftpHelperToGetContentFromLocalFolder( Mock< WinScpSftpHelper > mockSftpHelper )
         {
