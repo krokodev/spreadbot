@@ -24,7 +24,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void Read_Mip_Security_Config()
         {
             var configuration = EbaySecretConfig.Instance;
-            Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName );
+            Assert.AreEqual( "cyfir", configuration.MipSecretData.UserName,
+                @"Please edit records in [App_data\Configs\Ebay.Secret.config]" );
         }
 
         [Test]

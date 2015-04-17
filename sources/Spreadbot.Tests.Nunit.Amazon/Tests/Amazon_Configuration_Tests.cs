@@ -23,7 +23,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Read_Amazon_Security_Config()
         {
             var configuration = AmazonSecretConfig.Instance;
-            Assert.AreEqual( "A39AOPPISH8HQ0", configuration.MwsSecretData.MerchantId );
+            Assert.AreEqual( "A39AOPPISH8HQ0", configuration.MwsSecretData.MerchantId, 
+                @"Please edit records in [App_data\Configs\Amazon.Secret.config]" );
         }
     }
 }
