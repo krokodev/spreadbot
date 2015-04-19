@@ -10,7 +10,7 @@ password.*
 *.[Ss]ecret.config
 !*.[Ss]ample.config
 [Ss]ecret/
-
+*.pubxml.user
 
 # User-specific files
 *.suo
