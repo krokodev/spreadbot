@@ -61,6 +61,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Elements\MwsPaths.cs" />
@@ -72,7 +74,61 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\Xsd\Image.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="Entities\Xsd\amzn-base.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\amzn-envelope.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\amzn-header.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\FulfillmentCenter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Inventory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Listings.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\OrderAcknowledgement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\OrderAdjustment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\OrderFulfillment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\OrderReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Override.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Price.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\ProcessingReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Product.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\ProductImage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\Relationship.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\Xsd\SettlementReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Manager\" />
