@@ -74,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\Xsd\readme.txt">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Entities\Xsd\Health.xsd">
       <SubType>Designer</SubType>
     </None>

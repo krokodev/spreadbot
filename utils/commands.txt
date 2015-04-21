@@ -1,3 +1,5 @@
+<!--
+
 # Test Output
 $(SolutionDir)\scripts\run-script.cmd $(SolutionDir)\scripts\test-output.ps1 $(TargetPath) $(ProjectFileName) $(TargetFileName)
 
@@ -6,3 +8,5 @@ $(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.
 
 # Restore Mip.Security.config From Default
 $(SolutionDir)scripts\run-script.cmd $(SolutionDir)scripts\restore-default-file.ps1 -source $(ProjectDir)App_Data\Configs\Mip.Security.Sample.config -destination $(ProjectDir)App_Data\Configs\Mip.Security.config
+
+-->
