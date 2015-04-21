@@ -157,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.New.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
