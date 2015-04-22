@@ -113,7 +113,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\Amazom_Tests.cs" />
-    <Compile Include="Tests\Amazon_MarketplaceWebService_Tests.cs" />
+    <Compile Include="Tests\Amazon_MarketplaceWebService_Raw_Tests.cs" />
     <Compile Include="Tests\Amazon_Configuration_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
