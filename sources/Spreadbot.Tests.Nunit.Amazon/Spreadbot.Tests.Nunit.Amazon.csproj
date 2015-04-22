@@ -113,7 +113,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\Amazom_Tests.cs" />
-    <Compile Include="Tests\Amazon_MarketplaceWebService_Raw_Tests.cs" />
+    <Compile Include="Tests\Amazon_MarketplaceWebService_Tests.cs" />
     <Compile Include="Tests\Amazon_Configuration_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,16 +157,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="App_Data\Channels\Amazon\Mws\Samples\PriceTest.Feed.xml">
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\SB_AMZ_002\Price.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Inventory.Test.Feed.xml">
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\SB_AMZ_002\Inventory.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Image.Test.Feed.xml">
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\SB_AMZ_002\Image.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.xml">
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\SB_AMZ_002\Product.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Configs\Amazon.Public.config">

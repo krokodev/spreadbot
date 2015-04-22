@@ -15,6 +15,12 @@ namespace Spreadbot.Core.Channels.Amazon.Configuration.Elements
             get { return ( string ) this[ GetPropertyName() ]; }
         }
 
+        [ConfigurationProperty( "XmlMerchantIdentifier", IsRequired = true )]
+        public string XmlMerchantIdentifier
+        {
+            get { return ( string ) this[ GetPropertyName() ]; }
+        }
+
         [ConfigurationProperty( "AwsAccessKeyId", IsRequired = true )]
         public string AwsAccessKeyId
         {

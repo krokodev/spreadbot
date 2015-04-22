@@ -28,7 +28,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spreadbot.Core.Abstracts", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{46D2FC64-EF31-464B-BE32-13B4AFEF5ABD}"
 	ProjectSection(SolutionItems) = preProject
-		utils\commands.txt = utils\commands.txt
 		utils\restore-default-file.ps1 = utils\restore-default-file.ps1
 		utils\run-script.cmd = utils\run-script.cmd
 		utils\sample.ps1 = utils\sample.ps1
