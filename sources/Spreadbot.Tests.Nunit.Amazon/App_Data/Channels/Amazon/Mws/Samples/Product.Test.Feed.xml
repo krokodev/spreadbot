@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-
-<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:noNamespaceSchemaLocation="https://images-na.ssl-images-amazon.com/images/G/01/rainier/help/xsd/release_4_1/amzn-envelope.xsd">
+<!--_POST_PRODUCT_DATA_-->
+<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Header>
     <DocumentVersion>1.01</DocumentVersion>
-    <MerchantIdentifier>M_EXAMPLE_123456</MerchantIdentifier>
+    <MerchantIdentifier>M_ROMANKOSHE_3199551</MerchantIdentifier>
   </Header>
   <MessageType>Product</MessageType>
   <PurgeAndReplace>false</PurgeAndReplace>
@@ -12,31 +11,23 @@
     <MessageID>1</MessageID>
     <OperationType>Update</OperationType>
     <Product>
-      <SKU>56789</SKU>
-      <StandardProductID>
-        <Type>ASIN</Type>
-        <Value>B0EXAMPLEG</Value>
-      </StandardProductID>
+      <SKU>SB_AMZ_002</SKU>
       <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
       <DescriptionData>
-        <Title>Example Product Title</Title>
-        <Brand>Example Product Brand</Brand>
-        <Description>This is an example product description.</Description>
-        <BulletPoint>Example Bullet Point 1</BulletPoint>
-        <BulletPoint>Example Bullet Point 2</BulletPoint>
-        <MSRP currency="USD">25.19</MSRP>
-        <Manufacturer>Example Product Manufacturer</Manufacturer>
-        <ItemType>example-item-type</ItemType>
+        <Title>Spreadbot Test Item [Attention: Not for Sale!]</Title>
+        <Brand>Spreadbot</Brand>
+        <Description>This item is for test purpose only! Please don't try to order it.</Description>
+        <BulletPoint>Spreadbot is a .Net opensource multichannel manager.</BulletPoint>
+        <BulletPoint>It obtains products from Virto Commerce stores and lists them on such channels as eBay, Amazon etc.</BulletPoint>
+        <BulletPoint>Using Spreadbot you can easy create, update and manage plural sets of listings on numerous channels.</BulletPoint>
+        <MSRP currency="USD">11.22</MSRP>
+        <Manufacturer>Krokodev</Manufacturer>
+        <ItemType>arts-and-crafts-glue-guns</ItemType>
       </DescriptionData>
       <ProductData>
-        <Health>
-          <ProductType>
-            <HealthMisc>
-              <Ingredients>Example Ingredients</Ingredients>
-              <Directions>Example Directions</Directions>
-            </HealthMisc>
-          </ProductType>
-        </Health>
+        <Miscellaneous>
+          <ProductType>Crafts</ProductType>
+        </Miscellaneous>
       </ProductData>
     </Product>
   </Message>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--_POST_PRODUCT_IMAGE_DATA_-->
 <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Header>
     <DocumentVersion>1.01</DocumentVersion>
@@ -12,7 +12,7 @@
     <ProductImage>
       <SKU>SB_AMZ_002</SKU>
       <ImageType>Main</ImageType>
-      <ImageLocation>http://venturebeat.com/wp-content/uploads/2014/03/nao-robot.jpg</ImageLocation>
+      <ImageLocation>http://country929.com/files/2015/03/botrobot.jpg</ImageLocation>
     </ProductImage>
   </Message>
   <Message>
@@ -21,7 +21,7 @@
     <ProductImage>
       <SKU>SB_AMZ_002</SKU>
       <ImageType>PT1</ImageType>
-      <ImageLocation>http://country929.com/files/2015/03/botrobot.jpg</ImageLocation>
+      <ImageLocation>http://venturebeat.com/wp-content/uploads/2014/03/nao-robot.jpg</ImageLocation>
     </ProductImage>
   </Message>
 </AmazonEnvelope>
