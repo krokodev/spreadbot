@@ -157,7 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.New.xml">
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\PriceTest.Feed.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Inventory.Test.Feed.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Channels\Amazon\Mws\Samples\Image.Test.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Channels\Amazon\Mws\Samples\Product.Test.Feed.xml">
