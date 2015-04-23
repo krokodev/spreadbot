@@ -1,10 +1,11 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Amazon
-// Amazon_MarketplaceWebService_Tests.cs
+// Amazon_MarketplaceWebService_Raw_Tests.cs
 
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Krokodev.Common.Extensions;
 using MarketplaceWebService;
 using MarketplaceWebService.Model;
@@ -44,38 +45,74 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Recent_Feed_Submissions_Completed_Without_Errors()
         {
-            var response = GetFeedSubmissionDoneList();
-            if( response.GetFeedSubmissionListResult.HasNext ) {
-                Assert.Inconclusive("Too many feed submissionsm need to use Next Token");
+            try {
+                var response = GetFeedSubmissionDoneList();
+                if( response.GetFeedSubmissionListResult.HasNext ) {
+                    Assert.Inconclusive( "Too many completed feed submissions, need to use Next Token" );
+                }
+
+                const int maxCount = 5;
+                var recentFeedSubmissionIds =
+                    response.GetFeedSubmissionListResult.FeedSubmissionInfo.Where( info => info.IsSetFeedSubmissionId() )
+                        .Reverse()
+                        .ToList();
+                var recentNIds =
+                    recentFeedSubmissionIds.Skip( Math.Max( 0, recentFeedSubmissionIds.Count() - maxCount ) ).ToList();
+                if( !recentNIds.Any() ) {
+                    Assert.Inconclusive( "No completed feed submissions" );
+                }
+
+                recentNIds.ForEach( info => {
+                    Console.WriteLine();
+                    Console.WriteLine( info.SubmittedDate );
+                    Console.WriteLine( info.FeedSubmissionId );
+                    var resultResponse = GetFeedSubmissionStatus( info.FeedSubmissionId );
+                    Console.WriteLine( resultResponse );
+                    Assert_That_Text_Contains( resultResponse, "<MessagesWithError>0</MessagesWithError>" );
+                    Assert_That_Text_Contains( resultResponse, "<MessagesWithWarning>0</MessagesWithWarning>" );
+                } );
             }
-
-            response.GetFeedSubmissionListResult.FeedSubmissionInfo.ForEach( info => {
-                Console.WriteLine(info.FeedSubmissionId);
-                // Code: Todo:> Check recent 10 ids with service.GetFeedSubmissionResult(..)
-            } );
+            catch( MarketplaceWebServiceException e ) {
+                if( e.Message.Contains( "Request is throttled" ) ) {
+                    Assert.Inconclusive("Request is throttled");
+                }
+            }
         }
-
 
         // ===================================================================================== []
         // Utils
-        private GetFeedSubmissionListResponse GetFeedSubmissionDoneList()
+        private static string GetFeedSubmissionStatus( string feedSubmissionId )
         {
-            var service = InitService();
+            var resultFileName = @"{0}Samples\SB_AMZ_002\tmp\result.{1}.xml".SafeFormat( AmazonSettings.BasePath,
+                feedSubmissionId );
+
+            using( var stream = File.Open( resultFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite ) ) {
+                var service = GetService();
+                var request = new GetFeedSubmissionResultRequest {
+                    Merchant = AmazonSettings.MerchantId,
+                    FeedSubmissionId = feedSubmissionId,
+                    FeedSubmissionResult = stream
+                };
+                service.GetFeedSubmissionResult( request );
+            }
+            return File.ReadAllText( resultFileName );
+        }
+
+        private static GetFeedSubmissionListResponse GetFeedSubmissionDoneList()
+        {
+            var service = GetService();
             var request = new GetFeedSubmissionListRequest {
                 Merchant = AmazonSettings.MerchantId,
                 MaxCount = 100,
                 SubmittedFromDate = DateTime.Today,
-                FeedProcessingStatusList = new StatusList { Status = {"_DONE_"}}
-                
+                FeedProcessingStatusList = new StatusList { Status = { "_DONE_" } }
             };
-
-            var mwsResponse = service.GetFeedSubmissionList( request);
-            Console.WriteLine( mwsResponse.ToXML() );
-            return mwsResponse;
+            return service.GetFeedSubmissionList( request );
         }
+
         private static void SubmitFeed( string feedName, string feedType )
         {
-            var service = InitService();
+            var service = GetService();
 
             var fileName = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml".SafeFormat( AmazonSettings.BasePath, feedName );
 
@@ -96,18 +133,18 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert.That( mwsResponse.SubmitFeedResult.FeedSubmissionInfo.FeedProcessingStatus == "_SUBMITTED_" );
         }
 
-        private static MarketplaceWebServiceClient InitService()
+        private static MarketplaceWebServiceClient GetService()
         {
-            var config = new MarketplaceWebServiceConfig();
+            var mwsConfig = new MarketplaceWebServiceConfig();
 
-            config.SetUserAgentHeader( "", "", "C#" );
+            mwsConfig.SetUserAgentHeader( "Speadbot", "1.0", "C#" );
 
-            config.ServiceURL = AmazonSettings.ServiceUrl;
+            mwsConfig.ServiceURL = AmazonSettings.ServiceUrl;
 
             return new MarketplaceWebServiceClient(
                 AmazonSettings.AwsAccessKeyId,
                 AmazonSettings.AwsSecretAccessKey,
-                config );
+                mwsConfig );
         }
     }
 }
