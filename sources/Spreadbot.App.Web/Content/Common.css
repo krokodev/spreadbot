@@ -3,6 +3,7 @@
 // Global elements
 */
 
+@import "http://ci.spreadbot.net/css/status/externalStatus.css";
 
 p, div, h1, h2, h3, h4, h5, h6, img, pre, form, fieldset, a, span {
     color: inherit;
