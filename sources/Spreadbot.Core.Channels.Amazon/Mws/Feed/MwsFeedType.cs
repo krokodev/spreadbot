@@ -8,7 +8,8 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Feed
     {
         None,
         Product,
-        Availability,
-        Distribution
+        Inventory,
+        Price,
+        Image
     }
 }

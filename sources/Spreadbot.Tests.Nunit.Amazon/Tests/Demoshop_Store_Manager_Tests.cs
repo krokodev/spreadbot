@@ -12,7 +12,7 @@ using Spreadbot.Sdk.Common.Operations.Tasks;
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
-    public class Demoshop_StoreManager_Tests : Amazom_Tests
+    public class Demoshop_Store_Manager_Tests : Amazom_Tests
     {
         // --------------------------------------------------------[]
         [SetUp]

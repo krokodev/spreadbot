@@ -1,6 +1,0 @@
-<inventoryRequest>
-  <inventory>
-    <SKU>{item.sku}</SKU>
-    <totalShipToHomeQuantity>{item.quantity}</totalShipToHomeQuantity>
-  </inventory>
-</inventoryRequest>

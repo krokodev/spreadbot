@@ -16,10 +16,10 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         private static string GetDataFileName()
         {
             try {
-                return DemoshopConfig.Instance.DemoshopPaths.XmlDataFileName.MapPathToDataDirectory();
+                return DemoshopConfig.Instance.DemoshopPaths.DataFile.MapPathToDataDirectory();
             }
-            catch( Exception e ) {
-                throw new SpreadbotException( "Can't get [XmlDataFileName], check [app.config] for Demoshop Section" );
+            catch (Exception e) {
+                throw new SpreadbotException( "Can't get [DataFile] value, check [app.config] for Demoshop Section: \n" +  e.Message );
             }
         }
 
@@ -29,7 +29,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             try {
                 Serializer.Default.Deserialize( this, fileName );
             }
-            catch( Exception ) {
+            catch {
                 Message = "Error: Can't load data".SafeFormat( fileName );
             }
         }

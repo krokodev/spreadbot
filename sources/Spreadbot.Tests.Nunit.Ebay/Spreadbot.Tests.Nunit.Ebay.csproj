@@ -162,9 +162,9 @@
     <Content Include="App_Data\Logs\.gitignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\availability.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\distribution.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\product.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="App.config" />

@@ -2,16 +2,16 @@
 // Spreadbot.Core.Stores
 // DemoshopStoreManager.pvt.Submit.Amazon.cs
 
+using System.Globalization;
+using System.IO;
+using Krokodev.Common.Extensions;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Manager;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Operations.Args;
-using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
+using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -30,8 +30,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
 
             storeTask.AddSubTasks(
                 _CreateAmazonSubmissionSubTask( MwsFeedType.Product ),
-                _CreateAmazonSubmissionSubTask( MwsFeedType.Distribution ),
-                _CreateAmazonSubmissionSubTask( MwsFeedType.Availability )
+                _CreateAmazonSubmissionSubTask( MwsFeedType.Price ),
+                _CreateAmazonSubmissionSubTask( MwsFeedType.Inventory )
                 );
 
             _AddTask( storeTask );
@@ -58,40 +58,44 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         // --------------------------------------------------------[]
         private string FeedContent( MwsFeedType mwsFeedType )
         {
-            /*            var template = FeedTemplate( mipFeedType );
+            var template = FeedTemplate( mwsFeedType );
 
-            switch( mipFeedType ) {
-                case MipFeedType.Product :
+            switch( mwsFeedType ) {
+                case MwsFeedType.Product :
                     return template
                         .Replace( "{item.sku}", Item.Sku )
                         .Replace( "{item.title}", Item.Title )
                         ;
-                case MipFeedType.Availability :
+                case MwsFeedType.Inventory :
                     return template
                         .Replace( "{item.sku}", Item.Sku )
                         .Replace(
                             "{item.quantity}",
                             Item.Quantity.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
-                case MipFeedType.Distribution :
+                case MwsFeedType.Price :
                     return template
                         .Replace( "{item.sku}", Item.Sku )
                         .Replace( "{item.price}",
                             Item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
                         ;
-            }*/
+                case MwsFeedType.Image :
+                    return template
+                        .Replace( "{item.sku}", Item.Sku )
+                        .Replace( "{item.price}",
+                            Item.Price.ToString( CultureInfo.CreateSpecificCulture( "en-US" ) ) )
+                        ;
+            }
 
             throw new SpreadbotException( "Wrong FeedType=[{0}]", mwsFeedType );
         }
 
         // --------------------------------------------------------[]
-        /*
-        private static string FeedTemplate( MipFeedType mipFeedType )
+        private static string FeedTemplate( MwsFeedType mwsFeedType )
         {
-            var templateFolder = DemoshopConfig.Instance.DemoshopPaths.XmlTemplatesPath.MapPathToDataDirectory();
-            var xmlTemplateFilePath = string.Format( @"{0}{1}.xml", templateFolder, mipFeedType );
+            var templateFolder = DemoshopConfig.Instance.DemoshopPaths.AmazonTemplatesDir.MapPathToDataDirectory();
+            var xmlTemplateFilePath = string.Format( @"{0}{1}.xml", templateFolder, mwsFeedType );
             return File.ReadAllText( xmlTemplateFilePath );
         }
-*/
     }
 }

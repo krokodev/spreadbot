@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Configuration.Sections
     [SectionName( "Spreadbot/Demoshop" )]
     public class DemoshopConfig : SmartConfigurationSection< DemoshopConfig >
     {
-        [ConfigurationProperty( "DemoshopPaths", IsRequired = true )]
+        [ConfigurationProperty( "DemoshopPaths", IsRequired = false )]
         public DemoshopPaths DemoshopPaths
         {
             get { return ( DemoshopPaths ) this[ GetMethodName() ]; }

@@ -7,16 +7,23 @@ using Krokodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Stores.Demoshop.Configuration.Elements
 {
+    // Code: DemoshopPaths 
     public class DemoshopPaths : SmartConfigurationElement
     {
-        [ConfigurationProperty( "XmlTemplatesPath", IsRequired = true )]
-        public string XmlTemplatesPath
+        [ConfigurationProperty( "AmazonTemplatesDir", IsRequired = false )]
+        public string AmazonTemplatesDir
         {
             get { return ( string ) this[ GetPropertyName() ]; }
         }
 
-        [ConfigurationProperty( "XmlDataFileName", IsRequired = true )]
-        public string XmlDataFileName
+        [ConfigurationProperty( "EbayTemplatesDir", IsRequired = false )]
+        public string EbayTemplatesDir
+        {
+            get { return ( string ) this[ GetPropertyName() ]; }
+        }
+
+        [ConfigurationProperty( "DataFile", IsRequired = true )]
+        public string DataFile
         {
             get { return ( string ) this[ GetPropertyName() ]; }
         }

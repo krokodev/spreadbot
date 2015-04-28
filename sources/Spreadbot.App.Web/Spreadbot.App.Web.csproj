@@ -167,9 +167,9 @@
     <Content Include="App_Data\Configs\Ebay.Secret.config" />
     <Content Include="App_Data\Configs\Ebay.Secret.Sample.config" />
     <Content Include="App_Data\Stores\Demoshop\Data\.gitignore" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\availability.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\distribution.xml" />
-    <Content Include="App_Data\Stores\Demoshop\Templates\product.xml">
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\availability.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\distribution.xml" />
+    <Content Include="App_Data\Stores\Demoshop\Templates\Ebay\product.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Tasks.css" />
@@ -249,7 +249,9 @@
       <Name>Spreadbot.Sdk.Tools</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Stores\Demoshop\Templates\Amazon\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
