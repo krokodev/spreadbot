@@ -42,8 +42,8 @@
 @helper ItemIdLink( IAbstractTask task )
 {
     try {
-        if( task is EbayPublishTask ) {
-            @TryEbayItemIdLink( ( EbayPublishTask ) task )
+        if( task is EbaySubmissionTask ) {
+            @TryEbayItemIdLink( ( EbaySubmissionTask ) task )
         }
     }
     catch {
@@ -51,9 +51,9 @@
     }
 }
 
-@helper TryEbayItemIdLink( EbayPublishTask task )
+@helper TryEbayItemIdLink( EbaySubmissionTask task )
 {
-    var itemId = task.EbayPublishResponse.Result.MipItemId;
+    var itemId = task.EbaySubmissionResponse.Result.MipItemId;
     <a href="http://www.ebay.com/itm/@itemId">@itemId</a>
 }
 

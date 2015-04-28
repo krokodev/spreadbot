@@ -68,9 +68,9 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         }
 
         // --------------------------------------------------------[]
-        public IEnumerable< EbayPublishTask > GetEbayPublishTasks()
+        public IEnumerable< EbaySubmissionTask > GetEbaySubmissionTasks()
         {
-            return GetChannelTasks().OfType< EbayPublishTask >();
+            return GetChannelTasks().OfType< EbaySubmissionTask >();
         }
 
         // --------------------------------------------------------[]

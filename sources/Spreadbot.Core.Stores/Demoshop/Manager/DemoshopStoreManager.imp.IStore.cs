@@ -30,8 +30,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         public virtual IStoreTask CreateTask( StoreTaskType taskType )
         {
             switch( taskType ) {
-                case StoreTaskType.PublishOnEbay :
-                    return CreateTaskPublishOnEbay();
+                case StoreTaskType.SubmitToEbay :
+                    return CreateEbaySubmissionTask();
                 default :
                     throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
             }

@@ -10,7 +10,7 @@ namespace Spreadbot.Core.Abstracts.Channel.Manager
     {
         public abstract string Id { get; }
 
-        public abstract void RunPublishTask( IChannelTask task );
+        public abstract void RunSubmissionTask( IChannelTask task );
 
         public abstract void ProceedTask( IChannelTask channelTask );
     }

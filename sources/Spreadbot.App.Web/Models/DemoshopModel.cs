@@ -64,9 +64,9 @@ namespace Spreadbot.App.Web.Models
             StoreManager.SetItemToDefault();
         }
 
-        public void CreateTaskPublishItemOnEbay()
+        public void CreateEbaySubmissionTask()
         {
-            StoreManager.CreateTask( StoreTaskType.PublishOnEbay );
+            StoreManager.CreateTask( StoreTaskType.SubmitToEbay );
         }
 
         public void DeleteTasks()

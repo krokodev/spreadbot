@@ -1,6 +1,6 @@
 ﻿@using Krokodev.Common.Extensions
 @using Spreadbot.Core.Channels.Ebay.Configuration.Sections
-@model Spreadbot.App.Web.Models.DemoshopModel 
+@model  Spreadbot.App.Web.Models.DemoshopModel 
 @{
     // Here: View | Demoshop
     ViewBag.Title = "Demoshop";
@@ -9,7 +9,7 @@
 
 
 <div>
-    <p>Edit your Item, then publish it on eBay, check the publishing process and view the result</p>
+    <p>Edit your Item, then submit it to eBay, check the sumtission process and view the result</p>
 
     @Shared.ShowMessage( Model.Message )
 
@@ -28,7 +28,7 @@
         @TaskView.ShowTasks( Model.StoreTasks )
         <ul>
             <li>
-                @Html.ActionLink( "Add task:", "AddTask" ) @("Publish [{0}] on eBay".SafeFormat( Model.Item ))
+                @Html.ActionLink( "Add task:", "AddTask" ) @("Submit [{0}] to eBay".SafeFormat( Model.Item ))
             </li>
             <li>
                 Remove all tasks [@Html.ActionLink( "remove", "DeleteTasks" )]

@@ -34,7 +34,7 @@ namespace Spreadbot.App.Web.Controllers
         public ActionResult AddTask()
         {
             using( var model = new DemoshopModel() ) {
-                model.CreateTaskPublishItemOnEbay();
+                model.CreateEbaySubmissionTask();
                 model.Message = "Task added";
             }
             return RedirectToAction( "Index" );

@@ -82,7 +82,7 @@
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.imp.IStore.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Item.cs" />
-    <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Publish.cs" />
+    <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Submit.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Tasks.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Utils.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.state.cs" />

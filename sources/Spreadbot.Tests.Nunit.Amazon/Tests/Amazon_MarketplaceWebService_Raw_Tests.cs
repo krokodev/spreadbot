@@ -74,7 +74,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             }
             catch( MarketplaceWebServiceException e ) {
                 if( e.Message.Contains( "Request is throttled" ) ) {
-                    Assert.Inconclusive("Request is throttled");
+                    Assert.Inconclusive( "Request is throttled" );
                 }
             }
         }

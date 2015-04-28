@@ -10,15 +10,15 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
     public partial class EbayChannelManager
     {
         // --------------------------------------------------------[]
-        public override void RunPublishTask( IChannelTask task )
+        public override void RunSubmissionTask( IChannelTask task )
         {
-            DoRunPublishTask( ( EbayPublishTask ) task );
+            DoRunSubmissionTask( ( EbaySubmissionTask ) task );
         }
 
         // --------------------------------------------------------[]
         public override void ProceedTask( IChannelTask channelTask )
         {
-            DoProceedTask( ( EbayPublishTask ) channelTask );
+            DoProceedTask( ( EbaySubmissionTask ) channelTask );
         }
 
         // --------------------------------------------------------[]

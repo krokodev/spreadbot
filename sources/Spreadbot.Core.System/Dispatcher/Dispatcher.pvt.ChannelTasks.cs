@@ -22,8 +22,8 @@ namespace Spreadbot.Core.System.Dispatcher
             }
 
             switch( task.ChannelMethod ) {
-                case ChannelMethod.Publish :
-                    FindChannel( task.ChannelId ).RunPublishTask( task );
+                case ChannelMethod.Submit :
+                    FindChannel( task.ChannelId ).RunSubmissionTask( task );
                     break;
                 default :
                     throw new SpreadbotTaskException( "Unexpected task operation [{0}]", task.ChannelMethod );

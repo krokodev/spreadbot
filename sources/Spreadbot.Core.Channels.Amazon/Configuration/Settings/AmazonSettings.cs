@@ -38,7 +38,6 @@ namespace Spreadbot.Core.Channels.Amazon.Configuration.Settings
         {
             get { return AmazonSecretConfig.Instance.MwsSecretData.XmlMerchantIdentifier; }
         }
-        
 
         public static string FeedsPaths
         {
@@ -54,7 +53,5 @@ namespace Spreadbot.Core.Channels.Amazon.Configuration.Settings
         {
             return path.MapPathToDataDirectory();
         }
-
-        
     }
 }

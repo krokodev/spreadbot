@@ -33,10 +33,10 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
         // --------------------------------------------------------[]
         [Test]
-        public void Create_Task_PublishItemOnEbay()
+        public void Create_Task_Submit_Item_To_Ebay()
         {
             var store = new DemoshopStoreManager();
-            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
+            var task = store.CreateTask( StoreTaskType.SubmitToEbay );
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
             Assert.IsNull( task.AbstractResponse );
@@ -45,38 +45,38 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
         // --------------------------------------------------------[]
         [Test]
-        public void Run_Task_PublishItemOnEbay()
+        public void Run_Task_Submit_Item_To_Ebay()
         {
             var store = new DemoshopStoreManager();
-            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
+            var task = store.CreateTask( StoreTaskType.SubmitToEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
-            task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse );
-                Console.WriteLine( t.EbayPublishResponse );
+            task.AbstractSubTasks.OfType< EbaySubmissionTask >().ForEach( t => {
+                IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
+                Console.WriteLine( t.EbaySubmissionResponse );
                 Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
-                Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
             } );
             Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
         }
 
         // --------------------------------------------------------[]
         [Test]
-        public void Proceed_Task_PublishItemOnEbay()
+        public void Proceed_Task_Submit_Item_To_Ebay()
         {
             try {
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
-                var task = store.CreateTask( StoreTaskType.PublishOnEbay );
+                var task = store.CreateTask( StoreTaskType.SubmitToEbay );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
-                task.AbstractSubTasks.OfType< EbayPublishTask >().ForEach( t => {
-                    IgnoreMipQueueDepthErrorMessage( t.EbayPublishResponse );
+                task.AbstractSubTasks.OfType< EbaySubmissionTask >().ForEach( t => {
+                    IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
                 } );
                 Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
             }
@@ -91,7 +91,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         {
             var store = new DemoshopStoreManager();
 
-            store.CreateTask( StoreTaskType.PublishOnEbay );
+            store.CreateTask( StoreTaskType.SubmitToEbay );
             store.SaveData();
             store.DeleteAllTasks();
             store.LoadData();
@@ -101,7 +101,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             var feeds =
                 store.GetChannelTasks()
-                    .OfType< EbayPublishTask >()
+                    .OfType< EbaySubmissionTask >()
                     .Select( t => t.Args.MipFeedHandler.Type )
                     .OrderBy( f => f.ToString() ).ToArray();
 
@@ -113,13 +113,13 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
         // --------------------------------------------------------[]
         [Test]
-        public void Create_Run_SaveRestore_Proceed_Task_PublishItemOnEbay()
+        public void Create_Run_SaveRestore_Proceed_Task_Submit_Item_To_Ebay()
         {
             try {
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
 
-                store.CreateTask( StoreTaskType.PublishOnEbay );
+                store.CreateTask( StoreTaskType.SubmitToEbay );
                 store.SaveData();
                 store.LoadData();
 
@@ -132,11 +132,11 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 Assert.AreEqual( 1, store.StoreTasks.Count );
                 Assert.AreEqual( 3, store.GetChannelTasks().Count() );
 
-                store.GetEbayPublishTasks().ForEach( t => {
+                store.GetEbaySubmissionTasks().ForEach( t => {
                     Console.WriteLine();
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                    Assert.IsNotNull( t.EbayPublishResponse.Result.MipRequestId );
+                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
                     Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );
             }
@@ -153,7 +153,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 var dispatcher = Dispatcher.Instance;
                 var store = new DemoshopStoreManager();
 
-                store.CreateTask( StoreTaskType.PublishOnEbay );
+                store.CreateTask( StoreTaskType.SubmitToEbay );
                 Assert_That_Last_Update_Time_is_Correct( store );
 
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
@@ -169,11 +169,11 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
         // --------------------------------------------------------[]
         [Test]
-        public void Run_Wrong_Task_PublishItemOnEbay_Contains_Trace_Info()
+        public void Run_Wrong_Task_SubmitItemToEbay_Contains_Trace_Info()
         {
-            var store = EbayMockHelper.GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask();
+            var store = EbayMockHelper.GetDemoshopStoreManagerCreatingSimpleSubmitToEbayTask();
 
-            var task = store.CreateTask( StoreTaskType.PublishOnEbay );
+            var task = store.CreateTask( StoreTaskType.SubmitToEbay );
             Dispatcher.Instance.RunChannelTasks( store.GetChannelTasks() );
 
             Console.WriteLine( task );
@@ -187,7 +187,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void Task_Num_Is_The_Same_After_Reload_Without_Deleting()
         {
             var store = new DemoshopStoreManager();
-            store.CreateTask( StoreTaskType.PublishOnEbay );
+            store.CreateTask( StoreTaskType.SubmitToEbay );
             var taskNum = store.GetChannelTasks().Count();
 
             store.SaveData();
@@ -203,7 +203,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void Task_Num_Is_The_Same_After_Reload_With_Deleting()
         {
             var store = new DemoshopStoreManager();
-            store.CreateTask( StoreTaskType.PublishOnEbay );
+            store.CreateTask( StoreTaskType.SubmitToEbay );
             var taskNum = store.GetChannelTasks().Count();
 
             store.SaveData();
@@ -220,7 +220,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void Task_Keeps_Id_After_Reload()
         {
             var store = new DemoshopStoreManager();
-            var id = store.CreateTask( StoreTaskType.PublishOnEbay ).Id;
+            var id = store.CreateTask( StoreTaskType.SubmitToEbay ).Id;
 
             store.SaveData();
             store.LoadData();
@@ -233,7 +233,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         // Private
         private static void Assert_That_Last_Update_Time_is_Correct( DemoshopStoreManager store )
         {
-            store.GetEbayPublishTasks()
+            store.GetEbaySubmissionTasks()
                 .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 45 ).Seconds ); } );
         }
     }

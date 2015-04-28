@@ -8,7 +8,6 @@ using System.Linq;
 using Krokodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.App.Web.Models;
-using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
@@ -23,7 +22,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var message = "";
             using( var m = new DemoshopModel() ) {
                 m.DeleteTasks();
-                m.CreateTaskPublishItemOnEbay();
+                m.CreateEbaySubmissionTask();
                 m.Message = ( message = "Task [{0}] added".SafeFormat( m.StoreTasks.First().Id ) );
             }
             var model = new DemoshopModel();
@@ -41,13 +40,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var enumerable = tasks.ToList();
             if( enumerable.Count() != 0 ) {
                 foreach( var task in enumerable ) {
-                    var qq1 = task.GetStatusCode();
-
                     task.GetBriefInfo();
-                    var qq2 = task.Id;
-
-                    var qq3 = task as EbayPublishTask;
-
                     ShowTasks( task.AbstractSubTasks );
                 }
             }

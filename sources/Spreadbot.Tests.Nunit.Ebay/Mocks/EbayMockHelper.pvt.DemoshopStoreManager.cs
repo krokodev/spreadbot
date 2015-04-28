@@ -17,13 +17,13 @@ namespace Spreadbot.Nunit.Ebay.Mocks
 {
     internal partial class EbayMockHelper
     {
-        private static void ConfigureMipConnectorToCreategSimplePublishOnEbayTask(
+        private static void ConfigureMipConnectorToCreategSimpleSubmitToEbayTask(
             Mock< DemoshopStoreManager > mockDemoshopStoreManager )
         {
             var store = mockDemoshopStoreManager.Object;
             mockDemoshopStoreManager
                 .Setup(
-                    mock => mock.CreateTask( It.Is< StoreTaskType >( type => type == StoreTaskType.PublishOnEbay ) ) )
+                    mock => mock.CreateTask( It.Is< StoreTaskType >( type => type == StoreTaskType.SubmitToEbay ) ) )
                 .Returns(
                     () => {
                         var storeTask =
@@ -32,12 +32,12 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                                 Description = "Fake Task"
                             };
                         storeTask.AddSubTasks(
-                            new EbayPublishTask {
+                            new EbaySubmissionTask {
                                 IsCritical = true,
                                 MipRequestStatusCode = MipRequestStatus.Unknown,
                                 ChannelId = EbayChannelManager.Instance.Id,
-                                ChannelMethod = ChannelMethod.Publish,
-                                Args = new EbayPublishArgs {
+                                ChannelMethod = ChannelMethod.Submit,
+                                Args = new EbaySubmissionArgs {
                                     MipFeedHandler = new MipFeedHandler( MipFeedType.None ) {
                                         Content = "Fake Content",
                                         ItemInfo = "Fake Item"

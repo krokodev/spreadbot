@@ -9,7 +9,7 @@ namespace Spreadbot.Core.Abstracts.Channel.Manager
     public interface IChannelManager
     {
         string Id { get; }
-        void RunPublishTask( IChannelTask task );
+        void RunSubmissionTask( IChannelTask task );
         void ProceedTask( IChannelTask task );
     }
 }

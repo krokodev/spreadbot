@@ -7,6 +7,6 @@ namespace Spreadbot.Core.Abstracts.Channel.Operations.Methods
     public enum ChannelMethod
     {
         Unknown,
-        Publish
+        Submit
     }
 }

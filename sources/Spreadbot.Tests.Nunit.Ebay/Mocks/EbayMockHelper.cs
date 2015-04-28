@@ -12,10 +12,6 @@ namespace Spreadbot.Nunit.Ebay.Mocks
 {
     internal partial class EbayMockHelper
     {
-        /// <summary>
-        ///     Gets the mip connector using local data.
-        /// </summary>
-        /// <returns></returns>
         public static IMipConnector GetMipConnectorUsingLocalData()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -27,10 +23,6 @@ namespace Spreadbot.Nunit.Ebay.Mocks
             return mockMipConnector.Object;
         }
 
-        /// <summary>
-        ///     Gets the mip connector ignoring inprocess and sending test feed.
-        /// </summary>
-        /// <returns></returns>
         public static IMipConnector GetMipConnectorIgnoringInprocessAndSendingTestFeed()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -43,10 +35,6 @@ namespace Spreadbot.Nunit.Ebay.Mocks
             return mockMipConnector.Object;
         }
 
-        /// <summary>
-        ///     Gets the mip connector sending test feed.
-        /// </summary>
-        /// <returns></returns>
         public static IMipConnector GetMipConnectorSendingTestFeed()
         {
             var mockMipConnector = new Mock< MipConnector > { CallBase = true };
@@ -56,15 +44,11 @@ namespace Spreadbot.Nunit.Ebay.Mocks
             return mockMipConnector.Object;
         }
 
-        /// <summary>
-        ///     Gets the DemoshopStoreManager creating simple publish on ebay task.
-        /// </summary>
-        /// <returns></returns>
-        public static IStoreManager GetDemoshopStoreManagerCreatingSimplePublishOnEbayTask()
+        public static IStoreManager GetDemoshopStoreManagerCreatingSimpleSubmitToEbayTask()
         {
             var mockDemoshopStoreManager = new Mock< DemoshopStoreManager > { CallBase = true };
 
-            ConfigureMipConnectorToCreategSimplePublishOnEbayTask( mockDemoshopStoreManager );
+            ConfigureMipConnectorToCreategSimpleSubmitToEbayTask( mockDemoshopStoreManager );
 
             return mockDemoshopStoreManager.Object;
         }

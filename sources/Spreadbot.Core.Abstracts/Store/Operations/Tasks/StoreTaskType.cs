@@ -7,6 +7,7 @@ namespace Spreadbot.Core.Abstracts.Store.Operations.Tasks
     public enum StoreTaskType
     {
         Unknown,
-        PublishOnEbay
+        SubmitToEbay,
+        SubmitToAmazon
     }
 }

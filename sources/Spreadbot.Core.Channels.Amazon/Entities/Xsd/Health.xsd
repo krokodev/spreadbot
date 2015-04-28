@@ -8,16 +8,13 @@
   confidential and proprietary information of Amazon.com and may not be reproduced,distributed or used, in whole or in part, for any purpose other than as necessary to list products for sale on the www.amazon.com web site pursuant to an agreement with Amazon.com.
   -->
 
-  
-  
-  
-  
+
   <xsd:include schemaLocation="amzn-base.xsd" />
-  
+
   <xsd:element name="Health">
     <xsd:complexType>
       <xsd:sequence>
-        
+
         <xsd:element name="ProductType">
           <xsd:complexType>
             <xsd:choice>
@@ -27,7 +24,7 @@
             </xsd:choice>
           </xsd:complexType>
         </xsd:element>
-        
+
         <xsd:element name="Axis" type="StringNotNull" minOccurs="0" />
         <xsd:element name="BatteryAverageLife" type="PositiveNonZeroDimension" minOccurs="0" />
         <xsd:element name="BatteryCellComposition" type="BatteryCellTypeValues" minOccurs="0" />

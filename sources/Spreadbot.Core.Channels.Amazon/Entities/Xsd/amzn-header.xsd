@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
+
 <!-- "$Revision: #3 $" -->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
-    <!--
+  <!--
     $Date: 2005/04/01 $
 
     AMAZON.COM CONFIDENTIAL.  This document and the information contained in it are
@@ -12,34 +13,32 @@
     with Amazon.com.
     -->
 
-    <xsd:include schemaLocation="amzn-base.xsd"/>
+  <xsd:include schemaLocation="amzn-base.xsd" />
 
-    <xsd:element name="Header">
-        <xsd:complexType>
-            <xsd:sequence>
+  <xsd:element name="Header">
+    <xsd:complexType>
+      <xsd:sequence>
 
-                <xsd:element name="DocumentVersion">
-                    <xsd:simpleType>
-                        <xsd:restriction base="xsd:string">
-                            <xsd:pattern value="\d{1,2}\.\d{1,2}"/>
-                        </xsd:restriction>
-                    </xsd:simpleType>
-                </xsd:element>
+        <xsd:element name="DocumentVersion">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:pattern value="\d{1,2}\.\d{1,2}" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
 
-                <xsd:element name="MerchantIdentifier" type="String"/>
-                
-                <xsd:element name="OverrideReleaseId" minOccurs="0">
-                    <xsd:simpleType>
-                        <xsd:restriction base="xsd:string">
-                            <xsd:pattern value="\d{1,4}\.\d{1,4}"/>
-                        </xsd:restriction>
-                    </xsd:simpleType>
-                </xsd:element>
+        <xsd:element name="MerchantIdentifier" type="String" />
 
-            </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
+        <xsd:element name="OverrideReleaseId" minOccurs="0">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:pattern value="\d{1,4}\.\d{1,4}" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
 
 </xsd:schema>
-
-
