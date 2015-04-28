@@ -102,7 +102,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feeds =
                 store.GetChannelTasks()
                     .OfType< EbaySubmissionTask >()
-                    .Select( t => t.Args.MipFeedHandler.Type )
+                    .Select( t => t.Args.MwsFeedHandler.Type )
                     .OrderBy( f => f.ToString() ).ToArray();
 
             Assert.AreEqual( 3, feeds.Count() );

@@ -41,7 +41,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Operations.Tasks
         [YamlMember( Alias = "Response" )]
         public override IAbstractResponse AbstractResponse { get; set; }
 
-        public void AddSubTasks( params EbaySubmissionTask[] tasks )
+        public void AddSubTasks( params AbstractChannelTask[] tasks )
         {
             ChannelTasks.AddRange( tasks );
         }

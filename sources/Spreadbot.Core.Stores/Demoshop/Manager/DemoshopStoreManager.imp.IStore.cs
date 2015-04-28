@@ -32,6 +32,8 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             switch( taskType ) {
                 case StoreTaskType.SubmitToEbay :
                     return CreateEbaySubmissionTask();
+                case StoreTaskType.SubmitToAmazon:
+                    return CreateAmazonSubmissionTask();
                 default :
                     throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );
             }

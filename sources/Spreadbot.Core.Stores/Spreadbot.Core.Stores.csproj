@@ -82,7 +82,8 @@
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.imp.IStore.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Item.cs" />
-    <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Submit.cs" />
+    <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Submit.Amazon.cs" />
+    <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Submit.Ebay.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Tasks.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.pvt.Utils.cs" />
     <Compile Include="Demoshop\Manager\DemoshopStoreManager.state.cs" />
@@ -93,6 +94,10 @@
     <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Channels.Amazon\Spreadbot.Core.Channels.Amazon.csproj">
+      <Project>{D2EFA878-B988-466A-98C3-E35A5AC040F7}</Project>
+      <Name>Spreadbot.Core.Channels.Amazon</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>

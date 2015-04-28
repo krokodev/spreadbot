@@ -48,7 +48,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 ChannelId = EbayChannelManager.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new EbaySubmissionArgs {
-                    MipFeedHandler = new MipFeedHandler( mipFeedType ) {
+                    MwsFeedHandler = new MipFeedHandler( mipFeedType ) {
                         Content = FeedContent( mipFeedType ),
                         ItemInfo = Item.Sku,
                     },

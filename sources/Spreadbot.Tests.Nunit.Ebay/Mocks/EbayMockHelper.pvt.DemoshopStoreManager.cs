@@ -38,7 +38,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                                 ChannelId = EbayChannelManager.Instance.Id,
                                 ChannelMethod = ChannelMethod.Submit,
                                 Args = new EbaySubmissionArgs {
-                                    MipFeedHandler = new MipFeedHandler( MipFeedType.None ) {
+                                    MwsFeedHandler = new MipFeedHandler( MipFeedType.None ) {
                                         Content = "Fake Content",
                                         ItemInfo = "Fake Item"
                                     }

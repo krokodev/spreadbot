@@ -26,7 +26,7 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
             try {
                 var args = task.Args;
                 var mipRequest = new MipRequestHandler(
-                    args.MipFeedHandler,
+                    args.MwsFeedHandler,
                     task.EbaySubmissionResponse.Result.MipRequestId );
 
                 statusResponse = MipConnector.Instance.GetRequestStatus( mipRequest );
@@ -63,11 +63,11 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
             try {
                 var args = task.Args;
 
-                CreateFeedFile( args.MipFeedHandler );
+                CreateFeedFile( args.MwsFeedHandler );
 
-                var mipResponse = MipConnector.Instance.SendFeed( args.MipFeedHandler );
+                var mipResponse = MipConnector.Instance.SendFeed( args.MwsFeedHandler );
 
-                EraseFeedFolder( args.MipFeedHandler );
+                EraseFeedFolder( args.MwsFeedHandler );
 
                 mipResponse.Check();
 

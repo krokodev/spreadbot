@@ -1,20 +1,20 @@
 ﻿// Spreadbot (c) 2015 Krokodev
-// Spreadbot.Core.Channels.Ebay
-// EbaySubmissionTask.imp.IAbstractTask.cs
+// Spreadbot.Core.Channels.Amazon
+// AmazonSubmissionTask.imp.IAbstractTask.cs
 
 using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Operations.Results;
+using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Operations.Results;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 
-namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
+namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
 {
-    public sealed partial class EbaySubmissionTask
+    public sealed partial class AmazonSubmissionTask
     {
         // --------------------------------------------------------[]
         public override TaskStatus GetStatusCode()
@@ -25,23 +25,23 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             if( !AbstractResponse.IsSuccess ) {
                 return TaskStatus.Failure;
             }
-            switch( MipRequestStatusCode ) {
-                case MipRequestStatus.Initial :
+            switch( MwsRequestStatusCode ) {
+                case MwsRequestStatus.Initial :
                     return TaskStatus.Inprocess;
 
-                case MipRequestStatus.Inprocess :
+                case MwsRequestStatus.Inprocess :
                     return TaskStatus.Inprocess;
 
-                case MipRequestStatus.Unknown :
+                case MwsRequestStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MipRequestStatus.Failure :
+                case MwsRequestStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MipRequestStatus.Success :
+                case MwsRequestStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MipRequestStatusCode [{0}]", MipRequestStatusCode );
+            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsRequestStatusCode );
         }
 
         // --------------------------------------------------------[]
@@ -57,8 +57,8 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         [YamlMember( Alias = "Response", Order = 90 )]
         public override IAbstractResponse AbstractResponse
         {
-            get { return EbaySubmissionResponse; }
-            set { EbaySubmissionResponse = ( ChannelResponse< EbaySubmissionResult > ) value; }
+            get { return AmazonSubmissionResponse; }
+            set { AmazonSubmissionResponse = ( ChannelResponse< AmazonSubmissionResult > ) value; }
         }
 
         // --------------------------------------------------------[]
@@ -66,7 +66,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         [YamlIgnore]
 
         // Is serialized by [AbstractResponse]
-        public ChannelResponse< EbaySubmissionResult > EbaySubmissionResponse { get; set; }
+        public ChannelResponse< AmazonSubmissionResult > AmazonSubmissionResponse { get; set; }
 
         // --------------------------------------------------------[]
         public override string GetBriefInfo()
