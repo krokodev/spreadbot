@@ -27,7 +27,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             get { return StoreTasks; }
         }
 
-        public virtual IStoreTask CreateTask( StoreTaskType taskType )
+        public IStoreTask CreateTask( StoreTaskType taskType )
         {
             switch( taskType ) {
                 case StoreTaskType.SubmitToEbay :
