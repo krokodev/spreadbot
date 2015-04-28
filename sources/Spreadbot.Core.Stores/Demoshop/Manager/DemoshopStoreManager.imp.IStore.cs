@@ -8,6 +8,8 @@ using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Abstracts.Store.Manager;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 
+// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
+
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
     public partial class DemoshopStoreManager
@@ -27,12 +29,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             get { return StoreTasks; }
         }
 
-        public IStoreTask CreateTask( StoreTaskType taskType )
+        public virtual IStoreTask CreateTask( StoreTaskType taskType )
         {
             switch( taskType ) {
                 case StoreTaskType.SubmitToEbay :
                     return CreateEbaySubmissionTask();
-                case StoreTaskType.SubmitToAmazon:
+                case StoreTaskType.SubmitToAmazon :
                     return CreateAmazonSubmissionTask();
                 default :
                     throw new ArgumentException( string.Format( "Unknown taskType: [{0}]", taskType ) );

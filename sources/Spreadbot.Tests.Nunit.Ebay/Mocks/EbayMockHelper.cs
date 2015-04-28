@@ -48,7 +48,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
         {
             var mockDemoshopStoreManager = new Mock< DemoshopStoreManager > { CallBase = true };
 
-            ConfigureMipConnectorToCreategSimpleSubmitToEbayTask( mockDemoshopStoreManager );
+            ConfigureMipConnectorToCreateSimpleSubmitToEbayTask( mockDemoshopStoreManager );
 
             return mockDemoshopStoreManager.Object;
         }

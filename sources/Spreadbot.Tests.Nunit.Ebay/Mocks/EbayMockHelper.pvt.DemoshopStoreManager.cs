@@ -17,7 +17,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
 {
     internal partial class EbayMockHelper
     {
-        private static void ConfigureMipConnectorToCreategSimpleSubmitToEbayTask(
+        private static void ConfigureMipConnectorToCreateSimpleSubmitToEbayTask(
             Mock< DemoshopStoreManager > mockDemoshopStoreManager )
         {
             var store = mockDemoshopStoreManager.Object;
