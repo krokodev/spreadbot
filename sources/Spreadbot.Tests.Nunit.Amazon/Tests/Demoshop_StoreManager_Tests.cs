@@ -2,9 +2,12 @@
 // Spreadbot.Tests.Nunit.Amazon
 // Demoshop_StoreManager_Tests.cs
 
+using MoreLinq;
 using NUnit.Framework;
+using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Nunit.Amazon.Base;
+using Spreadbot.Sdk.Common.Operations.Tasks;
 
 namespace Spreadbot.Nunit.Amazon.Tests
 {
@@ -15,25 +18,27 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [SetUp]
         public void DeleteAllStoreTasks()
         {
-/*
             using( var store = new DemoshopStoreManager() ) {
                 store.DeleteAllTasks();
             }
-*/
         }
 
-        // --------------------------------------------------------[]
+        [Test]
+        public void Demoshop_Initialized_And_Read_Config()
+        {
+            using( new DemoshopStoreManager() ) {}
+        }
+
+
         [Test]
         public void Create_Task_Submit_Item_To_Amazon()
         {
-            /*
             var store = new DemoshopStoreManager();
             var task = store.CreateTask( StoreTaskType.SubmitToAmazon );
 
             Assert.AreEqual( TaskStatus.Todo, task.GetStatusCode() );
             Assert.IsNull( task.AbstractResponse );
             task.AbstractSubTasks.ForEach( ct => { Assert.IsTrue( ct.IsCritical ); } );
-*/
         }
 
         [Test]

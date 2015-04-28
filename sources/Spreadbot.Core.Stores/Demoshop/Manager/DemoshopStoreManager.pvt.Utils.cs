@@ -7,6 +7,7 @@ using System.IO;
 using Krokodev.Common.Extensions;
 using Nereal.Serialization;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
+using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Stores.Demoshop.Manager
 {
@@ -14,7 +15,12 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
     {
         private static string GetDataFileName()
         {
-            return DemoshopConfig.Instance.DemoshopPaths.XmlDataFileName.MapPathToDataDirectory();
+            try {
+                return DemoshopConfig.Instance.DemoshopPaths.XmlDataFileName.MapPathToDataDirectory();
+            }
+            catch( Exception e ) {
+                throw new SpreadbotException( "Can't get [XmlDataFileName], check [app.config] for Demoshop Section" );
+            }
         }
 
         private void _LoadData()
