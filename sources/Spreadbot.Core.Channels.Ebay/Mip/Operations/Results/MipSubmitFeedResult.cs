@@ -1,10 +1,10 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipSendFeedResult.cs
+// MipSubmitFeedResult.cs
 
 namespace Spreadbot.Core.Channels.Ebay.Mip.Operations.Results
 {
-    public class MipSendFeedResult : AbstractMipResponseResult
+    public class MipSubmitFeedResult : AbstractMipResponseResult
     {
         public string MipRequestId { get; set; }
     }

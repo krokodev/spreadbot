@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        protected MipResponse< MipSendFeedResult > _SendFeed(
+        protected MipResponse< MipSubmitFeedResult > _SubmitFeed(
             MipFeedHandler mipFeedHandler,
             string reqId )
         {
@@ -34,14 +34,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipSendFeedResult >( exception ) {
-                    StatusCode = MipOperationStatus.SendFeedFailure,
+                return new MipResponse< MipSubmitFeedResult >( exception ) {
+                    StatusCode = MipOperationStatus.SubmitFeedFailure,
                 };
             }
 
-            return new MipResponse< MipSendFeedResult > {
-                StatusCode = MipOperationStatus.SendFeedSuccess,
-                Result = new MipSendFeedResult { MipRequestId = reqId },
+            return new MipResponse< MipSubmitFeedResult > {
+                StatusCode = MipOperationStatus.SubmitFeedSuccess,
+                Result = new MipSubmitFeedResult { MipRequestId = reqId },
                 InnerResponses = { zipResponse, sendResponse }
             };
         }

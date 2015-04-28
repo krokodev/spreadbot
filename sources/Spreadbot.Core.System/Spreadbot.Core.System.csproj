@@ -89,6 +89,10 @@
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Spreadbot.Core.Channels.Amazon\Spreadbot.Core.Channels.Amazon.csproj">
+      <Project>{D2EFA878-B988-466A-98C3-E35A5AC040F7}</Project>
+      <Name>Spreadbot.Core.Channels.Amazon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
       <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
       <Name>Spreadbot.Core.Channels.Ebay</Name>

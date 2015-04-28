@@ -11,7 +11,7 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     public interface IMipConnector
     {
-        MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler );
+        MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler );
 
         MipResponse< MipFindRequestResult > FindRequest(
             MipRequestHandler mipRequestHandler,

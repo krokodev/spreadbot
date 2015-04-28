@@ -2,11 +2,11 @@
 // Spreadbot.Core.Channels.Amazon
 // AmazonSubmissionResult.cs
 
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Amazon.Mws.Results;
 
 namespace Spreadbot.Core.Channels.Amazon.Operations.Results
 {
-    public class AmazonSubmissionResult : AbstractMipResponseResult
+    public class AmazonSubmissionResult : AbstractMwsResponseResult
     {
         public string MwsRequestId { get; set; }
         public string MwsItemId { get; set; }

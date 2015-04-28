@@ -6,11 +6,11 @@ using System.Globalization;
 using System.IO;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
+using Spreadbot.Core.Channels.Amazon.Manager;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
-using Spreadbot.Core.Channels.Ebay.Manager;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -25,13 +25,14 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             var storeTask =
                 new DemoshopStoreTask {
                     StoreId = Id,
-                    Description = string.Format( "Submit [{0}] to eBay", Item.Sku )
+                    Description = string.Format( "Submit [{0}] to Amazon", Item.Sku )
                 };
 
             storeTask.AddSubTasks(
                 _CreateAmazonSubmissionSubTask( MwsFeedType.Product ),
                 _CreateAmazonSubmissionSubTask( MwsFeedType.Price ),
-                _CreateAmazonSubmissionSubTask( MwsFeedType.Inventory )
+                _CreateAmazonSubmissionSubTask( MwsFeedType.Inventory ),
+                _CreateAmazonSubmissionSubTask( MwsFeedType.Image )
                 );
 
             _AddTask( storeTask );
@@ -44,7 +45,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             return new AmazonSubmissionTask {
                 IsCritical = true,
                 MwsRequestStatusCode = MwsRequestStatus.Unknown,
-                ChannelId = EbayChannelManager.Instance.Id,
+                ChannelId = AmazonChannelManager.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new AmazonSubmissionArgs {
                     MwsFeedHandler = new MwsFeedHandler( mwsFeedType ) {

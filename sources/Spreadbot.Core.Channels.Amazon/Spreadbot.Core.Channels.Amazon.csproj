@@ -55,6 +55,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Krokodev.Common.dll</HintPath>
     </Reference>
+    <Reference Include="MoreLinq, Version=1.1.17511.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\morelinq.1.1.0\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="Nereal.Serialization, Version=1.0.5583.39016, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Serialization.dll</HintPath>
@@ -79,12 +83,21 @@
     <Compile Include="Configuration\Sections\AmazonPublicConfig.cs" />
     <Compile Include="Configuration\Sections\AmazonSecretConfig.cs" />
     <Compile Include="Configuration\Settings\AmazonSettings.cs" />
+    <Compile Include="Manager\AmazonChannelManager.cs" />
+    <Compile Include="Manager\AmazonChannelManager.imp.IChannelManager.cs" />
+    <Compile Include="Manager\AmazonChannelManager.pvt.Tasks.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.pvt.Utils.cs" />
     <Compile Include="Mws\Feed\MwsFeedHandler.cs" />
     <Compile Include="Mws\Feed\MwsFeedType.cs" />
+    <Compile Include="Mws\Connector\IMwsConnector.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.cs" />
     <Compile Include="Mws\Operations\Request\MwsRequestHandler.cs" />
-    <Compile Include="Mws\Operations\Request\MipRequestProcessingStage.cs" />
+    <Compile Include="Mws\Operations\Request\MwsRequestProcessingStage.cs" />
     <Compile Include="Mws\Operations\Request\MwsRequestStatus.cs" />
+    <Compile Include="Mws\Operations\Response\MwsResponse.cs" />
+    <Compile Include="Mws\Operations\StatusCode\MwsOperationStatus.cs" />
     <Compile Include="Mws\Results\AbstractMwsResponseResult.cs" />
+    <Compile Include="Mws\Results\MwsSubmitFeedResult.cs" />
     <Compile Include="Operations\Args\AmazonSubmissionArgs.cs" />
     <Compile Include="Operations\Results\AmazonSubmissionResult.cs" />
     <Compile Include="Operations\Tasks\AmazonSubmissionTask.cs" />
@@ -158,17 +171,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Manager\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
       <Name>Spreadbot.Core.Abstracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
-      <Project>{B2E6C77D-B62E-47A2-B79A-BC4CA5635A36}</Project>
-      <Name>Spreadbot.Core.Channels.Ebay</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Sdk.Common\Spreadbot.Sdk.Common.csproj">
       <Project>{D32AB08E-2141-4CD2-9CD3-6D98FBC00FB5}</Project>

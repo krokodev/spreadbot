@@ -15,10 +15,10 @@ namespace Spreadbot.Nunit.Ebay.Mocks
         {
             mockMipConnector
                 .Setup(
-                    mock => mock.SendFeed( It.IsAny< MipFeedHandler >() ) )
+                    mock => mock.SubmitFeed( It.IsAny< MipFeedHandler >() ) )
                 .Returns(
                     ( MipFeedHandler feedHandler ) =>
-                        mockMipConnector.Object.SendFeed( feedHandler, MipRequestHandler.GenerateZeroId() )
+                        mockMipConnector.Object.SubmitFeed( feedHandler, MipRequestHandler.GenerateZeroId() )
                 );
         }
     }

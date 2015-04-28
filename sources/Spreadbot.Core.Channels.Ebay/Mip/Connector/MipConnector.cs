@@ -36,15 +36,15 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
-        public virtual MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler )
+        public virtual MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler )
         {
-            return SendFeed( mipFeedHandler, MipRequestHandler.GenerateId() );
+            return SubmitFeed( mipFeedHandler, MipRequestHandler.GenerateId() );
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSendFeedResult > SendFeed( MipFeedHandler mipFeedHandler, string reqId )
+        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler, string reqId )
         {
-            return _SendFeed( mipFeedHandler, reqId );
+            return _SubmitFeed( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]

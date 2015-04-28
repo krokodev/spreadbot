@@ -1,10 +1,10 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MipRequestProcessingStage.cs
+// MwsRequestProcessingStage.cs
 
 namespace Spreadbot.Core.Channels.Amazon.Mws.Operations.Request
 {
-    public enum MipRequestProcessingStage
+    public enum MwsRequestProcessingStage
     {
         None,
         Output,

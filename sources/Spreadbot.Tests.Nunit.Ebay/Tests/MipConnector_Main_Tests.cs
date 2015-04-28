@@ -30,11 +30,11 @@ namespace Spreadbot.Nunit.Ebay.Tests
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
 
-            var response = MipConnector.Instance.SendFeed( feed );
+            var response = MipConnector.Instance.SubmitFeed( feed );
             Console.WriteLine( response );
             IgnoreMipQueueDepthErrorMessage( response );
 
-            Assert.AreEqual( MipOperationStatus.SendFeedSuccess, response.StatusCode );
+            Assert.AreEqual( MipOperationStatus.SubmitFeedSuccess, response.StatusCode );
             Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
             Assert_That_Text_Contains( response, "InnerResponses" );
             Assert_That_Text_Contains( response, MipOperationStatus.ZipFeedSuccess );
@@ -46,7 +46,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void FindRequest_Inprocess()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.Instance.SendFeed( feed );
+            var sendResponse = MipConnector.Instance.SubmitFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
@@ -106,7 +106,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var fakeMipConnector = EbayMockHelper.GetMipConnectorSendingTestFeed();
 
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = fakeMipConnector.SendFeed( feed );
+            var sendResponse = fakeMipConnector.SubmitFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
@@ -143,7 +143,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         public void GetRequestStatus_Inproc()
         {
             var feed = new MipFeedHandler( MipFeedType.Product );
-            var sendResponse = MipConnector.Instance.SendFeed( feed );
+            var sendResponse = MipConnector.Instance.SubmitFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             var request = new MipRequestHandler( feed, sendResponse.Result.MipRequestId );
@@ -161,7 +161,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var fakeMipConnector = EbayMockHelper.GetMipConnectorIgnoringInprocessAndSendingTestFeed();
 
             var feed = new MipFeedHandler( MipFeedType.Availability );
-            var sendResponse = fakeMipConnector.SendFeed( feed );
+            var sendResponse = fakeMipConnector.SubmitFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             Console.WriteLine( sendResponse );
