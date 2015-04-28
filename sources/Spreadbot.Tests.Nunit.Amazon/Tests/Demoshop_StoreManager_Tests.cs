@@ -15,9 +15,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [SetUp]
         public void DeleteAllStoreTasks()
         {
+/*
             using( var store = new DemoshopStoreManager() ) {
                 store.DeleteAllTasks();
             }
+*/
         }
 
         // --------------------------------------------------------[]
