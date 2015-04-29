@@ -27,6 +27,7 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
             // Code: MwsConnector._SubmitFeed
             // Todo:> Clean up code
 
+
             try {
                 var fileName = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml".SafeFormat( AmazonSettings.BasePath,
                     mwsFeedHandler.GetName() );
