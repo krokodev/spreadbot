@@ -86,7 +86,10 @@
     <Compile Include="Adapter\AmazonAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.pvt.Tasks.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.pvt.Utils.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.pvt.Feed.Utils.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.pvt.Instance.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.pvt.Client.cs" />
+    <Compile Include="Mws\Connector\MwsConnector.pvt.Feed.cs" />
     <Compile Include="Mws\Feed\MwsFeedHandler.cs" />
     <Compile Include="Mws\Feed\MwsFeedType.cs" />
     <Compile Include="Mws\Connector\IMwsConnector.cs" />

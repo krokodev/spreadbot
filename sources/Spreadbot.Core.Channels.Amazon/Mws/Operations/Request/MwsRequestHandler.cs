@@ -2,7 +2,6 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsRequestHandler.cs
 
-using System;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
 
 namespace Spreadbot.Core.Channels.Amazon.Mws.Operations.Request
@@ -17,20 +16,5 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Operations.Request
 
         public string Id { get; set; }
         public MwsFeedHandler MwsFeedHandler { get; set; }
-
-        public static string GenerateId()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-        public string FileNamePrefix()
-        {
-            return string.Format( "{0}.{1}", MwsFeedHandler.GetName(), Id );
-        }
-
-        public static string GenerateZeroId()
-        {
-            return new Guid().ToString();
-        }
     }
 }

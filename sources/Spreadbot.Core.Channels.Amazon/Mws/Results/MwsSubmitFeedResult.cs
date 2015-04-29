@@ -6,6 +6,6 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Results
 {
     public class MwsSubmitFeedResult : AbstractMwsResponseResult
     {
-        public string MwsRequestId { get; set; }
+        public string FeedSubmissionId { get; set; }
     }
 }

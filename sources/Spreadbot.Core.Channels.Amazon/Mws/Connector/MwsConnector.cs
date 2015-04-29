@@ -4,7 +4,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Response;
 using Spreadbot.Core.Channels.Amazon.Mws.Results;
 
@@ -13,9 +12,7 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
     [SuppressMessage( "ReSharper", "ClassWithVirtualMembersNeverInherited.Global" )]
     public partial class MwsConnector : IMwsConnector
     {
-        // --------------------------------------------------------[]
-        private static MwsConnector _instance;
-        private static readonly object Locker = new object();
+        public const string MwsRequestIsThrottled = "Request is throttled";
 
         public MwsConnector()
         {
@@ -24,18 +21,12 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
 
         public static MwsConnector Instance
         {
-            get
-            {
-                lock( Locker ) {
-                    return _instance ?? ( _instance = new MwsConnector() );
-                }
-            }
+            get { return GetInstance(); }
         }
 
-        // --------------------------------------------------------[]
         public virtual MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedHandler mwsFeedHandler )
         {
-            return _SubmitFeed( mwsFeedHandler, MwsRequestHandler.GenerateId() );
+            return _SubmitFeed( mwsFeedHandler );
         }
     }
 }
