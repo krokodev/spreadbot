@@ -2,6 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsConnector.cs
 
+using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Response;
@@ -9,6 +10,7 @@ using Spreadbot.Core.Channels.Amazon.Mws.Results;
 
 namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
 {
+    [SuppressMessage( "ReSharper", "ClassWithVirtualMembersNeverInherited.Global" )]
     public partial class MwsConnector : IMwsConnector
     {
         // --------------------------------------------------------[]

@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
                             Id = new List< string >( new[] { AmazonSettings.MarketplaceId } )
                         },
                     FeedContent = File.Open( fileName, FileMode.Open, FileAccess.Read ),
-                    FeedType = mwsFeedHandler.Type.ToString()
+                    FeedType = "_POST_PRODUCT_PRICING_DATA_" //mwsFeedHandler.Type.ToString()
                 };
                 request.ContentMD5 = MarketplaceWebServiceClient.CalculateContentMD5( request.FeedContent );
                 request.FeedContent.Position = 0;

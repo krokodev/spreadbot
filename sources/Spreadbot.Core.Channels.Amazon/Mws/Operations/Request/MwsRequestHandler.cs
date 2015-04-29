@@ -23,12 +23,6 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Operations.Request
             return Guid.NewGuid().ToString();
         }
 
-        public static bool VerifyRequestId( string requestId )
-        {
-            Guid guid;
-            return Guid.TryParse( requestId, out guid );
-        }
-
         public string FileNamePrefix()
         {
             return string.Format( "{0}.{1}", MwsFeedHandler.GetName(), Id );
