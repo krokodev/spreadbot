@@ -58,7 +58,6 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
             }
         }
 
-
         private static string TryGetFeedSubmissionId( SubmitFeedResponse mwsResponse )
         {
             try {
