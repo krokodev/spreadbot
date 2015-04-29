@@ -80,8 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.imp.IChannelTask.cs" />
     <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.state.cs" />
-    <Compile Include="Channel\Manager\AbstractChannelManager.cs" />
-    <Compile Include="Channel\Manager\IChannelManager.cs" />
+    <Compile Include="Channel\Adapter\IChannelAdapter.cs" />
     <Compile Include="Channel\Operations\Methods\ChannelMethod.cs" />
     <Compile Include="Channel\Operations\Responses\ChannelResponse.cs" />
     <Compile Include="Channel\Operations\Responses\ChannelResponseStatusCode.cs" />

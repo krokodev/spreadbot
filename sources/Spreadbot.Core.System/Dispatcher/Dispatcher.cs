@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Threading;
 using MoreLinq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
-using Spreadbot.Core.Channels.Amazon.Manager;
-using Spreadbot.Core.Channels.Ebay.Manager;
+using Spreadbot.Core.Channels.Amazon.Adapter;
+using Spreadbot.Core.Channels.Ebay.Adapter;
 
 namespace Spreadbot.Core.System.Dispatcher
 {
@@ -34,8 +34,8 @@ namespace Spreadbot.Core.System.Dispatcher
         // --------------------------------------------------------[]
         public Dispatcher()
         {
-            RegisterChannel( EbayChannelManager.Instance );
-            RegisterChannel( AmazonChannelManager.Instance );
+            RegisterChannel( EbayAdapter.Instance );
+            RegisterChannel( AmazonAdapter.Instance );
         }
 
         // ===================================================================================== []

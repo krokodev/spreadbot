@@ -18,8 +18,9 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             try {
                 return DemoshopConfig.Instance.DemoshopPaths.DataFile.MapPathToDataDirectory();
             }
-            catch (Exception e) {
-                throw new SpreadbotException( "Can't get [DataFile] value, check [app.config] for Demoshop Section: \n" +  e.Message );
+            catch( Exception e ) {
+                throw new SpreadbotException( "Can't get [DataFile] value, check [app.config] for Demoshop Section: \n"
+                    + e.Message );
             }
         }
 

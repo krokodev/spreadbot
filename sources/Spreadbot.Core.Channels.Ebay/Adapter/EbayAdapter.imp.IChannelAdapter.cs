@@ -1,28 +1,28 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// EbayChannelManager.imp.IChannelManager.cs
+// EbayAdapter.imp.IChannelAdapter.cs
 
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 
-namespace Spreadbot.Core.Channels.Ebay.Manager
+namespace Spreadbot.Core.Channels.Ebay.Adapter
 {
-    public partial class EbayChannelManager
+    public partial class EbayAdapter
     {
         // --------------------------------------------------------[]
-        public override void RunSubmissionTask( IChannelTask task )
+        public void RunSubmissionTask( IChannelTask task )
         {
             DoRunSubmissionTask( ( EbaySubmissionTask ) task );
         }
 
         // --------------------------------------------------------[]
-        public override void ProceedTask( IChannelTask channelTask )
+        public void ProceedTask( IChannelTask channelTask )
         {
             DoProceedTask( ( EbaySubmissionTask ) channelTask );
         }
 
         // --------------------------------------------------------[]
-        public override string Id
+        public string Id
         {
             get { return ConstId; }
         }

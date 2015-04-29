@@ -6,7 +6,7 @@ using System.Globalization;
 using System.IO;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
-using Spreadbot.Core.Channels.Amazon.Manager;
+using Spreadbot.Core.Channels.Amazon.Adapter;
 using Spreadbot.Core.Channels.Amazon.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
@@ -45,7 +45,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             return new AmazonSubmissionTask {
                 IsCritical = true,
                 MwsRequestStatusCode = MwsRequestStatus.Unknown,
-                ChannelId = AmazonChannelManager.Instance.Id,
+                ChannelId = AmazonAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new AmazonSubmissionArgs {
                     MwsFeedHandler = new MwsFeedHandler( mwsFeedType ) {

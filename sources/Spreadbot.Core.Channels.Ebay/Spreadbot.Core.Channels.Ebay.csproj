@@ -83,10 +83,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manager\EbayChannelManager.pvt.Feed.cs" />
-    <Compile Include="Manager\EbayChannelManager.pvt.Tasks.cs" />
-    <Compile Include="Manager\EbayChannelManager.imp.IChannelManager.cs" />
-    <Compile Include="Manager\EbayChannelManager.cs" />
+    <Compile Include="Adapter\EbayAdapter.pvt.Feed.cs" />
+    <Compile Include="Adapter\EbayAdapter.pvt.Tasks.cs" />
+    <Compile Include="Adapter\EbayAdapter.imp.IChannelAdapter.cs" />
+    <Compile Include="Adapter\EbayAdapter.cs" />
     <Compile Include="Mip\Connector\IMipConnector.cs" />
     <Compile Include="Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Mip\Connector\MipConnector.pvt.Utils.cs" />

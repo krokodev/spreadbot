@@ -83,9 +83,9 @@
     <Compile Include="Configuration\Sections\AmazonPublicConfig.cs" />
     <Compile Include="Configuration\Sections\AmazonSecretConfig.cs" />
     <Compile Include="Configuration\Settings\AmazonSettings.cs" />
-    <Compile Include="Manager\AmazonChannelManager.cs" />
-    <Compile Include="Manager\AmazonChannelManager.imp.IChannelManager.cs" />
-    <Compile Include="Manager\AmazonChannelManager.pvt.Tasks.cs" />
+    <Compile Include="Adapter\AmazonAdapter.cs" />
+    <Compile Include="Adapter\AmazonAdapter.imp.IChannelAdapter.cs" />
+    <Compile Include="Adapter\AmazonAdapter.pvt.Tasks.cs" />
     <Compile Include="Mws\Connector\MwsConnector.pvt.Utils.cs" />
     <Compile Include="Mws\Feed\MwsFeedHandler.cs" />
     <Compile Include="Mws\Feed\MwsFeedType.cs" />

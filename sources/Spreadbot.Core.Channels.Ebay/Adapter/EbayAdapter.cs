@@ -1,23 +1,23 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// EbayChannelManager.cs
+// EbayAdapter.cs
 
 using System;
 using System.Threading;
-using Spreadbot.Core.Abstracts.Channel.Manager;
+using Spreadbot.Core.Abstracts.Channel.Adapter;
 
-namespace Spreadbot.Core.Channels.Ebay.Manager
+namespace Spreadbot.Core.Channels.Ebay.Adapter
 {
-    public partial class EbayChannelManager : AbstractChannelManager
+    public partial class EbayAdapter : IChannelAdapter
     {
         // --------------------------------------------------------[]
-        private static readonly Lazy< EbayChannelManager > LazyInstance =
-            new Lazy< EbayChannelManager >(
-                () => new EbayChannelManager(),
+        private static readonly Lazy< EbayAdapter > LazyInstance =
+            new Lazy< EbayAdapter >(
+                () => new EbayAdapter(),
                 LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
-        public static EbayChannelManager Instance
+        public static EbayAdapter Instance
         {
             get { return LazyInstance.Value; }
         }

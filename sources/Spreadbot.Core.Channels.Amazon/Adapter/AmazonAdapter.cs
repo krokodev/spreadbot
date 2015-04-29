@@ -1,23 +1,23 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// AmazonChannelManager.cs
+// AmazonAdapter.cs
 
 using System;
 using System.Threading;
-using Spreadbot.Core.Abstracts.Channel.Manager;
+using Spreadbot.Core.Abstracts.Channel.Adapter;
 
-namespace Spreadbot.Core.Channels.Amazon.Manager
+namespace Spreadbot.Core.Channels.Amazon.Adapter
 {
-    public partial class AmazonChannelManager : AbstractChannelManager
+    public partial class AmazonAdapter : IChannelAdapter
     {
         // --------------------------------------------------------[]
-        private static readonly Lazy< AmazonChannelManager > LazyInstance =
-            new Lazy< AmazonChannelManager >(
-                () => new AmazonChannelManager(),
+        private static readonly Lazy< AmazonAdapter > LazyInstance =
+            new Lazy< AmazonAdapter >(
+                () => new AmazonAdapter(),
                 LazyThreadSafetyMode.ExecutionAndPublication );
 
         // --------------------------------------------------------[]
-        public static AmazonChannelManager Instance
+        public static AmazonAdapter Instance
         {
             get { return LazyInstance.Value; }
         }

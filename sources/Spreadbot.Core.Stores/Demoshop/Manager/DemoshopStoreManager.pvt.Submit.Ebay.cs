@@ -1,12 +1,12 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Stores
-// DemoshopStoreManager.pvt.Submit.cs
+// DemoshopStoreManager.pvt.Submit.Ebay.cs
 
 using System.Globalization;
 using System.IO;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
-using Spreadbot.Core.Channels.Ebay.Manager;
+using Spreadbot.Core.Channels.Ebay.Adapter;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
@@ -45,7 +45,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
             return new EbaySubmissionTask {
                 IsCritical = true,
                 MipRequestStatusCode = MipRequestStatus.Unknown,
-                ChannelId = EbayChannelManager.Instance.Id,
+                ChannelId = EbayAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new EbaySubmissionArgs {
                     MwsFeedHandler = new MipFeedHandler( mipFeedType ) {

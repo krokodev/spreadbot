@@ -1,27 +1,27 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// AmazonChannelManager.imp.IChannelManager.cs
+// AmazonAdapter.imp.IChannelAdapter.cs
 
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 
-namespace Spreadbot.Core.Channels.Amazon.Manager
+namespace Spreadbot.Core.Channels.Amazon.Adapter
 {
-    public partial class AmazonChannelManager
+    public partial class AmazonAdapter
     {
         // --------------------------------------------------------[]
-        public override void RunSubmissionTask( IChannelTask task )
+        public void RunSubmissionTask( IChannelTask task )
         {
             //DoRunSubmissionTask( ( AmazonSubmissionTask ) task );
         }
 
         // --------------------------------------------------------[]
-        public override void ProceedTask( IChannelTask channelTask )
+        public void ProceedTask( IChannelTask channelTask )
         {
             //DoProceedTask( ( AmazonSubmissionTask ) channelTask );
         }
 
         // --------------------------------------------------------[]
-        public override string Id
+        public string Id
         {
             get { return ConstId; }
         }

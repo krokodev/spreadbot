@@ -1,27 +1,19 @@
 ﻿// Spreadbot (c) 2015 Krokodev
-// Spreadbot.Core.Channels.Ebay
-// EbayChannelManager.pvt.Tasks.cs
+// Spreadbot.Core.Channels.Amazon
+// AmazonAdapter.pvt.Tasks.cs
 
-using System;
-using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
-using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
-using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 
-namespace Spreadbot.Core.Channels.Ebay.Manager
+namespace Spreadbot.Core.Channels.Amazon.Adapter
 {
-    public partial class EbayChannelManager
+    public partial class AmazonAdapter
     {
         // --------------------------------------------------------[]
-        private static void ProceedSubmissionTask( EbaySubmissionTask task )
+        private static void ProceedSubmissionTask( AmazonSubmissionTask task )
         {
-            task.AssertCanBeProceeded();
+            /*            task.AssertCanBeProceeded();
 
-            MipRequestStatusResponse statusResponse = null;
+            MwsRequestStatusResponse statusResponse = null;
 
             try {
                 var args = task.Args;
@@ -42,11 +34,11 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 task.MipRequestStatusCode = MipRequestStatus.Failure;
                 task.AddProceedInfo( statusResponse );
             }
-            task.WasUpdatedNow();
+            task.WasUpdatedNow();*/
         }
 
         // --------------------------------------------------------[]
-        private void DoProceedTask( EbaySubmissionTask task )
+        /*        private void DoProceedTask( EbaySubmissionTask task )
         {
             switch( task.ChannelMethod ) {
                 case ChannelMethod.Submit :
@@ -55,17 +47,17 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 default :
                     throw new SpreadbotException( "Unexpected Task Channel Method: [{0}]", task.ChannelMethod );
             }
-        }
+        }*/
 
         // --------------------------------------------------------[]
-        private static void DoRunSubmissionTask( EbaySubmissionTask task )
+        /*        private static void DoRunSubmissionTask( EbaySubmissionTask task )
         {
             try {
                 var args = task.Args;
 
                 CreateFeedFile( args.MwsFeedHandler );
 
-                var mipResponse = MipConnector.Instance.SubmitFeed( args.MwsFeedHandler );
+                var mipResponse = MipConnector.Instance.SendFeed( args.MwsFeedHandler );
 
                 EraseFeedFolder( args.MwsFeedHandler );
 
@@ -84,6 +76,6 @@ namespace Spreadbot.Core.Channels.Ebay.Manager
                 };
             }
             task.WasUpdatedNow();
-        }
+        }*/
     }
 }

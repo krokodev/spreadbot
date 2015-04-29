@@ -112,11 +112,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Base\Amazom_Tests.cs" />
+    <Compile Include="Base\Amazon_Tests.cs" />
     <Compile Include="Tests\Amazon_MarketplaceWebService_Raw_Tests.cs" />
     <Compile Include="Tests\Amazon_Configuration_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Demoshop_Store_Manager_Tests.cs" />
+    <Compile Include="Tests\Mws_Adapter_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">

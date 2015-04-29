@@ -9,7 +9,7 @@ using Spreadbot.Nunit.Amazon.Base;
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
-    public class Amazon_Configuration_Tests : Amazom_Tests
+    public class Amazon_Configuration_Tests : Amazon_Tests
     {
         [Test]
         public void Read_Amazon_Config()

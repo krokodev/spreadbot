@@ -1,15 +1,15 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// EbayChannelManager.pvt.Feed.cs
+// EbayAdapter.pvt.Feed.cs
 
 using System.IO;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 
-namespace Spreadbot.Core.Channels.Ebay.Manager
+namespace Spreadbot.Core.Channels.Ebay.Adapter
 {
-    public partial class EbayChannelManager
+    public partial class EbayAdapter
     {
         // --------------------------------------------------------[]
         private static void CreateFeedFile( MipFeedHandler mipFeedHandler )

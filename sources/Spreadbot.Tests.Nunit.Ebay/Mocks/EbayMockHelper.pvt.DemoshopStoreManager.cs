@@ -5,7 +5,7 @@
 using Moq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
-using Spreadbot.Core.Channels.Ebay.Manager;
+using Spreadbot.Core.Channels.Ebay.Adapter;
 using Spreadbot.Core.Channels.Ebay.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
@@ -35,7 +35,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                             new EbaySubmissionTask {
                                 IsCritical = true,
                                 MipRequestStatusCode = MipRequestStatus.Unknown,
-                                ChannelId = EbayChannelManager.Instance.Id,
+                                ChannelId = EbayAdapter.Instance.Id,
                                 ChannelMethod = ChannelMethod.Submit,
                                 Args = new EbaySubmissionArgs {
                                     MwsFeedHandler = new MipFeedHandler( MipFeedType.None ) {
