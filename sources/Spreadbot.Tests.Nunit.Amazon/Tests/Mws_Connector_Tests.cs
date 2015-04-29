@@ -2,13 +2,18 @@
 // Spreadbot.Tests.Nunit.Amazon
 // Mws_Adapter_Tests.cs
 
+using System;
 using NUnit.Framework;
+using Spreadbot.Core.Channels.Amazon.Mws.Connector;
+using Spreadbot.Core.Channels.Amazon.Mws.Feed;
+using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Mws.Operations.StatusCode;
 using Spreadbot.Nunit.Amazon.Base;
 
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
-    public class Mws_Adapter_Tests : Amazon_Tests
+    public class Mws_Connector_Tests : Amazon_Tests
     {
         [SetUp]
         public static void Init() {}
@@ -16,19 +21,14 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Submit_Product_Feed()
         {
-            /*
-            var feed = new MipFeedHandler( MipFeedType.Product );
+            var feed = new MwsFeedHandler( MwsFeedType.Product );
 
-            var response = MipConnector.Instance.SubmitFeed( feed );
+            var response = MwsConnector.Instance.SubmitFeed( feed );
             Console.WriteLine( response );
-            IgnoreMipQueueDepthErrorMessage( response );
+            //IgnoreMipQueueDepthErrorMessage( response );
 
-            Assert.AreEqual( MipOperationStatus.SubmitFeedSuccess, response.StatusCode );
-            Assert.IsTrue( MipRequestHandler.VerifyRequestId( response.Result.MipRequestId ) );
-            Assert_That_Text_Contains( response, "InnerResponses" );
-            Assert_That_Text_Contains( response, MipOperationStatus.ZipFeedSuccess );
-            Assert_That_Text_Contains( response, MipOperationStatus.SftpSendFilesSuccess );
-*/
+            Assert.AreEqual( MwsOperationStatus.SubmitFeedSuccess, response.StatusCode );
+            Assert.IsTrue( MwsRequestHandler.VerifyRequestId( response.Result.MwsRequestId ) );
         }
 
         /*

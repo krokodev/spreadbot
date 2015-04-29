@@ -113,11 +113,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\Amazon_Tests.cs" />
-    <Compile Include="Tests\Amazon_MarketplaceWebService_Raw_Tests.cs" />
+    <Compile Include="Tests\Mws_Sdk_Tests.cs" />
     <Compile Include="Tests\Amazon_Configuration_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Demoshop_Store_Manager_Tests.cs" />
-    <Compile Include="Tests\Mws_Adapter_Tests.cs" />
+    <Compile Include="Tests\Mws_Connector_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.App.Web\Spreadbot.App.Web.csproj">
@@ -131,10 +131,6 @@
     <ProjectReference Include="..\Spreadbot.Core.Channels.Amazon\Spreadbot.Core.Channels.Amazon.csproj">
       <Project>{D2EFA878-B988-466A-98C3-E35A5AC040F7}</Project>
       <Name>Spreadbot.Core.Channels.Amazon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spreadbot.Core.Channels.Ebay\Spreadbot.Core.Channels.Ebay.csproj">
-      <Project>{b2e6c77d-b62e-47a2-b79a-bc4ca5635a36}</Project>
-      <Name>Spreadbot.Core.Channels.Ebay</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spreadbot.Core.Stores\Spreadbot.Core.Stores.csproj">
       <Project>{4B00ED58-9C97-4C8A-BBAB-167CF31ABB31}</Project>

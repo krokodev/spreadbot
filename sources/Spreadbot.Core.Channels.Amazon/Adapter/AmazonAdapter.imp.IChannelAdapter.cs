@@ -3,6 +3,7 @@
 // AmazonAdapter.imp.IChannelAdapter.cs
 
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
+using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Amazon.Adapter
 {
@@ -11,7 +12,7 @@ namespace Spreadbot.Core.Channels.Amazon.Adapter
         // --------------------------------------------------------[]
         public void RunSubmissionTask( IChannelTask task )
         {
-            //DoRunSubmissionTask( ( AmazonSubmissionTask ) task );
+            DoRunSubmissionTask( ( AmazonSubmissionTask ) task );
         }
 
         // --------------------------------------------------------[]

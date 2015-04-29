@@ -7,7 +7,6 @@ using Krokodev.Common.SmartConfiguration;
 
 namespace Spreadbot.Core.Stores.Demoshop.Configuration.Elements
 {
-    // Code: DemoshopPaths 
     public class DemoshopPaths : SmartConfigurationElement
     {
         [ConfigurationProperty( "AmazonTemplatesDir", IsRequired = false )]

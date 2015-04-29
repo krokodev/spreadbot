@@ -16,7 +16,7 @@ using Spreadbot.Nunit.Amazon.Base;
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
-    public class Amazon_MarketplaceWebService_Raw_Tests : Amazon_Tests
+    public class Mws_Sdk_Tests : Amazon_Tests
     {
         [Test]
         public void Product_Feed_Submitted()

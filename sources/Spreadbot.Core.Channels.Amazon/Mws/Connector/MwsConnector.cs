@@ -13,22 +13,27 @@ namespace Spreadbot.Core.Channels.Amazon.Mws.Connector
     {
         // --------------------------------------------------------[]
         private static MwsConnector _instance;
+        private static readonly object Locker = new object();
+
+        public MwsConnector()
+        {
+            InitServiceClient();
+        }
 
         public static MwsConnector Instance
         {
-            get { return _instance ?? ( _instance = new MwsConnector() ); }
+            get
+            {
+                lock( Locker ) {
+                    return _instance ?? ( _instance = new MwsConnector() );
+                }
+            }
         }
 
         // --------------------------------------------------------[]
         public virtual MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedHandler mwsFeedHandler )
         {
-            return SubmitFeed( mwsFeedHandler, MwsRequestHandler.GenerateId() );
-        }
-
-        // --------------------------------------------------------[]
-        public MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedHandler mwsFeedHandler, string reqId )
-        {
-            return _SubmitFeed( mwsFeedHandler, reqId );
+            return _SubmitFeed( mwsFeedHandler, MwsRequestHandler.GenerateId() );
         }
     }
 }

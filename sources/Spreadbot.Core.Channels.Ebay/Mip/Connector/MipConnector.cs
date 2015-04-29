@@ -9,6 +9,8 @@ using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Mip.ZipHelper;
 
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+
 namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
 {
     public partial class MipConnector : IMipConnector
@@ -16,6 +18,8 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         // --------------------------------------------------------[]
         public const string MipQueueDepthErrorMessage = "Exceeded the Queue Depth";
         public const string MipWriteToLocationErrorMessage = "You are not eligible to write at this location";
+        private static MipConnector _instance;
+        private static readonly object Locker = new object();
 
         // --------------------------------------------------------[]
         public MipConnector()
@@ -24,11 +28,14 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
             ZipHelper = new SystemIoZipHelper();
         }
 
-        private static MipConnector _instance;
-
         public static MipConnector Instance
         {
-            get { return _instance ?? ( _instance = new MipConnector() ); }
+            get
+            {
+                lock( Locker ) {
+                    return _instance ?? ( _instance = new MipConnector() );
+                }
+            }
         }
 
         // --------------------------------------------------------[]
@@ -39,12 +46,6 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         public virtual MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler )
         {
             return SubmitFeed( mipFeedHandler, MipRequestHandler.GenerateId() );
-        }
-
-        // --------------------------------------------------------[]
-        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler, string reqId )
-        {
-            return _SubmitFeed( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
@@ -59,6 +60,12 @@ namespace Spreadbot.Core.Channels.Ebay.Mip.Connector
         public MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler )
         {
             return _GetRequestStatus( mipRequestHandler );
+        }
+
+        // --------------------------------------------------------[]
+        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler, string reqId )
+        {
+            return _SubmitFeed( mipFeedHandler, reqId );
         }
 
         // --------------------------------------------------------[]
