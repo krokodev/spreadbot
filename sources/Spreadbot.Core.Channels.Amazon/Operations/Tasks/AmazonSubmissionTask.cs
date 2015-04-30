@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 
@@ -20,7 +20,7 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
         }
 
         [YamlMember( Order = 10 )]
-        public MwsRequestStatus MwsRequestStatusCode { get; set; }
+        public MwsSubmissionStatus MwsSubmissionStatusCode { get; set; }
 
         [YamlMember( Alias = "AmazonSubmissionArgs", Order = 29 )]
         public AmazonSubmissionArgs Args { get; set; }

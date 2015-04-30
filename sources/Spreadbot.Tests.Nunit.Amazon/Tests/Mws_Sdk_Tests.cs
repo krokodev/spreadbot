@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Tests.Nunit.Amazon
-// Amazon_MarketplaceWebService_Raw_Tests.cs
+// Mws_Sdk_Tests.cs
 
 using System;
 using System.Collections.Generic;

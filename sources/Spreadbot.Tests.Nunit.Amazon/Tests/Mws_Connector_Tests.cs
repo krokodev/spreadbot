@@ -45,19 +45,18 @@ namespace Spreadbot.Nunit.Amazon.Tests
             SubmitFeedTest( MwsFeedType.Image );
         }
 
-
         private const int RecentFeedsNumber = 10;
-        
+
         [Test]
         public void Obtain_Submitted_Feeds_List()
         {
-            
+            // Todo:> Obtain_Submitted_Feeds_List
         }
 
         [Test]
         public void Recent_Feed_Submissions_Completed_Without_Errors()
         {
-/*
+            /*
             try {
                 var response = GetFeedSubmissionDoneList();
                 if( response.GetFeedSubmissionListResult.HasNext ) {
@@ -89,7 +88,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
                     Assert.Inconclusive( "Request is throttled" );
                 }
             }*/
-
         }
 
         /*
@@ -108,11 +106,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
         // Utils
         private const string FeedFileTemplate = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml";
 
-        private static MwsFeedHandler MakeMwsFeedHandler( MwsFeedType mwsFeedType )
+        private static MwsFeedDescriptor MakeMwsFeedHandler( MwsFeedType feedType )
         {
-            var fileNAme = string.Format( FeedFileTemplate, AmazonSettings.BasePath, mwsFeedType );
-            return new MwsFeedHandler( mwsFeedType ) {
-                Content = File.ReadAllText( fileNAme )
+            var fileName = string.Format( FeedFileTemplate, AmazonSettings.BasePath, feedType );
+            return new MwsFeedDescriptor( feedType ) {
+                Content = File.ReadAllText( fileName )
             };
         }
 

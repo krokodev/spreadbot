@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Operations.Results;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -25,23 +25,23 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
             if( !AbstractResponse.IsSuccess ) {
                 return TaskStatus.Failure;
             }
-            switch( MwsRequestStatusCode ) {
-                case MwsRequestStatus.Initial :
+            switch( MwsSubmissionStatusCode ) {
+                case MwsSubmissionStatus.Initial :
                     return TaskStatus.Inprocess;
 
-                case MwsRequestStatus.Inprocess :
+                case MwsSubmissionStatus.Inprocess :
                     return TaskStatus.Inprocess;
 
-                case MwsRequestStatus.Unknown :
+                case MwsSubmissionStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MwsRequestStatus.Failure :
+                case MwsSubmissionStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MwsRequestStatus.Success :
+                case MwsSubmissionStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsRequestStatusCode );
+            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsSubmissionStatusCode );
         }
 
         // --------------------------------------------------------[]
@@ -76,7 +76,7 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
                 GetStatusCode(),
                 IsCritical ? "Critical" : "Non critical",
                 string.Format( "Submit [{0}]",
-                    Args == null ? "n/a" : Args.MwsFeedHandler.GetName() ),
+                    Args == null ? "n/a" : Args.MwsFeedDescriptor.GetName() ),
                 ChannelId );
         }
     }

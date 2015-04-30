@@ -8,6 +8,6 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Args
 {
     public class AmazonSubmissionArgs
     {
-        public MwsFeedHandler MwsFeedHandler { get; set; }
+        public MwsFeedDescriptor MwsFeedDescriptor { get; set; }
     }
 }

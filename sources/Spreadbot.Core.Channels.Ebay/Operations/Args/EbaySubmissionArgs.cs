@@ -8,6 +8,6 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Args
 {
     public class EbaySubmissionArgs
     {
-        public MipFeedHandler MwsFeedHandler { get; set; }
+        public MipFeedDescriptor MwsFeedDescriptor { get; set; }
     }
 }

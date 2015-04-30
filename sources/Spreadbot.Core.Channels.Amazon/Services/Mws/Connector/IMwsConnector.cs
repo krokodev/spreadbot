@@ -10,6 +10,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public interface IMwsConnector
     {
-        MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedHandler mwsFeedHandler );
+        MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedDescriptor feedDescriptor );
     }
 }

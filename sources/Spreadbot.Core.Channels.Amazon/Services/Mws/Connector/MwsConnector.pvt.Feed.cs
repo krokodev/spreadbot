@@ -16,15 +16,15 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        protected MwsResponse< MwsSubmitFeedResult > _SubmitFeed( MwsFeedHandler feedHandler )
+        protected MwsResponse< MwsSubmitFeedResult > _SubmitFeed( MwsFeedDescriptor feedDescriptor )
         {
             try {
                 var request = new SubmitFeedRequest {
                     Merchant = AmazonSettings.MerchantId,
                     MarketplaceIdList = GetMarketplaceIdList(),
-                    FeedContent = GetFeedContentStream( feedHandler ),
-                    FeedType = FeedTypeMap[ feedHandler.Type ],
-                    ContentMD5 = CalculateContentMd5( feedHandler )
+                    FeedContent = GetFeedContentStream( feedDescriptor ),
+                    FeedType = FeedTypeMap[ feedDescriptor.Type ],
+                    ContentMD5 = CalculateContentMd5( feedDescriptor )
                 };
 
                 var response = _mwsClient.SubmitFeed( request );
@@ -42,5 +42,4 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
     }
-
 }

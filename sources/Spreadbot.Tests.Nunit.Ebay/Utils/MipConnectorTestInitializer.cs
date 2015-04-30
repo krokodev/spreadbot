@@ -10,7 +10,7 @@ using Krokodev.Common.Extensions;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -38,7 +38,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         }
 
         // --------------------------------------------------------[]
-        public static IEnumerable< string > TestRequestIds( MipFeedType feed, MipRequestStatus status )
+        public static IEnumerable< string > TestRequestIds( MipFeedType feed, MipSubmissionStatus status )
         {
             return Enumerable.Range( 1, 10 )
                 .Where( i => FileExists( feed, status, i ) )
@@ -46,7 +46,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         }
 
         // --------------------------------------------------------[]
-        private static bool FileExists( MipFeedType feed, MipRequestStatus status, int i )
+        private static bool FileExists( MipFeedType feed, MipSubmissionStatus status, int i )
         {
             return File.Exists(
                 EbaySettings.LocalBasePath
@@ -59,7 +59,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         private static void AddFeedStatusSamples( ICollection< string > files )
         {
             EnumUtil.GetValues< MipFeedType >().ForEach( feed => {
-                EnumUtil.GetValues< MipRequestStatus >().ForEach( status => {
+                EnumUtil.GetValues< MipSubmissionStatus >().ForEach( status => {
                     Enumerable.Range( 1, 10 )
                         .Where( i => FileExists( feed, status, i ) )
                         .Select( i => string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower() )

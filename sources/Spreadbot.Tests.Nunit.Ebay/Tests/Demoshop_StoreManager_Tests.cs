@@ -55,7 +55,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
                 Console.WriteLine( t.EbaySubmissionResponse );
                 Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
-                Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
+                Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
             } );
             Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
         }
@@ -76,7 +76,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                     IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
+                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                 } );
                 Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
             }
@@ -102,7 +102,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feeds =
                 store.GetChannelTasks()
                     .OfType< EbaySubmissionTask >()
-                    .Select( t => t.Args.MwsFeedHandler.Type )
+                    .Select( t => t.Args.MwsFeedDescriptor.Type )
                     .OrderBy( f => f.ToString() ).ToArray();
 
             Assert.AreEqual( 3, feeds.Count() );
@@ -136,7 +136,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                     Console.WriteLine();
                     Console.WriteLine( t );
                     Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
-                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipRequestId );
+                    Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                     Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );
             }

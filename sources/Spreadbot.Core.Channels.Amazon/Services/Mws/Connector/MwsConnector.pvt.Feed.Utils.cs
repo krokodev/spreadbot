@@ -26,9 +26,9 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 { MwsFeedType.Price, "_POST_PRODUCT_PRICING_DATA_" }
             };
 
-        private static string CalculateContentMd5( MwsFeedHandler feedHandler )
+        private static string CalculateContentMd5( MwsFeedDescriptor feedDescriptor )
         {
-            var stream = GetFeedContentStream( feedHandler );
+            var stream = GetFeedContentStream( feedDescriptor );
             return MarketplaceWebServiceClient.CalculateContentMD5( stream );
         }
 
@@ -39,9 +39,9 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             };
         }
 
-        private static MemoryStream GetFeedContentStream( MwsFeedHandler feedHandler )
+        private static MemoryStream GetFeedContentStream( MwsFeedDescriptor feedDescriptor )
         {
-            return new MemoryStream( Encoding.GetEncoding( FeedContentEncoding ).GetBytes( feedHandler.Content ) );
+            return new MemoryStream( Encoding.GetEncoding( FeedContentEncoding ).GetBytes( feedDescriptor.Content ) );
         }
 
         private static string TryGetFeedSubmissionId( SubmitFeedResponse response )

@@ -4,7 +4,7 @@
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
 {
-    public class MipZipFeedResult : AbstractMipResponseResult
+    public class MipZipFeedResult : AbstractMipResult
     {
         public string ZipFileName { get; set; }
     }

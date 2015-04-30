@@ -9,7 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Adapter;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
@@ -34,11 +34,11 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                         storeTask.AddSubTasks(
                             new EbaySubmissionTask {
                                 IsCritical = true,
-                                MipRequestStatusCode = MipRequestStatus.Unknown,
+                                MipSubmissionStatusCode = MipSubmissionStatus.Unknown,
                                 ChannelId = EbayAdapter.Instance.Id,
                                 ChannelMethod = ChannelMethod.Submit,
                                 Args = new EbaySubmissionArgs {
-                                    MwsFeedHandler = new MipFeedHandler( MipFeedType.None ) {
+                                    MwsFeedDescriptor = new MipFeedDescriptor( MipFeedType.None ) {
                                         Content = "Fake Content",
                                         ItemInfo = "Fake Item"
                                     }

@@ -3,7 +3,7 @@
 // EbaySubmissionTask.imp.IProceedableTask.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
@@ -19,9 +19,9 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
 
         public void AssertCanBeProceeded()
         {
-            if( MipRequestStatusCode != MipRequestStatus.Initial &&
-                MipRequestStatusCode != MipRequestStatus.Inprocess ) {
-                throw new SpreadbotException( "Unexpected Task MipRequestStatusCode: [{0}]", MipRequestStatusCode );
+            if( MipSubmissionStatusCode != MipSubmissionStatus.Initial &&
+                MipSubmissionStatusCode != MipSubmissionStatus.Inprocess ) {
+                throw new SpreadbotException( "Unexpected Task MipSubmissionStatusCode: [{0}]", MipSubmissionStatusCode );
             }
         }
 

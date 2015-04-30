@@ -90,13 +90,12 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
-    <Compile Include="Services\Mws\Feed\MwsFeedHandler.cs" />
+    <Compile Include="Services\Mws\Feed\MwsFeedDescriptor.cs" />
     <Compile Include="Services\Mws\Feed\MwsFeedType.cs" />
     <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
-    <Compile Include="Services\Mws\Operations\Request\MwsRequestHandler.cs" />
-    <Compile Include="Services\Mws\Operations\Request\MwsRequestProcessingStage.cs" />
-    <Compile Include="Services\Mws\Operations\Request\MwsRequestStatus.cs" />
+    <Compile Include="Services\Mws\Operations\Submission\MwsSubmissionDescriptor.cs" />
+    <Compile Include="Services\Mws\Operations\Submission\MwsSubmissionStatus.cs" />
     <Compile Include="Services\Mws\Operations\Response\MwsResponse.cs" />
     <Compile Include="Services\Mws\Operations\StatusCode\MwsOperationStatus.cs" />
     <Compile Include="Services\Mws\Operations\Results\AbstractMwsResponseResult.cs" />

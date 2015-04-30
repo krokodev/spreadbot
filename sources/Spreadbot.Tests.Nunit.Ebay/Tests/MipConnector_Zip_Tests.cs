@@ -7,8 +7,8 @@ using System.IO;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Utils;
 
@@ -28,8 +28,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void ZipFeed()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
-            var reqId = MipRequestHandler.GenerateZeroId();
+            var feed = new MipFeedDescriptor( MipFeedType.Product );
+            var reqId = MipSubmissionDescriptor.GenerateZeroId();
 
             var response = MipConnector.Instance.ZipHelper.ZipFeed( feed, reqId );
             Console.WriteLine( response );

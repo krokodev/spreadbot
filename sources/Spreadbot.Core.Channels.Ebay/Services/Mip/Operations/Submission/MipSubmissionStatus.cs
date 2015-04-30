@@ -1,10 +1,10 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipRequestStatus.cs
+// MipSubmissionStatus.cs
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission
 {
-    public enum MipRequestStatus
+    public enum MipSubmissionStatus
     {
         Unknown = 0,
         Initial,

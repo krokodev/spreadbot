@@ -1,14 +1,14 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipGetRequestStatusResult.cs
+// MipGetSubmissionStatusResult.cs
 
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
 {
-    public class MipGetRequestStatusResult : AbstractMipResponseResult
+    public class MipGetSubmissionStatusResult : AbstractMipResult
     {
-        public MipRequestStatus MipRequestStatusCode { get; set; }
+        public MipSubmissionStatus MipSubmissionStatusCode { get; set; }
         public string MipItemId { get; set; }
         public string Details { get; set; }
     }

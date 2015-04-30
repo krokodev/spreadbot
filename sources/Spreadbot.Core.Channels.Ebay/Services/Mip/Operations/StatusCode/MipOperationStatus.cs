@@ -13,12 +13,12 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode
         SubmitFeedFailure,
         ZipFeedSuccess,
         ZipFeedFailure,
-        FindRequestSuccess,
-        FindRequestFailure,
+        FindSubmissionSuccess,
+        FindSubmissionFailure,
         FindRemoteFileSuccess,
         FindRemoteFileFailure,
-        GetRequestStatusSuccess,
-        GetRequestStatusFailure,
+        GetSubmissionStatusSuccess,
+        GetSubmissionStatusFailure,
         SftpSendFilesSuccess,
         SftpSendFilesFailure
     }

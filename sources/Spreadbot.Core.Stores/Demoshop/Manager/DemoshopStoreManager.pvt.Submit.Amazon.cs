@@ -10,7 +10,7 @@ using Spreadbot.Core.Channels.Amazon.Adapter;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -44,11 +44,11 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         {
             return new AmazonSubmissionTask {
                 IsCritical = true,
-                MwsRequestStatusCode = MwsRequestStatus.Unknown,
+                MwsSubmissionStatusCode = MwsSubmissionStatus.Unknown,
                 ChannelId = AmazonAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new AmazonSubmissionArgs {
-                    MwsFeedHandler = new MwsFeedHandler( mwsFeedType ) {
+                    MwsFeedDescriptor = new MwsFeedDescriptor( mwsFeedType ) {
                         Content = FeedContent( mwsFeedType ),
                         ItemInfo = Item.Sku,
                     },

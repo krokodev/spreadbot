@@ -10,6 +10,6 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
 {
     public interface IZipHelper
     {
-        MipResponse< MipZipFeedResult > ZipFeed( MipFeedHandler mipFeedHandler, string reqId );
+        MipResponse< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId );
     }
 }

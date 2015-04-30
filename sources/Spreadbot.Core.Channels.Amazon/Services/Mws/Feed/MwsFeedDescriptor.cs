@@ -1,20 +1,20 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MwsFeedHandler.cs
+// MwsFeedDescriptor.cs
 
 using System;
 using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Feed
 {
-    public class MwsFeedHandler
+    public class MwsFeedDescriptor
     {
-        public MwsFeedHandler()
+        public MwsFeedDescriptor()
         {
             Id = Guid.NewGuid().ToString();
         }
 
-        public MwsFeedHandler( MwsFeedType type )
+        public MwsFeedDescriptor( MwsFeedType type )
             : this()
         {
             Type = type;

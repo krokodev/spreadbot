@@ -1,20 +1,20 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipFeedHandler.cs
+// MipFeedDescriptor.cs
 
 using System;
 using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Feed
 {
-    public class MipFeedHandler
+    public class MipFeedDescriptor
     {
-        public MipFeedHandler()
+        public MipFeedDescriptor()
         {
             Id = Guid.NewGuid().ToString();
         }
 
-        public MipFeedHandler( MipFeedType type )
+        public MipFeedDescriptor( MipFeedType type )
             : this()
         {
             Type = type;

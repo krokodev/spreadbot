@@ -12,30 +12,30 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
     public partial class EbayAdapter
     {
         // --------------------------------------------------------[]
-        private static void CreateFeedFile( MipFeedHandler mipFeedHandler )
+        private static void CreateFeedFile( MipFeedDescriptor mipFeedDescriptor )
         {
-            CreateFeedFolderIfNeed( mipFeedHandler );
+            CreateFeedFolderIfNeed( mipFeedDescriptor );
 
-            var fileName = MipConnector.LocalFeedXmlFilePath( mipFeedHandler );
+            var fileName = MipConnector.LocalFeedXmlFilePath( mipFeedDescriptor );
             using( var file = File.CreateText( fileName ) ) {
-                file.Write( mipFeedHandler.Content );
+                file.Write( mipFeedDescriptor.Content );
             }
         }
 
         // --------------------------------------------------------[]
-        private static void CreateFeedFolderIfNeed( MipFeedHandler mipFeedHandler )
+        private static void CreateFeedFolderIfNeed( MipFeedDescriptor mipFeedDescriptor )
         {
-            var feedFolder = MipConnector.LocalFeedFolder( mipFeedHandler );
+            var feedFolder = MipConnector.LocalFeedFolder( mipFeedDescriptor );
             if( !Directory.Exists( feedFolder ) ) {
                 Directory.CreateDirectory( feedFolder );
             }
         }
 
         // --------------------------------------------------------[]
-        private static void EraseFeedFolder( MipFeedHandler mipFeedHandler )
+        private static void EraseFeedFolder( MipFeedDescriptor mipFeedDescriptor )
         {
             Directory
-                .GetFiles( MipConnector.LocalFeedFolder( mipFeedHandler ) )
+                .GetFiles( MipConnector.LocalFeedFolder( mipFeedDescriptor ) )
                 .ForEach( File.Delete );
         }
     }

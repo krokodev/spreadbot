@@ -3,9 +3,9 @@
 // MipConnector.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper;
 
@@ -43,41 +43,41 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
-        public virtual MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler )
+        public virtual MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
         {
-            return SubmitFeed( mipFeedHandler, MipRequestHandler.GenerateId() );
+            return SubmitFeed( mipFeedDescriptor, MipSubmissionDescriptor.GenerateId() );
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipFindRequestResult > FindRequest(
-            MipRequestHandler mipRequestHandler,
-            MipRequestProcessingStage stage )
+        public MipResponse< MipFindSubmissionResult > FindSubmission(
+            MipSubmissionDescriptor mipSubmissionDescriptor,
+            MipSubmissionStage stage )
         {
-            return _FindRequest( mipRequestHandler, stage );
+            return _FindSubmission( mipSubmissionDescriptor, stage );
         }
 
         // --------------------------------------------------------[]
-        public MipRequestStatusResponse GetRequestStatus( MipRequestHandler mipRequestHandler )
+        public MipSubmissionStatusResponse GetSubmissionStatus( MipSubmissionDescriptor mipSubmissionDescriptor )
         {
-            return _GetRequestStatus( mipRequestHandler );
+            return _GetSubmissionStatus( mipSubmissionDescriptor );
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedHandler mipFeedHandler, string reqId )
+        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
         {
-            return _SubmitFeed( mipFeedHandler, reqId );
+            return _SubmitFeed( mipFeedDescriptor, reqId );
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
+        public static string LocalFeedXmlFilePath( MipFeedDescriptor mipFeedDescriptor )
         {
-            return _LocalFeedXmlFilePath( mipFeedHandler );
+            return _LocalFeedXmlFilePath( mipFeedDescriptor );
         }
 
         // --------------------------------------------------------[]
-        public static string LocalFeedFolder( MipFeedHandler mipFeedHandler )
+        public static string LocalFeedFolder( MipFeedDescriptor mipFeedDescriptor )
         {
-            return _LocalFeedFolder( mipFeedHandler.GetName() );
+            return _LocalFeedFolder( mipFeedDescriptor.GetName() );
         }
     }
 }

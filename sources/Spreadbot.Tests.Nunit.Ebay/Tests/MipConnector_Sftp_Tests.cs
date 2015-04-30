@@ -6,8 +6,8 @@ using System;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Utils;
 
@@ -27,9 +27,9 @@ namespace Spreadbot.Nunit.Ebay.Tests
         [Test]
         public void SendZippedFeed()
         {
-            var feed = new MipFeedHandler( MipFeedType.Product );
+            var feed = new MipFeedDescriptor( MipFeedType.Product );
 
-            var reqId = MipRequestHandler.GenerateZeroId();
+            var reqId = MipSubmissionDescriptor.GenerateZeroId();
             var localFiles = MipConnector.LocalZippedFeedFile( feed.GetName(), reqId );
             var remoteFiles = MipConnector.RemoteFeedOutgoingZipFilePath( feed.GetName(), reqId );
 

@@ -1,40 +1,40 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipConnector.pvt.RequestXml.cs
+// MipConnector.pvt.SubmissionXml.cs
 
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        private static MipGetRequestStatusResult MakeRequestStatusResultByParsingXmlContent(
+        private static MipGetSubmissionStatusResult MakeSubmissionStatusResultByParsingXmlContent(
             MipFeedType feedType,
             string content )
         {
-            return new MipGetRequestStatusResult {
-                MipRequestStatusCode = GetRequestStatusFromContent( feedType, content ),
-                MipItemId = GetRequestItemIdFromContent( feedType, content ),
+            return new MipGetSubmissionStatusResult {
+                MipSubmissionStatusCode = GetSubmissionStatusFromContent( feedType, content ),
+                MipItemId = GetSubmissionItemIdFromContent( feedType, content ),
                 Details = content,
             };
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatus GetRequestStatusFromContent( MipFeedType feedType, string content )
+        private static MipSubmissionStatus GetSubmissionStatusFromContent( MipFeedType feedType, string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/status" },
                 { MipFeedType.Availability, "/inventoryResponse/status" },
                 { MipFeedType.Distribution, "/distributionResponse/status" },
             };
-            var extraRequestStatusControl =
-                new Dictionary< MipFeedType, Func< XmlDocument, MipRequestStatus, MipRequestStatus > > {
+            var extraSubmissionStatusControl =
+                new Dictionary< MipFeedType, Func< XmlDocument, MipSubmissionStatus, MipSubmissionStatus > > {
                     { MipFeedType.Product, ExtraCheckProductStatus },
                     { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
                     { MipFeedType.Distribution, ExtraCheckDistributionStatus },
@@ -49,9 +49,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 if( statusNode != null ) {
                     switch( statusNode.InnerText ) {
                         case "SUCCESS" :
-                            return extraRequestStatusControl[ feedType ]( xml, MipRequestStatus.Success );
+                            return extraSubmissionStatusControl[ feedType ]( xml, MipSubmissionStatus.Success );
                         case "FAILURE" :
-                            return MipRequestStatus.Failure;
+                            return MipSubmissionStatus.Failure;
                     }
                 }
             }
@@ -59,33 +59,37 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 // ignored
             }
 
-            return MipRequestStatus.Unknown;
+            return MipSubmissionStatus.Unknown;
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatus ExtraCheckDistributionStatus( XmlDocument xml, MipRequestStatus defStatus )
+        private static MipSubmissionStatus ExtraCheckDistributionStatus(
+            XmlDocument xml,
+            MipSubmissionStatus defStatus )
         {
             return defStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatus ExtraCheckAvailabilityStatus( XmlDocument xml, MipRequestStatus defStatus )
+        private static MipSubmissionStatus ExtraCheckAvailabilityStatus(
+            XmlDocument xml,
+            MipSubmissionStatus defStatus )
         {
             var errorIdNode = xml.SelectSingleNode( "/inventoryResponse/error/errorID" );
             if( errorIdNode != null ) {
-                return MipRequestStatus.Failure;
+                return MipSubmissionStatus.Failure;
             }
             return defStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipRequestStatus ExtraCheckProductStatus( XmlDocument xml, MipRequestStatus defStatus )
+        private static MipSubmissionStatus ExtraCheckProductStatus( XmlDocument xml, MipSubmissionStatus defStatus )
         {
             return defStatus;
         }
 
         // --------------------------------------------------------[]
-        private static string GetRequestItemIdFromContent( MipFeedType feedType, string content )
+        private static string GetSubmissionItemIdFromContent( MipFeedType feedType, string content )
         {
             var itemIdPath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/responseMessage/response/itemID" },

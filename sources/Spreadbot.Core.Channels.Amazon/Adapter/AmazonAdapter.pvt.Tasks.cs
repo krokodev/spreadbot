@@ -2,8 +2,6 @@
 // Spreadbot.Core.Channels.Amazon
 // AmazonAdapter.pvt.Tasks.cs
 
-using System;
-using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Amazon.Adapter
@@ -12,7 +10,7 @@ namespace Spreadbot.Core.Channels.Amazon.Adapter
     {
         private static void DoRunSubmissionTask( AmazonSubmissionTask task )
         {
-/*
+            /*
             try {
                 var args = task.Args;
 

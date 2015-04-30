@@ -16,13 +16,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
     public class SystemIoZipHelper : IZipHelper
     {
         // --------------------------------------------------------[]
-        public MipResponse< MipZipFeedResult > ZipFeed( MipFeedHandler mipFeedHandler, string reqId )
+        public MipResponse< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
         {
             string zipFileName;
             try {
-                zipFileName = MipConnector.LocalZippedFeedFile( mipFeedHandler.GetName(), reqId );
+                zipFileName = MipConnector.LocalZippedFeedFile( mipFeedDescriptor.GetName(), reqId );
                 ZipFolderFiles(
-                    MipConnector.LocalFeedFolder( mipFeedHandler ),
+                    MipConnector.LocalFeedFolder( mipFeedDescriptor ),
                     zipFileName
                     );
             }

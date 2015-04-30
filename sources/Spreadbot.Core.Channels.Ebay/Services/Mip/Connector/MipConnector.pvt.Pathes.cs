@@ -34,19 +34,19 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static string LocalRequestResultsFolder()
+        private static string LocalSubmissionResultsFolder()
         {
             return EbaySettings.InboxPath;
         }
 
         // --------------------------------------------------------[]
-        private static string _LocalFeedXmlFilePath( MipFeedHandler mipFeedHandler )
+        private static string _LocalFeedXmlFilePath( MipFeedDescriptor mipFeedDescriptor )
         {
             return string.Format(
                 @"{0}\{1}.{2}.xml",
-                _LocalFeedFolder( mipFeedHandler.GetName() ),
-                mipFeedHandler.GetName(),
-                mipFeedHandler.Id
+                _LocalFeedFolder( mipFeedDescriptor.GetName() ),
+                mipFeedDescriptor.GetName(),
+                mipFeedDescriptor.Id
                 );
         }
 

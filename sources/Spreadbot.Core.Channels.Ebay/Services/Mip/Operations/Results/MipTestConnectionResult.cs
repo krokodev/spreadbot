@@ -4,7 +4,7 @@
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
 {
-    public class MipTestConnectionResult : AbstractMipResponseResult
+    public class MipTestConnectionResult : AbstractMipResult
     {
         public bool Value { get; set; }
     }

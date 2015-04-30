@@ -1,10 +1,10 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MwsRequestStatus.cs
+// MwsSubmissionStatus.cs
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission
 {
-    public enum MwsRequestStatus
+    public enum MwsSubmissionStatus
     {
         Unknown = 0,
         Initial,

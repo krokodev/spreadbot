@@ -3,7 +3,7 @@
 // AmazonSubmissionTask.imp.IProceedableTask.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
@@ -19,9 +19,9 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
 
         public void AssertCanBeProceeded()
         {
-            if( MwsRequestStatusCode != MwsRequestStatus.Initial &&
-                MwsRequestStatusCode != MwsRequestStatus.Inprocess ) {
-                throw new SpreadbotException( "Unexpected Task MwsRequestStatusCode: [{0}]", MwsRequestStatusCode );
+            if( MwsSubmissionStatusCode != MwsSubmissionStatus.Initial &&
+                MwsSubmissionStatusCode != MwsSubmissionStatus.Inprocess ) {
+                throw new SpreadbotException( "Unexpected Task MwsRequestStatusCode: [{0}]", MwsSubmissionStatusCode );
             }
         }
 
