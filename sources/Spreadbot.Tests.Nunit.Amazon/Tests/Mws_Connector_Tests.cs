@@ -18,22 +18,31 @@ namespace Spreadbot.Nunit.Amazon.Tests
     [TestFixture]
     public class Mws_Connector_Tests : Amazon_Tests
     {
-        private const string FeedFileTemplate = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml";
-
         [SetUp]
         public static void Init() {}
 
         [Test]
         public void Submit_Product_Feed()
         {
-            var feed = MakeMwsFeedHandler( MwsFeedType.Product );
-            var response = MwsConnector.Instance.SubmitFeed( feed );
+            SubmitFeedTest( MwsFeedType.Product );
+        }
 
-            Console.WriteLine( response );
+        [Test]
+        public void Submit_Inventory_Feed()
+        {
+            SubmitFeedTest( MwsFeedType.Inventory );
+        }
 
-            IgnoreMwsThrottling( response );
+        [Test]
+        public void Submit_Price_Feed()
+        {
+            SubmitFeedTest( MwsFeedType.Price );
+        }
 
-            Assert.AreEqual( MwsOperationStatus.SubmitFeedSuccess, response.StatusCode );
+        [Test]
+        public void Submit_Image_Feed()
+        {
+            SubmitFeedTest( MwsFeedType.Image );
         }
 
         // Todo:> Submit Price, Image, Inventory
@@ -43,29 +52,34 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Find_Request_Inprocess() {}
 
         [Test]
-        public void Dont_Find_Unknown_Request_Inprocess() {}
-
-        [Test]
         public void Get_Request_Status_Inproc() {}
 
         [Test]
         public void Get_Request_Status_Success() {}
 
-        [Test]
-        public void Get_Request_Status_Unknown() {}
-
-        [Test]
-        public void Response_Contains_Args_Info() {}
 */
 
         // ===================================================================================== []
         // Utils
+        private const string FeedFileTemplate = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml";
+
         private static MwsFeedHandler MakeMwsFeedHandler( MwsFeedType mwsFeedType )
         {
             var fileNAme = string.Format( FeedFileTemplate, AmazonSettings.BasePath, mwsFeedType );
             return new MwsFeedHandler( mwsFeedType ) {
                 Content = File.ReadAllText( fileNAme )
             };
+        }
+
+        private static void SubmitFeedTest( MwsFeedType feedType )
+        {
+            var feed = MakeMwsFeedHandler( feedType );
+            var response = MwsConnector.Instance.SubmitFeed( feed );
+
+            Console.WriteLine( response );
+            IgnoreMwsThrottling( response );
+
+            Assert.AreEqual( MwsOperationStatus.SubmitFeedSuccess, response.StatusCode, feedType.ToString() );
         }
     }
 }
