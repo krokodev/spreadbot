@@ -5,8 +5,8 @@
 using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;

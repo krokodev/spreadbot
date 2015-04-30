@@ -6,10 +6,10 @@ using Moq;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Core.Abstracts.Store.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Adapter;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 

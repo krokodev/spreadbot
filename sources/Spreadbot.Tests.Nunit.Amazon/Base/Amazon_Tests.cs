@@ -2,7 +2,7 @@
 // Spreadbot.Tests.Nunit.Amazon
 // Amazon_Tests.cs
 
-using Spreadbot.Core.Channels.Amazon.Mws.Connector;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
 using Spreadbot.Nunit.Base;
 
 namespace Spreadbot.Nunit.Amazon.Base

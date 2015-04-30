@@ -5,10 +5,10 @@
 using System;
 using System.IO;
 using Moq;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
-using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {

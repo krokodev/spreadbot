@@ -4,8 +4,8 @@
 
 using Moq;
 using Spreadbot.Core.Abstracts.Store.Manager;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.SftpHelper;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 
 namespace Spreadbot.Nunit.Ebay.Mocks

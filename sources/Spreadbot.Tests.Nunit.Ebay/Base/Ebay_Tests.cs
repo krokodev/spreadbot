@@ -2,7 +2,7 @@
 // Spreadbot.Tests.Nunit.Ebay
 // Ebay_Tests.cs
 
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Nunit.Base;
 
 namespace Spreadbot.Nunit.Ebay.Base

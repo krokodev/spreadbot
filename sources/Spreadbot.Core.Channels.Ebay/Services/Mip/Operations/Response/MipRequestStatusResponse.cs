@@ -1,0 +1,20 @@
+// Spreadbot (c) 2015 Krokodev
+// Spreadbot.Core.Channels.Ebay
+// MipRequestStatusResponse.cs
+
+using System;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Tasks;
+
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response
+{
+    public class MipRequestStatusResponse : MipResponse< MipGetRequestStatusResult >, ITaskProceedInfo
+    {
+        public MipRequestStatusResponse() {}
+
+        public MipRequestStatusResponse( Exception exception )
+            : base( exception ) {}
+
+        public DateTime ProceedTime { get; set; }
+    }
+}

@@ -4,7 +4,6 @@
 
 using System;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Amazon.Mws.Connector;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 
 namespace Spreadbot.Core.Channels.Amazon.Adapter

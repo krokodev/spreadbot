@@ -3,7 +3,7 @@
 // AmazonSubmissionTask.imp.IProceedableTask.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;

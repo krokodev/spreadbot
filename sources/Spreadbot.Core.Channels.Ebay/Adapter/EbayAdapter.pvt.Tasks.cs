@@ -5,11 +5,11 @@
 using System;
 using Spreadbot.Core.Abstracts.Channel.Operations.Methods;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Response;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Ebay.Adapter

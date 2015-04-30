@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // AmazonSubmissionArgs.cs
 
-using Spreadbot.Core.Channels.Amazon.Mws.Feed;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 
 namespace Spreadbot.Core.Channels.Amazon.Operations.Args
 {

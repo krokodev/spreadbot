@@ -4,8 +4,8 @@
 
 using System.IO;
 using MoreLinq;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 
 namespace Spreadbot.Core.Channels.Ebay.Adapter
 {

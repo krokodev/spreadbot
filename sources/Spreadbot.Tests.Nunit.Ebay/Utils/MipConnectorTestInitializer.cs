@@ -9,8 +9,8 @@ using System.Linq;
 using Krokodev.Common.Extensions;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 

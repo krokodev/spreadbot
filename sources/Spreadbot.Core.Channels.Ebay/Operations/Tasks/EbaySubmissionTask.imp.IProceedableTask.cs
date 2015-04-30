@@ -3,7 +3,7 @@
 // EbaySubmissionTask.imp.IProceedableTask.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;

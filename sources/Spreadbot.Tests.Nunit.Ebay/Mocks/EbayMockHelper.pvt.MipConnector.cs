@@ -3,9 +3,9 @@
 // EbayMockHelper.pvt.MipConnector.cs
 
 using Moq;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {

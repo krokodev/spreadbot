@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 

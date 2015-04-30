@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Ebay
 // EbaySubmissionArgs.cs
 
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Args
 {

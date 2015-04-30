@@ -5,8 +5,8 @@
 using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
-using Spreadbot.Core.Channels.Amazon.Mws.Operations.Request;
 using Spreadbot.Core.Channels.Amazon.Operations.Results;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Request;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;

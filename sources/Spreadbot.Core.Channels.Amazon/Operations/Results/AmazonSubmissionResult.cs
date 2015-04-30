@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // AmazonSubmissionResult.cs
 
-using Spreadbot.Core.Channels.Amazon.Mws.Results;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
 
 namespace Spreadbot.Core.Channels.Amazon.Operations.Results
 {

@@ -6,10 +6,10 @@ using System;
 using Krokodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
-using Spreadbot.Core.Channels.Ebay.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.Request;
-using Spreadbot.Core.Channels.Ebay.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Request;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
 using Spreadbot.Nunit.Ebay.Mocks;
 using Spreadbot.Nunit.Ebay.Utils;
 

@@ -86,21 +86,21 @@
     <Compile Include="Adapter\AmazonAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.pvt.Tasks.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.pvt.Feed.Utils.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.pvt.Instance.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.pvt.Client.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.pvt.Feed.cs" />
-    <Compile Include="Mws\Feed\MwsFeedHandler.cs" />
-    <Compile Include="Mws\Feed\MwsFeedType.cs" />
-    <Compile Include="Mws\Connector\IMwsConnector.cs" />
-    <Compile Include="Mws\Connector\MwsConnector.cs" />
-    <Compile Include="Mws\Operations\Request\MwsRequestHandler.cs" />
-    <Compile Include="Mws\Operations\Request\MwsRequestProcessingStage.cs" />
-    <Compile Include="Mws\Operations\Request\MwsRequestStatus.cs" />
-    <Compile Include="Mws\Operations\Response\MwsResponse.cs" />
-    <Compile Include="Mws\Operations\StatusCode\MwsOperationStatus.cs" />
-    <Compile Include="Mws\Results\AbstractMwsResponseResult.cs" />
-    <Compile Include="Mws\Results\MwsSubmitFeedResult.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.Utils.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
+    <Compile Include="Services\Mws\Feed\MwsFeedHandler.cs" />
+    <Compile Include="Services\Mws\Feed\MwsFeedType.cs" />
+    <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
+    <Compile Include="Services\Mws\Operations\Request\MwsRequestHandler.cs" />
+    <Compile Include="Services\Mws\Operations\Request\MwsRequestProcessingStage.cs" />
+    <Compile Include="Services\Mws\Operations\Request\MwsRequestStatus.cs" />
+    <Compile Include="Services\Mws\Operations\Response\MwsResponse.cs" />
+    <Compile Include="Services\Mws\Operations\StatusCode\MwsOperationStatus.cs" />
+    <Compile Include="Services\Mws\Operations\Results\AbstractMwsResponseResult.cs" />
+    <Compile Include="Services\Mws\Operations\Results\MwsSubmitFeedResult.cs" />
     <Compile Include="Operations\Args\AmazonSubmissionArgs.cs" />
     <Compile Include="Operations\Results\AmazonSubmissionResult.cs" />
     <Compile Include="Operations\Tasks\AmazonSubmissionTask.cs" />
@@ -109,68 +109,68 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Entities\Xsd\readme.txt">
+    <None Include="Services\Mws\Entities\Xsd\readme.txt">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Health.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Health.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Image.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Image.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Miscellaneous.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Miscellaneous.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Entities\Xsd\amzn-base.xsd">
+    <None Include="Services\Mws\Entities\Xsd\amzn-base.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\amzn-envelope.xsd">
+    <None Include="Services\Mws\Entities\Xsd\amzn-envelope.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\amzn-header.xsd">
+    <None Include="Services\Mws\Entities\Xsd\amzn-header.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\FulfillmentCenter.xsd">
+    <None Include="Services\Mws\Entities\Xsd\FulfillmentCenter.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Inventory.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Inventory.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Listings.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Listings.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\OrderAcknowledgement.xsd">
+    <None Include="Services\Mws\Entities\Xsd\OrderAcknowledgement.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\OrderAdjustment.xsd">
+    <None Include="Services\Mws\Entities\Xsd\OrderAdjustment.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\OrderFulfillment.xsd">
+    <None Include="Services\Mws\Entities\Xsd\OrderFulfillment.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\OrderReport.xsd">
+    <None Include="Services\Mws\Entities\Xsd\OrderReport.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Override.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Override.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Price.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Price.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\ProcessingReport.xsd">
+    <None Include="Services\Mws\Entities\Xsd\ProcessingReport.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Product.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Product.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\ProductImage.xsd">
+    <None Include="Services\Mws\Entities\Xsd\ProductImage.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\Relationship.xsd">
+    <None Include="Services\Mws\Entities\Xsd\Relationship.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Entities\Xsd\SettlementReport.xsd">
+    <None Include="Services\Mws\Entities\Xsd\SettlementReport.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
