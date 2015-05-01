@@ -3,12 +3,15 @@
 // MwsConnector.pvt.Feed.cs
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Response;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode;
+using Spreadbot.Sdk.Common.Exceptions;
 
 // Code: MwsConnector.Feed
 
@@ -46,26 +49,30 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         {
             // Code: GetFeedSubmissionList
             // Todo:> Use arg Filters, Next Tokens
-            /*
             try {
-                var response = GetFeedSubmissionDoneList();
-                if( response.GetFeedSubmissionListResult.HasNext ) {
-                    Assert.Inconclusive( "Too many completed feed submissions, need to use Next Token" );
-                }
+                var request = new GetFeedSubmissionListRequest {
+                    Merchant = AmazonSettings.MerchantId,
+                    MaxCount = 100,
+                    SubmittedFromDate = DateTime.Today,
+                    FeedSubmissionIdList = null,
+                    FeedProcessingStatusList = new StatusList { Status = { "_DONE_" } }
+                };
 
-                var recentFeedSubmissionIds =
-                    response.GetFeedSubmissionListResult.FeedSubmissionInfo.Where( info => info.IsSetFeedSubmissionId() )
-                        .Reverse()
-                        .ToList();
-                var recentNIds =
-                    recentFeedSubmissionIds.Skip( Math.Max( 0, recentFeedSubmissionIds.Count() - RecentFeedsNumber ) )
-                        .ToList();
-                if( !recentNIds.Any() ) {
-                    Assert.Inconclusive( "No completed feed submissions" );
-                }
+                var response = _mwsClient.GetFeedSubmissionList( request );
+
+                return new MwsGetFeedSubmissionListResponse {
+                    StatusCode = MwsOperationStatus.GetFeedSubmissionListSuccess,
+                    Result = new MwsGetFeedSubmissionListResult {
+                        FeedSubmissionIds = TryGetFeedSubmissionIds( response )
+                    },
+                    Details = response.ToXML()
+                };
             }
-*/
-            throw new NotImplementedException();
+            catch( Exception exception ) {
+                return new MwsGetFeedSubmissionListResponse( exception ) {
+                    StatusCode = MwsOperationStatus.GetFeedSubmissionListFailure
+                };
+            }
         }
     }
 }

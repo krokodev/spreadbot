@@ -2,8 +2,10 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsConnector.pvt.Feed.Utils.cs
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using MarketplaceWebService;
 using MarketplaceWebService.Model;
@@ -49,9 +51,23 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             try {
                 return response.SubmitFeedResult.FeedSubmissionInfo.FeedSubmissionId;
             }
-            catch {
-                throw new SpreadbotException( "SubmitFeedResponse has no FeedSubmissionId" );
+            catch( Exception exception ) {
+                throw new SpreadbotException( "Can't get FeedSubmissionId [{0}]", exception.Message );
             }
+        }
+
+        private static List< string > TryGetFeedSubmissionIds( GetFeedSubmissionListResponse response )
+        {
+            try {
+                return response.GetFeedSubmissionListResult.FeedSubmissionInfo
+                    .Select( info => info.FeedSubmissionId )
+                    .ToList();
+            }
+            catch( Exception exception ) {
+                throw new SpreadbotException( "Can't get FeedSubmissionList [{0}]", exception.Message );
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

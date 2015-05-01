@@ -8,6 +8,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode
     {
         Unknown,
         SubmitFeedFailure,
-        SubmitFeedSuccess
+        SubmitFeedSuccess,
+        GetFeedSubmissionListSuccess,
+        GetFeedSubmissionListFailure
     }
 }

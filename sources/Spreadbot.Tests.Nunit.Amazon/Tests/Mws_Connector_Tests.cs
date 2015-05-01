@@ -4,6 +4,7 @@
 
 using System;
 using System.IO;
+using Krokodev.Common.Extensions;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
@@ -49,11 +50,27 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         [Ignore]
         [Test]
-        public void Obtain_Submitted_Feeds_List()
+        public void Get_Submitted_Feeds_List()
         {
             var response = MwsConnector.Instance.GetFeedSubmissionList();
+            
+            IgnoreMwsThrottling( response );
 
-            // Todo:> Obtain_Submitted_Feeds_List
+            Assert.IsNotNull( response.Result, "Result" );
+            Assert.IsNotNull( response.Result.FeedSubmissionIds, "Result.FeedSubmissionIds" );
+            Assert.Greater( response.Result.FeedSubmissionIds.Count, 0 );
+
+            Console.WriteLine( response.Result.FeedSubmissionIds.FoldToStringBy( id=>id, "\n" ) );
+        }
+
+        [Test]
+        public void Get_Submitted_Feeds_List_Counter()
+        {
+        }
+
+        [Test]
+        public void Get_Submitted_Feeds_List_Counter_Is_Verified()
+        {
         }
 
         [Test]
