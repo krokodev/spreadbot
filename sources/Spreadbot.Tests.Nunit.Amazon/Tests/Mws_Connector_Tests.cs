@@ -47,9 +47,12 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         private const int RecentFeedsNumber = 10;
 
+        [Ignore]
         [Test]
         public void Obtain_Submitted_Feeds_List()
         {
+            var response = MwsConnector.Instance.GetFeedSubmissionList();
+
             // Todo:> Obtain_Submitted_Feeds_List
         }
 

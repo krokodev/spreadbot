@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        protected MwsResponse< MwsSubmitFeedResult > _SubmitFeed( MwsFeedDescriptor feedDescriptor )
+        protected MwsSubmitFeedResponse _SubmitFeed( MwsFeedDescriptor feedDescriptor )
         {
             try {
                 var request = new SubmitFeedRequest {
@@ -29,17 +29,43 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.SubmitFeed( request );
 
-                return new MwsResponse< MwsSubmitFeedResult > {
+                return new MwsSubmitFeedResponse {
                     StatusCode = MwsOperationStatus.SubmitFeedSuccess,
                     Result = new MwsSubmitFeedResult { FeedSubmissionId = TryGetFeedSubmissionId( response ) },
                     Details = response.ToXML()
                 };
             }
             catch( Exception exception ) {
-                return new MwsResponse< MwsSubmitFeedResult >( exception ) {
+                return new MwsSubmitFeedResponse( exception ) {
                     StatusCode = MwsOperationStatus.SubmitFeedFailure
                 };
             }
+        }
+
+        private MwsGetFeedSubmissionListResponse _GetFeedSubmissionList()
+        {
+            // Code: GetFeedSubmissionList
+            // Todo:> Use arg Filters, Next Tokens
+            /*
+            try {
+                var response = GetFeedSubmissionDoneList();
+                if( response.GetFeedSubmissionListResult.HasNext ) {
+                    Assert.Inconclusive( "Too many completed feed submissions, need to use Next Token" );
+                }
+
+                var recentFeedSubmissionIds =
+                    response.GetFeedSubmissionListResult.FeedSubmissionInfo.Where( info => info.IsSetFeedSubmissionId() )
+                        .Reverse()
+                        .ToList();
+                var recentNIds =
+                    recentFeedSubmissionIds.Skip( Math.Max( 0, recentFeedSubmissionIds.Count() - RecentFeedsNumber ) )
+                        .ToList();
+                if( !recentNIds.Any() ) {
+                    Assert.Inconclusive( "No completed feed submissions" );
+                }
+            }
+*/
+            throw new NotImplementedException();
         }
     }
 }
