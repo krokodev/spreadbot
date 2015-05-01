@@ -12,9 +12,15 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses
     public class MwsResponse<TR> : GenericResponse< TR, MwsOperationStatus >
         where TR : IResponseResult
     {
-        public MwsResponse() {}
+        public MwsResponse()
+        {
+            StatusCode = MwsOperationStatus.Success;
+        }
 
         public MwsResponse( Exception exception )
-            : base( exception ) {}
+            : base( exception )
+        {
+            StatusCode = MwsOperationStatus.Failure;
+        }
     }
 }

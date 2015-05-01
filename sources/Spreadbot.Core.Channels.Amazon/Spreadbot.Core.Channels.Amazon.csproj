@@ -90,10 +90,9 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
-    <Compile Include="Services\Mws\Operations\Responses\MwsGetFeedSubmissionListResponse.cs" />
-    <Compile Include="Services\Mws\Operations\Responses\MwsSubmitFeedResponse.cs" />
+    <Compile Include="Services\Mws\Operations\Results\MwsGetFeedSubmissionCountResult.cs" />
     <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionDescriptor.cs" />
-    <Compile Include="Services\Mws\Operations\Results\MwsGetFeedSubmissionListResult.cs" />
+    <Compile Include="Services\Mws\Operations\Results\MwsGetFeedSubmissionsResult.cs" />
     <Compile Include="Services\Mws\Feed\MwsFeedDescriptor.cs" />
     <Compile Include="Services\Mws\Feed\MwsFeedType.cs" />
     <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />

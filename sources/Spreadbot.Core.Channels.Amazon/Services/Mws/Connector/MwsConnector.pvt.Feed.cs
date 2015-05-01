@@ -3,21 +3,17 @@
 // MwsConnector.pvt.Feed.cs
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
-using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        protected MwsSubmitFeedResponse _SubmitFeed( MwsFeedDescriptor feedDescriptor )
+        protected MwsResponse< MwsSubmitFeedResult > _SubmitFeed( MwsFeedDescriptor feedDescriptor )
         {
             try {
                 var request = new SubmitFeedRequest {
@@ -30,22 +26,18 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.SubmitFeed( request );
 
-                return new MwsSubmitFeedResponse {
-                    StatusCode = MwsOperationStatus.SubmitFeedSuccess,
+                return new MwsResponse< MwsSubmitFeedResult > {
                     Result = new MwsSubmitFeedResult { FeedSubmissionId = TryGetFeedSubmissionId( response ) },
                     Details = response.ToXML()
                 };
             }
             catch( Exception exception ) {
-                return new MwsSubmitFeedResponse( exception ) {
-                    StatusCode = MwsOperationStatus.SubmitFeedFailure
-                };
+                return new MwsResponse< MwsSubmitFeedResult >( exception );
             }
         }
 
-        private MwsGetFeedSubmissionListResponse _GetFeedSubmissionList()
+        private MwsResponse< MwsGetFeedSubmissionsResult > _GetFeedSubmissions()
         {
-            // Code: GetFeedSubmissionList
             // Todo:> Use arg Filters, Next Tokens
             try {
                 var request = new GetFeedSubmissionListRequest {
@@ -58,18 +50,39 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.GetFeedSubmissionList( request );
 
-                return new MwsGetFeedSubmissionListResponse {
-                    StatusCode = MwsOperationStatus.GetFeedSubmissionListSuccess,
-                    Result = new MwsGetFeedSubmissionListResult {
+                return new MwsResponse< MwsGetFeedSubmissionsResult > {
+                    Result = new MwsGetFeedSubmissionsResult {
                         FeedSubmissionDescriptors = TryGetFeedSubmissionDescriptors( response )
                     },
                     Details = response.ToXML()
                 };
             }
             catch( Exception exception ) {
-                return new MwsGetFeedSubmissionListResponse( exception ) {
-                    StatusCode = MwsOperationStatus.GetFeedSubmissionListFailure
+                return new MwsResponse< MwsGetFeedSubmissionsResult >( exception );
+            }
+        }
+
+        private MwsResponse< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount()
+        {
+            // Todo:> Use arg Filters
+            try {
+                var request = new GetFeedSubmissionCountRequest {
+                    Merchant = AmazonSettings.MerchantId,
+                    SubmittedFromDate = DateTime.Today,
+                    FeedProcessingStatusList = new StatusList { Status = { "_DONE_" } }
                 };
+
+                var response = _mwsClient.GetFeedSubmissionCount( request );
+
+                return new MwsResponse< MwsGetFeedSubmissionCountResult > {
+                    Result = new MwsGetFeedSubmissionCountResult {
+                        FeedSubmissionCount = TryGetFeedSubmissionCount( response )
+                    },
+                    Details = response.ToXML()
+                };
+            }
+            catch( Exception exception ) {
+                return new MwsResponse< MwsGetFeedSubmissionCountResult >( exception );
             }
         }
     }

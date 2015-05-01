@@ -7,9 +7,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses
     public enum MwsOperationStatus
     {
         Unknown,
-        SubmitFeedFailure,
-        SubmitFeedSuccess,
-        GetFeedSubmissionListSuccess,
-        GetFeedSubmissionListFailure
+        Failure,
+        Success
     }
 }

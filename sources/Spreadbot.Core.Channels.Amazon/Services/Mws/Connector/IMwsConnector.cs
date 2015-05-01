@@ -4,12 +4,14 @@
 
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public interface IMwsConnector
     {
-        MwsSubmitFeedResponse SubmitFeed( MwsFeedDescriptor feedDescriptor );
-        MwsGetFeedSubmissionListResponse GetFeedSubmissionList();
+        MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedDescriptor feedDescriptor );
+        MwsResponse< MwsGetFeedSubmissionsResult > GetFeedSubmissions();
+        MwsResponse< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount();
     }
 }

@@ -46,12 +46,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
             SubmitFeedTest( MwsFeedType.Image );
         }
 
-        private const int RecentFeedsNumber = 10;
-
         [Test]
         public void Get_Submitted_Feeds_List()
         {
-            var response = MwsConnector.Instance.GetFeedSubmissionList();
+            var response = MwsConnector.Instance.GetFeedSubmissions();
             
             IgnoreMwsThrottling( response );
 
@@ -63,7 +61,20 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Get_Submitted_Feeds_List_Counter()
+        public void Get_Submitted_Feeds_List_Count()
+        {
+            var response = MwsConnector.Instance.GetFeedSubmissionCount();
+            
+            IgnoreMwsThrottling( response );
+
+            Assert.IsNotNull( response.Result, "Result" );
+            Assert.Greater( response.Result.FeedSubmissionCount, 0 );
+
+            Console.WriteLine( "Count: {0}", response.Result.FeedSubmissionCount );
+        }
+
+        [Test]
+        public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count()
         {
         }
 
@@ -134,7 +145,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Console.WriteLine( response );
             IgnoreMwsThrottling( response );
 
-            Assert.AreEqual( MwsOperationStatus.SubmitFeedSuccess, response.StatusCode, feedType.ToString() );
+            Assert.AreEqual( MwsOperationStatus.Success, response.StatusCode, feedType.ToString() );
         }
     }
 }
