@@ -68,7 +68,6 @@ namespace Spreadbot.Nunit.Tests
         public static void ChannelResponse_Success_Serialization()
         {
             var response = new ChannelResponse< EbaySubmissionResult > {
-                StatusCode = ChannelResponseStatusCode.SubmitSuccess,
                 Result = new EbaySubmissionResult()
             };
 
@@ -86,10 +85,8 @@ namespace Spreadbot.Nunit.Tests
             var submissionTask1 = new EbaySubmissionTask();
             var submissionTask2 = new EbaySubmissionTask();
             storeTask.AddSubTasks( submissionTask1, submissionTask2 );
-            submissionTask2.AbstractResponse = new ChannelResponse< EbaySubmissionResult >(
-                new Exception( "Test Exception" ) ) {
-                    StatusCode = ChannelResponseStatusCode.SubmitFailure,
-                };
+            submissionTask2.AbstractResponse = new ChannelResponse< EbaySubmissionResult >( 
+                new Exception( "Test Exception" ) );
 
             var str = storeTask.ToYamlString( SerializationOptions.EmitDefaults );
 

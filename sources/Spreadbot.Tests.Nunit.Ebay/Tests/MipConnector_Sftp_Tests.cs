@@ -7,7 +7,6 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Utils;
 
@@ -38,7 +37,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.SftpSendFilesSuccess, response.StatusCode );
+            Assert.That( response.IsSuccessful );
         }
 
         // ===================================================================================== []
@@ -49,7 +48,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.TestConnectionSuccess, response.StatusCode );
+            Assert.That( response.IsSuccessful );
         }
 
         // ===================================================================================== []
@@ -60,7 +59,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.TestConnectionFailure, response.StatusCode );
+            Assert.IsFalse( response.IsSuccessful );
         }
     }
 }

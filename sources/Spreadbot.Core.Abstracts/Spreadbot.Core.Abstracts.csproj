@@ -83,7 +83,6 @@
     <Compile Include="Channel\Adapter\IChannelAdapter.cs" />
     <Compile Include="Channel\Operations\Methods\ChannelMethod.cs" />
     <Compile Include="Channel\Operations\Responses\ChannelResponse.cs" />
-    <Compile Include="Channel\Operations\Responses\ChannelResponseStatusCode.cs" />
     <Compile Include="Channel\Operations\Responses\IChannelResponse.cs" />
     <Compile Include="Channel\Operations\Tasks\AbstractChannelTask.cs" />
     <Compile Include="Channel\Operations\Tasks\IChannelTask.cs" />

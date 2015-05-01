@@ -14,19 +14,19 @@ using YamlDotNet.Serialization;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    public class GenericResponse<TResult, TStatusCode> : IAbstractResponse
+    public class GenericResponse<TResult> : IAbstractResponse
         where TResult : IResponseResult
     {
         protected GenericResponse()
         {
-            IsSuccess = true;
+            IsSuccessful = true;
             InnerResponses = new List< IAbstractResponse >();
         }
 
         protected GenericResponse( Exception exception )
             : this()
         {
-            IsSuccess = false;
+            IsSuccessful = false;
             ExceptionInfo = GetExceptionInfo( exception );
         }
 
@@ -37,11 +37,8 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
             get { return GetType().ToString(); }
         }
 
-        [YamlMember( Order = 0 )]
-        public TStatusCode StatusCode { get; set; }
-
         [YamlMember( Order = 1 )]
-        public bool IsSuccess { get; set; }
+        public bool IsSuccessful { get; set; }
 
         [YamlMember( Order = 2 )]
         public string ArgsInfo { get; set; }
@@ -61,7 +58,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         // --------------------------------------------------------[]
         public void Check()
         {
-            if( !IsSuccess ) {
+            if( !IsSuccessful ) {
                 throw new SpreadbotResponseException( this );
             }
         }

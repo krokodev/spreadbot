@@ -9,7 +9,6 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
 using Spreadbot.Nunit.Amazon.Base;
 
 // Code: Mws_Connector_Tests
@@ -145,7 +144,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Console.WriteLine( response );
             IgnoreMwsThrottling( response );
 
-            Assert.AreEqual( MwsOperationStatus.Success, response.StatusCode, feedType.ToString() );
+            Assert.That( response.IsSuccessful, feedType.ToString() );
         }
     }
 }

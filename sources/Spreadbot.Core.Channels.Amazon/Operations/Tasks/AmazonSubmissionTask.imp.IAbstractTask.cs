@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
             if( AbstractResponse == null ) {
                 return TaskStatus.Todo;
             }
-            if( !AbstractResponse.IsSuccess ) {
+            if( !AbstractResponse.IsSuccessful ) {
                 return TaskStatus.Failure;
             }
             switch( MwsFeedSubmissionResultStatusCode ) {

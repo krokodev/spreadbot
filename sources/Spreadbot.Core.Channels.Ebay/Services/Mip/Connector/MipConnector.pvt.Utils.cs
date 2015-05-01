@@ -8,7 +8,6 @@ using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
@@ -34,13 +33,10 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipSubmitFeedResponse ( exception ) {
-                    StatusCode = MipOperationStatus.SubmitFeedFailure,
-                };
+                return new MipSubmitFeedResponse ( exception );
             }
 
             return new MipSubmitFeedResponse {
-                StatusCode = MipOperationStatus.SubmitFeedSuccess,
                 Result = new MipSubmitFeedResult { FeedSubmissionId = reqId },
                 InnerResponses = { zipResponse, sendResponse }
             };
@@ -69,7 +65,6 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             return new MipSubmissionStatusResponse {
-                StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
                 ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                 Result = ReadSubmissionOutputStatus( feedType, response )
             };
@@ -107,12 +102,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 findResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipFindSubmissionResult >( exception ) {
-                    StatusCode = MipOperationStatus.FindSubmissionFailure
-                };
+                return new MipResponse< MipFindSubmissionResult >( exception );
             }
             return new MipResponse< MipFindSubmissionResult > {
-                StatusCode = MipOperationStatus.FindSubmissionSuccess,
                 Result =
                     new MipFindSubmissionResult {
                         RemoteDir = findResponse.Result.RemoteDir,
@@ -127,9 +119,8 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         {
             try {
                 var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
-                if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
+                if( response.IsSuccessful ) {
                     return new MipSubmissionStatusResponse {
-                        StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
                             new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Inprocess }
@@ -137,14 +128,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 }
 
                 response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.Done );
-                if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
+                if( response.IsSuccessful ) {
                     return GetSubmissionStatusFromOutput( mipFeedSubmissionDescriptor.MipFeedDescriptor.Type,
                         response,
                         mipFeedSubmissionDescriptor );
                 }
 
                 return new MipSubmissionStatusResponse {
-                    StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                     Result = new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown },
                     InnerResponses = { response }
@@ -152,7 +142,6 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             }
             catch( Exception exception ) {
                 return new MipSubmissionStatusResponse( exception ) {
-                    StatusCode = MipOperationStatus.GetSubmissionStatusFailure,
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor )
                 };
             }

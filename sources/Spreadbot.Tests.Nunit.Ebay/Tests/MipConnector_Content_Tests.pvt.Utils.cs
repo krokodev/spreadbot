@@ -9,7 +9,6 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Nunit.Ebay.Mocks;
 using Spreadbot.Nunit.Ebay.Utils;
 
@@ -24,12 +23,12 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( mipFeedType );
             var request = new MipFeedSubmissionDescriptor( feed, MipConnectorTestInitializer.ItemRequestId );
 
-            var requestResponse = mipConnector.GetSubmissionStatus( request );
-            Console.WriteLine( requestResponse );
+            var response = mipConnector.GetSubmissionStatus( request );
+            Console.WriteLine( response );
 
-            Assert.IsNotNull( requestResponse.Result );
+            Assert.IsNotNull( response.Result );
             Assert.AreEqual( MipConnectorTestInitializer.ProductItemId,
-                requestResponse.Result.MipItemId,
+                response.Result.MipItemId,
                 "{0}.ItemId".SafeFormat( feed.Type ) );
         }
 
@@ -51,12 +50,12 @@ namespace Spreadbot.Nunit.Ebay.Tests
             MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionResultStatus )
                 .ForEach( reqId => {
                     var request = new MipFeedSubmissionDescriptor( feed, reqId );
-                    var requestResponse = mipConnector.GetSubmissionStatus( request );
+                    var response = mipConnector.GetSubmissionStatus( request );
                     var testInfo = "{0}.{1} checking status".SafeFormat( feed.Type, reqId );
                     wasTested = true;
 
-                    Assert.AreEqual( MipOperationStatus.GetSubmissionStatusSuccess, requestResponse.StatusCode, testInfo );
-                    Assert.AreEqual( mipFeedSubmissionResultStatus, requestResponse.Result.MipFeedSubmissionResultStatusCode, testInfo );
+                    Assert.That( response.IsSuccessful, testInfo );
+                    Assert.AreEqual( mipFeedSubmissionResultStatus, response.Result.MipFeedSubmissionResultStatusCode, testInfo );
                 } );
 
             Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionResultStatus ) );

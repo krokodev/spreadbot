@@ -3,24 +3,17 @@
 // MwsResponse.cs
 
 using System;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses
 {
-    public class MwsResponse<TR> : GenericResponse< TR, MwsOperationStatus >
+    public class MwsResponse<TR> : GenericResponse< TR >
         where TR : IResponseResult
     {
-        public MwsResponse()
-        {
-            StatusCode = MwsOperationStatus.Success;
-        }
+        public MwsResponse() {}
 
         public MwsResponse( Exception exception )
-            : base( exception )
-        {
-            StatusCode = MwsOperationStatus.Failure;
-        }
+            : base( exception ) {}
     }
 }

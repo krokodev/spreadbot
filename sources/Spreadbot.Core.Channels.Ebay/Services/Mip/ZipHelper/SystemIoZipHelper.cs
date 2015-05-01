@@ -9,7 +9,6 @@ using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
 {
@@ -27,12 +26,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
                     );
             }
             catch( Exception exception ) {
-                return new MipResponse< MipZipFeedResult >( exception ) {
-                    StatusCode = MipOperationStatus.ZipFeedFailure
-                };
+                return new MipResponse< MipZipFeedResult >( exception );
             }
             return new MipResponse< MipZipFeedResult > {
-                StatusCode = MipOperationStatus.ZipFeedSuccess,
                 Result = new MipZipFeedResult { ZipFileName = zipFileName }
             };
         }

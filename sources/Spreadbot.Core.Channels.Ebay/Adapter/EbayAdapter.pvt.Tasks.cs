@@ -72,16 +72,13 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                 mipResponse.Check();
 
                 task.EbaySubmissionResponse = new ChannelResponse< EbaySubmissionResult > {
-                    StatusCode = ChannelResponseStatusCode.SubmitSuccess,
                     Result = new EbaySubmissionResult { MipSubmissionId = mipResponse.Result.FeedSubmissionId },
                     InnerResponses = { mipResponse }
                 };
                 task.MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Initial;
             }
             catch( Exception exception ) {
-                task.EbaySubmissionResponse = new ChannelResponse< EbaySubmissionResult >( exception ) {
-                    StatusCode = ChannelResponseStatusCode.SubmitFailure
-                };
+                task.EbaySubmissionResponse = new ChannelResponse< EbaySubmissionResult >( exception );
             }
             task.WasUpdatedNow();
         }

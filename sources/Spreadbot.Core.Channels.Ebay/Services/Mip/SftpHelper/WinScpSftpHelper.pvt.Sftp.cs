@@ -8,7 +8,6 @@ using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using WinSCP;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
@@ -25,12 +24,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
                 }
             }
             catch( Exception exception ) {
-                return new MipResponse< MipTestConnectionResult >( exception ) {
-                    StatusCode = MipOperationStatus.TestConnectionFailure
-                };
+                return new MipResponse< MipTestConnectionResult >( exception );
             }
             return new MipResponse< MipTestConnectionResult > {
-                StatusCode = MipOperationStatus.TestConnectionSuccess,
                 Result = new MipTestConnectionResult { Value = true }
             };
         }
@@ -43,12 +39,10 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
             }
             catch( Exception exception ) {
                 return new MipResponse< MipSftpSendFilesResult >( exception ) {
-                    StatusCode = MipOperationStatus.SftpSendFilesFailure,
                     Details = "localFiles: [{0}]".SafeFormat( localFiles )
                 };
             }
             return new MipResponse< MipSftpSendFilesResult > {
-                StatusCode = MipOperationStatus.SftpSendFilesSuccess,
                 Result = new MipSftpSendFilesResult { LocalFiles = localFiles, RemoteFiles = remoteFiles }
             };
         }
@@ -139,15 +133,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
             foreach( RemoteFileInfo fileInfo in files ) {
                 if( fileInfo.Name.Contains( filePrefix ) ) {
                     return new MipResponse< MipFindRemoteFileResult > {
-                        StatusCode = MipOperationStatus.FindRemoteFileSuccess,
                         Result =
                             new MipFindRemoteFileResult { RemoteDir = remoteDir, RemoteFileName = fileInfo.Name }
                     };
                 }
             }
             return new MipResponse< MipFindRemoteFileResult > {
-                IsSuccess = false,
-                StatusCode = MipOperationStatus.FindRemoteFileFailure,
+                IsSuccessful = false,
                 Details = string.Format( "Remote file [{0}] not found in [{1}]", filePrefix, remoteDir )
             };
         }
@@ -168,13 +160,12 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
         {
             foreach( var remoteDir in remoteDirs ) {
                 var response = FindRemoteFile( filePrefix, remoteDir );
-                if( response.StatusCode == MipOperationStatus.FindRemoteFileSuccess ) {
+                if( response.IsSuccessful ) {
                     return response;
                 }
             }
             return new MipResponse< MipFindRemoteFileResult > {
-                IsSuccess = false,
-                StatusCode = MipOperationStatus.FindRemoteFileFailure,
+                IsSuccessful = false,
                 Details = string.Format( "Remote file [{0}] not found in [{1}]",
                     filePrefix,
                     remoteDirs.FoldToStringBy( s => s ) )

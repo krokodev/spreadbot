@@ -8,7 +8,6 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Utils;
 
@@ -34,9 +33,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var response = MipConnector.Instance.ZipHelper.ZipFeed( feed, reqId );
             Console.WriteLine( response );
 
-            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.StatusCode );
+            Assert.That( response.IsSuccessful );
             Assert.IsTrue( File.Exists( response.Result.ZipFileName ) );
-            Assert.AreEqual( MipOperationStatus.ZipFeedSuccess, response.StatusCode );
         }
     }
 }

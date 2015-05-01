@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             if( AbstractResponse == null ) {
                 return TaskStatus.Todo;
             }
-            if( !AbstractResponse.IsSuccess ) {
+            if( !AbstractResponse.IsSuccessful ) {
                 return TaskStatus.Failure;
             }
             switch( MipFeedSubmissionResultStatusCode ) {

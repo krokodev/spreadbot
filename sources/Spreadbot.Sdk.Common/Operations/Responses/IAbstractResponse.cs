@@ -6,7 +6,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
 {
     public interface IAbstractResponse
     {
-        bool IsSuccess { get; }
+        bool IsSuccessful { get; }
         void Check();
     }
 }

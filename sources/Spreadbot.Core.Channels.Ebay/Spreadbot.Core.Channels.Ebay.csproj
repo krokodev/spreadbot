@@ -125,7 +125,6 @@
     <Compile Include="Services\Mip\Feed\MipFeedDescriptor.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Mip\Operations\Statuses\MipOperationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
