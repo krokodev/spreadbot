@@ -5,9 +5,9 @@
 using System;
 using System.IO;
 using Moq;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
@@ -48,7 +48,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                 .Returns( (
                     string filePrefix,
                     string remoteDir )
-                    => new MipResponse< MipFindRemoteFileResult > {
+                    => new Response< MipFindRemoteFileResult > {
                         Result = new MipFindRemoteFileResult {
                             RemoteDir = "fake",
                             RemoteFileName = filePrefix + ".xml",
@@ -64,7 +64,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                         It.IsAny< string >(),
                         It.Is< String >( s => s.ToLower().Contains( "inproc" ) ) ) )
                 .Returns(
-                    new MipResponse< MipFindRemoteFileResult > {
+                    new Response< MipFindRemoteFileResult > {
                         IsSuccessful = false
                     } );
         }

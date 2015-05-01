@@ -9,7 +9,7 @@ using Spreadbot.Sdk.Common.Operations.Responses;
 namespace Spreadbot.Core.Abstracts.Channel.Operations.Responses
 {
     public class ChannelResponse<TR> :
-        GenericResponse< TR >, IChannelResponse
+        Response< TR >, IChannelResponse
         where TR : IResponseResult
     {
         public ChannelResponse() {}

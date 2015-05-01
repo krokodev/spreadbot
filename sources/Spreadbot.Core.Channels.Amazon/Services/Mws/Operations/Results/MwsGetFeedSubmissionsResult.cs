@@ -4,10 +4,11 @@
 
 using System.Collections.Generic;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results
 {
-    public class MwsGetFeedSubmissionsResult : AbstractMwsResponseResult
+    public class MwsGetFeedSubmissionsResult : ResponseResult
     {
         public List< MwsFeedSubmissionDescriptor > FeedSubmissionDescriptors { get; set; }
     }

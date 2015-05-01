@@ -2,9 +2,11 @@
 // Spreadbot.Core.Channels.Ebay
 // MipFindSubmissionResult.cs
 
+using Spreadbot.Sdk.Common.Operations.ResponseResults;
+
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
 {
-    public class MipFindSubmissionResult : AbstractMipResult
+    public class MipFindSubmissionResult : ResponseResult
     {
         public string RemoteFileName { get; set; }
         public string RemoteDir { get; set; }

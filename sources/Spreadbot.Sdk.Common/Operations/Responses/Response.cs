@@ -4,26 +4,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Dynamic;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using YamlDotNet.Serialization;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {
-    public class GenericResponse<TResult> : IAbstractResponse
+    [SuppressMessage( "ReSharper", "UnusedAutoPropertyAccessor.Global" )]
+    public class Response<TResult> : IAbstractResponse
         where TResult : IResponseResult
     {
-        protected GenericResponse()
+        public Response()
         {
             IsSuccessful = true;
             InnerResponses = new List< IAbstractResponse >();
         }
 
-        protected GenericResponse( Exception exception )
+        public Response( Exception exception )
             : this()
         {
             IsSuccessful = false;

@@ -7,15 +7,15 @@ using System.IO;
 using System.IO.Compression;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
 {
     public class SystemIoZipHelper : IZipHelper
     {
         // --------------------------------------------------------[]
-        public MipResponse< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
+        public Response< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
         {
             string zipFileName;
             try {
@@ -26,9 +26,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
                     );
             }
             catch( Exception exception ) {
-                return new MipResponse< MipZipFeedResult >( exception );
+                return new Response< MipZipFeedResult >( exception );
             }
-            return new MipResponse< MipZipFeedResult > {
+            return new Response< MipZipFeedResult > {
                 Result = new MipZipFeedResult { ZipFileName = zipFileName }
             };
         }

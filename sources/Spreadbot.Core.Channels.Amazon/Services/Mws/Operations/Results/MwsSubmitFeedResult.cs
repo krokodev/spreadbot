@@ -2,9 +2,11 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsSubmitFeedResult.cs
 
+using Spreadbot.Sdk.Common.Operations.ResponseResults;
+
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results
 {
-    public class MwsSubmitFeedResult : AbstractMwsResponseResult
+    public class MwsSubmitFeedResult : ResponseResult
     {
         public string FeedSubmissionId { get; set; }
     }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Sdk.Common.Operations.Proceed;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 

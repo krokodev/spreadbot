@@ -99,8 +99,6 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
     <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionProcessingStatus.cs" />
     <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionResultStatus.cs" />
-    <Compile Include="Services\Mws\Operations\Responses\MwsResponse.cs" />
-    <Compile Include="Services\Mws\Operations\Results\AbstractMwsResponseResult.cs" />
     <Compile Include="Services\Mws\Operations\Results\MwsSubmitFeedResult.cs" />
     <Compile Include="Operations\Args\AmazonSubmissionArgs.cs" />
     <Compile Include="Operations\Results\AmazonSubmissionResult.cs" />

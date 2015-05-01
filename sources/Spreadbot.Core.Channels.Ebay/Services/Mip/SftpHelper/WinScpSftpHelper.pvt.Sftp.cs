@@ -6,8 +6,8 @@ using System;
 using System.IO;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 using WinSCP;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
@@ -15,7 +15,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
     public partial class WinScpSftpHelper
     {
         // --------------------------------------------------------[]
-        private static MipResponse< MipTestConnectionResult > DoTestConnection( string password )
+        private static Response< MipTestConnectionResult > DoTestConnection( string password )
         {
             try {
                 var sessionOptions = SessionOptions( password );
@@ -24,25 +24,25 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
                 }
             }
             catch( Exception exception ) {
-                return new MipResponse< MipTestConnectionResult >( exception );
+                return new Response< MipTestConnectionResult >( exception );
             }
-            return new MipResponse< MipTestConnectionResult > {
+            return new Response< MipTestConnectionResult > {
                 Result = new MipTestConnectionResult { Value = true }
             };
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipSftpSendFilesResult > DoSendFiles( string localFiles, string remoteFiles )
+        private static Response< MipSftpSendFilesResult > DoSendFiles( string localFiles, string remoteFiles )
         {
             try {
                 SftpUploadFiles( localFiles, remoteFiles );
             }
             catch( Exception exception ) {
-                return new MipResponse< MipSftpSendFilesResult >( exception ) {
+                return new Response< MipSftpSendFilesResult >( exception ) {
                     Details = "localFiles: [{0}]".SafeFormat( localFiles )
                 };
             }
-            return new MipResponse< MipSftpSendFilesResult > {
+            return new Response< MipSftpSendFilesResult > {
                 Result = new MipSftpSendFilesResult { LocalFiles = localFiles, RemoteFiles = remoteFiles }
             };
         }
@@ -127,18 +127,18 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        private static MipResponse< MipFindRemoteFileResult > _FindRemoteFile( string filePrefix, string remoteDir )
+        private static Response< MipFindRemoteFileResult > _FindRemoteFile( string filePrefix, string remoteDir )
         {
             var files = GetRemoteDirFiles( remoteDir );
             foreach( RemoteFileInfo fileInfo in files ) {
                 if( fileInfo.Name.Contains( filePrefix ) ) {
-                    return new MipResponse< MipFindRemoteFileResult > {
+                    return new Response< MipFindRemoteFileResult > {
                         Result =
                             new MipFindRemoteFileResult { RemoteDir = remoteDir, RemoteFileName = fileInfo.Name }
                     };
                 }
             }
-            return new MipResponse< MipFindRemoteFileResult > {
+            return new Response< MipFindRemoteFileResult > {
                 IsSuccessful = false,
                 Details = string.Format( "Remote file [{0}] not found in [{1}]", filePrefix, remoteDir )
             };
@@ -156,7 +156,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > _FindRemoteFile( string filePrefix, string[] remoteDirs )
+        private Response< MipFindRemoteFileResult > _FindRemoteFile( string filePrefix, string[] remoteDirs )
         {
             foreach( var remoteDir in remoteDirs ) {
                 var response = FindRemoteFile( filePrefix, remoteDir );
@@ -164,7 +164,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
                     return response;
                 }
             }
-            return new MipResponse< MipFindRemoteFileResult > {
+            return new Response< MipFindRemoteFileResult > {
                 IsSuccessful = false,
                 Details = string.Format( "Remote file [{0}] not found in [{1}]",
                     filePrefix,

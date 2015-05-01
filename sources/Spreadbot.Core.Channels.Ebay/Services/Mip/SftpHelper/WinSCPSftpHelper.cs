@@ -2,27 +2,27 @@
 // Spreadbot.Core.Channels.Ebay
 // WinSCPSftpHelper.cs
 
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
 {
     public partial class WinScpSftpHelper : ISftpHelper
     {
         // --------------------------------------------------------[]
-        public MipResponse< MipTestConnectionResult > TestConnection( string password = null )
+        public Response< MipTestConnectionResult > TestConnection( string password = null )
         {
             return DoTestConnection( password );
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSftpSendFilesResult > SendFiles( string localFiles, string remoteFiles )
+        public Response< MipSftpSendFilesResult > SendFiles( string localFiles, string remoteFiles )
         {
             return DoSendFiles( localFiles, remoteFiles );
         }
 
         // --------------------------------------------------------[]
-        public virtual MipResponse< MipFindRemoteFileResult > FindRemoteFile(
+        public virtual Response< MipFindRemoteFileResult > FindRemoteFile(
             string filePrefix,
             string remoteDir )
         {
@@ -30,7 +30,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper
         }
 
         // --------------------------------------------------------[]
-        public virtual MipResponse< MipFindRemoteFileResult > FindRemoteFile(
+        public virtual Response< MipFindRemoteFileResult > FindRemoteFile(
             string filePrefix,
             string[] remoteDirs )
         {

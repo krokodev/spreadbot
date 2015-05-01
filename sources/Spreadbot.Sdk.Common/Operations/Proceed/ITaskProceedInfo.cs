@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Spreadbot.Sdk.Common.Operations.Tasks
+namespace Spreadbot.Sdk.Common.Operations.Proceed
 {
     public interface ITaskProceedInfo
     {

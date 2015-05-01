@@ -4,10 +4,10 @@
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
 
@@ -43,13 +43,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
-        public virtual MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
+        public virtual Response< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
         {
             return SubmitFeed( mipFeedDescriptor, MipFeedSubmissionDescriptor.GenerateId() );
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipFindSubmissionResult > FindSubmission(
+        public Response< MipFindSubmissionResult > FindSubmission(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor,
             MipFeedSubmissionProcessingStatus processingStatus )
         {
@@ -57,14 +57,14 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        public MipSubmissionStatusResponse GetSubmissionStatus(
+        public Response< MipGetSubmissionStatusResult > GetSubmissionStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             return _GetSubmissionStatus( mipFeedSubmissionDescriptor );
         }
 
         // --------------------------------------------------------[]
-        public MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
+        public Response< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
         {
             return _SubmitFeed( mipFeedDescriptor, reqId );
         }

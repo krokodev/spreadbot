@@ -2,11 +2,11 @@
 // Spreadbot.Core.Channels.Ebay
 // EbaySubmissionResult.cs
 
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Ebay.Operations.Results
 {
-    public class EbaySubmissionResult : AbstractMipResult
+    public class EbaySubmissionResult : ResponseResult
     {
         public string MipSubmissionId { get; set; }
         public string MipItemId { get; set; }

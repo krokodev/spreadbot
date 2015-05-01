@@ -3,13 +3,13 @@
 // IZipHelper.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper
 {
     public interface IZipHelper
     {
-        MipResponse< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId );
+        Response< MipZipFeedResult > ZipFeed( MipFeedDescriptor mipFeedDescriptor, string reqId );
     }
 }

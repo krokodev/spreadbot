@@ -6,21 +6,21 @@ using System;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        protected MipSubmitFeedResponse _SubmitFeed(
+        protected Response< MipSubmitFeedResult > _SubmitFeed(
             MipFeedDescriptor mipFeedDescriptor,
             string reqId )
         {
-            MipResponse< MipZipFeedResult > zipResponse;
-            MipResponse< MipSftpSendFilesResult > sendResponse;
+            Response< MipZipFeedResult > zipResponse;
+            Response< MipSftpSendFilesResult > sendResponse;
 
             try {
                 var localFiles = LocalZippedFeedFile( mipFeedDescriptor.GetName(), reqId );
@@ -33,17 +33,17 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipSubmitFeedResponse( exception );
+                return new Response< MipSubmitFeedResult >( exception );
             }
 
-            return new MipSubmitFeedResponse {
+            return new Response< MipSubmitFeedResult > {
                 Result = new MipSubmitFeedResult { FeedSubmissionId = reqId },
                 InnerResponses = { zipResponse, sendResponse }
             };
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Inprocess(
+        private Response< MipFindRemoteFileResult > FindSubmissionInFolder_Inprocess(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             var remoteDir = RemoteFeedInprocessFolderPath( mipFeedSubmissionDescriptor.MipFeedDescriptor.GetName() );
@@ -59,12 +59,12 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipSubmissionStatusResponse GetSubmissionStatusFromOutput(
+        private Response< MipGetSubmissionStatusResult > GetSubmissionStatusFromOutput(
             MipFeedType feedType,
-            MipResponse< MipFindSubmissionResult > response,
+            Response< MipFindSubmissionResult > response,
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return new MipSubmissionStatusResponse {
+            return new Response< MipGetSubmissionStatusResult > {
                 ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                 Result = ReadSubmissionOutputStatus( feedType, response )
             };
@@ -73,7 +73,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         private MipGetSubmissionStatusResult ReadSubmissionOutputStatus(
             MipFeedType feedType,
-            MipResponse< MipFindSubmissionResult > response )
+            Response< MipFindSubmissionResult > response )
         {
             var fileName = response.Result.RemoteFileName;
             var remotePath = response.Result.RemoteDir;
@@ -83,11 +83,11 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindSubmissionResult > _FindSubmission(
+        private Response< MipFindSubmissionResult > _FindSubmission(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor,
             MipFeedSubmissionProcessingStatus processingStatus )
         {
-            MipResponse< MipFindRemoteFileResult > findResponse;
+            Response< MipFindRemoteFileResult > findResponse;
             try {
                 switch( processingStatus ) {
                     case MipFeedSubmissionProcessingStatus.InProgress :
@@ -102,9 +102,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 findResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipFindSubmissionResult >( exception );
+                return new Response< MipFindSubmissionResult >( exception );
             }
-            return new MipResponse< MipFindSubmissionResult > {
+            return new Response< MipFindSubmissionResult > {
                 Result =
                     new MipFindSubmissionResult {
                         RemoteDir = findResponse.Result.RemoteDir,
@@ -115,13 +115,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipSubmissionStatusResponse _GetSubmissionStatus(
+        private Response< MipGetSubmissionStatusResult > _GetSubmissionStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {
                 var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
                 if( response.IsSuccessful ) {
-                    return new MipSubmissionStatusResponse {
+                    return new Response< MipGetSubmissionStatusResult > {
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
                             new MipGetSubmissionStatusResult {
@@ -137,7 +137,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                         mipFeedSubmissionDescriptor );
                 }
 
-                return new MipSubmissionStatusResponse {
+                return new Response< MipGetSubmissionStatusResult > {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                     Result =
                         new MipGetSubmissionStatusResult {
@@ -147,14 +147,14 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 };
             }
             catch( Exception exception ) {
-                return new MipSubmissionStatusResponse( exception ) {
+                return new Response< MipGetSubmissionStatusResult >( exception ) {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor )
                 };
             }
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Output(
+        private Response< MipFindRemoteFileResult > FindSubmissionInFolder_Output(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             var remoteDirs = RemoteFeedOutputFolderPathes( mipFeedSubmissionDescriptor.MipFeedDescriptor.GetName() );

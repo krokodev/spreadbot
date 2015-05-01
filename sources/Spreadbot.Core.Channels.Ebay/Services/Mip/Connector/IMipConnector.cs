@@ -4,14 +4,15 @@
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {
     public interface IMipConnector
     {
-        MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor );
+        Response< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor );
 
-        MipSubmissionStatusResponse GetSubmissionStatus( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor );
+        Response< MipGetSubmissionStatusResult > GetSubmissionStatus( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor );
     }
 }

@@ -3,8 +3,9 @@
 // IProceedableTask.cs
 
 using System.Collections.Generic;
+using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Sdk.Common.Operations.Tasks
+namespace Spreadbot.Sdk.Common.Operations.Proceed
 {
     public interface IProceedableTask : IAbstractTask
     {

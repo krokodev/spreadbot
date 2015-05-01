@@ -6,14 +6,14 @@ using System;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        protected MwsResponse< MwsSubmitFeedResult > _SubmitFeed( MwsFeedDescriptor feedDescriptor )
+        protected Response< MwsSubmitFeedResult > _SubmitFeed( MwsFeedDescriptor feedDescriptor )
         {
             try {
                 var request = new SubmitFeedRequest {
@@ -26,17 +26,17 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.SubmitFeed( request );
 
-                return new MwsResponse< MwsSubmitFeedResult > {
+                return new Response< MwsSubmitFeedResult > {
                     Result = new MwsSubmitFeedResult { FeedSubmissionId = TryGetFeedSubmissionId( response ) },
                     Details = response.ToXML()
                 };
             }
             catch( Exception exception ) {
-                return new MwsResponse< MwsSubmitFeedResult >( exception );
+                return new Response< MwsSubmitFeedResult >( exception );
             }
         }
 
-        private MwsResponse< MwsGetFeedSubmissionsResult > _GetFeedSubmissions()
+        private Response< MwsGetFeedSubmissionsResult > _GetFeedSubmissions()
         {
             // Todo:> Use arg Filters, Next Tokens
             try {
@@ -50,7 +50,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.GetFeedSubmissionList( request );
 
-                return new MwsResponse< MwsGetFeedSubmissionsResult > {
+                return new Response< MwsGetFeedSubmissionsResult > {
                     Result = new MwsGetFeedSubmissionsResult {
                         FeedSubmissionDescriptors = TryGetFeedSubmissionDescriptors( response )
                     },
@@ -58,11 +58,11 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 };
             }
             catch( Exception exception ) {
-                return new MwsResponse< MwsGetFeedSubmissionsResult >( exception );
+                return new Response< MwsGetFeedSubmissionsResult >( exception );
             }
         }
 
-        private MwsResponse< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount()
+        private Response< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount()
         {
             // Todo:> Use arg Filters
             try {
@@ -74,7 +74,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
                 var response = _mwsClient.GetFeedSubmissionCount( request );
 
-                return new MwsResponse< MwsGetFeedSubmissionCountResult > {
+                return new Response< MwsGetFeedSubmissionCountResult > {
                     Result = new MwsGetFeedSubmissionCountResult {
                         FeedSubmissionCount = TryGetFeedSubmissionCount( response )
                     },
@@ -82,7 +82,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 };
             }
             catch( Exception exception ) {
-                return new MwsResponse< MwsGetFeedSubmissionCountResult >( exception );
+                return new Response< MwsGetFeedSubmissionCountResult >( exception );
             }
         }
     }

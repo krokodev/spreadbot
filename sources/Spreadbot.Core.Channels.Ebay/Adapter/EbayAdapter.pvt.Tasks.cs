@@ -9,8 +9,10 @@ using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Operations.Proceed;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Adapter
 {
@@ -21,7 +23,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
         {
             task.AssertCanBeProceeded();
 
-            MipSubmissionStatusResponse statusResponse = null;
+            Response< MipGetSubmissionStatusResult > statusResponse = null;
 
             try {
                 var args = task.Args;
@@ -35,14 +37,20 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                 task.MipFeedSubmissionResultStatusCode = statusResponse.Result.MipFeedSubmissionResultStatusCode;
                 task.EbaySubmissionResponse.Result.MipItemId = statusResponse.Result.MipItemId;
 
-                statusResponse.ProceedTime = DateTime.Now;
-                task.AddProceedInfo( statusResponse );
+                task.AddProceedInfo( GetProceedInfo( statusResponse ) );
             }
             catch {
                 task.MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Failure;
-                task.AddProceedInfo( statusResponse );
+                task.AddProceedInfo( GetProceedInfo( statusResponse ) );
             }
             task.WasUpdatedNow();
+        }
+
+        // --------------------------------------------------------[]
+        private static TaskProceedInfo< Response< MipGetSubmissionStatusResult > > GetProceedInfo(
+            Response< MipGetSubmissionStatusResult > statusResponse )
+        {
+            return new TaskProceedInfo< Response< MipGetSubmissionStatusResult > >( statusResponse );
         }
 
         // --------------------------------------------------------[]
