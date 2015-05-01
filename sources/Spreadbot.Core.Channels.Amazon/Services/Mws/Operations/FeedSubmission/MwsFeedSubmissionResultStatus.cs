@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MwsSubmissionStatus.cs
+// MwsFeedSubmissionResultStatus.cs
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission
 {

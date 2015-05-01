@@ -55,10 +55,14 @@ namespace Spreadbot.Nunit.Ebay.Tests
                     wasTested = true;
 
                     Assert.That( response.IsSuccessful, testInfo );
-                    Assert.AreEqual( mipFeedSubmissionResultStatus, response.Result.MipFeedSubmissionResultStatusCode, testInfo );
+                    Assert.AreEqual( mipFeedSubmissionResultStatus,
+                        response.Result.MipFeedSubmissionResultStatusCode,
+                        testInfo );
                 } );
 
-            Assert.AreEqual( true, wasTested, "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionResultStatus ) );
+            Assert.AreEqual( true,
+                wasTested,
+                "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionResultStatus ) );
         }
 
         // --------------------------------------------------------[]

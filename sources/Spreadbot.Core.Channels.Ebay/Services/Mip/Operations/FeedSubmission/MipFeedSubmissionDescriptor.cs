@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipSubmissionDescriptor.cs
+// MipFeedSubmissionDescriptor.cs
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;

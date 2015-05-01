@@ -49,21 +49,21 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Get_Submitted_Feeds_List()
         {
             var response = MwsConnector.Instance.GetFeedSubmissions();
-            
+
             IgnoreMwsThrottling( response );
 
             Assert.IsNotNull( response.Result, "Result" );
             Assert.IsNotNull( response.Result.FeedSubmissionDescriptors, "Result.FeedSubmissionIds" );
             Assert.Greater( response.Result.FeedSubmissionDescriptors.Count, 0 );
 
-            Console.WriteLine( response.Result.FeedSubmissionDescriptors.FoldToStringBy( d=>d.FeedSubmissionId, "\n" ) );
+            Console.WriteLine( response.Result.FeedSubmissionDescriptors.FoldToStringBy( d => d.FeedSubmissionId, "\n" ) );
         }
 
         [Test]
         public void Get_Submitted_Feeds_List_Count()
         {
             var response = MwsConnector.Instance.GetFeedSubmissionCount();
-            
+
             IgnoreMwsThrottling( response );
 
             Assert.IsNotNull( response.Result, "Result" );
@@ -73,9 +73,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count()
-        {
-        }
+        public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count() {}
 
         [Test]
         public void Find_Submission_Inprocess() {}
@@ -122,7 +120,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 }
             }*/
         }
-
 
         // ===================================================================================== []
         // Utils

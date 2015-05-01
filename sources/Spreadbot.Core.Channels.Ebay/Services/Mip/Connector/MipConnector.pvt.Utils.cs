@@ -33,7 +33,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipSubmitFeedResponse ( exception );
+                return new MipSubmitFeedResponse( exception );
             }
 
             return new MipSubmitFeedResponse {
@@ -115,7 +115,8 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipSubmissionStatusResponse _GetSubmissionStatus( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
+        private MipSubmissionStatusResponse _GetSubmissionStatus(
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {
                 var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
@@ -123,7 +124,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                     return new MipSubmissionStatusResponse {
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
-                            new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Inprocess }
+                            new MipGetSubmissionStatusResult {
+                                MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Inprocess
+                            }
                     };
                 }
 
@@ -136,7 +139,10 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 
                 return new MipSubmissionStatusResponse {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
-                    Result = new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown },
+                    Result =
+                        new MipGetSubmissionStatusResult {
+                            MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown
+                        },
                     InnerResponses = { response }
                 };
             }

@@ -38,7 +38,9 @@ namespace Spreadbot.Nunit.Ebay.Utils
         }
 
         // --------------------------------------------------------[]
-        public static IEnumerable< string > TestRequestIds( MipFeedType feed, MipFeedSubmissionResultStatus resultStatus )
+        public static IEnumerable< string > TestRequestIds(
+            MipFeedType feed,
+            MipFeedSubmissionResultStatus resultStatus )
         {
             return Enumerable.Range( 1, 10 )
                 .Where( i => FileExists( feed, resultStatus, i ) )

@@ -26,7 +26,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionResultStatus GetSubmissionStatusFromContent( MipFeedType feedType, string content )
+        private static MipFeedSubmissionResultStatus GetSubmissionStatusFromContent(
+            MipFeedType feedType,
+            string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/status" },
@@ -34,11 +36,12 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 { MipFeedType.Distribution, "/distributionResponse/status" },
             };
             var extraSubmissionStatusControl =
-                new Dictionary< MipFeedType, Func< XmlDocument, MipFeedSubmissionResultStatus, MipFeedSubmissionResultStatus > > {
-                    { MipFeedType.Product, ExtraCheckProductStatus },
-                    { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
-                    { MipFeedType.Distribution, ExtraCheckDistributionStatus },
-                };
+                new Dictionary
+                    < MipFeedType, Func< XmlDocument, MipFeedSubmissionResultStatus, MipFeedSubmissionResultStatus > > {
+                        { MipFeedType.Product, ExtraCheckProductStatus },
+                        { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
+                        { MipFeedType.Distribution, ExtraCheckDistributionStatus },
+                    };
 
             try {
                 var xml = new XmlDocument {
@@ -83,7 +86,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionResultStatus ExtraCheckProductStatus( XmlDocument xml, MipFeedSubmissionResultStatus defResultStatus )
+        private static MipFeedSubmissionResultStatus ExtraCheckProductStatus(
+            XmlDocument xml,
+            MipFeedSubmissionResultStatus defResultStatus )
         {
             return defResultStatus;
         }

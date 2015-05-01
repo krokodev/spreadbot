@@ -52,7 +52,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Assert.IsNotNull( sendResponse.InnerResponses, "InnerResponses" );
 
             var request = new MipFeedSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipFeedSubmissionProcessingStatus.InProgress );
+            var findResponse = MipConnector.Instance.FindSubmission( request,
+                MipFeedSubmissionProcessingStatus.InProgress );
             Console.WriteLine();
             Console.WriteLine( findResponse );
 
@@ -69,11 +70,12 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.Product );
             var request = new MipFeedSubmissionDescriptor( feed, MipFeedSubmissionDescriptor.GenerateId() );
 
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipFeedSubmissionProcessingStatus.InProgress );
+            var findResponse = MipConnector.Instance.FindSubmission( request,
+                MipFeedSubmissionProcessingStatus.InProgress );
             Console.WriteLine( findResponse );
 
             Assert.IsFalse( findResponse.IsSuccessful );
-            Assert.That( findResponse.Result.Equals( null ) );
+            Assert.IsNull( findResponse.Result );
             Assert_That_Text_Contains( findResponse, @"not found in [store/product/inprocess]" );
         }
 
@@ -84,7 +86,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.None );
             var request = new MipFeedSubmissionDescriptor( feed, MipFeedSubmissionDescriptor.GenerateId() );
 
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipFeedSubmissionProcessingStatus.InProgress );
+            var findResponse = MipConnector.Instance.FindSubmission( request,
+                MipFeedSubmissionProcessingStatus.InProgress );
             Console.WriteLine( findResponse );
 
             Assert.IsFalse( findResponse.IsSuccessful );
@@ -164,13 +167,15 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var submissionStatusResponse = fakeMipConnector.GetSubmissionStatus( request );
             Console.WriteLine( submissionStatusResponse );
 
-            if( submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode != MipFeedSubmissionResultStatus.Success ) {
+            if( submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode
+                != MipFeedSubmissionResultStatus.Success ) {
                 Console.WriteLine(
                     "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
             }
 
             Assert.That( submissionStatusResponse.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionResultStatus.Success, submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
+            Assert.AreEqual( MipFeedSubmissionResultStatus.Success,
+                submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
         }
 
         // --------------------------------------------------------[]
@@ -184,7 +189,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( submissionStatusResponse );
 
             Assert.That( submissionStatusResponse.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionResultStatus.Unknown, submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
+            Assert.AreEqual( MipFeedSubmissionResultStatus.Unknown,
+                submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
         }
 
         // --------------------------------------------------------[]

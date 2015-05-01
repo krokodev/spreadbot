@@ -21,7 +21,8 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
         {
             if( MwsFeedSubmissionResultStatusCode != MwsFeedSubmissionResultStatus.Initial &&
                 MwsFeedSubmissionResultStatusCode != MwsFeedSubmissionResultStatus.InProgress ) {
-                throw new SpreadbotException( "Unexpected Task MwsRequestStatusCode: [{0}]", MwsFeedSubmissionResultStatusCode );
+                throw new SpreadbotException( "Unexpected Task MwsRequestStatusCode: [{0}]",
+                    MwsFeedSubmissionResultStatusCode );
             }
         }
 

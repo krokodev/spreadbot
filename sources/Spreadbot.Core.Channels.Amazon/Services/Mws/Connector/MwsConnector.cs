@@ -24,17 +24,17 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             get { return GetInstance(); }
         }
 
-        public virtual MwsResponse< MwsSubmitFeedResult >  SubmitFeed( MwsFeedDescriptor feedDescriptor )
+        public virtual MwsResponse< MwsSubmitFeedResult > SubmitFeed( MwsFeedDescriptor feedDescriptor )
         {
             return _SubmitFeed( feedDescriptor );
         }
 
-        public virtual MwsResponse< MwsGetFeedSubmissionsResult >  GetFeedSubmissions()
+        public virtual MwsResponse< MwsGetFeedSubmissionsResult > GetFeedSubmissions()
         {
             return _GetFeedSubmissions();
         }
 
-        public MwsResponse< MwsGetFeedSubmissionCountResult >  GetFeedSubmissionCount()
+        public MwsResponse< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount()
         {
             return _GetFeedSubmissionCount();
         }

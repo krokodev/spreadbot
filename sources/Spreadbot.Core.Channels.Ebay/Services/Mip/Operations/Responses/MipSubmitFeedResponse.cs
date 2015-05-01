@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipSubmissionStatusResponse.cs
+// MipSubmitFeedResponse.cs
 
 using System;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
@@ -13,6 +13,5 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses
 
         public MipSubmitFeedResponse( Exception exception )
             : base( exception ) {}
-
     }
 }

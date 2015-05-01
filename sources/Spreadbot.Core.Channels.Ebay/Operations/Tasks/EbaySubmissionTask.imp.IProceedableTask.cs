@@ -21,7 +21,8 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         {
             if( MipFeedSubmissionResultStatusCode != MipFeedSubmissionResultStatus.Initial &&
                 MipFeedSubmissionResultStatusCode != MipFeedSubmissionResultStatus.Inprocess ) {
-                throw new SpreadbotException( "Unexpected Task MipSubmissionStatusCode: [{0}]", MipFeedSubmissionResultStatusCode );
+                throw new SpreadbotException( "Unexpected Task MipSubmissionStatusCode: [{0}]",
+                    MipFeedSubmissionResultStatusCode );
             }
         }
 

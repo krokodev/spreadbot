@@ -57,13 +57,14 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private static List< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors( GetFeedSubmissionListResponse response )
+        private static List< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors(
+            GetFeedSubmissionListResponse response )
         {
             try {
                 return response.GetFeedSubmissionListResult.FeedSubmissionInfo
                     .Select( info => new MwsFeedSubmissionDescriptor {
                         FeedSubmissionId = info.FeedSubmissionId
-                    })
+                    } )
                     .ToList();
             }
             catch( Exception exception ) {
@@ -74,7 +75,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         private static int TryGetFeedSubmissionCount( GetFeedSubmissionCountResponse response )
         {
             try {
-                return (int) response.GetFeedSubmissionCountResult.Count;
+                return ( int ) response.GetFeedSubmissionCountResult.Count;
             }
             catch( Exception exception ) {
                 throw new SpreadbotException( "Can't TryGetFeedSubmissionCount [{0}]", exception.Message );
