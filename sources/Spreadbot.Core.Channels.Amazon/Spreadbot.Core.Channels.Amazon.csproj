@@ -94,7 +94,6 @@
     <Compile Include="Services\Mws\Feed\MwsFeedType.cs" />
     <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
-    <Compile Include="Services\Mws\Operations\Submission\MwsSubmissionDescriptor.cs" />
     <Compile Include="Services\Mws\Operations\Submission\MwsSubmissionStatus.cs" />
     <Compile Include="Services\Mws\Operations\Response\MwsResponse.cs" />
     <Compile Include="Services\Mws\Operations\StatusCode\MwsOperationStatus.cs" />
