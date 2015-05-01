@@ -88,6 +88,7 @@
     <Compile Include="Adapter\EbayAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\EbayAdapter.cs" />
     <Compile Include="Services\Mip\Connector\IMipConnector.cs" />
+    <Compile Include="Services\Mip\Operations\Response\MipSubmitFeedResponse.cs" />
     <Compile Include="Services\Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.SubmissionXml.cs" />

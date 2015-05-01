@@ -16,7 +16,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        protected MipResponse< MipSubmitFeedResult > _SubmitFeed(
+        protected MipSubmitFeedResponse _SubmitFeed(
             MipFeedDescriptor mipFeedDescriptor,
             string reqId )
         {
@@ -34,14 +34,14 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 sendResponse.Check();
             }
             catch( Exception exception ) {
-                return new MipResponse< MipSubmitFeedResult >( exception ) {
+                return new MipSubmitFeedResponse ( exception ) {
                     StatusCode = MipOperationStatus.SubmitFeedFailure,
                 };
             }
 
-            return new MipResponse< MipSubmitFeedResult > {
+            return new MipSubmitFeedResponse {
                 StatusCode = MipOperationStatus.SubmitFeedSuccess,
-                Result = new MipSubmitFeedResult { MipSubmissionId = reqId },
+                Result = new MipSubmitFeedResult { FeedSubmissionId = reqId },
                 InnerResponses = { zipResponse, sendResponse }
             };
         }
@@ -59,7 +59,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         private static string MakeSubmissionStatusArgsInfo( MipSubmissionDescriptor mipSubmissionDescriptor )
         {
-            return "(MipSubmissionId = {0})".SafeFormat( mipSubmissionDescriptor.Id );
+            return "(MipSubmissionId = {0})".SafeFormat( mipSubmissionDescriptor.SubmissionId );
         }
 
         // --------------------------------------------------------[]
@@ -99,7 +99,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                         findResponse = FindSubmissionIn_Inprocess( mipSubmissionDescriptor );
                         break;
                     case MipSubmissionStage.Output :
-                        findResponse = FindSubmissionInOutput( mipSubmissionDescriptor );
+                        findResponse = FindSubmissionIn_Output( mipSubmissionDescriptor );
                         break;
                     default :
                         throw new SpreadbotException( "Wrong stage {0}", stage );
@@ -159,7 +159,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > FindSubmissionInOutput(
+        private MipResponse< MipFindRemoteFileResult > FindSubmissionIn_Output(
             MipSubmissionDescriptor mipSubmissionDescriptor )
         {
             var remoteDirs = RemoteFeedOutputFolderPathes( mipSubmissionDescriptor.MipFeedDescriptor.GetName() );

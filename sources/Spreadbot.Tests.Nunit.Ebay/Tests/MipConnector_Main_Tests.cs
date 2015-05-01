@@ -35,7 +35,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             IgnoreMipQueueDepthErrorMessage( response );
 
             Assert.AreEqual( MipOperationStatus.SubmitFeedSuccess, response.StatusCode );
-            Assert.IsTrue( MipSubmissionDescriptor.VerifySubmissionId( response.Result.MipSubmissionId ) );
+            Assert.IsTrue( MipSubmissionDescriptor.VerifySubmissionId( response.Result.FeedSubmissionId ) );
             Assert_That_Text_Contains( response, "InnerResponses" );
             Assert_That_Text_Contains( response, MipOperationStatus.ZipFeedSuccess );
             Assert_That_Text_Contains( response, MipOperationStatus.SftpSendFilesSuccess );
@@ -57,7 +57,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Assert_That_Text_Contains( sendResponse, MipOperationStatus.ZipFeedSuccess );
             Assert_That_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
 
-            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.MipSubmissionId );
+            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
             var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Inprocess );
             Console.WriteLine();
             Console.WriteLine( findResponse );
@@ -112,7 +112,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
-            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.MipSubmissionId );
+            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
             var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Output );
             Console.WriteLine( findResponse );
 
@@ -146,7 +146,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var sendResponse = MipConnector.Instance.SubmitFeed( feed );
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
-            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.MipSubmissionId );
+            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
             var requestResponse = MipConnector.Instance.GetSubmissionStatus( request );
             Console.WriteLine( requestResponse );
 
@@ -167,7 +167,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( sendResponse );
             Assert.IsNotNull( sendResponse.Result );
 
-            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.MipSubmissionId );
+            var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
             var requestResponse = fakeMipConnector.GetSubmissionStatus( request );
             Console.WriteLine( requestResponse );
 

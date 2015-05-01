@@ -6,6 +6,6 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
 {
     public class MipSubmitFeedResult : AbstractMipResult
     {
-        public string MipSubmissionId { get; set; }
+        public string FeedSubmissionId { get; set; }
     }
 }

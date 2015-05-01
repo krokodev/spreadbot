@@ -43,7 +43,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         public IZipHelper ZipHelper { get; set; }
 
         // --------------------------------------------------------[]
-        public virtual MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
+        public virtual MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
         {
             return SubmitFeed( mipFeedDescriptor, MipSubmissionDescriptor.GenerateId() );
         }
@@ -63,7 +63,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        public MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
+        public MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor, string reqId )
         {
             return _SubmitFeed( mipFeedDescriptor, reqId );
         }

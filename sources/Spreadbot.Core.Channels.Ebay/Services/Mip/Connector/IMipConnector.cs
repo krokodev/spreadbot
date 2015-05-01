@@ -4,18 +4,13 @@
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {
     public interface IMipConnector
     {
-        MipResponse< MipSubmitFeedResult > SubmitFeed( MipFeedDescriptor mipFeedDescriptor );
-
-        MipResponse< MipFindSubmissionResult > FindSubmission(
-            MipSubmissionDescriptor mipSubmissionDescriptor,
-            MipSubmissionStage stage );
+        MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor );
 
         MipSubmissionStatusResponse GetSubmissionStatus( MipSubmissionDescriptor mipSubmissionDescriptor );
     }
