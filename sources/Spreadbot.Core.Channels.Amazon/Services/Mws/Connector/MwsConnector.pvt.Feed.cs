@@ -61,7 +61,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 return new MwsGetFeedSubmissionListResponse {
                     StatusCode = MwsOperationStatus.GetFeedSubmissionListSuccess,
                     Result = new MwsGetFeedSubmissionListResult {
-                        FeedSubmissionIds = TryGetFeedSubmissionIds( response )
+                        FeedSubmissionDescriptors = TryGetFeedSubmissionDescriptors( response )
                     },
                     Details = response.ToXML()
                 };

@@ -9,7 +9,7 @@ using Spreadbot.Core.Channels.Ebay.Adapter;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Stores.Demoshop.Manager;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 
@@ -34,7 +34,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                         storeTask.AddSubTasks(
                             new EbaySubmissionTask {
                                 IsCritical = true,
-                                MipSubmissionStatusCode = MipSubmissionStatus.Unknown,
+                                MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown,
                                 ChannelId = EbayAdapter.Instance.Id,
                                 ChannelMethod = ChannelMethod.Submit,
                                 Args = new EbaySubmissionArgs {

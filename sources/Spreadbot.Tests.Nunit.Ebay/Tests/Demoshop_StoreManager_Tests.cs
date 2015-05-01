@@ -234,7 +234,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
         private static void Assert_That_Last_Update_Time_is_Correct( DemoshopStoreManager store )
         {
             store.GetEbaySubmissionTasks()
-                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 75 ).Seconds ); } );
+                .ForEach( t => { Assert.That( t.LastUpdateTime, Is.EqualTo( DateTime.Now ).Within( 5 ).Minutes ); } );
         }
     }
 }

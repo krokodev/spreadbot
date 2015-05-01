@@ -5,7 +5,7 @@
 using Moq;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {
@@ -18,7 +18,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                     mock => mock.SubmitFeed( It.IsAny< MipFeedDescriptor >() ) )
                 .Returns(
                     ( MipFeedDescriptor feedHandler ) =>
-                        mockMipConnector.Object.SubmitFeed( feedHandler, MipSubmissionDescriptor.GenerateZeroId() )
+                        mockMipConnector.Object.SubmitFeed( feedHandler, MipFeedSubmissionDescriptor.GenerateZeroId() )
                 );
         }
     }

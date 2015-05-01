@@ -5,10 +5,10 @@
 using System;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
@@ -48,29 +48,29 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 
         // --------------------------------------------------------[]
         private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Inprocess(
-            MipSubmissionDescriptor mipSubmissionDescriptor )
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            var remoteDir = RemoteFeedInprocessFolderPath( mipSubmissionDescriptor.MipFeedDescriptor.GetName() );
-            var prefix = mipSubmissionDescriptor.FileNamePrefix();
+            var remoteDir = RemoteFeedInprocessFolderPath( mipFeedSubmissionDescriptor.MipFeedDescriptor.GetName() );
+            var prefix = mipFeedSubmissionDescriptor.FileNamePrefix();
 
             return SftpHelper.FindRemoteFile( prefix, remoteDir );
         }
 
         // --------------------------------------------------------[]
-        private static string MakeSubmissionStatusArgsInfo( MipSubmissionDescriptor mipSubmissionDescriptor )
+        private static string MakeSubmissionStatusArgsInfo( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return "(MipSubmissionId = {0})".SafeFormat( mipSubmissionDescriptor.SubmissionId );
+            return "(MipSubmissionId = {0})".SafeFormat( mipFeedSubmissionDescriptor.SubmissionId );
         }
 
         // --------------------------------------------------------[]
         private MipSubmissionStatusResponse GetSubmissionStatusFromOutput(
             MipFeedType feedType,
             MipResponse< MipFindSubmissionResult > response,
-            MipSubmissionDescriptor mipSubmissionDescriptor )
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             return new MipSubmissionStatusResponse {
                 StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
-                ArgsInfo = MakeSubmissionStatusArgsInfo( mipSubmissionDescriptor ),
+                ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                 Result = ReadSubmissionOutputStatus( feedType, response )
             };
         }
@@ -89,17 +89,17 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 
         // --------------------------------------------------------[]
         private MipResponse< MipFindSubmissionResult > _FindSubmission(
-            MipSubmissionDescriptor mipSubmissionDescriptor,
-            MipSubmissionProcessingStatus processingStatus )
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor,
+            MipFeedSubmissionProcessingStatus processingStatus )
         {
             MipResponse< MipFindRemoteFileResult > findResponse;
             try {
                 switch( processingStatus ) {
-                    case MipSubmissionProcessingStatus.InProgress :
-                        findResponse = FindSubmissionInFolder_Inprocess( mipSubmissionDescriptor );
+                    case MipFeedSubmissionProcessingStatus.InProgress :
+                        findResponse = FindSubmissionInFolder_Inprocess( mipFeedSubmissionDescriptor );
                         break;
-                    case MipSubmissionProcessingStatus.Done :
-                        findResponse = FindSubmissionInFolder_Output( mipSubmissionDescriptor );
+                    case MipFeedSubmissionProcessingStatus.Done :
+                        findResponse = FindSubmissionInFolder_Output( mipFeedSubmissionDescriptor );
                         break;
                     default :
                         throw new SpreadbotException( "Wrong processing status {0}", processingStatus );
@@ -123,47 +123,47 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipSubmissionStatusResponse _GetSubmissionStatus( MipSubmissionDescriptor mipSubmissionDescriptor )
+        private MipSubmissionStatusResponse _GetSubmissionStatus( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {
-                var response = FindSubmission( mipSubmissionDescriptor, MipSubmissionProcessingStatus.InProgress );
+                var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
                 if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
                     return new MipSubmissionStatusResponse {
                         StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
-                        ArgsInfo = MakeSubmissionStatusArgsInfo( mipSubmissionDescriptor ),
+                        ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
-                            new MipGetSubmissionStatusResult { MipSubmissionStatusCode = MipSubmissionStatus.Inprocess }
+                            new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Inprocess }
                     };
                 }
 
-                response = FindSubmission( mipSubmissionDescriptor, MipSubmissionProcessingStatus.Done );
+                response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.Done );
                 if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
-                    return GetSubmissionStatusFromOutput( mipSubmissionDescriptor.MipFeedDescriptor.Type,
+                    return GetSubmissionStatusFromOutput( mipFeedSubmissionDescriptor.MipFeedDescriptor.Type,
                         response,
-                        mipSubmissionDescriptor );
+                        mipFeedSubmissionDescriptor );
                 }
 
                 return new MipSubmissionStatusResponse {
                     StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
-                    ArgsInfo = MakeSubmissionStatusArgsInfo( mipSubmissionDescriptor ),
-                    Result = new MipGetSubmissionStatusResult { MipSubmissionStatusCode = MipSubmissionStatus.Unknown },
+                    ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
+                    Result = new MipGetSubmissionStatusResult { MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown },
                     InnerResponses = { response }
                 };
             }
             catch( Exception exception ) {
                 return new MipSubmissionStatusResponse( exception ) {
                     StatusCode = MipOperationStatus.GetSubmissionStatusFailure,
-                    ArgsInfo = MakeSubmissionStatusArgsInfo( mipSubmissionDescriptor )
+                    ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor )
                 };
             }
         }
 
         // --------------------------------------------------------[]
         private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Output(
-            MipSubmissionDescriptor mipSubmissionDescriptor )
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            var remoteDirs = RemoteFeedOutputFolderPathes( mipSubmissionDescriptor.MipFeedDescriptor.GetName() );
-            var prefix = mipSubmissionDescriptor.FileNamePrefix();
+            var remoteDirs = RemoteFeedOutputFolderPathes( mipFeedSubmissionDescriptor.MipFeedDescriptor.GetName() );
+            var prefix = mipFeedSubmissionDescriptor.FileNamePrefix();
 
             return SftpHelper.FindRemoteFile( prefix, remoteDirs );
         }

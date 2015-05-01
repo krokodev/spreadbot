@@ -48,7 +48,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         private const int RecentFeedsNumber = 10;
 
-        [Ignore]
         [Test]
         public void Get_Submitted_Feeds_List()
         {
@@ -57,10 +56,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
             IgnoreMwsThrottling( response );
 
             Assert.IsNotNull( response.Result, "Result" );
-            Assert.IsNotNull( response.Result.FeedSubmissionIds, "Result.FeedSubmissionIds" );
-            Assert.Greater( response.Result.FeedSubmissionIds.Count, 0 );
+            Assert.IsNotNull( response.Result.FeedSubmissionDescriptors, "Result.FeedSubmissionIds" );
+            Assert.Greater( response.Result.FeedSubmissionDescriptors.Count, 0 );
 
-            Console.WriteLine( response.Result.FeedSubmissionIds.FoldToStringBy( id=>id, "\n" ) );
+            Console.WriteLine( response.Result.FeedSubmissionDescriptors.FoldToStringBy( d=>d.FeedSubmissionId, "\n" ) );
         }
 
         [Test]

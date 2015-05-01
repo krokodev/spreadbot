@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {
@@ -19,14 +19,14 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             string content )
         {
             return new MipGetSubmissionStatusResult {
-                MipSubmissionStatusCode = GetSubmissionStatusFromContent( feedType, content ),
+                MipFeedSubmissionResultStatusCode = GetSubmissionStatusFromContent( feedType, content ),
                 MipItemId = GetSubmissionItemIdFromContent( feedType, content ),
                 Details = content,
             };
         }
 
         // --------------------------------------------------------[]
-        private static MipSubmissionStatus GetSubmissionStatusFromContent( MipFeedType feedType, string content )
+        private static MipFeedSubmissionResultStatus GetSubmissionStatusFromContent( MipFeedType feedType, string content )
         {
             var statusNodePath = new Dictionary< MipFeedType, string > {
                 { MipFeedType.Product, "/productResponse/status" },
@@ -34,7 +34,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 { MipFeedType.Distribution, "/distributionResponse/status" },
             };
             var extraSubmissionStatusControl =
-                new Dictionary< MipFeedType, Func< XmlDocument, MipSubmissionStatus, MipSubmissionStatus > > {
+                new Dictionary< MipFeedType, Func< XmlDocument, MipFeedSubmissionResultStatus, MipFeedSubmissionResultStatus > > {
                     { MipFeedType.Product, ExtraCheckProductStatus },
                     { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
                     { MipFeedType.Distribution, ExtraCheckDistributionStatus },
@@ -49,9 +49,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 if( statusNode != null ) {
                     switch( statusNode.InnerText ) {
                         case "SUCCESS" :
-                            return extraSubmissionStatusControl[ feedType ]( xml, MipSubmissionStatus.Success );
+                            return extraSubmissionStatusControl[ feedType ]( xml, MipFeedSubmissionResultStatus.Success );
                         case "FAILURE" :
-                            return MipSubmissionStatus.Failure;
+                            return MipFeedSubmissionResultStatus.Failure;
                     }
                 }
             }
@@ -59,33 +59,33 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 // ignored
             }
 
-            return MipSubmissionStatus.Unknown;
+            return MipFeedSubmissionResultStatus.Unknown;
         }
 
         // --------------------------------------------------------[]
-        private static MipSubmissionStatus ExtraCheckDistributionStatus(
+        private static MipFeedSubmissionResultStatus ExtraCheckDistributionStatus(
             XmlDocument xml,
-            MipSubmissionStatus defStatus )
+            MipFeedSubmissionResultStatus defResultStatus )
         {
-            return defStatus;
+            return defResultStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipSubmissionStatus ExtraCheckAvailabilityStatus(
+        private static MipFeedSubmissionResultStatus ExtraCheckAvailabilityStatus(
             XmlDocument xml,
-            MipSubmissionStatus defStatus )
+            MipFeedSubmissionResultStatus defResultStatus )
         {
             var errorIdNode = xml.SelectSingleNode( "/inventoryResponse/error/errorID" );
             if( errorIdNode != null ) {
-                return MipSubmissionStatus.Failure;
+                return MipFeedSubmissionResultStatus.Failure;
             }
-            return defStatus;
+            return defResultStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipSubmissionStatus ExtraCheckProductStatus( XmlDocument xml, MipSubmissionStatus defStatus )
+        private static MipFeedSubmissionResultStatus ExtraCheckProductStatus( XmlDocument xml, MipFeedSubmissionResultStatus defResultStatus )
         {
-            return defStatus;
+            return defResultStatus;
         }
 
         // --------------------------------------------------------[]

@@ -5,11 +5,11 @@
 using System;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission
 {
-    public class MipSubmissionDescriptor
+    public class MipFeedSubmissionDescriptor
     {
-        public MipSubmissionDescriptor( MipFeedDescriptor mipFeedDescriptor, string submissionId )
+        public MipFeedSubmissionDescriptor( MipFeedDescriptor mipFeedDescriptor, string submissionId )
         {
             MipFeedDescriptor = mipFeedDescriptor;
             SubmissionId = submissionId;

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using Spreadbot.Core.Abstracts.Channel.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 
@@ -20,7 +20,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         }
 
         [YamlMember( Order = 10 )]
-        public MipSubmissionStatus MipSubmissionStatusCode { get; set; }
+        public MipFeedSubmissionResultStatus MipFeedSubmissionResultStatusCode { get; set; }
 
         [YamlMember( Alias = "EbaySubmissionArgs", Order = 29 )]
         public EbaySubmissionArgs Args { get; set; }

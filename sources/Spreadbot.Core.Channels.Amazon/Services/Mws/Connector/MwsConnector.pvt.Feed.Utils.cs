@@ -11,6 +11,7 @@ using MarketplaceWebService;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
@@ -56,11 +57,13 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private static List< string > TryGetFeedSubmissionIds( GetFeedSubmissionListResponse response )
+        private static List< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors( GetFeedSubmissionListResponse response )
         {
             try {
                 return response.GetFeedSubmissionListResult.FeedSubmissionInfo
-                    .Select( info => info.FeedSubmissionId )
+                    .Select( info => new MwsFeedSubmissionDescriptor {
+                        FeedSubmissionId = info.FeedSubmissionId
+                    })
                     .ToList();
             }
             catch( Exception exception ) {

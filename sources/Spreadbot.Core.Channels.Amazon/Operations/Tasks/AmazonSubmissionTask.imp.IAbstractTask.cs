@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Operations.Results;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -25,23 +25,23 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
             if( !AbstractResponse.IsSuccess ) {
                 return TaskStatus.Failure;
             }
-            switch( MwsSubmissionStatusCode ) {
-                case MwsSubmissionStatus.Initial :
+            switch( MwsFeedSubmissionResultStatusCode ) {
+                case MwsFeedSubmissionResultStatus.Initial :
                     return TaskStatus.Inprocess;
 
-                case MwsSubmissionStatus.Inprocess :
+                case MwsFeedSubmissionResultStatus.InProgress :
                     return TaskStatus.Inprocess;
 
-                case MwsSubmissionStatus.Unknown :
+                case MwsFeedSubmissionResultStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MwsSubmissionStatus.Failure :
+                case MwsFeedSubmissionResultStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MwsSubmissionStatus.Success :
+                case MwsFeedSubmissionResultStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsSubmissionStatusCode );
+            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsFeedSubmissionResultStatusCode );
         }
 
         // --------------------------------------------------------[]

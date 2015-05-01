@@ -10,7 +10,7 @@ using Krokodev.Common.Extensions;
 using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -38,20 +38,20 @@ namespace Spreadbot.Nunit.Ebay.Utils
         }
 
         // --------------------------------------------------------[]
-        public static IEnumerable< string > TestRequestIds( MipFeedType feed, MipSubmissionStatus status )
+        public static IEnumerable< string > TestRequestIds( MipFeedType feed, MipFeedSubmissionResultStatus resultStatus )
         {
             return Enumerable.Range( 1, 10 )
-                .Where( i => FileExists( feed, status, i ) )
-                .Select( i => string.Format( "{0}-{1:000}", status, i ).ToLower() );
+                .Where( i => FileExists( feed, resultStatus, i ) )
+                .Select( i => string.Format( "{0}-{1:000}", resultStatus, i ).ToLower() );
         }
 
         // --------------------------------------------------------[]
-        private static bool FileExists( MipFeedType feed, MipSubmissionStatus status, int i )
+        private static bool FileExists( MipFeedType feed, MipFeedSubmissionResultStatus resultStatus, int i )
         {
             return File.Exists(
                 EbaySettings.LocalBasePath
                     + @"ini\"
-                    + string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower()
+                    + string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, resultStatus, i ).ToLower()
                 );
         }
 
@@ -59,7 +59,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         private static void AddFeedStatusSamples( ICollection< string > files )
         {
             EnumUtil.GetValues< MipFeedType >().ForEach( feed => {
-                EnumUtil.GetValues< MipSubmissionStatus >().ForEach( status => {
+                EnumUtil.GetValues< MipFeedSubmissionResultStatus >().ForEach( status => {
                     Enumerable.Range( 1, 10 )
                         .Where( i => FileExists( feed, status, i ) )
                         .Select( i => string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower() )

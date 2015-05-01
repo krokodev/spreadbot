@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -25,23 +25,23 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             if( !AbstractResponse.IsSuccess ) {
                 return TaskStatus.Failure;
             }
-            switch( MipSubmissionStatusCode ) {
-                case MipSubmissionStatus.Initial :
+            switch( MipFeedSubmissionResultStatusCode ) {
+                case MipFeedSubmissionResultStatus.Initial :
                     return TaskStatus.Inprocess;
 
-                case MipSubmissionStatus.Inprocess :
+                case MipFeedSubmissionResultStatus.Inprocess :
                     return TaskStatus.Inprocess;
 
-                case MipSubmissionStatus.Unknown :
+                case MipFeedSubmissionResultStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MipSubmissionStatus.Failure :
+                case MipFeedSubmissionResultStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MipSubmissionStatus.Success :
+                case MipFeedSubmissionResultStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MipSubmissionStatusCode [{0}]", MipSubmissionStatusCode );
+            throw new SpreadbotException( "Wrong MipSubmissionStatusCode [{0}]", MipFeedSubmissionResultStatusCode );
         }
 
         // --------------------------------------------------------[]

@@ -3,10 +3,10 @@
 // MipConnector.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper;
 
@@ -46,21 +46,21 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         public virtual MipSubmitFeedResponse SubmitFeed( MipFeedDescriptor mipFeedDescriptor )
         {
-            return SubmitFeed( mipFeedDescriptor, MipSubmissionDescriptor.GenerateId() );
+            return SubmitFeed( mipFeedDescriptor, MipFeedSubmissionDescriptor.GenerateId() );
         }
 
         // --------------------------------------------------------[]
         public MipResponse< MipFindSubmissionResult > FindSubmission(
-            MipSubmissionDescriptor mipSubmissionDescriptor,
-            MipSubmissionProcessingStatus processingStatus )
+            MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor,
+            MipFeedSubmissionProcessingStatus processingStatus )
         {
-            return _FindSubmission( mipSubmissionDescriptor, processingStatus );
+            return _FindSubmission( mipFeedSubmissionDescriptor, processingStatus );
         }
 
         // --------------------------------------------------------[]
-        public MipSubmissionStatusResponse GetSubmissionStatus( MipSubmissionDescriptor mipSubmissionDescriptor )
+        public MipSubmissionStatusResponse GetSubmissionStatus( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return _GetSubmissionStatus( mipSubmissionDescriptor );
+            return _GetSubmissionStatus( mipFeedSubmissionDescriptor );
         }
 
         // --------------------------------------------------------[]

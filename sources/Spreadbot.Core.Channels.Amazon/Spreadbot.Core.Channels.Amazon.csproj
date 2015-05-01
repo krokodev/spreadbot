@@ -92,13 +92,14 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
     <Compile Include="Services\Mws\Operations\Responses\MwsGetFeedSubmissionListResponse.cs" />
     <Compile Include="Services\Mws\Operations\Responses\MwsSubmitFeedResponse.cs" />
+    <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionDescriptor.cs" />
     <Compile Include="Services\Mws\Operations\Results\MwsGetFeedSubmissionListResult.cs" />
     <Compile Include="Services\Mws\Feed\MwsFeedDescriptor.cs" />
     <Compile Include="Services\Mws\Feed\MwsFeedType.cs" />
     <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
-    <Compile Include="Services\Mws\Operations\Statuses\MipSubmissionProcessingStatus.cs" />
-    <Compile Include="Services\Mws\Operations\Submission\MwsSubmissionStatus.cs" />
+    <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionProcessingStatus.cs" />
+    <Compile Include="Services\Mws\Operations\FeedSubmission\MwsFeedSubmissionResultStatus.cs" />
     <Compile Include="Services\Mws\Operations\Responses\MwsResponse.cs" />
     <Compile Include="Services\Mws\Operations\Statuses\MwsOperationStatus.cs" />
     <Compile Include="Services\Mws\Operations\Results\AbstractMwsResponseResult.cs" />

@@ -2,13 +2,13 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsSubmissionStatus.cs
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Submission
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission
 {
-    public enum MwsSubmissionStatus
+    public enum MwsFeedSubmissionResultStatus
     {
         Unknown = 0,
         Initial,
-        Inprocess,
+        InProgress,
         Success,
         Failure
     }

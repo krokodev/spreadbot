@@ -2,11 +2,10 @@
 // Spreadbot.Core.Channels.Ebay
 // MipSubmissionStage.cs
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission
 {
-    public enum MipSubmissionProcessingStatus
+    public enum MipFeedSubmissionProcessingStatus
     {
-        None,
         Done,
         InProgress
     }

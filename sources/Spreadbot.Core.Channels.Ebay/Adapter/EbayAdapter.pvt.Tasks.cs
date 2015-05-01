@@ -8,8 +8,8 @@ using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Ebay.Adapter
@@ -25,21 +25,21 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
 
             try {
                 var args = task.Args;
-                var submission = new MipSubmissionDescriptor(
+                var submission = new MipFeedSubmissionDescriptor(
                     args.MwsFeedDescriptor,
                     task.EbaySubmissionResponse.Result.MipSubmissionId );
 
                 statusResponse = MipConnector.Instance.GetSubmissionStatus( submission );
                 statusResponse.Check();
 
-                task.MipSubmissionStatusCode = statusResponse.Result.MipSubmissionStatusCode;
+                task.MipFeedSubmissionResultStatusCode = statusResponse.Result.MipFeedSubmissionResultStatusCode;
                 task.EbaySubmissionResponse.Result.MipItemId = statusResponse.Result.MipItemId;
 
                 statusResponse.ProceedTime = DateTime.Now;
                 task.AddProceedInfo( statusResponse );
             }
             catch {
-                task.MipSubmissionStatusCode = MipSubmissionStatus.Failure;
+                task.MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Failure;
                 task.AddProceedInfo( statusResponse );
             }
             task.WasUpdatedNow();
@@ -76,7 +76,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                     Result = new EbaySubmissionResult { MipSubmissionId = mipResponse.Result.FeedSubmissionId },
                     InnerResponses = { mipResponse }
                 };
-                task.MipSubmissionStatusCode = MipSubmissionStatus.Initial;
+                task.MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Initial;
             }
             catch( Exception exception ) {
                 task.EbaySubmissionResponse = new ChannelResponse< EbaySubmissionResult >( exception ) {
