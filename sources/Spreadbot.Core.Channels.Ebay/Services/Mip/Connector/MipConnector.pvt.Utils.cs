@@ -5,9 +5,9 @@
 using System;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Sdk.Common.Exceptions;
 
@@ -47,7 +47,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > FindSubmissionIn_Inprocess(
+        private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Inprocess(
             MipSubmissionDescriptor mipSubmissionDescriptor )
         {
             var remoteDir = RemoteFeedInprocessFolderPath( mipSubmissionDescriptor.MipFeedDescriptor.GetName() );
@@ -90,19 +90,19 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         private MipResponse< MipFindSubmissionResult > _FindSubmission(
             MipSubmissionDescriptor mipSubmissionDescriptor,
-            MipSubmissionStage stage )
+            MipSubmissionProcessingStatus processingStatus )
         {
             MipResponse< MipFindRemoteFileResult > findResponse;
             try {
-                switch( stage ) {
-                    case MipSubmissionStage.Inprocess :
-                        findResponse = FindSubmissionIn_Inprocess( mipSubmissionDescriptor );
+                switch( processingStatus ) {
+                    case MipSubmissionProcessingStatus.InProgress :
+                        findResponse = FindSubmissionInFolder_Inprocess( mipSubmissionDescriptor );
                         break;
-                    case MipSubmissionStage.Output :
-                        findResponse = FindSubmissionIn_Output( mipSubmissionDescriptor );
+                    case MipSubmissionProcessingStatus.Done :
+                        findResponse = FindSubmissionInFolder_Output( mipSubmissionDescriptor );
                         break;
                     default :
-                        throw new SpreadbotException( "Wrong stage {0}", stage );
+                        throw new SpreadbotException( "Wrong processing status {0}", processingStatus );
                 }
                 findResponse.Check();
             }
@@ -126,7 +126,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         private MipSubmissionStatusResponse _GetSubmissionStatus( MipSubmissionDescriptor mipSubmissionDescriptor )
         {
             try {
-                var response = FindSubmission( mipSubmissionDescriptor, MipSubmissionStage.Inprocess );
+                var response = FindSubmission( mipSubmissionDescriptor, MipSubmissionProcessingStatus.InProgress );
                 if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
                     return new MipSubmissionStatusResponse {
                         StatusCode = MipOperationStatus.GetSubmissionStatusSuccess,
@@ -136,7 +136,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                     };
                 }
 
-                response = FindSubmission( mipSubmissionDescriptor, MipSubmissionStage.Output );
+                response = FindSubmission( mipSubmissionDescriptor, MipSubmissionProcessingStatus.Done );
                 if( response.StatusCode == MipOperationStatus.FindSubmissionSuccess ) {
                     return GetSubmissionStatusFromOutput( mipSubmissionDescriptor.MipFeedDescriptor.Type,
                         response,
@@ -159,7 +159,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private MipResponse< MipFindRemoteFileResult > FindSubmissionIn_Output(
+        private MipResponse< MipFindRemoteFileResult > FindSubmissionInFolder_Output(
             MipSubmissionDescriptor mipSubmissionDescriptor )
         {
             var remoteDirs = RemoteFeedOutputFolderPathes( mipSubmissionDescriptor.MipFeedDescriptor.GetName() );

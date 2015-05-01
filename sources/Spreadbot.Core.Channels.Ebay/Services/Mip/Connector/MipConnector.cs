@@ -3,8 +3,9 @@
 // MipConnector.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper;
@@ -51,9 +52,9 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         public MipResponse< MipFindSubmissionResult > FindSubmission(
             MipSubmissionDescriptor mipSubmissionDescriptor,
-            MipSubmissionStage stage )
+            MipSubmissionProcessingStatus processingStatus )
         {
-            return _FindSubmission( mipSubmissionDescriptor, stage );
+            return _FindSubmission( mipSubmissionDescriptor, processingStatus );
         }
 
         // --------------------------------------------------------[]

@@ -3,11 +3,11 @@
 // MwsResponse.cs
 
 using System;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Response
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses
 {
     public class MwsResponse<TR> : GenericResponse< TR, MwsOperationStatus >
         where TR : IResponseResult

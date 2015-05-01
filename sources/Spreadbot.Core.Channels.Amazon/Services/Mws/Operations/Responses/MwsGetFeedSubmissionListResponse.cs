@@ -5,7 +5,7 @@
 using System;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Response
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses
 {
     public class MwsGetFeedSubmissionListResponse : MwsResponse< MwsGetFeedSubmissionListResult >
     {

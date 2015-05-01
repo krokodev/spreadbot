@@ -4,7 +4,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Response;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {

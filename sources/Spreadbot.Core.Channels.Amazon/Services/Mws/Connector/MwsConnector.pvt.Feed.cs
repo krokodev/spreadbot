@@ -8,12 +8,10 @@ using System.Linq;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Response;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Responses;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
 using Spreadbot.Sdk.Common.Exceptions;
-
-// Code: MwsConnector.Feed
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {

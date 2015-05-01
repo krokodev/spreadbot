@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Ebay
 // MipOperationStatus.cs
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses
 {
     public enum MipOperationStatus
     {

@@ -3,7 +3,7 @@
 // IMipConnector.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector

@@ -6,7 +6,7 @@ using System;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Nunit.Ebay.Base;
 using Spreadbot.Nunit.Ebay.Mocks;
@@ -58,7 +58,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Assert_That_Text_Contains( sendResponse, MipOperationStatus.SftpSendFilesSuccess );
 
             var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionProcessingStatus.InProgress );
             Console.WriteLine();
             Console.WriteLine( findResponse );
 
@@ -75,7 +75,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.Product );
             var request = new MipSubmissionDescriptor( feed, MipSubmissionDescriptor.GenerateId() );
 
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionProcessingStatus.InProgress );
             Console.WriteLine( findResponse );
 
             Assert.That( findResponse.StatusCode.Equals( MipOperationStatus.FindSubmissionFailure ) );
@@ -91,7 +91,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.None );
             var request = new MipSubmissionDescriptor( feed, MipSubmissionDescriptor.GenerateId() );
 
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Inprocess );
+            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionProcessingStatus.InProgress );
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindSubmissionFailure, findResponse.StatusCode );
@@ -113,7 +113,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Output );
+            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionProcessingStatus.Done );
             Console.WriteLine( findResponse );
 
             Assert.AreEqual( MipOperationStatus.FindSubmissionSuccess, findResponse.StatusCode );
@@ -130,7 +130,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.Product );
             var request = new MipSubmissionDescriptor( feed, MipSubmissionDescriptor.GenerateId() );
 
-            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionStage.Output );
+            var findResponse = MipConnector.Instance.FindSubmission( request, MipSubmissionProcessingStatus.Done );
 
             Console.WriteLine( findResponse );
 

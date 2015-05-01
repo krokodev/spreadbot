@@ -3,11 +3,11 @@
 // MipResponse.cs
 
 using System;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses
 {
     public class MipResponse<TR> : GenericResponse< TR, MipOperationStatus >
         where TR : IResponseResult

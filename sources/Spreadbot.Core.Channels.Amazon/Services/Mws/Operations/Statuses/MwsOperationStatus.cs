@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsOperationStatus.cs
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses
 {
     public enum MwsOperationStatus
     {

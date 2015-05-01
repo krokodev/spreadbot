@@ -13,7 +13,7 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Nunit.Amazon.Base;
 
-// Code: Mws_Sdk_Tests
+// Here: Mws_Sdk_Tests
 
 namespace Spreadbot.Nunit.Amazon.Tests
 {

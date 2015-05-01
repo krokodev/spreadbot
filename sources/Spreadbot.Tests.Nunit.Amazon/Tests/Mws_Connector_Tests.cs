@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.StatusCode;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Statuses;
 using Spreadbot.Nunit.Amazon.Base;
 
 // Code: Mws_Connector_Tests
@@ -69,8 +69,12 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Get_Submitted_Feeds_List_Counter_Is_Verified()
+        public void Find_Submission_Inprocess() {}
+
+        [Test]
+        public void Get_Submission_Procecssing_Status_Inproc()
         {
+            // Use MwsSubmissionProcessingStatus
         }
 
         [Test]
@@ -110,17 +114,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
             }*/
         }
 
-        /*
-        [Test]
-        public void Find_Request_Inprocess() {}
-
-        [Test]
-        public void Get_Request_Status_Inproc() {}
-
-        [Test]
-        public void Get_Request_Status_Success() {}
-
-*/
 
         // ===================================================================================== []
         // Utils

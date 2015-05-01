@@ -5,7 +5,7 @@
 using System;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses
 {
     public class MipSubmitFeedResponse : MipResponse< MipSubmitFeedResult >
     {

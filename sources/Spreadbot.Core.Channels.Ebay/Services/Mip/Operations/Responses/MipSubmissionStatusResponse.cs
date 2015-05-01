@@ -6,7 +6,7 @@ using System;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
 using Spreadbot.Sdk.Common.Operations.Tasks;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Response
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Responses
 {
     public class MipSubmissionStatusResponse : MipResponse< MipGetSubmissionStatusResult >, ITaskProceedInfo
     {

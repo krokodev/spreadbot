@@ -8,7 +8,7 @@ using MoreLinq;
 using NUnit.Framework;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.StatusCode;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Statuses;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Submission;
 using Spreadbot.Nunit.Ebay.Mocks;
 using Spreadbot.Nunit.Ebay.Utils;

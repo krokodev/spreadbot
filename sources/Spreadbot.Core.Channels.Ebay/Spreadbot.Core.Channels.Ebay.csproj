@@ -88,7 +88,7 @@
     <Compile Include="Adapter\EbayAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\EbayAdapter.cs" />
     <Compile Include="Services\Mip\Connector\IMipConnector.cs" />
-    <Compile Include="Services\Mip\Operations\Response\MipSubmitFeedResponse.cs" />
+    <Compile Include="Services\Mip\Operations\Responses\MipSubmitFeedResponse.cs" />
     <Compile Include="Services\Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.SubmissionXml.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Operations\Tasks\EbaySubmissionTask.imp.IAbstractTask.cs" />
     <Compile Include="Operations\Tasks\EbaySubmissionTask.imp.IProceedableTask.cs" />
     <Compile Include="Services\Mip\Operations\Results\MipTestConnectionResult.cs" />
-    <Compile Include="Services\Mip\Operations\Response\MipSubmissionStatusResponse.cs" />
+    <Compile Include="Services\Mip\Operations\Responses\MipSubmissionStatusResponse.cs" />
     <Compile Include="Operations\Results\EbaySubmissionResult.cs" />
     <Compile Include="Operations\Args\EbaySubmissionArgs.cs" />
     <Compile Include="Operations\Tasks\EbaySubmissionTask.cs" />
@@ -107,7 +107,7 @@
     <Compile Include="Configuration\Elements\MipSecretData.cs" />
     <Compile Include="Configuration\Sections\EbayPublicConfig.cs" />
     <Compile Include="Configuration\Sections\EbaySecretConfig.cs" />
-    <Compile Include="Services\Mip\Operations\Response\MipResponse.cs" />
+    <Compile Include="Services\Mip\Operations\Responses\MipResponse.cs" />
     <Compile Include="Services\Mip\Operations\Results\AbstractMipResult.cs" />
     <Compile Include="Services\Mip\Operations\Results\MipZipFeedResult.cs" />
     <Compile Include="Services\Mip\Operations\Results\MipSubmitFeedResult.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Services\Mip\ZipHelper\SystemIoZipHelper.cs" />
     <Compile Include="Services\Mip\SftpHelper\WinScpSftpHelper.pvt.Sftp.cs" />
     <Compile Include="Services\Mip\SftpHelper\WinSCPSftpHelper.cs" />
-    <Compile Include="Services\Mip\Operations\Submission\MipSubmissionStage.cs" />
+    <Compile Include="Services\Mip\Operations\Statuses\MipSubmissionProcessingStatus.cs" />
     <Compile Include="Services\Mip\Operations\Submission\MipSubmissionDescriptor.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.cs" />
     <Compile Include="Services\Mip\Operations\Results\MipFindRemoteFileResult.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="Services\Mip\Feed\MipFeedDescriptor.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Mip\Operations\StatusCode\MipOperationStatus.cs" />
+    <Compile Include="Services\Mip\Operations\Statuses\MipOperationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
