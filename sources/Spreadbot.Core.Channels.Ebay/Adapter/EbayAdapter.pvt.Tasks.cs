@@ -8,8 +8,9 @@ using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
+using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Proceed;
 using Spreadbot.Sdk.Common.Operations.Responses;
@@ -28,7 +29,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
             try {
                 var args = task.Args;
                 var submission = new MipFeedSubmissionDescriptor(
-                    args.MwsFeedDescriptor,
+                    args.MipFeedDescriptor,
                     task.EbaySubmissionResponse.Result.MipSubmissionId );
 
                 statusResponse = MipConnector.Instance.GetSubmissionStatus( submission );
@@ -47,10 +48,10 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
         }
 
         // --------------------------------------------------------[]
-        private static TaskProceedInfo< Response< MipGetSubmissionStatusResult > > GetProceedInfo(
+        private static TaskProceedInfo GetProceedInfo(
             Response< MipGetSubmissionStatusResult > statusResponse )
         {
-            return new TaskProceedInfo< Response< MipGetSubmissionStatusResult > >( statusResponse );
+            return new TaskProceedInfo ( statusResponse.ToYamlString() );
         }
 
         // --------------------------------------------------------[]
@@ -71,11 +72,11 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
             try {
                 var args = task.Args;
 
-                CreateFeedFile( args.MwsFeedDescriptor );
+                CreateFeedFile( args.MipFeedDescriptor );
 
-                var mipResponse = MipConnector.Instance.SubmitFeed( args.MwsFeedDescriptor );
+                var mipResponse = MipConnector.Instance.SubmitFeed( args.MipFeedDescriptor );
 
-                EraseFeedFolder( args.MwsFeedDescriptor );
+                EraseFeedFolder( args.MipFeedDescriptor );
 
                 mipResponse.Check();
 

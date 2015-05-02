@@ -3,10 +3,10 @@
 // MwsGetFeedSubmissionsResult.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Results
 {
     public class MwsGetFeedSubmissionsResult : ResponseResult
     {

@@ -10,7 +10,7 @@ using Spreadbot.Core.Channels.Ebay.Adapter;
 using Spreadbot.Core.Channels.Ebay.Operations.Args;
 using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -48,7 +48,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
                 ChannelId = EbayAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new EbaySubmissionArgs {
-                    MwsFeedDescriptor = new MipFeedDescriptor( mipFeedType ) {
+                    MipFeedDescriptor = new MipFeedDescriptor( mipFeedType ) {
                         Content = FeedContent( mipFeedType ),
                         ItemInfo = Item.Sku,
                     },

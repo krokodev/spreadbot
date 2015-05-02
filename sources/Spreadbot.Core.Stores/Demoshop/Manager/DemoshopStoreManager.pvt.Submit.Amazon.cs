@@ -10,7 +10,7 @@ using Spreadbot.Core.Channels.Amazon.Adapter;
 using Spreadbot.Core.Channels.Amazon.Operations.Args;
 using Spreadbot.Core.Channels.Amazon.Operations.Tasks;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Core.Stores.Demoshop.Configuration.Sections;
 using Spreadbot.Core.Stores.Demoshop.Operations.Tasks;
 using Spreadbot.Sdk.Common.Exceptions;

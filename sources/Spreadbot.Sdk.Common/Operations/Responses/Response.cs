@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Sdk.Common
-// GenericResponse.cs
+// Response.cs
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,6 @@ using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 using YamlDotNet.Serialization;
-
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {

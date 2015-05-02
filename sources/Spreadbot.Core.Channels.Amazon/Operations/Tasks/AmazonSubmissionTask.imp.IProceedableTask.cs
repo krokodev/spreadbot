@@ -3,10 +3,9 @@
 // AmazonSubmissionTask.imp.IProceedableTask.cs
 
 using System.Collections.Generic;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Proceed;
-using Spreadbot.Sdk.Common.Operations.Tasks;
 using YamlDotNet.Serialization;
 
 namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks

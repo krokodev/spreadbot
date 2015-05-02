@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using Krokodev.Common.Extensions;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using WinSCP;
 

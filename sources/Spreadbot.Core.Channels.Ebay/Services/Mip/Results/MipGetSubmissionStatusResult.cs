@@ -2,10 +2,10 @@
 // Spreadbot.Core.Channels.Ebay
 // MipGetSubmissionStatusResult.cs
 
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Results
 {
     public class MipGetSubmissionStatusResult : ResponseResult
     {

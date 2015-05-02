@@ -3,8 +3,8 @@
 // MipConnector.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.ZipHelper;
 using Spreadbot.Sdk.Common.Operations.Responses;

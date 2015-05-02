@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Nereal.Serialization;
 using Spreadbot.Core.Abstracts.Channel.Operations.Responses;
 using Spreadbot.Core.Channels.Ebay.Operations.Results;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 using Spreadbot.Sdk.Common.Operations.Responses;
 using Spreadbot.Sdk.Common.Operations.Tasks;
@@ -76,7 +76,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 GetStatusCode(),
                 IsCritical ? "Critical" : "Non critical",
                 string.Format( "Submit [{0}]",
-                    Args == null ? "n/a" : Args.MwsFeedDescriptor.GetName() ),
+                    Args == null ? "n/a" : Args.MipFeedDescriptor.GetName() ),
                 ChannelId );
         }
     }

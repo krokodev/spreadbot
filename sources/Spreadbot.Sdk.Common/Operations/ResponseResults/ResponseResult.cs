@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
-// Spreadbot.Core.Channels.Ebay
-// AbstractMipResult.cs
+// Spreadbot.Sdk.Common
+// ResponseResult.cs
 
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Sdk.Common.Crocodev.Common;

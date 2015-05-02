@@ -5,7 +5,7 @@
 using Moq;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 
 namespace Spreadbot.Nunit.Ebay.Mocks
 {

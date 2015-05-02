@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Ebay
 // WinSCPSftpHelper.cs
 
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.SftpHelper

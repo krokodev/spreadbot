@@ -4,7 +4,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
@@ -30,7 +30,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         }
 
         public virtual Response< MwsGetFeedSubmissionsResult > GetFeedSubmissions()
-        {            return _GetFeedSubmissions();
+        {
+            return _GetFeedSubmissions();
         }
 
         public Response< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount()

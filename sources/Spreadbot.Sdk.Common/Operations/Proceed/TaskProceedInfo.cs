@@ -3,19 +3,28 @@
 // TaskProceedInfo.cs
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Spreadbot.Sdk.Common.Operations.Proceed
 {
-    public class TaskProceedInfo<T> : ITaskProceedInfo
+    [SuppressMessage( "ReSharper", "UnusedAutoPropertyAccessor.Global" )]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    public class TaskProceedInfo : ITaskProceedInfo
     {
-        public TaskProceedInfo( T details )
+        public TaskProceedInfo()
         {
-            Details = details;
+            Details = "";
             ProceedTime = DateTime.Now;
         }
 
-        public T Details { get; set; }
+        public TaskProceedInfo( string details )
+            : this()
+        {
+            Details = details;
+        }
 
-        public DateTime ProceedTime { get; private set; }
+        public string Details { get; set; }
+
+        public DateTime ProceedTime { get; set; }
     }
 }

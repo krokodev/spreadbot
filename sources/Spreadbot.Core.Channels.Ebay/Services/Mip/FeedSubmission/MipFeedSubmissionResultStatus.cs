@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Ebay
 // MipFeedSubmissionResultStatus.cs
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 {
     public enum MipFeedSubmissionResultStatus
     {

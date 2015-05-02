@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.FeedSubmission;
-using Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
+using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
 {

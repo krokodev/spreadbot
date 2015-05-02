@@ -2,7 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsFeedSubmissionProcessingStatus.cs
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
 {
     public enum MwsFeedSubmissionProcessingStatus
     {

@@ -4,7 +4,7 @@
 
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
-namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.Results
+namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Results
 {
     public class MwsGetFeedSubmissionCountResult : ResponseResult
     {

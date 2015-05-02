@@ -102,7 +102,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feeds =
                 store.GetChannelTasks()
                     .OfType< EbaySubmissionTask >()
-                    .Select( t => t.Args.MwsFeedDescriptor.Type )
+                    .Select( t => t.Args.MipFeedDescriptor.Type )
                     .OrderBy( f => f.ToString() ).ToArray();
 
             Assert.AreEqual( 3, feeds.Count() );
@@ -123,6 +123,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 store.SaveData();
                 store.LoadData();
 
+                // Code: bug: SaveRestore_Proceed
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
@@ -135,7 +136,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 store.GetEbaySubmissionTasks().ForEach( t => {
                     Console.WriteLine();
                     Console.WriteLine( t );
-                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success, "Success or InProgress");
                     Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                     Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );

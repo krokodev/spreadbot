@@ -11,7 +11,7 @@ using MarketplaceWebService;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Operations.FeedSubmission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Sdk.Common.Exceptions;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector

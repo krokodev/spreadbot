@@ -4,7 +4,7 @@
 
 using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
-namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Operations.Results
+namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Results
 {
     public class MipTestConnectionResult : ResponseResult
     {
