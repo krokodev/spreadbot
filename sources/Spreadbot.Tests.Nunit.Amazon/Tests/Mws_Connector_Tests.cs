@@ -54,7 +54,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
             Assert.IsNotNull( response.Result, "Result" );
             Assert.IsNotNull( response.Result.FeedSubmissionDescriptors, "Result.FeedSubmissionIds" );
-            Assert.Greater( response.Result.FeedSubmissionDescriptors.Count, 0 );
+            Assert.GreaterOrEqual( response.Result.FeedSubmissionDescriptors.Count, 0 );
 
             Console.WriteLine( response.Result.FeedSubmissionDescriptors.FoldToStringBy( d => d.FeedSubmissionId, "\n" ) );
         }
@@ -67,7 +67,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             IgnoreMwsThrottling( response );
 
             Assert.IsNotNull( response.Result, "Result" );
-            Assert.Greater( response.Result.FeedSubmissionCount, 0 );
+            Assert.GreaterOrEqual( response.Result.FeedSubmissionCount, 0 );
 
             Console.WriteLine( "Count: {0}", response.Result.FeedSubmissionCount );
         }
