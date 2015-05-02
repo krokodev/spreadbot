@@ -14,10 +14,14 @@
         <li>
             + Done This Week
             <ul>
-                <li>Added high-level classes with the <a>MwsConnector</a> at the head which encapsulates Amazon MWS functional such as <a>send feed, get feed info etc</a>)</li>
                 <li>
+                    High-level classes were added with the <a href="https://github.com/krokodev/spreadbot/tree/master/sources/Spreadbot.Core.Channels.Amazon/Services/Mws">MwsConnector</a> at the head which encapsulates Amazon MWS functional such as <a href="http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedProcessingStatus.html">send feed, get feed info, etc</a>)
                 </li>
                 <li>
+                    Ebay adapter was refactored to be <a href="http://screencast.com/t/yR7gm9dGNVAZ">more similar</a> to the Amazon adapter, all existed tests are succesfully passed
+                </li>
+                <li>
+                    <a href="https://github.com/krokodev/spreadbot/blob/master/sources/Spreadbot.Tests.Nunit.Amazon/Tests/Mws_Connector_Tests.cs">New tests</a> are generated to verify and protect Ebay Adapter functional
                 </li>
             </ul>
         </li>
@@ -25,13 +29,19 @@
             - Problems
             <ul>
                 <li>
+                    Money comes to the end
                 </li>
             </ul>
         </li>
         <li>
             > Plans for the Next Week
             <ul>
-                <li></li>
+                <li>
+                    Complete Amazon Adapter / MWS Connector classes
+                </li>
+                <li>
+                    Develop Spreadbot API (including such operations as SendFeed & GetStatus, based on the Tasks paradigma) -- to use it in the <a href="http://spreadbot.net/Demoshop">Demoshop</a> and later in the <a href="http://www.virtocommerce.com">VirtoCommerce</a> store
+                </li>
             </ul>
         </li>
     </ul>
