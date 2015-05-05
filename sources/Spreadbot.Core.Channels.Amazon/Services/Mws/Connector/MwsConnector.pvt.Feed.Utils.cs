@@ -12,7 +12,9 @@ using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
@@ -42,7 +44,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 return response.SubmitFeedResult.FeedSubmissionInfo.FeedSubmissionId;
             }
             catch( Exception exception ) {
-                throw new SpreadbotException( "Can't TryGetFeedSubmissionId [{0}]", exception.Message );
+                throw new SpreadbotException( "TryGetFeedSubmissionId [{0}]", exception.Message );
             }
         }
 
@@ -50,28 +52,21 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             GetFeedSubmissionListResponse response )
         {
             try {
-                return response.GetFeedSubmissionListResult.FeedSubmissionInfo
-                    .Select( info => new MwsFeedSubmissionDescriptor {
-                        FeedSubmissionId = info.FeedSubmissionId
-                    } )
-                    .ToList();
+                return ToFeedSubmissionDescriptors( response.GetFeedSubmissionListResult.FeedSubmissionInfo );
             }
             catch( Exception exception ) {
-                throw new SpreadbotException( "Can't TryGetFeedSubmissionDescriptors [{0}]", exception.Message );
+                throw new SpreadbotException( "TryGetFeedSubmissionDescriptors [{0}]", exception.Message );
             }
         }
 
-        private static IEnumerable< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors( GetFeedSubmissionListByNextTokenResponse response )
+        private static IEnumerable< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors(
+            GetFeedSubmissionListByNextTokenResponse response )
         {
             try {
-                return response.GetFeedSubmissionListByNextTokenResult.FeedSubmissionInfo
-                    .Select( info => new MwsFeedSubmissionDescriptor {
-                        FeedSubmissionId = info.FeedSubmissionId
-                    } )
-                    .ToList();
+                return ToFeedSubmissionDescriptors( response.GetFeedSubmissionListByNextTokenResult.FeedSubmissionInfo );
             }
             catch( Exception exception ) {
-                throw new SpreadbotException( "Can't TryGetFeedSubmissionDescriptors [{0}]", exception.Message );
+                throw new SpreadbotException( "TryGetFeedSubmissionDescriptors [{0}]", exception.Message );
             }
         }
 
@@ -81,7 +76,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 return ( int ) response.GetFeedSubmissionCountResult.Count;
             }
             catch( Exception exception ) {
-                throw new SpreadbotException( "Can't TryGetFeedSubmissionCount [{0}]", exception.Message );
+                throw new SpreadbotException( "TryGetFeedSubmissionCount [{0}]", exception.Message );
             }
         }
 
@@ -91,6 +86,18 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 && nextResponse.GetFeedSubmissionListByNextTokenResult.HasNext
                 ? nextResponse.GetFeedSubmissionListByNextTokenResult.NextToken
                 : null;
+        }
+
+        private static MwsFeedSubmissionDescriptor TryGetFeedSubmissionDescriptor(
+            Response< MwsGetFeedSubmissionListResult > listResponse,
+            string feedSubmissionId )
+        {
+            if( listResponse.IsSuccessful ) {
+                return listResponse.Result.FeedSubmissionDescriptors.FirstOrDefault(
+                    d => d.FeedSubmissionId == feedSubmissionId
+                    );
+            }
+            return null;
         }
     }
 }

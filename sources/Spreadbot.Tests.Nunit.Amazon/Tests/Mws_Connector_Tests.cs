@@ -25,32 +25,32 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Submit_Product_Feed()
         {
-            SubmitFeedTest( MwsFeedType.Product );
+            SubmitFeed( MwsFeedType.Product );
         }
 
         [Test]
         public void Submit_Inventory_Feed()
         {
-            SubmitFeedTest( MwsFeedType.Inventory );
+            SubmitFeed( MwsFeedType.Inventory );
         }
 
         [Test]
         public void Submit_Price_Feed()
         {
-            SubmitFeedTest( MwsFeedType.Price );
+            SubmitFeed( MwsFeedType.Price );
         }
 
         [Test]
         public void Submit_Image_Feed()
         {
-            SubmitFeedTest( MwsFeedType.Image );
+            SubmitFeed( MwsFeedType.Image );
         }
 
         [Test]
         public void Get_Submitted_Feeds_List()
         {
             var filter = new MwsSubmittedFeedsFilter();
-            var response = MwsConnector.Instance.GetFeedSubmissions( filter );
+            var response = MwsConnector.Instance.GetFeedSubmissionList( filter );
 
             IgnoreMwsThrottling( response );
 
@@ -79,7 +79,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             var filter = MwsSubmittedFeedsFilter.LastDays( 10 );
             var responseCount = MwsConnector.Instance.GetFeedSubmissionCount( filter );
-            var responseInfo = MwsConnector.Instance.GetFeedSubmissions( filter );
+            var responseInfo = MwsConnector.Instance.GetFeedSubmissionList( filter );
 
             IgnoreMwsThrottling( responseCount );
             IgnoreMwsThrottling( responseInfo );
@@ -95,12 +95,31 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Find_Submission_Inprocess() {}
+        public void Just_submitted_feed_has_Inprogress_status()
+        {
+            var submissionFeedId = SubmitFeed( MwsFeedType.Product );
+            var response = MwsConnector.Instance.GetFeedSubmissionProcessingStatus( submissionFeedId );
+
+            Assert.IsNotNull( response.Result, "response.Result" );
+            var status = response.Result.FeedSubmissionProcessingStatus;
+
+            Console.WriteLine( "Feed submission id: {0}\nProcessing status: {1}", submissionFeedId, status );
+            Assert.AreEqual( MwsFeedSubmissionProcessingStatus.InProgress, status );
+        }
 
         [Test]
-        public void Get_Submission_Procecssing_Status_Inproc()
+        // Code: Just_submitted_feed_has_Inprogress_status
+        public void Incorrect_SubmissionFeedId_involves_Unknown_processing_status()
         {
-            // Use MwsSubmissionProcessingStatus
+            var submissionFeedId = "Lalala I am crazy Id!";
+            var response = MwsConnector.Instance.GetFeedSubmissionProcessingStatus( submissionFeedId );
+
+            Console.WriteLine( response );
+            Assert.IsNotNull( response.Result, "response.Result" );
+            var status = response.Result.FeedSubmissionProcessingStatus;
+
+            Console.WriteLine( "Feed submission id: {0}\nProcessing status: {1}", submissionFeedId, status );
+            Assert.AreEqual( MwsFeedSubmissionProcessingStatus.Unknown, status );
         }
 
         [Test]
@@ -152,7 +171,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             };
         }
 
-        private static void SubmitFeedTest( MwsFeedType feedType )
+        private static string SubmitFeed( MwsFeedType feedType )
         {
             var feed = MakeMwsFeedHandler( feedType );
             var response = MwsConnector.Instance.SubmitFeed( feed );
@@ -161,6 +180,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
             IgnoreMwsThrottling( response );
 
             Assert.That( response.IsSuccessful, feedType.ToString() );
+            
+            return response.Result.FeedSubmissionId;
         }
     }
 }

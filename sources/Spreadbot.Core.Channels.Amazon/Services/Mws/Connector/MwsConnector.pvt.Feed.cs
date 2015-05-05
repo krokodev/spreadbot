@@ -38,7 +38,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private Response< MwsGetFeedSubmissionsResult > _GetFeedSubmissions( MwsSubmittedFeedsFilter filter )
+        private Response< MwsGetFeedSubmissionListResult > _GetFeedSubmissionList( MwsSubmittedFeedsFilter filter )
         {
             try {
                 var descriptors = new List< MwsFeedSubmissionDescriptor >();
@@ -49,15 +49,15 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 var nextToken = response.GetFeedSubmissionListResult.NextToken;
                 descriptors.AddRange( GetNextFeedSubmissionDescriptors( nextToken ) );
 
-                return new Response< MwsGetFeedSubmissionsResult > {
-                    Result = new MwsGetFeedSubmissionsResult {
+                return new Response< MwsGetFeedSubmissionListResult > {
+                    Result = new MwsGetFeedSubmissionListResult {
                         FeedSubmissionDescriptors = descriptors
                     },
                     Details = response.ToXML()
                 };
             }
             catch( Exception exception ) {
-                return new Response< MwsGetFeedSubmissionsResult >( exception );
+                return new Response< MwsGetFeedSubmissionListResult >( exception );
             }
         }
 
@@ -117,6 +117,27 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
             catch( Exception exception ) {
                 return new Response< MwsGetFeedSubmissionCountResult >( exception );
+            }
+        }
+
+        private Response< MwsGetFeedSubmissionProcessingStatusResult > _GetFeedSubmissionProcessingStatus(
+            string feedSubmissionId )
+        {
+            try {
+                var listResponse = _GetFeedSubmissionList( MwsSubmittedFeedsFilter.WithId( feedSubmissionId ) );
+                var descriptor = TryGetFeedSubmissionDescriptor( listResponse, feedSubmissionId );
+
+                return new Response< MwsGetFeedSubmissionProcessingStatusResult > {
+                    Result = new MwsGetFeedSubmissionProcessingStatusResult {
+                        FeedSubmissionProcessingStatus = descriptor != null
+                            ? descriptor.FeedProcessingStatus
+                            : MwsFeedSubmissionProcessingStatus.Unknown
+                    },
+                    InnerResponses = new List< IAbstractResponse > { listResponse }
+                };
+            }
+            catch( Exception exception ) {
+                return new Response< MwsGetFeedSubmissionProcessingStatusResult >( exception );
             }
         }
     }

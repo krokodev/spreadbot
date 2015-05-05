@@ -6,6 +6,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
 {
     public enum MwsFeedSubmissionProcessingStatus
     {
+        Unknown,
         InProgress,
         Done,
         Cancelled

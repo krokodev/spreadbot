@@ -2,6 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // IMwsConnector.cs
 
+using System;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
@@ -12,7 +13,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
     public interface IMwsConnector
     {
         Response< MwsSubmitFeedResult > SubmitFeed( MwsFeedDescriptor feedDescriptor );
-        Response< MwsGetFeedSubmissionsResult > GetFeedSubmissions( MwsSubmittedFeedsFilter filter);
+        Response< MwsGetFeedSubmissionListResult > GetFeedSubmissionList( MwsSubmittedFeedsFilter filter);
         Response< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount( MwsSubmittedFeedsFilter filter );
+        Response< MwsGetFeedSubmissionProcessingStatusResult >  GetFeedSubmissionProcessingStatus( string feedSubmissionId );
     }
 }

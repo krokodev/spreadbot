@@ -30,14 +30,19 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return _SubmitFeed( feedDescriptor );
         }
 
-        public virtual Response< MwsGetFeedSubmissionsResult > GetFeedSubmissions( MwsSubmittedFeedsFilter filter )
+        public virtual Response< MwsGetFeedSubmissionListResult > GetFeedSubmissionList( MwsSubmittedFeedsFilter filter )
         {
-            return _GetFeedSubmissions( filter );
+            return _GetFeedSubmissionList( filter );
         }
 
         public Response< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount( MwsSubmittedFeedsFilter filter )
         {
             return _GetFeedSubmissionCount( filter );
+        }
+
+        public Response< MwsGetFeedSubmissionProcessingStatusResult > GetFeedSubmissionProcessingStatus( string feedSubmissionId)
+        {
+            return _GetFeedSubmissionProcessingStatus( feedSubmissionId );
         }
     }
 }

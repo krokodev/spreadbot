@@ -8,7 +8,7 @@ using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Results
 {
-    public class MwsGetFeedSubmissionsResult : ResponseResult
+    public class MwsGetFeedSubmissionListResult : ResponseResult
     {
         public List< MwsFeedSubmissionDescriptor > FeedSubmissionDescriptors { get; set; }
     }

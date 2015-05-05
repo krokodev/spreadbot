@@ -3,6 +3,7 @@
 // MwsConnector.pvt.Feed.UItils.Convertors.cs
 
 using System.Collections.Generic;
+using System.Linq;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
@@ -57,6 +58,14 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return nativeStatusList;
         }
 
+        private static MwsFeedSubmissionProcessingStatus ConvertToFeedSubmissionProcessingStatus( string nativeStatus )
+        {
+            return FeedSubmissionProcessingStatusMap
+                .Keys.FirstOrDefault( key =>
+                    FeedSubmissionProcessingStatusMap[ key ]
+                        .Any( s => s == nativeStatus ) );
+        }
+
         private static IdList ConvertToNativeIdList( List< string > feedSubmissionIds )
         {
             var nativeIdList = new IdList();
@@ -69,6 +78,18 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             var nativeTypeList = new TypeList();
             feedTypeList.ForEach( t => { nativeTypeList.WithType( FeedTypeMap[ t ] ); } );
             return nativeTypeList;
+        }
+
+        private static IEnumerable< MwsFeedSubmissionDescriptor > ToFeedSubmissionDescriptors(
+            IEnumerable< FeedSubmissionInfo > feedSubmissionInfoList )
+        {
+            return feedSubmissionInfoList
+                .Select( info =>
+                    new MwsFeedSubmissionDescriptor {
+                        FeedSubmissionId = info.FeedSubmissionId,
+                        FeedProcessingStatus = ConvertToFeedSubmissionProcessingStatus(info.FeedProcessingStatus)
+                    } )
+                .ToList();
         }
     }
 }

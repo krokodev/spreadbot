@@ -46,9 +46,16 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
             };
         }
 
-        public static MwsSubmittedFeedsFilter LastDays(int daysNum)
+        public static MwsSubmittedFeedsFilter LastDays( int daysNum )
         {
             return All( null, null, daysNum );
+        }
+
+        public static MwsSubmittedFeedsFilter WithId( string feedSubmissionId )
+        {
+            var filter = All();
+            filter.IdList = new List< string > { feedSubmissionId };
+            return filter;
         }
     }
 }

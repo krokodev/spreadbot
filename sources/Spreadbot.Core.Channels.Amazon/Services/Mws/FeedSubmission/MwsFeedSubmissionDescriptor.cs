@@ -7,5 +7,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
     public class MwsFeedSubmissionDescriptor
     {
         public string FeedSubmissionId;
+        public MwsFeedSubmissionProcessingStatus FeedProcessingStatus { get; set; }
     }
 }
