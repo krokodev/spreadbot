@@ -84,5 +84,13 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 throw new SpreadbotException( "Can't TryGetFeedSubmissionCount [{0}]", exception.Message );
             }
         }
+
+        private static string GetNextToken( GetFeedSubmissionListByNextTokenResponse nextResponse )
+        {
+            return nextResponse.IsSetGetFeedSubmissionListByNextTokenResult()
+                && nextResponse.GetFeedSubmissionListByNextTokenResult.HasNext
+                ? nextResponse.GetFeedSubmissionListByNextTokenResult.NextToken
+                : null;
+        }
     }
 }

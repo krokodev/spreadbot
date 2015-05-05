@@ -61,20 +61,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private IEnumerable< MwsFeedSubmissionDescriptor > TryGetNextFeedSubmissionDescriptors( string nextToken )
-        {
-            var descriptors = new List< MwsFeedSubmissionDescriptor >();
-            while( !string.IsNullOrEmpty( nextToken ) ) {
-                var nextResponse = RunGetFeedSubmissionListByNextToken( nextToken );
-                descriptors.AddRange( TryGetFeedSubmissionDescriptors( nextResponse ) );
-                nextToken = nextResponse.IsSetGetFeedSubmissionListByNextTokenResult()
-                    && nextResponse.GetFeedSubmissionListByNextTokenResult.HasNext
-                    ? nextResponse.GetFeedSubmissionListByNextTokenResult.NextToken
-                    : null;
-            }
-            return descriptors;
-        }
-
         private GetFeedSubmissionListByNextTokenResponse RunGetFeedSubmissionListByNextToken( string nextToken )
         {
             var request = new GetFeedSubmissionListByNextTokenRequest {
