@@ -3,9 +3,11 @@
 // MwsConnector.pvt.Feed.cs
 
 using System;
+using System.Collections.Generic;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
@@ -36,23 +38,20 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private Response< MwsGetFeedSubmissionsResult > _GetFeedSubmissions()
+        private Response< MwsGetFeedSubmissionsResult > _GetFeedSubmissions( MwsSubmittedFeedsFilter filter )
         {
-            // Todo:> Use arg Filters, Next Tokens
             try {
-                var request = new GetFeedSubmissionListRequest {
-                    Merchant = AmazonSettings.MerchantId,
-                    MaxCount = 100,
-                    SubmittedFromDate = DateTime.Today,
-                    FeedSubmissionIdList = null,
-                    FeedProcessingStatusList = new StatusList { Status = { "_DONE_" } }
-                };
+                var descriptors = new List< MwsFeedSubmissionDescriptor >();
 
-                var response = _mwsClient.GetFeedSubmissionList( request );
+                var response = RunGetFeedSubmissionList( filter );
+                descriptors.AddRange( TryGetFeedSubmissionDescriptors( response ) );
+
+                var nextToken = response.GetFeedSubmissionListResult.NextToken;
+                descriptors.AddRange( TryGetNextFeedSubmissionDescriptors( nextToken ) );
 
                 return new Response< MwsGetFeedSubmissionsResult > {
                     Result = new MwsGetFeedSubmissionsResult {
-                        FeedSubmissionDescriptors = TryGetFeedSubmissionDescriptors( response )
+                        FeedSubmissionDescriptors = descriptors
                     },
                     Details = response.ToXML()
                 };
@@ -62,14 +61,52 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private Response< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount()
+        private IEnumerable< MwsFeedSubmissionDescriptor > TryGetNextFeedSubmissionDescriptors( string nextToken )
         {
-            // Todo:> Use arg Filters
+            var descriptors = new List< MwsFeedSubmissionDescriptor >();
+            while( !string.IsNullOrEmpty( nextToken ) ) {
+                var nextResponse = RunGetFeedSubmissionListByNextToken( nextToken );
+                descriptors.AddRange( TryGetFeedSubmissionDescriptors( nextResponse ) );
+                nextToken = nextResponse.IsSetGetFeedSubmissionListByNextTokenResult()
+                    && nextResponse.GetFeedSubmissionListByNextTokenResult.HasNext
+                    ? nextResponse.GetFeedSubmissionListByNextTokenResult.NextToken
+                    : null;
+            }
+            return descriptors;
+        }
+
+        private GetFeedSubmissionListByNextTokenResponse RunGetFeedSubmissionListByNextToken( string nextToken )
+        {
+            var request = new GetFeedSubmissionListByNextTokenRequest {
+                Merchant = AmazonSettings.MerchantId,
+                NextToken = nextToken
+            };
+            return _mwsClient.GetFeedSubmissionListByNextToken( request );
+        }
+
+        private GetFeedSubmissionListResponse RunGetFeedSubmissionList( MwsSubmittedFeedsFilter filter )
+        {
+            var request = new GetFeedSubmissionListRequest {
+                Merchant = AmazonSettings.MerchantId,
+                MaxCount = GetFeedSubmissionsChunkSize,
+                SubmittedFromDate = filter.FromDate,
+                SubmittedToDate = filter.ToDate,
+                FeedSubmissionIdList = ConvertToNativeIdList( filter.IdList ),
+                FeedProcessingStatusList = ConvertToNativeStatusList( filter.ProcessingStatusList ),
+                FeedTypeList = ConvertToNativeTypeList( filter.FeedTypeList ),
+            };
+            return _mwsClient.GetFeedSubmissionList( request );
+        }
+
+        private Response< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount( MwsSubmittedFeedsFilter filter )
+        {
             try {
                 var request = new GetFeedSubmissionCountRequest {
                     Merchant = AmazonSettings.MerchantId,
-                    SubmittedFromDate = DateTime.Today,
-                    FeedProcessingStatusList = new StatusList { Status = { "_DONE_" } }
+                    SubmittedFromDate = filter.FromDate,
+                    SubmittedToDate = filter.ToDate,
+                    FeedProcessingStatusList = ConvertToNativeStatusList( filter.ProcessingStatusList ),
+                    FeedTypeList = ConvertToNativeTypeList( filter.FeedTypeList ),
                 };
 
                 var response = _mwsClient.GetFeedSubmissionCount( request );

@@ -8,7 +8,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
     {
         InProgress,
         Done,
-        Cancelled,
-        Other
+        Cancelled
     }
 }

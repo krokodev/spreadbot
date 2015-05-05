@@ -18,17 +18,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        private const string FeedContentEncoding = "ISO-8859-1";
-
-        private static readonly Dictionary< MwsFeedType, string > FeedTypeMap =
-            new Dictionary< MwsFeedType, string > {
-                { MwsFeedType.None, "_NONE_" },
-                { MwsFeedType.Image, "_POST_PRODUCT_IMAGE_DATA_" },
-                { MwsFeedType.Product, "_POST_PRODUCT_DATA_" },
-                { MwsFeedType.Inventory, "_POST_INVENTORY_AVAILABILITY_DATA_" },
-                { MwsFeedType.Price, "_POST_PRODUCT_PRICING_DATA_" }
-            };
-
         private static string CalculateContentMd5( MwsFeedDescriptor feedDescriptor )
         {
             var stream = GetFeedContentStream( feedDescriptor );
@@ -57,11 +46,25 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private static List< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors(
+        private static IEnumerable< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors(
             GetFeedSubmissionListResponse response )
         {
             try {
                 return response.GetFeedSubmissionListResult.FeedSubmissionInfo
+                    .Select( info => new MwsFeedSubmissionDescriptor {
+                        FeedSubmissionId = info.FeedSubmissionId
+                    } )
+                    .ToList();
+            }
+            catch( Exception exception ) {
+                throw new SpreadbotException( "Can't TryGetFeedSubmissionDescriptors [{0}]", exception.Message );
+            }
+        }
+
+        private static IEnumerable< MwsFeedSubmissionDescriptor > TryGetFeedSubmissionDescriptors( GetFeedSubmissionListByNextTokenResponse response )
+        {
+            try {
+                return response.GetFeedSubmissionListByNextTokenResult.FeedSubmissionInfo
                     .Select( info => new MwsFeedSubmissionDescriptor {
                         FeedSubmissionId = info.FeedSubmissionId
                     } )

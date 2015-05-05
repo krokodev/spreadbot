@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Nunit.Amazon.Base;
 
 // Code: Mws_Connector_Tests
@@ -48,7 +49,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Get_Submitted_Feeds_List()
         {
-            var response = MwsConnector.Instance.GetFeedSubmissions();
+            var filter = new MwsSubmittedFeedsFilter();
+            var response = MwsConnector.Instance.GetFeedSubmissions( filter );
 
             IgnoreMwsThrottling( response );
 
@@ -62,7 +64,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Get_Submitted_Feeds_List_Count()
         {
-            var response = MwsConnector.Instance.GetFeedSubmissionCount();
+            var response = MwsConnector.Instance.GetFeedSubmissionCount( MwsSubmittedFeedsFilter.All() );
 
             IgnoreMwsThrottling( response );
 
@@ -73,7 +75,24 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count() {}
+        public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count()
+        {
+            var filter = MwsSubmittedFeedsFilter.LastDays( 10 );
+            var responseCount = MwsConnector.Instance.GetFeedSubmissionCount( filter );
+            var responseInfo = MwsConnector.Instance.GetFeedSubmissions( filter );
+
+            IgnoreMwsThrottling( responseCount );
+            IgnoreMwsThrottling( responseInfo );
+
+            Assert.IsNotNull( responseCount.Result, "responseCount.Result" );
+            Assert.IsNotNull( responseInfo.Result, "responseInfo.Result" );
+
+            var count1 = responseCount.Result.FeedSubmissionCount;
+            var count2 = responseInfo.Result.FeedSubmissionDescriptors.Count;
+            Console.WriteLine( "Count1: {0}\nCount2: {1}", count1, count2 );
+
+            Assert.AreEqual( count1, count2, "Counts form different responces" );
+        }
 
         [Test]
         public void Find_Submission_Inprocess() {}

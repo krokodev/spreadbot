@@ -123,7 +123,6 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 store.SaveData();
                 store.LoadData();
 
-                // Code: bug: SaveRestore_Proceed
                 dispatcher.RunChannelTasks( store.GetChannelTasks() );
                 dispatcher.ProceedChannelTasks( store.GetChannelTasks() );
 
