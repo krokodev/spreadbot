@@ -108,7 +108,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        // Code: Just_submitted_feed_has_Inprogress_status
         public void Incorrect_SubmissionFeedId_involves_Unknown_processing_status()
         {
             var submissionFeedId = "Lalala I am crazy Id!";
@@ -123,7 +122,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Recent_Feed_Submissions_Completed_Without_Errors()
+        // Code: Recent_submitted_feeds_done_without_errors
+        public void Recent_submitted_feeds_done_without_errors()
         {
             /*
             try {
