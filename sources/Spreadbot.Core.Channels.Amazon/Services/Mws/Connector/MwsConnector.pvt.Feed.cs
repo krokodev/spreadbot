@@ -47,7 +47,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 descriptors.AddRange( TryGetFeedSubmissionDescriptors( response ) );
 
                 var nextToken = response.GetFeedSubmissionListResult.NextToken;
-                descriptors.AddRange( TryGetNextFeedSubmissionDescriptors( nextToken ) );
+                descriptors.AddRange( GetNextFeedSubmissionDescriptors( nextToken ) );
 
                 return new Response< MwsGetFeedSubmissionsResult > {
                     Result = new MwsGetFeedSubmissionsResult {
@@ -59,6 +59,17 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             catch( Exception exception ) {
                 return new Response< MwsGetFeedSubmissionsResult >( exception );
             }
+        }
+
+        private IEnumerable< MwsFeedSubmissionDescriptor > GetNextFeedSubmissionDescriptors( string nextToken )
+        {
+            var descriptors = new List< MwsFeedSubmissionDescriptor >();
+            while( !string.IsNullOrEmpty( nextToken ) ) {
+                var nextResponse = RunGetFeedSubmissionListByNextToken( nextToken );
+                descriptors.AddRange( TryGetFeedSubmissionDescriptors( nextResponse ) );
+                nextToken = GetNextToken( nextResponse );
+            }
+            return descriptors;
         }
 
         private GetFeedSubmissionListByNextTokenResponse RunGetFeedSubmissionListByNextToken( string nextToken )
