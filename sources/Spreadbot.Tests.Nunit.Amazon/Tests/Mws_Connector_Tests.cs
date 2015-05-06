@@ -100,7 +100,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Just_submitted_feed_has_Inprogress_status()
+        public void Just_submitted_feed_has_InProgress_processing_status()
         {
             var submissionFeedId = SubmitFeed( MwsFeedType.Product );
             var response = MwsConnector.Instance.GetFeedSubmissionProcessingStatus( submissionFeedId );
@@ -153,16 +153,40 @@ namespace Spreadbot.Nunit.Amazon.Tests
             } );
         }
 
+
+        // Code: InProgress overall status
         [Test]
-        public void Just_created_submission_has_InProgress_overall_status()
+        public void Just_submitted_feed_has_InProgress_overall_status()
         {
-            // Ciode: InProgress overall status
+            var feedSubmissionId = SubmitFeed( MwsFeedType.Product, mute:true );
+            var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
+            response.Check();
+
+            Console.WriteLine(response);
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.InProgress,  response.Result.FeedSubmissionOverallStatus );
+            Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
         }
+
+
+        [Test]
+        public void Long_submitted_product_feed_has_Successful_overall_status()
+        {
+            var feedSubmissionId = FindProductFeedSubmissionWithDoneStatus();
+            var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
+            response.Check();
+
+            Console.WriteLine(feedSubmissionId);
+            Console.WriteLine(response);
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success,  response.Result.FeedSubmissionOverallStatus );
+            Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
+            Assert_That_Text_Contains( response, "FeedSubmissionStatus" );
+        }
+
 
         [Test]
         public void Error_code_and_description_available_on_failed_submission()
         {
-            // send wron request
+            // send wrong product request (you can use bad xml)
             // find failed response
             // read error code
             // see https://sellercentral.amazon.com/forums/thread.jspa?threadID=12023
@@ -187,12 +211,14 @@ namespace Spreadbot.Nunit.Amazon.Tests
             };
         }
 
-        private static string SubmitFeed( MwsFeedType feedType )
+        private static string SubmitFeed( MwsFeedType feedType, bool mute = false )
         {
             var feed = MakeMwsFeedHandler( feedType );
             var response = MwsConnector.Instance.SubmitFeed( feed );
 
-            Console.WriteLine( response );
+            if( !mute ) {
+                Console.WriteLine( response );
+            }
             IgnoreMwsThrottling( response );
 
             Assert.That( response.IsSuccessful, feedType.ToString() );
@@ -217,6 +243,13 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Assert.Inconclusive( "No completed feed submissions" );
             }
             return recentIds;
+        }
+
+        private static string FindProductFeedSubmissionWithDoneStatus()
+        {
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product, MwsFeedSubmissionProcessingStatus.Done, 10 );
+            var response = MwsConnector.Instance.GetFeedSubmissionList( filter ).Check();
+            return response.Result.FeedSubmissionDescriptors.Select( d => d.FeedSubmissionId ).FirstOrDefault();         
         }
 
         #endregion

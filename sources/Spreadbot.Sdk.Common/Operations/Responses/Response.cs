@@ -56,12 +56,13 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public List< IAbstractResponse > InnerResponses { get; set; }
 
         // --------------------------------------------------------[]
-        public void Check()
+        public Response<TResult> Check()
         {
             if( !IsSuccessful ) {
                 Console.WriteLine(this.ToYamlString());
                 throw new SpreadbotResponseException( this );
             }
+            return this;
         }
 
         // --------------------------------------------------------[]

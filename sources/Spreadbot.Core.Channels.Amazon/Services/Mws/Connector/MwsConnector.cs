@@ -2,6 +2,7 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsConnector.cs
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
@@ -48,6 +49,11 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         public Response< MwsGetFeedSubmissionStatusResult > GetFeedSubmissionStatus( string feedSubmissionId )
         {
             return _GetFeedSubmissionStatus( feedSubmissionId );
+        }
+
+        public Response< MwsGetFeedSubmissionOverallStatusResult > GetFeedSubmissionOverallStatus( string feedSubmissionId )
+        {
+            return _GetFeedSubmissionAverallStatus( feedSubmissionId );
         }
     }
 }

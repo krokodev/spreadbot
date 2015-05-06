@@ -44,7 +44,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         {
             return new AmazonSubmissionTask {
                 IsCritical = true,
-                MwsFeedSubmissionStatusCode = MwsFeedSubmissionStatus.Unknown,
+                MwsFeedSubmissionOverallStatus = MwsFeedSubmissionOverallStatus.Unknown,
                 ChannelId = AmazonAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new AmazonSubmissionArgs {

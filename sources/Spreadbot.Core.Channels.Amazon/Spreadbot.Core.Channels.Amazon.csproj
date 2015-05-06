@@ -91,6 +91,8 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
+    <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionOverallStatus.cs" />
+    <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionOverallStatusResult.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionStatusResult.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionProcessingStatusResult.cs" />
     <Compile Include="Services\Mws\FeedSubmission\MwsSubmittedFeedsFilter.cs" />

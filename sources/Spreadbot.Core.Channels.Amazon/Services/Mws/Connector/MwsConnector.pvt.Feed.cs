@@ -141,7 +141,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        // Code: _GetFeedSubmissionStatus
         private Response< MwsGetFeedSubmissionStatusResult > _GetFeedSubmissionStatus( string feedSubmissionId )
         {
             try {
@@ -165,6 +164,59 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             catch( Exception exception ) {
                 return new Response< MwsGetFeedSubmissionStatusResult >( exception );
             }
+        }
+
+        private Response< MwsGetFeedSubmissionOverallStatusResult > _GetFeedSubmissionAverallStatus(
+            string feedSubmissionId )
+        {
+            try {
+                var responseProcessing = _GetFeedSubmissionProcessingStatus( feedSubmissionId ).Check();
+                var overallStatus = MwsFeedSubmissionOverallStatus.Unknown;
+                var innerResponses = new List< IAbstractResponse > { responseProcessing };
+
+                switch( responseProcessing.Result.FeedSubmissionProcessingStatus ) {
+                    case MwsFeedSubmissionProcessingStatus.Unknown :
+                        overallStatus = MwsFeedSubmissionOverallStatus.Unknown;
+                        break;
+                    case MwsFeedSubmissionProcessingStatus.Cancelled :
+                        overallStatus = MwsFeedSubmissionOverallStatus.Failure;
+                        break;
+                    case MwsFeedSubmissionProcessingStatus.InProgress :
+                        overallStatus = MwsFeedSubmissionOverallStatus.InProgress;
+                        break;
+                    case MwsFeedSubmissionProcessingStatus.Done :
+                        IAbstractResponse responseComplete;
+                        overallStatus = GetOverallStatusBasedOnComplete(feedSubmissionId, out responseComplete);
+                        innerResponses.Add(responseComplete);
+                        break;
+                }
+                return new Response< MwsGetFeedSubmissionOverallStatusResult > {
+                    Result = new MwsGetFeedSubmissionOverallStatusResult {
+                        FeedSubmissionOverallStatus = overallStatus
+                    },
+                    InnerResponses = innerResponses
+                };
+            }
+            catch( Exception exception ) {
+                return new Response< MwsGetFeedSubmissionOverallStatusResult >( exception );
+            }
+        }
+
+        private MwsFeedSubmissionOverallStatus GetOverallStatusBasedOnComplete(
+            string feedSubmissionId,
+            out IAbstractResponse response )
+        {
+            var responseComplete = _GetFeedSubmissionStatus( feedSubmissionId ).Check();
+            response = responseComplete;
+            switch( responseComplete.Result.FeedSubmissionStatus ) {
+                case MwsFeedSubmissionStatus.Unknown :
+                    return MwsFeedSubmissionOverallStatus.Unknown;
+                case MwsFeedSubmissionStatus.Failure:
+                    return MwsFeedSubmissionOverallStatus.Failure;
+                case MwsFeedSubmissionStatus.Success:
+                    return MwsFeedSubmissionOverallStatus.Success;
+            }
+            return MwsFeedSubmissionOverallStatus.Unknown;
         }
     }
 }

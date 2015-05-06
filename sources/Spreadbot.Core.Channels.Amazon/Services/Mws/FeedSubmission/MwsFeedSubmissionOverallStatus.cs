@@ -1,12 +1,13 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MwsFeedSubmissionResultStatus.cs
+// MwsFeedSubmissionOverallStatus.cs
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
 {
-    public enum MwsFeedSubmissionStatus
+    public enum MwsFeedSubmissionOverallStatus
     {
         Unknown = 0,
+        InProgress,
         Success,
         Failure
     }
