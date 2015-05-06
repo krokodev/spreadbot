@@ -7,9 +7,9 @@ using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Results
 {
-    public class MipGetFeedSubmissionStatusResult : ResponseResult
+    public class MipGetFeedSubmissionOverallStatusResult : ResponseResult
     {
-        public MipFeedSubmissionStatus MipFeedSubmissionStatus { get; set; }
+        public MipFeedSubmissionOverallStatus MipFeedSubmissionOverallStatus { get; set; }
         public string MipItemId { get; set; }
         public string Details { get; set; }
     }

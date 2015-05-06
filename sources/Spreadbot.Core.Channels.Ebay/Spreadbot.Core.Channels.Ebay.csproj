@@ -88,6 +88,7 @@
     <Compile Include="Adapter\EbayAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\EbayAdapter.cs" />
     <Compile Include="Services\Mip\Connector\IMipConnector.cs" />
+    <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionCompleteStatus.cs" />
     <Compile Include="Services\Mip\SftpHelper\ISftpHelper.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.Utils.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.pvt.SubmissionXml.cs" />
@@ -115,8 +116,8 @@
     <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionDescriptor.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.cs" />
     <Compile Include="Services\Mip\Results\MipFindRemoteFileResult.cs" />
-    <Compile Include="Services\Mip\Results\MipGetFeedSubmissionStatusResult.cs" />
-    <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionStatus.cs" />
+    <Compile Include="Services\Mip\Results\MipGetFeedSubmissionOverallStatusResult.cs" />
+    <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionOverallStatus.cs" />
     <Compile Include="Configuration\Settings\EbaySettings.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedDescriptor.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedType.cs" />

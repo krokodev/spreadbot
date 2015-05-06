@@ -60,7 +60,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
 
         public static MwsSubmittedFeedsFilter DoneInLastDays( int daysNum )
         {
-            return All( null, MwsFeedSubmissionProcessingStatus.Done, daysNum );
+            return All( null, MwsFeedSubmissionProcessingStatus.Complete, daysNum );
         }
     }
 }

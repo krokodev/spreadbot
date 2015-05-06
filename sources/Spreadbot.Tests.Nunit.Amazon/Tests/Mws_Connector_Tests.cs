@@ -139,11 +139,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Console.WriteLine();
                 Console.WriteLine( id );
 
-                var response = MwsConnector.Instance.GetFeedSubmissionStatus( id );
+                var response = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( id );
                 response.Check();
                 Console.WriteLine( response );
 
-                Assert.AreEqual( MwsFeedSubmissionStatus.Success, response.Result.FeedSubmissionStatus );
+                Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.FeedSubmissionCompleteStatus );
                 Assert.AreEqual( 0, response.Result.WithErrorCount );
                 Assert.AreEqual( 0, response.Result.WithWarningCount );
                 Assert.AreEqual( response.Result.TotalProcessedCount, response.Result.SuccessfulCount);
@@ -154,7 +154,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
 
-        // Code: InProgress overall status
         [Test]
         public void Just_submitted_feed_has_InProgress_overall_status()
         {
@@ -179,23 +178,24 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Console.WriteLine(response);
             Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success,  response.Result.FeedSubmissionOverallStatus );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
-            Assert_That_Text_Contains( response, "FeedSubmissionStatus" );
+            Assert_That_Text_Contains( response, "FeedSubmissionCompleteStatus" );
         }
 
 
         [Test]
         public void Error_code_and_description_available_on_failed_submission()
         {
-            // send wrong product request (you can use bad xml)
+            // send wrong image request (you can use bad xml) 
             // find failed response
             // read error code
+            // Ignore images in 'recent must be ok test'
             // see https://sellercentral.amazon.com/forums/thread.jspa?threadID=12023
         }
 
         [Test]
         public void Obtain_submitted_products_id_list()
         {
-            
+            // Use Product API
         }
 
 
@@ -247,7 +247,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         private static string FindProductFeedSubmissionWithDoneStatus()
         {
-            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product, MwsFeedSubmissionProcessingStatus.Done, 10 );
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product, MwsFeedSubmissionProcessingStatus.Complete, 10 );
             var response = MwsConnector.Instance.GetFeedSubmissionList( filter ).Check();
             return response.Result.FeedSubmissionDescriptors.Select( d => d.FeedSubmissionId ).FirstOrDefault();         
         }

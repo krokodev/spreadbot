@@ -24,7 +24,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
         {
             task.AssertCanBeProceeded();
 
-            Response< MipGetFeedSubmissionStatusResult > statusResponse = null;
+            Response< MipGetFeedSubmissionOverallStatusResult > statusResponse = null;
 
             try {
                 var args = task.Args;
@@ -32,16 +32,16 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                     args.MipFeedDescriptor,
                     task.EbaySubmissionResponse.Result.MipSubmissionId );
 
-                statusResponse = MipConnector.Instance.GetFeedSubmissionStatus( submission );
+                statusResponse = MipConnector.Instance.GetFeedSubmissionOverallStatus( submission );
                 statusResponse.Check();
 
-                task.MipFeedSubmissionStatus = statusResponse.Result.MipFeedSubmissionStatus;
+                task.MipFeedSubmissionOverallStatus = statusResponse.Result.MipFeedSubmissionOverallStatus;
                 task.EbaySubmissionResponse.Result.MipItemId = statusResponse.Result.MipItemId;
 
                 task.AddProceedInfo( GetProceedInfo( statusResponse ) );
             }
             catch {
-                task.MipFeedSubmissionStatus = MipFeedSubmissionStatus.Failure;
+                task.MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.Failure;
                 task.AddProceedInfo( GetProceedInfo( statusResponse ) );
             }
             task.WasUpdatedNow();
@@ -49,7 +49,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
 
         // --------------------------------------------------------[]
         private static TaskProceedInfo GetProceedInfo(
-            Response< MipGetFeedSubmissionStatusResult > statusResponse )
+            Response< MipGetFeedSubmissionOverallStatusResult > statusResponse )
         {
             return new TaskProceedInfo ( statusResponse.ToYamlString() );
         }
@@ -84,7 +84,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                     Result = new EbaySubmissionResult { MipSubmissionId = mipResponse.Result.FeedSubmissionId },
                     InnerResponses = { mipResponse }
                 };
-                task.MipFeedSubmissionStatus = MipFeedSubmissionStatus.Initial;
+                task.MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.InProgress;
             }
             catch( Exception exception ) {
                 task.EbaySubmissionResponse = new ChannelResponse< EbaySubmissionResult >( exception );

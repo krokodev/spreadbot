@@ -81,15 +81,15 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private static MwsFeedSubmissionStatus GetFeedSubmissionStatusFromContent( string content )
+        private static MwsFeedSubmissionCompleteStatus GetFeedSubmissionStatusFromContent( string content )
         {
             try {
                 return content.GetXmlValue( "/AmazonEnvelope/Message/ProcessingReport/StatusCode" ) == "Complete"
-                    ? MwsFeedSubmissionStatus.Success
-                    : MwsFeedSubmissionStatus.Unknown;
+                    ? MwsFeedSubmissionCompleteStatus.Success
+                    : MwsFeedSubmissionCompleteStatus.Unknown;
             }
             catch {
-                return MwsFeedSubmissionStatus.Unknown;
+                return MwsFeedSubmissionCompleteStatus.Unknown;
             }
         }
 
@@ -121,11 +121,11 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 : MwsFeedSubmissionProcessingStatus.Unknown;
         }
 
-        private static MwsGetFeedSubmissionStatusResult GetMwsGetFeedSubmissionStatusResult( string content )
+        private static MwsGetFeedSubmissionCompleteStatusResult GetMwsGetFeedSubmissionStatusResult( string content )
         {
             var root = "/AmazonEnvelope/Message/ProcessingReport/ProcessingSummary/";
-            var result = new MwsGetFeedSubmissionStatusResult {
-                FeedSubmissionStatus = GetFeedSubmissionStatusFromContent( content ),
+            var result = new MwsGetFeedSubmissionCompleteStatusResult {
+                FeedSubmissionCompleteStatus = GetFeedSubmissionStatusFromContent( content ),
                 TotalProcessedCount = content.GetXmlIntValue( root + "MessagesProcessed" ),
                 SuccessfulCount = content.GetXmlIntValue( root + "MessagesSuccessful" ),
                 WithErrorCount = content.GetXmlIntValue( root + "MessagesWithError" ),
@@ -135,12 +135,12 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
             if( result.TotalProcessedCount == null || result.SuccessfulCount == null || result.WithErrorCount == null
                 || result.WithWarningCount == null ) {
-                result.FeedSubmissionStatus = MwsFeedSubmissionStatus.Unknown;
+                result.FeedSubmissionCompleteStatus = MwsFeedSubmissionCompleteStatus.Unknown;
                 return result;
             }
 
             if( ( int ) result.WithErrorCount > 0 ) {
-                result.FeedSubmissionStatus = MwsFeedSubmissionStatus.Failure;
+                result.FeedSubmissionCompleteStatus = MwsFeedSubmissionCompleteStatus.Failure;
                 return result;
             }
 

@@ -59,19 +59,19 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private Response< MipGetFeedSubmissionStatusResult > GetSubmissionStatusFromOutput(
+        private Response< MipGetFeedSubmissionOverallStatusResult > GetSubmissionOverallStatusFromOutput(
             MipFeedType feedType,
             Response< MipFindSubmissionResult > response,
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return new Response< MipGetFeedSubmissionStatusResult > {
+            return new Response< MipGetFeedSubmissionOverallStatusResult > {
                 ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
-                Result = ReadSubmissionOutputStatus( feedType, response )
+                Result = ReadSubmissionOverallStatus( feedType, response )
             };
         }
 
         // --------------------------------------------------------[]
-        private MipGetFeedSubmissionStatusResult ReadSubmissionOutputStatus(
+        private MipGetFeedSubmissionOverallStatusResult ReadSubmissionOverallStatus(
             MipFeedType feedType,
             Response< MipFindSubmissionResult > response )
         {
@@ -79,7 +79,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             var remotePath = response.Result.RemoteDir;
             var localPath = LocalSubmissionResultsFolder();
             var content = SftpHelper.GetRemoteFileContent( remotePath, fileName, localPath );
-            return MakeSubmissionStatusResultByParsingXmlContent( feedType, content );
+            return MakeSubmissionOverallStatusResultByParsingXmlContent( feedType, content );
         }
 
         // --------------------------------------------------------[]
@@ -93,7 +93,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                     case MipFeedSubmissionProcessingStatus.InProgress :
                         findResponse = FindSubmissionInFolder_Inprocess( mipFeedSubmissionDescriptor );
                         break;
-                    case MipFeedSubmissionProcessingStatus.Done :
+                    case MipFeedSubmissionProcessingStatus.Complete :
                         findResponse = FindSubmissionInFolder_Output( mipFeedSubmissionDescriptor );
                         break;
                     default :
@@ -115,39 +115,39 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private Response< MipGetFeedSubmissionStatusResult > _GetFeedSubmissionStatus(
+        private Response< MipGetFeedSubmissionOverallStatusResult > _GetFeedSubmissionOverallStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {
                 var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
                 if( response.IsSuccessful ) {
-                    return new Response< MipGetFeedSubmissionStatusResult > {
+                    return new Response< MipGetFeedSubmissionOverallStatusResult > {
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
-                            new MipGetFeedSubmissionStatusResult {
-                                MipFeedSubmissionStatus = MipFeedSubmissionStatus.InProgress
+                            new MipGetFeedSubmissionOverallStatusResult {
+                                MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.InProgress
                             }
                     };
                 }
 
-                response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.Done );
+                response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.Complete );
                 if( response.IsSuccessful ) {
-                    return GetSubmissionStatusFromOutput( mipFeedSubmissionDescriptor.MipFeedDescriptor.Type,
+                    return GetSubmissionOverallStatusFromOutput( mipFeedSubmissionDescriptor.MipFeedDescriptor.Type,
                         response,
                         mipFeedSubmissionDescriptor );
                 }
 
-                return new Response< MipGetFeedSubmissionStatusResult > {
+                return new Response< MipGetFeedSubmissionOverallStatusResult > {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                     Result =
-                        new MipGetFeedSubmissionStatusResult {
-                            MipFeedSubmissionStatus = MipFeedSubmissionStatus.Unknown
+                        new MipGetFeedSubmissionOverallStatusResult {
+                            MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.Unknown
                         },
                     InnerResponses = { response }
                 };
             }
             catch( Exception exception ) {
-                return new Response< MipGetFeedSubmissionStatusResult >( exception ) {
+                return new Response< MipGetFeedSubmissionOverallStatusResult >( exception ) {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor )
                 };
             }

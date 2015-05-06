@@ -14,19 +14,34 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
     public partial class MipConnector
     {
         // --------------------------------------------------------[]
-        private static MipGetFeedSubmissionStatusResult MakeSubmissionStatusResultByParsingXmlContent(
+        private static MipGetFeedSubmissionOverallStatusResult MakeSubmissionOverallStatusResultByParsingXmlContent(
             MipFeedType feedType,
             string content )
         {
-            return new MipGetFeedSubmissionStatusResult {
-                MipFeedSubmissionStatus = GetSubmissionStatusFromContent( feedType, content ),
+            return new MipGetFeedSubmissionOverallStatusResult {
+                MipFeedSubmissionOverallStatus =
+                    ToOverallStatus( GetSubmissionCompleteStatusFromContent( feedType, content ) ),
                 MipItemId = GetSubmissionItemIdFromContent( feedType, content ),
                 Details = content,
             };
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionStatus GetSubmissionStatusFromContent(
+        private static MipFeedSubmissionOverallStatus ToOverallStatus( MipFeedSubmissionCompleteStatus completeStatus )
+        {
+            switch( completeStatus ) {
+                case MipFeedSubmissionCompleteStatus.Unknown :
+                    return MipFeedSubmissionOverallStatus.Unknown;
+                case MipFeedSubmissionCompleteStatus.Failure :
+                    return MipFeedSubmissionOverallStatus.Failure;
+                case MipFeedSubmissionCompleteStatus.Success :
+                    return MipFeedSubmissionOverallStatus.Success;
+            }
+            return MipFeedSubmissionOverallStatus.Unknown;
+        }
+
+        // --------------------------------------------------------[]
+        private static MipFeedSubmissionCompleteStatus GetSubmissionCompleteStatusFromContent(
             MipFeedType feedType,
             string content )
         {
@@ -37,11 +52,12 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             };
             var extraSubmissionStatusControl =
                 new Dictionary
-                    < MipFeedType, Func< XmlDocument, MipFeedSubmissionStatus, MipFeedSubmissionStatus > > {
-                        { MipFeedType.Product, ExtraCheckProductStatus },
-                        { MipFeedType.Availability, ExtraCheckAvailabilityStatus },
-                        { MipFeedType.Distribution, ExtraCheckDistributionStatus },
-                    };
+                    < MipFeedType, Func< XmlDocument, MipFeedSubmissionCompleteStatus, MipFeedSubmissionCompleteStatus >
+                        > {
+                            { MipFeedType.Product, ExtraCheckProductCompleteStatus },
+                            { MipFeedType.Availability, ExtraCheckAvailabilityCompleteStatus },
+                            { MipFeedType.Distribution, ExtraCheckDistributionCompleteStatus },
+                        };
 
             try {
                 var xml = new XmlDocument {
@@ -52,9 +68,10 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 if( statusNode != null ) {
                     switch( statusNode.InnerText ) {
                         case "SUCCESS" :
-                            return extraSubmissionStatusControl[ feedType ]( xml, MipFeedSubmissionStatus.Success );
+                            return extraSubmissionStatusControl[ feedType ]( xml,
+                                MipFeedSubmissionCompleteStatus.Success );
                         case "FAILURE" :
-                            return MipFeedSubmissionStatus.Failure;
+                            return MipFeedSubmissionCompleteStatus.Failure;
                     }
                 }
             }
@@ -62,33 +79,33 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                 // ignored
             }
 
-            return MipFeedSubmissionStatus.Unknown;
+            return MipFeedSubmissionCompleteStatus.Unknown;
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionStatus ExtraCheckDistributionStatus(
+        private static MipFeedSubmissionCompleteStatus ExtraCheckDistributionCompleteStatus(
             XmlDocument xml,
-            MipFeedSubmissionStatus status )
+            MipFeedSubmissionCompleteStatus overallStatus )
         {
-            return status;
+            return overallStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionStatus ExtraCheckAvailabilityStatus(
+        private static MipFeedSubmissionCompleteStatus ExtraCheckAvailabilityCompleteStatus(
             XmlDocument xml,
-            MipFeedSubmissionStatus status )
+            MipFeedSubmissionCompleteStatus overallStatus )
         {
             var errorIdNode = xml.SelectSingleNode( "/inventoryResponse/error/errorID" );
             if( errorIdNode != null ) {
-                return MipFeedSubmissionStatus.Failure;
+                return MipFeedSubmissionCompleteStatus.Failure;
             }
-            return status;
+            return overallStatus;
         }
 
         // --------------------------------------------------------[]
-        private static MipFeedSubmissionStatus ExtraCheckProductStatus(
+        private static MipFeedSubmissionCompleteStatus ExtraCheckProductCompleteStatus(
             XmlDocument xml,
-            MipFeedSubmissionStatus status )
+            MipFeedSubmissionCompleteStatus status )
         {
             return status;
         }

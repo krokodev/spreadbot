@@ -25,23 +25,21 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
             if( !AbstractResponse.IsSuccessful ) {
                 return TaskStatus.Failure;
             }
-            switch( MipFeedSubmissionStatus ) {
-                case MipFeedSubmissionStatus.Initial :
+            switch( MipFeedSubmissionOverallStatus ) {
+
+                case MipFeedSubmissionOverallStatus.InProgress :
                     return TaskStatus.InProgress;
 
-                case MipFeedSubmissionStatus.InProgress :
-                    return TaskStatus.InProgress;
-
-                case MipFeedSubmissionStatus.Unknown :
+                case MipFeedSubmissionOverallStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MipFeedSubmissionStatus.Failure :
+                case MipFeedSubmissionOverallStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MipFeedSubmissionStatus.Success :
+                case MipFeedSubmissionOverallStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MipSubmissionStatusCode [{0}]", MipFeedSubmissionStatus );
+            throw new SpreadbotException( "Wrong MipSubmissionStatusCode [{0}]", MipFeedSubmissionOverallStatus );
         }
 
         // --------------------------------------------------------[]

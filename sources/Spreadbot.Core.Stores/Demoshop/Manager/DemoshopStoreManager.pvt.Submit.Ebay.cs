@@ -44,7 +44,7 @@ namespace Spreadbot.Core.Stores.Demoshop.Manager
         {
             return new EbaySubmissionTask {
                 IsCritical = true,
-                MipFeedSubmissionStatus = MipFeedSubmissionStatus.Unknown,
+                MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.Unknown,
                 ChannelId = EbayAdapter.Instance.Id,
                 ChannelMethod = ChannelMethod.Submit,
                 Args = new EbaySubmissionArgs {

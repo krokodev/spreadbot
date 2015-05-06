@@ -4,7 +4,7 @@
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
 {
-    public enum MwsFeedSubmissionStatus
+    public enum MwsFeedSubmissionCompleteStatus
     {
         Unknown = 0,
         Success,

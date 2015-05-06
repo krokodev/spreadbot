@@ -20,7 +20,7 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
         }
 
         [YamlMember( Order = 10 )]
-        public MipFeedSubmissionStatus MipFeedSubmissionStatus { get; set; }
+        public MipFeedSubmissionOverallStatus MipFeedSubmissionOverallStatus { get; set; }
 
         [YamlMember( Alias = "EbaySubmissionArgs", Order = 29 )]
         public EbaySubmissionArgs Args { get; set; }

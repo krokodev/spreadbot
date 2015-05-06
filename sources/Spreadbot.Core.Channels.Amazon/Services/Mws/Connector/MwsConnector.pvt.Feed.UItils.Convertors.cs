@@ -28,7 +28,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             FeedSubmissionProcessingStatusMap =
                 new Dictionary< MwsFeedSubmissionProcessingStatus, List< string > > {
                     {
-                        MwsFeedSubmissionProcessingStatus.Done, new List< string > {
+                        MwsFeedSubmissionProcessingStatus.Complete, new List< string > {
                             "_DONE_"
                         }
                     }, {

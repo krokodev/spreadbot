@@ -40,20 +40,20 @@ namespace Spreadbot.Nunit.Ebay.Utils
         // --------------------------------------------------------[]
         public static IEnumerable< string > TestRequestIds(
             MipFeedType feed,
-            MipFeedSubmissionStatus status )
+            MipFeedSubmissionOverallStatus overallStatus )
         {
             return Enumerable.Range( 1, 10 )
-                .Where( i => FileExists( feed, status, i ) )
-                .Select( i => string.Format( "{0}-{1:000}", status, i ).ToLower() );
+                .Where( i => FileExists( feed, overallStatus, i ) )
+                .Select( i => string.Format( "{0}-{1:000}", overallStatus, i ).ToLower() );
         }
 
         // --------------------------------------------------------[]
-        private static bool FileExists( MipFeedType feed, MipFeedSubmissionStatus status, int i )
+        private static bool FileExists( MipFeedType feed, MipFeedSubmissionOverallStatus overallStatus, int i )
         {
             return File.Exists(
                 EbaySettings.LocalBasePath
                     + @"ini\"
-                    + string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower()
+                    + string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, overallStatus, i ).ToLower()
                 );
         }
 
@@ -61,7 +61,7 @@ namespace Spreadbot.Nunit.Ebay.Utils
         private static void AddFeedStatusSamples( ICollection< string > files )
         {
             EnumUtil.GetValues< MipFeedType >().ForEach( feed => {
-                EnumUtil.GetValues< MipFeedSubmissionStatus >().ForEach( status => {
+                EnumUtil.GetValues< MipFeedSubmissionOverallStatus >().ForEach( status => {
                     Enumerable.Range( 1, 10 )
                         .Where( i => FileExists( feed, status, i ) )
                         .Select( i => string.Format( @"inbox\{0}.{1}-{2:000}.xml", feed, status, i ).ToLower() )

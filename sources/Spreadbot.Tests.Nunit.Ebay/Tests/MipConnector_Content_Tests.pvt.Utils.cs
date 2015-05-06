@@ -23,7 +23,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( mipFeedType );
             var request = new MipFeedSubmissionDescriptor( feed, MipConnectorTestInitializer.ItemRequestId );
 
-            var response = mipConnector.GetFeedSubmissionStatus( request );
+            var response = mipConnector.GetFeedSubmissionOverallStatus( request );
             Console.WriteLine( response );
 
             Assert.IsNotNull( response.Result );
@@ -41,28 +41,28 @@ namespace Spreadbot.Nunit.Ebay.Tests
         // --------------------------------------------------------[]
         private static void TestReadFeedStatus(
             MipFeedType mipFeedType,
-            MipFeedSubmissionStatus mipFeedSubmissionStatus,
+            MipFeedSubmissionOverallStatus mipFeedSubmissionOverallStatus,
             IMipConnector mipConnector )
         {
             var wasTested = false;
             var feed = new MipFeedDescriptor( mipFeedType );
 
-            MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionStatus )
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionOverallStatus )
                 .ForEach( reqId => {
                     var request = new MipFeedSubmissionDescriptor( feed, reqId );
-                    var response = mipConnector.GetFeedSubmissionStatus( request );
+                    var response = mipConnector.GetFeedSubmissionOverallStatus( request );
                     var testInfo = "{0}.{1} checking status".SafeFormat( feed.Type, reqId );
                     wasTested = true;
 
                     Assert.That( response.IsSuccessful, testInfo );
-                    Assert.AreEqual( mipFeedSubmissionStatus,
-                        response.Result.MipFeedSubmissionStatus,
+                    Assert.AreEqual( mipFeedSubmissionOverallStatus,
+                        response.Result.MipFeedSubmissionOverallStatus,
                         testInfo );
                 } );
 
             Assert.AreEqual( true,
                 wasTested,
-                "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionStatus ) );
+                "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionOverallStatus ) );
         }
 
         // --------------------------------------------------------[]
@@ -70,9 +70,9 @@ namespace Spreadbot.Nunit.Ebay.Tests
         {
             var fakeMipConnector = EbayMockHelper.GetMipConnectorUsingLocalData();
 
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Success, fakeMipConnector );
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Failure, fakeMipConnector );
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Unknown, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionOverallStatus.Success, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionOverallStatus.Failure, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionOverallStatus.Unknown, fakeMipConnector );
         }
     }
 }

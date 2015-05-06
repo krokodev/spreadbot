@@ -7,9 +7,9 @@ using Spreadbot.Sdk.Common.Operations.ResponseResults;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Results
 {
-    public class MwsGetFeedSubmissionStatusResult : ResponseResult
+    public class MwsGetFeedSubmissionCompleteStatusResult : ResponseResult
     {
-        public MwsFeedSubmissionStatus FeedSubmissionStatus { get; set; }
+        public MwsFeedSubmissionCompleteStatus FeedSubmissionCompleteStatus { get; set; }
         public int? TotalProcessedCount { get; set; }
         public int? SuccessfulCount { get; set; }
         public int? WithErrorCount { get; set; }

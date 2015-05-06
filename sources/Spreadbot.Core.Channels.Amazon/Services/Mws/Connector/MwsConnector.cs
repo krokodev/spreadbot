@@ -46,14 +46,14 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return _GetFeedSubmissionProcessingStatus( feedSubmissionId );
         }
 
-        public Response< MwsGetFeedSubmissionStatusResult > GetFeedSubmissionStatus( string feedSubmissionId )
+        public Response< MwsGetFeedSubmissionCompleteStatusResult > GetFeedSubmissionCompleteStatus( string feedSubmissionId )
         {
-            return _GetFeedSubmissionStatus( feedSubmissionId );
+            return _GetFeedSubmissionCompleteStatus( feedSubmissionId );
         }
 
         public Response< MwsGetFeedSubmissionOverallStatusResult > GetFeedSubmissionOverallStatus( string feedSubmissionId )
         {
-            return _GetFeedSubmissionAverallStatus( feedSubmissionId );
+            return _GetFeedSubmissionOverallStatus( feedSubmissionId );
         }
     }
 }

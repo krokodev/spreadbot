@@ -34,7 +34,7 @@ namespace Spreadbot.Nunit.Ebay.Mocks
                         storeTask.AddSubTasks(
                             new EbaySubmissionTask {
                                 IsCritical = true,
-                                MipFeedSubmissionStatus = MipFeedSubmissionStatus.Unknown,
+                                MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.Unknown,
                                 ChannelId = EbayAdapter.Instance.Id,
                                 ChannelMethod = ChannelMethod.Submit,
                                 Args = new EbaySubmissionArgs {

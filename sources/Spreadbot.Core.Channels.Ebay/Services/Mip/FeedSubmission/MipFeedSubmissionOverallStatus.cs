@@ -4,10 +4,9 @@
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 {
-    public enum MipFeedSubmissionStatus
+    public enum MipFeedSubmissionOverallStatus
     {
         Unknown = 0,
-        Initial,
         InProgress,
         Success,
         Failure
