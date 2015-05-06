@@ -11,6 +11,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
     {
         public string FeedSubmissionId { get; set; }
         public MipFeedDescriptor MipFeedDescriptor { get; set; }
+
         public MipFeedSubmissionDescriptor( MipFeedDescriptor mipFeedDescriptor, string feedSubmissionId )
         {
             MipFeedDescriptor = mipFeedDescriptor;
