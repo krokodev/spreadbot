@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Amazon
-// MwsGetFeedSubmissionStatusResult.cs
+// MwsGetFeedSubmissionCompleteStatusResult.cs
 
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;

@@ -1,6 +1,6 @@
 // Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipFeedSubmissionResultStatus.cs
+// MipFeedSubmissionOverallStatus.cs
 
 namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 {

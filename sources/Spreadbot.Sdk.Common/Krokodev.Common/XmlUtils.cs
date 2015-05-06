@@ -22,9 +22,10 @@ namespace Spreadbot.Sdk.Common.Krokodev.Common
 
         public static int? GetXmlIntValue( this string content, string path )
         {
-
             var val = content.GetXmlValue( path );
-            if( val == null ) return null;
+            if( val == null ) {
+                return null;
+            }
             try {
                 return Convert.ToInt32( val );
             }

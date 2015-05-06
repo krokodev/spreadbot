@@ -2,7 +2,6 @@
 // Spreadbot.Core.Channels.Amazon
 // MwsConnector.cs
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
@@ -31,7 +30,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return _SubmitFeed( feedDescriptor );
         }
 
-        public virtual Response< MwsGetFeedSubmissionListResult > GetFeedSubmissionList( MwsSubmittedFeedsFilter filter )
+        public virtual Response< MwsGetFeedSubmissionListResult > GetFeedSubmissionList(
+            MwsSubmittedFeedsFilter filter )
         {
             return _GetFeedSubmissionList( filter );
         }
@@ -41,17 +41,20 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return _GetFeedSubmissionCount( filter );
         }
 
-        public Response< MwsGetFeedSubmissionProcessingStatusResult > GetFeedSubmissionProcessingStatus( string feedSubmissionId)
+        public Response< MwsGetFeedSubmissionProcessingStatusResult > GetFeedSubmissionProcessingStatus(
+            string feedSubmissionId )
         {
             return _GetFeedSubmissionProcessingStatus( feedSubmissionId );
         }
 
-        public Response< MwsGetFeedSubmissionCompleteStatusResult > GetFeedSubmissionCompleteStatus( string feedSubmissionId )
+        public Response< MwsGetFeedSubmissionCompleteStatusResult > GetFeedSubmissionCompleteStatus(
+            string feedSubmissionId )
         {
             return _GetFeedSubmissionCompleteStatus( feedSubmissionId );
         }
 
-        public Response< MwsGetFeedSubmissionOverallStatusResult > GetFeedSubmissionOverallStatus( string feedSubmissionId )
+        public Response< MwsGetFeedSubmissionOverallStatusResult > GetFeedSubmissionOverallStatus(
+            string feedSubmissionId )
         {
             return _GetFeedSubmissionOverallStatus( feedSubmissionId );
         }

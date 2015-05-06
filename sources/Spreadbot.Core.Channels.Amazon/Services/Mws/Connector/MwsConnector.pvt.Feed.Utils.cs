@@ -10,7 +10,6 @@ using System.Text;
 using MarketplaceWebService;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Exceptions;
@@ -149,9 +148,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
         private void CheckContentMD5IsEqual( string content, string contentMd5 )
         {
-            if( CalculateMd5( content ) != contentMd5 ) {
-                
-            }
+            if( CalculateMd5( content ) != contentMd5 ) {}
         }
     }
 }

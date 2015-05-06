@@ -141,7 +141,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private Response< MwsGetFeedSubmissionCompleteStatusResult > _GetFeedSubmissionCompleteStatus( string feedSubmissionId )
+        private Response< MwsGetFeedSubmissionCompleteStatusResult > _GetFeedSubmissionCompleteStatus(
+            string feedSubmissionId )
         {
             try {
                 var stream = new MemoryStream();
@@ -186,8 +187,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                         break;
                     case MwsFeedSubmissionProcessingStatus.Complete :
                         IAbstractResponse responseComplete;
-                        overallStatus = GetOverallStatusBasedOnComplete(feedSubmissionId, out responseComplete);
-                        innerResponses.Add(responseComplete);
+                        overallStatus = GetOverallStatusBasedOnComplete( feedSubmissionId, out responseComplete );
+                        innerResponses.Add( responseComplete );
                         break;
                 }
                 return new Response< MwsGetFeedSubmissionOverallStatusResult > {
@@ -211,9 +212,9 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             switch( responseComplete.Result.FeedSubmissionCompleteStatus ) {
                 case MwsFeedSubmissionCompleteStatus.Unknown :
                     return MwsFeedSubmissionOverallStatus.Unknown;
-                case MwsFeedSubmissionCompleteStatus.Failure:
+                case MwsFeedSubmissionCompleteStatus.Failure :
                     return MwsFeedSubmissionOverallStatus.Failure;
-                case MwsFeedSubmissionCompleteStatus.Success:
+                case MwsFeedSubmissionCompleteStatus.Success :
                     return MwsFeedSubmissionOverallStatus.Success;
             }
             return MwsFeedSubmissionOverallStatus.Unknown;

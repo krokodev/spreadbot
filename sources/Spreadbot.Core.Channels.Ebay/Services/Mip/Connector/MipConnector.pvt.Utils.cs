@@ -55,7 +55,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         // --------------------------------------------------------[]
         private static string MakeSubmissionStatusArgsInfo( MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return "(MipSubmissionId = {0})".SafeFormat( mipFeedSubmissionDescriptor.SubmissionId );
+            return "(MipSubmissionId = {0})".SafeFormat( mipFeedSubmissionDescriptor.FeedSubmissionId );
         }
 
         // --------------------------------------------------------[]

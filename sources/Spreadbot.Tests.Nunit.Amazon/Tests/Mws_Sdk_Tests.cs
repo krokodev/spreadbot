@@ -13,7 +13,6 @@ using NUnit.Framework;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Nunit.Amazon.Base;
 
-
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]

@@ -87,7 +87,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 .Select( info =>
                     new MwsFeedSubmissionDescriptor {
                         FeedSubmissionId = info.FeedSubmissionId,
-                        FeedProcessingStatus = ConvertToFeedSubmissionProcessingStatus(info.FeedProcessingStatus)
+                        FeedProcessingStatus = ConvertToFeedSubmissionProcessingStatus( info.FeedProcessingStatus )
                     } )
                 .ToList();
         }

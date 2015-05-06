@@ -9,14 +9,13 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 {
     public class MipFeedSubmissionDescriptor
     {
-        public MipFeedSubmissionDescriptor( MipFeedDescriptor mipFeedDescriptor, string submissionId )
+        public string FeedSubmissionId { get; set; }
+        public MipFeedDescriptor MipFeedDescriptor { get; set; }
+        public MipFeedSubmissionDescriptor( MipFeedDescriptor mipFeedDescriptor, string feedSubmissionId )
         {
             MipFeedDescriptor = mipFeedDescriptor;
-            SubmissionId = submissionId;
+            FeedSubmissionId = feedSubmissionId;
         }
-
-        public string SubmissionId { get; set; }
-        public MipFeedDescriptor MipFeedDescriptor { get; set; }
 
         public static string GenerateId()
         {
@@ -31,7 +30,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 
         public string FileNamePrefix()
         {
-            return string.Format( "{0}.{1}", MipFeedDescriptor.GetName(), SubmissionId );
+            return string.Format( "{0}.{1}", MipFeedDescriptor.GetName(), FeedSubmissionId );
         }
 
         public static string GenerateZeroId()

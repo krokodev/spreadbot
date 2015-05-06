@@ -135,7 +135,9 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 store.GetEbaySubmissionTasks().ForEach( t => {
                     Console.WriteLine();
                     Console.WriteLine( t );
-                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.InProgress || t.GetStatusCode() == TaskStatus.Success, "Success or InProgress");
+                    Assert.IsTrue(
+                        t.GetStatusCode() == TaskStatus.InProgress || t.GetStatusCode() == TaskStatus.Success,
+                        "Success or InProgress" );
                     Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                     Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );

@@ -1,6 +1,6 @@
 ﻿// Spreadbot (c) 2015 Krokodev
 // Spreadbot.Core.Channels.Ebay
-// MipGetSubmissionStatusResult.cs
+// MipGetFeedSubmissionOverallStatusResult.cs
 
 using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 using Spreadbot.Sdk.Common.Operations.ResponseResults;

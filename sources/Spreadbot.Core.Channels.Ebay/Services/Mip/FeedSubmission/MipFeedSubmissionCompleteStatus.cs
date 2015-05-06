@@ -6,7 +6,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission
 {
     internal enum MipFeedSubmissionCompleteStatus
     {
-        Unknown=0,
+        Unknown = 0,
         Success,
         Failure
     }

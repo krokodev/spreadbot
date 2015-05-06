@@ -146,26 +146,24 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.FeedSubmissionCompleteStatus );
                 Assert.AreEqual( 0, response.Result.WithErrorCount );
                 Assert.AreEqual( 0, response.Result.WithWarningCount );
-                Assert.AreEqual( response.Result.TotalProcessedCount, response.Result.SuccessfulCount);
+                Assert.AreEqual( response.Result.TotalProcessedCount, response.Result.SuccessfulCount );
 
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithError>0</MessagesWithError>" );
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithWarning>0</MessagesWithWarning>" );
             } );
         }
 
-
         [Test]
         public void Just_submitted_feed_has_InProgress_overall_status()
         {
-            var feedSubmissionId = SubmitFeed( MwsFeedType.Product, mute:true );
+            var feedSubmissionId = SubmitFeed( MwsFeedType.Product, mute : true );
             var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
             response.Check();
 
-            Console.WriteLine(response);
-            Assert.AreEqual( MwsFeedSubmissionOverallStatus.InProgress,  response.Result.FeedSubmissionOverallStatus );
+            Console.WriteLine( response );
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.InProgress, response.Result.FeedSubmissionOverallStatus );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
         }
-
 
         [Test]
         public void Long_submitted_product_feed_has_Successful_overall_status()
@@ -174,13 +172,12 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
             response.Check();
 
-            Console.WriteLine(feedSubmissionId);
-            Console.WriteLine(response);
-            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success,  response.Result.FeedSubmissionOverallStatus );
+            Console.WriteLine( feedSubmissionId );
+            Console.WriteLine( response );
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success, response.Result.FeedSubmissionOverallStatus );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
             Assert_That_Text_Contains( response, "FeedSubmissionCompleteStatus" );
         }
-
 
         [Test]
         public void Error_code_and_description_available_on_failed_submission()
@@ -247,9 +244,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         private static string FindProductFeedSubmissionWithDoneStatus()
         {
-            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product, MwsFeedSubmissionProcessingStatus.Complete, 10 );
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product,
+                MwsFeedSubmissionProcessingStatus.Complete,
+                10 );
             var response = MwsConnector.Instance.GetFeedSubmissionList( filter ).Check();
-            return response.Result.FeedSubmissionDescriptors.Select( d => d.FeedSubmissionId ).FirstOrDefault();         
+            return response.Result.FeedSubmissionDescriptors.Select( d => d.FeedSubmissionId ).FirstOrDefault();
         }
 
         #endregion

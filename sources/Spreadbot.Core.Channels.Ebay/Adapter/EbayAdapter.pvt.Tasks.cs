@@ -51,7 +51,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
         private static TaskProceedInfo GetProceedInfo(
             Response< MipGetFeedSubmissionOverallStatusResult > statusResponse )
         {
-            return new TaskProceedInfo ( statusResponse.ToYamlString() );
+            return new TaskProceedInfo( statusResponse.ToYamlString() );
         }
 
         // --------------------------------------------------------[]

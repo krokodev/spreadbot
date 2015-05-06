@@ -26,7 +26,6 @@ namespace Spreadbot.Core.Channels.Ebay.Operations.Tasks
                 return TaskStatus.Failure;
             }
             switch( MipFeedSubmissionOverallStatus ) {
-
                 case MipFeedSubmissionOverallStatus.InProgress :
                     return TaskStatus.InProgress;
 
