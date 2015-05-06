@@ -180,6 +180,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
+        // Code: Error_code_and_description_available_on_failed_submission
         public void Error_code_and_description_available_on_failed_submission()
         {
             // send wrong image request (you can use bad xml) 
@@ -190,9 +191,9 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Obtain_submitted_products_id_list()
+        public void Submitted_products_id_can_be_achieved()
         {
-            // Use Product API
+            // todo:> Use Product API
         }
 
 
