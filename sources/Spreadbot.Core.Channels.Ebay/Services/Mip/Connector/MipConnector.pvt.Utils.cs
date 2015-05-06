@@ -59,19 +59,19 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private Response< MipGetSubmissionStatusResult > GetSubmissionStatusFromOutput(
+        private Response< MipGetFeedSubmissionStatusResult > GetSubmissionStatusFromOutput(
             MipFeedType feedType,
             Response< MipFindSubmissionResult > response,
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
-            return new Response< MipGetSubmissionStatusResult > {
+            return new Response< MipGetFeedSubmissionStatusResult > {
                 ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                 Result = ReadSubmissionOutputStatus( feedType, response )
             };
         }
 
         // --------------------------------------------------------[]
-        private MipGetSubmissionStatusResult ReadSubmissionOutputStatus(
+        private MipGetFeedSubmissionStatusResult ReadSubmissionOutputStatus(
             MipFeedType feedType,
             Response< MipFindSubmissionResult > response )
         {
@@ -115,17 +115,17 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private Response< MipGetSubmissionStatusResult > _GetSubmissionStatus(
+        private Response< MipGetFeedSubmissionStatusResult > _GetSubmissionStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {
                 var response = FindSubmission( mipFeedSubmissionDescriptor, MipFeedSubmissionProcessingStatus.InProgress );
                 if( response.IsSuccessful ) {
-                    return new Response< MipGetSubmissionStatusResult > {
+                    return new Response< MipGetFeedSubmissionStatusResult > {
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
-                            new MipGetSubmissionStatusResult {
-                                MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Inprocess
+                            new MipGetFeedSubmissionStatusResult {
+                                MipFeedSubmissionStatus = MipFeedSubmissionStatus.InProgress
                             }
                     };
                 }
@@ -137,17 +137,17 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                         mipFeedSubmissionDescriptor );
                 }
 
-                return new Response< MipGetSubmissionStatusResult > {
+                return new Response< MipGetFeedSubmissionStatusResult > {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                     Result =
-                        new MipGetSubmissionStatusResult {
-                            MipFeedSubmissionResultStatusCode = MipFeedSubmissionResultStatus.Unknown
+                        new MipGetFeedSubmissionStatusResult {
+                            MipFeedSubmissionStatus = MipFeedSubmissionStatus.Unknown
                         },
                     InnerResponses = { response }
                 };
             }
             catch( Exception exception ) {
-                return new Response< MipGetSubmissionStatusResult >( exception ) {
+                return new Response< MipGetFeedSubmissionStatusResult >( exception ) {
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor )
                 };
             }

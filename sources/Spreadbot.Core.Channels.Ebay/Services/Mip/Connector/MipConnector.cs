@@ -57,7 +57,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        public Response< MipGetSubmissionStatusResult > GetSubmissionStatus(
+        public Response< MipGetFeedSubmissionStatusResult > GetSubmissionStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             return _GetSubmissionStatus( mipFeedSubmissionDescriptor );

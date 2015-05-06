@@ -44,5 +44,10 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         {
             return _GetFeedSubmissionProcessingStatus( feedSubmissionId );
         }
+
+        public Response< MwsGetFeedSubmissionStatusResult > GetFeedSubmissionStatus( string feedSubmissionId )
+        {
+            return _GetFeedSubmissionStatus( feedSubmissionId );
+        }
     }
 }

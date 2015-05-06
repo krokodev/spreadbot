@@ -7,8 +7,6 @@ using Spreadbot.App.Web.Models;
 using Spreadbot.Core.Stores.Demoshop.Items;
 using Spreadbot.Core.System.Dispatcher;
 
-// Here: Controller | Demoshop
-
 namespace Spreadbot.App.Web.Controllers
 {
     public class DemoshopController : Controller

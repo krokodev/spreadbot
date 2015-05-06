@@ -41,13 +41,13 @@ namespace Spreadbot.Nunit.Ebay.Tests
         // --------------------------------------------------------[]
         private static void TestReadFeedStatus(
             MipFeedType mipFeedType,
-            MipFeedSubmissionResultStatus mipFeedSubmissionResultStatus,
+            MipFeedSubmissionStatus mipFeedSubmissionStatus,
             IMipConnector mipConnector )
         {
             var wasTested = false;
             var feed = new MipFeedDescriptor( mipFeedType );
 
-            MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionResultStatus )
+            MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionStatus )
                 .ForEach( reqId => {
                     var request = new MipFeedSubmissionDescriptor( feed, reqId );
                     var response = mipConnector.GetSubmissionStatus( request );
@@ -55,14 +55,14 @@ namespace Spreadbot.Nunit.Ebay.Tests
                     wasTested = true;
 
                     Assert.That( response.IsSuccessful, testInfo );
-                    Assert.AreEqual( mipFeedSubmissionResultStatus,
-                        response.Result.MipFeedSubmissionResultStatusCode,
+                    Assert.AreEqual( mipFeedSubmissionStatus,
+                        response.Result.MipFeedSubmissionStatus,
                         testInfo );
                 } );
 
             Assert.AreEqual( true,
                 wasTested,
-                "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionResultStatus ) );
+                "{0}.{1} was not tested".SafeFormat( mipFeedType, mipFeedSubmissionStatus ) );
         }
 
         // --------------------------------------------------------[]
@@ -70,9 +70,9 @@ namespace Spreadbot.Nunit.Ebay.Tests
         {
             var fakeMipConnector = EbayMockHelper.GetMipConnectorUsingLocalData();
 
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionResultStatus.Success, fakeMipConnector );
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionResultStatus.Failure, fakeMipConnector );
-            TestReadFeedStatus( mipFeedType, MipFeedSubmissionResultStatus.Unknown, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Success, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Failure, fakeMipConnector );
+            TestReadFeedStatus( mipFeedType, MipFeedSubmissionStatus.Unknown, fakeMipConnector );
         }
     }
 }

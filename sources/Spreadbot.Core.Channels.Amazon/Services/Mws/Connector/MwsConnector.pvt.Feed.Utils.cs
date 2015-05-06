@@ -22,7 +22,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
     {
         private static string CalculateContentMd5( MwsFeedDescriptor feedDescriptor )
         {
-            var stream = GetFeedContentStream( feedDescriptor );
+            var stream = GetStreamToReadContent( feedDescriptor.Content );
             return MarketplaceWebServiceClient.CalculateContentMD5( stream );
         }
 
@@ -33,9 +33,9 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             };
         }
 
-        private static MemoryStream GetFeedContentStream( MwsFeedDescriptor feedDescriptor )
+        private static MemoryStream GetStreamToReadContent( string content)
         {
-            return new MemoryStream( Encoding.GetEncoding( FeedContentEncoding ).GetBytes( feedDescriptor.Content ) );
+            return new MemoryStream( Encoding.GetEncoding( FeedContentEncoding ).GetBytes( content ) );
         }
 
         private static string TryGetFeedSubmissionId( SubmitFeedResponse response )
@@ -80,6 +80,11 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
+        private static MwsFeedSubmissionStatus TryGetFeedSubmissionStatus( string response )
+        {
+            return MwsFeedSubmissionStatus.Unknown;
+        }
+
         private static string GetNextToken( GetFeedSubmissionListByNextTokenResponse nextResponse )
         {
             return nextResponse.IsSetGetFeedSubmissionListByNextTokenResult()
@@ -88,7 +93,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 : null;
         }
 
-        private static MwsFeedSubmissionDescriptor TryGetFeedSubmissionDescriptor(
+        private static MwsFeedSubmissionDescriptor GetFeedSubmissionDescriptor(
             Response< MwsGetFeedSubmissionListResult > listResponse,
             string feedSubmissionId )
         {
@@ -98,6 +103,13 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                     );
             }
             return null;
+        }
+
+        private static MwsFeedSubmissionProcessingStatus GetFeedSubmissionProcessingStatus( MwsFeedSubmissionDescriptor descriptor )
+        {
+            return descriptor != null
+                ? descriptor.FeedProcessingStatus
+                : MwsFeedSubmissionProcessingStatus.Unknown;
         }
     }
 }

@@ -16,5 +16,6 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         Response< MwsGetFeedSubmissionListResult > GetFeedSubmissionList( MwsSubmittedFeedsFilter filter);
         Response< MwsGetFeedSubmissionCountResult > GetFeedSubmissionCount( MwsSubmittedFeedsFilter filter );
         Response< MwsGetFeedSubmissionProcessingStatusResult >  GetFeedSubmissionProcessingStatus( string feedSubmissionId );
+        Response< MwsGetFeedSubmissionStatusResult >  GetFeedSubmissionStatus( string feedSubmissionId );
     }
 }

@@ -25,23 +25,23 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
             if( !AbstractResponse.IsSuccessful ) {
                 return TaskStatus.Failure;
             }
-            switch( MwsFeedSubmissionResultStatusCode ) {
-                case MwsFeedSubmissionResultStatus.Initial :
+            switch( MwsFeedSubmissionStatusCode ) {
+                case MwsFeedSubmissionStatus.Initial :
                     return TaskStatus.Inprocess;
 
-                case MwsFeedSubmissionResultStatus.InProgress :
+                case MwsFeedSubmissionStatus.InProgress :
                     return TaskStatus.Inprocess;
 
-                case MwsFeedSubmissionResultStatus.Unknown :
+                case MwsFeedSubmissionStatus.Unknown :
                     return TaskStatus.Failure;
 
-                case MwsFeedSubmissionResultStatus.Failure :
+                case MwsFeedSubmissionStatus.Failure :
                     return TaskStatus.Failure;
 
-                case MwsFeedSubmissionResultStatus.Success :
+                case MwsFeedSubmissionStatus.Success :
                     return TaskStatus.Success;
             }
-            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsFeedSubmissionResultStatusCode );
+            throw new SpreadbotException( "Wrong MwsRequestStatusCode [{0}]", MwsFeedSubmissionStatusCode );
         }
 
         // --------------------------------------------------------[]

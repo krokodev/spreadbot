@@ -13,7 +13,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public string ResponseDetails { get; set; }
 
         public SpreadbotResponseException( IAbstractResponse response )
-            : base( "ISpreadbotDetaledException, see details." )
+            : base( "{0} failed, see field 'ResponseDetails'",  response.GetType())
         {
             ResponseDetails = "[Response]\n{0}".SafeFormat( response.ToYamlString() );
         }

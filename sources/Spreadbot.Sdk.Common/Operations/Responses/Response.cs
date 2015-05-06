@@ -59,6 +59,7 @@ namespace Spreadbot.Sdk.Common.Operations.Responses
         public void Check()
         {
             if( !IsSuccessful ) {
+                Console.WriteLine(this.ToYamlString());
                 throw new SpreadbotResponseException( this );
             }
         }

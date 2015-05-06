@@ -91,6 +91,7 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
+    <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionStatusResult.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionProcessingStatusResult.cs" />
     <Compile Include="Services\Mws\FeedSubmission\MwsSubmittedFeedsFilter.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionCountResult.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="Services\Mws\Connector\IMwsConnector.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.cs" />
     <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionProcessingStatus.cs" />
-    <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionResultStatus.cs" />
+    <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionStatus.cs" />
     <Compile Include="Services\Mws\Results\MwsSubmitFeedResult.cs" />
     <Compile Include="Operations\Args\AmazonSubmissionArgs.cs" />
     <Compile Include="Operations\Results\AmazonSubmissionResult.cs" />

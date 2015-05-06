@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using MarketplaceWebService.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
@@ -21,7 +23,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 var request = new SubmitFeedRequest {
                     Merchant = AmazonSettings.MerchantId,
                     MarketplaceIdList = GetMarketplaceIdList(),
-                    FeedContent = GetFeedContentStream( feedDescriptor ),
+                    FeedContent = GetStreamToReadContent( feedDescriptor.Content ),
                     FeedType = FeedTypeMap[ feedDescriptor.Type ],
                     ContentMD5 = CalculateContentMd5( feedDescriptor )
                 };
@@ -125,19 +127,45 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         {
             try {
                 var listResponse = _GetFeedSubmissionList( MwsSubmittedFeedsFilter.WithId( feedSubmissionId ) );
-                var descriptor = TryGetFeedSubmissionDescriptor( listResponse, feedSubmissionId );
+                var descriptor = GetFeedSubmissionDescriptor( listResponse, feedSubmissionId );
 
                 return new Response< MwsGetFeedSubmissionProcessingStatusResult > {
                     Result = new MwsGetFeedSubmissionProcessingStatusResult {
-                        FeedSubmissionProcessingStatus = descriptor != null
-                            ? descriptor.FeedProcessingStatus
-                            : MwsFeedSubmissionProcessingStatus.Unknown
+                        FeedSubmissionProcessingStatus = GetFeedSubmissionProcessingStatus( descriptor )
                     },
                     InnerResponses = new List< IAbstractResponse > { listResponse }
                 };
             }
             catch( Exception exception ) {
                 return new Response< MwsGetFeedSubmissionProcessingStatusResult >( exception );
+            }
+        }
+
+        private Response< MwsGetFeedSubmissionStatusResult > _GetFeedSubmissionStatus( string feedSubmissionId )
+        {
+            try {
+                var stream = new MemoryStream();
+
+                var request = new GetFeedSubmissionResultRequest {
+                    Merchant = AmazonSettings.MerchantId,
+                    FeedSubmissionId = feedSubmissionId,
+                    FeedSubmissionResult = stream
+                };
+
+                var response = _mwsClient.GetFeedSubmissionResult( request );
+                var content = Encoding.GetEncoding( FeedContentEncoding ).GetString(stream.ToArray());
+                // Todo:> Verify ContentMD5: response.GetFeedSubmissionResultResult.ContentMD5
+
+                return new Response< MwsGetFeedSubmissionStatusResult > {
+                    Result = new MwsGetFeedSubmissionStatusResult {
+                        FeedSubmissionStatus = TryGetFeedSubmissionStatus( content ),
+                        Content = content
+                    },
+                    Details = response.ToXML()
+                };
+            }
+            catch( Exception exception ) {
+                return new Response< MwsGetFeedSubmissionStatusResult >( exception );
             }
         }
     }

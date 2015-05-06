@@ -115,8 +115,8 @@
     <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionDescriptor.cs" />
     <Compile Include="Services\Mip\Connector\MipConnector.cs" />
     <Compile Include="Services\Mip\Results\MipFindRemoteFileResult.cs" />
-    <Compile Include="Services\Mip\Results\MipGetSubmissionStatusResult.cs" />
-    <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionResultStatus.cs" />
+    <Compile Include="Services\Mip\Results\MipGetFeedSubmissionStatusResult.cs" />
+    <Compile Include="Services\Mip\FeedSubmission\MipFeedSubmissionStatus.cs" />
     <Compile Include="Configuration\Settings\EbaySettings.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedDescriptor.cs" />
     <Compile Include="Services\Mip\Feed\MipFeedType.cs" />

@@ -4,8 +4,6 @@
 
 using System.Web.Mvc;
 
-// Here: Controller | Page
-
 namespace Spreadbot.App.Web.Controllers
 {
     public class PageController : Controller

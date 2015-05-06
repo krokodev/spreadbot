@@ -147,7 +147,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( response );
 
             Assert.That( response.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionResultStatus.Inprocess, response.Result.MipFeedSubmissionResultStatusCode );
+            Assert.AreEqual( MipFeedSubmissionStatus.InProgress, response.Result.MipFeedSubmissionStatus );
         }
 
         // --------------------------------------------------------[]
@@ -167,15 +167,15 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var submissionStatusResponse = fakeMipConnector.GetSubmissionStatus( request );
             Console.WriteLine( submissionStatusResponse );
 
-            if( submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode
-                != MipFeedSubmissionResultStatus.Success ) {
+            if( submissionStatusResponse.Result.MipFeedSubmissionStatus
+                != MipFeedSubmissionStatus.Success ) {
                 Console.WriteLine(
                     "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
             }
 
             Assert.That( submissionStatusResponse.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionResultStatus.Success,
-                submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
+            Assert.AreEqual( MipFeedSubmissionStatus.Success,
+                submissionStatusResponse.Result.MipFeedSubmissionStatus );
         }
 
         // --------------------------------------------------------[]
@@ -189,8 +189,8 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( submissionStatusResponse );
 
             Assert.That( submissionStatusResponse.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionResultStatus.Unknown,
-                submissionStatusResponse.Result.MipFeedSubmissionResultStatusCode );
+            Assert.AreEqual( MipFeedSubmissionStatus.Unknown,
+                submissionStatusResponse.Result.MipFeedSubmissionStatus );
         }
 
         // --------------------------------------------------------[]

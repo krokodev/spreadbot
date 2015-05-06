@@ -20,7 +20,7 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
         }
 
         [YamlMember( Order = 10 )]
-        public MwsFeedSubmissionResultStatus MwsFeedSubmissionResultStatusCode { get; set; }
+        public MwsFeedSubmissionStatus MwsFeedSubmissionStatusCode { get; set; }
 
         [YamlMember( Alias = "AmazonSubmissionArgs", Order = 29 )]
         public AmazonSubmissionArgs Args { get; set; }
