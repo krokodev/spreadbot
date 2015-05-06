@@ -8,7 +8,7 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
     {
         Unknown,
         Todo,
-        Inprocess,
+        InProgress,
         Success,
         Failure
     }

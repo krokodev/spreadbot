@@ -56,10 +56,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 task.AbstractSubTasks.OfType< AmazonSubmissionTask >().ForEach( t => {
                     //IgnoreMipQueueDepthErrorMessage( t.AmazonSubmissionResponse );
                     Console.WriteLine( t.AmazonSubmissionResponse );
-                    Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
+                    Assert.AreEqual( TaskStatus.InProgress, t.GetStatusCode() );
                     Assert.IsNotNull( t.AmazonSubmissionResponse.Result.MwsRequestId );
                 } );
-                Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+                Assert.AreEqual( TaskStatus.InProgress, task.GetStatusCode() );
             }
         }
 

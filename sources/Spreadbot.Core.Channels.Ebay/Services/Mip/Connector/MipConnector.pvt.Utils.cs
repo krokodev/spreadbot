@@ -115,7 +115,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
         }
 
         // --------------------------------------------------------[]
-        private Response< MipGetFeedSubmissionStatusResult > _GetSubmissionStatus(
+        private Response< MipGetFeedSubmissionStatusResult > _GetFeedSubmissionStatus(
             MipFeedSubmissionDescriptor mipFeedSubmissionDescriptor )
         {
             try {

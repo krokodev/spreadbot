@@ -11,8 +11,8 @@ using MoreLinq;
 using Spreadbot.Core.Channels.Ebay.Configuration.Settings;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Feed;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
-using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Krokodev.Common;
 
 namespace Spreadbot.Nunit.Ebay.Utils
 {

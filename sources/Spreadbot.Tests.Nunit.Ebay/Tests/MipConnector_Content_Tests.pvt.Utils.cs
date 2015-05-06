@@ -23,7 +23,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( mipFeedType );
             var request = new MipFeedSubmissionDescriptor( feed, MipConnectorTestInitializer.ItemRequestId );
 
-            var response = mipConnector.GetSubmissionStatus( request );
+            var response = mipConnector.GetFeedSubmissionStatus( request );
             Console.WriteLine( response );
 
             Assert.IsNotNull( response.Result );
@@ -50,7 +50,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             MipConnectorTestInitializer.TestRequestIds( feed.Type, mipFeedSubmissionStatus )
                 .ForEach( reqId => {
                     var request = new MipFeedSubmissionDescriptor( feed, reqId );
-                    var response = mipConnector.GetSubmissionStatus( request );
+                    var response = mipConnector.GetFeedSubmissionStatus( request );
                     var testInfo = "{0}.{1} checking status".SafeFormat( feed.Type, reqId );
                     wasTested = true;
 

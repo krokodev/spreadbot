@@ -25,7 +25,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                     MarketplaceIdList = GetMarketplaceIdList(),
                     FeedContent = GetStreamToReadContent( feedDescriptor.Content ),
                     FeedType = FeedTypeMap[ feedDescriptor.Type ],
-                    ContentMD5 = CalculateContentMd5( feedDescriptor )
+                    ContentMD5 = CalculateMd5( feedDescriptor.Content )
                 };
 
                 var response = _mwsClient.SubmitFeed( request );
@@ -141,6 +141,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
+        // Code: _GetFeedSubmissionStatus
         private Response< MwsGetFeedSubmissionStatusResult > _GetFeedSubmissionStatus( string feedSubmissionId )
         {
             try {
@@ -153,14 +154,11 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 };
 
                 var response = _mwsClient.GetFeedSubmissionResult( request );
-                var content = Encoding.GetEncoding( FeedContentEncoding ).GetString(stream.ToArray());
-                // Todo:> Verify ContentMD5: response.GetFeedSubmissionResultResult.ContentMD5
+                var content = Encoding.GetEncoding( FeedContentEncoding ).GetString( stream.ToArray() );
+                CheckContentMD5IsEqual( content, response.GetFeedSubmissionResultResult.ContentMD5 );
 
                 return new Response< MwsGetFeedSubmissionStatusResult > {
-                    Result = new MwsGetFeedSubmissionStatusResult {
-                        FeedSubmissionStatus = TryGetFeedSubmissionStatus( content ),
-                        Content = content
-                    },
+                    Result = GetMwsGetFeedSubmissionStatusResult( content ),
                     Details = response.ToXML()
                 };
             }

@@ -10,8 +10,8 @@ using Spreadbot.Core.Channels.Ebay.Operations.Tasks;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Connector;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.FeedSubmission;
 using Spreadbot.Core.Channels.Ebay.Services.Mip.Results;
-using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Krokodev.Common;
 using Spreadbot.Sdk.Common.Operations.Proceed;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
@@ -32,7 +32,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                     args.MipFeedDescriptor,
                     task.EbaySubmissionResponse.Result.MipSubmissionId );
 
-                statusResponse = MipConnector.Instance.GetSubmissionStatus( submission );
+                statusResponse = MipConnector.Instance.GetFeedSubmissionStatus( submission );
                 statusResponse.Check();
 
                 task.MipFeedSubmissionStatus = statusResponse.Result.MipFeedSubmissionStatus;

@@ -3,8 +3,8 @@
 // SpreadbotResponseException.cs
 
 using Krokodev.Common.Extensions;
-using Spreadbot.Sdk.Common.Crocodev.Common;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Krokodev.Common;
 
 namespace Spreadbot.Sdk.Common.Operations.Responses
 {

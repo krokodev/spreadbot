@@ -127,14 +127,13 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-
-        // Code: Recent_submitted_feeds_done_without_errors
         public void Recent_submitted_feeds_done_without_errors()
         {
+            const int recentNumber = 7;
             var listResponse = MwsConnector.Instance.GetFeedSubmissionList( MwsSubmittedFeedsFilter.DoneInLastDays( 10 ) );
             listResponse.Check();
 
-            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, 5 );
+            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber );
 
             recentSubmissionIds.ForEach( id => {
                 Console.WriteLine();
@@ -143,11 +142,36 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 var response = MwsConnector.Instance.GetFeedSubmissionStatus( id );
                 response.Check();
                 Console.WriteLine( response );
+
+                Assert.AreEqual( MwsFeedSubmissionStatus.Success, response.Result.FeedSubmissionStatus );
+                Assert.AreEqual( 0, response.Result.WithErrorCount );
+                Assert.AreEqual( 0, response.Result.WithWarningCount );
+                Assert.AreEqual( response.Result.TotalProcessedCount, response.Result.SuccessfulCount);
+
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithError>0</MessagesWithError>" );
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithWarning>0</MessagesWithWarning>" );
-
-                // Todo:> Parse REsult and use Result fields 'MessagesWithWarning', 'MessagesWithError' etc
             } );
+        }
+
+        [Test]
+        public void Just_created_submission_has_InProgress_overall_status()
+        {
+            // Ciode: InProgress overall status
+        }
+
+        [Test]
+        public void Error_code_and_description_available_on_failed_submission()
+        {
+            // send wron request
+            // find failed response
+            // read error code
+            // see https://sellercentral.amazon.com/forums/thread.jspa?threadID=12023
+        }
+
+        [Test]
+        public void Obtain_submitted_products_id_list()
+        {
+            
         }
 
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace Spreadbot.Sdk.Common.Crocodev.Common
+namespace Spreadbot.Sdk.Common.Krokodev.Common
 {
     public static class EnumUtil
     {

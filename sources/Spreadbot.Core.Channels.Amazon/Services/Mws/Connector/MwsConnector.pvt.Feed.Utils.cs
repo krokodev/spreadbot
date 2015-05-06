@@ -14,15 +14,16 @@ using Spreadbot.Core.Channels.Amazon.Services.Mws.Feed;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Exceptions;
+using Spreadbot.Sdk.Common.Krokodev.Common;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
-        private static string CalculateContentMd5( MwsFeedDescriptor feedDescriptor )
+        private static string CalculateMd5( string content )
         {
-            var stream = GetStreamToReadContent( feedDescriptor.Content );
+            var stream = GetStreamToReadContent( content );
             return MarketplaceWebServiceClient.CalculateContentMD5( stream );
         }
 
@@ -33,7 +34,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             };
         }
 
-        private static MemoryStream GetStreamToReadContent( string content)
+        private static MemoryStream GetStreamToReadContent( string content )
         {
             return new MemoryStream( Encoding.GetEncoding( FeedContentEncoding ).GetBytes( content ) );
         }
@@ -80,9 +81,16 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
-        private static MwsFeedSubmissionStatus TryGetFeedSubmissionStatus( string response )
+        private static MwsFeedSubmissionStatus GetFeedSubmissionStatusFromContent( string content )
         {
-            return MwsFeedSubmissionStatus.Unknown;
+            try {
+                return content.GetXmlValue( "/AmazonEnvelope/Message/ProcessingReport/StatusCode" ) == "Complete"
+                    ? MwsFeedSubmissionStatus.Success
+                    : MwsFeedSubmissionStatus.Unknown;
+            }
+            catch {
+                return MwsFeedSubmissionStatus.Unknown;
+            }
         }
 
         private static string GetNextToken( GetFeedSubmissionListByNextTokenResponse nextResponse )
@@ -105,11 +113,45 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             return null;
         }
 
-        private static MwsFeedSubmissionProcessingStatus GetFeedSubmissionProcessingStatus( MwsFeedSubmissionDescriptor descriptor )
+        private static MwsFeedSubmissionProcessingStatus GetFeedSubmissionProcessingStatus(
+            MwsFeedSubmissionDescriptor descriptor )
         {
             return descriptor != null
                 ? descriptor.FeedProcessingStatus
                 : MwsFeedSubmissionProcessingStatus.Unknown;
+        }
+
+        private static MwsGetFeedSubmissionStatusResult GetMwsGetFeedSubmissionStatusResult( string content )
+        {
+            var root = "/AmazonEnvelope/Message/ProcessingReport/ProcessingSummary/";
+            var result = new MwsGetFeedSubmissionStatusResult {
+                FeedSubmissionStatus = GetFeedSubmissionStatusFromContent( content ),
+                TotalProcessedCount = content.GetXmlIntValue( root + "MessagesProcessed" ),
+                SuccessfulCount = content.GetXmlIntValue( root + "MessagesSuccessful" ),
+                WithErrorCount = content.GetXmlIntValue( root + "MessagesWithError" ),
+                WithWarningCount = content.GetXmlIntValue( root + "MessagesWithWarning" ),
+                Content = content
+            };
+
+            if( result.TotalProcessedCount == null || result.SuccessfulCount == null || result.WithErrorCount == null
+                || result.WithWarningCount == null ) {
+                result.FeedSubmissionStatus = MwsFeedSubmissionStatus.Unknown;
+                return result;
+            }
+
+            if( ( int ) result.WithErrorCount > 0 ) {
+                result.FeedSubmissionStatus = MwsFeedSubmissionStatus.Failure;
+                return result;
+            }
+
+            return result;
+        }
+
+        private void CheckContentMD5IsEqual( string content, string contentMd5 )
+        {
+            if( CalculateMd5( content ) != contentMd5 ) {
+                
+            }
         }
     }
 }

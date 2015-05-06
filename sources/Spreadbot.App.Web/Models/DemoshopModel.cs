@@ -40,7 +40,7 @@ namespace Spreadbot.App.Web.Models
 
         public IEnumerable< IChannelTask > ChannelTasksInprocess
         {
-            get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.Inprocess ); }
+            get { return ChannelTasks.Where( t => t.GetStatusCode() == TaskStatus.InProgress ); }
         }
 
         public IEnumerable< IChannelTask > ChannelTasks

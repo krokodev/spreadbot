@@ -80,15 +80,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crocodev.Common\EnumUtil.cs" />
-    <Compile Include="Crocodev.Common\StringExtensions.cs" />
-    <Compile Include="Crocodev.Common\YamlUtils.cs" />
+    <Compile Include="Krokodev.Common\EnumUtil.cs" />
+    <Compile Include="Krokodev.Common\StringExtensions.cs" />
+    <Compile Include="Krokodev.Common\XmlUtils.cs" />
+    <Compile Include="Krokodev.Common\YamlUtils.cs" />
     <Compile Include="Exceptions\ISpreadbotDetaledException.cs" />
     <Compile Include="Exceptions\SpreadbotTaskException.cs" />
     <Compile Include="Exceptions\ExceptionUtility.cs" />
     <Compile Include="Operations\Proceed\TaskProceedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Crocodev.Common\Stub.cs" />
+    <Compile Include="Krokodev.Common\Stub.cs" />
     <Compile Include="Exceptions\SpreadbotException.cs" />
     <Compile Include="Operations\Responses\SpreadbotResponseException.cs" />
     <Compile Include="Operations\ResponseResults\IResponseResult.cs" />
@@ -106,7 +107,7 @@
     <Compile Include="Research\BugGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Crocodev.Common\packages.config" />
+    <None Include="Krokodev.Common\packages.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

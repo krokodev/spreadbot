@@ -54,10 +54,10 @@ namespace Spreadbot.Nunit.Ebay.Tests
             task.AbstractSubTasks.OfType< EbaySubmissionTask >().ForEach( t => {
                 IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
                 Console.WriteLine( t.EbaySubmissionResponse );
-                Assert.AreEqual( TaskStatus.Inprocess, t.GetStatusCode() );
+                Assert.AreEqual( TaskStatus.InProgress, t.GetStatusCode() );
                 Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
             } );
-            Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+            Assert.AreEqual( TaskStatus.InProgress, task.GetStatusCode() );
         }
 
         // --------------------------------------------------------[]
@@ -75,10 +75,10 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 task.AbstractSubTasks.OfType< EbaySubmissionTask >().ForEach( t => {
                     IgnoreMipQueueDepthErrorMessage( t.EbaySubmissionResponse );
                     Console.WriteLine( t );
-                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success );
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.InProgress || t.GetStatusCode() == TaskStatus.Success );
                     Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                 } );
-                Assert.AreEqual( TaskStatus.Inprocess, task.GetStatusCode() );
+                Assert.AreEqual( TaskStatus.InProgress, task.GetStatusCode() );
             }
             catch( SpreadbotException exception ) {
                 IgnoreMipQueueDepthErrorMessage( exception.Message );
@@ -135,7 +135,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
                 store.GetEbaySubmissionTasks().ForEach( t => {
                     Console.WriteLine();
                     Console.WriteLine( t );
-                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.Inprocess || t.GetStatusCode() == TaskStatus.Success, "Success or InProgress");
+                    Assert.IsTrue( t.GetStatusCode() == TaskStatus.InProgress || t.GetStatusCode() == TaskStatus.Success, "Success or InProgress");
                     Assert.IsNotNull( t.EbaySubmissionResponse.Result.MipSubmissionId );
                     Assert_That_Text_Contains( t, "ArgsInfo" );
                 } );

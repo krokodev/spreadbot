@@ -40,7 +40,7 @@ namespace Spreadbot.Core.System.Dispatcher
         // --------------------------------------------------------[]
         private void DoProceedChannelTask( IChannelTask task )
         {
-            if( task.GetStatusCode() != TaskStatus.Inprocess ) {
+            if( task.GetStatusCode() != TaskStatus.InProgress ) {
                 throw new SpreadbotTaskException( "Task is not In-Process [{0}]", task );
             }
 

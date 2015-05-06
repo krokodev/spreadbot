@@ -27,10 +27,10 @@ namespace Spreadbot.Core.Channels.Amazon.Operations.Tasks
             }
             switch( MwsFeedSubmissionStatusCode ) {
                 case MwsFeedSubmissionStatus.Initial :
-                    return TaskStatus.Inprocess;
+                    return TaskStatus.InProgress;
 
                 case MwsFeedSubmissionStatus.InProgress :
-                    return TaskStatus.Inprocess;
+                    return TaskStatus.InProgress;
 
                 case MwsFeedSubmissionStatus.Unknown :
                     return TaskStatus.Failure;

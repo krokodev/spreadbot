@@ -2,7 +2,7 @@
 // Spreadbot.Sdk.Common
 // StringExtensions.cs
 
-namespace Spreadbot.Sdk.Common.Crocodev.Common
+namespace Spreadbot.Sdk.Common.Krokodev.Common
 {
     public static class StringExtensions
     {

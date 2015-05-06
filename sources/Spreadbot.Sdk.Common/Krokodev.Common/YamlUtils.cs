@@ -5,7 +5,7 @@
 using System.IO;
 using YamlDotNet.Serialization;
 
-namespace Spreadbot.Sdk.Common.Crocodev.Common
+namespace Spreadbot.Sdk.Common.Krokodev.Common
 {
     public static class YamlUtils
     {

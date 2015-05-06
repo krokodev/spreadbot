@@ -143,7 +143,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             IgnoreMipQueueDepthErrorMessage( sendResponse );
 
             var request = new MipFeedSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
-            var response = MipConnector.Instance.GetSubmissionStatus( request );
+            var response = MipConnector.Instance.GetFeedSubmissionStatus( request );
             Console.WriteLine( response );
 
             Assert.That( response.IsSuccessful );
@@ -164,7 +164,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Assert.IsNotNull( sendResponse.Result );
 
             var request = new MipFeedSubmissionDescriptor( feed, sendResponse.Result.FeedSubmissionId );
-            var submissionStatusResponse = fakeMipConnector.GetSubmissionStatus( request );
+            var submissionStatusResponse = fakeMipConnector.GetFeedSubmissionStatus( request );
             Console.WriteLine( submissionStatusResponse );
 
             if( submissionStatusResponse.Result.MipFeedSubmissionStatus
@@ -185,7 +185,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.Product );
             var request = new MipFeedSubmissionDescriptor( feed, MipFeedSubmissionDescriptor.GenerateId() );
 
-            var submissionStatusResponse = MipConnector.Instance.GetSubmissionStatus( request );
+            var submissionStatusResponse = MipConnector.Instance.GetFeedSubmissionStatus( request );
             Console.WriteLine( submissionStatusResponse );
 
             Assert.That( submissionStatusResponse.IsSuccessful );
@@ -200,7 +200,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var feed = new MipFeedDescriptor( MipFeedType.None );
             var request = new MipFeedSubmissionDescriptor( feed, MipFeedSubmissionDescriptor.GenerateId() );
 
-            var response = MipConnector.Instance.GetSubmissionStatus( request );
+            var response = MipConnector.Instance.GetFeedSubmissionStatus( request );
             Console.WriteLine( response );
 
             Assert_That_Text_Contains( response, "ArgsInfo" );

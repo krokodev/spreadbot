@@ -64,11 +64,11 @@ namespace Spreadbot.Sdk.Common.Operations.Tasks
             Logger.Trace( "8" );
 
             if( AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Todo ) +
-                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Inprocess ) +
+                AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.InProgress ) +
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Success ) +
                 AbstractSubTasks.Count( t => t.GetStatusCode() == TaskStatus.Failure && !t.IsCritical )
                 == totalSubCount ) {
-                return TaskStatus.Inprocess;
+                return TaskStatus.InProgress;
             }
 
             /**/

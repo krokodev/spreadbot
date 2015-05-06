@@ -3,7 +3,7 @@
 // ResponseResult.cs
 
 using System.Diagnostics.CodeAnalysis;
-using Spreadbot.Sdk.Common.Crocodev.Common;
+using Spreadbot.Sdk.Common.Krokodev.Common;
 using YamlDotNet.Serialization;
 
 namespace Spreadbot.Sdk.Common.Operations.ResponseResults

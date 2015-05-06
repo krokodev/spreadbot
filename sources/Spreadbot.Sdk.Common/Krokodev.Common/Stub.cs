@@ -2,7 +2,7 @@
 // Spreadbot.Sdk.Common
 // Stub.cs
 
-namespace Spreadbot.Sdk.Common.Crocodev.Common
+namespace Spreadbot.Sdk.Common.Krokodev.Common
 {
     internal class Stub {}
 }
