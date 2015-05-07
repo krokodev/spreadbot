@@ -35,7 +35,7 @@ namespace Spreadbot.Core.Channels.Ebay.Adapter
                 statusResponse = MipConnector.Instance.GetFeedSubmissionOverallStatus( submission );
                 statusResponse.Check();
 
-                task.MipFeedSubmissionOverallStatus = statusResponse.Result.MipFeedSubmissionOverallStatus;
+                task.MipFeedSubmissionOverallStatus = statusResponse.Result.Status;
                 task.EbaySubmissionResponse.Result.MipItemId = statusResponse.Result.MipItemId;
 
                 task.AddProceedInfo( GetProceedInfo( statusResponse ) );

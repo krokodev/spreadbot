@@ -147,7 +147,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             Console.WriteLine( response );
 
             Assert.That( response.IsSuccessful );
-            Assert.AreEqual( MipFeedSubmissionOverallStatus.InProgress, response.Result.MipFeedSubmissionOverallStatus );
+            Assert.AreEqual( MipFeedSubmissionOverallStatus.InProgress, response.Result.Status );
         }
 
         // --------------------------------------------------------[]
@@ -167,7 +167,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
             var submissionStatusResponse = fakeMipConnector.GetFeedSubmissionOverallStatus( request );
             Console.WriteLine( submissionStatusResponse );
 
-            if( submissionStatusResponse.Result.MipFeedSubmissionOverallStatus
+            if( submissionStatusResponse.Result.Status
                 != MipFeedSubmissionOverallStatus.Success ) {
                 Console.WriteLine(
                     "\n\nIt can be 'cause your tests have been not started for a logn period (2-3 days)\n\n" );
@@ -175,7 +175,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             Assert.That( submissionStatusResponse.IsSuccessful );
             Assert.AreEqual( MipFeedSubmissionOverallStatus.Success,
-                submissionStatusResponse.Result.MipFeedSubmissionOverallStatus );
+                submissionStatusResponse.Result.Status );
         }
 
         // --------------------------------------------------------[]
@@ -190,7 +190,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
             Assert.That( submissionStatusResponse.IsSuccessful );
             Assert.AreEqual( MipFeedSubmissionOverallStatus.Unknown,
-                submissionStatusResponse.Result.MipFeedSubmissionOverallStatus );
+                submissionStatusResponse.Result.Status );
         }
 
         // --------------------------------------------------------[]

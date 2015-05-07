@@ -120,27 +120,29 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 : MwsFeedSubmissionProcessingStatus.Unknown;
         }
 
-        private static MwsGetFeedSubmissionCompleteStatusResult GetMwsGetFeedSubmissionStatusResult( string content )
+        private static MwsGetFeedSubmissionCompleteStatusResult MakeFeedSubmissionCompleteStatusResult( string content )
         {
             var root = "/AmazonEnvelope/Message/ProcessingReport/";
             var result = new MwsGetFeedSubmissionCompleteStatusResult {
-                FeedSubmissionCompleteStatus = GetFeedSubmissionStatusFromContent( content ),
+                Status = GetFeedSubmissionStatusFromContent( content ),
                 TransactionId = content.GetXmlValue( root + "DocumentTransactionID" ),
                 ProcessedCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesProcessed" ),
                 SuccessfulCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesSuccessful" ),
                 WithErrorCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithError" ),
                 WithWarningCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithWarning" ),
+                ErrorCode = content.GetXmlValue( root + "Result/ResultMessageCode" ),
+                ErrorDescription = content.GetXmlValue( root + "Result/ResultDescription" ),
                 Content = content
             };
 
             if( result.ProcessedCount == null || result.SuccessfulCount == null || result.WithErrorCount == null
                 || result.WithWarningCount == null ) {
-                result.FeedSubmissionCompleteStatus = MwsFeedSubmissionCompleteStatus.Unknown;
+                result.Status = MwsFeedSubmissionCompleteStatus.Unknown;
                 return result;
             }
 
             if( ( int ) result.WithErrorCount > 0 ) {
-                result.FeedSubmissionCompleteStatus = MwsFeedSubmissionCompleteStatus.Failure;
+                result.Status = MwsFeedSubmissionCompleteStatus.Failure;
                 return result;
             }
 

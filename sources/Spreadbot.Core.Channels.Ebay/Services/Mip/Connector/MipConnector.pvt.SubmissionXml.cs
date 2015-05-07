@@ -19,7 +19,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
             string content )
         {
             return new MipGetFeedSubmissionOverallStatusResult {
-                MipFeedSubmissionOverallStatus =
+                Status =
                     ToOverallStatus( GetSubmissionCompleteStatusFromContent( feedType, content ) ),
                 MipItemId = GetSubmissionItemIdFromContent( feedType, content ),
                 Details = content,

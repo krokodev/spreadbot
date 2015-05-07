@@ -56,7 +56,7 @@ namespace Spreadbot.Nunit.Ebay.Tests
 
                     Assert.That( response.IsSuccessful, testInfo );
                     Assert.AreEqual( mipFeedSubmissionOverallStatus,
-                        response.Result.MipFeedSubmissionOverallStatus,
+                        response.Result.Status,
                         testInfo );
                 } );
 

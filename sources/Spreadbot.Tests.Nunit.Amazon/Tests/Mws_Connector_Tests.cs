@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Krokodev.Common.Extensions;
 using MoreLinq;
 using NUnit.Framework;
@@ -55,7 +56,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Get_Submitted_Feeds_List()
         {
             var filter = new MwsSubmittedFeedsFilter();
-            var response = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            var response = MwsConnector.Api.GetFeedSubmissionList( filter );
 
             Ignore_Mws_Throttling( response );
 
@@ -69,7 +70,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         [Test]
         public void Get_Submitted_Feeds_List_Count()
         {
-            var response = MwsConnector.Instance.GetFeedSubmissionCount( MwsSubmittedFeedsFilter.All() );
+            var response = MwsConnector.Api.GetFeedSubmissionCount( MwsSubmittedFeedsFilter.All() );
 
             Ignore_Mws_Throttling( response );
 
@@ -83,8 +84,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Get_Submitted_Feeds_List_Count_Equal_GetList_Count()
         {
             var filter = MwsSubmittedFeedsFilter.LastDays( 10 );
-            var responseCount = MwsConnector.Instance.GetFeedSubmissionCount( filter );
-            var responseInfo = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            var responseCount = MwsConnector.Api.GetFeedSubmissionCount( filter );
+            var responseInfo = MwsConnector.Api.GetFeedSubmissionList( filter );
 
             Ignore_Mws_Throttling( responseCount );
             Ignore_Mws_Throttling( responseInfo );
@@ -103,10 +104,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Just_submitted_feed_has_InProgress_processing_status()
         {
             var submissionFeedId = SubmitFeed( MwsFeedType.Product );
-            var response = MwsConnector.Instance.GetFeedSubmissionProcessingStatus( submissionFeedId );
+            var response = MwsConnector.Api.GetFeedSubmissionProcessingStatus( submissionFeedId );
 
             Assert.IsNotNull( response.Result, "response.Result" );
-            var status = response.Result.FeedSubmissionProcessingStatus;
+            var status = response.Result.Status;
 
             Console.WriteLine( "Feed submission id: {0}\nProcessing status: {1}", submissionFeedId, status );
             Assert.AreEqual( MwsFeedSubmissionProcessingStatus.InProgress, status );
@@ -116,11 +117,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Incorrect_SubmissionFeedId_involves_Unknown_processing_status()
         {
             const string wrongId = "Lalala I am crazy Id!";
-            var response = MwsConnector.Instance.GetFeedSubmissionProcessingStatus( wrongId );
+            var response = MwsConnector.Api.GetFeedSubmissionProcessingStatus( wrongId );
 
             Console.WriteLine( response );
             Assert.IsNotNull( response.Result, "response.Result" );
-            var status = response.Result.FeedSubmissionProcessingStatus;
+            var status = response.Result.Status;
 
             Console.WriteLine( "Feed submission id: {0}\nProcessing status: {1}", wrongId, status );
             Assert.AreEqual( MwsFeedSubmissionProcessingStatus.Unknown, status );
@@ -130,7 +131,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Recent_submitted_feeds_done_without_errors()
         {
             const int recentNumber = 5;
-            var listResponse = MwsConnector.Instance.GetFeedSubmissionList( MwsSubmittedFeedsFilter.DoneInLastDays( 10 ) );
+            var listResponse = MwsConnector.Api.GetFeedSubmissionList( MwsSubmittedFeedsFilter.DoneInLastDays( 10 ) );
             listResponse.Check();
 
             var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber );
@@ -139,13 +140,13 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Console.WriteLine();
                 Console.WriteLine( id );
 
-                var response = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( id );
+                var response = MwsConnector.Api.GetFeedSubmissionCompleteStatus( id );
                 Console.WriteLine( response );
                 Ignore_Mws_Throttling( response );
                 Ignore_Some_Errors_Advisely_Generated_by_Tests( response );
                 response.Check();
 
-                Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.FeedSubmissionCompleteStatus );
+                Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.Status );
                 Assert.AreEqual( id, response.Result.TransactionId );
                 Assert.AreEqual( 0, response.Result.WithErrorCount );
                 Assert.AreEqual( 0, response.Result.WithWarningCount );
@@ -160,11 +161,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Just_submitted_feed_has_InProgress_overall_status()
         {
             var feedSubmissionId = SubmitFeed( MwsFeedType.Product, mute : true );
-            var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
+            var response = MwsConnector.Api.GetFeedSubmissionOverallStatus( feedSubmissionId );
             response.Check();
 
             Console.WriteLine( response );
-            Assert.AreEqual( MwsFeedSubmissionOverallStatus.InProgress, response.Result.FeedSubmissionOverallStatus );
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.InProgress, response.Result.Status );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
         }
 
@@ -172,7 +173,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Long_submitted_product_feed_has_Successful_overall_status()
         {
             var feedSubmissionId = FindProductFeedSubmissionWithDoneStatus();
-            var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
+            var response = MwsConnector.Api.GetFeedSubmissionOverallStatus( feedSubmissionId );
 
             Console.WriteLine( feedSubmissionId );
             Console.WriteLine( response );
@@ -182,7 +183,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
             response.Check();
 
-            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success, response.Result.FeedSubmissionOverallStatus );
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success, response.Result.Status );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
             Assert_That_Text_Contains( response, "FeedSubmissionCompleteStatus" );
         }
@@ -193,9 +194,9 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var feedSubmissionId = SubmitFeed( MwsFeedType.Price, mute : true );
             Console.WriteLine( "New id:\n{0}\n", feedSubmissionId );
 
-            System.Threading.Thread.Sleep(1000);
+            Thread.Sleep( 1000 );
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Price );
-            var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            var listResponse = MwsConnector.Api.GetFeedSubmissionList( filter );
             listResponse.Check();
 
             const int recentNumber = 20;
@@ -211,23 +212,38 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             TrySubmitProductFeedAsImageFeed();
 
-            const int recentNumber = 5;
-            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image, MwsFeedSubmissionProcessingStatus.Complete );
-            var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
-            listResponse.Check();
+            var completeStatusResponse = FindCompleteStatusResponseWithErrors();
 
-            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).Reverse().ToList();
+            Assert.NotNull( completeStatusResponse, "completeStatusResponse" );
+            completeStatusResponse.Check();
+            Console.WriteLine( completeStatusResponse );
 
-            var statusResponse = FindFirstFailedFeedSubmission( recentSubmissionIds );
-            Assert.NotNull( statusResponse, "statusResponse" );
-            statusResponse.Check();
-            Console.WriteLine( statusResponse );
+            Assert.That( !string.IsNullOrEmpty( completeStatusResponse.Result.TransactionId ), "TransactionId" );
+            Assert.AreEqual( "5000", completeStatusResponse.Result.ErrorCode );
+            Assert.That( completeStatusResponse.Result.ErrorDescription.Contains( "Please specify the correct feed" ), "ErrorMassage" );
+        }
 
-            Assert_That_Text_Contains( statusResponse.Result.Content, "<ResultCode>Error</ResultCode>" );
-            Assert_That_Text_Contains( statusResponse.Result.Content, "<ResultMessageCode>5000</ResultMessageCode>" );
-            Assert_That_Text_Contains( statusResponse.Result.Content, "Please specify the correct feed" );
+        [Test]
+        public void Overall_status_contains_all_needed_error_info()
+        {
+            var completeStatusResponse = FindCompleteStatusResponseWithErrors();
 
-            // todo:> parse error code and descrition
+            if( completeStatusResponse == null ) {
+                Assert.Inconclusive( "Can't get completeStatusResponse with errors" );
+            }
+
+            var feedSubmissionId = completeStatusResponse.Result.TransactionId;
+            var overallStatusResponse = MwsConnector.Api.GetFeedSubmissionOverallStatus( feedSubmissionId );
+            Ignore_Mws_Throttling( overallStatusResponse );
+            overallStatusResponse.Check();
+
+            Assert.AreEqual( MwsFeedSubmissionOverallStatus.Failure, overallStatusResponse.Result.Status );
+            Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Failure, overallStatusResponse.Result.CompleteResult.Status );
+            Assert.AreEqual( MwsFeedSubmissionProcessingStatus.Complete, overallStatusResponse.Result.ProcessingResult.Status );
+
+            Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "<ResultCode>Error</ResultCode>" );
+            Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "<ResultMessageCode>5000</ResultMessageCode>" );
+            Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "Please specify the correct feed" );
         }
 
         [Test]
@@ -239,14 +255,28 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         #region Utils
 
+        private static Response< MwsGetFeedSubmissionCompleteStatusResult > FindCompleteStatusResponseWithErrors()
+        {
+            const int recentNumber = 5;
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image, MwsFeedSubmissionProcessingStatus.Complete );
+            var listResponse = MwsConnector.Api.GetFeedSubmissionList( filter );
+            Ignore_Mws_Throttling( listResponse );
+            listResponse.Check();
+
+            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).Reverse().ToList();
+
+            var completeStatusResponse = FindFirstFailedFeedSubmission( recentSubmissionIds );
+            return completeStatusResponse;
+        }
+
         private static Response< MwsGetFeedSubmissionCompleteStatusResult > FindFirstFailedFeedSubmission(
             IEnumerable< string > ids )
         {
             foreach( var id in ids ) {
-                var statusResponse = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( id );
+                var statusResponse = MwsConnector.Api.GetFeedSubmissionCompleteStatus( id );
                 Ignore_Mws_Throttling( statusResponse );
 
-                var status = statusResponse.Result.FeedSubmissionCompleteStatus;
+                var status = statusResponse.Result.Status;
                 Console.WriteLine( "{0} {1}", id, status );
                 if( status == MwsFeedSubmissionCompleteStatus.Failure ) {
                     return statusResponse;
@@ -272,7 +302,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 var feed = new MwsFeedDescriptor( MwsFeedType.Image ) {
                     Content = File.ReadAllText( fileName )
                 };
-                var response = MwsConnector.Instance.SubmitFeed( feed );
+                var response = MwsConnector.Api.SubmitFeed( feed );
                 Ignore_Mws_Throttling( response );
                 Console.WriteLine( response );
                 Assert.That( response.IsSuccessful, "SubmitProductFeedAsImageFeed" );
@@ -285,7 +315,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         private static string SubmitFeed( MwsFeedType feedType, bool mute = false )
         {
             var feed = MakeMwsFeedHandler( feedType );
-            var response = MwsConnector.Instance.SubmitFeed( feed );
+            var response = MwsConnector.Api.SubmitFeed( feed );
 
             if( !mute ) {
                 Console.WriteLine( response );
@@ -319,7 +349,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product,
                 MwsFeedSubmissionProcessingStatus.Complete,
                 10 );
-            var response = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            var response = MwsConnector.Api.GetFeedSubmissionList( filter );
             Ignore_Mws_Throttling( response );
             response.Check();
 

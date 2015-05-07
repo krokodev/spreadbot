@@ -9,8 +9,10 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Results
 {
     public class MwsGetFeedSubmissionCompleteStatusResult : ResponseResult
     {
-        public MwsFeedSubmissionCompleteStatus FeedSubmissionCompleteStatus { get; set; }
+        public MwsFeedSubmissionCompleteStatus Status { get; set; }
         public string TransactionId { get; set; }
+        public string ErrorCode { get; set; }
+        public string ErrorDescription { get; set; }
         public int? ProcessedCount { get; set; }
         public int? SuccessfulCount { get; set; }
         public int? WithErrorCount { get; set; }

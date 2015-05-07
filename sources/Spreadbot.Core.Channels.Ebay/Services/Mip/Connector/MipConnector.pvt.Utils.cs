@@ -125,7 +125,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                         ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                         Result =
                             new MipGetFeedSubmissionOverallStatusResult {
-                                MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.InProgress
+                                Status = MipFeedSubmissionOverallStatus.InProgress
                             }
                     };
                 }
@@ -141,7 +141,7 @@ namespace Spreadbot.Core.Channels.Ebay.Services.Mip.Connector
                     ArgsInfo = MakeSubmissionStatusArgsInfo( mipFeedSubmissionDescriptor ),
                     Result =
                         new MipGetFeedSubmissionOverallStatusResult {
-                            MipFeedSubmissionOverallStatus = MipFeedSubmissionOverallStatus.Unknown
+                            Status = MipFeedSubmissionOverallStatus.Unknown
                         },
                     InnerResponses = { response }
                 };
