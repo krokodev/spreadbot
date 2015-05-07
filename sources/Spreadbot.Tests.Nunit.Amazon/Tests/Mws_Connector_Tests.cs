@@ -180,13 +180,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert_That_Text_Contains( response, "FeedSubmissionCompleteStatus" );
         }
 
-
-
         [Test]
         public void Just_submitted_image_feed_found_in_total_id_list()
         {
-            var feedSubmissionId = SubmitFeed( MwsFeedType.Image, mute: true );
-            Console.WriteLine(feedSubmissionId);
+            var feedSubmissionId = SubmitFeed( MwsFeedType.Image, mute : true );
+            Console.WriteLine( feedSubmissionId );
 
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image );
             var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
@@ -201,31 +199,30 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert.That( recentSubmissionIds.Contains( feedSubmissionId ) );
         }
 
-
         [Test]
 
         // Code: Error_code_and_description_are_available_on_failed_submission
         public void Error_code_and_description_available_on_failed_submission()
         {
-//            SubmitProductFeedAsImageFeed();
+            SubmitProductFeedAsImageFeed();
 
-            const int recentNumber = 100;
+            const int recentNumber = 7;
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image, MwsFeedSubmissionProcessingStatus.Complete );
             var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
             listResponse.Check();
 
-            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).ToList();
-            recentSubmissionIds.ForEach( Console.WriteLine );
+            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).Reverse().ToList();
+            //var recentSubmissionIds = new List<string>{"50470016562"};
 
-            //var statusResponse = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( "50470016562" ); 
             var statusResponse = FindFirstFailedFeedSubmission( recentSubmissionIds );
             Assert.NotNull( statusResponse, "statusResponse" );
             statusResponse.Check();
-            Console.WriteLine(statusResponse);
+            Console.WriteLine( statusResponse );
 
-            Assert_That_Text_Contains(statusResponse.Result.Content, "<ResultCode>Error</ResultCode>");
-            Assert_That_Text_Contains(statusResponse.Result.Content, "<ResultMessageCode>5000</ResultMessageCode>");
-            Assert_That_Text_Contains(statusResponse.Result.Content, "Please specify the correct feed type when re-submitting this feed.</ResultDescription>");
+            Assert_That_Text_Contains( statusResponse.Result.Content, "<ResultCode>Error</ResultCode>" );
+            Assert_That_Text_Contains( statusResponse.Result.Content, "<ResultMessageCode>5000</ResultMessageCode>" );
+            Assert_That_Text_Contains( statusResponse.Result.Content,
+                "Please specify the correct feed type when re-submitting this feed.</ResultDescription>" );
 
             // read error code
             // Ignore images in 'recent must be ok test'
@@ -245,8 +242,11 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             foreach( var id in ids ) {
                 var statusResponse = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( id );
-                if( statusResponse.IsSuccessful
-                    && statusResponse.Result.FeedSubmissionCompleteStatus == MwsFeedSubmissionCompleteStatus.Failure ) {
+                IgnoreMwsThrottling( statusResponse );
+
+                var status = statusResponse.Result.FeedSubmissionCompleteStatus;
+                Console.WriteLine( "{0} {1}", id, status );
+                if( status == MwsFeedSubmissionCompleteStatus.Failure ) {
                     return statusResponse;
                 }
             }
@@ -313,7 +313,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Product,
                 MwsFeedSubmissionProcessingStatus.Complete,
                 10 );
-            var response = MwsConnector.Instance.GetFeedSubmissionList( filter ).Check();
+            var response = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            IgnoreMwsThrottling( response );
+            response.Check();
+
             return response.Result.FeedSubmissionDescriptors.Select( d => d.FeedSubmissionId ).FirstOrDefault();
         }
 
