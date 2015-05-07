@@ -149,8 +149,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
                 Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.Status, "MwsFeedSubmissionCompleteStatus" );
                 Assert.AreEqual( id, response.Result.TransactionId );
-                Assert.AreEqual( 0, response.Result.WithErrorCount );
-                Assert.AreEqual( 0, response.Result.WithWarningCount );
+                Assert.AreEqual( 0, response.Result.WithErrorCount, "WithErrorCount" );
+                Assert.NotNull(response.Result.WithWarningCount, "WithWarningCount" );
                 Assert.AreEqual( response.Result.ProcessedCount, response.Result.SuccessfulCount );
 
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithError>0</MessagesWithError>" );
@@ -220,8 +220,9 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Console.WriteLine( completeStatusResponse );
 
             Assert.That( !string.IsNullOrEmpty( completeStatusResponse.Result.TransactionId ), "TransactionId" );
-            Assert.AreEqual( "5000", completeStatusResponse.Result.ErrorCode );
-            Assert.That( completeStatusResponse.Result.ErrorDescription.Contains( "Please specify the correct feed" ), "ErrorMassage" );
+            Assert.AreEqual( "Error", completeStatusResponse.Result.ResultCode );
+            Assert.AreEqual( "5000", completeStatusResponse.Result.ResultMessageCode );
+            Assert.That( completeStatusResponse.Result.ResultDescription.Contains( "Please specify the correct feed" ), "ErrorMassage" );
         }
 
         [Test]

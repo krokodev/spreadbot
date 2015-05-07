@@ -130,8 +130,9 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 SuccessfulCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesSuccessful" ),
                 WithErrorCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithError" ),
                 WithWarningCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithWarning" ),
-                ErrorCode = content.GetXmlValue( root + "Result/ResultMessageCode" ),
-                ErrorDescription = content.GetXmlValue( root + "Result/ResultDescription" ),
+                ResultCode = content.GetXmlValue( root + "Result/ResultCode" ),
+                ResultMessageCode = content.GetXmlValue( root + "Result/ResultMessageCode" ),
+                ResultDescription = content.GetXmlValue( root + "Result/ResultDescription" ),
                 Content = content
             };
 
