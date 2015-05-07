@@ -59,5 +59,10 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
         {
             return _GetFeedSubmissionOverallStatus( feedSubmissionId );
         }
+
+        public Response< MwsGetProductInfoResult > GetProductInfo( string sku )
+        {
+            return _GetProductInfo( sku );
+        }
     }
 }

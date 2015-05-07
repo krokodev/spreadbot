@@ -86,11 +86,13 @@
     <Compile Include="Adapter\AmazonAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.imp.IChannelAdapter.cs" />
     <Compile Include="Adapter\AmazonAdapter.pvt.Tasks.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Product.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.UItils.Convertors.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.Utils.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
+    <Compile Include="Services\Mws\Results\MwsGetProductInfoResult.cs" />
     <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionOverallStatus.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionOverallStatusResult.cs" />
     <Compile Include="Services\Mws\Results\MwsGetFeedSubmissionCompleteStatusResult.cs" />
