@@ -189,18 +189,18 @@ namespace Spreadbot.Nunit.Amazon.Tests
         public void Just_submitted_price_feed_found_in_total_id_list()
         {
             var feedSubmissionId = SubmitFeed( MwsFeedType.Price, mute : true );
-            Console.WriteLine( feedSubmissionId );
+            Console.WriteLine( "New id:\n{0}\n", feedSubmissionId );
 
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Price);
             var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
             listResponse.Check();
 
-            const int recentNumber = 100;
+            const int recentNumber = 20;
             var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).Reverse().ToList();
-            Console.WriteLine();
+            Console.WriteLine("\nRecent ids:\n");
             recentSubmissionIds.ForEach( Console.WriteLine );
 
-            Assert.That( recentSubmissionIds.Contains( feedSubmissionId ) );
+            Assert.That( recentSubmissionIds.Contains( feedSubmissionId ) , "List contains new id");
         }
 
         [Test]
