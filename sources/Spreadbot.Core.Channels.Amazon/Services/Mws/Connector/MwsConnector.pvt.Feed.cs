@@ -171,11 +171,13 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             string feedSubmissionId )
         {
             try {
-                var responseProcessing = _GetFeedSubmissionProcessingStatus( feedSubmissionId ).Check();
+                var processingResponse = _GetFeedSubmissionProcessingStatus( feedSubmissionId ).Check();
                 var overallStatus = MwsFeedSubmissionOverallStatus.Unknown;
-                var innerResponses = new List< IAbstractResponse > { responseProcessing };
+                var innerResponses = new List< IAbstractResponse > { processingResponse };
+                Response< MwsGetFeedSubmissionCompleteStatusResult > completeResponse;
+                MwsGetFeedSubmissionCompleteStatusResult completeResult = null;
 
-                switch( responseProcessing.Result.Status ) {
+                switch( processingResponse.Result.Status ) {
                     case MwsFeedSubmissionProcessingStatus.Unknown :
                         overallStatus = MwsFeedSubmissionOverallStatus.Unknown;
                         break;
@@ -186,14 +188,16 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                         overallStatus = MwsFeedSubmissionOverallStatus.InProgress;
                         break;
                     case MwsFeedSubmissionProcessingStatus.Complete :
-                        IAbstractResponse responseComplete;
-                        overallStatus = GetOverallStatusBasedOnComplete( feedSubmissionId, out responseComplete );
-                        innerResponses.Add( responseComplete );
+                        overallStatus = GetOverallStatusBasedOnComplete( feedSubmissionId, out completeResponse );
+                        innerResponses.Add( completeResponse );
+                        completeResult = completeResponse.Result;
                         break;
                 }
                 return new Response< MwsGetFeedSubmissionOverallStatusResult > {
                     Result = new MwsGetFeedSubmissionOverallStatusResult {
-                        Status = overallStatus
+                        Status = overallStatus,
+                        ProcessingResult = processingResponse.Result,
+                        CompleteResult = completeResult
                     },
                     InnerResponses = innerResponses
                 };
@@ -205,7 +209,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
         private MwsFeedSubmissionOverallStatus GetOverallStatusBasedOnComplete(
             string feedSubmissionId,
-            out IAbstractResponse response )
+            out Response< MwsGetFeedSubmissionCompleteStatusResult >  response )
         {
             var responseComplete = _GetFeedSubmissionCompleteStatus( feedSubmissionId ).Check();
             response = responseComplete;

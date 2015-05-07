@@ -235,6 +235,8 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var feedSubmissionId = completeStatusResponse.Result.TransactionId;
             var overallStatusResponse = MwsConnector.Api.GetFeedSubmissionOverallStatus( feedSubmissionId );
             Ignore_Mws_Throttling( overallStatusResponse );
+            Console.WriteLine( overallStatusResponse );
+
             overallStatusResponse.Check();
 
             Assert.AreEqual( MwsFeedSubmissionOverallStatus.Failure, overallStatusResponse.Result.Status );
@@ -243,7 +245,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
             Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "<ResultCode>Error</ResultCode>" );
             Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "<ResultMessageCode>5000</ResultMessageCode>" );
-            Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "Please specify the correct feed" );
+            Assert_That_Text_Contains( overallStatusResponse, "Please specify the correct feed" );
         }
 
         [Test]
