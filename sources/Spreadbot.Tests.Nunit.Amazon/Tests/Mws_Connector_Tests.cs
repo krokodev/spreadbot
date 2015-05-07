@@ -193,6 +193,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
             var feedSubmissionId = SubmitFeed( MwsFeedType.Price, mute : true );
             Console.WriteLine( "New id:\n{0}\n", feedSubmissionId );
 
+            System.Threading.Thread.Sleep(1000);
             var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Price );
             var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
             listResponse.Check();
