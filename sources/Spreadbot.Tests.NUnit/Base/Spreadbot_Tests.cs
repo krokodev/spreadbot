@@ -17,10 +17,13 @@ namespace Spreadbot.Nunit.Base
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
         }
 
-        protected static void Assert_Inconclusive_if_Text_Contains_Message( string text, string message )
+        protected static void Assert_Inconclusive_if_Text_Contains_Message(
+            object text,
+            string message,
+            string comment = "" )
         {
-            if( text.Contains( message ) ) {
-                Assert.Inconclusive( "Can't concluse the test due to [{0}]".SafeFormat( message ) );
+            if( text.ToString().Contains( message ) ) {
+                Assert.Inconclusive( "Can't concluse the test due to [{0}] {1}".SafeFormat( message, comment ) );
             }
         }
 

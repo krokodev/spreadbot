@@ -14,6 +14,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
     public partial class MwsConnector : IMwsConnector
     {
         public const string MwsRequestIsThrottled = "Request is throttled";
+        public const string MwsYouExceededYourQuota = "You exceeded your quota";
 
         public MwsConnector()
         {

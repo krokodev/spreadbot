@@ -3,15 +3,30 @@
 // Amazon_Tests.cs
 
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
+using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Nunit.Base;
+using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Nunit.Amazon.Base
 {
     public class Amazon_Tests : Spreadbot_Tests
     {
-        protected static void IgnoreMwsThrottling( object obj )
+        protected static void IgnoreMwsThrottling( IAbstractResponse response )
         {
-            Assert_Inconclusive_if_Text_Contains_Message( obj.ToString(), MwsConnector.MwsRequestIsThrottled );
+            IgnoreMwsThrottling( response, response.GetType().ToString() );
+        }
+
+        protected static void IgnoreMwsThrottling( object obj, string comment )
+        {
+            Assert_Inconclusive_if_Text_Contains_Message( obj, MwsConnector.MwsRequestIsThrottled, comment );
+            Assert_Inconclusive_if_Text_Contains_Message( obj, MwsConnector.MwsYouExceededYourQuota, comment );
+        }
+
+        protected static void Ignore_Some_Errors_Advisely_Generated_by_Tests( object text )
+        {
+            Assert_Inconclusive_if_Text_Contains_Message( text,
+                "<ResultDescription>Error validating XML document",
+                "Cause some tests may generate such errors advisedly" );
         }
     }
 }
