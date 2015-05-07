@@ -11,12 +11,12 @@ namespace Spreadbot.Nunit.Amazon.Base
 {
     public class Amazon_Tests : Spreadbot_Tests
     {
-        protected static void IgnoreMwsThrottling( IAbstractResponse response )
+        protected static void Ignore_Mws_Throttling( IAbstractResponse response )
         {
-            IgnoreMwsThrottling( response, response.GetType().ToString() );
+            Ignore_Mws_Throttling( response, response.GetType().ToString() );
         }
 
-        protected static void IgnoreMwsThrottling( object obj, string comment )
+        protected static void Ignore_Mws_Throttling( object obj, string comment )
         {
             Assert_Inconclusive_if_Text_Contains_Message( obj, MwsConnector.MwsRequestIsThrottled, comment );
             Assert_Inconclusive_if_Text_Contains_Message( obj, MwsConnector.MwsYouExceededYourQuota, comment );
