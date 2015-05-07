@@ -122,17 +122,18 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
         private static MwsGetFeedSubmissionCompleteStatusResult GetMwsGetFeedSubmissionStatusResult( string content )
         {
-            var root = "/AmazonEnvelope/Message/ProcessingReport/ProcessingSummary/";
+            var root = "/AmazonEnvelope/Message/ProcessingReport/";
             var result = new MwsGetFeedSubmissionCompleteStatusResult {
                 FeedSubmissionCompleteStatus = GetFeedSubmissionStatusFromContent( content ),
-                TotalProcessedCount = content.GetXmlIntValue( root + "MessagesProcessed" ),
-                SuccessfulCount = content.GetXmlIntValue( root + "MessagesSuccessful" ),
-                WithErrorCount = content.GetXmlIntValue( root + "MessagesWithError" ),
-                WithWarningCount = content.GetXmlIntValue( root + "MessagesWithWarning" ),
+                TransactionId = content.GetXmlValue( root + "DocumentTransactionID" ),
+                ProcessedCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesProcessed" ),
+                SuccessfulCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesSuccessful" ),
+                WithErrorCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithError" ),
+                WithWarningCount = content.GetXmlIntValue( root + "ProcessingSummary/MessagesWithWarning" ),
                 Content = content
             };
 
-            if( result.TotalProcessedCount == null || result.SuccessfulCount == null || result.WithErrorCount == null
+            if( result.ProcessedCount == null || result.SuccessfulCount == null || result.WithErrorCount == null
                 || result.WithWarningCount == null ) {
                 result.FeedSubmissionCompleteStatus = MwsFeedSubmissionCompleteStatus.Unknown;
                 return result;

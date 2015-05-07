@@ -13,8 +13,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
         public MwsSubmittedFeedsFilter()
         {
             ProcessingStatusList = new List< MwsFeedSubmissionProcessingStatus >();
-            FromDate = DateTime.Today;
-            ToDate = DateTime.Today;
+            FromDate = DateTime.Now;
+            ToDate = DateTime.Now;
             IdList = new List< string >();
             FeedTypeList = new List< MwsFeedType >();
         }
@@ -41,8 +41,8 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.FeedSubmission
                     status != null
                         ? new List< MwsFeedSubmissionProcessingStatus > { ( MwsFeedSubmissionProcessingStatus ) status }
                         : new List< MwsFeedSubmissionProcessingStatus >(),
-                ToDate = DateTime.Today,
-                FromDate = DateTime.Today.Subtract( TimeSpan.FromDays( daysFromToday ) )
+                ToDate = DateTime.Now,
+                FromDate = DateTime.Now.Subtract( TimeSpan.FromDays( daysFromToday ) )
             };
         }
 

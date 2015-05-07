@@ -144,9 +144,10 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Console.WriteLine( response );
 
                 Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.FeedSubmissionCompleteStatus );
+                Assert.AreEqual( id, response.Result.TransactionId );
                 Assert.AreEqual( 0, response.Result.WithErrorCount );
                 Assert.AreEqual( 0, response.Result.WithWarningCount );
-                Assert.AreEqual( response.Result.TotalProcessedCount, response.Result.SuccessfulCount );
+                Assert.AreEqual( response.Result.ProcessedCount, response.Result.SuccessfulCount );
 
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithError>0</MessagesWithError>" );
                 Assert_That_Text_Contains( response.Result.Content, "<MessagesWithWarning>0</MessagesWithWarning>" );
@@ -179,15 +180,55 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert_That_Text_Contains( response, "FeedSubmissionCompleteStatus" );
         }
 
+
+
         [Test]
-        // Code: Error_code_and_description_available_on_failed_submission
+        public void Just_submitted_image_feed_found_in_total_id_list()
+        {
+            var feedSubmissionId = SubmitFeed( MwsFeedType.Image, mute: true );
+            Console.WriteLine(feedSubmissionId);
+
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image );
+            var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            listResponse.Check();
+
+            const int recentNumber = 100;
+
+            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).Reverse().ToList();
+            Console.WriteLine();
+            recentSubmissionIds.ForEach( Console.WriteLine );
+
+            Assert.That( recentSubmissionIds.Contains( feedSubmissionId ) );
+        }
+
+
+        [Test]
+
+        // Code: Error_code_and_description_are_available_on_failed_submission
         public void Error_code_and_description_available_on_failed_submission()
         {
-            // send wrong image request (you can use bad xml) 
-            // find failed response
+//            SubmitProductFeedAsImageFeed();
+
+            const int recentNumber = 100;
+            var filter = MwsSubmittedFeedsFilter.All( MwsFeedType.Image, MwsFeedSubmissionProcessingStatus.Complete );
+            var listResponse = MwsConnector.Instance.GetFeedSubmissionList( filter );
+            listResponse.Check();
+
+            var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber ).ToList();
+            recentSubmissionIds.ForEach( Console.WriteLine );
+
+            //var statusResponse = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( "50470016562" ); 
+            var statusResponse = FindFirstFailedFeedSubmission( recentSubmissionIds );
+            Assert.NotNull( statusResponse, "statusResponse" );
+            statusResponse.Check();
+            Console.WriteLine(statusResponse);
+
+            Assert_That_Text_Contains(statusResponse.Result.Content, "<ResultCode>Error</ResultCode>");
+            Assert_That_Text_Contains(statusResponse.Result.Content, "<ResultMessageCode>5000</ResultMessageCode>");
+            Assert_That_Text_Contains(statusResponse.Result.Content, "Please specify the correct feed type when re-submitting this feed.</ResultDescription>");
+
             // read error code
             // Ignore images in 'recent must be ok test'
-            // see https://sellercentral.amazon.com/forums/thread.jspa?threadID=12023
         }
 
         [Test]
@@ -199,6 +240,19 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
         #region Utils
 
+        private static Response< MwsGetFeedSubmissionCompleteStatusResult > FindFirstFailedFeedSubmission(
+            IEnumerable< string > ids )
+        {
+            foreach( var id in ids ) {
+                var statusResponse = MwsConnector.Instance.GetFeedSubmissionCompleteStatus( id );
+                if( statusResponse.IsSuccessful
+                    && statusResponse.Result.FeedSubmissionCompleteStatus == MwsFeedSubmissionCompleteStatus.Failure ) {
+                    return statusResponse;
+                }
+            }
+            return null;
+        }
+
         private const string FeedFileTemplate = @"{0}Samples\SB_AMZ_002\{1}.Feed.xml";
 
         private static MwsFeedDescriptor MakeMwsFeedHandler( MwsFeedType feedType )
@@ -207,6 +261,17 @@ namespace Spreadbot.Nunit.Amazon.Tests
             return new MwsFeedDescriptor( feedType ) {
                 Content = File.ReadAllText( fileName )
             };
+        }
+
+        private static void SubmitProductFeedAsImageFeed()
+        {
+            var fileName = string.Format( FeedFileTemplate, AmazonSettings.BasePath, MwsFeedType.Image );
+            var feed = new MwsFeedDescriptor( MwsFeedType.Product ) {
+                Content = File.ReadAllText( fileName )
+            };
+            var response = MwsConnector.Instance.SubmitFeed( feed );
+            IgnoreMwsThrottling( response );
+            Assert.That( response.IsSuccessful, "SubmitProductFeedAsImageFeed" );
         }
 
         private static string SubmitFeed( MwsFeedType feedType, bool mute = false )

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--_POST_PRODUCT_DATA_-->
+<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Header>
+    <DocumentVersion>1.01</DocumentVersion>
+    <MerchantIdentifier>M_ROMANKOSHE_3199551</MerchantIdentifier>
+  </Header>
+  <MessageType>Product</MessageType>
+  <PurgeAndReplace>false</PurgeAndReplace>
+  <Message>
+    <MessageID>1</MessageID>
+    <OperationType>Update</OperationType>
+    <Product>
+      <SKU>SB_AMZ_999</SKU>
+      <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+      <DescriptionData>
+        <Title>Spreadbot Test Item [Attention: Not for Sale!]</Title>
+        <Brand>Spreadbot</Brand>
+        <MSRP currency="USD">11.22</MSRP>
+        <Manufacturer>Krokodev</Manufacturer>
+        <ItemType>arts-and-crafts-glue-guns</ItemType>
+      </DescriptionData>
+      <ProductData>
+        <Miscellaneous>
+          <ProductType>Bullshit</ProductType>
+        </Miscellaneous>
+      </ProductData>
+    </Product>
+  </Message>
+</AmazonEnvelope>
