@@ -173,11 +173,14 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             var feedSubmissionId = FindProductFeedSubmissionWithDoneStatus();
             var response = MwsConnector.Instance.GetFeedSubmissionOverallStatus( feedSubmissionId );
-            response.Check();
 
             Console.WriteLine( feedSubmissionId );
             Console.WriteLine( response );
+
+            Ignore_Mws_Throttling( response );
             Ignore_Some_Errors_Advisely_Generated_by_Tests( response );
+
+            response.Check();
 
             Assert.AreEqual( MwsFeedSubmissionOverallStatus.Success, response.Result.FeedSubmissionOverallStatus );
             Assert_That_Text_Contains( response, "FeedSubmissionProcessingStatus" );
