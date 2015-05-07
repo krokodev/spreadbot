@@ -132,6 +132,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
         {
             const int recentNumber = 5;
             var listResponse = MwsConnector.Api.GetFeedSubmissionList( MwsSubmittedFeedsFilter.DoneInLastDays( 10 ) );
+            Ignore_Mws_Throttling( listResponse );
             listResponse.Check();
 
             var recentSubmissionIds = GetRecentFeedSubmissionIds( listResponse, recentNumber );
