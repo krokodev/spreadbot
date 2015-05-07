@@ -146,7 +146,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
                 Ignore_Some_Errors_Advisely_Generated_by_Tests( response );
                 response.Check();
 
-                Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.Status );
+                Assert.AreEqual( MwsFeedSubmissionCompleteStatus.Success, response.Result.Status, "MwsFeedSubmissionCompleteStatus" );
                 Assert.AreEqual( id, response.Result.TransactionId );
                 Assert.AreEqual( 0, response.Result.WithErrorCount );
                 Assert.AreEqual( 0, response.Result.WithWarningCount );

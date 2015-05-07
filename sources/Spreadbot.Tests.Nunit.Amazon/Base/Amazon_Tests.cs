@@ -3,7 +3,6 @@
 // Amazon_Tests.cs
 
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Connector;
-using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Nunit.Base;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
@@ -24,9 +23,9 @@ namespace Spreadbot.Nunit.Amazon.Base
 
         protected static void Ignore_Some_Errors_Advisely_Generated_by_Tests( object text )
         {
-            Assert_Inconclusive_if_Text_Contains_Message( text,
-                "<ResultDescription>Error validating XML document",
-                "Cause some tests may generate such errors advisedly" );
+            const string cause = "Cause some tests may generate such errors advisedly";
+            Assert_Inconclusive_if_Text_Contains_Message( text, "<ResultDescription>Error validating XML document", cause );
+            Assert_Inconclusive_if_Text_Contains_Message( text, "Please specify the correct feed type when re-submitting this feed", cause );
         }
     }
 }
