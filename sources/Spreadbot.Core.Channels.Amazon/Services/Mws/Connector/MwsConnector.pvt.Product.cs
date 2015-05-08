@@ -9,13 +9,14 @@ using MarketplaceWebServiceProducts.Model;
 using Spreadbot.Core.Channels.Amazon.Configuration.Settings;
 using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Sdk.Common.Exceptions;
-using Spreadbot.Sdk.Common.Krokodev.Common;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
 namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 {
     public partial class MwsConnector
     {
+        #region Product API Implementation
+
         private Response< MwsGetProductInfoResult > _GetProductInfo( string sku )
         {
             try {
@@ -29,15 +30,15 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 };
 
                 var response = _mswProductsClient.GetMatchingProductForId( request );
-                if( !response.IsSetGetMatchingProductForIdResult() ) {
-                    throw new SpreadbotException( "GetMatchingProductForId return empty result for sku [{0}]", sku );
-                }
+
+                CheckForErrors( response );
 
                 return new Response< MwsGetProductInfoResult > {
                     Result = new MwsGetProductInfoResult {
                         XmlContent = response.ToXML(),
                         AsinId = GeProductAsinId( response ),
-                        Title =  GetProductTitle( response )
+                        Title = GetProductTitle( response ),
+                        SmallImageUrl = GetProductSmallImageUrl( response )
                     }
                 };
             }
@@ -46,42 +47,49 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
             }
         }
 
+        #endregion
+
+
+
+        #region Private Utils
+
+        private static void CheckForErrors( GetMatchingProductForIdResponse response )
+        {
+            if( response.GetMatchingProductForIdResult[ 0 ].IsSetError() ) {
+                throw new SpreadbotException( response.ToXML() );
+            }
+        }
+
         private static string GetProductTitle( GetMatchingProductForIdResponse response )
         {
+            return GetProductAttribute( response, "/ns2:ItemAttributes/ns2:Title" );
+        }
 
+        private static string GetProductSmallImageUrl( GetMatchingProductForIdResponse response )
+        {
+            return GetProductAttribute( response, "/ns2:ItemAttributes/ns2:SmallImage/ns2:URL" );
+        }
+
+        private static string GetProductAttribute( GetMatchingProductForIdResponse response, string path )
+        {
             var xmlElement = ( XmlElement ) response.GetMatchingProductForIdResult[ 0 ].Products.Product[ 0 ].AttributeSets.Any[ 0 ];
-
-            var xmlContent = ProductsUtil.FormatXml(xmlElement);
-
+            var xmlContent = ProductsUtil.FormatXml( xmlElement );
             var xmlDoc = new XmlDocument {
                 InnerXml = xmlContent,
             };
+            var namespaceManager = new XmlNamespaceManager( xmlDoc.NameTable );
+            namespaceManager.AddNamespace( "ns2", "http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd" );
 
-            var nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
-            nsmgr.AddNamespace("ns2", "http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd");
+            var itemIdNode = xmlDoc.SelectSingleNode( path, namespaceManager );
 
-            Console.WriteLine("================================");
-            Console.WriteLine(xmlContent);
-            Console.WriteLine("================================");
-
-            var itemIdNode = xmlDoc.SelectSingleNode( "/ns2:ItemAttributes/ns2:Title",  nsmgr);
-
-            if( itemIdNode != null ) {
-                return itemIdNode.InnerText;
-            }
-            return "itemIdNode == null";
-
-            /*
-                .Replace( "<ns2:", "<")
-                .Replace( "</ns2:", "</")
-                .GetXmlValue( "/AttributeSetList" );
- * 
-*/
+            return itemIdNode != null ? itemIdNode.InnerText : null;
         }
 
         private static string GeProductAsinId( GetMatchingProductForIdResponse response )
         {
             return response.GetMatchingProductForIdResult[ 0 ].Products.Product[ 0 ].Identifiers.MarketplaceASIN.ASIN;
         }
+
+        #endregion
     }
 }

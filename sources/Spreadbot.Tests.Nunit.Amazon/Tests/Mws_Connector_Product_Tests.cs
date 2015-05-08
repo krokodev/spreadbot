@@ -9,8 +9,6 @@ using Spreadbot.Core.Channels.Amazon.Services.Mws.Results;
 using Spreadbot.Nunit.Amazon.Base;
 using Spreadbot.Sdk.Common.Operations.Responses;
 
-// Code: Mws_Connector_Product_Tests
-
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
@@ -29,19 +27,19 @@ namespace Spreadbot.Nunit.Amazon.Tests
         }
 
         [Test]
-        public void Wrong_sku_involves_readable_error()
+        public void Wrong_sku_involves_readable_error_in_exception()
         {
             const string wrongSku = "wrong sku";
             var response = GetProductInfo( wrongSku );
             Console.WriteLine( response );
 
-            Assert_That_Text_Contains(response.Result.XmlContent, "InvalidParameterValue");
-            Assert_That_Text_Contains(response.Result.XmlContent, wrongSku);
-            Assert_That_Text_Contains(response.Result.XmlContent, "is an invalid SellerSKU");
+            Assert_That_Text_Contains(response.ExceptionInfo, "InvalidParameterValue");
+            Assert_That_Text_Contains(response.ExceptionInfo, wrongSku);
+            Assert_That_Text_Contains(response.ExceptionInfo, "is an invalid SellerSKU");
         }
 
         [Test]
-        public void Product_Asin_Title_Image_are_available()
+        public void Product_AsinId_Title_and_ImageUrl_are_available()
         {
             var response = GetProductInfo( Sku );
             Console.WriteLine( response );
@@ -49,7 +47,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 
             Assert.AreEqual( "B00WGHPI3O", response.Result.AsinId );
             Assert.AreEqual( "Spreadbot Test Item [Attention: Not for Sale!]", response.Result.Title );
-            //Assert.IsNotNullOrEmpty( response.Result.ImageUrl, "ImageUrl" );
+            Assert.That( response.Result.SmallImageUrl.Contains( "http://" ), "SmallImageUrl" );
         }
 
 
