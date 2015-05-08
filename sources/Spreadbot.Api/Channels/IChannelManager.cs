@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Spreadbot.Api.Channels
 {
-    public interface IChannelsManager
+    public interface IChannelManager
     {
         IList< IChannel > GetChannels();
     }
