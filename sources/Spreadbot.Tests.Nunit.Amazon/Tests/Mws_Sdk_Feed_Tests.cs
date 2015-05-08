@@ -17,7 +17,7 @@ namespace Spreadbot.Nunit.Amazon.Tests
 {
     [Ignore]
     [TestFixture]
-    public class Mws_Sdk_Tests : Amazon_Tests
+    public class Mws_Sdk_Feed_Tests : Amazon_Tests
     {
         [Test]
         public void Product_Feed_Submitted()
