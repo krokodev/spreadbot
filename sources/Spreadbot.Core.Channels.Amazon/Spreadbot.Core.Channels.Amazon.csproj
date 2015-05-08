@@ -48,9 +48,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Amazon.MarketplaceWebService">
-      <HintPath>..\..\packages\Spreadbot.Include.1.2.1.31569\lib\net45\Amazon.MarketplaceWebService.dll</HintPath>
-    </Reference>
     <Reference Include="Krokodev.Common, Version=1.1.5583.38602, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Krokodev.Common.dll</HintPath>
@@ -63,8 +60,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\krokodev.common.1.1.5583.38602\lib\net45\Nereal.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Spreadbot.Include">
-      <HintPath>..\..\packages\Spreadbot.Include.1.2.1.31569\lib\net45\Spreadbot.Include.dll</HintPath>
+    <Reference Include="Spreadbot.Amazon.Sdk.Mws.Feed">
+      <HintPath>..\..\packages\Spreadbot.Include.1.2.2.23057\lib\net45\Spreadbot.Amazon.Sdk.Mws.Feed.dll</HintPath>
+    </Reference>
+    <Reference Include="Spreadbot.Amazon.Sdk.Mws.Product">
+      <HintPath>..\..\packages\Spreadbot.Include.1.2.2.23057\lib\net45\Spreadbot.Amazon.Sdk.Mws.Product.dll</HintPath>
+    </Reference>
+    <Reference Include="Spreadbot.Include, Version=1.2.2.23057, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Spreadbot.Include.1.2.2.23057\lib\net45\Spreadbot.Include.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -118,7 +122,20 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForASINResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForSKUResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForASINResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForSKUResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductForIdResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForASINResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForSKUResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForASINResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForSKUResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetServiceStatusResponse.xml" />
+    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.ListMatchingProductsResponse.xml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spreadbot.Core.Abstracts\Spreadbot.Core.Abstracts.csproj">
       <Project>{5599EFE5-4D66-464D-91EE-3F76153BF8FF}</Project>
