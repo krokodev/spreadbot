@@ -172,18 +172,6 @@
     <Content Include="App_Data\Stores\Demoshop\Templates\Amazon\Product.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForASINResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetCompetitivePricingForSKUResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForASINResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetLowestOfferListingsForSKUResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductForIdResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMatchingProductResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForASINResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetMyPriceForSKUResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForASINResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetProductCategoriesForSKUResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.GetServiceStatusResponse.xml" />
-    <Content Include="Product\MarketplaceWebServiceProducts\Mock\MarketplaceWebServiceProducts.Model.ListMatchingProductsResponse.xml" />
     <None Include="App.config" />
     <Content Include="App_Data\Channels\Amazon\Mws\Samples\SB_AMZ_002\Price.Feed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -211,7 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Stores\Demoshop\Data\" />
-    <Folder Include="Mocks\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

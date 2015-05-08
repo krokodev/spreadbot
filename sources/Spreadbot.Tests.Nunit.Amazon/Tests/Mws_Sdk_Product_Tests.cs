@@ -13,8 +13,7 @@ using Spreadbot.Nunit.Amazon.Base;
 
 namespace Spreadbot.Nunit.Amazon.Tests
 {
-    [Ignore]
-    [TestFixture]
+//    [TestFixture]
     public class Mws_Sdk_Product_Tests : Amazon_Tests
     {
         [Test]
