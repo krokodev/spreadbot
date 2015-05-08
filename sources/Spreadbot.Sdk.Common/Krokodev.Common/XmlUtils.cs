@@ -12,7 +12,7 @@ namespace Spreadbot.Sdk.Common.Krokodev.Common
         public static string GetXmlValue( this string content, string path )
         {
             var xml = new XmlDocument {
-                InnerXml = content
+                InnerXml = content,
             };
 
             var itemIdNode = xml.SelectSingleNode( path );
