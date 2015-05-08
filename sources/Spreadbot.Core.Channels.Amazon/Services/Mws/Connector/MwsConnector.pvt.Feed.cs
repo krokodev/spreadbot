@@ -28,7 +28,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                     ContentMD5 = CalculateMd5( feedDescriptor.Content )
                 };
 
-                var response = _mwsClient.SubmitFeed( request );
+                var response = _mwsFeedClient.SubmitFeed( request );
 
                 return new Response< MwsSubmitFeedResult > {
                     Result = new MwsSubmitFeedResult { FeedSubmissionId = TryGetFeedSubmissionId( response ) },
@@ -80,7 +80,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 Merchant = AmazonSettings.MerchantId,
                 NextToken = nextToken
             };
-            return _mwsClient.GetFeedSubmissionListByNextToken( request );
+            return _mwsFeedClient.GetFeedSubmissionListByNextToken( request );
         }
 
         private GetFeedSubmissionListResponse RunGetFeedSubmissionList( MwsSubmittedFeedsFilter filter )
@@ -94,7 +94,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                 FeedProcessingStatusList = ConvertToNativeStatusList( filter.ProcessingStatusList ),
                 FeedTypeList = ConvertToNativeTypeList( filter.FeedTypeList ),
             };
-            return _mwsClient.GetFeedSubmissionList( request );
+            return _mwsFeedClient.GetFeedSubmissionList( request );
         }
 
         private Response< MwsGetFeedSubmissionCountResult > _GetFeedSubmissionCount( MwsSubmittedFeedsFilter filter )
@@ -108,7 +108,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                     FeedTypeList = ConvertToNativeTypeList( filter.FeedTypeList ),
                 };
 
-                var response = _mwsClient.GetFeedSubmissionCount( request );
+                var response = _mwsFeedClient.GetFeedSubmissionCount( request );
 
                 return new Response< MwsGetFeedSubmissionCountResult > {
                     Result = new MwsGetFeedSubmissionCountResult {
@@ -153,7 +153,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
                     FeedSubmissionResult = stream
                 };
 
-                var response = _mwsClient.GetFeedSubmissionResult( request );
+                var response = _mwsFeedClient.GetFeedSubmissionResult( request );
                 var content = Encoding.GetEncoding( FeedContentEncoding ).GetString( stream.ToArray() );
                 CheckContentMD5IsEqual( content, response.GetFeedSubmissionResultResult.ContentMD5 );
 

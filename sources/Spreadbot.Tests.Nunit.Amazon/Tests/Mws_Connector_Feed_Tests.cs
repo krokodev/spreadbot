@@ -23,7 +23,7 @@ using Spreadbot.Sdk.Common.Operations.Responses;
 namespace Spreadbot.Nunit.Amazon.Tests
 {
     [TestFixture]
-    public class Mws_Connector_Tests : Amazon_Tests
+    public class Mws_Connector_Feed_Tests : Amazon_Tests
     {
         [SetUp]
         public static void Init() {}
@@ -249,24 +249,6 @@ namespace Spreadbot.Nunit.Amazon.Tests
             Assert_That_Text_Contains( overallStatusResponse.Result.CompleteResult.Content, "<ResultMessageCode>5000</ResultMessageCode>" );
             Assert_That_Text_Contains( overallStatusResponse, "Please specify the correct feed" );
         }
-
-        [Ignore]
-        [Test]
-        // Code: Submitted_product_Asin_and_other_information_are_available
-        public void Submitted_product_Asin_and_other_information_are_available()
-        {
-            const string sku = "SB_AMZ_002";
-            var response = MwsConnector.Api.GetProductInfo( sku );
-            Ignore_Mws_Throttling( response );
-            Console.WriteLine(response);
-            response.Check();
-
-            Assert.AreEqual( "B00WGHPI3O", response.Result.AsinId );
-            Assert.AreEqual( "Spreadbot Test Item [Attention: Not for Sale!]", response.Result.Title);
-            Assert.IsNotNullOrEmpty( response.Result.ImageUrl, "ImageUrl");
-            Assert.That( response.Result.XmlContent.Contains( "Spreadbot is a .Net opensource multichannel manager." ), "XmlContent");
-        }
-
 
         #region Utils
 

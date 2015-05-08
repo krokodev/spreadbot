@@ -94,7 +94,7 @@
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.UItils.Convertors.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.Utils.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Instance.cs" />
-    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Client.cs" />
+    <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Clients.cs" />
     <Compile Include="Services\Mws\Connector\MwsConnector.pvt.Feed.cs" />
     <Compile Include="Services\Mws\Results\MwsGetProductInfoResult.cs" />
     <Compile Include="Services\Mws\FeedSubmission\MwsFeedSubmissionOverallStatus.cs" />

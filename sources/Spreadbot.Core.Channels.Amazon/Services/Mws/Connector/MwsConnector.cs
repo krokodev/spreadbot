@@ -18,7 +18,7 @@ namespace Spreadbot.Core.Channels.Amazon.Services.Mws.Connector
 
         public MwsConnector()
         {
-            InitServiceClient();
+            InitMwsClients();
         }
 
         public static IMwsConnector Api
